@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Julian Schmidhuber
+# This file is distributed under the same license as the DieBahn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: DieBahn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-07 16:13+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ui/journey_detail_page.ui:46
+msgid "Time"
+msgstr ""
+
+#: ui/journey_detail_page.ui:32
+msgid "Transitions"
+msgstr ""
+
+#: ui/journeys_page.ui:28
+msgid "Earlier"
+msgstr ""
+
+#: ui/journeys_page.ui:38
+msgid "Later"
+msgstr ""
+
+#: ui/leg_item.ui:67
+msgid "Stopovers"
+msgstr ""
+
+#: ui/search_page.ui:11
+msgid "From"
+msgstr ""
+
+#: ui/search_page.ui:16
+msgid "To"
+msgstr ""
+
+#: ui/search_page.ui:23
+msgid "Departure"
+msgstr ""
+
+#: ui/search_page.ui:34 ui/window.ui:25
+msgid "Search"
+msgstr ""
+
+#: ui/window.ui:63
+msgid "Journeys"
+msgstr ""
+
+#: ui/window.ui:106
+msgid "Journey"
+msgstr ""
+
+#: src/gui/error.rs:18
+msgid "Failed to fetch data. Are you connected to the internet?"
+msgstr ""
+
+#: src/gui/error.rs:21
+msgid "The API returned a error. Please report this."
+msgstr ""
+
+#: src/gui/error.rs:22 src/gui/error.rs:26
+msgid "More information"
+msgstr ""
+
+#: src/gui/error.rs:25
+msgid "Failed to parse response. Please report this."
+msgstr ""
+
+#: src/gui/error.rs:51
+msgid "Error"
+msgstr ""
+
+#: src/gui/journey_detail_page.rs:146
+msgid "{} Minutes"
+msgstr ""

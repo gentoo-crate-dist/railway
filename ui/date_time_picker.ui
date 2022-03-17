@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="libadwaita" version="1.0"/>
+
+  <template class="DBDateTimePicker" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <property name="spacing">8</property>
+    <child>
+      <object class="GtkCalendar" id="pick_cal">
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="spacing">8</property>
+
+        <child>
+          <object class="GtkSpinButton" id="pick_hour">
+            <property name="wrap">True</property>
+            <property name="adjustment">adj_hour</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="label">:</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="pick_minute">
+            <property name="wrap">True</property>
+            <property name="adjustment">adj_minute</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+  </template>
+  <object class="GtkAdjustment" id="adj_hour">
+    <property name="lower">0</property>
+    <property name="upper">23</property>
+    <property name="step-increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="adj_minute">
+    <property name="lower">0</property>
+    <property name="upper">59</property>
+    <property name="step-increment">1</property>
+  </object>
+</interface>

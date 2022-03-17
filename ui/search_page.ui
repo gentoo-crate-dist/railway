@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="libadwaita" version="1.0"/>
+
+  <template class="DBSearchPage" parent="GtkBox">
+    <property name="orientation">horizontal</property>
+    <property name="hexpand">True</property>
+    <property name="spacing">8</property>
+
+    <child>
+      <object class="AdwToastOverlay" id="toast_errors">
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="hexpand">True</property>
+            <property name="spacing">8</property>
+
+            <child>
+              <object class="DBStationEntry" id="in_from">
+                <property name="placeholder-text" translatable="yes">From</property>
+              </object>
+            </child>
+            <child>
+              <object class="DBStationEntry" id="in_to">
+                <property name="placeholder-text" translatable="yes">To</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkExpander" id="expand_date_time">
+                <child type="label">
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">Departure</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="DBDateTimePicker" id="pick_date_time">
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_search">
+                <property name="label" translatable="yes">Search</property>
+                <binding name="sensitive">
+                  <closure function="and" type="gboolean">
+                    <lookup name="set">in_from</lookup>
+                    <lookup name="set">in_to</lookup>
+                  </closure>
+                </binding>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

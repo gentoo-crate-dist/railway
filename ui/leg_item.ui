@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="libadwaita" version="1.0"/>
+
+  <template class="DBLegItem" parent="GtkBox">
+    <style>
+      <class name="frame"/>
+    </style>
+    <property name="orientation">vertical</property>
+    <property name="hexpand">TRUE</property>
+    <property name="spacing">8</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">horizontal</property>
+        <property name="spacing">8</property>
+        <child>
+          <object class="DBAltLabel">
+            <binding name="main">
+              <lookup name="planned-departure">
+                <lookup name="leg" type="DBLegItem">
+                </lookup>
+              </lookup>
+            </binding>
+            <binding name="alt">
+              <lookup name="departure">
+                <lookup name="leg" type="DBLegItem">
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <binding name="label">
+              <lookup name="name">
+                <lookup name="origin">
+                  <lookup name="leg" type="DBLegItem">
+                  </lookup>
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="DBAltLabel">
+            <property name="halign">GTK_ALIGN_END</property>
+            <property name="hexpand">True</property>
+            <binding name="main">
+              <lookup name="planned-departure-platform">
+                <lookup name="leg" type="DBLegItem"/>
+              </lookup>
+            </binding>
+            <binding name="alt">
+              <lookup name="departure-platform">
+                <lookup name="leg" type="DBLegItem"/>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkExpander">
+        <child type="label">
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Stopovers</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="box_stopovers">
+            <property name="orientation">vertical</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox">
+        <property name="spacing">8</property>
+        <property name="hexpand">True</property>
+        <child>
+          <object class="DBAltLabel">
+            <binding name="main">
+              <lookup name="planned-arrival">
+                <lookup name="leg" type="DBLegItem">
+                </lookup>
+              </lookup>
+            </binding>
+            <binding name="alt">
+              <lookup name="arrival">
+                <lookup name="leg" type="DBLegItem">
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <binding name="label">
+              <lookup name="name">
+                <lookup name="destination">
+                  <lookup name="leg" type="DBLegItem">
+                  </lookup>
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="DBAltLabel">
+            <property name="halign">GTK_ALIGN_END</property>
+            <property name="hexpand">True</property>
+            <binding name="main">
+              <lookup name="planned-arrival-platform">
+                <lookup name="leg" type="DBLegItem"/>
+              </lookup>
+            </binding>
+            <binding name="alt">
+              <lookup name="arrival-platform">
+                <lookup name="leg" type="DBLegItem"/>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

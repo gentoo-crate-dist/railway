@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Icon=de.schmidhuberj.DieBahn
+Name=DieBahn
+StartupWMClass=DieBahn
+Exec=/app/bin/diebahn
+X-Purism-FormFactor=Workstation;Mobile;

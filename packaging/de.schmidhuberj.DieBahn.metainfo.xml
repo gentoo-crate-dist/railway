@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2022 Julian Schmidhuber -->
+<component type="desktop-application">
+  <id>de.schmidhuberj.DieBahn</id>
+  <project_license>GPL-3.0+</project_license>
+  <metadata_license>FSFAP</metadata_license>
+  <name>DieBahn</name>
+  <name xml:lang="de">DieBahn</name>
+  <summary>A GTK4 frontend for the travel information of the german railway</summary>
+  <summary xml:lang="de">Eine GTK4-Application für die Reiseauskunft der Deutschen Bahn</summary>
+  <launchable type="desktop-id">de.schmidhuberj.DieBahn.desktop</launchable>
+  <content_rating type="oars-1.1"/>
+  <developer_name>Julian Schmidhuber</developer_name>
+  <translation type="gettext">de.schmidhuberj.DieBahn</translation>
+  <update_contact>flatpak@schmiddi.anonaddy.com</update_contact>
+
+  <url type="homepage">https://gitlab.com/Schmiddiii/diebahn</url>
+
+  <description>
+    <p>
+      A GTK4 frontend for the travel information of the german railway.
+    </p>
+    <ul>
+      <li>
+        Search for a journey
+      </li>
+      <li>
+        List all available journeys
+      </li>
+      <li>
+        View the details of a journey including departure, arrivals, delays, platforms
+      </li>
+      <li>
+        Convergent for small screens
+      </li>
+    </ul>
+  </description>
+  <description xml:lang="de">
+    <p>
+      Eine GTK4-Application für die Reiseauskunft der Deutschen Bahn
+    </p>
+    <ul>
+      <li>
+        Suche eine Verbindung
+      </li>
+      <li>
+        Liste alle verfügbaren Verbindungen auf
+      </li>
+      <li>
+        Betrachte die Details eines Reiseplans, beispielsweise die Abfahrt, Ankunft, Verspätungen, Gleise
+      </li>
+      <li>
+        Geeignet für kleine Bildschirme
+      </li>
+    </ul>
+  </description>
+  <releases>
+    <release version="v0.1.0" date="2022-03-13">
+      <description> 
+        <p>Initial Release.</p>
+        <p xml:lang="de">Erste Veröffentlichung.</p>
+      </description>
+    </release>
+  </releases>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Overview of the application</caption>
+      <image>https://gitlab.com/Schmiddiii/diebahn/-/raw/master/packaging/screenshots/overview.png</image>
+    </screenshot>
+    <screenshot type="default" xml:lang="de">
+      <caption>Überblick der Anwendung</caption>
+      <image>https://gitlab.com/Schmiddiii/diebahn/-/raw/master/packaging/screenshots/overview_de.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Smaller Screen</caption>
+      <image>https://gitlab.com/Schmiddiii/diebahn/-/raw/master/packaging/screenshots/mobile.png</image>
+    </screenshot>
+    <screenshot xml:lang="de">
+      <caption>Kleinerer Bildschirm</caption>
+      <image>https://gitlab.com/Schmiddiii/diebahn/-/raw/master/packaging/screenshots/mobile_de.png</image>
+    </screenshot>
+  </screenshots>
+
+  <provides>
+    <id>de.schmidhuberj.DieBahn</id>
+    <binary>diebahn</binary>
+  </provides>
+  <custom>
+    <value key="Purism::form_factor">workstation</value>
+    <value key="Purism::form_factor">mobile</value>
+  </custom>
+</component>
+

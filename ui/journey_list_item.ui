@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="DBJourneyListItem" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkGrid">
+        <property name="column-spacing">16</property>
+        <property name="row-spacing">8</property>
+        <child>
+          <object class="DBAltLabel">
+            <layout>
+              <property name="column">0</property>
+              <property name="row">0</property>
+              <property name="row-span">2</property>
+            </layout>
+            <binding name="main">
+              <lookup name="planned-departure">
+                <lookup name="first-leg">
+                  <lookup name="journey" type="DBJourneyListItem"/>
+                </lookup>
+              </lookup>
+            </binding>
+            <binding name="alt">
+              <lookup name="departure">
+                <lookup name="first-leg">
+                  <lookup name="journey" type="DBJourneyListItem"/>
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="DBAltLabel">
+            <layout>
+              <property name="column">1</property>
+              <property name="row">0</property>
+              <property name="row-span">2</property>
+            </layout>
+            <binding name="main">
+              <lookup name="planned-arrival">
+                <lookup name="last-leg">
+                  <lookup name="journey" type="DBJourneyListItem"/>
+                </lookup>
+              </lookup>
+            </binding>
+            <binding name="main">
+              <lookup name="arrival">
+                <lookup name="last-leg">
+                  <lookup name="journey" type="DBJourneyListItem"/>
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <style>
+              <class name="dim-label"/>
+            </style>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">0</property>
+            </layout>
+            <binding name="label">
+              <lookup name="total-time">
+                <lookup name="journey" type="DBJourneyListItem"/>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <style>
+              <class name="dim-label"/>
+            </style>
+            <layout>
+              <property name="column">3</property>
+              <property name="row">0</property>
+            </layout>
+            <binding name="label">
+              <lookup name="transitions">
+                <lookup name="journey" type="DBJourneyListItem"/>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <layout>
+              <property name="column">0</property>
+              <property name="row">2</property>
+              <property name="column-span">4</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <style>
+              <class name="dim-label"/>
+            </style>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">3</property>
+              <property name="column-span">3</property>
+            </layout>
+            <binding name="label">
+              <lookup name="types">
+                <lookup name="journey" type="DBJourneyListItem"/>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="libadwaita" version="1.0"/>
+
+  <template class="DBJourneysPage" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <property name="spacing">8</property>
+    <property name="vexpand">TRUE</property>
+    <property name="valign">GTK_ALIGN_FILL</property>
+    <property name="hexpand">TRUE</property>
+    <property name="halign">GTK_ALIGN_FILL</property>
+
+
+    <child>
+      <object class="AdwToastOverlay" id="toast_errors">
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">8</property>
+                <property name="vexpand">TRUE</property>
+                <property name="valign">GTK_ALIGN_FILL</property>
+                <property name="hexpand">TRUE</property>
+                <property name="halign">GTK_ALIGN_FILL</property>
+
+                <child>
+                  <object class="GtkButton" id="btn_earlier">
+                    <property name="label" translatable="yes">Earlier</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListView" id="list_journeys">
+                    <property name="show-separators">TRUE</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btn_later">
+                    <property name="label" translatable="yes">Later</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
