@@ -61,6 +61,26 @@ msgstr "Verbindungen"
 msgid "Journey"
 msgstr "Reiseplan"
 
+#: src/gui/error.rs:18
+msgid "Failed to fetch data. Are you connected to the internet?"
+msgstr "Konnte Daten nicht holen. Sind Sie mit dem Internet verbunden?"
+
+#: src/gui/error.rs:21
+msgid "The API returned a error. Please report this."
+msgstr "Die API hat einen Fehler zurückgegeben. Bitte melden Sie dies."
+
+#: src/gui/error.rs:22 src/gui/error.rs:26
+msgid "More information"
+msgstr "Mehr Informationen."
+
+#: src/gui/error.rs:25
+msgid "Failed to parse response. Please report this."
+msgstr "Konnte Antwort nicht interpretieren. Bitte melden Sie dies."
+
+#: src/gui/error.rs:51
+msgid "Error"
+msgstr "Fehler"
+
 #: src/gui/journey_detail_page.rs:146
 msgid "{} Minutes"
 msgstr "{} Minuten"

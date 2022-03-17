@@ -2,6 +2,11 @@
 
 A GTK4 frontend for the travel information of the german railway ("Reiseauskunft der Deutschen Bahn").
 
+## Screenshots
+
+![Overview of the application](https://gitlab.com/Schmiddiii/diebahn/-/raw/master/packaging/screenshots/overview.png)
+![Smaller Screen](https://gitlab.com/Schmiddiii/diebahn/-/raw/master/packaging/screenshots/mobile.png)
+
 ## Features
 
 - Search for a journey.
@@ -11,6 +16,5 @@ A GTK4 frontend for the travel information of the german railway ("Reiseauskunft
 
 ## Still TODO
 
-- Better station search (currently one request for every typed letter).
 - Bookmark a search or a journey.
 - Show more information like prices.

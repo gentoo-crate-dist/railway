@@ -18,7 +18,7 @@ impl StationEntry {
 pub mod imp {
     use std::cell::{RefCell, Cell};
     use std::sync::{Arc, Mutex};
-    use std::time::Instant;
+    use std::time::{Instant, Duration};
 
     use gdk::glib::{clone, ParamSpec, ParamSpecObject, ParamFlags, Value, ParamSpecBoolean, ParamSpecString};
     use gdk::glib::subclass::InitializingObject;
@@ -32,13 +32,15 @@ pub mod imp {
 
     use crate::gui::objects::StationObject;
 
+    const REQUEST_DURATION: Duration = Duration::from_secs(1);
+
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/station_entry.ui")]
     pub struct StationEntry {
         #[template_child]
         entry: TemplateChild<gtk::Entry>,
 
-        last_changed: Arc<Mutex<Option<Instant>>>,
+        last_request: Arc<Mutex<Option<Instant>>>,
 
         hafas: RefCell<Option<Hafas>>,
 
@@ -57,20 +59,41 @@ pub mod imp {
             self.entry.connect_changed(
                 clone!(@strong obj,
                        @strong self.hafas as hafas, 
-                       @strong self.last_changed as last_changed => move |entry| {
-                    {
-                        let mut lock = last_changed.lock().expect("Failed to lock last_changed");
-                        *lock = Some(Instant::now());
-                    }
+                       @strong self.last_request as last_request => move |entry| {
 
                     let main_context = MainContext::default();
                     main_context.spawn_local(clone!(@strong obj,
                                                     @strong hafas, 
-                                                    @strong last_changed, 
+                                                    @strong last_request, 
                                                     @strong entry => async move {
                         let text = entry.text();
 
-                        if text.len() >= entry.completion().expect("Completion to be set up").minimum_key_length().try_into().unwrap() {
+                        let to_wait = {
+                            let mut last_request = last_request.lock().expect("last_request to be lockable.");
+                            if last_request.is_none() {
+                                *last_request = Some(Instant::now() - REQUEST_DURATION);
+                            }
+                            let duration_from_last_request = Instant::now() - last_request.expect("last_request to be set");
+                            if duration_from_last_request >= REQUEST_DURATION {
+                                Duration::ZERO
+                            } else {
+                                REQUEST_DURATION - duration_from_last_request
+                            }
+                        };
+
+                        log::trace!("Station entry changed. Wait {:?} for next request.", to_wait);
+
+                        tokio::time::sleep(to_wait).await;
+
+                        // Only request if text did not change since last time.
+                        if text.len() >= entry.completion().expect("Completion to be set up").minimum_key_length().try_into().unwrap() && entry.text() == text {
+                            log::trace!("Request is allowed with text {}.", text);
+                            {
+                                // Update last_request
+                                let mut last_request = last_request.lock().expect("last_request to be lockable.");
+                                *last_request = Some(Instant::now());
+                            }
+
                             let hafas_borrow = hafas.borrow();
                             let hafas = hafas_borrow.as_ref().expect("Hafas has not yet been set up.");
 
