@@ -84,3 +84,7 @@ msgstr "Error"
 #: src/gui/journey_detail_page.rs:146
 msgid "{} Minutes"
 msgstr "{} Minutes"
+
+#: ui/journey_detail_page.ui:77 ui/journeys_page.ui:62
+msgid "Search first"
+msgstr "Search first"

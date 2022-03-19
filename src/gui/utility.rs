@@ -1,3 +1,5 @@
+use gdk::glib::Object;
+
 pub struct Utility {}
 
 #[gtk::template_callbacks(functions)]
@@ -31,5 +33,21 @@ impl Utility {
             .get::<u32>()
             .expect("Expected u32 for arguments")
             .to_string()
+    }
+
+    #[template_callback]
+    fn is_some(#[rest] values: &[gtk::glib::Value]) -> bool {
+        values
+            .iter()
+            .next()
+            .expect("At least one argument has to exist")
+            .get::<Option<Object>>()
+            .expect("Expected Option for arguments")
+            .is_some()
+    }
+
+    #[template_callback]
+    fn is_none(#[rest] values: &[gtk::glib::Value]) -> bool {
+        !Utility::is_some(values)
     }
 }

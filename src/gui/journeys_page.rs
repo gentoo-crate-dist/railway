@@ -41,6 +41,7 @@ pub mod imp {
     use crate::gui::journey_list_item::JourneyListItem;
     use crate::gui::objects::JourneyObject;
     use crate::gui::objects::JourneysResultObject;
+    use crate::gui::utility::Utility;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/journeys_page.ui")]
@@ -174,6 +175,7 @@ pub mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
+            Utility::bind_template_callbacks(klass);
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {

@@ -45,7 +45,7 @@
                 </lookup>
               </lookup>
             </binding>
-            <binding name="main">
+            <binding name="alt">
               <lookup name="arrival">
                 <lookup name="last-leg">
                   <lookup name="journey" type="DBJourneyListItem"/>

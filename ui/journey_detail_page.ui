@@ -24,6 +24,11 @@
                 <property name="valign">GTK_ALIGN_FILL</property>
                 <property name="hexpand">TRUE</property>
                 <property name="halign">GTK_ALIGN_FILL</property>
+                <binding name="visible">
+                  <closure function="is_some" type="gboolean">
+                    <lookup name="journey" type="DBJourneyDetailPage"/>
+                  </closure>
+                </binding>
 
                 <child>
                   <object class="GtkLabel">
@@ -62,6 +67,16 @@
         </child>
       </object>
     </child>
-
+    <child>
+      <object class="AdwStatusPage">
+        <binding name="visible">
+          <closure function="is_none" type="gboolean">
+            <lookup name="journey" type="DBJourneyDetailPage"/>
+          </closure>
+        </binding>
+        <property name="title" translatable="yes">Search first</property>
+        <property name="icon-name">system-search-symbolic</property>
+      </object>
+    </child>
   </template>
 </interface>
