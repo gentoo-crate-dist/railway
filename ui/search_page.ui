@@ -41,6 +41,7 @@
             </child>
             <child>
               <object class="GtkButton" id="btn_search">
+                <signal name="clicked" handler="handle_search" swapped="true"/>
                 <property name="label" translatable="yes">Search</property>
                 <binding name="sensitive">
                   <closure function="and" type="gboolean">
@@ -48,6 +49,21 @@
                     <lookup name="set">in_to</lookup>
                   </closure>
                 </binding>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="orientation">horizontal</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwCarousel" id="carousel_journeys">
+                <property name="spacing">16</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwCarouselIndicatorDots">
+                <property name="carousel">carousel_journeys</property>
               </object>
             </child>
           </object>

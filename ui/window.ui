@@ -30,6 +30,8 @@
 
             <child>
               <object class="DBSearchPage" id="search_page">
+                  <signal name="details" handler="handle_details" swapped="true"/>
+                  <signal name="search" handler="handle_search_page" swapped="true"/>
               </object>
             </child>
           </object>
@@ -51,7 +53,8 @@
                 <property name="show-start-title-buttons">False</property>
                 <property name="show-end-title-buttons">False</property>
                 <child>
-                  <object class="GtkButton" id="btn_go_back">
+                  <object class="GtkButton">
+                    <signal name="clicked" handler="handle_go_back" swapped="true"/>
                     <binding name="visible">
                       <lookup name="folded">leaflet</lookup>
                     </binding>
@@ -67,6 +70,7 @@
             </child>
             <child>
               <object class="DBJourneysPage" id="journeys_page">
+                  <signal name="select" handler="handle_journeys_page" swapped="true"/>
               </object>
             </child>
           </object>
@@ -89,7 +93,8 @@
                   <lookup name="folded">leaflet</lookup>
                 </binding>
                 <child>
-                  <object class="GtkButton" id="btn_go_back_2">
+                  <object class="GtkButton">
+                    <signal name="clicked" handler="handle_go_back" swapped="true"/>
                     <binding name="visible">
                       <lookup name="folded">leaflet</lookup>
                     </binding>
@@ -98,7 +103,28 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="btn_reload_detail">
+                    <signal name="clicked" handler="handle_journey_reload" swapped="true"/>
                     <property name="icon-name">view-refresh-symbolic</property>
+                    <binding name="visible">
+                      <closure function="is_some" type="gboolean">
+                        <lookup name="journey">
+                            journey_detail_page
+                        </lookup>
+                      </closure>
+                    </binding>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btn_bookmark">
+                    <signal name="clicked" handler="handle_journey_store" swapped="true"/>
+                    <property name="icon-name">user-bookmarks-symbolic</property>
+                    <binding name="visible">
+                      <closure function="is_some" type="gboolean">
+                        <lookup name="journey">
+                            journey_detail_page
+                        </lookup>
+                      </closure>
+                    </binding>
                   </object>
                 </child>
                 <property name="title-widget">
@@ -117,4 +143,8 @@
       </object>
     </child>
   </template>
+  <object class="DBJourneysStore" id="store_journeys">
+    <signal name="add" handler="handle_journey_store_add" swapped="true"/>
+    <signal name="remove" handler="handle_journey_store_remove" swapped="true"/>
+  </object>
 </interface>

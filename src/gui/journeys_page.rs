@@ -10,7 +10,7 @@ gtk::glib::wrapper! {
 
 impl JourneysPage {
     pub fn setup(&self, hafas: Hafas) {
-        self.imp().setup(hafas, self);
+        self.imp().setup(hafas);
     }
 }
 
@@ -63,74 +63,75 @@ pub mod imp {
         hafas: RefCell<Option<Hafas>>,
     }
 
+    #[gtk::template_callbacks]
     impl JourneysPage {
-        pub(super) fn setup(&self, hafas: Hafas, obj: &super::JourneysPage) {
+        pub(super) fn setup(&self, hafas: Hafas) {
             self.hafas.replace(Some(hafas));
-            self.bind_btn_earlier_later(obj);
         }
 
-        fn bind_btn_earlier_later(&self, obj: &super::JourneysPage) {
+        #[template_callback]
+        fn handle_earlier(&self, _: gtk::Button) {
             let hafas_borrow = self.hafas.borrow();
             let hafas = hafas_borrow.as_ref().expect("Hafas should be set up");
+            let obj = self.instance();
 
-            self.btn_earlier.connect_clicked(clone!(@strong hafas, 
-                                                    @strong obj, 
-                                                    @strong self.toast_errors as toast_errors => move |_| {
-                let main_context = MainContext::default();
-                main_context.spawn_local(
-                    clone!(@strong hafas, 
-                           @strong obj,
-                           @strong toast_errors => async move {
-                        let journeys_result_obj = obj.property::<JourneysResultObject>("journeys-result");
-                        let journeys_result = journeys_result_obj.journeys_result();
+            let main_context = MainContext::default();
+            main_context.spawn_local(
+                clone!(@strong hafas, 
+                       @strong obj,
+                       @strong self.toast_errors as toast_errors => async move {
+                    let journeys_result_obj = obj.property::<JourneysResultObject>("journeys-result");
+                    let journeys_result = journeys_result_obj.journeys_result();
 
-                        let result_journeys_result = hafas
-                            .journey( &JourneysQuery {
-                                from: Some(journeys_result.journeys[0].legs[0].origin.id.clone()),
-                                to: Some(journeys_result.journeys[0].legs.last().expect("Every journey should have at least one leg.").destination.id.clone()),
-                                earlier_than: Some(journeys_result.earlier_ref.clone()),
-                                stopovers: Some(true),
-                                ..Default::default()
-                            })
-                            .await;
-                        if let Ok(mut result_journeys_result) = result_journeys_result {
-                            result_journeys_result.journeys.append(&mut journeys_result.journeys.clone());
-                            result_journeys_result.later_ref = journeys_result.later_ref;
-                            obj.set_property("journeys-result", JourneysResultObject::new(result_journeys_result));
-                        } else {
-                            error_to_toast(&toast_errors, result_journeys_result.err().expect("Error to be present"));
-                        }
-                }));
+                    let result_journeys_result = hafas
+                        .journey( &JourneysQuery {
+                            from: Some(journeys_result.journeys[0].legs[0].origin.id.clone()),
+                            to: Some(journeys_result.journeys[0].legs.last().expect("Every journey should have at least one leg.").destination.id.clone()),
+                            earlier_than: Some(journeys_result.earlier_ref.clone()),
+                            stopovers: Some(true),
+                            ..Default::default()
+                        })
+                        .await;
+                    if let Ok(mut result_journeys_result) = result_journeys_result {
+                        result_journeys_result.journeys.append(&mut journeys_result.journeys.clone());
+                        result_journeys_result.later_ref = journeys_result.later_ref;
+                        obj.set_property("journeys-result", JourneysResultObject::new(result_journeys_result));
+                    } else {
+                        error_to_toast(&toast_errors, result_journeys_result.err().expect("Error to be present"));
+                    }
             }));
+        }
 
-            self.btn_later.connect_clicked(clone!(@strong hafas, 
-                                                  @strong obj,
-                                                  @strong self.toast_errors as toast_errors => move |_| {
-                let main_context = MainContext::default();
-                main_context.spawn_local(
-                    clone!(@strong hafas, 
-                           @strong obj,
-                           @strong toast_errors => async move {
-                        let journeys_result_obj = obj.property::<JourneysResultObject>("journeys-result");
-                        let journeys_result = journeys_result_obj.journeys_result();
+        #[template_callback]
+        fn handle_later(&self, _: gtk::Button) {
+            let hafas_borrow = self.hafas.borrow();
+            let hafas = hafas_borrow.as_ref().expect("Hafas should be set up");
+            let obj = self.instance();
 
-                        let result_journeys_result = hafas
-                            .journey( &JourneysQuery {
-                                from: Some(journeys_result.journeys[0].legs[0].origin.id.clone()),
-                                to: Some(journeys_result.journeys[0].legs.last().expect("Every journey should have at least one leg.").destination.id.clone()),
-                                later_than: Some(journeys_result.later_ref.clone()),
-                                stopovers: Some(true),
-                                ..Default::default()
-                            })
-                            .await;
-                        if let Ok(mut result_journeys_result) = result_journeys_result {
-                            result_journeys_result.journeys.splice(0..0, journeys_result.journeys);
-                            result_journeys_result.earlier_ref = journeys_result.earlier_ref;
-                            obj.set_property("journeys-result", JourneysResultObject::new(result_journeys_result));
-                        } else {
-                            error_to_toast(&toast_errors, result_journeys_result.err().expect("Error to be present"));
-                        }
-                }));
+            let main_context = MainContext::default();
+            main_context.spawn_local(
+                clone!(@strong hafas, 
+                       @strong obj,
+                       @strong self.toast_errors as toast_errors => async move {
+                    let journeys_result_obj = obj.property::<JourneysResultObject>("journeys-result");
+                    let journeys_result = journeys_result_obj.journeys_result();
+
+                    let result_journeys_result = hafas
+                        .journey( &JourneysQuery {
+                            from: Some(journeys_result.journeys[0].legs[0].origin.id.clone()),
+                            to: Some(journeys_result.journeys[0].legs.last().expect("Every journey should have at least one leg.").destination.id.clone()),
+                            later_than: Some(journeys_result.later_ref.clone()),
+                            stopovers: Some(true),
+                            ..Default::default()
+                        })
+                        .await;
+                    if let Ok(mut result_journeys_result) = result_journeys_result {
+                        result_journeys_result.journeys.splice(0..0, journeys_result.journeys);
+                        result_journeys_result.earlier_ref = journeys_result.earlier_ref;
+                        obj.set_property("journeys-result", JourneysResultObject::new(result_journeys_result));
+                    } else {
+                        error_to_toast(&toast_errors, result_journeys_result.err().expect("Error to be present"));
+                    }
             }));
         }
 
@@ -175,6 +176,7 @@ pub mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
+            Self::bind_template_callbacks(klass);
             Utility::bind_template_callbacks(klass);
         }
 

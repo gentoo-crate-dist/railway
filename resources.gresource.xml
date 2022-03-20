@@ -8,6 +8,7 @@
     <file preprocess="xml-stripblanks">ui/search_page.ui</file>
     <file preprocess="xml-stripblanks">ui/journeys_page.ui</file>
     <file preprocess="xml-stripblanks">ui/journey_list_item.ui</file>
+    <file preprocess="xml-stripblanks">ui/journey_store_item.ui</file>
     <file preprocess="xml-stripblanks">ui/journey_detail_page.ui</file>
     <file preprocess="xml-stripblanks">ui/leg_item.ui</file>
     <file preprocess="xml-stripblanks">ui/stopover_item.ui</file>

@@ -88,3 +88,7 @@ msgstr "{} Minutes"
 #: ui/journey_detail_page.ui:77 ui/journeys_page.ui:62
 msgid "Search first"
 msgstr "Search first"
+
+#: ui/journey_store_item.ui:86
+msgid "Details"
+msgstr "Details"

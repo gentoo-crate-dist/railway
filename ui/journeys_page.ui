@@ -33,6 +33,7 @@
 
                 <child>
                   <object class="GtkButton" id="btn_earlier">
+                    <signal name="clicked" handler="handle_earlier" swapped="true"/>
                     <property name="label" translatable="yes">Earlier</property>
                   </object>
                 </child>
@@ -43,6 +44,7 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="btn_later">
+                    <signal name="clicked" handler="handle_later" swapped="true"/>
                     <property name="label" translatable="yes">Later</property>
                   </object>
                 </child>
