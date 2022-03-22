@@ -15,6 +15,7 @@
         <child>
           <object class="GtkBox">
             <property name="orientation">vertical</property>
+            <property name="width-request">300</property>
             <child>
               <object class="AdwHeaderBar">
                 <binding name="show-end-title-buttons">
@@ -27,7 +28,6 @@
                 </property>
               </object>
             </child>
-
             <child>
               <object class="DBSearchPage" id="search_page">
                   <signal name="details" handler="handle_details" swapped="true"/>
@@ -47,7 +47,7 @@
         <child>
           <object class="GtkBox">
             <property name="orientation">vertical</property>
-            <property name="hexpand">True</property>>
+            <property name="width-request">200</property>
             <child>
               <object class="AdwHeaderBar">
                 <property name="show-start-title-buttons">False</property>
@@ -86,7 +86,7 @@
         <child>
           <object class="GtkBox">
             <property name="orientation">vertical</property>
-            <property name="hexpand">True</property>>
+            <property name="width-request">200</property>
             <child>
               <object class="AdwHeaderBar">
                 <binding name="show-start-title-buttons">
