@@ -66,6 +66,16 @@
                 <property name="carousel">carousel_journeys</property>
               </object>
             </child>
+            <child>
+              <object class="AdwCarousel" id="carousel_searches">
+                <property name="spacing">16</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwCarouselIndicatorDots">
+                <property name="carousel">carousel_searches</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>

@@ -61,6 +61,19 @@
                     <property name="icon-name">go-previous-symbolic</property>
                   </object>
                 </child>
+                <child>
+                  <object class="GtkButton" id="btn_bookmark_search">
+                    <signal name="clicked" handler="handle_searches_store" swapped="true"/>
+                    <property name="icon-name">user-bookmarks-symbolic</property>
+                    <binding name="visible">
+                      <closure function="is_some" type="gboolean">
+                        <lookup name="journeys-result">
+                            journeys_page
+                        </lookup>
+                      </closure>
+                    </binding>
+                  </object>
+                </child>
                 <property name="title-widget">
                   <object class="AdwWindowTitle">
                     <property name="title" translatable="yes">Journeys</property>
@@ -146,5 +159,9 @@
   <object class="DBJourneysStore" id="store_journeys">
     <signal name="add" handler="handle_journey_store_add" swapped="true"/>
     <signal name="remove" handler="handle_journey_store_remove" swapped="true"/>
+  </object>
+  <object class="DBSearchesStore" id="store_searches">
+    <signal name="add" handler="handle_searches_store_add" swapped="true"/>
+    <signal name="remove" handler="handle_searches_store_remove" swapped="true"/>
   </object>
 </interface>

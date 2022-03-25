@@ -13,6 +13,10 @@ impl StationEntry {
     pub fn setup(&self, hafas: Hafas) {
         self.imp().setup(hafas, self);
     }
+
+    pub fn set_input(&self, input: String) {
+        self.imp().set_input(input);
+    }
 }
 
 pub mod imp {
@@ -50,6 +54,10 @@ pub mod imp {
     }
 
     impl StationEntry {
+        pub(super) fn set_input(&self, input: String) {
+            self.entry.set_text(&input);
+        }
+
         pub(super) fn setup(&self, hafas: Hafas, obj: &super::StationEntry) {
             self.hafas.replace(Some(hafas));
             self.connect_changed(obj);

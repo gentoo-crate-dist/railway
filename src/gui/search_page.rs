@@ -22,6 +22,14 @@ impl SearchPage {
     pub fn remove_journey_store(&self, journey: JourneyObject) {
         self.imp().remove_journey_store(journey);
     }
+
+    pub fn add_search_store(&self, origin: String, destination: String) {
+        self.imp().add_search_store(origin, destination);
+    }
+
+    pub fn remove_search_store(&self, origin: String, destination: String) {
+        self.imp().remove_search_store(origin, destination);
+    }
 }
 
 pub mod imp {
@@ -47,6 +55,7 @@ pub mod imp {
     use crate::gui::objects::JourneyObject;
     use crate::gui::objects::JourneysResultObject;
     use crate::gui::objects::StationObject;
+    use crate::gui::search_store_item::SearchStoreItem;
     use crate::gui::station_entry::StationEntry;
     use crate::gui::utility::Utility;
 
@@ -63,12 +72,13 @@ pub mod imp {
         #[template_child]
         pick_date_time: TemplateChild<DateTimePicker>,
 
-
         #[template_child]
         btn_search: TemplateChild<gtk::Button>,
 
         #[template_child]
         carousel_journeys: TemplateChild<libadwaita::Carousel>,
+        #[template_child]
+        carousel_searches: TemplateChild<libadwaita::Carousel>,
 
         #[template_child]
         toast_errors: TemplateChild<libadwaita::ToastOverlay>,
@@ -100,6 +110,31 @@ pub mod imp {
             while let Some(c) = child {
                 if c.property::<JourneyObject>("journey").journey() == journey.journey() {
                     self.carousel_journeys.remove(&c);
+                } 
+
+                child = c.next_sibling();
+            }
+        }
+
+        pub(super) fn add_search_store(&self, origin: String, destination: String) {
+            let item = SearchStoreItem::new(origin, destination);
+            let obj = self.instance();
+            item.connect_closure("details", false, 
+                                 closure_local!(move |_item: SearchStoreItem, origin: String, destination: String| {
+                                     let s = obj.imp();
+                                     s.in_from.set_input(origin);
+                                     s.in_to.set_input(destination);
+            }));
+            self.carousel_searches.append(&item);
+        }
+
+        pub(super) fn remove_search_store(&self, origin: String, destination: String) {
+            let mut child = self.carousel_searches.first_child();
+
+            while let Some(c) = child {
+                if c.property::<Option<String>>("origin") == Some(origin.clone()) 
+                    && c.property::<Option<String>>("destination") == Some(destination.clone()) {
+                    self.carousel_searches.remove(&c);
                 } 
 
                 child = c.next_sibling();

@@ -1,8 +1,10 @@
 use gtk::glib::Object;
 
 use super::{
-    alt_label::AltLabel, date_time_picker::DateTimePicker, station_entry::StationEntry,
-    stores::journey_store::JourneysStore,
+    alt_label::AltLabel,
+    date_time_picker::DateTimePicker,
+    station_entry::StationEntry,
+    stores::{journey_store::JourneysStore, search_store::SearchesStore},
 };
 
 gtk::glib::wrapper! {
@@ -18,6 +20,7 @@ impl Window {
         let _: DateTimePicker = Object::new(&[]).expect("Failed to initialize `DBDateTimePicker`");
         let _: StationEntry = Object::new(&[]).expect("Failed to initialize `DBStationEntry`");
         let _: JourneysStore = Object::new(&[]).expect("Failed to initialize `DBJourneysStore`");
+        let _: SearchesStore = Object::new(&[]).expect("Failed to initialize `DBSearchesStore`");
         Object::new(&[("application", app)]).expect("Failed to create Window")
     }
 }
@@ -42,6 +45,7 @@ pub mod imp {
     use crate::gui::objects::JourneysResultObject;
     use crate::gui::search_page::SearchPage;
     use crate::gui::stores::journey_store::JourneysStore;
+    use crate::gui::stores::search_store::SearchesStore;
     use crate::gui::utility::Utility;
 
     #[derive(CompositeTemplate, Default)]
@@ -62,6 +66,8 @@ pub mod imp {
 
         #[template_child]
         store_journeys: TemplateChild<JourneysStore>,
+        #[template_child]
+        store_searches: TemplateChild<SearchesStore>,
 
         hafas: RefCell<Option<Hafas>>,
     }
@@ -75,6 +81,7 @@ pub mod imp {
             self.journeys_page.setup(hafas.clone());
             self.journey_detail_page.setup(hafas);
             self.store_journeys.setup();
+            self.store_searches.setup();
         }
 
         #[template_callback]
@@ -131,6 +138,35 @@ pub mod imp {
         fn handle_journey_store_remove(&self, journey: JourneyObject) {
             self.search_page.remove_journey_store(journey);
         }
+
+        #[template_callback]
+        fn handle_searches_store(&self, _: gtk::Button) {
+            if let Some(journeys_result) = self
+                .journeys_page
+                .property::<Option<JourneysResultObject>>("journeys-result")
+            {
+                let journeys_result = journeys_result.journeys_result();
+                let origin = journeys_result.journeys[0].legs[0].origin.name.clone();
+                let destination = journeys_result.journeys[0]
+                    .legs
+                    .last()
+                    .expect("Journey to have a last leg")
+                    .destination
+                    .name
+                    .clone();
+                self.store_searches.store(origin, destination);
+            }
+        }
+
+        #[template_callback]
+        fn handle_searches_store_add(&self, origin: String, destination: String) {
+            self.search_page.add_search_store(origin, destination);
+        }
+
+        #[template_callback]
+        fn handle_searches_store_remove(&self, origin: String, destination: String) {
+            self.search_page.remove_search_store(origin, destination);
+        }
     }
 
     #[glib::object_subclass]
@@ -161,6 +197,7 @@ pub mod imp {
     impl WindowImpl for Window {
         fn close_request(&self, _obj: &Self::Type) -> Inhibit {
             self.store_journeys.get().flush();
+            self.store_searches.get().flush();
             Inhibit(false)
         }
     }
