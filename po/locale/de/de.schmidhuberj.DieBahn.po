@@ -100,3 +100,7 @@ msgstr "de"
 #: ui/leg_item.ui:81
 msgid "Remarks"
 msgstr "Hinweise"
+
+#: ui/leg_item.ui:21
+msgid "to"
+msgstr "nach"

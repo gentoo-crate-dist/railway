@@ -11,6 +11,23 @@
     <property name="hexpand">TRUE</property>
     <property name="spacing">8</property>
     <child>
+      <object class="GtkLabel">
+        <binding name="label">
+          <closure function="concat_and_translate" type="gchararray"> 
+            <lookup name="name">
+              <lookup name="leg" type="DBLegItem">
+              </lookup>
+            </lookup>
+            <constant type="gchararray">to</constant>
+            <lookup name="direction">
+              <lookup name="leg" type="DBLegItem">
+              </lookup>
+            </lookup>
+          </closure>
+        </binding>
+      </object>
+    </child>
+    <child>
       <object class="GtkBox">
         <property name="orientation">horizontal</property>
         <property name="spacing">8</property>
