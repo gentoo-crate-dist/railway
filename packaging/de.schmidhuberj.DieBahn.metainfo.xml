@@ -61,6 +61,12 @@
     </ul>
   </description>
   <releases>
+    <release version="v0.1.2" date="2022-03-26">
+      <description> 
+        <p>Bookmark searches, more information on connections</p>
+        <p xml:lang="de">Suchen speichern, mehr Informationen zu Verbindungen</p>
+      </description>
+    </release>
     <release version="v0.1.1" date="2022-03-22">
       <description> 
         <p>Bookmark journeys</p>

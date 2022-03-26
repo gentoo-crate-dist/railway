@@ -21,7 +21,7 @@ xdotool type --window $id "Münchsmünster"
 xdotool key --window $id Tab
 
 # Search
-sleep 3
+sleep 10
 xdotool key --window $id Enter
 xdotool key --window $id Tab
 xdotool key --window $id Tab
@@ -34,7 +34,9 @@ xdotool key --window $id Tab
 xdotool key --window $id Enter
 
 # Wait for query to finish
-sleep 3
+sleep 10
+# Enter a journey.
+xdotool key --window $id Tab
 xdotool key --window $id Tab
 xdotool key --window $id Enter
 
@@ -48,8 +50,6 @@ scrot -s -F journey.png
 
 # Return to Journeys
 xdotool windowfocus $id 
-xdotool key --window $id Tab
-xdotool key --window $id Shift+Tab
 xdotool key --window $id Shift+Tab
 xdotool key --window $id Enter
 
@@ -59,6 +59,7 @@ scrot -s -F journeys.png
 # Return to Search
 xdotool windowfocus $id 
 xdotool key --window $id Tab
+xdotool key --window $id Shift+Tab
 xdotool key --window $id Shift+Tab
 xdotool key --window $id Shift+Tab
 xdotool key --window $id Shift+Tab
