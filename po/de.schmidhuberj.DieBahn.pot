@@ -101,3 +101,7 @@ msgstr ""
 #: ui/leg_item.ui:81
 msgid "Remarks"
 msgstr ""
+
+#: ui/leg_item.ui:21
+msgid "to"
+msgstr ""

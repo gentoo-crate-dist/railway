@@ -54,6 +54,14 @@ mod imp {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
                     ParamSpecString::new(
+                        "direction",
+                        "direction",
+                        "direction",
+                        None,
+                        ParamFlags::READABLE,
+                    ),
+                    ParamSpecString::new("name", "name", "name", None, ParamFlags::READABLE),
+                    ParamSpecString::new(
                         "departure",
                         "departure",
                         "departure",
@@ -132,6 +140,21 @@ mod imp {
 
         fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
+                "direction" => self
+                    .leg
+                    .borrow()
+                    .as_ref()
+                    .map(|o| o.direction.as_ref())
+                    .flatten()
+                    .to_value(),
+                "name" => self
+                    .leg
+                    .borrow()
+                    .as_ref()
+                    .map(|o| o.line.as_ref())
+                    .flatten()
+                    .map(|o| &o.name)
+                    .to_value(),
                 "departure" => self
                     .leg
                     .borrow()
