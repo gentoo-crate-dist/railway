@@ -30,7 +30,9 @@ pub mod imp {
     use once_cell::sync::Lazy;
 
     use crate::gui::objects::LegObject;
+    use crate::gui::objects::RemarkObject;
     use crate::gui::objects::StopoverObject;
+    use crate::gui::remark_item::RemarkItem;
     use crate::gui::stopover_item::StopoverItem;
     use crate::gui::utility::Utility;
 
@@ -39,6 +41,8 @@ pub mod imp {
     pub struct LegItem {
         #[template_child]
         box_stopovers: TemplateChild<gtk::Box>,
+        #[template_child]
+        box_remarks: TemplateChild<gtk::Box>,
 
         leg: RefCell<Option<LegObject>>,
     }
@@ -88,10 +92,19 @@ pub mod imp {
                     while let Some(child) = self.box_stopovers.first_child() {
                         self.box_stopovers.remove(&child);
                     }
+                    // Clear box_remarks
+                    while let Some(child) = self.box_remarks.first_child() {
+                        self.box_remarks.remove(&child);
+                    }
 
                     let mut stopovers = obj
                         .as_ref()
                         .map(|j| j.leg().stopovers)
+                        .flatten()
+                        .unwrap_or_default();
+                    let remarks = obj
+                        .as_ref()
+                        .map(|j| j.leg().remarks)
                         .flatten()
                         .unwrap_or_default();
                     // Remove start and end. These are already shown as origin and destination.
@@ -106,6 +119,12 @@ pub mod imp {
                     for stopover in stopovers {
                         self.box_stopovers
                             .append(&StopoverItem::new(&StopoverObject::new(stopover.clone())));
+                    }
+
+                    // Fill box_remarks
+                    for remark in remarks {
+                        self.box_remarks
+                            .append(&RemarkItem::new(&RemarkObject::new(remark.clone())));
                     }
 
                     self.leg.replace(obj);

@@ -170,6 +170,7 @@ pub mod imp {
                         from: Some(from.id.clone()),
                         to: Some(to.id.clone()),
                         departure,
+                        language: Some(gettextrs::gettext("language")),
                         stopovers: Some(true),
                         ..Default::default()
                     })

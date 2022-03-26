@@ -92,3 +92,11 @@ msgstr "Search first"
 #: ui/journey_store_item.ui:86
 msgid "Details"
 msgstr "Details"
+
+#: src/gui/search_page.rs:173 The language to use for querying the api.
+msgid "language"
+msgstr "en"
+
+#: ui/leg_item.ui:81
+msgid "Remarks"
+msgstr "Remarks"
