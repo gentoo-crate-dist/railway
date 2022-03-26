@@ -3,7 +3,6 @@
   <gresource prefix="/">
     <file alias="icon.png">packaging/de.schmidhuberj.DieBahn.png</file>
 
-    <file preprocess="xml-stripblanks">ui/alt_label.ui</file>
     <file preprocess="xml-stripblanks">ui/window.ui</file>
     <file preprocess="xml-stripblanks">ui/search_page.ui</file>
     <file preprocess="xml-stripblanks">ui/search_store_item.ui</file>
@@ -12,8 +11,10 @@
     <file preprocess="xml-stripblanks">ui/journey_store_item.ui</file>
     <file preprocess="xml-stripblanks">ui/journey_detail_page.ui</file>
     <file preprocess="xml-stripblanks">ui/leg_item.ui</file>
+    <file preprocess="xml-stripblanks">ui/remark_item.ui</file>
     <file preprocess="xml-stripblanks">ui/stopover_item.ui</file>
 
+    <file preprocess="xml-stripblanks">ui/alt_label.ui</file>
     <file preprocess="xml-stripblanks">ui/date_time_picker.ui</file>
     <file preprocess="xml-stripblanks">ui/station_entry.ui</file>
   </gresource>

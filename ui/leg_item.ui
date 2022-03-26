@@ -74,6 +74,20 @@
         </child>
       </object>
     </child>
+    <child>
+      <object class="GtkExpander">
+        <child type="label">
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Remarks</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="box_remarks">
+            <property name="orientation">vertical</property>
+          </object>
+        </child>
+      </object>
+    </child>
 
     <child>
       <object class="GtkBox">

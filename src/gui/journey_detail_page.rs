@@ -78,6 +78,7 @@ pub mod imp {
                     let result_journey = hafas
                         .journey_refresh(&journey.journey().refresh_token, &JourneysRefreshQuery {
                             stopovers: Some(true),
+                            language: Some(gettextrs::gettext("language")),
                             ..Default::default()
                         }).await;
                     if let Ok(result_journey) = result_journey {
