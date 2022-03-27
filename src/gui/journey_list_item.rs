@@ -13,6 +13,12 @@ impl JourneyListItem {
     }
 }
 
+impl Default for JourneyListItem {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 pub mod imp {
     use std::cell::RefCell;
 

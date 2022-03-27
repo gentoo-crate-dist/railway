@@ -98,7 +98,7 @@ mod imp {
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| o.legs.get(0).clone())
+                    .map(|o| o.legs.get(0))
                     .flatten()
                     .map(|o| LegObject::new(o.clone()))
                     .to_value(),
@@ -106,28 +106,28 @@ mod imp {
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| o.legs.last().clone())
+                    .map(|o| o.legs.last())
                     .flatten()
                     .map(|o| LegObject::new(o.clone()))
                     .to_value(),
                 "total-time" => {
                     let journey_borrow = self.journey.borrow();
                     let journey = journey_borrow.as_ref();
-                    let leg_first = journey.map(|o| o.legs.first().clone()).flatten();
-                    let leg_last = journey.map(|o| o.legs.last().clone()).flatten();
+                    let leg_first = journey.map(|o| o.legs.first()).flatten();
+                    let leg_last = journey.map(|o| o.legs.last()).flatten();
 
                     let departure = leg_first.map(|o| o.departure).flatten();
                     let arrival = leg_last.map(|o| o.arrival).flatten();
 
-                    if departure.is_none() || arrival.is_none() {
-                        "".to_string().to_value()
-                    } else {
-                        let needed_time = arrival.unwrap() - departure.unwrap();
+                    if let (Some(arrival), Some(departure)) = (arrival, departure) {
+                        let needed_time = arrival - departure;
 
                         (NaiveDate::from_ymd(2022, 1, 1).and_hms(0, 0, 0) + needed_time)
                             .format("%H:%M")
                             .to_string()
                             .to_value()
+                    } else {
+                        "".to_string().to_value()
                     }
                 }
                 "transitions" => self

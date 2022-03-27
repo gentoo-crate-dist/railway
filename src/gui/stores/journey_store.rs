@@ -51,7 +51,7 @@ pub mod imp {
                 .open(&self.path)
                 .expect("Failed to open journey_store.json file");
 
-            let journeys: Vec<Journey> = serde_json::from_reader(file).unwrap_or(vec![]);
+            let journeys: Vec<Journey> = serde_json::from_reader(file).unwrap_or_default();
             for journey in journeys.into_iter().rev() {
                 self.store(JourneyObject::new(journey));
             }

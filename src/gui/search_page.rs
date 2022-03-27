@@ -181,7 +181,7 @@ pub mod imp {
                     return;
                 }
 
-                obj.emit_by_name::<()>("search", &[&JourneysResultObject::new(journeys.expect("Journey not found").clone())]);
+                obj.emit_by_name::<()>("search", &[&JourneysResultObject::new(journeys.expect("Journey not found"))]);
             }));
         }
     }

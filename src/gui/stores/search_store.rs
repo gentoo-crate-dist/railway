@@ -47,7 +47,7 @@ pub mod imp {
                 .open(&self.path)
                 .expect("Failed to open searches_store.json file");
 
-            let searches: Vec<Search> = serde_json::from_reader(file).unwrap_or(vec![]);
+            let searches: Vec<Search> = serde_json::from_reader(file).unwrap_or_default();
             for search in searches.into_iter().rev() {
                 self.store(search.origin, search.destination);
             }

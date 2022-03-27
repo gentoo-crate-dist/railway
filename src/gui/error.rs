@@ -12,7 +12,6 @@ use libadwaita::{Toast, ToastOverlay};
 use rrw::{Error, StandardRestError};
 
 pub fn error_to_toast(overlay: &ToastOverlay, err: Error<StandardRestError>) {
-    // TODO: Internationalize
     let toast = match &err {
         Error::Request(_) => Toast::new(&gettext(
             "Failed to fetch data. Are you connected to the internet?",
@@ -29,7 +28,7 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error<StandardRestError>) {
 
     let msg = match err {
         Error::Request(_) => None,
-        Error::Api(e) => Some(e.msg.clone()),
+        Error::Api(e) => Some(e.msg),
         Error::BodyNotParsable(e) => Some(format!("{}", e)),
     };
 
