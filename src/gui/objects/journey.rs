@@ -116,8 +116,8 @@ mod imp {
                     let leg_first = journey.map(|o| o.legs.first().clone()).flatten();
                     let leg_last = journey.map(|o| o.legs.last().clone()).flatten();
 
-                    let departure = leg_first.map(|o| o.departure);
-                    let arrival = leg_last.map(|o| o.arrival);
+                    let departure = leg_first.map(|o| o.departure).flatten();
+                    let arrival = leg_last.map(|o| o.arrival).flatten();
 
                     if departure.is_none() || arrival.is_none() {
                         "".to_string().to_value()

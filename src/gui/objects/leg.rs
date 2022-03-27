@@ -159,25 +159,33 @@ mod imp {
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.departure.format("%H:%M").to_string())
+                    .map(|o| o.departure)
+                    .flatten()
+                    .map(|d| d.format("%H:%M").to_string())
                     .to_value(),
                 "arrival" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.arrival.format("%H:%M").to_string())
+                    .map(|o| o.arrival)
+                    .flatten()
+                    .map(|d| d.format("%H:%M").to_string())
                     .to_value(),
                 "planned-departure" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.planned_departure.format("%H:%M").to_string())
+                    .map(|o| o.planned_departure)
+                    .flatten()
+                    .map(|d| d.format("%H:%M").to_string())
                     .to_value(),
                 "planned-arrival" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.planned_arrival.format("%H:%M").to_string())
+                    .map(|o| o.planned_arrival)
+                    .flatten()
+                    .map(|d| d.format("%H:%M").to_string())
                     .to_value(),
                 "departure-platform" => self
                     .leg

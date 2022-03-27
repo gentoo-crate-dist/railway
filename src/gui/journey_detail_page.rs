@@ -142,11 +142,14 @@ pub mod imp {
                         if i != 0 {
                             let from = &legs[i - 1];
                             let to = &legs[i];
-                            let time = to.departure - from.arrival;
-
-                            let minutes_fmt = gettextrs::gettext("{} Minutes");
-                            let minutes =
-                                minutes_fmt.replace("{}", &time.num_minutes().to_string());
+                            let minutes = if to.departure.is_some() && from.arrival.is_some() {
+                                let time = to.departure.unwrap() - from.arrival.unwrap();
+                                let minutes_fmt = gettextrs::gettext("{} Minutes");
+                                minutes_fmt.replace("{}", &time.num_minutes().to_string())
+                            } else {
+                                let minutes_fmt = gettextrs::gettext("{} Minutes");
+                                minutes_fmt.replace("{}", "?")
+                            };
 
                             self.box_legs.append(&gtk::Label::new(Some(&minutes)));
                         }
