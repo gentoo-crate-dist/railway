@@ -96,7 +96,7 @@ msgstr "Details"
 
 #: src/gui/search_page.rs:173 The language to use for querying the api.
 msgid "language"
-msgstr "Taal"
+msgstr "nl"
 
 #: ui/leg_item.ui:81
 msgid "Remarks"
