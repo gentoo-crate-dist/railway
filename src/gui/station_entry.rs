@@ -21,6 +21,7 @@ impl StationEntry {
 
 pub mod imp {
     use std::cell::{RefCell, Cell};
+    use std::sync::atomic::{AtomicBool, Ordering};
     use std::sync::{Arc, Mutex};
     use std::time::{Instant, Duration};
 
@@ -50,7 +51,8 @@ pub mod imp {
 
         station: RefCell<Option<StationObject>>,
         set: Cell<bool>,
-        placeholder_text: RefCell<Option<String>>
+        placeholder_text: RefCell<Option<String>>,
+        request_pending: Arc<AtomicBool>,
     }
 
     impl StationEntry {
@@ -67,15 +69,23 @@ pub mod imp {
             self.entry.connect_changed(
                 clone!(@strong obj,
                        @strong self.hafas as hafas, 
+                       @strong self.request_pending as request_pending, 
                        @strong self.last_request as last_request => move |entry| {
+
+                    if request_pending.load(Ordering::SeqCst) {
+                        log::trace!("Station changed, but there is already a request pending");
+                        return;
+                    } else {
+                        log::trace!("Station changed. Block other requests");
+                        request_pending.store(true, Ordering::SeqCst);
+                    }
 
                     let main_context = MainContext::default();
                     main_context.spawn_local(clone!(@strong obj,
                                                     @strong hafas, 
                                                     @strong last_request, 
+                                                    @strong request_pending,
                                                     @strong entry => async move {
-                        let text = entry.text();
-
                         let to_wait = {
                             let mut last_request = last_request.lock().expect("last_request to be lockable.");
                             if last_request.is_none() {
@@ -93,8 +103,10 @@ pub mod imp {
 
                         tokio::time::sleep(to_wait).await;
 
+                        let text = entry.text();
+
                         // Only request if text did not change since last time.
-                        if text.len() >= entry.completion().expect("Completion to be set up").minimum_key_length().try_into().unwrap() && entry.text() == text {
+                        if text.len() >= entry.completion().expect("Completion to be set up").minimum_key_length().try_into().unwrap() {
                             log::trace!("Request is allowed with text {}.", text);
                             {
                                 // Update last_request
@@ -125,6 +137,8 @@ pub mod imp {
                                 entry.completion().expect("Completion to be set up").set_model(Some(&store));
                             }
                         }
+                        log::trace!("Unlock pending request.");
+                        request_pending.store(false, Ordering::SeqCst);
                     }));
                 }),
             );
