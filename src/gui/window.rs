@@ -28,7 +28,10 @@ impl Window {
 pub mod imp {
     use std::cell::RefCell;
 
+    use gdk::gio::SimpleAction;
+    use gdk::gio::SimpleActionGroup;
     use glib::subclass::InitializingObject;
+    use gtk::builders::AboutDialogBuilder;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
@@ -43,6 +46,7 @@ pub mod imp {
     use crate::gui::journeys_page::JourneysPage;
     use crate::gui::objects::JourneyObject;
     use crate::gui::objects::JourneysResultObject;
+    use crate::gui::preferences_window::PreferencesWindow;
     use crate::gui::search_page::SearchPage;
     use crate::gui::stores::journey_store::JourneysStore;
     use crate::gui::stores::search_store::SearchesStore;
@@ -82,6 +86,44 @@ pub mod imp {
             self.journey_detail_page.setup(hafas);
             self.store_journeys.setup();
             self.store_searches.setup();
+        }
+
+        fn setup_actions(&self, obj: &super::Window) {
+            let action_settings = SimpleAction::new("settings", None);
+            action_settings.connect_activate(|_, _| {
+                let settings = PreferencesWindow::new();
+                settings.show();
+            });
+            let action_about = SimpleAction::new("about", None);
+            action_about.connect_activate(|_, _| {
+                let about_dialog = AboutDialogBuilder::new()
+                    .authors(
+                        env!("CARGO_PKG_AUTHORS")
+                            .split(";")
+                            .map(|s| s.to_string())
+                            .collect(),
+                    )
+                    .comments(env!("CARGO_PKG_DESCRIPTION"))
+                    .copyright(
+                        include_str!("../../NOTICE")
+                            .to_string()
+                            .lines()
+                            .next()
+                            .unwrap_or_default(),
+                    )
+                    .license_type(gtk::License::Gpl30)
+                    .logo_icon_name("icon")
+                    .program_name("DieBahn")
+                    .version(env!("CARGO_PKG_VERSION"))
+                    .website(env!("CARGO_PKG_HOMEPAGE"))
+                    .build();
+                about_dialog.show();
+            });
+
+            let actions = SimpleActionGroup::new();
+            obj.insert_action_group("win", Some(&actions));
+            actions.add_action(&action_settings);
+            actions.add_action(&action_about);
         }
 
         #[template_callback]
@@ -189,6 +231,7 @@ pub mod imp {
     impl ObjectImpl for Window {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
+            self.setup_actions(obj);
             self.setup();
         }
     }

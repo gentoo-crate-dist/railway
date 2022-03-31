@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="libadwaita" version="1.0"/>
+
+  <template class="DBPreferencesWindow" parent="AdwPreferencesWindow">
+    <child>
+      <object class="AdwPreferencesPage">
+        <child>
+        <object class="AdwPreferencesGroup">
+          <child>
+            <object class="AdwActionRow">
+              <property name="title" translatable="yes">BahnCard</property>
+              <child>
+                <object class="GtkComboBox" id="dropdown_bahncard">
+                  <property name="model">model-bahncard</property>
+                  <property name="entry-text-column">0</property>
+                  <property name="id-column">1</property>
+                  <signal name="changed" handler="handle_bahncard_dropdown" swapped="true"/>
+                  <child>
+                    <object class="GtkCellRendererText"/>
+                    <attributes>
+                      <attribute name="text">0</attribute>
+                    </attributes>
+                  </child>
+                </object>
+              </child>
+            </object>
+          </child>
+        </object>
+      </child>
+      </object>
+    </child>
+  </template>
+  <object class="GtkListStore" id="model-bahncard">
+    <columns>
+      <column type="gchararray"/>
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">None</col>
+        <col id="1">0</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">BahnCard 25</col>
+        <col id="1">25</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">BahnCard 50</col>
+        <col id="1">50</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">BahnCard 100</col>
+        <col id="1">100</col>
+      </row>
+    </data>
+  </object>
+</interface>

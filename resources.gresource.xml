@@ -4,6 +4,7 @@
     <file alias="icon.png">packaging/de.schmidhuberj.DieBahn.png</file>
 
     <file preprocess="xml-stripblanks">ui/window.ui</file>
+    <file preprocess="xml-stripblanks">ui/preferences_window.ui</file>
     <file preprocess="xml-stripblanks">ui/search_page.ui</file>
     <file preprocess="xml-stripblanks">ui/search_store_item.ui</file>
     <file preprocess="xml-stripblanks">ui/journeys_page.ui</file>

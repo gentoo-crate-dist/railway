@@ -104,3 +104,31 @@ msgstr "Remarks"
 #: ui/leg_item.ui:21
 msgid "to"
 msgstr "to"
+
+#: ui/preferences_window.ui:13
+msgid "BahnCard"
+msgstr "BahnCard"
+
+#: ui/preferences_window.ui:42
+msgid "None"
+msgstr "None"
+
+#: ui/preferences_window.ui:46
+msgid "BahnCard 25"
+msgstr "BahnCard 25"
+
+#: ui/preferences_window.ui:50
+msgid "BahnCard 50"
+msgstr "BahnCard 50"
+
+#: ui/preferences_window.ui:54
+msgid "BahnCard 100"
+msgstr "BahnCard 100"
+
+#: ui/window.ui:175
+msgid "Settings"
+msgstr "Settings"
+
+#: ui/window.ui:179
+msgid "About"
+msgstr "About"

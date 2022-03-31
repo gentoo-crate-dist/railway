@@ -89,6 +89,7 @@ pub mod imp {
             let file = OpenOptions::new()
                 .write(true)
                 .read(false)
+                .truncate(true)
                 .create(true)
                 .append(false)
                 .open(&self.path)

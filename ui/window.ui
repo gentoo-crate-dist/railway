@@ -26,6 +26,11 @@
                     <property name="title" translatable="yes">Search</property>
                   </object>
                 </property>
+                <child type="end">
+                  <object class="GtkMenuButton">
+                      <property name="menu-model">menubar</property>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
@@ -164,4 +169,16 @@
     <signal name="add" handler="handle_searches_store_add" swapped="true"/>
     <signal name="remove" handler="handle_searches_store_remove" swapped="true"/>
   </object>
+  <menu id="menubar">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Settings</attribute>
+        <attribute name="action">win.settings</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">About</attribute>
+        <attribute name="action">win.about</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

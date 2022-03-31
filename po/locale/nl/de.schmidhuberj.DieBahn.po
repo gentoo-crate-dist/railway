@@ -105,3 +105,31 @@ msgstr "Opmerkingen"
 #: ui/leg_item.ui:21
 msgid "to"
 msgstr "naar"
+
+#: ui/preferences_window.ui:13
+msgid "BahnCard"
+msgstr ""
+
+#: ui/preferences_window.ui:42
+msgid "None"
+msgstr ""
+
+#: ui/preferences_window.ui:46
+msgid "BahnCard 25"
+msgstr ""
+
+#: ui/preferences_window.ui:50
+msgid "BahnCard 50"
+msgstr ""
+
+#: ui/preferences_window.ui:54
+msgid "BahnCard 100"
+msgstr ""
+
+#: ui/window.ui:175
+msgid "Settings"
+msgstr ""
+
+#: ui/window.ui:179
+msgid "About"
+msgstr ""

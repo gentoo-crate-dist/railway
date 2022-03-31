@@ -34,28 +34,39 @@ mod imp {
     use chrono::NaiveDate;
 
     use gdk::{
+        gio::Settings,
         glib::{ParamFlags, ParamSpec, ParamSpecObject, ParamSpecString, Value},
-        prelude::{StaticType, ToValue},
+        prelude::{SettingsExt, StaticType, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass},
     };
 
     use crate::gui::objects::LegObject;
 
-    #[derive(Default, Clone)]
+    #[derive(Clone)]
     pub struct JourneyObject {
         pub(super) journey: RefCell<Option<Journey>>,
+
+        settings: Settings,
     }
 
     #[glib::object_subclass]
     impl ObjectSubclass for JourneyObject {
         const NAME: &'static str = "DBJourneyObject";
         type Type = super::JourneyObject;
+
+        fn new() -> Self {
+            Self {
+                journey: RefCell::default(),
+                settings: Settings::new("de.schmidhuberj.DieBahn"),
+            }
+        }
     }
 
     impl ObjectImpl for JourneyObject {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
+                    ParamSpecString::new("price", "price", "price", None, ParamFlags::READABLE),
                     ParamSpecObject::new(
                         "first-leg",
                         "first-leg",
@@ -94,6 +105,21 @@ mod imp {
 
         fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
+                "price" => self
+                    .journey
+                    .borrow()
+                    .as_ref()
+                    .map(|o| o.price.as_ref())
+                    .flatten()
+                    .map(|p| {
+                        let multiplier = 1.0 - self.settings.enum_("bahncard") as f32 / 100.0;
+                        if multiplier == 0.0 {
+                            "".to_string()
+                        } else {
+                            format!("{:.2} {}", multiplier * p.amount, p.currency)
+                        }
+                    })
+                    .to_value(),
                 "first-leg" => self
                     .journey
                     .borrow()

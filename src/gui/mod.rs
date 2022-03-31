@@ -1,4 +1,5 @@
 mod alt_label;
+mod preferences_window;
 mod remark_item;
 mod date_time_picker;
 mod error;

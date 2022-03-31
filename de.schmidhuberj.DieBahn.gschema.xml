@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemalist>
+  <enum id="de.schmidhuberj.DieBahn.bahncard">
+    <value nick="none" value="0"/>
+    <value nick="bc25" value="25"/>
+    <value nick="bc50" value="50"/>
+    <value nick="bc100" value="100"/>
+  </enum>
+
+  <schema id="de.schmidhuberj.DieBahn" path="/de/schmidhuberj/DieBahn/">
+    <key name="bahncard" enum="de.schmidhuberj.DieBahn.bahncard">
+      <default>'none'</default>
+      <summary>Type of Bahncard owned</summary>
+    </key>
+  </schema>
+</schemalist>

@@ -112,6 +112,19 @@
             </binding>
           </object>
         </child>
+        <child>
+          <object class="GtkLabel">
+            <layout>
+              <property name="column">4</property>
+              <property name="row">3</property>
+            </layout>
+            <binding name="label">
+              <lookup name="price">
+                <lookup name="journey" type="DBJourneyListItem"/>
+              </lookup>
+            </binding>
+          </object>
+        </child>
       </object>
     </child>
   </template>
