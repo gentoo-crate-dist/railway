@@ -14,7 +14,8 @@ A GTK4 frontend for the travel information of the german railway ("Reiseauskunft
 - View the details of a journey including departure, arrivals, delays, platforms.
 - Convergent for small screens.
 - Bookmark a search or a journey.
-
-## Still TODO
-
 - Show more information like prices.
+
+## Contact
+
+There is a matrix room setup for this application. You can join it [here](https://matrix.to/#/%23diebahn:matrix.org?via=matrix.org) if you want.
