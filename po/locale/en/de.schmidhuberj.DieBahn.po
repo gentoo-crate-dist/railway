@@ -132,3 +132,8 @@ msgstr "Settings"
 #: ui/window.ui:179
 msgid "About"
 msgstr "About"
+
+#: ui/preferences_window.ui:14
+msgid ""
+"The prices displayed using a BahnCard might not always match the real prices"
+msgstr "The prices displayed using a BahnCard might not always match the real prices"

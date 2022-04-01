@@ -11,6 +11,7 @@
           <child>
             <object class="AdwActionRow">
               <property name="title" translatable="yes">BahnCard</property>
+              <property name="subtitle" translatable="yes">The prices displayed using a BahnCard might not always match the real prices</property>
               <child>
                 <object class="GtkComboBox" id="dropdown_bahncard">
                   <property name="model">model-bahncard</property>
