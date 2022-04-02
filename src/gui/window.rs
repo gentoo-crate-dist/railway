@@ -114,6 +114,7 @@ pub mod imp {
                     .license_type(gtk::License::Gpl30)
                     .logo_icon_name("icon")
                     .program_name("DieBahn")
+                    .translator_credits(&gettextrs::gettext("translators"))
                     .version(env!("CARGO_PKG_VERSION"))
                     .website(env!("CARGO_PKG_HOMEPAGE"))
                     .build();
