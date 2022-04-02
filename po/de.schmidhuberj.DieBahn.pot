@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-31 16:15+0100\n"
+"POT-Creation-Date: 2022-04-02 14:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,4 +137,8 @@ msgstr ""
 #: ui/preferences_window.ui:14
 msgid ""
 "The prices displayed using a BahnCard might not always match the real prices"
+msgstr ""
+
+#: src/gui/window.rs:117 Add your name here for credit in the about page
+msgid "translators"
 msgstr ""
