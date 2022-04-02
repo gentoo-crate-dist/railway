@@ -33,6 +33,7 @@ impl SearchPage {
 }
 
 pub mod imp {
+    use gdk::gio::Settings;
     use gdk::glib::clone;
     use gdk::glib::MainContext;
     use gdk::glib::closure_local;
@@ -59,7 +60,7 @@ pub mod imp {
     use crate::gui::station_entry::StationEntry;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate)]
     #[template(resource = "/ui/search_page.ui")]
     pub struct SearchPage {
         #[template_child]
@@ -84,6 +85,7 @@ pub mod imp {
         toast_errors: TemplateChild<libadwaita::ToastOverlay>,
 
         hafas: RefCell<Option<Hafas>>,
+        settings: Settings,
     }
 
     #[gtk::template_callbacks]
@@ -142,6 +144,14 @@ pub mod imp {
         }
 
         #[template_callback]
+        fn handle_swap(&self, _: gtk::Button) {
+            let from = self.in_from.input();
+            let to = self.in_to.input();
+            self.in_from.set_input(to);
+            self.in_to.set_input(from);
+        }
+
+        #[template_callback]
         fn handle_search(&self, _: gtk::Button) {
             let hafas = &self.hafas;
             let obj = self.instance();
@@ -192,6 +202,21 @@ pub mod imp {
         type Type = super::SearchPage;
         type ParentType = gtk::Box;
 
+        fn new() -> Self {
+            Self {
+                settings: Settings::new("de.schmidhuberj.DieBahn"),
+                in_from: Default::default(),
+                in_to: Default::default(),
+                expand_date_time: Default::default(),
+                pick_date_time: Default::default(),
+                btn_search: Default::default(),
+                carousel_journeys: Default::default(),
+                carousel_searches: Default::default(),
+                toast_errors: Default::default(),
+                hafas: Default::default()
+            }
+        }
+
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
             Self::bind_template_callbacks(klass);
@@ -206,6 +231,8 @@ pub mod imp {
     impl ObjectImpl for SearchPage {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
+            self.in_from.set_input(self.settings.string("search-from").to_string());
+            self.in_to.set_input(self.settings.string("search-to").to_string());
         }
 
         fn signals() -> &'static [Signal] {
@@ -227,7 +254,13 @@ pub mod imp {
         }
     }
 
-    impl WidgetImpl for SearchPage {}
+    impl WidgetImpl for SearchPage {
+        fn unmap(&self, widget: &Self::Type) {
+            self.parent_unmap(widget);
+            self.settings.set_string("search-from", &self.in_from.input()).expect("Failed to save search-from");
+            self.settings.set_string("search-to", &self.in_to.input()).expect("Failed to save search-to");
+        }
+    }
     impl BoxImpl for SearchPage {}
 }
 

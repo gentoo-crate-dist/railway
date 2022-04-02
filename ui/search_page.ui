@@ -22,8 +22,20 @@
               </object>
             </child>
             <child>
-              <object class="DBStationEntry" id="in_to">
-                <property name="placeholder-text" translatable="yes">To</property>
+              <object class="GtkBox">
+                <property name="hexpand">True</property>
+                <child>
+                  <object class="DBStationEntry" id="in_to">
+                    <property name="hexpand">True</property>
+                    <property name="placeholder-text" translatable="yes">To</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">mail-send-receive-symbolic</property>
+                    <signal name="clicked" handler="handle_swap" swapped="true"/>
+                  </object>
+                </child>
               </object>
             </child>
             <child>

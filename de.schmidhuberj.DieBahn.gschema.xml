@@ -12,5 +12,13 @@
       <default>'none'</default>
       <summary>Type of Bahncard owned</summary>
     </key>
+    <key name="search-from" type="s">
+      <default>""</default>
+      <summary>Last search from</summary>
+    </key>
+    <key name="search-to" type="s">
+      <default>""</default>
+      <summary>Last search from</summary>
+    </key>
   </schema>
 </schemalist>

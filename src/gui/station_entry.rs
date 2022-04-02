@@ -17,6 +17,10 @@ impl StationEntry {
     pub fn set_input(&self, input: String) {
         self.imp().set_input(input);
     }
+
+    pub fn input(&self) -> String {
+        self.imp().input()
+    }
 }
 
 pub mod imp {
@@ -58,6 +62,10 @@ pub mod imp {
     impl StationEntry {
         pub(super) fn set_input(&self, input: String) {
             self.entry.set_text(&input);
+        }
+
+        pub(super) fn input(&self) -> String {
+            self.entry.text().to_string()
         }
 
         pub(super) fn setup(&self, hafas: Hafas, obj: &super::StationEntry) {
