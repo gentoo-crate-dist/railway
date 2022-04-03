@@ -29,6 +29,11 @@ pub mod imp {
         #[template_child]
         dropdown_bahncard: TemplateChild<gtk::ComboBox>,
 
+        #[template_child]
+        radio_first_class: TemplateChild<gtk::CheckButton>,
+        #[template_child]
+        radio_second_class: TemplateChild<gtk::CheckButton>,
+
         settings: Settings,
     }
 
@@ -37,6 +42,12 @@ pub mod imp {
         fn init_settings(&self) {
             self.dropdown_bahncard
                 .set_active_id(Some(&self.settings.enum_("bahncard").to_string()));
+
+            if self.settings.boolean("first-class") {
+                self.radio_first_class.set_active(true);
+            } else {
+                self.radio_second_class.set_active(true);
+            }
         }
 
         #[template_callback]
@@ -46,6 +57,14 @@ pub mod imp {
             self.settings
                 .set_enum("bahncard", id)
                 .expect("Failed to set enum value");
+        }
+
+        #[template_callback]
+        fn handle_first_class(&self, radio: gtk::CheckButton) {
+            let active = radio.property::<bool>("active");
+            self.settings
+                .set_boolean("first-class", active)
+                .expect("Failed to set first-class value");
         }
     }
 
@@ -59,6 +78,8 @@ pub mod imp {
             Self {
                 settings: Settings::new("de.schmidhuberj.DieBahn"),
                 dropdown_bahncard: TemplateChild::default(),
+                radio_first_class: TemplateChild::default(),
+                radio_second_class: TemplateChild::default(),
             }
         }
 

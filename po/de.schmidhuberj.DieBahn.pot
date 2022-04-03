@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 14:45+0100\n"
+"POT-Creation-Date: 2022-04-03 17:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,10 +110,6 @@ msgstr ""
 msgid "BahnCard"
 msgstr ""
 
-#: ui/preferences_window.ui:42
-msgid "None"
-msgstr ""
-
 #: ui/preferences_window.ui:46
 msgid "BahnCard 25"
 msgstr ""
@@ -141,4 +137,64 @@ msgstr ""
 
 #: src/gui/window.rs:117 Add your name here for credit in the about page
 msgid "translators"
+msgstr ""
+
+#: ui/preferences_window.ui:32
+msgid "Class"
+msgstr ""
+
+#: ui/preferences_window.ui:38
+msgid "First class"
+msgstr ""
+
+#: ui/preferences_window.ui:43
+msgid "Second class"
+msgstr ""
+
+#: ui/preferences_window.ui:62
+msgid "None"
+msgstr ""
+
+#: ui/preferences_window.ui:63
+msgid "BahnCard 25, 1st class"
+msgstr ""
+
+#: ui/preferences_window.ui:64
+msgid "BahnCard 25, 2nd class"
+msgstr ""
+
+#: ui/preferences_window.ui:65
+msgid "BahnCard 50, 1st class"
+msgstr ""
+
+#: ui/preferences_window.ui:66
+msgid "BahnCard 50, 2nd class"
+msgstr ""
+
+#: ui/preferences_window.ui:67
+msgid "A - VORTEILScard (with RAILPLUS)"
+msgstr ""
+
+#: ui/preferences_window.ui:68
+msgid "CH - HalbtaxAbo (with RAILPLUS)"
+msgstr ""
+
+#: ui/preferences_window.ui:69
+msgid "CH - HalbtaxAbo (without RAILPLUS)"
+msgstr ""
+
+#: ui/preferences_window.ui:70
+msgid "NL - Voordeelurenabo (with RAILPLUS)"
+msgstr ""
+
+#: ui/preferences_window.ui:71
+msgid "NL - Voordeelurenabo (without RAILPLUS)"
+msgstr ""
+
+#: ui/preferences_window.ui:72
+msgid "SH-Card"
+msgstr ""
+
+#: ui/preferences_window.ui:73
+msgid "CH - General-Abonnement"
 msgstr ""

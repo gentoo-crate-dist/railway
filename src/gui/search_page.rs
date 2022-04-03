@@ -48,7 +48,7 @@ pub mod imp {
 
     use std::cell::RefCell;
 
-    use hafas_rest::Hafas;
+    use hafas_rest::{Hafas, LoyaltyCard};
 
     use crate::gui::date_time_picker::DateTimePicker;
     use crate::gui::error::error_to_toast;
@@ -171,6 +171,7 @@ pub mod imp {
                                             @strong to,
                                             @strong hafas, 
                                             @strong obj, 
+                                            @strong self.settings as settings,
                                             @strong self.toast_errors as toast_errors => async move {
                 let hafas_borrow = hafas.borrow();
                 let hafas = hafas_borrow.as_ref().expect("Hafas has not yet been set up.");
@@ -182,6 +183,8 @@ pub mod imp {
                         departure,
                         language: Some(gettextrs::gettext("language")),
                         stopovers: Some(true),
+                        loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
+                        first_class: Some(settings.boolean("first-class")),
                         ..Default::default()
                     })
                     .await;

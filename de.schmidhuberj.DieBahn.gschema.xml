@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
   <enum id="de.schmidhuberj.DieBahn.bahncard">
-    <value nick="none" value="0"/>
-    <value nick="bc25" value="25"/>
-    <value nick="bc50" value="50"/>
-    <value nick="bc100" value="100"/>
+    <value value="0" nick="None"/>
+    <value value="1" nick="BahnCard 25, 1st class"/>
+    <value value="2" nick="BahnCard 25, 2nd class"/>
+    <value value="3" nick="BahnCard 50, 1st class"/>
+    <value value="4" nick="BahnCard 50, 2st class"/>
+    <value value="9" nick="A - VORTEILScard (with RAILPLUS)"/>
+    <value value="10" nick="CH - HalbtaxAbo (with RAILPLUS)"/>
+    <value value="11" nick="CH - HalbtaxAbo (without RAILPLUS)"/>
+    <value value="12" nick="NL - Voordeelurenabo (with RAILPLUS)"/>
+    <value value="13" nick="NL - Voordeelurenabo (without RAILPLUS)"/>
+    <value value="14" nick="SH-Card"/>
+    <value value="15" nick="CH - General-Abonnement"/>
   </enum>
 
   <schema id="de.schmidhuberj.DieBahn" path="/de/schmidhuberj/DieBahn/">
     <key name="bahncard" enum="de.schmidhuberj.DieBahn.bahncard">
-      <default>'none'</default>
-      <summary>Type of Bahncard owned</summary>
+      <default>'None'</default>
+      <summary>Type of loyality card owned</summary>
     </key>
+    <key name="first-class" type="b">
+      <default>false</default>
+      <summary>Search for first-class</summary>
+    </key>
+
     <key name="search-from" type="s">
       <default>""</default>
       <summary>Last search from</summary>

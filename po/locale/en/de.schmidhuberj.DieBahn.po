@@ -109,10 +109,6 @@ msgstr "to"
 msgid "BahnCard"
 msgstr "BahnCard"
 
-#: ui/preferences_window.ui:42
-msgid "None"
-msgstr "None"
-
 #: ui/preferences_window.ui:46
 msgid "BahnCard 25"
 msgstr "BahnCard 25"
@@ -141,3 +137,63 @@ msgstr "The prices displayed using a BahnCard might not always match the real pr
 #: src/gui/window.rs:117 Add your name here for credit in the about page
 msgid "translators"
 msgstr "Julian Schmidhuber"
+
+#: ui/preferences_window.ui:32
+msgid "Class"
+msgstr "Class"
+
+#: ui/preferences_window.ui:38
+msgid "First class"
+msgstr "First class"
+
+#: ui/preferences_window.ui:43
+msgid "Second class"
+msgstr "Second class"
+
+#: ui/preferences_window.ui:62
+msgid "None"
+msgstr "None"
+
+#: ui/preferences_window.ui:63
+msgid "BahnCard 25, 1st class"
+msgstr "BahnCard 25, 1st class"
+
+#: ui/preferences_window.ui:64
+msgid "BahnCard 25, 2nd class"
+msgstr "BahnCard 25, 2nd class"
+
+#: ui/preferences_window.ui:65
+msgid "BahnCard 50, 1st class"
+msgstr "BahnCard 50, 1st class"
+
+#: ui/preferences_window.ui:66
+msgid "BahnCard 50, 2nd class"
+msgstr "BahnCard 50, 2nd class"
+
+#: ui/preferences_window.ui:67
+msgid "A - VORTEILScard (with RAILPLUS)"
+msgstr "A - VORTEILScard (with RAILPLUS)"
+
+#: ui/preferences_window.ui:68
+msgid "CH - HalbtaxAbo (with RAILPLUS)"
+msgstr "CH - HalbtaxAbo (with RAILPLUS)"
+
+#: ui/preferences_window.ui:69
+msgid "CH - HalbtaxAbo (without RAILPLUS)"
+msgstr "CH - HalbtaxAbo (without RAILPLUS)"
+
+#: ui/preferences_window.ui:70
+msgid "NL - Voordeelurenabo (with RAILPLUS)"
+msgstr "NL - Voordeelurenabo (with RAILPLUS)"
+
+#: ui/preferences_window.ui:71
+msgid "NL - Voordeelurenabo (without RAILPLUS)"
+msgstr "NL - Voordeelurenabo (without RAILPLUS)"
+
+#: ui/preferences_window.ui:72
+msgid "SH-Card"
+msgstr "SH-Card"
+
+#: ui/preferences_window.ui:73
+msgid "CH - General-Abonnement"
+msgstr "CH - General-Abonnement"
