@@ -197,3 +197,51 @@ msgstr "SH-Card"
 #: ui/preferences_window.ui:73
 msgid "CH - General-Abonnement"
 msgstr "CH - General-Abonnement"
+
+#: ui/preferences_window.ui:65
+msgid "ICE"
+msgstr "ICE"
+
+#: ui/preferences_window.ui:74
+msgid "IC/EC"
+msgstr "IC/EC"
+
+#: ui/preferences_window.ui:83
+msgid "Interregio/RegionalExpress"
+msgstr "Interregio- und Schellzug"
+
+#: ui/preferences_window.ui:92
+msgid "Regio"
+msgstr "Regio- und Nahverkehr"
+
+#: ui/preferences_window.ui:101
+msgid "Suburban"
+msgstr "S-Bahn"
+
+#: ui/preferences_window.ui:110
+msgid "Bus"
+msgstr "Bus"
+
+#: ui/preferences_window.ui:119
+msgid "Ferry"
+msgstr "Schiff"
+
+#: ui/preferences_window.ui:128
+msgid "Subway"
+msgstr "U-Bahn"
+
+#: ui/preferences_window.ui:137
+msgid "Tram"
+msgstr "Straßenbahn"
+
+#: ui/preferences_window.ui:146
+msgid "Taxi"
+msgstr "Anruf-Sammeltaxi"
+
+#: ui/preferences_window.ui:9
+msgid "General"
+msgstr "Allgemein"
+
+#: ui/preferences_window.ui:59
+msgid "Modes of transport"
+msgstr "Verkehrsmittel"

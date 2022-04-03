@@ -25,6 +25,47 @@
       <summary>Search for first-class</summary>
     </key>
 
+    <key name="include-national-express" type="b">
+      <default>true</default>
+      <summary>Include InterCityExpress (ICE)?</summary>
+    </key>
+    <key name="include-national" type="b">
+      <default>true</default>
+      <summary>Include InterCity &amp; EuroCity (IC/EC)?</summary>
+    </key>
+    <key name="include-regional-express" type="b">
+      <default>true</default>
+      <summary>Include RegionalExpress &amp; InterRegio (RE/IR)?</summary>
+    </key>
+    <key name="include-regional" type="b">
+      <default>true</default>
+      <summary>Include Regio (RB)?</summary>
+    </key>
+    <key name="include-suburban" type="b">
+      <default>true</default>
+      <summary>Include S-Bahn (S)?</summary>
+    </key>
+    <key name="include-bus" type="b">
+      <default>true</default>
+      <summary>Include Bus (B)?</summary>
+    </key>
+    <key name="include-ferry" type="b">
+      <default>true</default>
+      <summary>Include Ferry (F)?</summary>
+    </key>
+    <key name="include-subway" type="b">
+      <default>true</default>
+      <summary>Include U-Bahn (U)?</summary>
+    </key>
+    <key name="include-tram" type="b">
+      <default>true</default>
+      <summary>Include Tram (T)?</summary>
+    </key>
+    <key name="include-taxi" type="b">
+      <default>true</default>
+      <summary>Include Group Taxi (Taxi)?</summary>
+    </key>
+
     <key name="search-from" type="s">
       <default>""</default>
       <summary>Last search from</summary>

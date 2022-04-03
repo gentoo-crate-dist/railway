@@ -197,3 +197,51 @@ msgstr ""
 #: ui/preferences_window.ui:73
 msgid "CH - General-Abonnement"
 msgstr ""
+
+#: ui/preferences_window.ui:65
+msgid "ICE"
+msgstr ""
+
+#: ui/preferences_window.ui:74
+msgid "IC/EC"
+msgstr ""
+
+#: ui/preferences_window.ui:83
+msgid "Interregio/RegionalExpress"
+msgstr ""
+
+#: ui/preferences_window.ui:92
+msgid "Regio"
+msgstr ""
+
+#: ui/preferences_window.ui:101
+msgid "Suburban"
+msgstr ""
+
+#: ui/preferences_window.ui:110
+msgid "Bus"
+msgstr ""
+
+#: ui/preferences_window.ui:119
+msgid "Ferry"
+msgstr ""
+
+#: ui/preferences_window.ui:128
+msgid "Subway"
+msgstr ""
+
+#: ui/preferences_window.ui:137
+msgid "Tram"
+msgstr ""
+
+#: ui/preferences_window.ui:146
+msgid "Taxi"
+msgstr ""
+
+#: ui/preferences_window.ui:9
+msgid "General"
+msgstr ""
+
+#: ui/preferences_window.ui:59
+msgid "Modes of transport"
+msgstr ""

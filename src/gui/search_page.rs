@@ -185,6 +185,16 @@ pub mod imp {
                         stopovers: Some(true),
                         loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
                         first_class: Some(settings.boolean("first-class")),
+                        national_express: Some(settings.boolean("include-national-express")),
+                        national: Some(settings.boolean("include-national")),
+                        regional_exp: Some(settings.boolean("include-regional-express")),
+                        regional: Some(settings.boolean("include-regional")),
+                        suburban: Some(settings.boolean("include-suburban")),
+                        bus: Some(settings.boolean("include-bus")),
+                        ferry: Some(settings.boolean("include-ferry")),
+                        subway: Some(settings.boolean("include-subway")),
+                        tram: Some(settings.boolean("include-tram")),
+                        taxi: Some(settings.boolean("include-taxi")),
                         ..Default::default()
                     })
                     .await;

@@ -6,50 +6,152 @@
   <template class="DBPreferencesWindow" parent="AdwPreferencesWindow">
     <child>
       <object class="AdwPreferencesPage">
+        <property name="title" translatable="yes">General</property>
+        <property name="icon-name">preferences-system-symbolic</property>
         <child>
-        <object class="AdwPreferencesGroup">
-          <child>
-            <object class="AdwActionRow">
-              <property name="title" translatable="yes">BahnCard</property>
-              <child>
-                <object class="GtkComboBox" id="dropdown_bahncard">
-                  <property name="model">model-bahncard</property>
-                  <property name="entry-text-column">0</property>
-                  <property name="id-column">1</property>
-                  <signal name="changed" handler="handle_bahncard_dropdown" swapped="true"/>
-                  <child>
-                    <object class="GtkCellRendererText"/>
-                    <attributes>
-                      <attribute name="text">0</attribute>
-                    </attributes>
-                  </child>
-                </object>
-              </child>
-            </object>
-          </child>
-          <child>
-            <object class="AdwActionRow">
-              <property name="title" translatable="yes">Class</property>
-              <child>
-                <object class="GtkBox">
-                  <child>
-                    <object class="GtkCheckButton" id="radio_first_class">
-                      <signal name="toggled" handler="handle_first_class" swapped="true"/>
-                      <property name="label" translatable="yes">First class</property>
-                    </object>
-                  </child>
-                  <child>
-                    <object class="GtkCheckButton" id="radio_second_class">
-                      <property name="label" translatable="yes">Second class</property>
-                      <property name="group">radio_first_class</property>
-                    </object>
-                  </child>
-                </object>
-              </child>
-            </object>
-          </child>
-        </object>
-      </child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">BahnCard</property>
+                <child>
+                  <object class="GtkComboBox" id="dropdown_bahncard">
+                    <property name="model">model-bahncard</property>
+                    <property name="entry-text-column">0</property>
+                    <property name="id-column">1</property>
+                    <signal name="changed" handler="handle_bahncard_dropdown" swapped="true"/>
+                    <child>
+                      <object class="GtkCellRendererText"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Class</property>
+                <child>
+                  <object class="GtkBox">
+                    <child>
+                      <object class="GtkCheckButton" id="radio_first_class">
+                        <signal name="toggled" handler="handle_first_class" swapped="true"/>
+                        <property name="label" translatable="yes">First class</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="radio_second_class">
+                        <property name="label" translatable="yes">Second class</property>
+                        <property name="group">radio_first_class</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="title" translatable="yes">Modes of transport</property>
+        <property name="icon-name">edit-find-replace-symbolic</property>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">ICE</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_national_express">
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">IC/EC</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_national">
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Interregio/RegionalExpress</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_regional_express">
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Regio</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_regional">
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Suburban</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_suburban">
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Bus</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_bus">
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Ferry</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_ferry">
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Subway</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_subway">
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Tram</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_tram">
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Taxi</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_taxi">
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </template>

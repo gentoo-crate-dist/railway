@@ -15,6 +15,7 @@ impl PreferencesWindow {
 
 pub mod imp {
     use gdk::gio::Settings;
+    use gdk::gio::SettingsBindFlags;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::prelude::*;
@@ -34,6 +35,27 @@ pub mod imp {
         #[template_child]
         radio_second_class: TemplateChild<gtk::CheckButton>,
 
+        #[template_child]
+        switch_national_express: TemplateChild<gtk::Switch>,
+        #[template_child]
+        switch_national: TemplateChild<gtk::Switch>,
+        #[template_child]
+        switch_regional_express: TemplateChild<gtk::Switch>,
+        #[template_child]
+        switch_regional: TemplateChild<gtk::Switch>,
+        #[template_child]
+        switch_suburban: TemplateChild<gtk::Switch>,
+        #[template_child]
+        switch_bus: TemplateChild<gtk::Switch>,
+        #[template_child]
+        switch_ferry: TemplateChild<gtk::Switch>,
+        #[template_child]
+        switch_subway: TemplateChild<gtk::Switch>,
+        #[template_child]
+        switch_tram: TemplateChild<gtk::Switch>,
+        #[template_child]
+        switch_taxi: TemplateChild<gtk::Switch>,
+
         settings: Settings,
     }
 
@@ -48,6 +70,63 @@ pub mod imp {
             } else {
                 self.radio_second_class.set_active(true);
             }
+
+            self.settings
+                .bind(
+                    "include-national-express",
+                    &self.switch_national_express.get(),
+                    "state",
+                )
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-national", &self.switch_national.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind(
+                    "include-regional-express",
+                    &self.switch_regional_express.get(),
+                    "state",
+                )
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-regional", &self.switch_regional.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-suburban", &self.switch_suburban.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-bus", &self.switch_bus.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-ferry", &self.switch_ferry.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-subway", &self.switch_subway.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-tram", &self.switch_tram.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-subway", &self.switch_subway.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-tram", &self.switch_tram.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-taxi", &self.switch_taxi.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
         }
 
         #[template_callback]
@@ -80,6 +159,16 @@ pub mod imp {
                 dropdown_bahncard: TemplateChild::default(),
                 radio_first_class: TemplateChild::default(),
                 radio_second_class: TemplateChild::default(),
+                switch_national_express: TemplateChild::default(),
+                switch_national: TemplateChild::default(),
+                switch_regional_express: TemplateChild::default(),
+                switch_regional: TemplateChild::default(),
+                switch_suburban: TemplateChild::default(),
+                switch_bus: TemplateChild::default(),
+                switch_ferry: TemplateChild::default(),
+                switch_subway: TemplateChild::default(),
+                switch_tram: TemplateChild::default(),
+                switch_taxi: TemplateChild::default(),
             }
         }
 
