@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-07 16:13+0100\n"
-"PO-Revision-Date: 2022-04-29 14:21+0200\n"
+"POT-Creation-Date: 2022-04-02 14:45+0100\n"
+"PO-Revision-Date: 2022-04-02 20:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -108,37 +108,36 @@ msgstr "naar"
 
 #: ui/preferences_window.ui:13
 msgid "BahnCard"
-msgstr ""
+msgstr "BahnCard"
 
 #: ui/preferences_window.ui:42
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 #: ui/preferences_window.ui:46
 msgid "BahnCard 25"
-msgstr ""
+msgstr "BahnCard 25"
 
 #: ui/preferences_window.ui:50
 msgid "BahnCard 50"
-msgstr ""
+msgstr "BahnCard 50"
 
 #: ui/preferences_window.ui:54
 msgid "BahnCard 100"
-msgstr ""
+msgstr "BahnCard 100"
 
 #: ui/window.ui:175
 msgid "Settings"
-msgstr ""
+msgstr "Voorkeuren"
 
 #: ui/window.ui:179
 msgid "About"
-msgstr ""
+msgstr "Over"
 
 #: ui/preferences_window.ui:14
-msgid ""
-"The prices displayed using a BahnCard might not always match the real prices"
-msgstr ""
+msgid "The prices displayed using a BahnCard might not always match the real prices"
+msgstr "De getoonde reiskosten kunnen afwijken van de daadwerkelijke reiskosten"
 
 #: src/gui/window.rs:117 Add your name here for credit in the about page
 msgid "translators"
-msgstr ""
+msgstr "Heimen Stoffels <vistausss@fastmail.com>"
