@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 14:45+0100\n"
-"PO-Revision-Date: 2022-04-02 20:14+0200\n"
+"POT-Creation-Date: 2022-04-03 19:45+0100\n"
+"PO-Revision-Date: 2022-04-08 20:29+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -140,120 +140,120 @@ msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
 #: ui/preferences_window.ui:32
 msgid "Class"
-msgstr ""
+msgstr "Klasse"
 
 #: ui/preferences_window.ui:38
 msgid "First class"
-msgstr ""
+msgstr "Eerst klas"
 
 #: ui/preferences_window.ui:43
 msgid "Second class"
-msgstr ""
+msgstr "Tweede klas"
 
-#: ui/preferences_window.ui:42
+#: ui/preferences_window.ui:62
 msgid "None"
 msgstr "Geen"
 
 #: ui/preferences_window.ui:63
 msgid "BahnCard 25, 1st class"
-msgstr ""
+msgstr "BahnCard 25, 1e klas"
 
 #: ui/preferences_window.ui:64
 msgid "BahnCard 25, 2nd class"
-msgstr ""
+msgstr "BahnCard 25, 2e klas"
 
 #: ui/preferences_window.ui:65
 msgid "BahnCard 50, 1st class"
-msgstr ""
+msgstr "BahnCard 50, 1e klas"
 
 #: ui/preferences_window.ui:66
 msgid "BahnCard 50, 2nd class"
-msgstr ""
+msgstr "BahnCard 50, 2e klas"
 
 #: ui/preferences_window.ui:67
 msgid "A - VORTEILScard (with RAILPLUS)"
-msgstr ""
+msgstr "A - VORTEILScard (met RAILPLUS)"
 
 #: ui/preferences_window.ui:68
 msgid "CH - HalbtaxAbo (with RAILPLUS)"
-msgstr ""
+msgstr "CH - HalbtaxAbo (met RAILPLUS)"
 
 #: ui/preferences_window.ui:69
 msgid "CH - HalbtaxAbo (without RAILPLUS)"
-msgstr ""
+msgstr "CH - HalbtaxAbo (zonder RAILPLUS)"
 
 #: ui/preferences_window.ui:70
 msgid "NL - Voordeelurenabo (with RAILPLUS)"
-msgstr ""
+msgstr "NL - Voordeelurenabonnement (met RAILPLUS)"
 
 #: ui/preferences_window.ui:71
 msgid "NL - Voordeelurenabo (without RAILPLUS)"
-msgstr ""
+msgstr "NL - Voordeelurenabonnement (zonder RAILPLUS)"
 
 #: ui/preferences_window.ui:72
 msgid "SH-Card"
-msgstr ""
+msgstr "SH-Card"
 
 #: ui/preferences_window.ui:73
 msgid "CH - General-Abonnement"
-msgstr ""
+msgstr "CH - Algemeen abonnement"
 
 #: ui/preferences_window.ui:65
 msgid "ICE"
-msgstr ""
+msgstr "ICE"
 
 #: ui/preferences_window.ui:74
 msgid "IC/EC"
-msgstr ""
+msgstr "IC/EC"
 
 #: ui/preferences_window.ui:83
 msgid "Interregio/RegionalExpress"
-msgstr ""
+msgstr "Interregio/RegionalExpress (sneltrein)"
 
 #: ui/preferences_window.ui:92
 msgid "Regio"
-msgstr ""
+msgstr "Regionaal/Streekvervoer"
 
 #: ui/preferences_window.ui:101
 msgid "Suburban"
-msgstr ""
+msgstr "Stadsvervoer"
 
 #: ui/preferences_window.ui:110
 msgid "Bus"
-msgstr ""
+msgstr "Bus"
 
 #: ui/preferences_window.ui:119
 msgid "Ferry"
-msgstr ""
+msgstr "Veerboot"
 
 #: ui/preferences_window.ui:128
 msgid "Subway"
-msgstr ""
+msgstr "Metro"
 
 #: ui/preferences_window.ui:137
 msgid "Tram"
-msgstr ""
+msgstr "Tram"
 
 #: ui/preferences_window.ui:146
 msgid "Taxi"
-msgstr ""
+msgstr "Taxi"
 
 #: ui/preferences_window.ui:9
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: ui/preferences_window.ui:59
 msgid "Modes of transport"
-msgstr ""
+msgstr "Vervoersmogelijkheden"
 
 #: ui/preferences_window.ui:55
 msgid "Bike accessible"
-msgstr ""
+msgstr "Toegankelijk voor fietsen"
 
 #: ui/preferences_window.ui:64
 msgid "Minimum transfer time"
-msgstr ""
+msgstr "Minimale overstaptijd"
 
 #: ui/preferences_window.ui:74
 msgid "Direct connections only"
-msgstr ""
+msgstr "Zonder overstap"
