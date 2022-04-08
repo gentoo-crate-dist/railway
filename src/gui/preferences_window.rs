@@ -36,6 +36,13 @@ pub mod imp {
         radio_second_class: TemplateChild<gtk::CheckButton>,
 
         #[template_child]
+        switch_bike_accessible: TemplateChild<gtk::Switch>,
+        #[template_child]
+        spin_transfer_time: TemplateChild<gtk::SpinButton>,
+        #[template_child]
+        switch_direct_only: TemplateChild<gtk::Switch>,
+
+        #[template_child]
         switch_national_express: TemplateChild<gtk::Switch>,
         #[template_child]
         switch_national: TemplateChild<gtk::Switch>,
@@ -70,6 +77,23 @@ pub mod imp {
             } else {
                 self.radio_second_class.set_active(true);
             }
+
+            self.settings
+                .bind(
+                    "bike-accessible",
+                    &self.switch_bike_accessible.get(),
+                    "state",
+                )
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("transfer-time", &self.spin_transfer_time.get(), "value")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("direct-only", &self.switch_direct_only.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
 
             self.settings
                 .bind(
@@ -157,6 +181,9 @@ pub mod imp {
             Self {
                 settings: Settings::new("de.schmidhuberj.DieBahn"),
                 dropdown_bahncard: TemplateChild::default(),
+                switch_bike_accessible: TemplateChild::default(),
+                spin_transfer_time: TemplateChild::default(),
+                switch_direct_only: TemplateChild::default(),
                 radio_first_class: TemplateChild::default(),
                 radio_second_class: TemplateChild::default(),
                 switch_national_express: TemplateChild::default(),

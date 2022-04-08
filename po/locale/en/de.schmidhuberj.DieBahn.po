@@ -245,3 +245,15 @@ msgstr "General"
 #: ui/preferences_window.ui:59
 msgid "Modes of transport"
 msgstr "Modes of transport"
+
+#: ui/preferences_window.ui:55
+msgid "Bike accessible"
+msgstr "Bike accessible"
+
+#: ui/preferences_window.ui:64
+msgid "Minimum transfer time"
+msgstr "Minimum transfer time"
+
+#: ui/preferences_window.ui:74
+msgid "Direct connections only"
+msgstr "Direct connections only"

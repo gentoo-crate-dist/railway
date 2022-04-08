@@ -24,6 +24,18 @@
       <default>false</default>
       <summary>Search for first-class</summary>
     </key>
+    <key name="bike-accessible" type="b">
+      <default>false</default>
+      <summary>Search for bike-accessible journeys only</summary>
+    </key>
+    <key name="transfer-time" type="i">
+      <default>0</default>
+      <summary>Minimum transfer time</summary>
+    </key>
+    <key name="direct-only" type="b">
+      <default>false</default>
+      <summary>Search for only direct connections</summary>
+    </key>
 
     <key name="include-national-express" type="b">
       <default>true</default>
