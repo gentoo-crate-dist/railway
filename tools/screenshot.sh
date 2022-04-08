@@ -6,31 +6,33 @@ width_small=450
 height=900
 
 id=$(xdotool search --name DieBahn | tail -n 1)
+id=73400324
 
 # Resize Window
 xdotool windowsize $id $width $height
 xdotool windowmove $id 0 0 
 
-# Time to focus window
-
 # Input Source and Destination
-xdotool windowfocus $id 
-xdotool type --window $id "Berlin Hauptbahnhof"
+xdotool windowfocus $id
+# xdotool key --window $id Tab
+# xdotool type --window $id "Berlin Hauptbahnhof"
+# xdotool key --window $id Tab
+# xdotool type --window $id "Münchsmünster"
 xdotool key --window $id Tab
-xdotool type --window $id "Münchsmünster"
+xdotool key --window $id Tab
 xdotool key --window $id Tab
 
 # Search
-sleep 10
-xdotool key --window $id Enter
-xdotool key --window $id Tab
-xdotool key --window $id Tab
-xdotool key --window $id Tab
-xdotool key --window $id Tab
-xdotool key --window $id Tab
-xdotool key --window $id Tab
-xdotool key --window $id Tab
-xdotool key --window $id Tab
+# sleep 10
+# xdotool key --window $id Enter
+# xdotool key --window $id Tab
+# xdotool key --window $id Tab
+# xdotool key --window $id Tab
+# xdotool key --window $id Tab
+# xdotool key --window $id Tab
+# xdotool key --window $id Tab
+# xdotool key --window $id Tab
+# xdotool key --window $id Tab
 xdotool key --window $id Enter
 
 # Wait for query to finish
