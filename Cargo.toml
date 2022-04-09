@@ -2,7 +2,8 @@
 name = "diebahn"
 description = "A frontend for 'Deutsche Bahn'."
 authors = ["Julian Schmidhuber <schmidhuberj2@protonmail.com>"]
-version = "0.1.5"
+homepage = "https://gitlab.com/Schmiddiii/diebahn"
+version = "1.0.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

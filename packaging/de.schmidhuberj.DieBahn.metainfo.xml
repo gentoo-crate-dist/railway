@@ -62,6 +62,12 @@
     </ul>
   </description>
   <releases>
+    <release version="v1.0.0" date="2022-04-09">
+      <description> 
+        <p>Many more settings</p>
+        <p xml:lang="de">Sehr viele mehr Einstellungen</p>
+      </description>
+    </release>
     <release version="v0.1.5" date="2022-04-03">
       <description> 
         <p>Show prices, save searches between application starts, fix bugs</p>
