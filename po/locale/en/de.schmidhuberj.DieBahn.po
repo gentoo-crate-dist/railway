@@ -257,3 +257,11 @@ msgstr "Minimum transfer time"
 #: ui/preferences_window.ui:74
 msgid "Direct connections only"
 msgstr "Direct connections only"
+
+#: ui/preferences_window.ui:83
+msgid "Delete old journeys from the store"
+msgstr "Delete old journeys from the store"
+
+#: ui/preferences_window.ui:92
+msgid "Hours after planned arrival journeys will be kept"
+msgstr "Hours after planned arrival journeys will be kept"

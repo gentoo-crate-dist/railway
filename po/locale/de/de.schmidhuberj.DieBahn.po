@@ -257,3 +257,11 @@ msgstr "Minimale Umsteigezeit"
 #: ui/preferences_window.ui:74
 msgid "Direct connections only"
 msgstr "Nur Direktverbindungen"
+
+#: ui/preferences_window.ui:83
+msgid "Delete old journeys from the store"
+msgstr "Lösche alte Verbindungen aus dem Speicher"
+
+#: ui/preferences_window.ui:92
+msgid "Hours after planned arrival journeys will be kept"
+msgstr "Stunden, nachdem alte Verbindungen gelöscht werden"
