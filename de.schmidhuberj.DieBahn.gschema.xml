@@ -37,6 +37,15 @@
       <summary>Search for only direct connections</summary>
     </key>
 
+    <key name="delete-old" type="b">
+      <default>true</default>
+      <summary>Delete old journeys from storage</summary>
+    </key>
+    <key name="deletion-time" type="i">
+      <default>2</default>
+      <summary>Hours after which journeys will be deleted from the store</summary>
+    </key>
+
     <key name="include-national-express" type="b">
       <default>true</default>
       <summary>Include InterCityExpress (ICE)?</summary>

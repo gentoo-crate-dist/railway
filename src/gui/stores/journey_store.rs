@@ -23,11 +23,13 @@ impl JourneysStore {
 pub mod imp {
     use std::{cell::RefCell, fs::OpenOptions, path::PathBuf};
 
+    use chrono::{Duration, Local};
     use gtk::glib;
 
     use gdk::{
+        gio::Settings,
         glib::subclass::Signal,
-        prelude::{ObjectExt, StaticType},
+        prelude::{ObjectExt, SettingsExt, StaticType},
         subclass::prelude::{ObjectImpl, ObjectSubclass, ObjectSubclassExt},
     };
     use hafas_rest::Journey;
@@ -39,6 +41,8 @@ pub mod imp {
     pub struct JourneysStore {
         path: PathBuf,
         stored: RefCell<Vec<JourneyObject>>,
+
+        settings: Settings,
     }
 
     impl JourneysStore {
@@ -53,6 +57,17 @@ pub mod imp {
 
             let journeys: Vec<Journey> = serde_json::from_reader(file).unwrap_or_default();
             for journey in journeys.into_iter().rev() {
+                if self.settings.boolean("delete-old") {
+                    if let Some(arrival) = journey.legs.last().and_then(|l| l.planned_arrival) {
+                        let deletion_time = self.settings.int("deletion-time");
+                        let deletion = arrival + Duration::hours(deletion_time.into());
+                        if deletion < Local::now() {
+                            continue;
+                        }
+                    } else {
+                        continue;
+                    }
+                }
                 self.store(JourneyObject::new(journey));
             }
         }
@@ -71,6 +86,7 @@ pub mod imp {
             Self {
                 path,
                 stored: RefCell::new(vec![]),
+                settings: Settings::new("de.schmidhuberj.DieBahn"),
             }
         }
     }

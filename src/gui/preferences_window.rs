@@ -41,6 +41,10 @@ pub mod imp {
         spin_transfer_time: TemplateChild<gtk::SpinButton>,
         #[template_child]
         switch_direct_only: TemplateChild<gtk::Switch>,
+        #[template_child]
+        switch_delete_old: TemplateChild<gtk::Switch>,
+        #[template_child]
+        spin_deletion_time: TemplateChild<gtk::SpinButton>,
 
         #[template_child]
         switch_national_express: TemplateChild<gtk::Switch>,
@@ -92,6 +96,14 @@ pub mod imp {
                 .build();
             self.settings
                 .bind("direct-only", &self.switch_direct_only.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("delete-old", &self.switch_delete_old.get(), "state")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("deletion-time", &self.spin_deletion_time.get(), "value")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
 
@@ -184,6 +196,8 @@ pub mod imp {
                 switch_bike_accessible: TemplateChild::default(),
                 spin_transfer_time: TemplateChild::default(),
                 switch_direct_only: TemplateChild::default(),
+                switch_delete_old: TemplateChild::default(),
+                spin_deletion_time: TemplateChild::default(),
                 radio_first_class: TemplateChild::default(),
                 radio_second_class: TemplateChild::default(),
                 switch_national_express: TemplateChild::default(),
