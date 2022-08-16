@@ -73,83 +73,88 @@ pub mod imp {
             self.connect_changed(obj);
         }
 
-        fn connect_changed(&self, obj: &super::StationEntry) {
-            self.entry.connect_changed(
-                clone!(@strong obj,
-                       @strong self.hafas as hafas, 
-                       @strong self.request_pending as request_pending, 
-                       @strong self.last_request as last_request => move |entry| {
+        fn on_changed(&self) {
+            let hafas = &self.hafas;
+            let request_pending = &self.request_pending;
+            let last_request = &self.last_request;
+            let obj = self.instance();
 
-                    if request_pending.load(Ordering::SeqCst) {
-                        log::trace!("Station changed, but there is already a request pending");
-                        return;
+            if request_pending.load(Ordering::SeqCst) {
+                log::trace!("Station changed, but there is already a request pending");
+                return;
+            } else {
+                log::trace!("Station changed. Block other requests");
+                request_pending.store(true, Ordering::SeqCst);
+            }
+
+            let main_context = MainContext::default();
+            main_context.spawn_local(clone!(@strong obj,
+                                            @strong hafas, 
+                                            @strong last_request, 
+                                            @strong request_pending,
+                                            => async move {
+                let entry = &obj.imp().entry;
+                let to_wait = {
+                    let mut last_request = last_request.lock().expect("last_request to be lockable.");
+                    if last_request.is_none() {
+                        *last_request = Some(Instant::now() - REQUEST_DURATION);
+                    }
+                    let duration_from_last_request = Instant::now() - last_request.expect("last_request to be set");
+                    if duration_from_last_request >= REQUEST_DURATION {
+                        Duration::ZERO
                     } else {
-                        log::trace!("Station changed. Block other requests");
-                        request_pending.store(true, Ordering::SeqCst);
+                        REQUEST_DURATION - duration_from_last_request
+                    }
+                };
+
+                log::trace!("Station entry changed. Wait {:?} for next request.", to_wait);
+
+                tokio::time::sleep(to_wait).await;
+
+                let text = entry.text();
+
+                // Only request if text did not change since last time.
+                if text.len() >= entry.completion().expect("Completion to be set up").minimum_key_length().try_into().unwrap() {
+                    log::trace!("Request is allowed with text {}.", text);
+                    {
+                        // Update last_request
+                        let mut last_request = last_request.lock().expect("last_request to be lockable.");
+                        *last_request = Some(Instant::now());
                     }
 
-                    let main_context = MainContext::default();
-                    main_context.spawn_local(clone!(@strong obj,
-                                                    @strong hafas, 
-                                                    @strong last_request, 
-                                                    @strong request_pending,
-                                                    @strong entry => async move {
-                        let to_wait = {
-                            let mut last_request = last_request.lock().expect("last_request to be lockable.");
-                            if last_request.is_none() {
-                                *last_request = Some(Instant::now() - REQUEST_DURATION);
-                            }
-                            let duration_from_last_request = Instant::now() - last_request.expect("last_request to be set");
-                            if duration_from_last_request >= REQUEST_DURATION {
-                                Duration::ZERO
-                            } else {
-                                REQUEST_DURATION - duration_from_last_request
-                            }
-                        };
+                    let hafas_borrow = hafas.borrow();
+                    let hafas = hafas_borrow.as_ref().expect("Hafas has not yet been set up.");
 
-                        log::trace!("Station entry changed. Wait {:?} for next request.", to_wait);
+                    let stations = super::get_stations_by_search(hafas, entry.text()).await;
 
-                        tokio::time::sleep(to_wait).await;
+                    if let Ok(stations) = stations {
+                        let store = ListStore::new(&[String::static_type(), StationObject::static_type()]);
 
-                        let text = entry.text();
-
-                        // Only request if text did not change since last time.
-                        if text.len() >= entry.completion().expect("Completion to be set up").minimum_key_length().try_into().unwrap() {
-                            log::trace!("Request is allowed with text {}.", text);
-                            {
-                                // Update last_request
-                                let mut last_request = last_request.lock().expect("last_request to be lockable.");
-                                *last_request = Some(Instant::now());
+                        let mut exact_match: Option<StationObject> = None;
+                        for station in stations {
+                            if station.name == text {
+                                exact_match = Some(StationObject::new(station.clone()));
                             }
 
-                            let hafas_borrow = hafas.borrow();
-                            let hafas = hafas_borrow.as_ref().expect("Hafas has not yet been set up.");
-
-                            let stations = super::get_stations_by_search(hafas, entry.text()).await;
-
-                            if let Ok(stations) = stations {
-                                let store = ListStore::new(&[String::static_type(), StationObject::static_type()]);
-
-                                let mut exact_match: Option<StationObject> = None;
-                                for station in stations {
-                                    if station.name == text {
-                                        exact_match = Some(StationObject::new(station.clone()));
-                                    }
-
-                                    let iter = store.append();
-                                    store.set_value(&iter, 0, &station.name.to_value());
-                                    store.set_value(&iter, 1, &StationObject::new(station).to_value());
-                                }
-                                obj.set_property("station", exact_match);
-
-                                entry.completion().expect("Completion to be set up").set_model(Some(&store));
-                            }
+                            let iter = store.append();
+                            store.set_value(&iter, 0, &station.name.to_value());
+                            store.set_value(&iter, 1, &StationObject::new(station).to_value());
                         }
-                        log::trace!("Unlock pending request.");
-                        request_pending.store(false, Ordering::SeqCst);
-                    }));
-                }),
-            );
+                        obj.set_property("station", exact_match);
+
+                        entry.completion().expect("Completion to be set up").set_model(Some(&store));
+                    }
+                }
+                log::trace!("Unlock pending request.");
+                request_pending.store(false, Ordering::SeqCst);
+            }));
+        }
+
+        fn connect_changed(&self, obj: &super::StationEntry) {
+            self.entry.connect_changed(clone!(@strong obj => move |_entry| {
+                    obj.imp().on_changed();
+            }));
+            self.on_changed();
         }
     }
 
