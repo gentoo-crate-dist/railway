@@ -62,6 +62,12 @@
     </ul>
   </description>
   <releases>
+    <release version="v1.1.0" date="2022-08-17">
+      <description> 
+        <p>Option to autodelete old journeys, small bug fix</p>
+        <p xml:lang="de">Automatisches Löschen alter Reisen, kleinerer Fehler behoben</p>
+      </description>
+    </release>
     <release version="v1.0.0" date="2022-04-09">
       <description> 
         <p>Many more settings</p>
