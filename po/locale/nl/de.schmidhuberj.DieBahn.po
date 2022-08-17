@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-03 19:45+0100\n"
-"PO-Revision-Date: 2022-04-08 20:29+0200\n"
+"PO-Revision-Date: 2022-08-16 19:32+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: ui/journey_detail_page.ui:46
 msgid "Time"
@@ -260,8 +260,8 @@ msgstr "Zonder overstap"
 
 #: ui/preferences_window.ui:83
 msgid "Delete old journeys from the store"
-msgstr ""
+msgstr "Reisgeschiedenis uit lokale opslag wissen"
 
 #: ui/preferences_window.ui:92
 msgid "Hours after planned arrival journeys will be kept"
-msgstr ""
+msgstr "Reizen met nog geplande aankomsttijden worden bewaard"
