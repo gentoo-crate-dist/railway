@@ -15,6 +15,8 @@
                 <property name="title" translatable="yes">BahnCard</property>
                 <child>
                   <object class="GtkComboBox" id="dropdown_bahncard">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                     <property name="model">model-bahncard</property>
                     <property name="entry-text-column">0</property>
                     <property name="id-column">1</property>
@@ -38,12 +40,16 @@
                       <object class="GtkCheckButton" id="radio_first_class">
                         <signal name="toggled" handler="handle_first_class" swapped="true"/>
                         <property name="label" translatable="yes">First class</property>
+                        <property name="valign">center</property>
+                        <property name="halign">center</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="radio_second_class">
                         <property name="label" translatable="yes">Second class</property>
                         <property name="group">radio_first_class</property>
+                        <property name="valign">center</property>
+                        <property name="halign">center</property>
                       </object>
                     </child>
                   </object>
@@ -55,6 +61,8 @@
                 <property name="title" translatable="yes">Bike accessible</property>
                 <child>
                   <object class="GtkSwitch" id="switch_bike_accessible">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -65,6 +73,8 @@
                 <child>
                   <object class="GtkSpinButton" id="spin_transfer_time">
                     <property name="adjustment">adj_transfer_time</property>
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -74,6 +84,8 @@
                 <property name="title" translatable="yes">Direct connections only</property>
                 <child>
                   <object class="GtkSwitch" id="switch_direct_only">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -83,6 +95,8 @@
                 <property name="title" translatable="yes">Delete old journeys from the store</property>
                 <child>
                   <object class="GtkSwitch" id="switch_delete_old">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -93,6 +107,8 @@
                 <child>
                   <object class="GtkSpinButton" id="spin_deletion_time">
                     <property name="adjustment">adj_deletion_time</property>
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -112,6 +128,8 @@
                 <property name="title" translatable="yes">ICE</property>
                 <child>
                   <object class="GtkSwitch" id="switch_national_express">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -121,6 +139,8 @@
                 <property name="title" translatable="yes">IC/EC</property>
                 <child>
                   <object class="GtkSwitch" id="switch_national">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -130,6 +150,8 @@
                 <property name="title" translatable="yes">Interregio/RegionalExpress</property>
                 <child>
                   <object class="GtkSwitch" id="switch_regional_express">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -139,6 +161,8 @@
                 <property name="title" translatable="yes">Regio</property>
                 <child>
                   <object class="GtkSwitch" id="switch_regional">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -148,6 +172,8 @@
                 <property name="title" translatable="yes">Suburban</property>
                 <child>
                   <object class="GtkSwitch" id="switch_suburban">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -157,6 +183,8 @@
                 <property name="title" translatable="yes">Bus</property>
                 <child>
                   <object class="GtkSwitch" id="switch_bus">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -166,6 +194,8 @@
                 <property name="title" translatable="yes">Ferry</property>
                 <child>
                   <object class="GtkSwitch" id="switch_ferry">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -175,6 +205,8 @@
                 <property name="title" translatable="yes">Subway</property>
                 <child>
                   <object class="GtkSwitch" id="switch_subway">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -184,6 +216,8 @@
                 <property name="title" translatable="yes">Tram</property>
                 <child>
                   <object class="GtkSwitch" id="switch_tram">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
@@ -193,6 +227,8 @@
                 <property name="title" translatable="yes">Taxi</property>
                 <child>
                   <object class="GtkSwitch" id="switch_taxi">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
