@@ -15,7 +15,7 @@ gtk::glib::wrapper! {
 }
 
 impl Window {
-    pub fn new(app: &gtk::Application) -> Self {
+    pub fn new(app: &libadwaita::Application) -> Self {
         let _: AltLabel = Object::new(&[]).expect("Failed to initialize `DBAltLabel`");
         let _: DateTimePicker = Object::new(&[]).expect("Failed to initialize `DBDateTimePicker`");
         let _: StationEntry = Object::new(&[]).expect("Failed to initialize `DBStationEntry`");
@@ -30,6 +30,10 @@ pub mod imp {
 
     use gdk::gio::SimpleAction;
     use gdk::gio::SimpleActionGroup;
+    use gdk::glib::ParamFlags;
+    use gdk::glib::ParamSpec;
+    use gdk::glib::ParamSpecObject;
+    use gdk::glib::Value;
     use glib::subclass::InitializingObject;
     use gtk::builders::AboutDialogBuilder;
     use gtk::glib;
@@ -37,15 +41,17 @@ pub mod imp {
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use gtk::Inhibit;
-    use hafas_rest::Hafas;
     use libadwaita::subclass::prelude::AdwApplicationWindowImpl;
     use libadwaita::subclass::prelude::AdwWindowImpl;
-    use rrw::RestConfig;
+    use once_cell::sync::Lazy;
 
+    use crate::backend::HafasClient;
+    use crate::backend::Journey;
+    use crate::backend::JourneysResult;
+    use crate::backend::Leg;
+    use crate::backend::Place;
     use crate::gui::journey_detail_page::JourneyDetailPage;
     use crate::gui::journeys_page::JourneysPage;
-    use crate::gui::objects::JourneyObject;
-    use crate::gui::objects::JourneysResultObject;
     use crate::gui::preferences_window::PreferencesWindow;
     use crate::gui::search_page::SearchPage;
     use crate::gui::stores::journey_store::JourneysStore;
@@ -73,17 +79,12 @@ pub mod imp {
         #[template_child]
         store_searches: TemplateChild<SearchesStore>,
 
-        hafas: RefCell<Option<Hafas>>,
+        client: RefCell<HafasClient>,
     }
 
     #[gtk::template_callbacks]
     impl Window {
         fn setup(&self) {
-            let hafas = Hafas::new(RestConfig::new("https://v5.db.transport.rest"));
-            self.hafas.replace(Some(hafas.clone()));
-            self.search_page.setup(hafas.clone());
-            self.journeys_page.setup(hafas.clone());
-            self.journey_detail_page.setup(hafas);
             self.store_journeys.setup();
             self.store_searches.setup();
         }
@@ -133,7 +134,7 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_details(&self, journey: JourneyObject) {
+        fn handle_details(&self, journey: Journey) {
             self.leaflet
                 .navigate(libadwaita::NavigationDirection::Forward);
             self.leaflet
@@ -143,7 +144,7 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_search_page(&self, journeys_result: JourneysResultObject) {
+        fn handle_search_page(&self, journeys_result: JourneysResult) {
             self.journeys_page
                 .set_property("journeys-result", journeys_result);
             self.leaflet
@@ -156,7 +157,7 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_journeys_page(&self, journey: JourneyObject) {
+        fn handle_journeys_page(&self, journey: Journey) {
             self.journey_detail_page.set_property("journey", journey);
             self.leaflet
                 .navigate(libadwaita::NavigationDirection::Forward);
@@ -166,19 +167,19 @@ pub mod imp {
         fn handle_journey_store(&self, _: gtk::Button) {
             if let Some(journey) = self
                 .journey_detail_page
-                .property::<Option<JourneyObject>>("journey")
+                .property::<Option<Journey>>("journey")
             {
                 self.store_journeys.store(journey)
             }
         }
 
         #[template_callback]
-        fn handle_journey_store_add(&self, journey: JourneyObject) {
+        fn handle_journey_store_add(&self, journey: Journey) {
             self.search_page.add_journey_store(journey);
         }
 
         #[template_callback]
-        fn handle_journey_store_remove(&self, journey: JourneyObject) {
+        fn handle_journey_store_remove(&self, journey: Journey) {
             self.search_page.remove_journey_store(journey);
         }
 
@@ -186,17 +187,18 @@ pub mod imp {
         fn handle_searches_store(&self, _: gtk::Button) {
             if let Some(journeys_result) = self
                 .journeys_page
-                .property::<Option<JourneysResultObject>>("journeys-result")
+                .property::<Option<JourneysResult>>("journeys-result")
             {
-                let journeys_result = journeys_result.journeys_result();
-                let origin = journeys_result.journeys[0].legs[0].origin.name.clone();
-                let destination = journeys_result.journeys[0]
-                    .legs
-                    .last()
-                    .expect("Journey to have a last leg")
-                    .destination
-                    .name
-                    .clone();
+                let origin = journeys_result.journeys()[0]
+                    .property::<Leg>("first-leg")
+                    .property::<Place>("origin")
+                    .name()
+                    .unwrap_or_else(String::new);
+                let destination = journeys_result.journeys()[0]
+                    .property::<Leg>("last-leg")
+                    .property::<Place>("destination")
+                    .name()
+                    .unwrap_or_else(String::new);
                 self.store_searches.store(origin, destination);
             }
         }
@@ -234,6 +236,28 @@ pub mod imp {
             self.parent_constructed(obj);
             self.setup_actions(obj);
             self.setup();
+        }
+
+        fn properties() -> &'static [ParamSpec] {
+            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
+                vec![ParamSpecObject::new(
+                    "client",
+                    "client",
+                    "client",
+                    HafasClient::static_type(),
+                    ParamFlags::READABLE,
+                )]
+            });
+            PROPERTIES.as_ref()
+        }
+
+        fn set_property(&self, _obj: &Self::Type, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
+
+        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+            match pspec.name() {
+                "client" => self.client.borrow().to_value(),
+                _ => unimplemented!(),
+            }
         }
     }
 

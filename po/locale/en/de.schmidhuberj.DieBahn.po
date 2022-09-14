@@ -265,3 +265,11 @@ msgstr "Delete old journeys from the store"
 #: ui/preferences_window.ui:92
 msgid "Hours after planned arrival journeys will be kept"
 msgstr "Hours after planned arrival journeys will be kept"
+
+#: ui/preferences_window.ui:92
+msgid "Search Provider"
+msgstr "Search Provider"
+
+#: ui/preferences_window.ui:92
+msgid "Requires application restart"
+msgstr "Requires application restart"

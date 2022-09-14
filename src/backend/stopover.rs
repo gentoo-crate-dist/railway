@@ -2,15 +2,14 @@ use std::cell::RefCell;
 
 use gdk::glib::Object;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
-use hafas_rest::Stopover;
 
 gtk::glib::wrapper! {
-    pub struct StopoverObject(ObjectSubclass<imp::StopoverObject>);
+    pub struct Stopover(ObjectSubclass<imp::Stopover>);
 }
 
-impl StopoverObject {
-    pub fn new(stopover: Stopover) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `StopoverObject`.");
+impl Stopover {
+    pub fn new(stopover: hafas_rs::Stopover) -> Self {
+        let s: Self = Object::new(&[]).expect("Failed to create `Stopover`.");
         s.imp().stopover.swap(&RefCell::new(Some(stopover)));
         s
     }
@@ -18,7 +17,6 @@ impl StopoverObject {
 
 mod imp {
     use gtk::glib;
-    use hafas_rest::Stopover;
     use std::cell::RefCell;
 
     use gdk::{
@@ -28,20 +26,20 @@ mod imp {
     };
     use once_cell::sync::Lazy;
 
-    use crate::gui::objects::StopObject;
+    use crate::backend::Place;
 
     #[derive(Default, Clone)]
-    pub struct StopoverObject {
-        pub(super) stopover: RefCell<Option<Stopover>>,
+    pub struct Stopover {
+        pub(super) stopover: RefCell<Option<hafas_rs::Stopover>>,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for StopoverObject {
-        const NAME: &'static str = "DBStopoverObject";
-        type Type = super::StopoverObject;
+    impl ObjectSubclass for Stopover {
+        const NAME: &'static str = "DBStopover";
+        type Type = super::Stopover;
     }
 
-    impl ObjectImpl for StopoverObject {
+    impl ObjectImpl for Stopover {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
@@ -49,7 +47,7 @@ mod imp {
                         "stop",
                         "stop",
                         "stop",
-                        StopObject::static_type(),
+                        Place::static_type(),
                         ParamFlags::READABLE,
                     ),
                     ParamSpecString::new(
@@ -121,7 +119,7 @@ mod imp {
                     .stopover
                     .borrow()
                     .as_ref()
-                    .map(|o| StopObject::new(o.stop.clone()))
+                    .map(|o| Place::new(o.stop.clone()))
                     .to_value(),
                 "departure" => self
                     .stopover

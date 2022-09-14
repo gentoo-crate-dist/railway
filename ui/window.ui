@@ -35,8 +35,9 @@
             </child>
             <child>
               <object class="DBSearchPage" id="search_page">
-                  <signal name="details" handler="handle_details" swapped="true"/>
-                  <signal name="search" handler="handle_search_page" swapped="true"/>
+                <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
+                <signal name="details" handler="handle_details" swapped="true"/>
+                <signal name="search" handler="handle_search_page" swapped="true"/>
               </object>
             </child>
           </object>
@@ -88,7 +89,8 @@
             </child>
             <child>
               <object class="DBJourneysPage" id="journeys_page">
-                  <signal name="select" handler="handle_journeys_page" swapped="true"/>
+                <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
+                <signal name="select" handler="handle_journeys_page" swapped="true"/>
               </object>
             </child>
           </object>
@@ -154,6 +156,7 @@
             </child>
             <child>
               <object class="DBJourneyDetailPage" id="journey_detail_page">
+                <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
               </object>
             </child>
           </object>

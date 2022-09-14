@@ -28,6 +28,8 @@ pub mod imp {
     #[template(resource = "/ui/preferences_window.ui")]
     pub struct PreferencesWindow {
         #[template_child]
+        dropdown_search_provider: TemplateChild<gtk::ComboBox>,
+        #[template_child]
         dropdown_bahncard: TemplateChild<gtk::ComboBox>,
 
         #[template_child]
@@ -75,6 +77,8 @@ pub mod imp {
         fn init_settings(&self) {
             self.dropdown_bahncard
                 .set_active_id(Some(&self.settings.enum_("bahncard").to_string()));
+            self.dropdown_search_provider
+                .set_active_id(Some(&self.settings.string("search-provider").to_string()));
 
             if self.settings.boolean("first-class") {
                 self.radio_first_class.set_active(true);
@@ -175,6 +179,14 @@ pub mod imp {
         }
 
         #[template_callback]
+        fn handle_search_provider_dropdown(&self, dropdown: gtk::ComboBox) {
+            let id_str = dropdown.property::<String>("active-id");
+            self.settings
+                .set_string("search-provider", &id_str)
+                .expect("Failed to set search-provider value");
+        }
+
+        #[template_callback]
         fn handle_first_class(&self, radio: gtk::CheckButton) {
             let active = radio.property::<bool>("active");
             self.settings
@@ -192,6 +204,7 @@ pub mod imp {
         fn new() -> Self {
             Self {
                 settings: Settings::new("de.schmidhuberj.DieBahn"),
+                dropdown_search_provider: TemplateChild::default(),
                 dropdown_bahncard: TemplateChild::default(),
                 switch_bike_accessible: TemplateChild::default(),
                 spin_transfer_time: TemplateChild::default(),

@@ -2,31 +2,29 @@ use std::cell::RefCell;
 
 use gdk::glib::Object;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
-use hafas_rest::Leg;
 
 gtk::glib::wrapper! {
-    pub struct LegObject(ObjectSubclass<imp::LegObject>);
+    pub struct Leg(ObjectSubclass<imp::Leg>);
 }
 
-impl LegObject {
-    pub fn new(leg: Leg) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `LegObject`.");
+impl Leg {
+    pub fn new(leg: hafas_rs::Leg) -> Self {
+        let s: Self = Object::new(&[]).expect("Failed to create `Leg`.");
         s.imp().leg.swap(&RefCell::new(Some(leg)));
         s
     }
 
-    pub fn leg(&self) -> Leg {
+    pub fn leg(&self) -> hafas_rs::Leg {
         self.imp()
             .leg
             .borrow()
             .clone()
-            .expect("LegObject has not yet been set up")
+            .expect("Leg has not yet been set up")
     }
 }
 
 mod imp {
     use gtk::glib;
-    use hafas_rest::Leg;
     use std::cell::RefCell;
 
     use gdk::{
@@ -36,20 +34,20 @@ mod imp {
     };
     use once_cell::sync::Lazy;
 
-    use crate::gui::objects::StopObject;
+    use crate::backend::{Place};
 
     #[derive(Default, Clone)]
-    pub struct LegObject {
-        pub(super) leg: RefCell<Option<Leg>>,
+    pub struct Leg {
+        pub(super) leg: RefCell<Option<hafas_rs::Leg>>,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for LegObject {
-        const NAME: &'static str = "DBLegObject";
-        type Type = super::LegObject;
+    impl ObjectSubclass for Leg {
+        const NAME: &'static str = "DBLeg";
+        type Type = super::Leg;
     }
 
-    impl ObjectImpl for LegObject {
+    impl ObjectImpl for Leg {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
@@ -121,14 +119,14 @@ mod imp {
                         "origin",
                         "origin",
                         "origin",
-                        StopObject::static_type(),
+                        Place::static_type(),
                         ParamFlags::READABLE,
                     ),
                     ParamSpecObject::new(
                         "destination",
                         "destination",
                         "destination",
-                        StopObject::static_type(),
+                        Place::static_type(),
                         ParamFlags::READABLE,
                     ),
                 ]
@@ -153,7 +151,7 @@ mod imp {
                     .as_ref()
                     .map(|o| o.line.as_ref())
                     .flatten()
-                    .map(|o| &o.name)
+                    .and_then(|o| o.name.as_ref())
                     .to_value(),
                 "departure" => self
                     .leg
@@ -219,13 +217,13 @@ mod imp {
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| StopObject::new(o.origin.clone()))
+                    .map(|o| Place::new(o.origin.clone()))
                     .to_value(),
                 "destination" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| StopObject::new(o.destination.clone()))
+                    .map(|o| Place::new(o.destination.clone()))
                     .to_value(),
                 _ => unimplemented!(),
             }

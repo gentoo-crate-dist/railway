@@ -266,3 +266,11 @@ msgstr ""
 #: ui/preferences_window.ui:92
 msgid "Hours after planned arrival journeys will be kept"
 msgstr ""
+
+#: ui/preferences_window.ui:92
+msgid "Search Provider"
+msgstr ""
+
+#: ui/preferences_window.ui:92
+msgid "Requires application restart"
+msgstr ""

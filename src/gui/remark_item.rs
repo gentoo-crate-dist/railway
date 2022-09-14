@@ -1,6 +1,6 @@
 use gdk::glib::Object;
 
-use super::objects::RemarkObject;
+use crate::backend::Remark;
 
 gtk::glib::wrapper! {
     pub struct RemarkItem(ObjectSubclass<imp::RemarkItem>)
@@ -10,7 +10,7 @@ gtk::glib::wrapper! {
 }
 
 impl RemarkItem {
-    pub fn new(remark: &RemarkObject) -> Self {
+    pub fn new(remark: &Remark) -> Self {
         Object::new(&[("remark", remark)]).expect("Failed to create RemarkItem")
     }
 }
@@ -29,12 +29,12 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
 
-    use crate::gui::objects::RemarkObject;
+    use crate::backend::Remark;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/remark_item.ui")]
     pub struct RemarkItem {
-        remark: RefCell<Option<RemarkObject>>,
+        remark: RefCell<Option<Remark>>,
     }
 
     #[glib::object_subclass]
@@ -63,7 +63,7 @@ pub mod imp {
                     "remark",
                     "remark",
                     "remark",
-                    RemarkObject::static_type(),
+                    Remark::static_type(),
                     ParamFlags::READWRITE,
                 )]
             });
@@ -73,9 +73,9 @@ pub mod imp {
         fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "remark" => {
-                    let obj = value.get::<Option<RemarkObject>>().expect(
-                        "Property `remark` of `RemarkItem` has to be of type `RemarkObject`",
-                    );
+                    let obj = value
+                        .get::<Option<Remark>>()
+                        .expect("Property `remark` of `RemarkItem` has to be of type `Remark`");
 
                     self.remark.replace(obj);
                 }

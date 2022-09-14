@@ -1,6 +1,6 @@
 use gdk::glib::Object;
 
-use super::objects::JourneyObject;
+use crate::backend::Journey;
 
 gtk::glib::wrapper! {
     pub struct JourneyStoreItem(ObjectSubclass<imp::JourneyStoreItem>)
@@ -10,7 +10,7 @@ gtk::glib::wrapper! {
 }
 
 impl JourneyStoreItem {
-    pub fn new(journey: JourneyObject) -> Self {
+    pub fn new(journey: Journey) -> Self {
         Object::new(&[("journey", &journey)]).expect("Failed to create `JourneyStoreItem`")
     }
 }
@@ -30,12 +30,12 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
 
-    use crate::gui::objects::JourneyObject;
+    use crate::backend::Journey;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/journey_store_item.ui")]
     pub struct JourneyStoreItem {
-        journey: RefCell<Option<JourneyObject>>,
+        journey: RefCell<Option<Journey>>,
     }
 
     #[gtk::template_callbacks]
@@ -80,7 +80,7 @@ pub mod imp {
                     "journey",
                     "journey",
                     "journey",
-                    JourneyObject::static_type(),
+                    Journey::static_type(),
                     ParamFlags::READWRITE,
                 )]
             });
@@ -90,8 +90,8 @@ pub mod imp {
         fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "journey" => {
-                    let obj = value.get::<Option<JourneyObject>>().expect(
-                        "Property `journey` of `JourneyStoreItem` has to be of type `JourneyObject`",
+                    let obj = value.get::<Option<Journey>>().expect(
+                        "Property `journey` of `JourneyStoreItem` has to be of type `Journey`",
                     );
 
                     self.journey.replace(obj);
@@ -111,7 +111,7 @@ pub mod imp {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| -> Vec<Signal> {
                 vec![Signal::builder(
                     "details",
-                    &[JourneyObject::static_type().into()],
+                    &[Journey::static_type().into()],
                     <()>::static_type().into(),
                 )
                 .build()]

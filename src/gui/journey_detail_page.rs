@@ -1,5 +1,4 @@
 use gdk::subclass::prelude::ObjectSubclassIsExt;
-use hafas_rest::Hafas;
 
 gtk::glib::wrapper! {
     pub struct JourneyDetailPage(ObjectSubclass<imp::JourneyDetailPage>)
@@ -9,10 +8,6 @@ gtk::glib::wrapper! {
 }
 
 impl JourneyDetailPage {
-    pub fn setup(&self, hafas: Hafas) {
-        self.imp().setup(hafas);
-    }
-
     pub fn reload(&self) {
         self.imp().reload(self);
     }
@@ -32,16 +27,16 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
-    use hafas_rest::Hafas;
-    use hafas_rest::JourneysRefreshQuery;
+    use hafas_rs::api::refresh_journey::RefreshJourneyOptions;
     use libadwaita::ToastOverlay;
     use once_cell::sync::Lazy;
 
-    use crate::gui::error::error_to_toast;
+    use crate::backend::HafasClient;
+    use crate::backend::Journey;
+    use crate::backend::Leg;
     use crate::gui::leg_item::LegItem;
-    use crate::gui::objects::JourneyObject;
-    use crate::gui::objects::LegObject;
     use crate::gui::utility::Utility;
+    use crate::gui::error::error_to_toast;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/journey_detail_page.ui")]
@@ -52,22 +47,15 @@ pub mod imp {
         #[template_child]
         toast_errors: TemplateChild<ToastOverlay>,
 
-        journey: RefCell<Option<JourneyObject>>,
+        journey: RefCell<Option<Journey>>,
 
-        hafas: RefCell<Option<Hafas>>,
+        client: RefCell<Option<HafasClient>>,
     }
 
     impl JourneyDetailPage {
-        pub(super) fn setup(&self, hafas: Hafas) {
-            self.hafas.replace(Some(hafas));
-        }
-
         pub(super) fn reload(&self, obj: &super::JourneyDetailPage) {
-            let hafas_borrow = self.hafas.borrow();
-            let hafas = hafas_borrow.as_ref().expect("Hafas should be set up");
-
             let main_context = MainContext::default();
-            main_context.spawn_local(clone!(@strong hafas,
+            main_context.spawn_local(clone!(
                        @strong obj,
                        @strong self.toast_errors as toast_errors,
                        @strong self.journey as journey => async move {
@@ -75,16 +63,18 @@ pub mod imp {
                 let journey_obj = journey_borrow.as_ref();
 
                 if let Some(journey) = journey_obj {
-                    let result_journey = hafas
-                        .journey_refresh(&journey.journey().refresh_token, &JourneysRefreshQuery {
-                            stopovers: Some(true),
-                            language: Some(gettextrs::gettext("language")),
-                            ..Default::default()
-                        }).await;
-                    if let Ok(result_journey) = result_journey {
-                        obj.set_property("journey", JourneyObject::new(result_journey));
-                    } else {
-                        error_to_toast(&toast_errors, result_journey.err().expect("A error"));
+                    if let Some(token) = journey.journey().refresh_token {
+                        let result_journey = obj.property::<HafasClient>("client")
+                            .refresh_journey(token, RefreshJourneyOptions {
+                                stopovers: Some(true),
+                                language: Some(gettextrs::gettext("language")),
+                                ..Default::default()
+                            }).await;
+                        if let Ok(result_journey) = result_journey {
+                            obj.set_property("journey", result_journey);
+                        } else {
+                            error_to_toast(&toast_errors, result_journey.err().expect("A error"));
+                        }
                     }
                 }
             }));
@@ -114,13 +104,22 @@ pub mod imp {
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::new(
-                    "journey",
-                    "journey",
-                    "journey",
-                    JourneyObject::static_type(),
-                    ParamFlags::READWRITE,
-                )]
+                vec![
+                    ParamSpecObject::new(
+                        "journey",
+                        "journey",
+                        "journey",
+                        Journey::static_type(),
+                        ParamFlags::READWRITE,
+                    ),
+                    ParamSpecObject::new(
+                        "client",
+                        "client",
+                        "client",
+                        HafasClient::static_type(),
+                        ParamFlags::READWRITE,
+                    ),
+                ]
             });
             PROPERTIES.as_ref()
         }
@@ -128,8 +127,9 @@ pub mod imp {
         fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "journey" => {
-                    let obj = value.get::<Option<JourneyObject>>()
-                        .expect("Property `journey` of `JourneyDetailPage` has to be of type `JourneyObject`");
+                    let obj = value.get::<Option<Journey>>().expect(
+                        "Property `journey` of `JourneyDetailPage` has to be of type `Journey`",
+                    );
 
                     // Clear box_legs
                     while let Some(child) = self.box_legs.first_child() {
@@ -154,10 +154,17 @@ pub mod imp {
                             self.box_legs.append(&gtk::Label::new(Some(&minutes)));
                         }
                         self.box_legs
-                            .append(&LegItem::new(&LegObject::new(legs[i].clone())));
+                            .append(&LegItem::new(&Leg::new(legs[i].clone())));
                     }
 
                     self.journey.replace(obj);
+                }
+                "client" => {
+                    let obj = value.get::<Option<HafasClient>>().expect(
+                        "Property `client` of `SearchPage` has to be of type `HafasClient`",
+                    );
+
+                    self.client.replace(obj);
                 }
                 _ => unimplemented!(),
             }
@@ -166,6 +173,7 @@ pub mod imp {
         fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "journey" => self.journey.borrow().to_value(),
+                "client" => self.client.borrow().to_value(),
                 _ => unimplemented!(),
             }
         }

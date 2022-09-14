@@ -1,6 +1,4 @@
 use gdk::subclass::prelude::ObjectSubclassIsExt;
-use hafas_rest::{Hafas, Station, StationsQuery};
-use rrw::{Error, StandardRestError};
 
 gtk::glib::wrapper! {
     pub struct StationEntry(ObjectSubclass<imp::StationEntry>)
@@ -10,10 +8,6 @@ gtk::glib::wrapper! {
 }
 
 impl StationEntry {
-    pub fn setup(&self, hafas: Hafas) {
-        self.imp().setup(hafas, self);
-    }
-
     pub fn set_input(&self, input: String) {
         self.imp().set_input(input);
     }
@@ -36,10 +30,10 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
-    use hafas_rest::Hafas;
+    use hafas_rs::api::locations::LocationsOptions;
     use once_cell::sync::Lazy;
 
-    use crate::gui::objects::StationObject;
+    use crate::backend::{HafasClient, Place};
 
     const REQUEST_DURATION: Duration = Duration::from_secs(1);
 
@@ -51,9 +45,9 @@ pub mod imp {
 
         last_request: Arc<Mutex<Option<Instant>>>,
 
-        hafas: RefCell<Option<Hafas>>,
+        client: RefCell<Option<HafasClient>>,
 
-        station: RefCell<Option<StationObject>>,
+        place: RefCell<Option<Place>>,
         set: Cell<bool>,
         placeholder_text: RefCell<Option<String>>,
         request_pending: Arc<AtomicBool>,
@@ -68,13 +62,7 @@ pub mod imp {
             self.entry.text().to_string()
         }
 
-        pub(super) fn setup(&self, hafas: Hafas, obj: &super::StationEntry) {
-            self.hafas.replace(Some(hafas));
-            self.connect_changed(obj);
-        }
-
         fn on_changed(&self) {
-            let hafas = &self.hafas;
             let request_pending = &self.request_pending;
             let last_request = &self.last_request;
             let obj = self.instance();
@@ -89,7 +77,6 @@ pub mod imp {
 
             let main_context = MainContext::default();
             main_context.spawn_local(clone!(@strong obj,
-                                            @strong hafas, 
                                             @strong last_request, 
                                             @strong request_pending,
                                             => async move {
@@ -122,25 +109,27 @@ pub mod imp {
                         *last_request = Some(Instant::now());
                     }
 
-                    let hafas_borrow = hafas.borrow();
-                    let hafas = hafas_borrow.as_ref().expect("Hafas has not yet been set up.");
+                    let text = entry.text().to_string();
+                    let places = obj.property::<HafasClient>("client").locations(LocationsOptions {query: text.clone(), ..Default::default()}).await;
 
-                    let stations = super::get_stations_by_search(hafas, entry.text()).await;
+                    if let Ok(places) = places {
+                        let store = ListStore::new(&[String::static_type(), Place::static_type()]);
 
-                    if let Ok(stations) = stations {
-                        let store = ListStore::new(&[String::static_type(), StationObject::static_type()]);
-
-                        let mut exact_match: Option<StationObject> = None;
-                        for station in stations {
-                            if station.name == text {
-                                exact_match = Some(StationObject::new(station.clone()));
+                        let mut exact_match: Option<Place> = None;
+                        for place in places {
+                            if place.id().is_none() {
+                                // Skip things without ID
+                                continue;
+                            }
+                            if place.name().as_ref() == Some(&text) {
+                                exact_match = Some(place.clone());
                             }
 
                             let iter = store.append();
-                            store.set_value(&iter, 0, &station.name.to_value());
-                            store.set_value(&iter, 1, &StationObject::new(station).to_value());
+                            store.set_value(&iter, 0, &place.name().to_value());
+                            store.set_value(&iter, 1, &place.to_value());
                         }
-                        obj.set_property("station", exact_match);
+                        obj.set_property("place", exact_match);
 
                         entry.completion().expect("Completion to be set up").set_model(Some(&store));
                     }
@@ -176,9 +165,10 @@ pub mod imp {
     impl ObjectImpl for StationEntry {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
+            self.connect_changed(obj);
 
-            obj.connect_notify_local(Some("station"), clone!(@strong self.entry as entry => move |obj, _| {
-                let option: Option<StationObject> = obj.property("station");
+            obj.connect_notify_local(Some("place"), clone!(@strong self.entry as entry => move |obj, _| {
+                let option: Option<Place> = obj.property("place");
                 if option.is_some() {
                     obj.set_property("set", true);
                     entry.add_css_class("success");
@@ -194,10 +184,10 @@ pub mod imp {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![ParamSpecObject::new(
-                    "station",
-                    "station",
-                    "station",
-                    StationObject::static_type(),
+                    "place",
+                    "place",
+                    "place",
+                    Place::static_type(),
                     ParamFlags::READWRITE,
                 ), ParamSpecBoolean::new(
                     "set",
@@ -211,6 +201,13 @@ pub mod imp {
                     "placeholder-text",
                     None,
                     ParamFlags::READWRITE,
+                ),
+                ParamSpecObject::new(
+                    "client",
+                    "client",
+                    "client",
+                    HafasClient::static_type(),
+                    ParamFlags::READWRITE,
                 )]
             });
             PROPERTIES.as_ref()
@@ -218,21 +215,28 @@ pub mod imp {
 
         fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
-                "station" => {self.station.replace(value.get().expect("Property station of StationEntry must be StationObject"));},
+                "place" => {self.place.replace(value.get().expect("Property place of StationEntry must be Place"));},
                 "set" => {self.set.replace(value.get().expect("Property set of StationEntry must be bool"));},
                 "placeholder-text" => {self.placeholder_text.replace(value.get().expect("Property placeholder-text of StationEntry must be String"));},
+                "client" => {
+                    let obj = value
+                        .get::<Option<HafasClient>>()
+                        .expect("Property `client` of `StationEntry` has to be of type `HafasClient`");
+
+                    self.client.replace(obj);
+                }
                 _ => unimplemented!()
             }
         }
 
         fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
-                "station" => self
-                    .station
+                "place" => self
+                    .place
                     .borrow()
                     .to_value(),
                 "set" => self
-                    .station
+                    .place
                     .borrow()
                     .is_some()
                     .to_value(),
@@ -240,6 +244,7 @@ pub mod imp {
                     .placeholder_text
                     .borrow()
                     .to_value(),
+                "client" => self.client.borrow().to_value(),
                 _ => unimplemented!(),
             }
         }
@@ -247,22 +252,4 @@ pub mod imp {
 
     impl WidgetImpl for StationEntry {}
     impl BoxImpl for StationEntry {}
-}
-
-async fn get_stations_by_search<S: AsRef<str>>(
-    hafas: &Hafas,
-    query: S,
-) -> Result<Vec<Station>, Error<StandardRestError>> {
-    let stations = hafas
-        .stations(&StationsQuery {
-            query: query.as_ref().to_string(),
-            limit: Some(10),
-            ..Default::default()
-        })
-        .await?;
-
-    let mut stations_vec = stations.into_values().collect::<Vec<_>>();
-    stations_vec.sort_by(|s1, s2| s1.weight.partial_cmp(&s2.weight).unwrap());
-
-    Ok(stations_vec)
 }

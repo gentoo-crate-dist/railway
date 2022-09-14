@@ -1,6 +1,6 @@
 use gdk::glib::Object;
 
-use super::objects::StopoverObject;
+use crate::backend::Stopover;
 
 gtk::glib::wrapper! {
     pub struct StopoverItem(ObjectSubclass<imp::StopoverItem>)
@@ -10,7 +10,7 @@ gtk::glib::wrapper! {
 }
 
 impl StopoverItem {
-    pub fn new(stopover: &StopoverObject) -> Self {
+    pub fn new(stopover: &Stopover) -> Self {
         Object::new(&[("stopover", stopover)]).expect("Failed to create StopoverItem")
     }
 }
@@ -29,12 +29,12 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
 
-    use crate::gui::objects::StopoverObject;
+    use crate::backend::Stopover;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/stopover_item.ui")]
     pub struct StopoverItem {
-        stopover: RefCell<Option<StopoverObject>>,
+        stopover: RefCell<Option<Stopover>>,
     }
 
     #[glib::object_subclass]
@@ -63,7 +63,7 @@ pub mod imp {
                     "stopover",
                     "stopover",
                     "stopover",
-                    StopoverObject::static_type(),
+                    Stopover::static_type(),
                     ParamFlags::READWRITE,
                 )]
             });
@@ -73,8 +73,8 @@ pub mod imp {
         fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "stopover" => {
-                    let obj = value.get::<Option<StopoverObject>>().expect(
-                        "Property `stopover` of `StopoverItem` has to be of type `StopoverObject`",
+                    let obj = value.get::<Option<Stopover>>().expect(
+                        "Property `stopover` of `StopoverItem` has to be of type `Stopover`",
                     );
 
                     self.stopover.replace(obj);

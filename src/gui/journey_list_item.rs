@@ -33,13 +33,13 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
 
-    use crate::gui::objects::JourneyObject;
+    use crate::backend::Journey;
     use crate::gui::utility::Utility;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/journey_list_item.ui")]
     pub struct JourneyListItem {
-        journey: RefCell<Option<JourneyObject>>,
+        journey: RefCell<Option<Journey>>,
     }
 
     #[glib::object_subclass]
@@ -69,7 +69,7 @@ pub mod imp {
                     "journey",
                     "journey",
                     "journey",
-                    JourneyObject::static_type(),
+                    Journey::static_type(),
                     ParamFlags::READWRITE,
                 )]
             });
@@ -79,8 +79,8 @@ pub mod imp {
         fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "journey" => {
-                    let obj = value.get::<Option<JourneyObject>>().expect(
-                        "Property `journey` of `JourneyListItem` has to be of type `JourneyObject`",
+                    let obj = value.get::<Option<Journey>>().expect(
+                        "Property `journey` of `JourneyListItem` has to be of type `Journey`",
                     );
 
                     self.journey.replace(obj);
