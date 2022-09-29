@@ -600,7 +600,7 @@ dependencies = [
 [[package]]
 name = "hafas-rs"
 version = "0.1.0"
-source = "git+https://gitlab.com/Schmiddiii/hafas-rs#3ef05a8d877ccb69181508c37c3ae2c9a9a4e081"
+source = "git+https://gitlab.com/Schmiddiii/hafas-rs?rev=6bb5003af25381dd3c5dcd08fb1d19f67e68c312#6bb5003af25381dd3c5dcd08fb1d19f67e68c312"
 dependencies = [
  "async-trait",
  "chrono",
