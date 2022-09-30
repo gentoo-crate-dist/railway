@@ -21,7 +21,7 @@ chrono = "0.4.19"
 log = "0.4.14"
 env_logger = "0.9.0"
 
-hafas-rs = { git = "https://gitlab.com/Schmiddiii/hafas-rs", rev = "6bb5003af25381dd3c5dcd08fb1d19f67e68c312", default-features = false, features = [ "hyper-requester", "all-profiles" ] }
+hafas-rs = { git = "https://gitlab.com/Schmiddiii/hafas-rs", rev = "d45dcb0e0aac5dde1be89b34fed00b5d74a76efc", default-features = false, features = [ "hyper-requester", "all-profiles" ] }
 
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"

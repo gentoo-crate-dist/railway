@@ -287,12 +287,11 @@
     </columns>
     <data>
       <row><col id="1">DB</col><col id="0">Deutsche Bahn (DB)</col></row>
-      <!-- TODO: Does not yet work. (Does not create connection) <row><col id="1">SBB</col><col id="0">SBB</col></row> -->
       <row><col id="1">PKP</col><col id="0">Polskie Koleje Państwowe (PKP)</col></row>
-      <!-- TODO: SNCB -->
+      <!-- TODO: SNCB: Certificate -->
       <row><col id="1">Irish-Railway</col><col id="0">Iarnród Éireann (Irish Rail)</col></row>
       <row><col id="1">VBB</col><col id="0">Berlin &amp; Brandenburg public transport (VBB)</col></row>
-      <!-- TODO: BVG -->
+      <!-- TODO: BVG: Too many things for now -->
       <row><col id="1">OEBB</col><col id="0">Österreichische Bundesbahnen (ÖBB)</col></row>
       <row><col id="1">Mobiliteit-Lu</col><col id="0">Mobilitéitszentral (Luxembourg)</col></row>
       <row><col id="1">Bart</col><col id="0">Bay Area Rapid Transit (BART)</col></row>
@@ -313,19 +312,19 @@
       <row><col id="1">Vbn</col><col id="0">Verkehrsverbund Bremen/Niedersachsen (VBN)</col></row>
       <row><col id="1">VRN</col><col id="0">Verkehrsverbund Rhein-Neckar (VRN)</col></row>
       <row><col id="1">RSAG</col><col id="0">Rostocker Straßenbahn AG (RSAG)</col></row>
-      <!-- TODO: Authorization failure <row><col id="1">VMT</col><col id="0">Verkehrsverbund Mittelthüringen (VMT)</col></row> -->
+      <row><col id="1">VMT</col><col id="0">Verkehrsverbund Mittelthüringen (VMT)</col></row>
       <row><col id="1">VOS</col><col id="0">Verkehrsgemeinschaft Osnabrück (VOS)</col></row>
       <row><col id="1">AVV</col><col id="0">Aachener Verkehrsverbund (AVV)</col></row>
       <!-- TODO: Certificate <row><col id="1">KVB</col><col id="0">Kölner Verkehrs-Betriebe (KVB)</col></row> -->
       <row><col id="1">rejseplanen</col><col id="0">Rejseplanen in Denmark</col></row>
-      <!-- TODO: Auth <row><col id="1">ooevv</col><col id="0">Oberösterreichischer Verkehrsverbund (OÖVV)</col></row> -->
+      <row><col id="1">ooevv</col><col id="0">Oberösterreichischer Verkehrsverbund (OÖVV)</col></row>
       <row><col id="1">salzburg</col><col id="0">Salzburg</col></row>
       <row><col id="1">STV</col><col id="0">Steirischer Verkehrsverbund (STV)</col></row>
       <row><col id="1">SVV</col><col id="0">Salzburger Verkehrsverbund (SVV)</col></row>
       <row><col id="1">VVT</col><col id="0">Verkehrsverbund Tirol (VVT)</col></row>
-      <!-- TODO: Auth <row><col id="1">VOR</col><col id="0">Verkehrsverbund Ost-Region (VOR)</col></row> -->
+      <row><col id="1">VOR</col><col id="0">Verkehrsverbund Ost-Region (VOR)</col></row>
       <row><col id="1">VKG</col><col id="0">Kärntner Linien/Verkehrsverbund Kärnten (VKG/VVK)</col></row>
-      <!-- TODO: Auth <row><col id="1">VVV</col><col id="0">Verkehrsverbund Vorarlberg (VVV)</col></row> -->
+      <row><col id="1">VVV</col><col id="0">Verkehrsverbund Vorarlberg (VVV)</col></row>
       <row><col id="1">TPG</col><col id="0">Transports publics genevois (TPG)</col></row>
       <row><col id="1">BLS</col><col id="0">BLS AG</col></row>
       <row><col id="1">ZVV</col><col id="0">Zürich public transport (ZVV)</col></row>

@@ -600,11 +600,12 @@ dependencies = [
 [[package]]
 name = "hafas-rs"
 version = "0.1.0"
-source = "git+https://gitlab.com/Schmiddiii/hafas-rs?rev=6bb5003af25381dd3c5dcd08fb1d19f67e68c312#6bb5003af25381dd3c5dcd08fb1d19f67e68c312"
+source = "git+https://gitlab.com/Schmiddiii/hafas-rs?rev=d45dcb0e0aac5dde1be89b34fed00b5d74a76efc#d45dcb0e0aac5dde1be89b34fed00b5d74a76efc"
 dependencies = [
  "async-trait",
  "chrono",
  "chrono-tz",
+ "hex",
  "hyper",
  "hyper-rustls",
  "log",
@@ -629,6 +630,12 @@ checksum = "62b467343b94ba476dcb2500d242dadbb39557df889310ac77c5d99100aaac33"
 dependencies = [
  "libc",
 ]
+
+[[package]]
+name = "hex"
+version = "0.4.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
 
 [[package]]
 name = "http"
