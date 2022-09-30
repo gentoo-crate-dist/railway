@@ -290,30 +290,36 @@
       <!-- TODO: Certificate <row><col id="1">KVB</col><col id="0">Kölner Verkehrs-Betriebe (KVB)</col></row> -->
       <!-- TODO: SNCB: Certificate -->
       <row><col id="1">AVV</col><col id="0">Aachener Verkehrsverbund (AVV)</col></row>
-      <row><col id="1">BLS</col><col id="0">BLS AG</col></row>
       <row><col id="1">BART</col><col id="0">Bay Area Rapid Transit (BART)</col></row>
-      <row><col id="1">CMTA</col><col id="0">Austin, Texas (CMTA/CapMetro)</col></row>
+      <row><col id="1">BLS</col><col id="0">BLS AG</col></row>
       <row><col id="1">CFL</col><col id="0">Société Nationale des Chemins de Fer Luxembourgeois (CFL)</col></row>
-      <row><col id="1">DB</col><col id="0">Deutsche Bahn (DB)</col></row>
+      <row><col id="1">CMTA</col><col id="0">Austin, Texas (CMTA/CapMetro)</col></row>
       <row><col id="1">DART</col><col id="0">Des Moines Area Rapid Transit (DART)</col></row>
+      <row><col id="1">DB-Busradar-Nrw</col><col id="0">DB Busradar NRW</col></row>
+      <row><col id="1">DB</col><col id="0">Deutsche Bahn (DB)</col></row>
       <row><col id="1">HVV</col><col id="0">Hamburg public transport (HVV)</col></row>
       <row><col id="1">INSA</col><col id="0">Nahverkehr Sachsen-Anhalt (NASA)</col></row>
       <row><col id="1">INVG</col><col id="0">Ingolstädter Verkehrsgesellschaft (INVG)</col></row>
       <row><col id="1">Irish-Railway</col><col id="0">Iarnród Éireann (Irish Rail)</col></row>
       <row><col id="1">Mobiliteit-Lu</col><col id="0">Mobilitéitszentral (Luxembourg)</col></row>
-      <row><col id="1">NahSH</col><col id="0">Nah.SH</col></row>
+      <row><col id="1">mobil-nrw</col><col id="0">mobil.nrw</col></row>
       <row><col id="1">NVV</col><col id="0">Nordhessischer Verkehrsverbund (NVV)</col></row>
+      <row><col id="1">NahSH</col><col id="0">Nah.SH</col></row>
+      <row><col id="1">ooevv</col><col id="0">Oberösterreichischer Verkehrsverbund (OÖVV)</col></row>
       <row><col id="1">OEBB</col><col id="0">Österreichische Bundesbahnen (ÖBB)</col></row>
       <row><col id="1">PKP</col><col id="0">Polskie Koleje Państwowe (PKP)</col></row>
       <row><col id="1">RMV</col><col id="0">Rhein-Main-Verkehrsverbund (RMV)</col></row>
       <row><col id="1">RSAG</col><col id="0">Rostocker Straßenbahn AG (RSAG)</col></row>
+      <row><col id="1">Rejseplanen</col><col id="0">Rejseplanen in Denmark</col></row>
       <row><col id="1">SBahn-Muenchen</col><col id="0">S-Bahn München</col></row>
       <row><col id="1">SNCF</col><col id="0">Société nationale des chemins de fer français (SNCF)</col></row>
       <row><col id="1">STV</col><col id="0">Steirischer Verkehrsverbund (STV)</col></row>
       <row><col id="1">SVV</col><col id="0">Salzburger Verkehrsverbund (SVV)</col></row>
       <row><col id="1">Saarfahrplan</col><col id="0">Saarfahrplan/VGS Saarland</col></row>
+      <row><col id="1">Salzburg</col><col id="0">Salzburg</col></row>
       <row><col id="1">TPG</col><col id="0">Transports publics genevois (TPG)</col></row>
       <row><col id="1">VBB</col><col id="0">Berlin &amp; Brandenburg public transport (VBB)</col></row>
+      <row><col id="1">VBN</col><col id="0">Verkehrsverbund Bremen/Niedersachsen (VBN)</col></row>
       <row><col id="1">VKG</col><col id="0">Kärntner Linien/Verkehrsverbund Kärnten (VKG/VVK)</col></row>
       <row><col id="1">VMT</col><col id="0">Verkehrsverbund Mittelthüringen (VMT)</col></row>
       <row><col id="1">VOR</col><col id="0">Verkehrsverbund Ost-Region (VOR)</col></row>
@@ -322,13 +328,7 @@
       <row><col id="1">VSN</col><col id="0">Verkehrsverbund Süd-Niedersachsen (VSN)</col></row>
       <row><col id="1">VVT</col><col id="0">Verkehrsverbund Tirol (VVT)</col></row>
       <row><col id="1">VVV</col><col id="0">Verkehrsverbund Vorarlberg (VVV)</col></row>
-      <row><col id="1">VBN</col><col id="0">Verkehrsverbund Bremen/Niedersachsen (VBN)</col></row>
       <row><col id="1">ZVV</col><col id="0">Zürich public transport (ZVV)</col></row>
-      <row><col id="1">DB-Busradar-Nrw</col><col id="0">DB Busradar NRW</col></row>
-      <row><col id="1">mobil-nrw</col><col id="0">mobil.nrw</col></row>
-      <row><col id="1">ooevv</col><col id="0">Oberösterreichischer Verkehrsverbund (OÖVV)</col></row>
-      <row><col id="1">Rejseplanen</col><col id="0">Rejseplanen in Denmark</col></row>
-      <row><col id="1">Salzburg</col><col id="0">Salzburg</col></row>
     </data>
   </object>
   <object class="GtkAdjustment" id="adj_transfer_time">

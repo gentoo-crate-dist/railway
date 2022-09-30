@@ -1,6 +1,6 @@
 # DieBahn
 
-A GTK4 frontend for the travel information of the german railway ("Reiseauskunft der Deutschen Bahn").
+A GTK4 frontend for the travel information of the german railway ("Reiseauskunft der Deutschen Bahn") and many more.
 
 ## Screenshots
 
@@ -15,6 +15,12 @@ A GTK4 frontend for the travel information of the german railway ("Reiseauskunft
 - Convergent for small screens.
 - Bookmark a search or a journey.
 - Show more information like prices.
+- Many different search profiles, e.g.
+    - DB
+    - SNCF
+    - ÖBB
+    - BART
+    - ... (36 more)
 
 ## Contact
 
