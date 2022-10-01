@@ -95,5 +95,10 @@
       <default>""</default>
       <summary>Last search from</summary>
     </key>
+
+    <key name="search-provider" type="s">
+      <default>"DB"</default>
+      <summary>The default search provider</summary>
+    </key>
   </schema>
 </schemalist>

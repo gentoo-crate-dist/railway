@@ -2,32 +2,30 @@ use std::cell::RefCell;
 
 use gdk::glib::Object;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
-use hafas_rest::Journey;
 
 gtk::glib::wrapper! {
-    pub struct JourneyObject(ObjectSubclass<imp::JourneyObject>);
+    pub struct Journey(ObjectSubclass<imp::Journey>);
 }
 
-impl JourneyObject {
-    pub fn new(journey: Journey) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `JourneyObject`.");
+impl Journey {
+    pub fn new(journey: hafas_rs::Journey) -> Self {
+        let s: Self = Object::new(&[]).expect("Failed to create `Journey`.");
         s.imp().journey.swap(&RefCell::new(Some(journey)));
         s
     }
 
-    pub fn journey(&self) -> Journey {
+    pub fn journey(&self) -> hafas_rs::Journey {
         self.imp()
             .journey
             .borrow()
             .as_ref()
-            .expect("JourneyObject has not yet been set up")
+            .expect("Journey has not yet been set up")
             .clone()
     }
 }
 
 mod imp {
     use gtk::glib;
-    use hafas_rest::Journey;
     use once_cell::sync::Lazy;
     use std::cell::RefCell;
 
@@ -39,17 +37,17 @@ mod imp {
         subclass::prelude::{ObjectImpl, ObjectSubclass},
     };
 
-    use crate::gui::objects::LegObject;
+    use crate::backend::Leg;
 
     #[derive(Clone)]
-    pub struct JourneyObject {
-        pub(super) journey: RefCell<Option<Journey>>,
+    pub struct Journey {
+        pub(super) journey: RefCell<Option<hafas_rs::Journey>>,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for JourneyObject {
-        const NAME: &'static str = "DBJourneyObject";
-        type Type = super::JourneyObject;
+    impl ObjectSubclass for Journey {
+        const NAME: &'static str = "DBJourney";
+        type Type = super::Journey;
 
         fn new() -> Self {
             Self {
@@ -58,7 +56,7 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for JourneyObject {
+    impl ObjectImpl for Journey {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
@@ -67,14 +65,14 @@ mod imp {
                         "first-leg",
                         "first-leg",
                         "first-leg",
-                        LegObject::static_type(),
+                        Leg::static_type(),
                         ParamFlags::READABLE,
                     ),
                     ParamSpecObject::new(
                         "last-leg",
                         "last-leg",
                         "last-leg",
-                        LegObject::static_type(),
+                        Leg::static_type(),
                         ParamFlags::READABLE,
                     ),
                     ParamSpecString::new(
@@ -115,7 +113,7 @@ mod imp {
                     .as_ref()
                     .map(|o| o.legs.get(0))
                     .flatten()
-                    .map(|o| LegObject::new(o.clone()))
+                    .map(|o| Leg::new(o.clone()))
                     .to_value(),
                 "last-leg" => self
                     .journey
@@ -123,7 +121,7 @@ mod imp {
                     .as_ref()
                     .map(|o| o.legs.last())
                     .flatten()
-                    .map(|o| LegObject::new(o.clone()))
+                    .map(|o| Leg::new(o.clone()))
                     .to_value(),
                 "total-time" => {
                     let journey_borrow = self.journey.borrow();
@@ -162,7 +160,10 @@ mod imp {
                             .map(|l| {
                                 l.line
                                     .as_ref()
-                                    .map(|l| l.product_name.clone())
+                                    .map(|l| l
+                                         .product_name
+                                         .clone()
+                                         .unwrap_or_else(|| l.product.name.to_string()))
                                     .unwrap_or_default()
                             })
                             .collect::<Vec<String>>()

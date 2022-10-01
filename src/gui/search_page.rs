@@ -1,7 +1,6 @@
 use gdk::subclass::prelude::ObjectSubclassIsExt;
-use hafas_rest::Hafas;
 
-use super::objects::JourneyObject;
+use crate::backend::Journey;
 
 gtk::glib::wrapper! {
     pub struct SearchPage(ObjectSubclass<imp::SearchPage>)
@@ -11,15 +10,11 @@ gtk::glib::wrapper! {
 }
 
 impl SearchPage {
-    pub fn setup(&self, hafas: Hafas) {
-        self.imp().setup(hafas);
-    }
-
-    pub fn add_journey_store(&self, journey: JourneyObject) {
+    pub fn add_journey_store(&self, journey: Journey) {
         self.imp().add_journey_store(journey);
     }
 
-    pub fn remove_journey_store(&self, journey: JourneyObject) {
+    pub fn remove_journey_store(&self, journey: Journey) {
         self.imp().remove_journey_store(journey);
     }
 
@@ -34,6 +29,10 @@ impl SearchPage {
 
 pub mod imp {
     use gdk::gio::Settings;
+    use gdk::glib::ParamFlags;
+    use gdk::glib::ParamSpec;
+    use gdk::glib::ParamSpecObject;
+    use gdk::glib::Value;
     use gdk::glib::clone;
     use gdk::glib::MainContext;
     use gdk::glib::closure_local;
@@ -43,19 +42,21 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
-    use hafas_rest::JourneysQuery;
+    use hafas_rs::LoyaltyCard;
+    use hafas_rs::ProductsSelection;
+    use hafas_rs::TariffClass;
+    use hafas_rs::api::journeys::JourneysOptions;
     use once_cell::sync::Lazy;
 
     use std::cell::RefCell;
 
-    use hafas_rest::{Hafas, LoyaltyCard};
-
+    use crate::backend::HafasClient;
+    use crate::backend::Journey;
+    use crate::backend::JourneysResult;
+    use crate::backend::Place;
     use crate::gui::date_time_picker::DateTimePicker;
     use crate::gui::error::error_to_toast;
     use crate::gui::journey_store_item::JourneyStoreItem;
-    use crate::gui::objects::JourneyObject;
-    use crate::gui::objects::JourneysResultObject;
-    use crate::gui::objects::StationObject;
     use crate::gui::search_store_item::SearchStoreItem;
     use crate::gui::station_entry::StationEntry;
     use crate::gui::utility::Utility;
@@ -84,33 +85,27 @@ pub mod imp {
         #[template_child]
         toast_errors: TemplateChild<libadwaita::ToastOverlay>,
 
-        hafas: RefCell<Option<Hafas>>,
         settings: Settings,
+        client: RefCell<Option<HafasClient>>,
     }
 
     #[gtk::template_callbacks]
     impl SearchPage {
-        pub(super) fn setup(&self, hafas: Hafas) {
-            self.hafas.replace(Some(hafas.clone()));
-            self.in_from.setup(hafas.clone());
-            self.in_to.setup(hafas);
-        }
-
-        pub(super) fn add_journey_store(&self, journey: JourneyObject) {
+        pub(super) fn add_journey_store(&self, journey: Journey) {
             let item = JourneyStoreItem::new(journey);
             let obj = self.instance();
             item.connect_closure("details", false, 
-                                 closure_local!(move |_item: JourneyStoreItem, journey: JourneyObject| {
+                                 closure_local!(move |_item: JourneyStoreItem, journey: Journey| {
                 obj.emit_by_name::<()>("details", &[&journey]);
             }));
             self.carousel_journeys.append(&item);
         }
 
-        pub(super) fn remove_journey_store(&self, journey: JourneyObject) {
+        pub(super) fn remove_journey_store(&self, journey: Journey) {
             let mut child = self.carousel_journeys.first_child();
 
             while let Some(c) = child {
-                if c.property::<JourneyObject>("journey").journey() == journey.journey() {
+                if c.property::<Journey>("journey").journey() == journey.journey() {
                     self.carousel_journeys.remove(&c);
                 } 
 
@@ -153,12 +148,9 @@ pub mod imp {
 
         #[template_callback]
         fn handle_search(&self, _: gtk::Button) {
-            let hafas = &self.hafas;
             let obj = self.instance();
-            let from_obj = self.in_from.property::<Option<StationObject>>("station").expect("Input 'from' not set");
-            let to_obj = self.in_to.property::<Option<StationObject>>("station").expect("Input 'to' not set");
-            let from = from_obj.station();
-            let to = to_obj.station();
+            let from = self.in_from.property::<Place>("place");
+            let to = self.in_to.property::<Place>("place");
 
             let departure = if self.expand_date_time.is_expanded() {
                 Some(self.pick_date_time.get().get())
@@ -169,25 +161,23 @@ pub mod imp {
             let main_context = MainContext::default();
             main_context.spawn_local(clone!(@strong from,
                                             @strong to,
-                                            @strong hafas, 
                                             @strong obj, 
                                             @strong self.settings as settings,
                                             @strong self.toast_errors as toast_errors => async move {
-                let hafas_borrow = hafas.borrow();
-                let hafas = hafas_borrow.as_ref().expect("Hafas has not yet been set up.");
-
-                let journeys = hafas
-                    .journey(&JourneysQuery {
-                        from: Some(from.id.clone()),
-                        to: Some(to.id.clone()),
-                        departure,
-                        language: Some(gettextrs::gettext("language")),
-                        stopovers: Some(true),
-                        loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
-                        bike: Some(settings.boolean("bike-accessible")),
-                        transfers: if settings.boolean("direct-only") {Some(0)} else {None},
-                        transfer_time: Some(settings.int("transfer-time").try_into().unwrap_or_default()),
-                        first_class: Some(settings.boolean("first-class")),
+                let journeys = obj.property::<HafasClient>("client").journeys(from, to, JourneysOptions {
+                    departure: departure.map(|d| d.timestamp()),
+                    language: Some(gettextrs::gettext("language")),
+                    stopovers: Some(true),
+                    loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
+                    bike_friendly: Some(settings.boolean("bike-accessible")),
+                    transfers: if settings.boolean("direct-only") {Some(0)} else {None},
+                    transfer_time: Some(settings.int("transfer-time").try_into().unwrap_or_default()),
+                    tariff_class: Some(if settings.boolean("first-class") {
+                        TariffClass::First
+                    } else {
+                        TariffClass::Second
+                    }),
+                    products: ProductsSelection {
                         national_express: Some(settings.boolean("include-national-express")),
                         national: Some(settings.boolean("include-national")),
                         regional_exp: Some(settings.boolean("include-regional-express")),
@@ -198,16 +188,15 @@ pub mod imp {
                         subway: Some(settings.boolean("include-subway")),
                         tram: Some(settings.boolean("include-tram")),
                         taxi: Some(settings.boolean("include-taxi")),
-                        ..Default::default()
-                    })
-                    .await;
-
+                    },
+                    ..Default::default()
+                }).await;
                 if journeys.is_err() {
                     error_to_toast(&toast_errors, journeys.err().unwrap());
                     return;
                 }
 
-                obj.emit_by_name::<()>("search", &[&JourneysResultObject::new(journeys.expect("Journey not found"))]);
+                obj.emit_by_name::<()>("search", &[&journeys.expect("Failed to get journeys")]);
             }));
         }
     }
@@ -229,7 +218,7 @@ pub mod imp {
                 carousel_journeys: Default::default(),
                 carousel_searches: Default::default(),
                 toast_errors: Default::default(),
-                hafas: Default::default()
+                client: Default::default()
             }
         }
 
@@ -255,18 +244,51 @@ pub mod imp {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
                 vec![Signal::builder(
                     "search",
-                    &[JourneysResultObject::static_type().into()],
+                    &[JourneysResult::static_type().into()],
                     <()>::static_type().into(),
                 )
                 .build(),
                 Signal::builder(
                     "details",
-                    &[JourneyObject::static_type().into()],
+                    &[Journey::static_type().into()],
                     <()>::static_type().into(),
                 )
                 .build()]
             });
             SIGNALS.as_ref()
+        }
+
+        fn properties() -> &'static [ParamSpec] {
+            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
+                vec![ParamSpecObject::new(
+                    "client",
+                    "client",
+                    "client",
+                    HafasClient::static_type(),
+                    ParamFlags::READWRITE,
+                )]
+            });
+            PROPERTIES.as_ref()
+        }
+
+        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+            match pspec.name() {
+                "client" => {
+                    let obj = value
+                        .get::<Option<HafasClient>>()
+                        .expect("Property `client` of `SearchPage` has to be of type `HafasClient`");
+
+                    self.client.replace(obj);
+                }
+                _ => unimplemented!(),
+            }
+        }
+
+        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+            match pspec.name() {
+                "client" => self.client.borrow().to_value(),
+                _ => unimplemented!(),
+            }
         }
     }
 

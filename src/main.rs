@@ -2,7 +2,11 @@ use gdk::prelude::{ApplicationExt, ApplicationExtManual};
 use gtk::glib::IsA;
 use gtk::traits::{GtkWindowExt, WidgetExt};
 
+mod backend;
+mod error;
 mod gui;
+
+pub use error::Error;
 
 fn init_resources() {
     let res_bytes = include_bytes!("../resources.gresource");
@@ -34,7 +38,7 @@ async fn main() {
     env_logger::init();
     gtk::init().expect("Failed to initialize gtk");
     libadwaita::init();
-    let app = gtk::Application::builder()
+    let app = libadwaita::Application::builder()
         .application_id("de.schmidhuberj.DieBahn")
         .build();
 
@@ -42,7 +46,7 @@ async fn main() {
     app.run();
 }
 
-fn build_ui(app: &gtk::Application) {
+fn build_ui(app: &libadwaita::Application) {
     init_resources();
     let window = crate::gui::window::Window::new(app);
     init_icons(&window.display());

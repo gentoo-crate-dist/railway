@@ -1,13 +1,13 @@
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
-use crate::gui::objects::JourneyObject;
+use crate::backend::Journey;
 
 gtk::glib::wrapper! {
     pub struct JourneysStore(ObjectSubclass<imp::JourneysStore>);
 }
 
 impl JourneysStore {
-    pub fn store(&self, journey: JourneyObject) {
+    pub fn store(&self, journey: Journey) {
         self.imp().store(journey);
     }
 
@@ -32,15 +32,14 @@ pub mod imp {
         prelude::{ObjectExt, SettingsExt, StaticType},
         subclass::prelude::{ObjectImpl, ObjectSubclass, ObjectSubclassExt},
     };
-    use hafas_rest::Journey;
     use once_cell::sync::Lazy;
 
-    use crate::gui::objects::JourneyObject;
+    use crate::backend::Journey;
 
     #[derive(Clone)]
     pub struct JourneysStore {
         path: PathBuf,
-        stored: RefCell<Vec<JourneyObject>>,
+        stored: RefCell<Vec<Journey>>,
 
         settings: Settings,
     }
@@ -55,7 +54,8 @@ pub mod imp {
                 .open(&self.path)
                 .expect("Failed to open journey_store.json file");
 
-            let journeys: Vec<Journey> = serde_json::from_reader(file).unwrap_or_default();
+            let journeys: Vec<hafas_rs::Journey> =
+                serde_json::from_reader(file).unwrap_or_default();
             for journey in journeys.into_iter().rev() {
                 if self.settings.boolean("delete-old") {
                     if let Some(arrival) = journey.legs.last().and_then(|l| l.planned_arrival) {
@@ -68,7 +68,7 @@ pub mod imp {
                         continue;
                     }
                 }
-                self.store(JourneyObject::new(journey));
+                self.store(Journey::new(journey));
             }
         }
     }
@@ -100,7 +100,8 @@ pub mod imp {
     impl JourneysStore {
         pub(super) fn flush(&self) {
             log::debug!("Flushing JourneyStore");
-            let journeys: Vec<Journey> = self.stored.borrow().iter().map(|j| j.journey()).collect();
+            let journeys: Vec<hafas_rs::Journey> =
+                self.stored.borrow().iter().map(|j| j.journey()).collect();
 
             let file = OpenOptions::new()
                 .write(true)
@@ -114,7 +115,7 @@ pub mod imp {
             serde_json::to_writer(file, &journeys).expect("Failed to write to file");
         }
 
-        pub(super) fn store(&self, journey: JourneyObject) {
+        pub(super) fn store(&self, journey: Journey) {
             let mut stored = self.stored.borrow_mut();
             if let Some(idx) = stored
                 .iter()
@@ -137,13 +138,13 @@ pub mod imp {
                 vec![
                     Signal::builder(
                         "add",
-                        &[JourneyObject::static_type().into()],
+                        &[Journey::static_type().into()],
                         <()>::static_type().into(),
                     )
                     .build(),
                     Signal::builder(
                         "remove",
-                        &[JourneyObject::static_type().into()],
+                        &[Journey::static_type().into()],
                         <()>::static_type().into(),
                     )
                     .build(),

@@ -2,15 +2,14 @@ use std::cell::RefCell;
 
 use gdk::glib::Object;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
-use hafas_rest::Remark;
 
 gtk::glib::wrapper! {
-    pub struct RemarkObject(ObjectSubclass<imp::RemarkObject>);
+    pub struct Remark(ObjectSubclass<imp::Remark>);
 }
 
-impl RemarkObject {
-    pub fn new(remark: Remark) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `RemarkObject`.");
+impl Remark {
+    pub fn new(remark: hafas_rs::Remark) -> Self {
+        let s: Self = Object::new(&[]).expect("Failed to create `Remark`.");
         s.imp().remark.swap(&RefCell::new(Some(remark)));
         s
     }
@@ -18,7 +17,6 @@ impl RemarkObject {
 
 mod imp {
     use gtk::glib;
-    use hafas_rest::Remark;
     use std::cell::RefCell;
 
     use gdk::{
@@ -29,17 +27,17 @@ mod imp {
     use once_cell::sync::Lazy;
 
     #[derive(Default, Clone)]
-    pub struct RemarkObject {
-        pub(super) remark: RefCell<Option<Remark>>,
+    pub struct Remark {
+        pub(super) remark: RefCell<Option<hafas_rs::Remark>>,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for RemarkObject {
-        const NAME: &'static str = "DBRemarkObject";
-        type Type = super::RemarkObject;
+    impl ObjectSubclass for Remark {
+        const NAME: &'static str = "DBRemark";
+        type Type = super::Remark;
     }
 
-    impl ObjectImpl for RemarkObject {
+    impl ObjectImpl for Remark {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![ParamSpecString::new(

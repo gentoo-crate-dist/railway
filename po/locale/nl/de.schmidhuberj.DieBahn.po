@@ -265,3 +265,12 @@ msgstr "Reisgeschiedenis uit lokale opslag wissen"
 #: ui/preferences_window.ui:92
 msgid "Hours after planned arrival journeys will be kept"
 msgstr "Reizen met nog geplande aankomsttijden worden bewaard"
+
+
+#: ui/preferences_window.ui:92
+msgid "Search Provider"
+msgstr ""
+
+#: ui/preferences_window.ui:92
+msgid "Requires application restart"
+msgstr ""

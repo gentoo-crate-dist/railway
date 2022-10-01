@@ -1,3 +1,4 @@
+use crate::Error;
 use gdk::{
     gio::{SimpleAction, SimpleActionGroup},
     glib::clone,
@@ -9,27 +10,32 @@ use gtk::{
     ButtonsType, MessageType, Window,
 };
 use libadwaita::{Toast, ToastOverlay};
-use rrw::{Error, StandardRestError};
 
-pub fn error_to_toast(overlay: &ToastOverlay, err: Error<StandardRestError>) {
+pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
+    log::error!("Displaying error: {}", err);
     let toast = match &err {
-        Error::Request(_) => Toast::new(&gettext(
+        Error::Hafas(hafas_rs::Error::Http { .. }) => Toast::new(&gettext(
             "Failed to fetch data. Are you connected to the internet?",
         )),
-        Error::Api(_e) => Toast::builder()
+        Error::Hafas(hafas_rs::Error::Hafas { .. }) => Toast::builder()
             .title(&gettext("The API returned a error. Please report this."))
             .button_label(&gettext("More information"))
             .build(),
-        Error::BodyNotParsable(_e) => Toast::builder()
+        Error::Hafas(hafas_rs::Error::Json { .. }) => Toast::builder()
             .title(&gettext("Failed to parse response. Please report this."))
+            .button_label(&gettext("More information"))
+            .build(),
+        _ => Toast::builder()
+            .title(&gettext("Unknown issue. Please report this."))
             .button_label(&gettext("More information"))
             .build(),
     };
 
     let msg = match err {
-        Error::Request(_) => None,
-        Error::Api(e) => Some(e.msg),
-        Error::BodyNotParsable(e) => Some(format!("{}", e)),
+        Error::Hafas(hafas_rs::Error::Http { .. }) => None,
+        Error::Hafas(hafas_rs::Error::Hafas { text, .. }) => Some(text),
+        Error::Hafas(hafas_rs::Error::Json { source, .. }) => Some(format!("{}", source)),
+        _ => Some(format!("{}", err)),
     };
 
     if let Some(msg) = msg {

@@ -1,6 +1,3 @@
-use gdk::subclass::prelude::ObjectSubclassIsExt;
-use hafas_rest::Hafas;
-
 gtk::glib::wrapper! {
     pub struct JourneysPage(ObjectSubclass<imp::JourneysPage>)
         @extends gtk::Box, gtk::Widget,
@@ -8,16 +5,11 @@ gtk::glib::wrapper! {
             gtk::ConstraintTarget;
 }
 
-impl JourneysPage {
-    pub fn setup(&self, hafas: Hafas) {
-        self.imp().setup(hafas);
-    }
-}
-
 pub mod imp {
     use std::cell::RefCell;
 
     use gdk::gio::ListStore;
+    use gdk::gio::Settings;
     use gdk::glib::clone;
     use gdk::glib::subclass::Signal;
     use gdk::glib::MainContext;
@@ -32,18 +24,22 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use gtk::SignalListItemFactory;
     use gtk::Widget;
-    use hafas_rest::Hafas;
-    use hafas_rest::JourneysQuery;
+    use hafas_rs::api::journeys::JourneysOptions;
+    use hafas_rs::LoyaltyCard;
+    use hafas_rs::ProductsSelection;
+    use hafas_rs::TariffClass;
     use libadwaita::ToastOverlay;
     use once_cell::sync::Lazy;
 
+    use crate::backend::HafasClient;
+    use crate::backend::Journey;
+    use crate::backend::JourneysResult;
+    use crate::backend::Place;
     use crate::gui::error::error_to_toast;
     use crate::gui::journey_list_item::JourneyListItem;
-    use crate::gui::objects::JourneyObject;
-    use crate::gui::objects::JourneysResultObject;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate)]
     #[template(resource = "/ui/journeys_page.ui")]
     pub struct JourneysPage {
         #[template_child]
@@ -58,44 +54,74 @@ pub mod imp {
 
         model: RefCell<ListStore>,
 
-        journeys_result: RefCell<Option<JourneysResultObject>>,
+        journeys_result: RefCell<Option<JourneysResult>>,
 
-        hafas: RefCell<Option<Hafas>>,
+        settings: Settings,
+        client: RefCell<Option<HafasClient>>,
+    }
+
+    impl Default for JourneysPage {
+        fn default() -> Self {
+            Self {
+                list_journeys: Default::default(),
+                btn_earlier: Default::default(),
+                btn_later: Default::default(),
+                toast_errors: Default::default(),
+                model: Default::default(),
+                journeys_result: Default::default(),
+                settings: Settings::new("de.schmidhuberj.DieBahn"),
+                client: Default::default(),
+            }
+        }
     }
 
     #[gtk::template_callbacks]
     impl JourneysPage {
-        pub(super) fn setup(&self, hafas: Hafas) {
-            self.hafas.replace(Some(hafas));
-        }
-
         #[template_callback]
         fn handle_earlier(&self, _: gtk::Button) {
-            let hafas_borrow = self.hafas.borrow();
-            let hafas = hafas_borrow.as_ref().expect("Hafas should be set up");
             let obj = self.instance();
 
             let main_context = MainContext::default();
             main_context.spawn_local(
-                clone!(@strong hafas, 
+                clone!(
                        @strong obj,
+                       @strong self.settings as settings,
                        @strong self.toast_errors as toast_errors => async move {
-                    let journeys_result_obj = obj.property::<JourneysResultObject>("journeys-result");
-                    let journeys_result = journeys_result_obj.journeys_result();
+                    let journeys_result_obj = obj.property::<JourneysResult>("journeys-result");
+                    let journeys_result = journeys_result_obj.journeys_response();
 
-                    let result_journeys_result = hafas
-                        .journey( &JourneysQuery {
-                            from: Some(journeys_result.journeys[0].legs[0].origin.id.clone()),
-                            to: Some(journeys_result.journeys[0].legs.last().expect("Every journey should have at least one leg.").destination.id.clone()),
-                            earlier_than: Some(journeys_result.earlier_ref.clone()),
+                    let result_journeys_result = obj.property::<HafasClient>("client")
+                        .journeys(Place::new(journeys_result.journeys[0].legs[0].origin.clone()), Place::new(journeys_result.journeys[0].legs.last().expect("Every journey should have at least one leg.").destination.clone()), JourneysOptions {
+                            earlier_than: journeys_result.earlier_ref.clone(),
+                            language: Some(gettextrs::gettext("language")),
                             stopovers: Some(true),
+                            loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
+                            bike_friendly: Some(settings.boolean("bike-accessible")),
+                            transfers: if settings.boolean("direct-only") {Some(0)} else {None},
+                            transfer_time: Some(settings.int("transfer-time").try_into().unwrap_or_default()),
+                            tariff_class: Some(if settings.boolean("first-class") {
+                                TariffClass::First
+                            } else {
+                                TariffClass::Second
+                            }),
+                            products: ProductsSelection {
+                                national_express: Some(settings.boolean("include-national-express")),
+                                national: Some(settings.boolean("include-national")),
+                                regional_exp: Some(settings.boolean("include-regional-express")),
+                                regional: Some(settings.boolean("include-regional")),
+                                suburban: Some(settings.boolean("include-suburban")),
+                                bus: Some(settings.boolean("include-bus")),
+                                ferry: Some(settings.boolean("include-ferry")),
+                                subway: Some(settings.boolean("include-subway")),
+                                tram: Some(settings.boolean("include-tram")),
+                                taxi: Some(settings.boolean("include-taxi")),
+                            },
                             ..Default::default()
                         })
                         .await;
-                    if let Ok(mut result_journeys_result) = result_journeys_result {
-                        result_journeys_result.journeys.append(&mut journeys_result.journeys.clone());
-                        result_journeys_result.later_ref = journeys_result.later_ref;
-                        obj.set_property("journeys-result", JourneysResultObject::new(result_journeys_result));
+                    if let Ok(result_journeys_result) = result_journeys_result {
+                        result_journeys_result.merge_append(&journeys_result_obj);
+                        obj.set_property("journeys-result", result_journeys_result);
                     } else {
                         error_to_toast(&toast_errors, result_journeys_result.err().expect("Error to be present"));
                     }
@@ -104,31 +130,49 @@ pub mod imp {
 
         #[template_callback]
         fn handle_later(&self, _: gtk::Button) {
-            let hafas_borrow = self.hafas.borrow();
-            let hafas = hafas_borrow.as_ref().expect("Hafas should be set up");
             let obj = self.instance();
 
             let main_context = MainContext::default();
             main_context.spawn_local(
-                clone!(@strong hafas, 
+                clone!(
                        @strong obj,
+                       @strong self.settings as settings,
                        @strong self.toast_errors as toast_errors => async move {
-                    let journeys_result_obj = obj.property::<JourneysResultObject>("journeys-result");
-                    let journeys_result = journeys_result_obj.journeys_result();
+                    let journeys_result_obj = obj.property::<JourneysResult>("journeys-result");
+                    let journeys_result = journeys_result_obj.journeys_response();
 
-                    let result_journeys_result = hafas
-                        .journey( &JourneysQuery {
-                            from: Some(journeys_result.journeys[0].legs[0].origin.id.clone()),
-                            to: Some(journeys_result.journeys[0].legs.last().expect("Every journey should have at least one leg.").destination.id.clone()),
-                            later_than: Some(journeys_result.later_ref.clone()),
+                    let result_journeys_result = obj.property::<HafasClient>("client")
+                        .journeys(Place::new(journeys_result.journeys[0].legs[0].origin.clone()), Place::new(journeys_result.journeys[0].legs.last().expect("Every journey should have at least one leg.").destination.clone()), JourneysOptions {
+                            later_than: journeys_result.later_ref.clone(),
+                            language: Some(gettextrs::gettext("language")),
                             stopovers: Some(true),
+                            loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
+                            bike_friendly: Some(settings.boolean("bike-accessible")),
+                            transfers: if settings.boolean("direct-only") {Some(0)} else {None},
+                            transfer_time: Some(settings.int("transfer-time").try_into().unwrap_or_default()),
+                            tariff_class: Some(if settings.boolean("first-class") {
+                                TariffClass::First
+                            } else {
+                                TariffClass::Second
+                            }),
+                            products: ProductsSelection {
+                                national_express: Some(settings.boolean("include-national-express")),
+                                national: Some(settings.boolean("include-national")),
+                                regional_exp: Some(settings.boolean("include-regional-express")),
+                                regional: Some(settings.boolean("include-regional")),
+                                suburban: Some(settings.boolean("include-suburban")),
+                                bus: Some(settings.boolean("include-bus")),
+                                ferry: Some(settings.boolean("include-ferry")),
+                                subway: Some(settings.boolean("include-subway")),
+                                tram: Some(settings.boolean("include-tram")),
+                                taxi: Some(settings.boolean("include-taxi")),
+                            },
                             ..Default::default()
                         })
                         .await;
-                    if let Ok(mut result_journeys_result) = result_journeys_result {
-                        result_journeys_result.journeys.splice(0..0, journeys_result.journeys);
-                        result_journeys_result.earlier_ref = journeys_result.earlier_ref;
-                        obj.set_property("journeys-result", JourneysResultObject::new(result_journeys_result));
+                    if let Ok(result_journeys_result) = result_journeys_result {
+                        result_journeys_result.merge_prepend(&journeys_result_obj);
+                        obj.set_property("journeys-result", result_journeys_result);
                     } else {
                         error_to_toast(&toast_errors, result_journeys_result.err().expect("Error to be present"));
                     }
@@ -136,7 +180,7 @@ pub mod imp {
         }
 
         fn setup_model(&self, obj: &super::JourneysPage) {
-            let model = gtk::gio::ListStore::new(JourneyObject::static_type());
+            let model = gtk::gio::ListStore::new(Journey::static_type());
             let selection_model = gtk::NoSelection::new(Some(&model));
             self.list_journeys.get().set_model(Some(&selection_model));
 
@@ -160,8 +204,8 @@ pub mod imp {
                     let journey_object = model
                         .item(position)
                         .expect("The item has to exist.")
-                        .downcast::<JourneyObject>()
-                        .expect("The item has to be an `JourneyObject`.");
+                        .downcast::<Journey>()
+                        .expect("The item has to be an `Journey`.");
 
                     obj.emit_by_name::<()>("select", &[&journey_object]);
                 }));
@@ -193,13 +237,22 @@ pub mod imp {
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::new(
-                    "journeys-result",
-                    "journeys-result",
-                    "journeys-result",
-                    JourneysResultObject::static_type(),
-                    ParamFlags::READWRITE,
-                )]
+                vec![
+                    ParamSpecObject::new(
+                        "journeys-result",
+                        "journeys-result",
+                        "journeys-result",
+                        JourneysResult::static_type(),
+                        ParamFlags::READWRITE,
+                    ),
+                    ParamSpecObject::new(
+                        "client",
+                        "client",
+                        "client",
+                        HafasClient::static_type(),
+                        ParamFlags::READWRITE,
+                    ),
+                ]
             });
             PROPERTIES.as_ref()
         }
@@ -207,8 +260,8 @@ pub mod imp {
         fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "journeys-result" => {
-                    let obj = value.get::<Option<JourneysResultObject>>()
-                        .expect("Property `journeys-result` of `JourneysPage` has to be of type `JourneysResultObject`");
+                    let obj = value.get::<Option<JourneysResult>>()
+                        .expect("Property `journeys-result` of `JourneysPage` has to be of type `JourneysResult`");
 
                     let model = self.model.borrow();
                     model.remove_all();
@@ -216,14 +269,16 @@ pub mod imp {
                     model.splice(
                         0,
                         0,
-                        &obj.as_ref()
-                            .map(|o| o.journeys_result().journeys)
-                            .unwrap_or_default()
-                            .iter()
-                            .map(|j| JourneyObject::new(j.clone()))
-                            .collect::<Vec<JourneyObject>>(),
+                        &obj.as_ref().map(|o| o.journeys()).unwrap_or_default(),
                     );
                     self.journeys_result.replace(obj);
+                }
+                "client" => {
+                    let obj = value.get::<Option<HafasClient>>().expect(
+                        "Property `client` of `SearchPage` has to be of type `HafasClient`",
+                    );
+
+                    self.client.replace(obj);
                 }
                 _ => unimplemented!(),
             }
@@ -232,6 +287,7 @@ pub mod imp {
         fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "journeys-result" => self.journeys_result.borrow().to_value(),
+                "client" => self.client.borrow().to_value(),
                 _ => unimplemented!(),
             }
         }
@@ -240,7 +296,7 @@ pub mod imp {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
                 vec![Signal::builder(
                     "select",
-                    &[JourneyObject::static_type().into()],
+                    &[Journey::static_type().into()],
                     <()>::static_type().into(),
                 )
                 .build()]

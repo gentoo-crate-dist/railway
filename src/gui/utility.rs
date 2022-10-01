@@ -19,7 +19,13 @@ impl Utility {
     fn concat_and_translate(#[rest] values: &[gtk::glib::Value]) -> String {
         values
             .iter()
-            .map(|v| gettextrs::gettext(v.get::<String>().expect("Expected Strings for arguments")))
+            .map(|v| {
+                gettextrs::gettext(
+                    v.get::<Option<String>>()
+                        .expect("Expected Strings for arguments")
+                        .unwrap_or(" ".to_string()),
+                )
+            })
             .collect::<Vec<String>>()
             .join(" ")
     }

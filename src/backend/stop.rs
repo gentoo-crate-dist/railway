@@ -2,15 +2,14 @@ use std::cell::RefCell;
 
 use gdk::glib::Object;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
-use hafas_rest::Stop;
 
 gtk::glib::wrapper! {
-    pub struct StopObject(ObjectSubclass<imp::StopObject>);
+    pub struct Stop(ObjectSubclass<imp::Stop>);
 }
 
-impl StopObject {
-    pub fn new(stop: Stop) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `StopObject`.");
+impl Stop {
+    pub fn new(stop: hafas_rs::Stop) -> Self {
+        let s: Self = Object::new(&[]).expect("Failed to create `Stop`.");
         s.imp().stop.swap(&RefCell::new(Some(stop)));
         s
     }
@@ -18,7 +17,6 @@ impl StopObject {
 
 mod imp {
     use gtk::glib;
-    use hafas_rest::Stop;
     use std::cell::RefCell;
 
     use gdk::{
@@ -29,17 +27,17 @@ mod imp {
     use once_cell::sync::Lazy;
 
     #[derive(Default, Clone)]
-    pub struct StopObject {
-        pub(super) stop: RefCell<Option<Stop>>,
+    pub struct Stop {
+        pub(super) stop: RefCell<Option<hafas_rs::Stop>>,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for StopObject {
-        const NAME: &'static str = "DBStopObject";
-        type Type = super::StopObject;
+    impl ObjectSubclass for Stop {
+        const NAME: &'static str = "DBStop";
+        type Type = super::Stop;
     }
 
-    impl ObjectImpl for StopObject {
+    impl ObjectImpl for Stop {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![ParamSpecString::new(
@@ -61,7 +59,7 @@ mod imp {
                     .stop
                     .borrow()
                     .as_ref()
-                    .map(|o| o.name.clone())
+                    .and_then(|o| o.name.clone())
                     .to_value(),
                 _ => unimplemented!(),
             }

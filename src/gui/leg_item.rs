@@ -1,6 +1,6 @@
 use gdk::glib::Object;
 
-use super::objects::LegObject;
+use crate::backend::Leg;
 
 gtk::glib::wrapper! {
     pub struct LegItem(ObjectSubclass<imp::LegItem>)
@@ -10,7 +10,7 @@ gtk::glib::wrapper! {
 }
 
 impl LegItem {
-    pub fn new(leg: &LegObject) -> Self {
+    pub fn new(leg: &Leg) -> Self {
         Object::new(&[("leg", leg)]).expect("Failed to create LegItem")
     }
 }
@@ -29,9 +29,9 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
 
-    use crate::gui::objects::LegObject;
-    use crate::gui::objects::RemarkObject;
-    use crate::gui::objects::StopoverObject;
+    use crate::backend::Leg;
+    use crate::backend::Remark;
+    use crate::backend::Stopover;
     use crate::gui::remark_item::RemarkItem;
     use crate::gui::stopover_item::StopoverItem;
     use crate::gui::utility::Utility;
@@ -44,7 +44,7 @@ pub mod imp {
         #[template_child]
         box_remarks: TemplateChild<gtk::Box>,
 
-        leg: RefCell<Option<LegObject>>,
+        leg: RefCell<Option<Leg>>,
     }
 
     #[glib::object_subclass]
@@ -74,7 +74,7 @@ pub mod imp {
                     "leg",
                     "leg",
                     "leg",
-                    LegObject::static_type(),
+                    Leg::static_type(),
                     ParamFlags::READWRITE,
                 )]
             });
@@ -85,8 +85,8 @@ pub mod imp {
             match pspec.name() {
                 "leg" => {
                     let obj = value
-                        .get::<Option<LegObject>>()
-                        .expect("Property `leg` of `LegItem` has to be of type `LegObject`");
+                        .get::<Option<Leg>>()
+                        .expect("Property `leg` of `LegItem` has to be of type `Leg`");
 
                     // Clear box_legs
                     while let Some(child) = self.box_stopovers.first_child() {
@@ -118,13 +118,13 @@ pub mod imp {
                     // Fill box_legs
                     for stopover in stopovers {
                         self.box_stopovers
-                            .append(&StopoverItem::new(&StopoverObject::new(stopover.clone())));
+                            .append(&StopoverItem::new(&Stopover::new(stopover.clone())));
                     }
 
                     // Fill box_remarks
                     for remark in remarks {
                         self.box_remarks
-                            .append(&RemarkItem::new(&RemarkObject::new(remark.clone())));
+                            .append(&RemarkItem::new(&Remark::new(remark.clone())));
                     }
 
                     self.leg.replace(obj);
