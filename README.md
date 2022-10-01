@@ -20,7 +20,7 @@ A GTK4 frontend for the travel information of the german railway ("Reiseauskunft
     - SNCF
     - ÖBB
     - BART
-    - ... (36 more)
+    - ... (36 more). For a full list of supported profiles, see [hafas-rs](https://gitlab.com/Schmiddiii/hafas-rs#profiles) which is used to query the application data.
 
 ## Contact
 
