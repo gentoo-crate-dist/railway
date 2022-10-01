@@ -62,6 +62,12 @@
     </ul>
   </description>
   <releases>
+    <release version="v1.2.0" date="2022-10-01">
+      <description> 
+        <p>Added support for different providers.</p>
+        <p xml:lang="de">Unterstütze mehrere andere Datenquellen.</p>
+      </description>
+    </release>
     <release version="v1.1.0" date="2022-08-17">
       <description> 
         <p>Option to autodelete old journeys, small bug fix</p>
