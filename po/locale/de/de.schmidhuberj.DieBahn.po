@@ -273,3 +273,7 @@ msgstr "Suchprofil"
 #: ui/preferences_window.ui:92
 msgid "Requires application restart"
 msgstr "Benötigt einen Neustart der Applikation"
+
+#: ui/preferences_window.ui:92
+msgid "Walk"
+msgstr "Gehen"

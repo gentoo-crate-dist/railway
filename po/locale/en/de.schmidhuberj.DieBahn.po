@@ -273,3 +273,7 @@ msgstr "Search Provider"
 #: ui/preferences_window.ui:92
 msgid "Requires application restart"
 msgstr "Requires application restart"
+
+#: ui/preferences_window.ui:92
+msgid "Walk"
+msgstr "Walk"

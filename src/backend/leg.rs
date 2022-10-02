@@ -29,12 +29,12 @@ mod imp {
 
     use gdk::{
         glib::{ParamFlags, ParamSpec, ParamSpecObject, ParamSpecString, Value},
-        prelude::{StaticType, ToValue},
+        prelude::{ObjectExt, StaticType, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass},
     };
     use once_cell::sync::Lazy;
 
-    use crate::backend::{Place};
+    use crate::backend::Place;
 
     #[derive(Default, Clone)]
     pub struct Leg {
@@ -136,7 +136,7 @@ mod imp {
 
         fn set_property(&self, _obj: &Self::Type, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "direction" => self
                     .leg
@@ -144,6 +144,11 @@ mod imp {
                     .as_ref()
                     .map(|o| o.direction.as_ref())
                     .flatten()
+                    .unwrap_or(
+                        &obj.property::<Place>("destination")
+                            .name()
+                            .unwrap_or_default(),
+                    )
                     .to_value(),
                 "name" => self
                     .leg
@@ -152,6 +157,7 @@ mod imp {
                     .map(|o| o.line.as_ref())
                     .flatten()
                     .and_then(|o| o.name.as_ref())
+                    .unwrap_or(&gettextrs::gettext("Walk"))
                     .to_value(),
                 "departure" => self
                     .leg

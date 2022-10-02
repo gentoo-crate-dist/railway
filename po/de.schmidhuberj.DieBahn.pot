@@ -274,3 +274,7 @@ msgstr ""
 #: ui/preferences_window.ui:92
 msgid "Requires application restart"
 msgstr ""
+
+#: ui/preferences_window.ui:92
+msgid "Walk"
+msgstr ""

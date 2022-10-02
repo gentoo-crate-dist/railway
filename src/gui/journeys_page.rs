@@ -97,6 +97,7 @@ pub mod imp {
                             stopovers: Some(true),
                             loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
                             bike_friendly: Some(settings.boolean("bike-accessible")),
+                            start_with_walking: Some(false),
                             transfers: if settings.boolean("direct-only") {Some(0)} else {None},
                             transfer_time: Some(settings.int("transfer-time").try_into().unwrap_or_default()),
                             tariff_class: Some(if settings.boolean("first-class") {

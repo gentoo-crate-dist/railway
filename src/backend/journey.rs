@@ -160,11 +160,12 @@ mod imp {
                             .map(|l| {
                                 l.line
                                     .as_ref()
-                                    .map(|l| l
-                                         .product_name
-                                         .clone()
-                                         .unwrap_or_else(|| l.product.name.to_string()))
-                                    .unwrap_or_default()
+                                    .map(|l| {
+                                        l.product_name
+                                            .clone()
+                                            .unwrap_or_else(|| l.product.name.to_string())
+                                    })
+                                    .unwrap_or(gettextrs::gettext("Walk"))
                             })
                             .collect::<Vec<String>>()
                             .join(" - ")
