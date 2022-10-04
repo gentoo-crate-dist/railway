@@ -62,6 +62,12 @@
     </ul>
   </description>
   <releases>
+    <release version="v1.2.1" date="2022-10-04">
+      <description> 
+        <p>Bug fixing for the new providers.</p>
+        <p xml:lang="de">Probleme mit den neuen Datenquellen gelöst.</p>
+      </description>
+    </release>
     <release version="v1.2.0" date="2022-10-01">
       <description> 
         <p>Added support for different providers.</p>
