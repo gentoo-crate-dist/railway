@@ -9,8 +9,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-gtk = { version = "0.4.6", package = "gtk4" }
-gdk = { version = "0.4.6", package = "gdk4" }
+gtk = { version = "0.4.9", package = "gtk4" }
+gdk = { version = "0.4.8", package = "gdk4" }
 libadwaita = "0.1.0"
 gettext-rs = "0.7.0"
 
@@ -21,7 +21,7 @@ chrono = "0.4.19"
 log = "0.4.14"
 env_logger = "0.9.0"
 
-hafas-rs = { git = "https://gitlab.com/Schmiddiii/hafas-rs", rev = "129ec0d76a62bc61444a6bdae257a60c1bfbd98a", default-features = false, features = [ "hyper-requester", "all-profiles" ] }
+hafas-rs = { git = "https://gitlab.com/Schmiddiii/hafas-rs", rev = "494fa671ca9ec1bfd1118c695a7dedf500c2b88a", default-features = false, features = [ "hyper-requester", "all-profiles" ] }
 
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"

@@ -307,17 +307,17 @@
       <row><col id="1">NahSH</col><col id="0">Nah.SH</col></row>
       <row><col id="1">ooevv</col><col id="0">Oberösterreichischer Verkehrsverbund (OÖVV)</col></row>
       <row><col id="1">OEBB</col><col id="0">Österreichische Bundesbahnen (ÖBB)</col></row>
-      <row><col id="1">PKP</col><col id="0">Polskie Koleje Państwowe (PKP)</col></row>
+      <!-- <row><col id="1">PKP</col><col id="0">Polskie Koleje Państwowe (PKP)</col></row> -->
       <row><col id="1">RMV</col><col id="0">Rhein-Main-Verkehrsverbund (RMV)</col></row>
       <row><col id="1">RSAG</col><col id="0">Rostocker Straßenbahn AG (RSAG)</col></row>
       <row><col id="1">Rejseplanen</col><col id="0">Rejseplanen in Denmark</col></row>
       <row><col id="1">SBahn-Muenchen</col><col id="0">S-Bahn München</col></row>
-      <row><col id="1">SNCF</col><col id="0">Société nationale des chemins de fer français (SNCF)</col></row>
+      <!-- <row><col id="1">SNCF</col><col id="0">Société nationale des chemins de fer français (SNCF)</col></row> -->
       <row><col id="1">STV</col><col id="0">Steirischer Verkehrsverbund (STV)</col></row>
       <row><col id="1">SVV</col><col id="0">Salzburger Verkehrsverbund (SVV)</col></row>
       <row><col id="1">Saarfahrplan</col><col id="0">Saarfahrplan/VGS Saarland</col></row>
       <row><col id="1">Salzburg</col><col id="0">Salzburg</col></row>
-      <row><col id="1">TPG</col><col id="0">Transports publics genevois (TPG)</col></row>
+      <!-- <row><col id="1">TPG</col><col id="0">Transports publics genevois (TPG)</col></row> -->
       <row><col id="1">VBB</col><col id="0">Berlin &amp; Brandenburg public transport (VBB)</col></row>
       <row><col id="1">VBN</col><col id="0">Verkehrsverbund Bremen/Niedersachsen (VBN)</col></row>
       <row><col id="1">VKG</col><col id="0">Kärntner Linien/Verkehrsverbund Kärnten (VKG/VVK)</col></row>
