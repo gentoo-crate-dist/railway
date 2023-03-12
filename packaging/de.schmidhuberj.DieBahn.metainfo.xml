@@ -62,6 +62,12 @@
     </ul>
   </description>
   <releases>
+    <release version="v1.2.2" date="2023-03-12">
+      <description> 
+        <p>Fix problems with DB and other providers.</p>
+        <p xml:lang="de">Problembehebung für DB und andere Datenquellen.</p>
+      </description>
+    </release>
     <release version="v1.2.1" date="2022-10-04">
       <description> 
         <p>Bug fixing for the new providers.</p>
