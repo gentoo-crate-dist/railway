@@ -1,0 +1,37 @@
+{
+    "app-id": "de.schmidhuberj.DieBahn",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "master",
+    "sdk": "org.gnome.Sdk",
+    "sdk-extensions": [
+        "org.freedesktop.Sdk.Extension.rust-stable"
+    ],
+    "command": "diebahn",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--socket=pulseaudio",
+        "--device=dri",
+        "--share=network"
+    ],
+    "build-options": {
+        "append-path": "/usr/lib/sdk/rust-stable/bin",
+        "env": {
+            "CARGO_HOME": "/run/build/diebahn/cargo",
+            "RUST_BACKTRACE": "1"
+        }
+    },
+    "modules": [
+        {
+            "name": "diebahn",
+            "buildsystem": "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "."
+                }
+            ]
+        }
+    ]
+}
