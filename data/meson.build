@@ -1,0 +1,31 @@
+subdir('icons')
+subdir('resources')
+
+# Desktop file
+desktop_conf = configuration_data()
+desktop_conf.set('appid', application_id)
+desktop_conf.set('bindir', bindir)
+desktop_file = i18n.merge_file(
+  input: configure_file(
+    input: 'de.schmidhuberj.DieBahn.desktop.in.in',
+    output: 'de.schmidhuberj.DieBahn.desktop.in',
+    configuration: desktop_conf
+  ),
+  output: '@0@.desktop'.format(application_id),
+  type: 'desktop',
+  po_dir: podir,
+  install: true,
+  install_dir: join_paths(datadir, 'applications')
+)
+
+# Metainfo
+install_data(
+  '@0@.metainfo.xml'.format(application_id),
+  install_dir: datadir / 'metainfo'
+)
+
+# Metainfo
+install_data(
+  '@0@.gschema.xml'.format(application_id),
+  install_dir: datadir / 'glib-2.0' / 'schemas'
+)
