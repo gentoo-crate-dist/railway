@@ -9,8 +9,10 @@ gtk::glib::wrapper! {
 
 impl SearchStoreItem {
     pub fn new(origin: String, destination: String) -> Self {
-        Object::new(&[("origin", &origin), ("destination", &destination)])
-            .expect("Failed to create `SearchStoreItem`")
+        Object::builder::<Self>()
+            .property("origin", &origin)
+            .property("destination", &destination)
+            .build()
     }
 }
 
@@ -18,7 +20,6 @@ pub mod imp {
     use std::cell::RefCell;
 
     use gdk::glib::subclass::Signal;
-    use gdk::glib::ParamFlags;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecString;
     use gdk::glib::Value;
@@ -40,7 +41,7 @@ pub mod imp {
     impl SearchStoreItem {
         #[template_callback]
         fn handle_details(&self, _: gtk::Button) {
-            self.instance().emit_by_name(
+            self.obj().emit_by_name(
                 "details",
                 &[
                     self.origin
@@ -73,27 +74,21 @@ pub mod imp {
     }
 
     impl ObjectImpl for SearchStoreItem {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
         }
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecString::new("origin", "origin", "origin", None, ParamFlags::READWRITE),
-                    ParamSpecString::new(
-                        "destination",
-                        "destination",
-                        "destination",
-                        None,
-                        ParamFlags::READWRITE,
-                    ),
+                    ParamSpecString::builder("origin").build(),
+                    ParamSpecString::builder("destination").build(),
                 ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "origin" => {
                     let obj = value.get::<Option<String>>().expect(
@@ -113,7 +108,7 @@ pub mod imp {
             }
         }
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "origin" => self.origin.borrow().to_value(),
                 "destination" => self.destination.borrow().to_value(),
@@ -123,12 +118,9 @@ pub mod imp {
 
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| -> Vec<Signal> {
-                vec![Signal::builder(
-                    "details",
-                    &[String::static_type().into(), String::static_type().into()],
-                    <()>::static_type().into(),
-                )
-                .build()]
+                vec![Signal::builder("details")
+                    .param_types([String::static_type(), String::static_type()])
+                    .build()]
             });
             SIGNALS.as_ref()
         }

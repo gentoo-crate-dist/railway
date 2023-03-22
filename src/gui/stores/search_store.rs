@@ -31,7 +31,6 @@ pub mod imp {
     use once_cell::sync::Lazy;
     use serde::{Deserialize, Serialize};
 
-    #[derive(Clone)]
     pub struct SearchesStore {
         path: PathBuf,
         stored: RefCell<Vec<Search>>,
@@ -104,11 +103,11 @@ pub mod imp {
             if let Some(idx) = stored.iter().position(|j| j == &search) {
                 log::trace!("Removing Search {:?}", search);
                 let s = stored.remove(idx);
-                self.instance()
+                self.obj()
                     .emit_by_name::<()>("remove", &[&s.origin, &s.destination]);
             } else {
                 log::trace!("Storing Journey {:?}", search);
-                self.instance()
+                self.obj()
                     .emit_by_name::<()>("add", &[&search.origin, &search.destination]);
                 stored.insert(0, search);
             }
@@ -119,18 +118,12 @@ pub mod imp {
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| -> Vec<Signal> {
                 vec![
-                    Signal::builder(
-                        "add",
-                        &[String::static_type().into(), String::static_type().into()],
-                        <()>::static_type().into(),
-                    )
-                    .build(),
-                    Signal::builder(
-                        "remove",
-                        &[String::static_type().into(), String::static_type().into()],
-                        <()>::static_type().into(),
-                    )
-                    .build(),
+                    Signal::builder("add")
+                        .param_types([String::static_type(), String::static_type()])
+                        .build(),
+                    Signal::builder("remove")
+                        .param_types([String::static_type(), String::static_type()])
+                        .build(),
                 ]
             });
             SIGNALS.as_ref()

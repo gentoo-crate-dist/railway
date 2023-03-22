@@ -10,7 +10,7 @@ gtk::glib::wrapper! {
 
 impl Place {
     pub fn new(place: hafas_rs::Place) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `Place`.");
+        let s: Self = Object::builder().build();
         s.imp().place.swap(&RefCell::new(Some(place)));
         s
     }
@@ -37,13 +37,13 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{ParamFlags, ParamSpec, ParamSpecString, Value},
-        prelude::ToValue,
+        glib::{ParamSpec, ParamSpecString, Value},
+        prelude::{ParamSpecBuilderExt, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass},
     };
     use once_cell::sync::Lazy;
 
-    #[derive(Default, Clone)]
+    #[derive(Default)]
     pub struct Place {
         pub(super) place: RefCell<Option<hafas_rs::Place>>,
     }
@@ -58,16 +58,16 @@ mod imp {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecString::new("name", "name", "name", None, ParamFlags::READABLE),
-                    ParamSpecString::new("id", "id", "id", None, ParamFlags::READABLE),
+                    ParamSpecString::builder("name").read_only().build(),
+                    ParamSpecString::builder("id").read_only().build(),
                 ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
+        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "name" => match self.place.borrow().as_ref() {
                     Some(hafas_rs::Place::Stop(s)) => s.name.as_ref().unwrap_or(&s.id).to_value(),

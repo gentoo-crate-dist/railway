@@ -23,7 +23,7 @@ pub mod imp {
     use std::sync::{Arc, Mutex};
     use std::time::{Instant, Duration};
 
-    use gdk::glib::{clone, ParamSpec, ParamSpecObject, ParamFlags, Value, ParamSpecBoolean, ParamSpecString};
+    use gdk::glib::{clone, ParamSpec, ParamSpecObject, Value, ParamSpecBoolean, ParamSpecString};
     use gdk::glib::subclass::InitializingObject;
     use gdk::glib::MainContext;
     use gtk::{glib, ListStore};
@@ -65,7 +65,7 @@ pub mod imp {
         fn on_changed(&self) {
             let request_pending = &self.request_pending;
             let last_request = &self.last_request;
-            let obj = self.instance();
+            let obj = self.obj();
 
             if request_pending.load(Ordering::SeqCst) {
                 log::trace!("Station changed, but there is already a request pending");
@@ -163,11 +163,11 @@ pub mod imp {
     }
 
     impl ObjectImpl for StationEntry {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
-            self.connect_changed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
+            self.connect_changed(&self.obj());
 
-            obj.connect_notify_local(Some("place"), clone!(@strong self.entry as entry => move |obj, _| {
+            self.obj().connect_notify_local(Some("place"), clone!(@strong self.entry as entry => move |obj, _| {
                 let option: Option<Place> = obj.property("place");
                 if option.is_some() {
                     obj.set_property("set", true);
@@ -183,37 +183,17 @@ pub mod imp {
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::new(
-                    "place",
-                    "place",
-                    "place",
-                    Place::static_type(),
-                    ParamFlags::READWRITE,
-                ), ParamSpecBoolean::new(
-                    "set",
-                    "set",
-                    "set",
-                    false,
-                    ParamFlags::READWRITE,
-                ), ParamSpecString::new(
-                    "placeholder-text",
-                    "placeholder-text",
-                    "placeholder-text",
-                    None,
-                    ParamFlags::READWRITE,
-                ),
-                ParamSpecObject::new(
-                    "client",
-                    "client",
-                    "client",
-                    HafasClient::static_type(),
-                    ParamFlags::READWRITE,
-                )]
+                vec![
+                    ParamSpecObject::builder::<Place>("place").build(),
+                    ParamSpecBoolean::builder("set").build(),
+                    ParamSpecString::builder("placeholder-text").build(),
+                    ParamSpecObject::builder::<HafasClient>("client").build(),
+                ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "place" => {self.place.replace(value.get().expect("Property place of StationEntry must be Place"));},
                 "set" => {self.set.replace(value.get().expect("Property set of StationEntry must be bool"));},
@@ -229,7 +209,7 @@ pub mod imp {
             }
         }
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "place" => self
                     .place

@@ -66,5 +66,5 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
         actions.add_action(&action_more_info);
     }
 
-    overlay.add_toast(&toast);
+    overlay.add_toast(toast);
 }

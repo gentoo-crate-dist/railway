@@ -11,7 +11,7 @@ gtk::glib::wrapper! {
 
 impl JourneysResult {
     pub fn new(journeys_response: hafas_rs::api::journeys::JourneysResponse) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `JourneysResult`.");
+        let s: Self = Object::builder().build();
         s.imp()
             .journeys_response
             .swap(&RefCell::new(Some(journeys_response)));
@@ -69,7 +69,7 @@ mod imp {
 
     use gdk::subclass::prelude::{ObjectImpl, ObjectSubclass};
 
-    #[derive(Default, Clone)]
+    #[derive(Default)]
     pub struct JourneysResult {
         pub(super) journeys_response: RefCell<Option<hafas_rs::api::journeys::JourneysResponse>>,
     }

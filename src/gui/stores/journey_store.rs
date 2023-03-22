@@ -36,7 +36,6 @@ pub mod imp {
 
     use crate::backend::Journey;
 
-    #[derive(Clone)]
     pub struct JourneysStore {
         path: PathBuf,
         stored: RefCell<Vec<Journey>>,
@@ -123,10 +122,10 @@ pub mod imp {
             {
                 log::trace!("Removing Journey {:?}", journey.journey());
                 let s = stored.remove(idx);
-                self.instance().emit_by_name::<()>("remove", &[&s]);
+                self.obj().emit_by_name::<()>("remove", &[&s]);
             } else {
                 log::trace!("Storing Journey {:?}", journey.journey());
-                self.instance().emit_by_name::<()>("add", &[&journey]);
+                self.obj().emit_by_name::<()>("add", &[&journey]);
                 stored.insert(0, journey);
             }
         }
@@ -136,18 +135,12 @@ pub mod imp {
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| -> Vec<Signal> {
                 vec![
-                    Signal::builder(
-                        "add",
-                        &[Journey::static_type().into()],
-                        <()>::static_type().into(),
-                    )
-                    .build(),
-                    Signal::builder(
-                        "remove",
-                        &[Journey::static_type().into()],
-                        <()>::static_type().into(),
-                    )
-                    .build(),
+                    Signal::builder("add")
+                        .param_types([Journey::static_type()])
+                        .build(),
+                    Signal::builder("remove")
+                        .param_types([Journey::static_type()])
+                        .build(),
                 ]
             });
             SIGNALS.as_ref()

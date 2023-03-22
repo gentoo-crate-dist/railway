@@ -1,13 +1,13 @@
 use std::cell::RefCell;
 
+use gdk::prelude::SettingsExt;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 use gtk::glib::Object;
 use hafas_rs::api::{
     journeys::JourneysOptions, locations::LocationsOptions, refresh_journey::RefreshJourneyOptions,
 };
-use hafas_rs::profile::profile_from_name;
 use hafas_rs::profile::db::DbProfile;
-use gdk::prelude::SettingsExt;
+use hafas_rs::profile::profile_from_name;
 
 use crate::Error;
 
@@ -25,7 +25,7 @@ impl std::default::Default for HafasClient {
 
 impl HafasClient {
     pub fn new() -> HafasClient {
-        let s: Self = Object::new(&[]).expect("Failed to create `HafasClient` object.");
+        let s: Self = Object::builder().build();
         let profile_name = s.imp().settings.string("search-provider");
         s.imp()
             .internal
