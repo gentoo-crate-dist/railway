@@ -11,83 +11,93 @@
     <child>
       <object class="AdwToastOverlay" id="toast_errors">
         <child>
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <property name="hexpand">True</property>
-            <property name="spacing">8</property>
+          <object class="GtkScrolledWindow">
+            <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
+            <property name="margin-top">10</property>
+            <property name="margin-bottom">10</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
 
             <child>
-              <object class="DBStationEntry" id="in_from">
-                <property name="placeholder-text" translatable="yes">From</property>
-                <property name="client" bind-source="DBSearchPage" bind-property="client" bind-flags="sync-create"/>
-              </object>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="hexpand">True</property>
+              <object class="GtkViewport">
+              <property name="overflow">visible</property>
                 <child>
-                  <object class="DBStationEntry" id="in_to">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
                     <property name="hexpand">True</property>
-                    <property name="placeholder-text" translatable="yes">To</property>
-                    <property name="client" bind-source="DBSearchPage" bind-property="client" bind-flags="sync-create"/>
+                    <property name="vexpand">True</property>
+                    <property name="spacing">8</property>
+
+                    <child>
+                      <object class="DBStationEntry" id="in_from">
+                        <property name="placeholder-text" translatable="yes">From</property>
+                        <property name="client" bind-source="DBSearchPage" bind-property="client" bind-flags="sync-create"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="hexpand">True</property>
+                        <child>
+                          <object class="DBStationEntry" id="in_to">
+                            <property name="hexpand">True</property>
+                            <property name="placeholder-text" translatable="yes">To</property>
+                            <property name="client" bind-source="DBSearchPage" bind-property="client" bind-flags="sync-create"/>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="margin-start">8</property>
+                            <property name="icon-name">mail-send-receive-symbolic</property>
+                            <signal name="clicked" handler="handle_swap" swapped="true"/>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="DBDateTimePicker" id="pick_date_time">
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btn_search">
+                        <signal name="clicked" handler="handle_search" swapped="true"/>
+                        <property name="label" translatable="yes">Search</property>
+                        <binding name="sensitive">
+                          <closure function="and" type="gboolean">
+                            <lookup name="set">in_from</lookup>
+                            <lookup name="set">in_to</lookup>
+                          </closure>
+                        </binding>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="orientation">horizontal</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwCarousel" id="carousel_journeys">
+                        <property name="spacing">16</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwCarouselIndicatorDots">
+                        <property name="carousel">carousel_journeys</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwCarousel" id="carousel_searches">
+                        <property name="spacing">16</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwCarouselIndicatorDots">
+                        <property name="carousel">carousel_searches</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
-                <child>
-                  <object class="GtkButton">
-                    <property name="icon-name">mail-send-receive-symbolic</property>
-                    <signal name="clicked" handler="handle_swap" swapped="true"/>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkExpander" id="expand_date_time">
-                <child type="label">
-                  <object class="GtkLabel">
-                    <property name="label" translatable="yes">Departure</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="DBDateTimePicker" id="pick_date_time">
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_search">
-                <signal name="clicked" handler="handle_search" swapped="true"/>
-                <property name="label" translatable="yes">Search</property>
-                <binding name="sensitive">
-                  <closure function="and" type="gboolean">
-                    <lookup name="set">in_from</lookup>
-                    <lookup name="set">in_to</lookup>
-                  </closure>
-                </binding>
-              </object>
-            </child>
-            <child>
-              <object class="GtkSeparator">
-                <property name="orientation">horizontal</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwCarousel" id="carousel_journeys">
-                <property name="spacing">16</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwCarouselIndicatorDots">
-                <property name="carousel">carousel_journeys</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwCarousel" id="carousel_searches">
-                <property name="spacing">16</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwCarouselIndicatorDots">
-                <property name="carousel">carousel_searches</property>
               </object>
             </child>
           </object>

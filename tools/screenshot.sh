@@ -6,7 +6,6 @@ width_small=450
 height=900
 
 id=$(xdotool search --name DieBahn | tail -n 1)
-id=73400324
 
 # Resize Window
 xdotool windowsize $id $width $height

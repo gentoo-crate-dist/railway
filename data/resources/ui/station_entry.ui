@@ -8,6 +8,9 @@
     <property name="spacing">8</property>
     <child>
       <object class="GtkEntry" id="entry">
+        <style>
+          <class name="error"/>
+        </style>
         <property name="completion">completion</property>
         <binding name="placeholder-text">
           <lookup name="placeholder-text" type="DBStationEntry">

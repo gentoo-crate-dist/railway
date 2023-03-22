@@ -2,3 +2,4 @@
 resources.gresource
 .cargo
 LC_MESSAGES
+src/config.rs

@@ -1,6 +1,16 @@
 use gdk::prelude::{ApplicationExt, ApplicationExtManual};
+use gdk::Display;
 use gtk::glib::IsA;
 use gtk::traits::{GtkWindowExt, WidgetExt};
+use gtk::{CssProvider, StyleContext};
+
+#[macro_export]
+macro_rules! gspawn {
+    ($future:expr) => {
+        let ctx = gtk::glib::MainContext::default();
+        ctx.spawn_local($future);
+    };
+}
 
 mod backend;
 mod config;
@@ -9,6 +19,18 @@ mod gui;
 
 use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_BYTES};
 pub use error::Error;
+
+fn load_css() {
+    let provider = CssProvider::new();
+    provider.load_from_resource("/de/schmidhuberj/DieBahn/style.css");
+
+    // Add the provider to the default screen
+    StyleContext::add_provider_for_display(
+        &Display::default().expect("Could not connect to a display."),
+        &provider,
+        gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
+    );
+}
 
 fn init_resources() {
     let gbytes = gtk::glib::Bytes::from_static(RESOURCES_BYTES);
@@ -47,6 +69,7 @@ async fn main() {
 
 fn build_ui(app: &libadwaita::Application) {
     init_resources();
+    load_css();
     let window = crate::gui::window::Window::new(app);
     init_icons(&window.display());
     window.present();

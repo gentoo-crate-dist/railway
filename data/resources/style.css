@@ -1,0 +1,5 @@
+calendar {
+  border-style: none;
+  background-color: @window_bg_color;
+  color: @window_fg_color;
+}

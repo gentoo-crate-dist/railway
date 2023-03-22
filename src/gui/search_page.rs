@@ -70,8 +70,6 @@ pub mod imp {
         in_to: TemplateChild<StationEntry>,
 
         #[template_child]
-        expand_date_time: TemplateChild<gtk::Expander>,
-        #[template_child]
         pick_date_time: TemplateChild<DateTimePicker>,
 
         #[template_child]
@@ -152,11 +150,7 @@ pub mod imp {
             let from = self.in_from.property::<Place>("place");
             let to = self.in_to.property::<Place>("place");
 
-            let departure = if self.expand_date_time.is_expanded() {
-                Some(self.pick_date_time.get().get())
-            } else {
-                None
-            };
+            let departure = Some(self.pick_date_time.get().get());
 
             let main_context = MainContext::default();
             main_context.spawn_local(clone!(@strong from,
@@ -213,7 +207,6 @@ pub mod imp {
                 settings: Settings::new("de.schmidhuberj.DieBahn"),
                 in_from: Default::default(),
                 in_to: Default::default(),
-                expand_date_time: Default::default(),
                 pick_date_time: Default::default(),
                 btn_search: Default::default(),
                 carousel_journeys: Default::default(),
