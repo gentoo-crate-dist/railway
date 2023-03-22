@@ -13,52 +13,66 @@
 
     <child>
       <object class="AdwToastOverlay" id="toast_errors">
+
         <child>
           <object class="GtkScrolledWindow">
             <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
-            <child>
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="spacing">8</property>
-                <property name="vexpand">TRUE</property>
-                <property name="valign">GTK_ALIGN_FILL</property>
-                <property name="hexpand">TRUE</property>
-                <property name="halign">GTK_ALIGN_FILL</property>
-                <binding name="visible">
-                  <closure function="is_some" type="gboolean">
-                    <lookup name="journey" type="DBJourneyDetailPage"/>
-                  </closure>
-                </binding>
+            <property name="overflow">visible</property>
+            <property name="margin-top">10</property>
+            <property name="margin-bottom">10</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
 
+            <child>
+              <object class="GtkViewport">
+              <property name="overflow">visible</property>
                 <child>
-                  <object class="GtkLabel">
-                    <binding name="label">
-                      <closure function="concat_and_translate" type="gchararray">
-                        <constant type="gchararray">Transitions</constant>
-                        <closure function="u32_to_string" type="gchararray">
-                          <lookup name="transitions">
-                            <lookup name="journey" type="DBJourneyDetailPage"/>
-                          </lookup>
-                        </closure>
-                      </closure>
-                    </binding>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <binding name="label">
-                      <closure function="concat_and_translate" type="gchararray">
-                        <constant type="gchararray">Time</constant>
-                        <lookup name="total-time">
-                          <lookup name="journey" type="DBJourneyDetailPage"/>
-                        </lookup>
-                      </closure>
-                    </binding>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkBox" id="box_legs">
+                  <object class="GtkBox">
                     <property name="orientation">vertical</property>
+                    <property name="spacing">8</property>
+                    <property name="vexpand">TRUE</property>
+                    <property name="valign">GTK_ALIGN_FILL</property>
+                    <property name="hexpand">TRUE</property>
+                    <property name="halign">GTK_ALIGN_FILL</property>
+                    <binding name="visible">
+                      <closure function="is_some" type="gboolean">
+                        <lookup name="journey" type="DBJourneyDetailPage"/>
+                      </closure>
+                    </binding>
+
+                    <child>
+                      <object class="GtkLabel">
+                        <binding name="label">
+                          <closure function="concat_and_translate" type="gchararray">
+                            <constant type="gchararray">Transitions</constant>
+                            <closure function="u32_to_string" type="gchararray">
+                              <lookup name="transitions">
+                                <lookup name="journey" type="DBJourneyDetailPage"/>
+                              </lookup>
+                            </closure>
+                          </closure>
+                        </binding>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="margin-bottom">12</property>
+                        <binding name="label">
+                          <closure function="concat_and_translate" type="gchararray">
+                            <constant type="gchararray">Time</constant>
+                            <lookup name="total-time">
+                              <lookup name="journey" type="DBJourneyDetailPage"/>
+                            </lookup>
+                          </closure>
+                        </binding>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="box_legs">
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">8</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>

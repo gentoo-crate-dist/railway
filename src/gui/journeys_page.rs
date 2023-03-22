@@ -1,3 +1,12 @@
+use std::time::Duration;
+
+use gdk::{
+    glib::{self, clone},
+    prelude::ObjectExt,
+    subclass::prelude::ObjectSubclassIsExt,
+};
+use gtk::traits::AdjustmentExt;
+
 gtk::glib::wrapper! {
     pub struct JourneysPage(ObjectSubclass<imp::JourneysPage>)
         @extends gtk::Box, gtk::Widget,
@@ -5,7 +14,58 @@ gtk::glib::wrapper! {
             gtk::ConstraintTarget;
 }
 
+impl JourneysPage {
+    fn set_loading_earlier(&self, is: bool) {
+        self.set_property("is-loading-earlier", is)
+    }
+
+    fn set_loading_later(&self, is: bool) {
+        self.set_property("is-loading-later", is)
+    }
+
+    fn is_loading_earlier(&self) -> bool {
+        self.property("is-loading-earlier")
+    }
+
+    fn is_loading_later(&self) -> bool {
+        self.property("is-loading-later")
+    }
+
+    fn is_auto_scroll(&self) -> bool {
+        self.property("auto-scroll")
+    }
+
+    fn set_auto_scroll(&self, val: bool) {
+        self.set_property("auto-scroll", val)
+    }
+
+    fn scroll_down(&self) {
+        if self.is_auto_scroll() {
+            gspawn!(clone!(@weak self as obj => async move  {
+                // Need to sleep a little to make sure the scrolled window saw the changed
+                // child.
+                glib::timeout_future(Duration::from_millis(50)).await;
+                let adjustment = obj.imp().scrolled_window.vadjustment();
+                adjustment.set_value(adjustment.upper());
+            }));
+        }
+    }
+
+    fn scroll_up(&self) {
+        if self.is_auto_scroll() {
+            gspawn!(clone!(@weak self as obj => async move  {
+                // Need to sleep a little to make sure the scrolled window saw the changed
+                // child.
+                glib::timeout_future(Duration::from_millis(50)).await;
+                let adjustment = obj.imp().scrolled_window.vadjustment();
+                adjustment.set_value(adjustment.lower());
+            }));
+        }
+    }
+}
+
 pub mod imp {
+    use std::cell::Cell;
     use std::cell::RefCell;
 
     use gdk::gio::ListStore;
@@ -15,6 +75,7 @@ pub mod imp {
     use gdk::glib::MainContext;
     use gdk::glib::ParamFlags;
     use gdk::glib::ParamSpec;
+    use gdk::glib::ParamSpecBoolean;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
     use glib::subclass::InitializingObject;
@@ -22,6 +83,7 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use gtk::PositionType;
     use gtk::SignalListItemFactory;
     use gtk::Widget;
     use hafas_rs::api::journeys::JourneysOptions;
@@ -43,12 +105,10 @@ pub mod imp {
     #[template(resource = "/ui/journeys_page.ui")]
     pub struct JourneysPage {
         #[template_child]
-        list_journeys: TemplateChild<gtk::ListView>,
-        #[template_child]
-        btn_earlier: TemplateChild<gtk::Button>,
-        #[template_child]
-        btn_later: TemplateChild<gtk::Button>,
+        pub(super) scrolled_window: TemplateChild<gtk::ScrolledWindow>,
 
+        #[template_child]
+        list_journeys: TemplateChild<gtk::ListView>,
         #[template_child]
         toast_errors: TemplateChild<ToastOverlay>,
 
@@ -58,28 +118,67 @@ pub mod imp {
 
         settings: Settings,
         client: RefCell<Option<HafasClient>>,
+
+        loading_earlier: Cell<bool>,
+        loading_later: Cell<bool>,
+        auto_scroll: Cell<bool>,
     }
 
     impl Default for JourneysPage {
         fn default() -> Self {
             Self {
+                scrolled_window: Default::default(),
                 list_journeys: Default::default(),
-                btn_earlier: Default::default(),
-                btn_later: Default::default(),
                 toast_errors: Default::default(),
                 model: Default::default(),
                 journeys_result: Default::default(),
                 settings: Settings::new("de.schmidhuberj.DieBahn"),
                 client: Default::default(),
+                loading_earlier: Default::default(),
+                loading_later: Default::default(),
+                auto_scroll: Cell::new(true),
             }
         }
     }
 
     #[gtk::template_callbacks]
     impl JourneysPage {
-        #[template_callback]
-        fn handle_earlier(&self, _: gtk::Button) {
+        /// Every time when the page is not yet filled with the journeys, load more.
+        fn connect_initial_loading(&self) {
             let obj = self.instance();
+            self.scrolled_window
+                .vadjustment()
+                .connect_changed(clone!(@weak obj => move |adj| {
+                    // This means the page is not yet filled.
+                    if adj.upper() <= adj.page_size() {
+                        // Do not scroll for the initial loading.
+                        obj.set_auto_scroll(false);
+                        obj.imp().handle_later()
+                    } else {
+                        // Scroll if the page is already filled and more is manually requested.
+                        obj.set_auto_scroll(true);
+                    }
+                }));
+        }
+
+        #[template_callback]
+        fn handle_edge_reached(&self, position: PositionType) {
+            match position {
+                PositionType::Top => self.handle_earlier(),
+                PositionType::Bottom => self.handle_later(),
+                _ => (),
+            }
+        }
+
+        #[template_callback]
+        fn handle_earlier(&self) {
+            let obj = self.instance();
+
+            // Skip if already loading.
+            if obj.is_loading_earlier() {
+                return;
+            }
+            obj.set_loading_earlier(true);
 
             let main_context = MainContext::default();
             main_context.spawn_local(
@@ -126,12 +225,20 @@ pub mod imp {
                     } else {
                         error_to_toast(&toast_errors, result_journeys_result.err().expect("Error to be present"));
                     }
+                    obj.set_loading_earlier(false);
+                    obj.scroll_up();
             }));
         }
 
         #[template_callback]
-        fn handle_later(&self, _: gtk::Button) {
+        fn handle_later(&self) {
             let obj = self.instance();
+
+            // Skip if already loading.
+            if obj.is_loading_later() {
+                return;
+            }
+            obj.set_loading_later(true);
 
             let main_context = MainContext::default();
             main_context.spawn_local(
@@ -177,6 +284,8 @@ pub mod imp {
                     } else {
                         error_to_toast(&toast_errors, result_journeys_result.err().expect("Error to be present"));
                     }
+                    obj.set_loading_later(false);
+                    obj.scroll_down();
             }));
         }
 
@@ -234,6 +343,7 @@ pub mod imp {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
             self.setup_model(obj);
+            self.connect_initial_loading();
         }
 
         fn properties() -> &'static [ParamSpec] {
@@ -251,6 +361,27 @@ pub mod imp {
                         "client",
                         "client",
                         HafasClient::static_type(),
+                        ParamFlags::READWRITE,
+                    ),
+                    ParamSpecBoolean::new(
+                        "is-loading-earlier",
+                        "is-loading-earlier",
+                        "is-loading-earlier",
+                        false,
+                        ParamFlags::READWRITE,
+                    ),
+                    ParamSpecBoolean::new(
+                        "is-loading-later",
+                        "is-loading-later",
+                        "is-loading-later",
+                        false,
+                        ParamFlags::READWRITE,
+                    ),
+                    ParamSpecBoolean::new(
+                        "auto-scroll",
+                        "auto-scroll",
+                        "auto-scroll",
+                        true,
                         ParamFlags::READWRITE,
                     ),
                 ]
@@ -276,10 +407,31 @@ pub mod imp {
                 }
                 "client" => {
                     let obj = value.get::<Option<HafasClient>>().expect(
-                        "Property `client` of `SearchPage` has to be of type `HafasClient`",
+                        "Property `client` of `JourneysPage` has to be of type `HafasClient`",
                     );
 
                     self.client.replace(obj);
+                }
+                "is-loading-earlier" => {
+                    let obj = value.get::<bool>().expect(
+                        "Property `is-loading-earlier` of `JourneysPage` has to be of type `bool`",
+                    );
+
+                    self.loading_earlier.replace(obj);
+                }
+                "is-loading-later" => {
+                    let obj = value.get::<bool>().expect(
+                        "Property `is-loading-later` of `JourneysPage` has to be of type `bool`",
+                    );
+
+                    self.loading_later.replace(obj);
+                }
+                "auto-scroll" => {
+                    let obj = value.get::<bool>().expect(
+                        "Property `auto-scroll` of `JourneysPage` has to be of type `bool`",
+                    );
+
+                    self.auto_scroll.replace(obj);
                 }
                 _ => unimplemented!(),
             }
@@ -289,6 +441,9 @@ pub mod imp {
             match pspec.name() {
                 "journeys-result" => self.journeys_result.borrow().to_value(),
                 "client" => self.client.borrow().to_value(),
+                "is-loading-earlier" => self.loading_earlier.get().to_value(),
+                "is-loading-later" => self.loading_later.get().to_value(),
+                "auto-scroll" => self.auto_scroll.get().to_value(),
                 _ => unimplemented!(),
             }
         }

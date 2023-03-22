@@ -171,12 +171,12 @@ pub mod imp {
                 let option: Option<Place> = obj.property("place");
                 if option.is_some() {
                     obj.set_property("set", true);
-                    entry.add_css_class("success");
+                    // entry.add_css_class("success");
                     entry.remove_css_class("error");
                 } else {
                     obj.set_property("set", false);
                     entry.add_css_class("error");
-                    entry.remove_css_class("success");
+                    // entry.remove_css_class("success");
                 }
             }));
         }

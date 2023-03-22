@@ -2,7 +2,6 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libadwaita" version="1.0"/>
-
   <template class="DBJourneysPage" parent="GtkBox">
     <property name="orientation">vertical</property>
     <property name="spacing">8</property>
@@ -10,44 +9,63 @@
     <property name="valign">GTK_ALIGN_FILL</property>
     <property name="hexpand">TRUE</property>
     <property name="halign">GTK_ALIGN_FILL</property>
-
+    <property name="margin-top">10</property>
+    <property name="margin-bottom">10</property>
+    <property name="margin-start">10</property>
+    <property name="margin-end">10</property>
 
     <child>
       <object class="AdwToastOverlay" id="toast_errors">
+        <property name="overflow">visible</property>
+
         <child>
-          <object class="GtkScrolledWindow">
-            <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">8</property>
+            <property name="vexpand">TRUE</property>
+            <property name="valign">GTK_ALIGN_FILL</property>
+            <property name="hexpand">TRUE</property>
+            <property name="halign">GTK_ALIGN_FILL</property>
+            <binding name="visible">
+              <closure function="is_some" type="gboolean">
+                <lookup name="journeys-result" type="DBJourneysPage"/>
+              </closure>
+            </binding>
+
             <child>
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="spacing">8</property>
-                <property name="vexpand">TRUE</property>
-                <property name="valign">GTK_ALIGN_FILL</property>
-                <property name="hexpand">TRUE</property>
-                <property name="halign">GTK_ALIGN_FILL</property>
+              <object class="GtkSpinner">
+                <property name="spinning">TRUE</property>
                 <binding name="visible">
-                  <closure function="is_some" type="gboolean">
-                    <lookup name="journeys-result" type="DBJourneysPage"/>
-                  </closure>
+                  <lookup name="is-loading-earlier" type="DBJourneysPage"/>
                 </binding>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkScrolledWindow" id="scrolled_window">
+                <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
+                <property name="vexpand">TRUE</property>
+
+                <signal name="edge-overshot" handler="handle_edge_reached" swapped="true"/>
 
                 <child>
-                  <object class="GtkButton" id="btn_earlier">
-                    <signal name="clicked" handler="handle_earlier" swapped="true"/>
-                    <property name="label" translatable="yes">Earlier</property>
-                  </object>
-                </child>
-                <child>
                   <object class="GtkListView" id="list_journeys">
+                    <style>
+                      <class name="card"/>
+                    </style>
                     <property name="show-separators">TRUE</property>
+                    <property name="valign">GTK_ALIGN_START</property>
                   </object>
                 </child>
-                <child>
-                  <object class="GtkButton" id="btn_later">
-                    <signal name="clicked" handler="handle_later" swapped="true"/>
-                    <property name="label" translatable="yes">Later</property>
-                  </object>
-                </child>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkSpinner">
+                <property name="spinning">TRUE</property>
+                <binding name="visible">
+                  <lookup name="is-loading-later" type="DBJourneysPage"/>
+                </binding>
               </object>
             </child>
           </object>
