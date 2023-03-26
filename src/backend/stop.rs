@@ -9,7 +9,7 @@ gtk::glib::wrapper! {
 
 impl Stop {
     pub fn new(stop: hafas_rs::Stop) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `Stop`.");
+        let s: Self = Object::builder().build();
         s.imp().stop.swap(&RefCell::new(Some(stop)));
         s
     }
@@ -20,13 +20,13 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{ParamFlags, ParamSpec, ParamSpecString, Value},
-        prelude::ToValue,
+        glib::{ParamSpec, ParamSpecString, Value},
+        prelude::{ParamSpecBuilderExt, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass},
     };
     use once_cell::sync::Lazy;
 
-    #[derive(Default, Clone)]
+    #[derive(Default)]
     pub struct Stop {
         pub(super) stop: RefCell<Option<hafas_rs::Stop>>,
     }
@@ -39,21 +39,14 @@ mod imp {
 
     impl ObjectImpl for Stop {
         fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecString::new(
-                    "name",
-                    "name",
-                    "name",
-                    None,
-                    ParamFlags::READABLE,
-                )]
-            });
+            static PROPERTIES: Lazy<Vec<ParamSpec>> =
+                Lazy::new(|| vec![ParamSpecString::builder("name").read_only().build()]);
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
+        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "name" => self
                     .stop

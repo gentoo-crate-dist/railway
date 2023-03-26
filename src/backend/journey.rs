@@ -9,7 +9,7 @@ gtk::glib::wrapper! {
 
 impl Journey {
     pub fn new(journey: hafas_rs::Journey) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `Journey`.");
+        let s: Self = Object::builder().build();
         s.imp().journey.swap(&RefCell::new(Some(journey)));
         s
     }
@@ -32,14 +32,13 @@ mod imp {
     use chrono::NaiveDate;
 
     use gdk::{
-        glib::{ParamFlags, ParamSpec, ParamSpecObject, ParamSpecString, Value},
-        prelude::{StaticType, ToValue},
+        glib::{ParamSpec, ParamSpecObject, ParamSpecString, Value},
+        prelude::{ParamSpecBuilderExt, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass},
     };
 
     use crate::backend::Leg;
 
-    #[derive(Clone)]
     pub struct Journey {
         pub(super) journey: RefCell<Option<hafas_rs::Journey>>,
     }
@@ -60,44 +59,24 @@ mod imp {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecString::new("price", "price", "price", None, ParamFlags::READABLE),
-                    ParamSpecObject::new(
-                        "first-leg",
-                        "first-leg",
-                        "first-leg",
-                        Leg::static_type(),
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecObject::new(
-                        "last-leg",
-                        "last-leg",
-                        "last-leg",
-                        Leg::static_type(),
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "total-time",
-                        "total-time",
-                        "total-time",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "transitions",
-                        "transitions",
-                        "transitions",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new("types", "types", "types", None, ParamFlags::READABLE),
+                    ParamSpecString::builder("price").read_only().build(),
+                    ParamSpecObject::builder::<Leg>("first-leg")
+                        .read_only()
+                        .build(),
+                    ParamSpecObject::builder::<Leg>("last-leg")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("total-time").read_only().build(),
+                    ParamSpecString::builder("transitions").read_only().build(),
+                    ParamSpecString::builder("types").read_only().build(),
                 ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
+        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "price" => self
                     .journey
@@ -135,7 +114,11 @@ mod imp {
                     if let (Some(arrival), Some(departure)) = (arrival, departure) {
                         let needed_time = arrival - departure;
 
-                        (NaiveDate::from_ymd(2022, 1, 1).and_hms(0, 0, 0) + needed_time)
+                        (NaiveDate::from_ymd_opt(2022, 1, 1)
+                            .unwrap_or_default()
+                            .and_hms_opt(0, 0, 0)
+                            .unwrap_or_default()
+                            + needed_time)
                             .format("%H:%M")
                             .to_string()
                             .to_value()

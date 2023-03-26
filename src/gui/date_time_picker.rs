@@ -27,7 +27,6 @@ pub mod imp {
     use gdk::glib::clone;
     use gdk::glib::subclass::InitializingObject;
     use gtk::glib;
-    use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use libadwaita::traits::ExpanderRowExt;
@@ -58,7 +57,10 @@ pub mod imp {
             let hour = self.pick_hour.value().floor() as u32;
             let minute = self.pick_minute.value().floor() as u32;
 
-            let naive = NaiveDate::from_ymd(year, month, day).and_hms(hour, minute, 0);
+            let naive = NaiveDate::from_ymd_opt(year, month, day)
+                .unwrap_or_default()
+                .and_hms_opt(hour, minute, 0)
+                .unwrap_or_default();
             Local.from_local_datetime(&naive).unwrap()
         }
 
@@ -97,7 +99,7 @@ pub mod imp {
         }
 
         fn connect_expander_date_subtitle(&self) {
-            let obj = self.instance();
+            let obj = self.obj();
             self.pick_cal.connect_day_selected(clone!(
                 @weak obj
                 => move |_| {
@@ -106,7 +108,7 @@ pub mod imp {
         }
 
         fn connect_btn_input_time_label(&self) {
-            let obj = self.instance();
+            let obj = self.obj();
             self.pick_hour.connect_value_changed(clone!(
                 @weak obj
                 => move |_| {
@@ -137,8 +139,8 @@ pub mod imp {
     }
 
     impl ObjectImpl for DateTimePicker {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
             self.reset();
             self.connect_expander_date_subtitle();
             self.connect_btn_input_time_label();

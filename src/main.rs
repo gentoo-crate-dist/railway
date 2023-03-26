@@ -58,7 +58,7 @@ async fn main() {
 
     env_logger::init();
     gtk::init().expect("Failed to initialize gtk");
-    libadwaita::init();
+    libadwaita::init().expect("Failed to initilize libadwaita");
     let app = libadwaita::Application::builder()
         .application_id(APP_ID)
         .build();

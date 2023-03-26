@@ -29,7 +29,6 @@ impl SearchPage {
 
 pub mod imp {
     use gdk::gio::Settings;
-    use gdk::glib::ParamFlags;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
@@ -91,7 +90,7 @@ pub mod imp {
     impl SearchPage {
         pub(super) fn add_journey_store(&self, journey: Journey) {
             let item = JourneyStoreItem::new(journey);
-            let obj = self.instance();
+            let obj = self.obj().clone();
             item.connect_closure("details", false, 
                                  closure_local!(move |_item: JourneyStoreItem, journey: Journey| {
                 obj.emit_by_name::<()>("details", &[&journey]);
@@ -113,7 +112,7 @@ pub mod imp {
 
         pub(super) fn add_search_store(&self, origin: String, destination: String) {
             let item = SearchStoreItem::new(origin, destination);
-            let obj = self.instance();
+            let obj = self.obj().clone();
             item.connect_closure("details", false, 
                                  closure_local!(move |_item: SearchStoreItem, origin: String, destination: String| {
                                      let s = obj.imp();
@@ -146,7 +145,7 @@ pub mod imp {
 
         #[template_callback]
         fn handle_search(&self, _: gtk::Button) {
-            let obj = self.instance();
+            let obj = self.obj();
             let from = self.in_from.property::<Place>("place");
             let to = self.in_to.property::<Place>("place");
 
@@ -228,44 +227,34 @@ pub mod imp {
     }
 
     impl ObjectImpl for SearchPage {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
             self.in_from.set_input(self.settings.string("search-from").to_string());
             self.in_to.set_input(self.settings.string("search-to").to_string());
         }
 
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-                vec![Signal::builder(
-                    "search",
-                    &[JourneysResult::static_type().into()],
-                    <()>::static_type().into(),
-                )
-                .build(),
-                Signal::builder(
-                    "details",
-                    &[Journey::static_type().into()],
-                    <()>::static_type().into(),
-                )
-                .build()]
+                vec![
+                    Signal::builder("search")
+                        .param_types([JourneysResult::static_type()])
+                        .build(),
+                    Signal::builder("details")
+                        .param_types([Journey::static_type()])
+                        .build()
+                ]
             });
             SIGNALS.as_ref()
         }
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::new(
-                    "client",
-                    "client",
-                    "client",
-                    HafasClient::static_type(),
-                    ParamFlags::READWRITE,
-                )]
+                vec![ParamSpecObject::builder::<HafasClient>("client").build()]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "client" => {
                     let obj = value
@@ -278,7 +267,7 @@ pub mod imp {
             }
         }
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "client" => self.client.borrow().to_value(),
                 _ => unimplemented!(),
@@ -287,8 +276,8 @@ pub mod imp {
     }
 
     impl WidgetImpl for SearchPage {
-        fn unmap(&self, widget: &Self::Type) {
-            self.parent_unmap(widget);
+        fn unmap(&self) {
+            self.parent_unmap();
             self.settings.set_string("search-from", &self.in_from.input()).expect("Failed to save search-from");
             self.settings.set_string("search-to", &self.in_to.input()).expect("Failed to save search-to");
         }

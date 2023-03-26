@@ -1,12 +1,5 @@
 use gtk::glib::Object;
 
-use super::{
-    alt_label::AltLabel,
-    date_time_picker::DateTimePicker,
-    station_entry::StationEntry,
-    stores::{journey_store::JourneysStore, search_store::SearchesStore},
-};
-
 gtk::glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
         @extends libadwaita::ApplicationWindow, gtk::ApplicationWindow, libadwaita::Window, gtk::Window, gtk::Widget,
@@ -16,12 +9,9 @@ gtk::glib::wrapper! {
 
 impl Window {
     pub fn new(app: &libadwaita::Application) -> Self {
-        let _: AltLabel = Object::new(&[]).expect("Failed to initialize `DBAltLabel`");
-        let _: DateTimePicker = Object::new(&[]).expect("Failed to initialize `DBDateTimePicker`");
-        let _: StationEntry = Object::new(&[]).expect("Failed to initialize `DBStationEntry`");
-        let _: JourneysStore = Object::new(&[]).expect("Failed to initialize `DBJourneysStore`");
-        let _: SearchesStore = Object::new(&[]).expect("Failed to initialize `DBSearchesStore`");
-        Object::new(&[("application", app)]).expect("Failed to create Window")
+        Object::builder::<Self>()
+            .property("application", app)
+            .build()
     }
 }
 
@@ -30,12 +20,10 @@ pub mod imp {
 
     use gdk::gio::SimpleAction;
     use gdk::gio::SimpleActionGroup;
-    use gdk::glib::ParamFlags;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
     use glib::subclass::InitializingObject;
-    use gtk::builders::AboutDialogBuilder;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
@@ -50,10 +38,13 @@ pub mod imp {
     use crate::backend::JourneysResult;
     use crate::backend::Leg;
     use crate::backend::Place;
+    use crate::gui::alt_label::AltLabel;
+    use crate::gui::date_time_picker::DateTimePicker;
     use crate::gui::journey_detail_page::JourneyDetailPage;
     use crate::gui::journeys_page::JourneysPage;
     use crate::gui::preferences_window::PreferencesWindow;
     use crate::gui::search_page::SearchPage;
+    use crate::gui::station_entry::StationEntry;
     use crate::gui::stores::journey_store::JourneysStore;
     use crate::gui::stores::search_store::SearchesStore;
     use crate::gui::utility::Utility;
@@ -97,25 +88,25 @@ pub mod imp {
             });
             let action_about = SimpleAction::new("about", None);
             action_about.connect_activate(|_, _| {
-                let about_dialog = AboutDialogBuilder::new()
-                    .authors(
+                let about_dialog = libadwaita::AboutWindow::builder()
+                    .developers(
                         env!("CARGO_PKG_AUTHORS")
-                            .split(";")
+                            .split(';')
                             .map(|s| s.to_string())
-                            .collect(),
+                            .collect::<Vec<_>>(),
                     )
                     .comments(env!("CARGO_PKG_DESCRIPTION"))
-                    .copyright(
+                    .copyright(glib::markup_escape_text(
                         include_str!("../../NOTICE")
                             .to_string()
                             .lines()
                             .next()
                             .unwrap_or_default(),
-                    )
+                    ))
                     .license_type(gtk::License::Gpl30)
-                    .logo_icon_name("icon")
-                    .program_name("DieBahn")
-                    .translator_credits(&gettextrs::gettext("translators"))
+                    .application_icon("icon")
+                    .application_name("DieBahn")
+                    .translator_credits(gettextrs::gettext("translators"))
                     .version(env!("CARGO_PKG_VERSION"))
                     .website(env!("CARGO_PKG_HOMEPAGE"))
                     .build();
@@ -221,6 +212,11 @@ pub mod imp {
         type ParentType = libadwaita::ApplicationWindow;
 
         fn class_init(klass: &mut Self::Class) {
+            AltLabel::ensure_type();
+            DateTimePicker::ensure_type();
+            StationEntry::ensure_type();
+            JourneysStore::ensure_type();
+            SearchesStore::ensure_type();
             Self::bind_template(klass);
             Self::bind_template_callbacks(klass);
             Utility::bind_template_callbacks(klass);
@@ -232,28 +228,24 @@ pub mod imp {
     }
 
     impl ObjectImpl for Window {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
-            self.setup_actions(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
+            self.setup_actions(&self.obj());
             self.setup();
         }
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::new(
-                    "client",
-                    "client",
-                    "client",
-                    HafasClient::static_type(),
-                    ParamFlags::READABLE,
-                )]
+                vec![ParamSpecObject::builder::<HafasClient>("client")
+                    .read_only()
+                    .build()]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
+        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "client" => self.client.borrow().to_value(),
                 _ => unimplemented!(),
@@ -263,7 +255,7 @@ pub mod imp {
 
     impl WidgetImpl for Window {}
     impl WindowImpl for Window {
-        fn close_request(&self, _obj: &Self::Type) -> Inhibit {
+        fn close_request(&self) -> Inhibit {
             self.store_journeys.get().flush();
             self.store_searches.get().flush();
             Inhibit(false)

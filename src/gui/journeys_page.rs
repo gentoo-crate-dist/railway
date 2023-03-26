@@ -73,7 +73,6 @@ pub mod imp {
     use gdk::glib::clone;
     use gdk::glib::subclass::Signal;
     use gdk::glib::MainContext;
-    use gdk::glib::ParamFlags;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecBoolean;
     use gdk::glib::ParamSpecObject;
@@ -83,6 +82,7 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use gtk::ListItem;
     use gtk::PositionType;
     use gtk::SignalListItemFactory;
     use gtk::Widget;
@@ -145,7 +145,7 @@ pub mod imp {
     impl JourneysPage {
         /// Every time when the page is not yet filled with the journeys, load more.
         fn connect_initial_loading(&self) {
-            let obj = self.instance();
+            let obj = self.obj();
             self.scrolled_window
                 .vadjustment()
                 .connect_changed(clone!(@weak obj => move |adj| {
@@ -172,7 +172,7 @@ pub mod imp {
 
         #[template_callback]
         fn handle_earlier(&self) {
-            let obj = self.instance();
+            let obj = self.obj();
 
             // Skip if already loading.
             if obj.is_loading_earlier() {
@@ -232,7 +232,7 @@ pub mod imp {
 
         #[template_callback]
         fn handle_later(&self) {
-            let obj = self.instance();
+            let obj = self.obj();
 
             // Skip if already loading.
             if obj.is_loading_later() {
@@ -291,7 +291,7 @@ pub mod imp {
 
         fn setup_model(&self, obj: &super::JourneysPage) {
             let model = gtk::gio::ListStore::new(Journey::static_type());
-            let selection_model = gtk::NoSelection::new(Some(&model));
+            let selection_model = gtk::NoSelection::new(Some(model.clone()));
             self.list_journeys.get().set_model(Some(&selection_model));
 
             self.model.replace(model);
@@ -299,8 +299,11 @@ pub mod imp {
             let factory = SignalListItemFactory::new();
             factory.connect_setup(move |_, list_item| {
                 let journey_item = JourneyListItem::new();
-                list_item.set_child(Some(&journey_item));
+                let list_item = list_item
+                    .downcast_ref::<ListItem>()
+                    .expect("The factory item to be a `ListItem`");
 
+                list_item.set_child(Some(&journey_item));
                 list_item
                     .property_expression("item")
                     .bind(&journey_item, "journey", Widget::NONE);
@@ -340,56 +343,26 @@ pub mod imp {
     }
 
     impl ObjectImpl for JourneysPage {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
-            self.setup_model(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
+            self.setup_model(&self.obj());
             self.connect_initial_loading();
         }
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecObject::new(
-                        "journeys-result",
-                        "journeys-result",
-                        "journeys-result",
-                        JourneysResult::static_type(),
-                        ParamFlags::READWRITE,
-                    ),
-                    ParamSpecObject::new(
-                        "client",
-                        "client",
-                        "client",
-                        HafasClient::static_type(),
-                        ParamFlags::READWRITE,
-                    ),
-                    ParamSpecBoolean::new(
-                        "is-loading-earlier",
-                        "is-loading-earlier",
-                        "is-loading-earlier",
-                        false,
-                        ParamFlags::READWRITE,
-                    ),
-                    ParamSpecBoolean::new(
-                        "is-loading-later",
-                        "is-loading-later",
-                        "is-loading-later",
-                        false,
-                        ParamFlags::READWRITE,
-                    ),
-                    ParamSpecBoolean::new(
-                        "auto-scroll",
-                        "auto-scroll",
-                        "auto-scroll",
-                        true,
-                        ParamFlags::READWRITE,
-                    ),
+                    ParamSpecObject::builder::<JourneysResult>("journeys-result").build(),
+                    ParamSpecObject::builder::<HafasClient>("client").build(),
+                    ParamSpecBoolean::builder("is-loading-earlier").build(),
+                    ParamSpecBoolean::builder("is-loading-later").build(),
+                    ParamSpecBoolean::builder("auto-scroll").build(),
                 ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "journeys-result" => {
                     let obj = value.get::<Option<JourneysResult>>()
@@ -437,7 +410,7 @@ pub mod imp {
             }
         }
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "journeys-result" => self.journeys_result.borrow().to_value(),
                 "client" => self.client.borrow().to_value(),
@@ -450,12 +423,9 @@ pub mod imp {
 
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-                vec![Signal::builder(
-                    "select",
-                    &[Journey::static_type().into()],
-                    <()>::static_type().into(),
-                )
-                .build()]
+                vec![Signal::builder("select")
+                    .param_types([Journey::static_type()])
+                    .build()]
             });
             SIGNALS.as_ref()
         }

@@ -18,7 +18,6 @@ pub mod imp {
 
     use gdk::glib::clone;
     use gdk::glib::MainContext;
-    use gdk::glib::ParamFlags;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
@@ -34,9 +33,9 @@ pub mod imp {
     use crate::backend::HafasClient;
     use crate::backend::Journey;
     use crate::backend::Leg;
+    use crate::gui::error::error_to_toast;
     use crate::gui::leg_item::LegItem;
     use crate::gui::utility::Utility;
-    use crate::gui::error::error_to_toast;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/journey_detail_page.ui")]
@@ -98,33 +97,21 @@ pub mod imp {
     }
 
     impl ObjectImpl for JourneyDetailPage {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
         }
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecObject::new(
-                        "journey",
-                        "journey",
-                        "journey",
-                        Journey::static_type(),
-                        ParamFlags::READWRITE,
-                    ),
-                    ParamSpecObject::new(
-                        "client",
-                        "client",
-                        "client",
-                        HafasClient::static_type(),
-                        ParamFlags::READWRITE,
-                    ),
+                    ParamSpecObject::builder::<Journey>("journey").build(),
+                    ParamSpecObject::builder::<HafasClient>("client").build(),
                 ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "journey" => {
                     let obj = value.get::<Option<Journey>>().expect(
@@ -170,7 +157,7 @@ pub mod imp {
             }
         }
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "journey" => self.journey.borrow().to_value(),
                 "client" => self.client.borrow().to_value(),

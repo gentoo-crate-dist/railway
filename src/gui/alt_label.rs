@@ -8,7 +8,6 @@ gtk::glib::wrapper! {
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::ParamFlags;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecString;
     use gdk::glib::Value;
@@ -69,22 +68,22 @@ pub mod imp {
     }
 
     impl ObjectImpl for AltLabel {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
-            self.connect_equal(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
+            self.connect_equal(&self.obj());
         }
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecString::new("main", "main", "main", None, ParamFlags::READWRITE),
-                    ParamSpecString::new("alt", "alt", "alt", None, ParamFlags::READWRITE),
+                    ParamSpecString::builder("main").build(),
+                    ParamSpecString::builder("alt").build(),
                 ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "main" => {
                     let obj = value
@@ -104,7 +103,7 @@ pub mod imp {
             }
         }
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "main" => self.main.borrow().to_value(),
                 "alt" => self.alt.borrow().to_value(),

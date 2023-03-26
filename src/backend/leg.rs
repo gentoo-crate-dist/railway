@@ -9,7 +9,7 @@ gtk::glib::wrapper! {
 
 impl Leg {
     pub fn new(leg: hafas_rs::Leg) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `Leg`.");
+        let s: Self = Object::builder::<Self>().build();
         s.imp().leg.swap(&RefCell::new(Some(leg)));
         s
     }
@@ -28,15 +28,15 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{ParamFlags, ParamSpec, ParamSpecObject, ParamSpecString, Value},
-        prelude::{ObjectExt, StaticType, ToValue},
-        subclass::prelude::{ObjectImpl, ObjectSubclass},
+        glib::{ParamSpec, ParamSpecObject, ParamSpecString, Value},
+        prelude::{ObjectExt, ParamSpecBuilderExt, ToValue},
+        subclass::prelude::{ObjectImpl, ObjectSubclass, ObjectSubclassExt},
     };
     use once_cell::sync::Lazy;
 
     use crate::backend::Place;
 
-    #[derive(Default, Clone)]
+    #[derive(Default)]
     pub struct Leg {
         pub(super) leg: RefCell<Option<hafas_rs::Leg>>,
     }
@@ -51,92 +51,43 @@ mod imp {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecString::new(
-                        "direction",
-                        "direction",
-                        "direction",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new("name", "name", "name", None, ParamFlags::READABLE),
-                    ParamSpecString::new(
-                        "departure",
-                        "departure",
-                        "departure",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "arrival",
-                        "arrival",
-                        "arrival",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "planned-departure",
-                        "planned-departure",
-                        "planned-departure",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "planned-arrival",
-                        "planned-arrival",
-                        "planned-arrival",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "departure-platform",
-                        "departure-platform",
-                        "departure-platform",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "arrival-platform",
-                        "arrival-platform",
-                        "arrival-platform",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "planned-departure-platform",
-                        "planned-departure-platform",
-                        "planned-departure-platform",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "planned-arrival-platform",
-                        "planned-arrival-platform",
-                        "planned-arrival-platform",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecObject::new(
-                        "origin",
-                        "origin",
-                        "origin",
-                        Place::static_type(),
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecObject::new(
-                        "destination",
-                        "destination",
-                        "destination",
-                        Place::static_type(),
-                        ParamFlags::READABLE,
-                    ),
+                    ParamSpecString::builder("direction").read_only().build(),
+                    ParamSpecString::builder("name").read_only().build(),
+                    ParamSpecString::builder("departure").read_only().build(),
+                    ParamSpecString::builder("arrival").read_only().build(),
+                    ParamSpecString::builder("planned-departure")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("planned-arrival")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("departure-platform")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("arrival-platform")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("planned-departure-platform")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("planned-arrival-platform")
+                        .read_only()
+                        .build(),
+                    ParamSpecObject::builder::<Place>("origin")
+                        .read_only()
+                        .build(),
+                    ParamSpecObject::builder::<Place>("destination")
+                        .read_only()
+                        .build(),
                 ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
+        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
 
-        fn property(&self, obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
+            let obj = self.obj();
             match pspec.name() {
                 "direction" => self
                     .leg

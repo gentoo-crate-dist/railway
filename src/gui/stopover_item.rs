@@ -11,14 +11,15 @@ gtk::glib::wrapper! {
 
 impl StopoverItem {
     pub fn new(stopover: &Stopover) -> Self {
-        Object::new(&[("stopover", stopover)]).expect("Failed to create StopoverItem")
+        Object::builder::<Self>()
+            .property("stopover", stopover)
+            .build()
     }
 }
 
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::ParamFlags;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
@@ -53,24 +54,17 @@ pub mod imp {
     }
 
     impl ObjectImpl for StopoverItem {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
         }
 
         fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::new(
-                    "stopover",
-                    "stopover",
-                    "stopover",
-                    Stopover::static_type(),
-                    ParamFlags::READWRITE,
-                )]
-            });
+            static PROPERTIES: Lazy<Vec<ParamSpec>> =
+                Lazy::new(|| vec![ParamSpecObject::builder::<Stopover>("stopover").build()]);
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "stopover" => {
                     let obj = value.get::<Option<Stopover>>().expect(
@@ -83,7 +77,7 @@ pub mod imp {
             }
         }
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "stopover" => self.stopover.borrow().to_value(),
                 _ => unimplemented!(),

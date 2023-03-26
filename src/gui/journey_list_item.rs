@@ -9,7 +9,7 @@ gtk::glib::wrapper! {
 
 impl JourneyListItem {
     pub fn new() -> Self {
-        Object::new(&[]).expect("Failed to create `JourneyListItem`")
+        Object::builder().build()
     }
 }
 
@@ -22,7 +22,6 @@ impl Default for JourneyListItem {
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::ParamFlags;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
@@ -59,24 +58,17 @@ pub mod imp {
     }
 
     impl ObjectImpl for JourneyListItem {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
         }
 
         fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::new(
-                    "journey",
-                    "journey",
-                    "journey",
-                    Journey::static_type(),
-                    ParamFlags::READWRITE,
-                )]
-            });
+            static PROPERTIES: Lazy<Vec<ParamSpec>> =
+                Lazy::new(|| vec![ParamSpecObject::builder::<Journey>("journey").build()]);
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "journey" => {
                     let obj = value.get::<Option<Journey>>().expect(
@@ -89,7 +81,7 @@ pub mod imp {
             }
         }
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "journey" => self.journey.borrow().to_value(),
                 _ => unimplemented!(),

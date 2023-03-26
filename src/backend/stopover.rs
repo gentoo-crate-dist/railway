@@ -9,7 +9,7 @@ gtk::glib::wrapper! {
 
 impl Stopover {
     pub fn new(stopover: hafas_rs::Stopover) -> Self {
-        let s: Self = Object::new(&[]).expect("Failed to create `Stopover`.");
+        let s: Self = Object::builder().build();
         s.imp().stopover.swap(&RefCell::new(Some(stopover)));
         s
     }
@@ -20,15 +20,15 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{ParamFlags, ParamSpec, ParamSpecObject, ParamSpecString, Value},
-        prelude::{StaticType, ToValue},
+        glib::{ParamSpec, ParamSpecObject, ParamSpecString, Value},
+        prelude::{ParamSpecBuilderExt, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass},
     };
     use once_cell::sync::Lazy;
 
     use crate::backend::Place;
 
-    #[derive(Default, Clone)]
+    #[derive(Default)]
     pub struct Stopover {
         pub(super) stopover: RefCell<Option<hafas_rs::Stopover>>,
     }
@@ -43,77 +43,37 @@ mod imp {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecObject::new(
-                        "stop",
-                        "stop",
-                        "stop",
-                        Place::static_type(),
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "departure",
-                        "departure",
-                        "departure",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "arrival",
-                        "arrival",
-                        "arrival",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "planned-departure",
-                        "planned-departure",
-                        "planned-departure",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "planned-arrival",
-                        "planned-arrival",
-                        "planned-arrival",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "departure-platform",
-                        "departure-platform",
-                        "departure-platform",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "arrival-platform",
-                        "arrival-platform",
-                        "arrival-platform",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "planned-departure-platform",
-                        "planned-departure-platform",
-                        "planned-departure-platform",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
-                    ParamSpecString::new(
-                        "planned-arrival-platform",
-                        "planned-arrival-platform",
-                        "planned-arrival-platform",
-                        None,
-                        ParamFlags::READABLE,
-                    ),
+                    ParamSpecObject::builder::<Place>("stop")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("departure").read_only().build(),
+                    ParamSpecString::builder("arrival").read_only().build(),
+                    ParamSpecString::builder("planned-departure")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("planned-arrival")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("departure-platform")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("arrival-platform")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("planned-departure-platform")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("planned-arrival-platform")
+                        .read_only()
+                        .build(),
                 ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
+        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "stop" => self
                     .stopover
