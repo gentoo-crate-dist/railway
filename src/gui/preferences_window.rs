@@ -1,5 +1,7 @@
 use gdk::glib::Object;
 
+use crate::gui::window::Window;
+
 gtk::glib::wrapper! {
     pub struct PreferencesWindow(ObjectSubclass<imp::PreferencesWindow>)
         @extends libadwaita::PreferencesWindow, libadwaita::Window, gtk::Window, gtk::Widget,
@@ -8,8 +10,10 @@ gtk::glib::wrapper! {
 }
 
 impl PreferencesWindow {
-    pub fn new() -> Self {
-        Object::builder().build()
+    pub fn new(window: &Window) -> Self {
+        Object::builder()
+            .property("transient-for", window)
+            .build()
     }
 }
 

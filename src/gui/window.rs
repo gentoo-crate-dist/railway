@@ -25,6 +25,7 @@ pub mod imp {
     use gdk::glib::Value;
     use glib::subclass::InitializingObject;
     use gtk::glib;
+    use gtk::glib::clone;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
@@ -82,13 +83,14 @@ pub mod imp {
 
         fn setup_actions(&self, obj: &super::Window) {
             let action_settings = SimpleAction::new("settings", None);
-            action_settings.connect_activate(|_, _| {
-                let settings = PreferencesWindow::new();
+            action_settings.connect_activate(clone!(@weak obj as window => move |_, _| {
+                let settings = PreferencesWindow::new(&window);
                 settings.show();
-            });
+            }));
             let action_about = SimpleAction::new("about", None);
-            action_about.connect_activate(|_, _| {
+            action_about.connect_activate(clone!(@weak obj as window => move |_, _| {
                 let about_dialog = libadwaita::AboutWindow::builder()
+                    .transient_for(&window)
                     .developers(
                         env!("CARGO_PKG_AUTHORS")
                             .split(';')
@@ -111,7 +113,7 @@ pub mod imp {
                     .website(env!("CARGO_PKG_HOMEPAGE"))
                     .build();
                 about_dialog.show();
-            });
+            }));
 
             let actions = SimpleActionGroup::new();
             obj.insert_action_group("win", Some(&actions));
