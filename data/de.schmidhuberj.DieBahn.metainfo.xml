@@ -62,6 +62,11 @@
     </ul>
   </description>
   <releases>
+    <release version="v1.4.1" date="2023-06-05">
+      <description> 
+        <p>Made about- and preferences-windows transient.</p>
+      </description>
+    </release>
     <release version="v1.4.0" date="2023-05-20">
       <description> 
         <p>New icon</p>

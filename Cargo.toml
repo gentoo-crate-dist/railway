@@ -3,7 +3,7 @@ name = "diebahn"
 description = "A GTK4 frontend for the travel information of the german railway ('Reiseauskunft der Deutschen Bahn') and many more."
 authors = ["Julian Schmidhuber <schmidhuberj2@protonmail.com>"]
 homepage = "https://gitlab.com/Schmiddiii/diebahn"
-version = "1.4.0"
+version = "1.4.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
