@@ -1,7 +1,7 @@
 project(
   'diebahn',
   'rust',
-  version: '1.4.1',
+  version: '1.5.0',
   meson_version: '>= 0.59',
   license: 'GPL-3.0-or-later',
 )
