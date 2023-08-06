@@ -14,8 +14,8 @@
   <translation type="gettext">de.schmidhuberj.DieBahn</translation>
   <update_contact>flatpak@schmiddi.anonaddy.com</update_contact>
 
-  <url type="homepage">https://gitlab.com/Schmiddiii/diebahn</url>
-  <url type="bugtracker">https://gitlab.com/Schmiddiii/diebahn/-/issues</url>
+  <url type="homepage">https://gitlab.com/schmiddi-on-mobile/diebahn</url>
+  <url type="bugtracker">https://gitlab.com/schmiddi-on-mobile/diebahn/-/issues</url>
 
   <description>
     <p>
@@ -155,7 +155,7 @@
   <screenshots>
     <screenshot type="default">
       <caption>Overview of the application</caption>
-      <image>https://gitlab.com/Schmiddiii/diebahn/-/raw/master/data/screenshots/overview.png</image>
+      <image>https://gitlab.com/schmiddi-on-mobile/diebahn/-/raw/master/data/screenshots/overview.png</image>
     </screenshot>
   </screenshots>
 

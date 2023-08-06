@@ -4,7 +4,7 @@ A GTK4 frontend for the travel information of the german railway ("Reiseauskunft
 
 ## Screenshots
 
-![Overview of the application](https://gitlab.com/Schmiddiii/diebahn/-/raw/master/data/screenshots/overview.png)
+![Overview of the application](https://gitlab.com/schmiddi-on-mobile/diebahn/-/raw/master/data/screenshots/overview.png)
 
 ## Features
 
