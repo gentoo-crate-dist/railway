@@ -112,6 +112,7 @@ pub mod imp {
                     .version(env!("CARGO_PKG_VERSION"))
                     .website(env!("CARGO_PKG_HOMEPAGE"))
                     .build();
+                about_dialog.add_link("GitLab", "https://gitlab.com/schmiddi-on-mobile/diebahn");
                 about_dialog.show();
             }));
 
