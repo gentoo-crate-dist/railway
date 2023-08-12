@@ -1,26 +1,47 @@
 # DieBahn
 
-A GTK4 frontend for the travel information of the german railway ("Reiseauskunft der Deutschen Bahn") and many more.
+[![Matrix](https://img.shields.io/badge/Matrix-Join-brightgreen)](https://matrix.to/#/%23diebahn:matrix.org)
+
+DieBahn lets you look up travel information for many different railways, all without needing to navigate through different websites.
 
 ## Screenshots
 
-![Overview of the application](https://gitlab.com/schmiddi-on-mobile/diebahn/-/raw/master/data/screenshots/overview.png)
+![](/data/screenshots/overview.png)
+
+## Installation
+
+<table>
+  <tr>
+    <td>Flatpak</td>
+    <td>
+      <a href='https://flathub.org/apps/details/de.schmidhuberj.DieBahn'><img width='130' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
+    </td>
+  </tr>
+  <tr>
+    <td>Arch Linux (AUR)</td>
+    <td>[diebahn](https://aur.archlinux.org/packages/diebahn)</td>
+  </tr>
+</table>
 
 ## Features
 
-- Search for a journey.
-- List all available journeys.
-- View the details of a journey including departure, arrivals, delays, platforms.
-- Convergent for small screens.
-- Bookmark a search or a journey.
-- Show more information like prices.
-- Many different search profiles, e.g.
+- Search for journeys
+- View the details of a journey including departure, arrivals, delays, platforms
+- Adaptive for small screens
+- Bookmark a search or a journey
+- Show more information like prices
+- Many different search profiles, e.g
     - DB
     - SNCF
     - ÖBB
     - BART
-    - ... (36 more). For a full list of supported profiles, see [hafas-rs](https://gitlab.com/Schmiddiii/hafas-rs#profiles) which is used to query the application data.
+    - ... (36 more). For a full list of supported profiles, see [hafas-rs](https://gitlab.com/schmiddi-on-mobile/hafas-rs#profiles) which is used to query the application data.
 
-## Contact
+## Donate
 
-There is a matrix room setup for this application. You can join it [here](https://matrix.to/#/%23diebahn:matrix.org?via=matrix.org) if you want.
+If you like this project and have some spare Monero left, consider donating to my Monero address:
+
+Monero:
+```
+82pRFY4iUjVUWm48ykaTKbjYeDksdMunWPHbrDbTmyKF7PWAxNX8FXM7G6B1n4NFvHfr3ztEg411A2gCjJjNJ8PtEnmcehf
+```
