@@ -4,39 +4,51 @@
   <requires lib="libadwaita" version="1.0"/>
 
   <template class="DBStopoverItem" parent="GtkBox">
+    <style>
+      <class name="stopover-item"/>
+    </style>
     <property name="orientation">horizontal</property>
     <property name="hexpand">TRUE</property>
     <property name="spacing">8</property>
     <child>
-      <object class="DBAltLabel">
-        <binding name="main">
-          <lookup name="planned-arrival">
-            <lookup name="stopover" type="DBStopoverItem">
-            </lookup>
-          </lookup>
-        </binding>
-        <binding name="alt">
-          <lookup name="arrival">
-            <lookup name="stopover" type="DBStopoverItem">
-            </lookup>
-          </lookup>
-        </binding>
-      </object>
-    </child>
-    <child>
-      <object class="DBAltLabel">
-        <binding name="main">
-          <lookup name="planned-departure">
-            <lookup name="stopover" type="DBStopoverItem">
-            </lookup>
-          </lookup>
-        </binding>
-        <binding name="alt">
-          <lookup name="departure">
-            <lookup name="stopover" type="DBStopoverItem">
-            </lookup>
-          </lookup>
-        </binding>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="DBAltLabel" id="alt_label_arrival">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">5</property>
+            <binding name="main">
+              <lookup name="planned-arrival">
+                <lookup name="stopover" type="DBStopoverItem">
+                </lookup>
+              </lookup>
+            </binding>
+            <binding name="alt">
+              <lookup name="arrival">
+                <lookup name="stopover" type="DBStopoverItem">
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="DBAltLabel" id="alt_label_departure">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">5</property>
+            <binding name="main">
+              <lookup name="planned-departure">
+                <lookup name="stopover" type="DBStopoverItem">
+                </lookup>
+              </lookup>
+            </binding>
+            <binding name="alt">
+              <lookup name="departure">
+                <lookup name="stopover" type="DBStopoverItem">
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
       </object>
     </child>
     <child>
@@ -53,6 +65,7 @@
     </child>
     <child>
       <object class="DBAltLabel">
+        <property name="valign">center</property>
         <property name="halign">GTK_ALIGN_END</property>
         <property name="hexpand">True</property>
         <binding name="main">

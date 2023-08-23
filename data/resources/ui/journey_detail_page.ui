@@ -4,6 +4,9 @@
   <requires lib="libadwaita" version="1.0"/>
 
   <template class="DBJourneyDetailPage" parent="GtkBox">
+    <style>
+      <class name="journey-detail-page"/>
+    </style>
     <property name="orientation">vertical</property>
     <property name="spacing">8</property>
     <property name="vexpand">TRUE</property>

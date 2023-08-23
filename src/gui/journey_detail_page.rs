@@ -35,6 +35,7 @@ pub mod imp {
     use crate::backend::Leg;
     use crate::gui::error::error_to_toast;
     use crate::gui::leg_item::LegItem;
+    use crate::gui::transition::Transition;
     use crate::gui::utility::Utility;
 
     #[derive(CompositeTemplate, Default)]
@@ -129,16 +130,13 @@ pub mod imp {
                         if i != 0 {
                             let from = &legs[i - 1];
                             let to = &legs[i];
-                            let minutes = if to.departure.is_some() && from.arrival.is_some() {
-                                let time = to.departure.unwrap() - from.arrival.unwrap();
-                                let minutes_fmt = gettextrs::gettext("{} Minutes");
-                                minutes_fmt.replace("{}", &time.num_minutes().to_string())
+                            let duration = if to.departure.is_some() && from.arrival.is_some() {
+                                Some(to.departure.unwrap() - from.arrival.unwrap())
                             } else {
-                                let minutes_fmt = gettextrs::gettext("{} Minutes");
-                                minutes_fmt.replace("{}", "?")
+                                None
                             };
 
-                            self.box_legs.append(&gtk::Label::new(Some(&minutes)));
+                            self.box_legs.append(&Transition::new(&duration));
                         }
                         self.box_legs
                             .append(&LegItem::new(&Leg::new(legs[i].clone())));

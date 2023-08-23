@@ -14,6 +14,7 @@
     <file preprocess="xml-stripblanks">ui/leg_item.ui</file>
     <file preprocess="xml-stripblanks">ui/remark_item.ui</file>
     <file preprocess="xml-stripblanks">ui/stopover_item.ui</file>
+    <file preprocess="xml-stripblanks">ui/transition.ui</file>
 
     <file preprocess="xml-stripblanks">ui/alt_label.ui</file>
     <file preprocess="xml-stripblanks">ui/date_time_picker.ui</file>

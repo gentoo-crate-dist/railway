@@ -4,7 +4,7 @@ use crate::backend::Leg;
 
 gtk::glib::wrapper! {
     pub struct LegItem(ObjectSubclass<imp::LegItem>)
-        @extends gtk::Box, gtk::Widget,
+        @extends gtk::Grid, gtk::Widget,
         @implements gtk::gio::ActionGroup, gtk::gio::ActionMap, gtk::Accessible, gtk::Buildable,
             gtk::ConstraintTarget;
 }
@@ -22,6 +22,8 @@ pub mod imp {
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
     use glib::subclass::InitializingObject;
+    use gtk::SizeGroup;
+    use gtk::SizeGroupMode;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
@@ -42,6 +44,8 @@ pub mod imp {
         box_stopovers: TemplateChild<gtk::Box>,
         #[template_child]
         box_remarks: TemplateChild<gtk::Box>,
+        #[template_child]
+        label_num_stopovers: TemplateChild<gtk::Label>,
 
         leg: RefCell<Option<Leg>>,
     }
@@ -50,7 +54,7 @@ pub mod imp {
     impl ObjectSubclass for LegItem {
         const NAME: &'static str = "DBLegItem";
         type Type = super::LegItem;
-        type ParentType = gtk::Box;
+        type ParentType = gtk::Grid;
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
@@ -107,17 +111,28 @@ pub mod imp {
                         stopovers.remove(0);
                     }
 
+                    let size_group = SizeGroup::new(SizeGroupMode::Horizontal);
+
                     // Fill box_legs
-                    for stopover in stopovers {
+                    for stopover in &stopovers {
+                        let widget = StopoverItem::new(&Stopover::new(stopover.clone()));
                         self.box_stopovers
-                            .append(&StopoverItem::new(&Stopover::new(stopover.clone())));
+                            .append(&widget);
+                        for w in widget.alt_labels() {
+                            size_group.add_widget(&w);
+                        }
                     }
+
 
                     // Fill box_remarks
                     for remark in remarks {
                         self.box_remarks
                             .append(&RemarkItem::new(&Remark::new(remark.clone())));
                     }
+
+                    let num_stopovers_fmt = gettextrs::gettext("{} stopovers");
+                    let num_stopovers_str = num_stopovers_fmt.replace("{}", &stopovers.len().to_string());
+                    self.label_num_stopovers.set_label(&num_stopovers_str);
 
                     self.leg.replace(obj);
                 }
@@ -134,5 +149,5 @@ pub mod imp {
     }
 
     impl WidgetImpl for LegItem {}
-    impl BoxImpl for LegItem {}
+    impl GridImpl for LegItem {}
 }
