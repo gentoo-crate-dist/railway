@@ -203,6 +203,16 @@ pub mod imp {
                         .get::<Option<HafasClient>>()
                         .expect("Property `client` of `StationEntry` has to be of type `HafasClient`");
 
+                    if let Some(obj) = &obj {
+                        let s = self.obj();
+                        obj.connect_local("provider-changed", true, clone!(@weak s => @default-return None, move |_| {
+                            log::trace!("Station-entry got provider change from hafas_client. Restting");
+                            s.set_property("place", None::<Place>);
+                            s.imp().on_changed();
+                            None
+                        }));
+                    }
+
                     self.client.replace(obj);
                 }
                 _ => unimplemented!()

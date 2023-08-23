@@ -1,8 +1,9 @@
 use std::cell::RefCell;
 
-use gdk::prelude::SettingsExt;
+use gdk::glib::clone;
+use gdk::prelude::{SettingsExt, ObjectExt};
 use gdk::subclass::prelude::ObjectSubclassIsExt;
-use gtk::glib::Object;
+use gtk::glib::{Object, self};
 use hafas_rs::api::{
     journeys::JourneysOptions, locations::LocationsOptions, refresh_journey::RefreshJourneyOptions,
 };
@@ -26,14 +27,24 @@ impl std::default::Default for HafasClient {
 impl HafasClient {
     pub fn new() -> HafasClient {
         let s: Self = Object::builder().build();
-        let profile_name = s.imp().settings.string("search-provider");
-        s.imp()
+        let settings = &s.imp().settings;
+        let profile_name = settings.string("search-provider");
+        settings.connect_changed(Some("search-provider"), clone!(@weak s => move |settings, _| {
+            s.set_profile(settings.string("search-provider"));
+        }));
+        s.set_profile(profile_name);
+        s
+    }
+
+    pub fn set_profile<S: AsRef<str>>(&self, profile_name: S) {
+        log::info!("The hafas client was changed to: {}.", profile_name.as_ref());
+        self.imp()
             .internal
             .swap(&RefCell::new(Some(hafas_rs::client::HafasClient::new(
-                profile_from_name(&profile_name).unwrap_or(Box::new(DbProfile {})),
+                profile_from_name(profile_name.as_ref()).unwrap_or(Box::new(DbProfile {})),
                 hafas_rs::requester::hyper::HyperRustlsRequester::new(),
             ))));
-        s
+        self.emit_by_name::<()>("provider-changed", &[]);
     }
 
     fn internal(&self) -> hafas_rs::client::HafasClient {
@@ -81,9 +92,11 @@ impl HafasClient {
 }
 
 mod imp {
+    use gdk::glib::subclass::Signal;
     use gdk::subclass::prelude::{ObjectImpl, ObjectSubclass};
     use gtk::gio::Settings;
     use gtk::glib;
+    use once_cell::sync::Lazy;
     use std::cell::RefCell;
 
     pub struct HafasClient {
@@ -117,5 +130,13 @@ mod imp {
         type Type = super::HafasClient;
     }
 
-    impl ObjectImpl for HafasClient {}
+    impl ObjectImpl for HafasClient {
+        fn signals() -> &'static [Signal] {
+            static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| -> Vec<Signal> {
+                vec![Signal::builder("provider-changed")
+                    .build()]
+            });
+            SIGNALS.as_ref()
+        }
+    }
 }

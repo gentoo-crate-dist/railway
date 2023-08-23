@@ -82,7 +82,7 @@ pub mod imp {
             self.dropdown_bahncard
                 .set_active_id(Some(&self.settings.enum_("bahncard").to_string()));
             self.dropdown_search_provider
-                .set_active_id(Some(&self.settings.string("search-provider").to_string()));
+                .set_active_id(Some(&self.settings.string("search-provider")));
 
             if self.settings.boolean("first-class") {
                 self.radio_first_class.set_active(true);

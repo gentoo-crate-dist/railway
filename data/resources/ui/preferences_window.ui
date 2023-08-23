@@ -13,7 +13,6 @@
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Search Provider</property>
-                <property name="subtitle" translatable="yes">Requires application restart</property>
                 <child>
                   <object class="GtkComboBox" id="dropdown_search_provider">
                     <property name="valign">center</property>
