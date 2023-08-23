@@ -1,4 +1,7 @@
-use gdk::glib::Object;
+use std::borrow::Borrow;
+
+use gdk::{glib::Object, subclass::prelude::ObjectSubclassIsExt, prelude::Cast};
+use gtk::Widget;
 
 use crate::backend::Stopover;
 
@@ -14,6 +17,20 @@ impl StopoverItem {
         Object::builder::<Self>()
             .property("stopover", stopover)
             .build()
+    }
+
+    pub (crate) fn alt_labels(&self) -> Vec<Widget> {
+        let obj = self.imp();
+        vec![
+            obj.alt_label_arrival.borrow()
+                .dynamic_cast_ref::<gtk::Widget>()
+                .expect("AltLabel to be a Widget")
+                .clone(), 
+            obj.alt_label_departure.borrow()
+                .dynamic_cast_ref::<gtk::Widget>()
+                .expect("AltLabel to be a Widget")
+                .clone()
+        ]
     }
 }
 
@@ -31,10 +48,16 @@ pub mod imp {
     use once_cell::sync::Lazy;
 
     use crate::backend::Stopover;
+    use crate::gui::alt_label::AltLabel;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/stopover_item.ui")]
     pub struct StopoverItem {
+        #[template_child]
+        pub(super) alt_label_arrival: TemplateChild<AltLabel>,
+        #[template_child]
+        pub(super) alt_label_departure: TemplateChild<AltLabel>,
+
         stopover: RefCell<Option<Stopover>>,
     }
 

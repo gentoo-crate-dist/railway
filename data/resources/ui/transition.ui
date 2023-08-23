@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="libadwaita" version="1.0"/>
+
+  <template class="DBTransition" parent="GtkBox">
+    <style>
+      <class name="transition-item"/>
+    </style>
+    <property name="orientation">horizontal</property>
+    <property name="hexpand">TRUE</property>
+    <property name="spacing">8</property>
+    <property name="margin-start">8</property>
+    <child>
+      <object class="GtkSeparator">
+        <property name="orientation">vertical</property>
+        <property name="margin-start">12</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Transition:</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel" id="label_duration">
+        <binding name="label">
+          <lookup name="duration" type="DBTransition"/>
+        </binding>
+      </object>
+    </child>
+  </template>
+</interface>

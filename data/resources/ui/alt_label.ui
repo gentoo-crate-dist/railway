@@ -5,23 +5,25 @@
   <template class="DBAltLabel" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
+      <object class="GtkLabel" id="label_alt">
+        <style>
+          <class name="numeric"/>
+        </style>
+        <binding name="visible">
+          <lookup name="is-different" type="DBAltLabel"/>
+        </binding>
+        <binding name="label">
+          <lookup name="alt" type="DBAltLabel"/>
+        </binding>
+      </object>
+    </child>
+    <child>
       <object class="GtkLabel" id="label_main">
         <style>
           <class name="numeric"/>
         </style>
         <binding name="label">
           <lookup name="main" type="DBAltLabel"/>
-        </binding>
-      </object>
-    </child>
-    <child>
-      <object class="GtkLabel" id="label_alt">
-        <style>
-          <class name="numeric"/>
-          <class name="error"/>
-        </style>
-        <binding name="label">
-          <lookup name="alt" type="DBAltLabel"/>
         </binding>
       </object>
     </child>

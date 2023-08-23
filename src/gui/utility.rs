@@ -56,4 +56,9 @@ impl Utility {
     fn is_none(#[rest] values: &[gtk::glib::Value]) -> bool {
         !Utility::is_some(values)
     }
+
+    #[template_callback]
+    fn not(value: bool) -> bool {
+        !value
+    }
 }

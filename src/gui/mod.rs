@@ -14,4 +14,5 @@ mod station_entry;
 mod stopover_item;
 mod stores;
 mod utility;
+mod transition;
 pub mod window;

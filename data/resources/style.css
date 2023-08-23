@@ -3,3 +3,45 @@ calendar {
   background-color: @window_bg_color;
   color: @window_fg_color;
 }
+
+.main-label-on-time {
+  font-size: large;
+}
+
+.main-label-late {
+  text-decoration: line-through;
+  font-size: small;
+  opacity: 0.5;
+}
+
+.alt-label-on-time {
+  font-size: small;
+}
+
+.alt-label-late {
+  font-size: large;
+}
+
+.journeys-page .main-label-on-time {
+    font-weight: bold;
+}
+
+.journeys-page .alt-label-late {
+    font-weight: bold;
+}
+
+.stopover-item .main-label-on-time {
+    font-size: small;
+}
+
+.stopover-item .main-label-late {
+    font-size: small;
+}
+
+.stopover-item .alt-label-on-time {
+    font-size: small;
+}
+
+.stopover-item .alt-label-late {
+    font-size: small;
+}

@@ -94,7 +94,7 @@ pub mod imp {
                 .bind(
                     "bike-accessible",
                     &self.switch_bike_accessible.get(),
-                    "state",
+                    "active",
                 )
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
@@ -103,11 +103,11 @@ pub mod imp {
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("direct-only", &self.switch_direct_only.get(), "state")
+                .bind("direct-only", &self.switch_direct_only.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("delete-old", &self.switch_delete_old.get(), "state")
+                .bind("delete-old", &self.switch_delete_old.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
@@ -119,56 +119,56 @@ pub mod imp {
                 .bind(
                     "include-national-express",
                     &self.switch_national_express.get(),
-                    "state",
+                    "active",
                 )
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-national", &self.switch_national.get(), "state")
+                .bind("include-national", &self.switch_national.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
                 .bind(
                     "include-regional-express",
                     &self.switch_regional_express.get(),
-                    "state",
+                    "active",
                 )
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-regional", &self.switch_regional.get(), "state")
+                .bind("include-regional", &self.switch_regional.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-suburban", &self.switch_suburban.get(), "state")
+                .bind("include-suburban", &self.switch_suburban.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-bus", &self.switch_bus.get(), "state")
+                .bind("include-bus", &self.switch_bus.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-ferry", &self.switch_ferry.get(), "state")
+                .bind("include-ferry", &self.switch_ferry.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-subway", &self.switch_subway.get(), "state")
+                .bind("include-subway", &self.switch_subway.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-tram", &self.switch_tram.get(), "state")
+                .bind("include-tram", &self.switch_tram.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-subway", &self.switch_subway.get(), "state")
+                .bind("include-subway", &self.switch_subway.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-tram", &self.switch_tram.get(), "state")
+                .bind("include-tram", &self.switch_tram.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-taxi", &self.switch_taxi.get(), "state")
+                .bind("include-taxi", &self.switch_taxi.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
         }
