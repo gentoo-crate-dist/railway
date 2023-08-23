@@ -223,7 +223,7 @@ pub mod imp {
                         result_journeys_result.merge_append(&journeys_result_obj);
                         obj.set_property("journeys-result", result_journeys_result);
                     } else {
-                        error_to_toast(&toast_errors, result_journeys_result.err().expect("Error to be present"));
+                        error_to_toast(&toast_errors, result_journeys_result.expect_err("Error to be present"));
                     }
                     obj.set_loading_earlier(false);
                     obj.scroll_up();
@@ -282,7 +282,7 @@ pub mod imp {
                         result_journeys_result.merge_prepend(&journeys_result_obj);
                         obj.set_property("journeys-result", result_journeys_result);
                     } else {
-                        error_to_toast(&toast_errors, result_journeys_result.err().expect("Error to be present"));
+                        error_to_toast(&toast_errors, result_journeys_result.expect_err("Error to be present"));
                     }
                     obj.set_loading_later(false);
                     obj.scroll_down();

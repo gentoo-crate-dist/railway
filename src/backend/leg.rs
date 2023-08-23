@@ -93,8 +93,7 @@ mod imp {
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.direction.as_ref())
-                    .flatten()
+                    .and_then(|o| o.direction.as_ref())
                     .unwrap_or(
                         &obj.property::<Place>("destination")
                             .name()
@@ -105,8 +104,7 @@ mod imp {
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.line.as_ref())
-                    .flatten()
+                    .and_then(|o| o.line.as_ref())
                     .and_then(|o| o.name.as_ref())
                     .unwrap_or(&gettextrs::gettext("Walk"))
                     .to_value(),
@@ -114,61 +112,53 @@ mod imp {
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.departure)
-                    .flatten()
+                    .and_then(|o| o.departure)
                     .map(|d| d.format("%H:%M").to_string())
                     .to_value(),
                 "arrival" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.arrival)
-                    .flatten()
+                    .and_then(|o| o.arrival)
                     .map(|d| d.format("%H:%M").to_string())
                     .to_value(),
                 "planned-departure" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.planned_departure)
-                    .flatten()
+                    .and_then(|o| o.planned_departure)
                     .map(|d| d.format("%H:%M").to_string())
                     .to_value(),
                 "planned-arrival" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.planned_arrival)
-                    .flatten()
+                    .and_then(|o| o.planned_arrival)
                     .map(|d| d.format("%H:%M").to_string())
                     .to_value(),
                 "departure-platform" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.departure_platform.clone())
-                    .flatten()
+                    .and_then(|o| o.departure_platform.clone())
                     .to_value(),
                 "arrival-platform" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.arrival_platform.clone())
-                    .flatten()
+                    .and_then(|o| o.arrival_platform.clone())
                     .to_value(),
                 "planned-departure-platform" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.planned_departure_platform.clone())
-                    .flatten()
+                    .and_then(|o| o.planned_departure_platform.clone())
                     .to_value(),
                 "planned-arrival-platform" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .map(|o| o.planned_arrival_platform.clone())
-                    .flatten()
+                    .and_then(|o| o.planned_arrival_platform.clone())
                     .to_value(),
                 "origin" => self
                     .leg

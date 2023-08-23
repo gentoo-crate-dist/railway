@@ -187,12 +187,12 @@ pub mod imp {
                     .property::<Leg>("first-leg")
                     .property::<Place>("origin")
                     .name()
-                    .unwrap_or_else(String::new);
+                    .unwrap_or_default();
                 let destination = journeys_result.journeys()[0]
                     .property::<Leg>("last-leg")
                     .property::<Place>("destination")
                     .name()
-                    .unwrap_or_else(String::new);
+                    .unwrap_or_default();
                 self.store_searches.store(origin, destination);
             }
         }

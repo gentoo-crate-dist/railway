@@ -85,57 +85,49 @@ mod imp {
                     .stopover
                     .borrow()
                     .as_ref()
-                    .map(|o| o.departure.map(|o| o.format("%H:%M").to_string()))
-                    .flatten()
+                    .and_then(|o| o.departure.map(|o| o.format("%H:%M").to_string()))
                     .to_value(),
                 "arrival" => self
                     .stopover
                     .borrow()
                     .as_ref()
-                    .map(|o| o.arrival.map(|o| o.format("%H:%M").to_string()))
-                    .flatten()
+                    .and_then(|o| o.arrival.map(|o| o.format("%H:%M").to_string()))
                     .to_value(),
                 "planned-departure" => self
                     .stopover
                     .borrow()
                     .as_ref()
-                    .map(|o| o.planned_departure.map(|o| o.format("%H:%M").to_string()))
-                    .flatten()
+                    .and_then(|o| o.planned_departure.map(|o| o.format("%H:%M").to_string()))
                     .to_value(),
                 "planned-arrival" => self
                     .stopover
                     .borrow()
                     .as_ref()
-                    .map(|o| o.planned_arrival.map(|o| o.format("%H:%M").to_string()))
-                    .flatten()
+                    .and_then(|o| o.planned_arrival.map(|o| o.format("%H:%M").to_string()))
                     .to_value(),
                 "departure-platform" => self
                     .stopover
                     .borrow()
                     .as_ref()
-                    .map(|o| o.departure_platform.clone())
-                    .flatten()
+                    .and_then(|o| o.departure_platform.clone())
                     .to_value(),
                 "arrival-platform" => self
                     .stopover
                     .borrow()
                     .as_ref()
-                    .map(|o| o.arrival_platform.clone())
-                    .flatten()
+                    .and_then(|o| o.arrival_platform.clone())
                     .to_value(),
                 "planned-departure-platform" => self
                     .stopover
                     .borrow()
                     .as_ref()
-                    .map(|o| o.planned_departure_platform.clone())
-                    .flatten()
+                    .and_then(|o| o.planned_departure_platform.clone())
                     .to_value(),
                 "planned-arrival-platform" => self
                     .stopover
                     .borrow()
                     .as_ref()
-                    .map(|o| o.planned_arrival_platform.clone())
-                    .flatten()
+                    .and_then(|o| o.planned_arrival_platform.clone())
                     .to_value(),
                 _ => unimplemented!(),
             }

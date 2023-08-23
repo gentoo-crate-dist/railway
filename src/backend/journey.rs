@@ -82,34 +82,31 @@ mod imp {
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| o.price.as_ref())
-                    .flatten()
+                    .and_then(|o| o.price.as_ref())
                     .map(|p| format!("{:.2} {}", p.amount, p.currency))
                     .to_value(),
                 "first-leg" => self
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| o.legs.get(0))
-                    .flatten()
+                    .and_then(|o| o.legs.get(0))
                     .map(|o| Leg::new(o.clone()))
                     .to_value(),
                 "last-leg" => self
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| o.legs.last())
-                    .flatten()
+                    .and_then(|o| o.legs.last())
                     .map(|o| Leg::new(o.clone()))
                     .to_value(),
                 "total-time" => {
                     let journey_borrow = self.journey.borrow();
                     let journey = journey_borrow.as_ref();
-                    let leg_first = journey.map(|o| o.legs.first()).flatten();
-                    let leg_last = journey.map(|o| o.legs.last()).flatten();
+                    let leg_first = journey.and_then(|o| o.legs.first());
+                    let leg_last = journey.and_then(|o| o.legs.last());
 
-                    let departure = leg_first.map(|o| o.departure).flatten();
-                    let arrival = leg_last.map(|o| o.arrival).flatten();
+                    let departure = leg_first.and_then(|o| o.departure);
+                    let arrival = leg_last.and_then(|o| o.arrival);
 
                     if let (Some(arrival), Some(departure)) = (arrival, departure) {
                         let needed_time = arrival - departure;

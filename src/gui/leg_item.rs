@@ -95,13 +95,11 @@ pub mod imp {
 
                     let mut stopovers = obj
                         .as_ref()
-                        .map(|j| j.leg().stopovers)
-                        .flatten()
+                        .and_then(|j| j.leg().stopovers)
                         .unwrap_or_default();
                     let remarks = obj
                         .as_ref()
-                        .map(|j| j.leg().remarks)
-                        .flatten()
+                        .and_then(|j| j.leg().remarks)
                         .unwrap_or_default();
                     // Remove start and end. These are already shown as origin and destination.
                     if !stopovers.is_empty() {

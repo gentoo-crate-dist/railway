@@ -59,22 +59,19 @@ pub mod imp {
                        @strong obj,
                        @strong self.toast_errors as toast_errors,
                        @strong self.journey as journey => async move {
-                let journey_borrow = journey.borrow();
-                let journey_obj = journey_borrow.as_ref();
+                let token = journey.borrow().as_ref().and_then(|j| j.journey().refresh_token);
 
-                if let Some(journey) = journey_obj {
-                    if let Some(token) = journey.journey().refresh_token {
-                        let result_journey = obj.property::<HafasClient>("client")
-                            .refresh_journey(token, RefreshJourneyOptions {
-                                stopovers: Some(true),
-                                language: Some(gettextrs::gettext("language")),
-                                ..Default::default()
-                            }).await;
-                        if let Ok(result_journey) = result_journey {
-                            obj.set_property("journey", result_journey);
-                        } else {
-                            error_to_toast(&toast_errors, result_journey.err().expect("A error"));
-                        }
+                if let Some(token) = token {
+                    let result_journey = obj.property::<HafasClient>("client")
+                        .refresh_journey(token, RefreshJourneyOptions {
+                            stopovers: Some(true),
+                            language: Some(gettextrs::gettext("language")),
+                            ..Default::default()
+                        }).await;
+                    if let Ok(result_journey) = result_journey {
+                        obj.set_property("journey", result_journey);
+                    } else {
+                        error_to_toast(&toast_errors, result_journey.expect_err("A error"));
                     }
                 }
             }));

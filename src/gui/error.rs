@@ -18,16 +18,16 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
             "Failed to fetch data. Are you connected to the internet?",
         )),
         Error::Hafas(hafas_rs::Error::Hafas { .. }) => Toast::builder()
-            .title(&gettext("The API returned a error. Please report this."))
-            .button_label(&gettext("More information"))
+            .title(gettext("The API returned a error. Please report this."))
+            .button_label(gettext("More information"))
             .build(),
         Error::Hafas(hafas_rs::Error::Json { .. }) => Toast::builder()
-            .title(&gettext("Failed to parse response. Please report this."))
-            .button_label(&gettext("More information"))
+            .title(gettext("Failed to parse response. Please report this."))
+            .button_label(gettext("More information"))
             .build(),
         _ => Toast::builder()
-            .title(&gettext("Unknown issue. Please report this."))
-            .button_label(&gettext("More information"))
+            .title(gettext("Unknown issue. Please report this."))
+            .button_label(gettext("More information"))
             .build(),
     };
 
@@ -53,7 +53,7 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
                 )
                 .deletable(true)
                 .buttons(ButtonsType::Close)
-                .title(&gettext("Error"))
+                .title(gettext("Error"))
                 .text(&msg)
                 .build();
             dialog.show();
