@@ -5,3 +5,4 @@ Name=DieBahn
 StartupWMClass=DieBahn
 Exec=@bindir@/diebahn
 X-Purism-FormFactor=Workstation;Mobile;
+Keywords=train;railway;journey;planner;timetables;
