@@ -44,6 +44,7 @@ pub mod imp {
     use crate::gui::journey_detail_page::JourneyDetailPage;
     use crate::gui::journeys_page::JourneysPage;
     use crate::gui::preferences_window::PreferencesWindow;
+    use crate::gui::search_options_button::SearchOptionsButton;
     use crate::gui::search_page::SearchPage;
     use crate::gui::station_entry::StationEntry;
     use crate::gui::stores::journey_store::JourneysStore;
@@ -220,6 +221,7 @@ pub mod imp {
             StationEntry::ensure_type();
             JourneysStore::ensure_type();
             SearchesStore::ensure_type();
+            SearchOptionsButton::ensure_type();
             Self::bind_template(klass);
             Self::bind_template_callbacks(klass);
             Utility::bind_template_callbacks(klass);

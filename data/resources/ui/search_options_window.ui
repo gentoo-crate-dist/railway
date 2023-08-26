@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="libadwaita" version="1.0"/>
+
+  <template class="DBSearchOptionsWindow" parent="AdwPreferencesWindow">
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="title" translatable="yes">General</property>
+        <property name="icon-name">preferences-system-symbolic</property>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">BahnCard</property>
+                <child>
+                  <object class="GtkComboBox" id="dropdown_bahncard">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                    <property name="model">model-bahncard</property>
+                    <property name="entry-text-column">0</property>
+                    <property name="id-column">1</property>
+                    <signal name="changed" handler="handle_bahncard_dropdown" swapped="true"/>
+                    <child>
+                      <object class="GtkCellRendererText">
+                        <property name="ellipsize">end</property>
+                      </object>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Class</property>
+                <child>
+                  <object class="GtkBox">
+                    <child>
+                      <object class="GtkCheckButton" id="radio_first_class">
+                        <signal name="toggled" handler="handle_first_class" swapped="true"/>
+                        <property name="label" translatable="yes">First class</property>
+                        <property name="valign">center</property>
+                        <property name="halign">center</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="radio_second_class">
+                        <property name="label" translatable="yes">Second class</property>
+                        <property name="group">radio_first_class</property>
+                        <property name="valign">center</property>
+                        <property name="halign">center</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Bike accessible</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_bike_accessible">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Minimum transfer time</property>
+                <child>
+                  <object class="GtkSpinButton" id="spin_transfer_time">
+                    <property name="adjustment">adj_transfer_time</property>
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Direct connections only</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_direct_only">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="title" translatable="yes">Modes of transport</property>
+        <property name="icon-name">edit-find-replace-symbolic</property>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">ICE</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_national_express">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">IC/EC</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_national">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Interregio/RegionalExpress</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_regional_express">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Regio</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_regional">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Suburban</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_suburban">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Bus</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_bus">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Ferry</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_ferry">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Subway</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_subway">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Tram</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_tram">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Taxi</property>
+                <child>
+                  <object class="GtkSwitch" id="switch_taxi">
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+  <object class="GtkListStore" id="model-bahncard">
+    <columns>
+      <column type="gchararray"/>
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row><col id="1">0</col><col id="0" translatable="yes">None</col></row>
+      <row><col id="1">1</col><col id="0" translatable="yes">BahnCard 25, 1st class</col></row>
+      <row><col id="1">2</col><col id="0" translatable="yes">BahnCard 25, 2nd class</col></row>
+      <row><col id="1">3</col><col id="0" translatable="yes">BahnCard 50, 1st class</col></row>
+      <row><col id="1">4</col><col id="0" translatable="yes">BahnCard 50, 2nd class</col></row>
+      <row><col id="1">9</col><col id="0" translatable="yes">A - VORTEILScard (with RAILPLUS)</col></row>
+      <row><col id="1">10</col><col id="0" translatable="yes">CH - HalbtaxAbo (with RAILPLUS)</col></row>
+      <row><col id="1">11</col><col id="0" translatable="yes">CH - HalbtaxAbo (without RAILPLUS)</col></row>
+      <row><col id="1">12</col><col id="0" translatable="yes">NL - Voordeelurenabo (with RAILPLUS)</col></row>
+      <row><col id="1">13</col><col id="0" translatable="yes">NL - Voordeelurenabo (without RAILPLUS)</col></row>
+      <row><col id="1">14</col><col id="0" translatable="yes">SH-Card</col></row>
+      <row><col id="1">15</col><col id="0" translatable="yes">CH - General-Abonnement</col></row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="model-search-provider">
+    <columns>
+      <column type="gchararray"/>
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <!-- TODO: BVG: Too many things for now -->
+      <!-- TODO: Certificate <row><col id="1">KVB</col><col id="0">KVB: Kölner Verkehrs-Betriebe</col></row> -->
+      <!-- TODO: SNCB: Certificate -->
+      <row><col id="1">AVV</col><col id="0">AVV: Aachener Verkehrsverbund</col></row>
+      <row><col id="1">BART</col><col id="0">BART: Bay Area Rapid Transit</col></row>
+      <row><col id="1">BLS</col><col id="0">BLS AG</col></row>
+      <row><col id="1">CFL</col><col id="0">CFL: Société Nationale des Chemins de Fer Luxembourgeois</col></row>
+      <row><col id="1">CMTA</col><col id="0">CMTA/CapMetro: Austin, Texas</col></row>
+      <row><col id="1">DART</col><col id="0">DART: Des Moines Area Rapid Transit</col></row>
+      <row><col id="1">DB-Busradar-Nrw</col><col id="0">DB Busradar NRW</col></row>
+      <row><col id="1">DB</col><col id="0">DB: Deutsche Bahn</col></row>
+      <row><col id="1">HVV</col><col id="0">HVV: Hamburg public transport</col></row>
+      <row><col id="1">INSA</col><col id="0">NASA: Nahverkehr Sachsen-Anhalt</col></row>
+      <row><col id="1">INVG</col><col id="0">INVG: Ingolstädter Verkehrsgesellschaft</col></row>
+      <row><col id="1">Irish-Railway</col><col id="0">Irish Rail: Iarnród Éireann</col></row>
+      <row><col id="1">Mobiliteit-Lu</col><col id="0">Luxembourg: Mobilitéitszentral</col></row>
+      <row><col id="1">mobil-nrw</col><col id="0">mobil.nrw</col></row>
+      <row><col id="1">NVV</col><col id="0">NVV: Nordhessischer Verkehrsverbund</col></row>
+      <row><col id="1">NahSH</col><col id="0">Nah.SH</col></row>
+      <row><col id="1">ooevv</col><col id="0">OÖVV: Oberösterreichischer Verkehrsverbund</col></row>
+      <row><col id="1">OEBB</col><col id="0">ÖBB: Österreichische Bundesbahnen</col></row>
+      <!-- <row><col id="1">PKP</col><col id="0">PKP: Polskie Koleje Państwowe</col></row> -->
+      <row><col id="1">RMV</col><col id="0">RMV: Rhein-Main-Verkehrsverbund</col></row>
+      <row><col id="1">RSAG</col><col id="0">RSAG: Rostocker Straßenbahn AG</col></row>
+      <row><col id="1">Rejseplanen</col><col id="0">Rejseplanen in Denmark</col></row>
+      <row><col id="1">SBahn-Muenchen</col><col id="0">S-Bahn München</col></row>
+      <!-- <row><col id="1">SNCF</col><col id="0">SNCF: Société nationale des chemins de fer français</col></row> -->
+      <row><col id="1">STV</col><col id="0">STV: Steirischer Verkehrsverbund</col></row>
+      <row><col id="1">SVV</col><col id="0">SVV: Salzburger Verkehrsverbund</col></row>
+      <row><col id="1">Saarfahrplan</col><col id="0">Saarfahrplan/VGS Saarland</col></row>
+      <row><col id="1">Salzburg</col><col id="0">Salzburg</col></row>
+      <!-- <row><col id="1">TPG</col><col id="0">TPG: Transports publics genevois</col></row> -->
+      <row><col id="1">VBB</col><col id="0">VBB: Berlin &amp; Brandenburg public transport</col></row>
+      <row><col id="1">VBN</col><col id="0">VBN: Verkehrsverbund Bremen/Niedersachsen</col></row>
+      <row><col id="1">VKG</col><col id="0">VKG/VVK: Kärntner Linien/Verkehrsverbund Kärnten</col></row>
+      <row><col id="1">VMT</col><col id="0">VMT: Verkehrsverbund Mittelthüringen</col></row>
+      <row><col id="1">VOR</col><col id="0">VOR: Verkehrsverbund Ost-Region</col></row>
+      <row><col id="1">VOS</col><col id="0">VOS: Verkehrsgemeinschaft Osnabrück</col></row>
+      <row><col id="1">VRN</col><col id="0">VRN: Verkehrsverbund Rhein-Neckar</col></row>
+      <row><col id="1">VSN</col><col id="0">VSN: Verkehrsverbund Süd-Niedersachsen</col></row>
+      <row><col id="1">VVT</col><col id="0">VVT: Verkehrsverbund Tirol</col></row>
+      <row><col id="1">VVV</col><col id="0">VVV: Verkehrsverbund Vorarlberg</col></row>
+      <row><col id="1">ZVV</col><col id="0">ZVV: Zürich public transport</col></row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="adj_transfer_time">
+    <property name="lower">0</property>
+    <property name="upper">60</property>
+    <property name="step-increment">5</property>
+  </object>
+  <object class="GtkAdjustment" id="adj_deletion_time">
+    <property name="lower">0</property>
+    <property name="upper">48</property>
+    <property name="step-increment">1</property>
+  </object>
+</interface>
