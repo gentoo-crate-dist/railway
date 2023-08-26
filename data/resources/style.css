@@ -23,25 +23,29 @@ calendar {
 }
 
 .journeys-page .main-label-on-time {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .journeys-page .alt-label-late {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .stopover-item .main-label-on-time {
-    font-size: small;
+  font-size: small;
 }
 
 .stopover-item .main-label-late {
-    font-size: small;
+  font-size: small;
 }
 
 .stopover-item .alt-label-on-time {
-    font-size: small;
+  font-size: small;
 }
 
 .stopover-item .alt-label-late {
-    font-size: small;
+  font-size: small;
+}
+
+.provider-icon {
+  border-radius: 6px;
 }

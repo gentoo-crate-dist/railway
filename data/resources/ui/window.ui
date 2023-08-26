@@ -26,6 +26,28 @@
                     <property name="title" translatable="yes">Search</property>
                   </object>
                 </property>
+                <child>
+                  <object class="GtkMenuButton">
+                    <property name="always-show-arrow">true</property>
+                    <property name="popover">
+                      <object class="DBProviderPopover" id="provider_popover">
+                        <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
+                      </object>
+                    </property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="pixel-size">28</property>
+                        <binding name="icon-name">
+                          <lookup name="icon-name">
+                            <lookup name="current-selection">
+                              provider_popover
+                            </lookup>
+                          </lookup>
+                        </binding>
+                      </object>
+                    </child>
+                  </object>
+                </child>
                 <child type="end">
                   <object class="GtkMenuButton">
                     <property name="primary">True</property>

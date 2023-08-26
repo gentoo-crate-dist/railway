@@ -44,6 +44,7 @@ pub mod imp {
     use crate::gui::journey_detail_page::JourneyDetailPage;
     use crate::gui::journeys_page::JourneysPage;
     use crate::gui::preferences_window::PreferencesWindow;
+    use crate::gui::provider_popover::ProviderPopover;
     use crate::gui::search_options_button::SearchOptionsButton;
     use crate::gui::search_page::SearchPage;
     use crate::gui::station_entry::StationEntry;
@@ -217,6 +218,7 @@ pub mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             AltLabel::ensure_type();
+            ProviderPopover::ensure_type();
             DateTimePicker::ensure_type();
             StationEntry::ensure_type();
             JourneysStore::ensure_type();
