@@ -43,6 +43,7 @@ fn init_icons<P: IsA<gdk::Display>>(display: &P) {
     let icon_theme = gtk::IconTheme::for_display(display);
 
     icon_theme.add_resource_path("/");
+    icon_theme.add_resource_path("/de/schmidhuberj/DieBahn/providers/");
 }
 
 fn init_internationalization() -> Result<(), Box<dyn std::error::Error>> {

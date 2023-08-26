@@ -15,6 +15,8 @@
     <file preprocess="xml-stripblanks">ui/remark_item.ui</file>
     <file preprocess="xml-stripblanks">ui/stopover_item.ui</file>
     <file preprocess="xml-stripblanks">ui/transition.ui</file>
+    <file preprocess="xml-stripblanks">ui/provider_popover.ui</file>
+    <file preprocess="xml-stripblanks">ui/provider_list_item.ui</file>
     <file preprocess="xml-stripblanks">ui/search_options_window.ui</file>
     <file preprocess="xml-stripblanks">ui/search_options_button.ui</file>
 
@@ -24,5 +26,44 @@
   </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/">
     <file compressed="true">style.css</file>
+  </gresource>
+  <gresource prefix="/de/schmidhuberj/DieBahn/providers/">
+    <file alias="avv.svg">../icons/providers/avv.svg</file>
+    <file alias="bart.svg">../icons/providers/bart.svg</file>
+    <file alias="bls.svg">../icons/providers/bls.svg</file>
+    <file alias="busradar.svg">../icons/providers/busradar.svg</file>
+    <file alias="cfl.svg">../icons/providers/cfl.svg</file>
+    <file alias="cmta.svg">../icons/providers/cmta.svg</file>
+    <file alias="dart.svg">../icons/providers/dart.svg</file>
+    <file alias="db.svg">../icons/providers/db.svg</file>
+    <file alias="hvv.svg">../icons/providers/hvv.svg</file>
+    <file alias="insa.svg">../icons/providers/insa.svg</file>
+    <file alias="invg.svg">../icons/providers/invg.svg</file>
+    <file alias="irish-railway.svg">../icons/providers/irish-railway.svg</file>
+    <file alias="mobiliteit-lu.svg">../icons/providers/mobiliteit-lu.svg</file>
+    <file alias="mobil-nrw.svg">../icons/providers/mobil-nrw.svg</file>
+    <file alias="nahsh.svg">../icons/providers/nahsh.svg</file>
+    <file alias="nvv.svg">../icons/providers/nvv.svg</file>
+    <file alias="oebb.svg">../icons/providers/oebb.svg</file>
+    <file alias="ooevv.svg">../icons/providers/ooevv.svg</file>
+    <file alias="rejseplanen.svg">../icons/providers/rejseplanen.svg</file>
+    <file alias="rmv.svg">../icons/providers/rmv.svg</file>
+    <file alias="rsag.svg">../icons/providers/rsag.svg</file>
+    <file alias="saarfahrplan.svg">../icons/providers/saarfahrplan.svg</file>
+    <file alias="sbahn-muenchen.svg">../icons/providers/sbahn-muenchen.svg</file>
+    <file alias="stv.svg">../icons/providers/stv.svg</file>
+    <file alias="svv.svg">../icons/providers/svv.svg</file>
+    <file alias="vbb.svg">../icons/providers/vbb.svg</file>
+    <file alias="vbn.svg">../icons/providers/vbn.svg</file>
+    <file alias="vgs.svg">../icons/providers/vgs.svg</file>
+    <file alias="vkg.svg">../icons/providers/vkg.svg</file>
+    <file alias="vmt.svg">../icons/providers/vmt.svg</file>
+    <file alias="vor.svg">../icons/providers/vor.svg</file>
+    <file alias="vos.svg">../icons/providers/vos.svg</file>
+    <file alias="vrn.svg">../icons/providers/vrn.svg</file>
+    <file alias="vsn.svg">../icons/providers/vsn.svg</file>
+    <file alias="vvt.svg">../icons/providers/vvt.svg</file>
+    <file alias="vvv.svg">../icons/providers/vvv.svg</file>
+    <file alias="zvv.svg">../icons/providers/zvv.svg</file>
   </gresource>
 </gresources>

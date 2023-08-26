@@ -7,6 +7,8 @@ mod journey_store_item;
 mod journeys_page;
 mod leg_item;
 mod preferences_window;
+mod provider_list_item;
+mod provider_popover;
 mod remark_item;
 mod search_options_button;
 mod search_options_window;
