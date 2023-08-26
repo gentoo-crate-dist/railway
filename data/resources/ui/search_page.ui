@@ -58,6 +58,10 @@
                       </object>
                     </child>
                     <child>
+                      <object class="DBSearchOptionsButton">
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkButton" id="btn_search">
                         <signal name="clicked" handler="handle_search" swapped="true"/>
                         <property name="label" translatable="yes">Search</property>
