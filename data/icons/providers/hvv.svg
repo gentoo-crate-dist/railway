@@ -53,12 +53,13 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-105.83333,-79.904152)"><rect
-       style="fill:#fa1e41;stroke-width:0.264581;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"
+       style="fill:#fa1e41;fill-opacity:1;stroke-width:0.264581;stroke-linecap:round;stroke-linejoin:round"
        id="rect2"
        width="7.4082875"
        height="7.4082775"
        x="105.83333"
-       y="79.904152" /><g
+       y="79.904152"
+       rx="1.5875" /><g
        transform="matrix(0.02807251,0,0,0.02807251,397.41824,-93.610656)"
        id="g2"
        style="stroke-width:9.42497"><path

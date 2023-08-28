@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
-   sodipodi:docname="saarvv.svg"
+   sodipodi:docname="saarfahrplan.svg"
    xml:space="preserve"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="16"
-     inkscape:cx="16.96875"
+     inkscape:cx="17"
      inkscape:cy="4.625"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
@@ -53,12 +53,13 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-105.83333,-79.904152)"><rect
-       style="fill:#ffffff;stroke-width:0.264581;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.264581;stroke-linecap:round;stroke-linejoin:round"
        id="rect2"
        width="7.4082875"
        height="7.4082775"
        x="105.83333"
-       y="79.904152" /><g
+       y="79.904152"
+       rx="1.5875" /><g
        id="g11"
        transform="matrix(0.34094453,0,0,0.34094453,80.327123,57.274371)"><g
          id="g7"

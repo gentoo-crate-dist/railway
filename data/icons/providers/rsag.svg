@@ -79,12 +79,13 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-105.83333,-79.904152)"><rect
-       style="fill:#ffffff;stroke-width:0.264581;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.264581;stroke-linecap:round;stroke-linejoin:round"
        id="rect2"
        width="7.4082875"
        height="7.4082775"
        x="105.83333"
-       y="79.904152" /><g
+       y="79.904152"
+       rx="1.5875" /><g
        id="g4"
        transform="matrix(0.34865632,0,0,0.34865632,78.562389,53.596384)"><g
          id="g6"
