@@ -1,9 +1,3 @@
-calendar {
-  border-style: none;
-  background-color: @window_bg_color;
-  color: @window_fg_color;
-}
-
 .main-label-on-time {
   font-size: large;
 }
@@ -48,4 +42,11 @@ calendar {
 
 .provider-icon {
   border-radius: 6px;
+}
+
+
+/* Fixes buttons inside cards having a bigger border radius compared to the card, which leads to the highlight spanning outside of the box. */
+.card button {
+  border-radius: 12px;
+  padding: 0px;
 }

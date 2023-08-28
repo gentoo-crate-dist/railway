@@ -28,8 +28,10 @@ pub mod imp {
     use gdk::glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::subclass::prelude::*;
+    use gtk::traits::WidgetExt;
+    use gtk::Align;
     use gtk::CompositeTemplate;
-    use libadwaita::traits::ExpanderRowExt;
+    use libadwaita::prelude::EditableExt;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/date_time_picker.ui")]
@@ -42,9 +44,14 @@ pub mod imp {
         pick_minute: TemplateChild<gtk::SpinButton>,
 
         #[template_child]
-        expander_date: TemplateChild<libadwaita::ExpanderRow>,
-        #[template_child]
         btn_input_time: TemplateChild<gtk::MenuButton>,
+        #[template_child]
+        btn_input_date: TemplateChild<gtk::MenuButton>,
+
+        #[template_child]
+        label_time: TemplateChild<gtk::Label>,
+        #[template_child]
+        label_date: TemplateChild<gtk::Label>,
     }
 
     impl DateTimePicker {
@@ -70,18 +77,17 @@ pub mod imp {
                 self.pick_hour.set_value(now.hour() as f64);
                 self.pick_minute.set_value(now.minute() as f64);
             }
-            self.update_expander_date_subtitle();
-            self.update_btn_input_time_label();
+            self.update_date_label();
+            self.update_time_label();
         }
 
-        fn update_expander_date_subtitle(&self) {
+        fn update_date_label(&self) {
             let cal_date = self.pick_cal.date();
 
-            // How to format a date with time. Should probably be similar to %Y-%m-%d (meaning print year, month from 01-12, day from 01-31 (each separated by -)).
+            // How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
             // For a full list of supported identifiers, see <https://docs.gtk.org/glib/method.DateTime.format.html>
-            let format = gettextrs::gettext("%Y-%m-%d");
-            // TODO: Internationalization
-            self.expander_date.set_subtitle(
+            let format = gettextrs::gettext("%a %b %d");
+            self.label_date.set_label(
                 &cal_date
                     .format(&format)
                     .map(|s| s.to_string())
@@ -89,12 +95,15 @@ pub mod imp {
             )
         }
 
-        fn update_btn_input_time_label(&self) {
+        fn update_time_label(&self) {
             let hour = self.pick_hour.value().floor() as u32;
             let minute = self.pick_minute.value().floor() as u32;
 
+            self.pick_hour.set_text(&format!("{:02}", hour));
+            self.pick_minute.set_text(&format!("{:02}", minute));
+
             // TODO: Internationalization
-            self.btn_input_time
+            self.label_time
                 .set_label(&format!("{:02}:{:02}", hour, minute))
         }
 
@@ -103,7 +112,7 @@ pub mod imp {
             self.pick_cal.connect_day_selected(clone!(
                 @weak obj
                 => move |_| {
-                    obj.imp().update_expander_date_subtitle();
+                    obj.imp().update_date_label();
             }));
         }
 
@@ -112,13 +121,13 @@ pub mod imp {
             self.pick_hour.connect_value_changed(clone!(
                 @weak obj
                 => move |_| {
-                    obj.imp().update_btn_input_time_label();
+                    obj.imp().update_time_label();
             }));
 
             self.pick_minute.connect_value_changed(clone!(
                 @weak obj
                 => move |_| {
-                    obj.imp().update_btn_input_time_label();
+                    obj.imp().update_time_label();
             }));
         }
     }
@@ -144,6 +153,24 @@ pub mod imp {
             self.reset();
             self.connect_expander_date_subtitle();
             self.connect_btn_input_time_label();
+
+            // Ever menu button looks like:
+            // MenuButton -> ToggleButton -> Box
+            // For some reason, the Box is set to `halign=center`, which breaks the halign of the child widget.
+            if let Some(b) = self
+                .btn_input_time
+                .first_child()
+                .and_then(|w| w.first_child())
+            {
+                b.set_halign(Align::Fill)
+            }
+            if let Some(b) = self
+                .btn_input_date
+                .first_child()
+                .and_then(|w| w.first_child())
+            {
+                b.set_halign(Align::Fill)
+            }
         }
     }
 
