@@ -61,7 +61,8 @@
        width="7.4082875"
        height="7.4082775"
        x="105.83333"
-       y="79.904152" /><g
+       y="79.904152"
+       rx="1.5875" /><g
        style="fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="g10"
        transform="matrix(0.0088448,0,0,0.0088448,106.0976,82.367446)">&#10;		<g

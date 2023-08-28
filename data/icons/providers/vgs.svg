@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="11.313708"
-     inkscape:cx="15.821514"
+     inkscape:cx="15.821515"
      inkscape:cy="15.909903"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
@@ -63,7 +63,8 @@
        width="7.4082875"
        height="7.4082775"
        x="105.83333"
-       y="79.904152" /><g
+       y="79.904152"
+       rx="1.5875" /><g
        id="LOGO"
        transform="matrix(0.26831553,0,0,0.26831553,64.348085,62.444106)">&#10;	&#10;	&#10;<g
    id="g1"

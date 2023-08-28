@@ -14,7 +14,7 @@
           <class name="provider-icon"/>
         </style>
         <property name="halign">start</property>
-        <property name="hexpand">true</property>
+        <property name="valign">center</property>
         <property name="pixel-size">28</property>
         <binding name="icon-name">
           <lookup name="icon-name">
@@ -64,3 +64,4 @@
 
   </template>
 </interface>
+

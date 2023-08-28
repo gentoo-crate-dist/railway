@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="2"
-     inkscape:cx="-8.5"
-     inkscape:cy="-19"
+     inkscape:zoom="11.313708"
+     inkscape:cx="14.318912"
+     inkscape:cy="1.5026019"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -58,7 +58,8 @@
        width="7.4082875"
        height="7.4082775"
        x="105.83333"
-       y="79.904152" /><g
+       y="79.904152"
+       rx="1.5875" /><g
        id="g3"
        style="fill:#e02226;fill-opacity:1;stroke-width:3.05759"
        transform="matrix(0.32705524,0,0,0.32705524,70.854733,52.62751)"><path

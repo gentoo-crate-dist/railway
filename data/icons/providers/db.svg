@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="17.174362"
-     inkscape:cx="17.438785"
-     inkscape:cy="12.751566"
+     inkscape:cx="17.467898"
+     inkscape:cy="12.751565"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -45,7 +45,8 @@
        width="7.4082875"
        height="7.4082775"
        x="105.83333"
-       y="79.904152" />
+       y="79.904152"
+       rx="1.5875" />
     <g
        id="g612-3"
        transform="matrix(0.06349997,0,0,0.06349997,106.36247,81.385792)"
