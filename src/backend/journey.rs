@@ -137,7 +137,7 @@ mod imp {
                     .map(|o| {
                         o.legs
                             .iter()
-                            .map(|l| {
+                            .filter_map(|l| {
                                 l.line
                                     .as_ref()
                                     .map(|l| {
@@ -145,10 +145,9 @@ mod imp {
                                             .clone()
                                             .unwrap_or_else(|| l.product.name.to_string())
                                     })
-                                    .unwrap_or(gettextrs::gettext("Walk"))
                             })
                             .collect::<Vec<String>>()
-                            .join(" - ")
+                            .join(" • ")
                     })
                     .unwrap_or_default()
                     .to_value(),
