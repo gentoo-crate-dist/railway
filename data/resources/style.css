@@ -50,3 +50,8 @@
   border-radius: 12px;
   padding: 0px;
 }
+
+/* Fixes padding of toggle-button inside menu button at the provider popover being too big and resizing the header bar */
+.window-menu-button-provider > button {
+  padding: 0px;
+}

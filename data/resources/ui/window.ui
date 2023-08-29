@@ -28,6 +28,9 @@
                 </property>
                 <child>
                   <object class="GtkMenuButton">
+                    <style>
+                      <class name="window-menu-button-provider"/>
+                    </style>
                     <property name="always-show-arrow">true</property>
                     <property name="popover">
                       <object class="DBProviderPopover" id="provider_popover">
@@ -36,6 +39,9 @@
                     </property>
                     <child>
                       <object class="GtkImage">
+                        <style>
+                          <class name="icon-dropshadow"/>
+                        </style>
                         <property name="pixel-size">28</property>
                         <binding name="icon-name">
                           <lookup name="icon-name">
