@@ -4,6 +4,7 @@
   <requires lib="libadwaita" version="1.0"/>
   <template class="DBJourneyListItem" parent="GtkBox">
     <property name="orientation">vertical</property>
+    <property name="spacing">6</property>
 
     <property name="margin-top">12</property>
     <property name="margin-bottom">12</property>
@@ -11,157 +12,149 @@
     <property name="margin-end">12</property>
 
     <child>
-      <object class="GtkGrid">
-        <property name="column-spacing">16</property>
-        <property name="row-spacing">8</property>
+      <object class="GtkBox">
+        <property name="orientation">horizontal</property>
+
         <child>
-          <object class="DBAltLabel">
-            <layout>
-              <property name="column">0</property>
-              <property name="row">0</property>
-              <property name="row-span">2</property>
-            </layout>
-            <binding name="main">
-              <lookup name="planned-departure">
-                <lookup name="first-leg">
-                  <lookup name="journey" type="DBJourneyListItem"/>
-                </lookup>
-              </lookup>
-            </binding>
-            <binding name="alt">
-              <lookup name="departure">
-                <lookup name="first-leg">
-                  <lookup name="journey" type="DBJourneyListItem"/>
-                </lookup>
-              </lookup>
-            </binding>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <layout>
-              <property name="column">0</property>
-              <property name="row">2</property>
-              <property name="row-span">1</property>
-              <property name="column-span">2</property>
-            </layout>
-            <style>
-              <class name="dim-label"/>
-              <class name="caption"/>
-            </style>
-            <property name="halign">start</property>
-            <property name="hexpand">true</property>
-            <binding name="label">
-              <lookup name="name">
-                <lookup name="origin">
-                  <lookup name="first-leg">
-                    <lookup name="journey" type="DBJourneyListItem"/>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="hexpand">True</property>
+
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+                <child>
+                  <object class="DBAltLabel" id="from_time">
+                    <binding name="main">
+                      <lookup name="planned-departure">
+                        <lookup name="first-leg">
+                          <lookup name="journey" type="DBJourneyListItem"/>
+                        </lookup>
+                      </lookup>
+                    </binding>
+                    <binding name="alt">
+                      <lookup name="departure">
+                        <lookup name="first-leg">
+                          <lookup name="journey" type="DBJourneyListItem"/>
+                        </lookup>
+                      </lookup>
+                    </binding>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <property name="hexpand">True</property>
+                    <property name="valign">center</property>
+                    <property name="margin-start">12</property>
+                    <property name="margin-end">6</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <style>
+                      <class name="caption"/>
+                    </style>
+                    <binding name="label">
+                      <lookup name="total-time">
+                        <lookup name="journey" type="DBJourneyListItem"/>
+                      </lookup>
+                    </binding>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <property name="hexpand">True</property>
+                    <property name="valign">center</property>
+                    <property name="margin-start">6</property>
+                    <property name="margin-end">12</property>
+                  </object>
+                </child>>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkLabel">
+                <style>
+                  <class name="caption"/>
+                </style>
+                <property name="halign">start</property>
+                <property name="hexpand">true</property>
+                <property name="margin-end">12</property>
+                <property name="ellipsize">end</property>
+                <binding name="label">
+                  <lookup name="name">
+                    <lookup name="origin">
+                      <lookup name="first-leg">
+                        <lookup name="journey" type="DBJourneyListItem"/>
+                      </lookup>
+                    </lookup>
                   </lookup>
-                </lookup>
-              </lookup>
-            </binding>
+                </binding>
+              </object>
+            </child>
           </object>
         </child>
+
         <child>
-          <object class="GtkSeparator">
-            <property name="vexpand">true</property>
-            <property name="valign">center</property>
-            <property name="width-request">15</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">0</property>
-              <property name="column-span">1</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <style>
-              <class name="dim-label"/>
-              <class name="caption"/>
-            </style>
-            <layout>
-              <property name="column">2</property>
-              <property name="row">0</property>
-            </layout>
-            <binding name="label">
-              <lookup name="total-time">
-                <lookup name="journey" type="DBJourneyListItem"/>
-              </lookup>
-            </binding>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="vexpand">true</property>
-            <property name="valign">center</property>
-            <property name="width-request">15</property>
-            <layout>
-              <property name="column">3</property>
-              <property name="row">0</property>
-              <property name="column-span">1</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="DBAltLabel">
-            <layout>
-              <property name="column">4</property>
-              <property name="row">0</property>
-              <property name="row-span">2</property>
-            </layout>
-            <binding name="main">
-              <lookup name="planned-arrival">
-                <lookup name="last-leg">
-                  <lookup name="journey" type="DBJourneyListItem"/>
-                </lookup>
-              </lookup>
-            </binding>
-            <binding name="alt">
-              <lookup name="arrival">
-                <lookup name="last-leg">
-                  <lookup name="journey" type="DBJourneyListItem"/>
-                </lookup>
-              </lookup>
-            </binding>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <layout>
-              <property name="column">3</property>
-              <property name="row">2</property>
-              <property name="row-span">1</property>
-              <property name="column-span">2</property>
-            </layout>
-            <style>
-              <class name="dim-label"/>
-              <class name="caption"/>
-            </style>
+          <object class="GtkBox" id="destination_box">
+            <property name="orientation">vertical</property>
             <property name="halign">end</property>
-            <property name="hexpand">true</property>
-            <binding name="label">
-              <lookup name="name">
-                <lookup name="destination">
-                  <lookup name="last-leg">
-                    <lookup name="journey" type="DBJourneyListItem"/>
+            <property name="hexpand">False</property>
+            <child>
+              <object class="DBAltLabel" id="to_time">
+                <binding name="main">
+                  <lookup name="planned-arrival">
+                    <lookup name="last-leg">
+                      <lookup name="journey" type="DBJourneyListItem"/>
+                    </lookup>
                   </lookup>
-                </lookup>
-              </lookup>
-            </binding>
+                </binding>
+                <binding name="alt">
+                  <lookup name="arrival">
+                    <lookup name="last-leg">
+                      <lookup name="journey" type="DBJourneyListItem"/>
+                    </lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <style>
+                  <class name="caption"/>
+                </style>
+                <property name="halign">start</property>
+                <property name="ellipsize">end</property>
+                <binding name="label">
+                  <lookup name="name">
+                    <lookup name="destination">
+                      <lookup name="last-leg">
+                        <lookup name="journey" type="DBJourneyListItem"/>
+                      </lookup>
+                    </lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
           </object>
         </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">horizontal</property>
+        <property name="spacing">12</property>
+
         <child>
           <object class="GtkLabel">
             <style>
               <class name="dim-label"/>
+              <class name="caption"/>
             </style>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">4</property>
-              <property name="column-span">3</property>
-            </layout>
+            <property name="ellipsize">end</property>
             <property name="halign">start</property>
+            <property name="hexpand">True</property>
             <binding name="label">
               <lookup name="types">
                 <lookup name="journey" type="DBJourneyListItem"/>
@@ -169,13 +162,9 @@
             </binding>
           </object>
         </child>
+
         <child>
           <object class="GtkLabel">
-            <layout>
-              <property name="column">3</property>
-              <property name="row">4</property>
-              <property name="column-span">2</property>
-            </layout>
             <property name="halign">end</property>
             <binding name="label">
               <lookup name="price">
@@ -186,5 +175,13 @@
         </child>
       </object>
     </child>
+
+    <object class="GtkSizeGroup">
+      <property name="mode">vertical</property>
+      <widgets>
+        <widget name="from_time"/>
+        <widget name="to_time"/>
+      </widgets>
+    </object>
   </template>
 </interface>

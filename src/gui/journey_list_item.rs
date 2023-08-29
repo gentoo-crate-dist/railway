@@ -1,4 +1,7 @@
+use std::borrow::Borrow;
 use gdk::glib::Object;
+use gdk::glib::subclass::prelude::ObjectSubclassIsExt;
+use gdk::glib::prelude::Cast;
 
 gtk::glib::wrapper! {
     pub struct JourneyListItem(ObjectSubclass<imp::JourneyListItem>)
@@ -10,6 +13,13 @@ gtk::glib::wrapper! {
 impl JourneyListItem {
     pub fn new() -> Self {
         Object::builder().build()
+    }
+
+    pub fn get_destination_box(&self) -> gtk::Box {
+        self.imp().destination_box.borrow()
+                .dynamic_cast_ref::<gtk::Box>()
+                .expect("the destination's box to be a gtk box")
+                .clone()
     }
 }
 
@@ -38,6 +48,9 @@ pub mod imp {
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/journey_list_item.ui")]
     pub struct JourneyListItem {
+        #[template_child]
+        pub(super) destination_box: TemplateChild<gtk::Box>,
+
         journey: RefCell<Option<Journey>>,
     }
 

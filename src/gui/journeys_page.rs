@@ -112,6 +112,8 @@ pub mod imp {
         #[template_child]
         toast_errors: TemplateChild<ToastOverlay>,
 
+        destination_alignment_group: gtk::SizeGroup,
+
         model: RefCell<ListStore>,
 
         journeys_result: RefCell<Option<JourneysResult>>,
@@ -130,6 +132,7 @@ pub mod imp {
                 scrolled_window: Default::default(),
                 list_journeys: Default::default(),
                 toast_errors: Default::default(),
+                destination_alignment_group: gtk::SizeGroup::new(gtk::SizeGroupMode::Horizontal),
                 model: Default::default(),
                 journeys_result: Default::default(),
                 settings: Settings::new("de.schmidhuberj.DieBahn"),
@@ -297,7 +300,7 @@ pub mod imp {
             self.model.replace(model);
 
             let factory = SignalListItemFactory::new();
-            factory.connect_setup(move |_, list_item| {
+            factory.connect_setup(clone!(@weak self.destination_alignment_group as size_group => move |_, list_item| {
                 let journey_item = JourneyListItem::new();
                 let list_item = list_item
                     .downcast_ref::<ListItem>()
@@ -307,7 +310,9 @@ pub mod imp {
                 list_item
                     .property_expression("item")
                     .bind(&journey_item, "journey", Widget::NONE);
-            });
+
+                size_group.add_widget(&journey_item.get_destination_box());
+            }));
             self.list_journeys.set_factory(Some(&factory));
             self.list_journeys.set_single_click_activate(true);
 
