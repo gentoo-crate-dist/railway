@@ -29,7 +29,13 @@ fn providers() -> Vec<Provider> {
         ),
         Provider::new("CMTA", "CapMetro", Some("Austin, Texas"), true),
         Provider::new("DART", "DART", Some("Des Moines Area Rapid Transit"), true),
-        Provider::new("DB-Busradar-Nrw", "DB Busradar NRW", None, false),
+        Provider::new(
+            "DB-Busradar-Nrw",
+            "DB Busradar NRW",
+            // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
+            Some(&gettextrs::gettext("Nordrhein-Westfalen")),
+            true,
+        ),
         Provider::new("DB", "DB", Some("Deutsche Bahn"), true),
         Provider::new("HVV", "HVV", Some("Hamburg public transport"), true),
         Provider::new("INSA", "NASA", Some("Nahverkehr Sachsen-Anhalt"), true),
@@ -41,9 +47,21 @@ fn providers() -> Vec<Provider> {
         ),
         Provider::new("Irish-Railway", "Irish Rail", Some("Iarnród Éireann"), true),
         Provider::new("Mobiliteit-Lu", "Mobiliteit", Some("Luxembourg"), true),
-        Provider::new("mobil-nrw", "mobil.nrw", None, true),
+        Provider::new(
+            "mobil-nrw",
+            "mobil.nrw",
+            // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
+            Some(&gettextrs::gettext("Nordrhein-Westfalen")),
+            true,
+        ),
         Provider::new("NVV", "NVV", Some("Nordhessischer Verkehrsverbund"), true),
-        Provider::new("NahSH", "Nah.SH", None, true),
+        Provider::new(
+            "NahSH",
+            "Nah.SH",
+            // Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
+            Some(&gettextrs::gettext("Schleswig-Holstein")),
+            true,
+        ),
         Provider::new(
             "ooevv",
             "OÖVV",
@@ -54,7 +72,13 @@ fn providers() -> Vec<Provider> {
         Provider::new("RMV", "RMV", Some("Rhein-Main-Verkehrsverbund"), true),
         Provider::new("RSAG", "RSAG", Some("Rostocker Straßenbahn AG"), true),
         Provider::new("Rejseplanen", "Rejseplanen", Some("Denmark"), true),
-        Provider::new("SBahn-Muenchen", "S-Bahn München", None, true),
+        Provider::new(
+            "SBahn-Muenchen",
+            "S-Bahn München",
+            // Translators: The country, see https://en.wikipedia.org/wiki/Germany
+            Some(&gettextrs::gettext("Germany")),
+            true,
+        ),
         Provider::new("STV", "STV", Some("Steirischer Verkehrsverbund"), true),
         Provider::new("SVV", "SVV", Some("Salzburger Verkehrsverbund"), true),
         Provider::new(
@@ -63,7 +87,13 @@ fn providers() -> Vec<Provider> {
             Some("Saarfahrplan/VGS Saarland"),
             true,
         ),
-        Provider::new("Salzburg", "Salzburg", None, false),
+        Provider::new(
+            "Salzburg",
+            "Salzburg",
+            // Translators: The country, see https://en.wikipedia.org/wiki/Austria
+            Some(&gettextrs::gettext("Austria")),
+            true,
+        ),
         Provider::new(
             "VBB",
             "VBB",

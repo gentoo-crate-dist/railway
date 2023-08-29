@@ -5,7 +5,7 @@
   <template class="DBProviderListItem" parent="GtkBox">
     <property name="orientation">horizontal</property>
     <property name="halign">start</property>
-    <property name="spacing">12</property>
+    <property name="spacing">9</property>
 
     <child>
       <object class="GtkImage">
