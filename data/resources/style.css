@@ -40,10 +40,6 @@
   font-size: small;
 }
 
-.provider-icon {
-  border-radius: 6px;
-}
-
 
 /* Fixes buttons inside cards having a bigger border radius compared to the card, which leads to the highlight spanning outside of the box. */
 .card button {
@@ -53,5 +49,5 @@
 
 /* Fixes padding of toggle-button inside menu button at the provider popover being too big and resizing the header bar */
 .window-menu-button-provider > button {
-  padding: 0px;
+  padding: 0px 5px 0px 3px;
 }
