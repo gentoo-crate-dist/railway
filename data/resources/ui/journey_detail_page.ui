@@ -89,8 +89,38 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label_last_refreshed">
-                            <property name="xalign">0</property>
+                          <object class="GtkBox">
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="xalign">0</property>
+                                <property name="hexpand">true</property>
+                                <accessibility>
+                                  <property name="description" translatable="yes">Total Travel Time</property>
+                                </accessibility>
+                                <binding name="label">
+                                  <lookup name="total-time">
+                                    <lookup name="journey" type="DBJourneyDetailPage"/>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label_last_refreshed">
+                                <property name="xalign">0</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkBox" id="box_legs">
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">12</property>
+                              <object class="GtkLabel" id="label_last_refreshed">
+                                <property name="xalign">0</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>

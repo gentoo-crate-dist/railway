@@ -20,29 +20,28 @@
   <url type="vcs-browser">https://gitlab.com/schmiddi-on-mobile/railway</url>
 
   <description>
-    <p>
-      Railway lets you look up travel information for many different railways, all without needing to navigate through different websites.
+    <p> <!-- WIP -->
+      Railway lets you look up travel information for a large number of networks,
+      all without needing to navigate through different websites. Due to the adaptive design,
+      it is suitable for both trip planning in advance and mobile use on the go:
     </p>
     <ul>
       <li>
-        Search for journeys
+        View your tripsʼ details including platforms and delays
       </li>
       <li>
-        View the details of a journey including departure, arrivals, delays, platforms
+        Bookmark current and future trips
       </li>
       <li>
-        Adapative for small screens
+        Make use of advance search options like filtering by mode of transport
       </li>
       <li>
-        Bookmark a search or a journey
-      </li>
-      <li>
-        Show more information like prices
-      </li>
-      <li>
-        Many different search profiles
+        Bookmark your most frequently used search
       </li>
     </ul>
+    <p>
+      And all that for networks from all around the world, with the best coverage in Europe.
+    </p>
   </description>
 
   <releases>

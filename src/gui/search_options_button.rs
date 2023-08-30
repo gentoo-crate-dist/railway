@@ -76,19 +76,19 @@ pub mod imp {
                 (2, gettextrs::gettext("BahnCard 25, 2nd class")),
                 (3, gettextrs::gettext("BahnCard 50, 1st class")),
                 (4, gettextrs::gettext("BahnCard 50, 2nd class")),
-                (9, gettextrs::gettext("A - VORTEILScard (with RAILPLUS)")),
-                (10, gettextrs::gettext("CH - HalbtaxAbo (with RAILPLUS)")),
-                (11, gettextrs::gettext("CH - HalbtaxAbo (without RAILPLUS)")),
+                (9, gettextrs::gettext("A – VORTEILScard (with RAILPLUS)")),
+                (10, gettextrs::gettext("CH – HalbtaxAbo (with RAILPLUS)")),
+                (11, gettextrs::gettext("CH – HalbtaxAbo (without RAILPLUS)")),
                 (
                     12,
-                    gettextrs::gettext("NL - Voordeelurenabo (with RAILPLUS)"),
+                    gettextrs::gettext("NL – Voordeelurenabo (with RAILPLUS)"),
                 ),
                 (
                     13,
-                    gettextrs::gettext("NL - Voordeelurenabo (without RAILPLUS)"),
+                    gettextrs::gettext("NL – Voordeelurenabo (without RAILPLUS)"),
                 ),
                 (14, gettextrs::gettext("SH-Card")),
-                (15, gettextrs::gettext("CH - General-Abonnement")),
+                (15, gettextrs::gettext("CH – General-Abonnement")),
             ])
         }
 
@@ -182,22 +182,22 @@ pub mod imp {
 
                     let types_string = if regional.iter().all(|b| *b) && ic.iter().all(|b| *b) {
                         None
-                    } else if regional.iter().all(|b| *b) && ic.iter().all(|b| !*b) {
-                        Some(gettextrs::gettext("Regional only"))
+                    } else if regional.iter().all(|b| *b) && ic.iter().all(|b| !*b) { // TODO: Germany specific, only display for networks there
+                        Some(gettextrs::gettext("Regional Only"))
                     } else {
-                        Some(gettextrs::gettext("Custom selection"))
+                        Some(gettextrs::gettext("Modes of Transport Restricted")) // WIP
                     };
 
                     let bike_accessible = self.settings.boolean("bike-accessible");
                     let bike_accessible_string = if bike_accessible {
-                        Some(gettextrs::gettext("Bike accessible"))
+                        Some(gettextrs::gettext("Bike Accessible"))
                     } else {
                         None
                     };
 
                     let direct_only = self.settings.boolean("direct-only");
                     let direct_only_string = if direct_only {
-                        Some(gettextrs::gettext("Direct connection"))
+                        Some(gettextrs::gettext("Direct Service"))
                     } else {
                         None
                     };
