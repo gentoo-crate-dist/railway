@@ -1,4 +1,5 @@
 {
+  # keep in sync with metainfo
   description = "Find all your travel information";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

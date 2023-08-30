@@ -65,20 +65,20 @@ mod imp {
                     match price.currency.as_str() {
                         "EUR" => {
                             // Translators: How to format the currency "Euro". Do not translate in {}.
-                            gettextrs::gettext("{amount} €")
+                            gettextrs::gettext("€{amount}")
                                 .replace("{amount}", &format!("{:.2}", price.amount))
                                 .to_value()
                         }
                         "USD" => {
                             // Translators: How to format the currency "Dollar (US)". Do not translate in {}.
-                            gettextrs::gettext("{amount} $")
+                            gettextrs::gettext("${amount}")
                                 .replace("{amount}", &format!("{:.2}", price.amount))
                                 .to_value()
                         }
                         // XXX: Add other currencies here
                         s => {
-                            // Translators: How to format unknown currentcy "currency". Do not translate in {}.
-                            gettextrs::gettext("{amount} {currency}")
+                            // Translators: How to format unknown currency "currency". Do not translate in {}.
+                            gettextrs::gettext("{currency} {amount}")
                                 .replace("{amount}", &format!("{:.2}", price.amount))
                                 .replace("{currency}", s)
                                 .to_value()

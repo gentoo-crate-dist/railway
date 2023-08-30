@@ -18,15 +18,15 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
             "Failed to fetch data. Are you connected to the internet?",
         )),
         Error::Hafas(hafas_rs::Error::Hafas { .. }) => Toast::builder()
-            .title(gettext("The API returned a error. Please report this."))
+            .title(gettext("Received an error. Please share feedback."))
             .button_label(gettext("More information"))
             .build(),
         Error::Hafas(hafas_rs::Error::Json { .. }) => Toast::builder()
-            .title(gettext("Failed to parse response. Please report this."))
+            .title(gettext("Received an invalid response. Please share feedback."))
             .button_label(gettext("More information"))
             .build(),
         _ => Toast::builder()
-            .title(gettext("Unknown issue. Please report this."))
+            .title(gettext("An unknown issue occured. Please share feedback."))
             .button_label(gettext("More information"))
             .build(),
     };

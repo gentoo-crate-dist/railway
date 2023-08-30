@@ -37,7 +37,7 @@ impl Utility {
     pub fn format_duration(duration: chrono::Duration) -> String {
         if duration.num_hours() == 0 {
             // Translators: duration in minutes, {} must not be translated as it will be replaced with an actual number
-            gettextrs::gettext("{} min").replace("{}", duration.num_minutes().to_string().as_str())
+            gettextrs::gettext("{} min.").replace("{}", duration.num_minutes().to_string().as_str())
         } else if duration.num_days() == 0 {
             (chrono::NaiveDate::from_ymd_opt(2022, 1, 1)
                 .unwrap_or_default()
@@ -45,7 +45,7 @@ impl Utility {
                 .unwrap_or_default()
                 + duration)
                 // Translators: duration format with hours and minutes, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-                .format(&gettextrs::gettext("%_H hrs %_M min"))
+                .format(&gettextrs::gettext("%_H hrs. %_M min."))
                 .to_string()
         } else {
             // Start one day before the new year, otherwise %_d would skip 2.
@@ -56,8 +56,8 @@ impl Utility {
                 + duration)
                 // Translators: duration format with days, hours and minutes, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
                 .format(&gettextrs::ngettext(
-                    "%_d day %_H hrs %_M min",
-                    "%_d days %_H hrs %_M min",
+                    "%_d day %_H hrs. %_M min.",
+                    "%_d days %_H hrs. %_M min.",
                     duration.num_hours().try_into().unwrap_or_default(),
                 ))
                 .to_string()

@@ -5,7 +5,7 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">Railway</name>
-  <shortdesc xml:lang="en">Find all your travel information</shortdesc>
+  <shortdesc xml:lang="en">Find all your travel information</shortdesc> <!-- keep in sync with metainfo -->
   <homepage rdf:resource="https://gitlab.com/schmiddi-on-mobile/railway" />
   <bug-database rdf:resource="https://gitlab.com/schmiddi-on-mobile/railway/-/issues"/>
   <programming-language>Rust</programming-language>

@@ -38,7 +38,7 @@ fn providers() -> Vec<Provider> {
         //     "DB-Busradar-Nrw",
         //     "DB Busradar NRW",
         //     // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-        //     Some(&gettextrs::gettext("Nordrhein-Westfalen")),
+        //     Some(&gettextrs::gettext("North Rhine-Westphalia")),
         //     true,
         // ),
         Provider::new("DB", "DB", Some("Deutsche Bahn"), true),
@@ -55,7 +55,7 @@ fn providers() -> Vec<Provider> {
             "mobil-nrw",
             "mobil.nrw",
             // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-            Some(&gettextrs::gettext("Nordrhein-Westfalen")),
+            Some(&gettextrs::gettext("North Rhine-Westphalia")),
             true,
         ),
         Provider::new("NVV", "NVV", Some("Nordhessischer Verkehrsverbund"), true),

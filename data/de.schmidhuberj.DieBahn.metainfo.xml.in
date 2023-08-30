@@ -21,28 +21,24 @@
 
   <description>
     <p>
-      Railway lets you look up travel information for many different railways, all without needing to navigate through different websites.
+      Railway lets you look up travel information across networks and borders
+      without having to navigate through different websites. Due to the adaptive
+      design, it is suitable to plan your trip in advance or mobile on the go:
     </p>
     <ul>
       <li>
-        Search for journeys
+        View your tripsʼ details including platforms and delays
       </li>
       <li>
-        View the details of a journey including departure, arrivals, delays, platforms
+        Bookmark current and future trips as well as frequent search
       </li>
       <li>
-        Adapative for small screens
-      </li>
-      <li>
-        Bookmark a search or a journey
-      </li>
-      <li>
-        Show more information like prices
-      </li>
-      <li>
-        Many different search profiles
+        Make use of advance search options like filtering by mode of transport
       </li>
     </ul>
+    <p>
+      And all that for networks from all around the world, but mostly from Europe.
+    </p>
   </description>
 
   <releases>

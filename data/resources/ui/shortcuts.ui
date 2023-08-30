@@ -16,13 +16,13 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Control&gt;d</property>
-                <property name="title">Bookmark Journey</property>
+                <property name="title">Bookmark Trip</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Control&gt;r</property>
-                <property name="title">Reload Journey</property>
+                <property name="title">Reload Trip</property>
               </object>
             </child>
           </object>
