@@ -9,14 +9,15 @@
     </style>
     <property name="orientation">horizontal</property>
     <property name="hexpand">TRUE</property>
-    <property name="spacing">8</property>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <child>
           <object class="DBAltLabel" id="alt_label_arrival">
-            <property name="orientation">horizontal</property>
-            <property name="spacing">5</property>
+            <property name="valign">center</property>
+            <property name="vexpand">True</property>
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
             <binding name="main">
               <lookup name="planned-arrival">
                 <lookup name="stopover" type="DBStopoverItem">
@@ -31,55 +32,78 @@
             </binding>
           </object>
         </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <child>
-          <object class="DBAltLabel" id="alt_label_departure">
-            <property name="orientation">horizontal</property>
-            <property name="spacing">5</property>
+          <object class="GtkSeparator">
+            <property name="orientation">vertical</property>
+            <property name="vexpand">True</property>
+            <property name="halign">center</property>
+            <property name="margin-start">18</property>
+            <property name="margin-end">12</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">circle-filled-symbolic</property>
+            <property name="pixel-size">13</property>
+            <property name="margin-start">6</property>
+            <property name="hexpand">False</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="orientation">vertical</property>
+            <property name="vexpand">True</property>
+            <property name="halign">center</property>
+            <property name="margin-start">18</property>
+            <property name="margin-end">12</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">horizontal</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="ellipsize">end</property>
+            <binding name="label">
+              <lookup name="name">
+                <lookup name="stop">
+                  <lookup name="stopover" type="DBStopoverItem">
+                  </lookup>
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="DBAltLabel">
+            <property name="valign">center</property>
+            <property name="halign">end</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
             <binding name="main">
-              <lookup name="planned-departure">
+              <lookup name="planned-departure-platform">
                 <lookup name="stopover" type="DBStopoverItem">
                 </lookup>
               </lookup>
             </binding>
             <binding name="alt">
-              <lookup name="departure">
+              <lookup name="departure-platform">
                 <lookup name="stopover" type="DBStopoverItem">
                 </lookup>
               </lookup>
             </binding>
           </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkLabel">
-        <binding name="label">
-          <lookup name="name">
-            <lookup name="stop">
-              <lookup name="stopover" type="DBStopoverItem">
-              </lookup>
-            </lookup>
-          </lookup>
-        </binding>
-      </object>
-    </child>
-    <child>
-      <object class="DBAltLabel">
-        <property name="valign">center</property>
-        <property name="halign">GTK_ALIGN_END</property>
-        <property name="hexpand">True</property>
-        <binding name="main">
-          <lookup name="planned-departure-platform">
-            <lookup name="stopover" type="DBStopoverItem">
-            </lookup>
-          </lookup>
-        </binding>
-        <binding name="alt">
-          <lookup name="departure-platform">
-            <lookup name="stopover" type="DBStopoverItem">
-            </lookup>
-          </lookup>
-        </binding>
       </object>
     </child>
   </template>

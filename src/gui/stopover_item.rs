@@ -19,18 +19,12 @@ impl StopoverItem {
             .build()
     }
 
-    pub (crate) fn alt_labels(&self) -> Vec<Widget> {
+    pub (crate) fn arrival_label(&self) -> Widget {
         let obj = self.imp();
-        vec![
-            obj.alt_label_arrival.borrow()
-                .dynamic_cast_ref::<gtk::Widget>()
-                .expect("AltLabel to be a Widget")
-                .clone(), 
-            obj.alt_label_departure.borrow()
-                .dynamic_cast_ref::<gtk::Widget>()
-                .expect("AltLabel to be a Widget")
-                .clone()
-        ]
+        obj.alt_label_arrival.borrow()
+            .dynamic_cast_ref::<gtk::Widget>()
+            .expect("AltLabel to be a Widget")
+            .clone()
     }
 }
 
@@ -55,8 +49,6 @@ pub mod imp {
     pub struct StopoverItem {
         #[template_child]
         pub(super) alt_label_arrival: TemplateChild<AltLabel>,
-        #[template_child]
-        pub(super) alt_label_departure: TemplateChild<AltLabel>,
 
         stopover: RefCell<Option<Stopover>>,
     }

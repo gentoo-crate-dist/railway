@@ -4,7 +4,7 @@ use crate::backend::Leg;
 
 gtk::glib::wrapper! {
     pub struct LegItem(ObjectSubclass<imp::LegItem>)
-        @extends gtk::Grid, gtk::Widget,
+        @extends gtk::Box, gtk::Widget,
         @implements gtk::gio::ActionGroup, gtk::gio::ActionMap, gtk::Accessible, gtk::Buildable,
             gtk::ConstraintTarget;
 }
@@ -33,6 +33,7 @@ pub mod imp {
     use crate::backend::Leg;
     use crate::backend::Remark;
     use crate::backend::Stopover;
+    use crate::gui::alt_label::AltLabel;
     use crate::gui::remark_item::RemarkItem;
     use crate::gui::stopover_item::StopoverItem;
     use crate::gui::utility::Utility;
@@ -46,6 +47,12 @@ pub mod imp {
         box_remarks: TemplateChild<gtk::Box>,
         #[template_child]
         label_num_stopovers: TemplateChild<gtk::Label>,
+        #[template_child]
+        start_departure_label: TemplateChild<AltLabel>,
+        #[template_child]
+        destination_arrival_label: TemplateChild<AltLabel>,
+        #[template_child]
+        spacing: TemplateChild<libadwaita::Bin>,
 
         leg: RefCell<Option<Leg>>,
     }
@@ -54,7 +61,7 @@ pub mod imp {
     impl ObjectSubclass for LegItem {
         const NAME: &'static str = "DBLegItem";
         type Type = super::LegItem;
-        type ParentType = gtk::Grid;
+        type ParentType = gtk::Box;
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
@@ -111,14 +118,16 @@ pub mod imp {
 
                     let size_group = SizeGroup::new(SizeGroupMode::Horizontal);
 
+                    size_group.add_widget(&self.start_departure_label.get());
+                    size_group.add_widget(&self.destination_arrival_label.get());
+                    size_group.add_widget(&self.spacing.get());
+
                     // Fill box_legs
                     for stopover in &stopovers {
                         let widget = StopoverItem::new(&Stopover::new(stopover.clone()));
                         self.box_stopovers
                             .append(&widget);
-                        for w in widget.alt_labels() {
-                            size_group.add_widget(&w);
-                        }
+                        size_group.add_widget(&widget.arrival_label());
                     }
 
 
@@ -147,5 +156,5 @@ pub mod imp {
     }
 
     impl WidgetImpl for LegItem {}
-    impl GridImpl for LegItem {}
+    impl BoxImpl for LegItem {}
 }

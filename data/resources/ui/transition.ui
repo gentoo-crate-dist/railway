@@ -9,12 +9,11 @@
     </style>
     <property name="orientation">horizontal</property>
     <property name="hexpand">TRUE</property>
-    <property name="spacing">8</property>
-    <property name="margin-start">8</property>
+    <property name="spacing">6</property>
     <child>
-      <object class="GtkSeparator">
-        <property name="orientation">vertical</property>
-        <property name="margin-start">12</property>
+      <object class="GtkImage">
+        <property name="icon-name">change-symbolic</property>
+        <property name="margin-start">66</property>
       </object>
     </child>
     <child>
