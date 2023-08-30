@@ -27,6 +27,11 @@
   <gresource prefix="/de/schmidhuberj/DieBahn/">
     <file compressed="true">style.css</file>
   </gresource>
+  <gresource prefix="/de/schmidhuberh/DieBahn/icons/scalable/shapes/">
+    <file alias="circle-outline-thick-symbolic.svg">../icons/timeline/circle-outline-thick-symbolic.svg</file>
+    <file alias="circle-filled-symbolic.svg">../icons/timeline/circle-filled-symbolic.svg</file>
+    <file alias="change-symbolic.svg">../icons/timeline/change-symbolic.svg</file>
+  </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/providers/">
     <file alias="avv.svg">../icons/providers/avv.svg</file>
     <file alias="bart.svg">../icons/providers/bart.svg</file>

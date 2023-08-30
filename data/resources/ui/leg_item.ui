@@ -3,241 +3,332 @@
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libadwaita" version="1.0"/>
 
-  <template class="DBLegItem" parent="GtkGrid">
+  <template class="DBLegItem" parent="GtkBox">
     <style>
       <class name="card"/>
     </style>
-    <property name="orientation">vertical</property>
-    <property name="hexpand">TRUE</property>
-    <property name="column-spacing">15</property>
-    <property name="row-spacing">15</property>
-    <child>
-      <object class="GtkSeparator">
-        <property name="orientation">vertical</property>
-        <property name="hexpand">false</property>
-        <property name="halign">center</property>
-        <property name="valign">fill</property>
-        <property name="margin-start">12</property>
-        <layout>
-          <property name="column">0</property>
-          <property name="row">1</property>
-          <property name="row-span">3</property>
-        </layout>
-      </object>
-    </child>
-    <child>
-      <object class="DBAltLabel">
-        <layout>
-          <property name="column">0</property>
-          <property name="column-span">2</property>
-          <property name="row">0</property>
-        </layout>
-        <property name="margin-start">12</property>
-        <property name="margin-top">12</property>
-        <property name="halign">start</property>
-        <binding name="main">
-          <lookup name="planned-departure">
-            <lookup name="leg" type="DBLegItem">
-            </lookup>
-          </lookup>
-        </binding>
-        <binding name="alt">
-          <lookup name="departure">
-            <lookup name="leg" type="DBLegItem">
-            </lookup>
-          </lookup>
-        </binding>
-      </object>
-    </child>
-    <child>
-      <object class="GtkLabel">
-        <layout>
-          <property name="column">2</property>
-          <property name="row">0</property>
-          <property name="column-span">3</property>
-        </layout>
-        <property name="margin-start">12</property>
-        <property name="margin-top">12</property>
-        <property name="halign">start</property>
-        <binding name="label">
-          <lookup name="name">
-            <lookup name="origin">
-              <lookup name="leg" type="DBLegItem">
-              </lookup>
-            </lookup>
-          </lookup>
-        </binding>
-      </object>
-    </child>
-    <child>
-      <object class="DBAltLabel">
-        <property name="halign">GTK_ALIGN_END</property>
-        <property name="hexpand">True</property>
-        <property name="margin-top">12</property>
-        <property name="margin-end">12</property>
-        <layout>
-          <property name="column">5</property>
-          <property name="row">0</property>
-        </layout>
-        <binding name="main">
-          <lookup name="planned-departure-platform">
-            <lookup name="leg" type="DBLegItem"/>
-          </lookup>
-        </binding>
-        <binding name="alt">
-          <lookup name="departure-platform">
-            <lookup name="leg" type="DBLegItem"/>
-          </lookup>
-        </binding>
-      </object>
-    </child>
     <child>
       <object class="GtkBox">
-        <layout>
-          <property name="column">1</property>
-          <property name="row">2</property>
-          <property name="column-span">5</property>
-        </layout>
         <property name="orientation">vertical</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">False</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
         <child>
-          <object class="GtkExpander" id="expander">
-            <property name="margin-end">12</property>
-            <child type="label">
-              <object class="GtkLabel">
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <child>
+              <object class="DBAltLabel" id="start_departure_label">
+                <property name="valign">center</property>
                 <property name="halign">start</property>
-
-                <binding name="label">
-                  <closure function="concat_and_translate" type="gchararray">
-                    <lookup name="name">
-                      <lookup name="leg" type="DBLegItem">
-                      </lookup>
+                <binding name="main">
+                  <lookup name="planned-departure">
+                    <lookup name="leg" type="DBLegItem">
                     </lookup>
-                    <constant type="gchararray">to</constant>
-                    <lookup name="direction">
-                      <lookup name="leg" type="DBLegItem">
-                      </lookup>
+                  </lookup>
+                </binding>
+                <binding name="alt">
+                  <lookup name="departure">
+                    <lookup name="leg" type="DBLegItem">
                     </lookup>
-                  </closure>
+                  </lookup>
                 </binding>
               </object>
             </child>
             <child>
               <object class="GtkBox">
-                <property name="margin-top">12</property>
                 <property name="orientation">vertical</property>
-                <property name="spacing">25</property>
                 <child>
-                  <object class="GtkBox" id="box_remarks">
-                    <property name="spacing">12</property>
+                  <object class="GtkSeparator">
                     <property name="orientation">vertical</property>
+                    <property name="vexpand">True</property>
+                    <property name="halign">center</property>
+                    <property name="margin-start">18</property>
+                    <property name="margin-end">12</property>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkBox" id="box_stopovers">
-                    <property name="spacing">12</property>
+                  <object class="GtkImage">
+                    <property name="icon-name">circle-outline-thick-symbolic</property>
+                    <property name="margin-start">6</property>
+                    <property name="pixel-size">17</property>
+                    <property name="hexpand">False</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
                     <property name="orientation">vertical</property>
+                    <property name="vexpand">True</property>
+                    <property name="halign">center</property>
+                    <property name="margin-start">18</property>
+                    <property name="margin-end">12</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="margin-start">12</property>
+                <property name="halign">start</property>
+                <property name="ellipsize">end</property>
+                <binding name="label">
+                  <lookup name="name">
+                    <lookup name="origin">
+                      <lookup name="leg" type="DBLegItem">
+                      </lookup>
+                    </lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+            </child>
+            <child>
+              <object class="DBAltLabel">
+                <property name="valign">center</property>
+                <property name="halign">end</property>
+                <property name="hexpand">True</property>
+                <binding name="main">
+                  <lookup name="planned-departure-platform">
+                    <lookup name="leg" type="DBLegItem"/>
+                  </lookup>
+                </binding>
+                <binding name="alt">
+                  <lookup name="departure-platform">
+                    <lookup name="leg" type="DBLegItem"/>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <child>
+              <object class="AdwBin" id="spacing"/>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="orientation">vertical</property>
+                <property name="margin-start">18</property>
+                <property name="margin-end">12</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="margin-top">12</property>
+                <property name="margin-bottom">12</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">horizontal</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="wrap">True</property>
+                        <binding name="label">
+                          <closure function="concat_and_translate" type="gchararray">
+                            <lookup name="name">
+                              <lookup name="leg" type="DBLegItem">
+                              </lookup>
+                            </lookup>
+                            <constant type="gchararray">to</constant>
+                            <lookup name="direction">
+                              <lookup name="leg" type="DBLegItem">
+                              </lookup>
+                            </lookup>
+                          </closure>
+                        </binding>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkToggleButton" id="remarks_button">
+                        <property name="valign">center</property>
+                        <property name="halign">end</property>
+                        <property name="hexpand">True</property>
+                        <style>
+                          <class name="pill"/>
+                        </style>
+                        <property name="child">
+                          <object class="AdwButtonContent">
+                            <property name="margin-start">12</property>
+                            <property name="margin-end">12</property>
+                            <property name="icon-name">dialog-information-symbolic</property>
+                            <property name="label" translatable="yes">Re_marks</property>
+                            <property name="use-underline">True</property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkRevealer">
+                    <property name="vexpand">False</property>
+                    <property name="child">
+                      <object class="GtkBox" id="box_remarks">
+                        <property name="spacing">12</property>
+                        <property name="margin-start">18</property>
+                        <property name="margin-end">18</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                        <property name="orientation">vertical</property>
+                      </object>
+                    </property>
+                    <binding name="reveal-child">
+                      <lookup name="active">remarks_button</lookup>
+                    </binding>
+                    <property name="transition-type">slide-up</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkToggleButton" id="stopover_button">
+                    <property name="hexpand">False</property>
+                    <property name="halign">start</property>
+                    <style>
+                      <class name="pill"/>
+                    </style>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="margin-start">12</property>
+                        <property name="margin-end">6</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel" id="label_num_stopovers">
+                            <property name="halign">start</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">go-next-symbolic</property>
+                            <property name="visible" bind-source="stopover_button" bind-property="active" bind-flags="sync-create|invert-boolean"/>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">go-down-symbolic</property>
+                            <property name="visible" bind-source="stopover_button" bind-property="active" bind-flags="sync-create"/>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
                   </object>
                 </child>
               </object>
             </child>
           </object>
         </child>
-        <child>
-          <object class="GtkLabel" id="label_num_stopovers">
-            <property name="margin-start">15</property>
-            <property name="margin-top">15</property>
-            <property name="halign">start</property>
-            <binding name="visible">
-              <closure function="not" type="gboolean">
-                <lookup name="expanded">expander</lookup>
-              </closure>
-            </binding>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="DBAltLabel">
-        <layout>
-          <property name="column">0</property>
-          <property name="column-span">2</property>
-          <property name="row">4</property>
-        </layout>
-        <property name="margin-start">12</property>
-        <property name="margin-bottom">12</property>
-        <property name="halign">start</property>
-        <binding name="main">
-          <lookup name="planned-arrival">
-            <lookup name="leg" type="DBLegItem">
-            </lookup>
-          </lookup>
-        </binding>
-        <binding name="alt">
-          <lookup name="arrival">
-            <lookup name="leg" type="DBLegItem">
-            </lookup>
-          </lookup>
-        </binding>
-      </object>
-    </child>
-    <child>
-      <object class="GtkLabel">
-        <layout>
-          <property name="column">2</property>
-          <property name="row">4</property>
-          <property name="column-span">3</property>
-        </layout>
-        <property name="halign">start</property>
-        <property name="margin-start">12</property>
-        <property name="margin-bottom">12</property>
-        <binding name="label">
-          <lookup name="name">
-            <lookup name="destination">
-              <lookup name="leg" type="DBLegItem">
-              </lookup>
-            </lookup>
-          </lookup>
-        </binding>
-      </object>
-    </child>
-    <child>
-      <object class="DBAltLabel">
-        <layout>
-          <property name="column">5</property>
-          <property name="row">4</property>
-        </layout>
-        <property name="halign">GTK_ALIGN_END</property>
-        <property name="hexpand">True</property>
-        <property name="margin-end">12</property>
-        <property name="margin-bottom">12</property>
-        <binding name="main">
-          <lookup name="planned-arrival-platform">
-            <lookup name="leg" type="DBLegItem"/>
-          </lookup>
-        </binding>
-        <binding name="alt">
-          <lookup name="arrival-platform">
-            <lookup name="leg" type="DBLegItem"/>
-          </lookup>
-        </binding>
-      </object>
-    </child>
-    <child>
-      <object class="GtkExpander">
-        <property name="visible">false</property>
-        <property name="margin-end">12</property>
-        <layout>
-          <property name="column">0</property>
-          <property name="row">6</property>
-          <property name="column-span">5</property>
-        </layout>
 
-        <child type="label">
-          <object class="GtkLabel">
-            <property name="label" translatable="yes">Remarks</property>
+        <child>
+          <object class="GtkRevealer">
+            <property name="vexpand">False</property>
+            <property name="child">
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkBox" id="box_stopovers">
+                    <property name="orientation">vertical</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+            <binding name="reveal-child">
+              <lookup name="active">stopover_button</lookup>
+            </binding>
+            <property name="transition-type">slide-up</property>
           </object>
         </child>
+
         <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <child>
+              <object class="DBAltLabel" id="destination_arrival_label">
+                <property name="valign">center</property>
+                <property name="halign">start</property>
+                <binding name="main">
+                  <lookup name="planned-arrival">
+                    <lookup name="leg" type="DBLegItem">
+                    </lookup>
+                  </lookup>
+                </binding>
+                <binding name="alt">
+                  <lookup name="arrival">
+                    <lookup name="leg" type="DBLegItem">
+                    </lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkSeparator">
+                    <property name="orientation">vertical</property>
+                    <property name="vexpand">True</property>
+                    <property name="halign">center</property>
+                    <property name="margin-start">18</property>
+                    <property name="margin-end">12</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">circle-outline-thick-symbolic</property>
+                    <property name="margin-start">6</property>
+                    <property name="pixel-size">17</property>
+                    <property name="hexpand">False</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <property name="orientation">vertical</property>
+                    <property name="vexpand">True</property>
+                    <property name="halign">center</property>
+                    <property name="margin-start">18</property>
+                    <property name="margin-end">12</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="halign">start</property>
+                <property name="margin-start">12</property>
+                <property name="ellipsize">end</property>
+                <binding name="label">
+                  <lookup name="name">
+                    <lookup name="destination">
+                      <lookup name="leg" type="DBLegItem">
+                      </lookup>
+                    </lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="DBAltLabel">
+                <property name="valign">center</property>
+                <property name="halign">end</property>
+                <property name="hexpand">True</property>
+                <binding name="main">
+                  <lookup name="planned-arrival-platform">
+                    <lookup name="leg" type="DBLegItem"/>
+                  </lookup>
+                </binding>
+                <binding name="alt">
+                  <lookup name="arrival-platform">
+                    <lookup name="leg" type="DBLegItem"/>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+          </object>
         </child>
       </object>
     </child>

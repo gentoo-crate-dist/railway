@@ -44,6 +44,7 @@ fn init_icons<P: IsA<gdk::Display>>(display: &P) {
 
     icon_theme.add_resource_path("/");
     icon_theme.add_resource_path("/de/schmidhuberj/DieBahn/providers/");
+    icon_theme.add_resource_path("/de/schmidhuberh/DieBahn/icons/scalable/shapes/");
 }
 
 fn init_internationalization() -> Result<(), Box<dyn std::error::Error>> {
