@@ -6,6 +6,7 @@ mod journey_list_item;
 mod journey_store_item;
 mod journeys_page;
 mod leg_item;
+mod place_list_item;
 mod preferences_window;
 mod provider_list_item;
 mod provider_popover;
