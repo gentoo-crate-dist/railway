@@ -23,6 +23,7 @@
             <property name="spacing">8</property>
             <child>
               <object class="GtkLabel">
+                <property name="ellipsize">end</property>
                 <binding name="label">
                   <lookup name="origin" type="DBSearchStoreItem">
                   </lookup>
@@ -36,6 +37,7 @@
             <property name="spacing">8</property>
             <child>
               <object class="GtkLabel">
+                <property name="ellipsize">end</property>
                 <binding name="label">
                   <lookup name="destination" type="DBSearchStoreItem">
                   </lookup>
