@@ -48,6 +48,10 @@ pub mod imp {
         #[template_child]
         label_num_stopovers: TemplateChild<gtk::Label>,
         #[template_child]
+        stopover_button: TemplateChild<gtk::ToggleButton>,
+        #[template_child]
+        remarks_button: TemplateChild<gtk::ToggleButton>,
+        #[template_child]
         start_departure_label: TemplateChild<AltLabel>,
         #[template_child]
         destination_arrival_label: TemplateChild<AltLabel>,
@@ -132,14 +136,21 @@ pub mod imp {
 
 
                     // Fill box_remarks
+                    self.remarks_button.set_visible(remarks.len() > 0);
                     for remark in remarks {
                         self.box_remarks
                             .append(&RemarkItem::new(&Remark::new(remark.clone())));
                     }
 
-                    let num_stopovers_fmt = gettextrs::gettext("{} stopovers");
-                    let num_stopovers_str = num_stopovers_fmt.replace("{}", &stopovers.len().to_string());
-                    self.label_num_stopovers.set_label(&num_stopovers_str);
+                    let n_stopovers = stopovers.len();
+                    if n_stopovers > 0 {
+                        self.stopover_button.set_visible(true);
+                        let num_stopovers_fmt = gettextrs::ngettext("{} stopover", "{} stopovers", n_stopovers.try_into().unwrap());
+                        let num_stopovers_str = num_stopovers_fmt.replace("{}", &n_stopovers.to_string());
+                        self.label_num_stopovers.set_label(&num_stopovers_str);
+                    } else {
+                        self.stopover_button.set_visible(false);
+                    }
 
                     self.leg.replace(obj);
                 }
