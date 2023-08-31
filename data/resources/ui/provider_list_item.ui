@@ -5,7 +5,7 @@
   <template class="DBProviderListItem" parent="GtkBox">
     <property name="orientation">horizontal</property>
     <property name="halign">start</property>
-    <property name="spacing">9</property>
+    <property name="spacing">12</property>
 
     <child>
       <object class="GtkImage">
@@ -15,7 +15,7 @@
         </style>
         <property name="halign">start</property>
         <property name="valign">center</property>
-        <property name="pixel-size">28</property>
+        <property name="icon-size">large</property>
         <binding name="icon-name">
           <lookup name="icon-name">
             <lookup name="provider" type="DBProviderListItem"/>

@@ -5,7 +5,6 @@
 
   <template class="DBStationEntry" parent="GtkBox">
     <property name="orientation">vertical</property>
-    <property name="spacing">8</property>
     <child>
       <object class="GtkEntry" id="entry">
         <style>
