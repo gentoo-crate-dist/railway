@@ -37,6 +37,7 @@
             </child>
             <child>
               <object class="GtkLabel">
+                <property name="ellipsize">end</property>
                 <binding name="label">
                   <lookup name="name">
                     <lookup name="origin">
@@ -69,6 +70,7 @@
             </child>
             <child>
               <object class="GtkLabel">
+                <property name="ellipsize">end</property>
                 <binding name="label">
                   <lookup name="name">
                     <lookup name="destination">
