@@ -7,7 +7,6 @@
       <class name="journeys-page"/>
     </style>
     <property name="orientation">vertical</property>
-    <property name="spacing">8</property>
     <property name="vexpand">TRUE</property>
     <property name="valign">GTK_ALIGN_FILL</property>
     <property name="hexpand">TRUE</property>
@@ -16,20 +15,19 @@
     <child>
       <object class="AdwToastOverlay" id="toast_errors">
         <property name="overflow">visible</property>
+        <binding name="visible">
+          <closure function="is_some" type="gboolean">
+            <lookup name="journeys-result" type="DBJourneysPage"/>
+          </closure>
+        </binding>
 
         <child>
           <object class="GtkBox">
             <property name="orientation">vertical</property>
-            <property name="spacing">8</property>
             <property name="vexpand">TRUE</property>
             <property name="valign">GTK_ALIGN_FILL</property>
             <property name="hexpand">TRUE</property>
             <property name="halign">GTK_ALIGN_FILL</property>
-            <binding name="visible">
-              <closure function="is_some" type="gboolean">
-                <lookup name="journeys-result" type="DBJourneysPage"/>
-              </closure>
-            </binding>
 
             <child>
               <object class="GtkSpinner">
