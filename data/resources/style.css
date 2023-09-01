@@ -51,3 +51,8 @@
 .window-menu-button-provider > button {
   padding: 0px 5px 0px 3px;
 }
+
+.list-button {
+  border-radius: 12px;
+  height: 40px;
+}
