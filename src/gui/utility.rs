@@ -16,32 +16,6 @@ impl Utility {
     }
 
     #[template_callback]
-    fn concat_and_translate(#[rest] values: &[gtk::glib::Value]) -> String {
-        values
-            .iter()
-            .map(|v| {
-                gettextrs::gettext(
-                    v.get::<Option<String>>()
-                        .expect("Expected Strings for arguments")
-                        .unwrap_or(" ".to_string()),
-                )
-            })
-            .collect::<Vec<String>>()
-            .join(" ")
-    }
-
-    #[template_callback]
-    fn u32_to_string(#[rest] values: &[gtk::glib::Value]) -> String {
-        values
-            .iter()
-            .next()
-            .expect("At least one argument has to exist")
-            .get::<u32>()
-            .expect("Expected u32 for arguments")
-            .to_string()
-    }
-
-    #[template_callback]
     fn is_some(#[rest] values: &[gtk::glib::Value]) -> bool {
         values
             .iter()

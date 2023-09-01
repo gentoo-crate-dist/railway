@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2022 Julian Schmidhuber
-# This file is distributed under the same license as the DieBahn package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the diebahn package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: DieBahn\n"
+"Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-01 14:55+0200\n"
-"PO-Revision-Date: 2022-08-16 19:32+0200\n"
-"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
-"Language-Team: \n"
-"Language: nl\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: data/resources/ui/date_time_picker.ui:48
 msgid "Date"
@@ -24,198 +24,195 @@ msgstr ""
 
 #: data/resources/ui/date_time_picker.ui:148
 msgid "Time"
-msgstr "Tijdstip"
+msgstr ""
 
 #: data/resources/ui/journey_detail_page.ui:125
 #: data/resources/ui/journeys_page.ui:78
 msgid "Search first"
-msgstr "Voer een zoekopdracht uit"
+msgstr ""
 
 #: data/resources/ui/journey_store_item.ui:89
 #: data/resources/ui/search_store_item.ui:53
 msgid "Details"
-msgstr "Details"
+msgstr ""
 
 #: data/resources/ui/leg_item.ui:161
-#, fuzzy
 msgid "Re_marks"
-msgstr "Opmerkingen"
+msgstr ""
 
 #: data/resources/ui/preferences_window.ui:9
 #: data/resources/ui/search_options_window.ui:9
 msgid "General"
-msgstr "Algemeen"
+msgstr ""
 
 #: data/resources/ui/preferences_window.ui:15
 msgid "Delete old journeys from the store"
-msgstr "Reisgeschiedenis uit lokale opslag wissen"
+msgstr ""
 
 #: data/resources/ui/preferences_window.ui:26
 msgid "Hours after planned arrival journeys will be kept"
-msgstr "Reizen met nog geplande aankomsttijden worden bewaard"
+msgstr ""
 
 #: data/resources/ui/search_options_button.ui:24
-#, fuzzy
 msgid "More Options"
-msgstr "Meer informatie"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:15
 msgid "BahnCard"
-msgstr "BahnCard"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:38
 msgid "Class"
-msgstr "Klasse"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:44
 msgid "First class"
-msgstr "Eerst klas"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:51
 msgid "Second class"
-msgstr "Tweede klas"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:63
 #: src/gui/search_options_button.rs:189
 msgid "Bike accessible"
-msgstr "Toegankelijk voor fietsen"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:74
 msgid "Minimum transfer time"
-msgstr "Minimale overstaptijd"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:86
 msgid "Direct connections only"
-msgstr "Zonder overstap"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:101
 msgid "Modes of transport"
-msgstr "Vervoersmogelijkheden"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:107
 msgid "ICE"
-msgstr "ICE"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:118
 msgid "IC/EC"
-msgstr "IC/EC"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:129
 msgid "Interregio/RegionalExpress"
-msgstr "Interregio/RegionalExpress (sneltrein)"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:140
 msgid "Regio"
-msgstr "Regionaal/Streekvervoer"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:151
 msgid "Suburban"
-msgstr "Stadsvervoer"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:162
 msgid "Bus"
-msgstr "Bus"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:173
 msgid "Ferry"
-msgstr "Veerboot"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:184
 msgid "Subway"
-msgstr "Metro"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:195
 msgid "Tram"
-msgstr "Tram"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:206
 msgid "Taxi"
-msgstr "Taxi"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:226
 #: src/gui/search_options_button.rs:73
 msgid "None"
-msgstr "Geen"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:227
 #: src/gui/search_options_button.rs:74
 msgid "BahnCard 25, 1st class"
-msgstr "BahnCard 25, 1e klas"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:228
 #: src/gui/search_options_button.rs:75
 msgid "BahnCard 25, 2nd class"
-msgstr "BahnCard 25, 2e klas"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:229
 #: src/gui/search_options_button.rs:76
 msgid "BahnCard 50, 1st class"
-msgstr "BahnCard 50, 1e klas"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:230
 #: src/gui/search_options_button.rs:77
 msgid "BahnCard 50, 2nd class"
-msgstr "BahnCard 50, 2e klas"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:231
 #: src/gui/search_options_button.rs:78
 msgid "A - VORTEILScard (with RAILPLUS)"
-msgstr "A - VORTEILScard (met RAILPLUS)"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:232
 #: src/gui/search_options_button.rs:79
 msgid "CH - HalbtaxAbo (with RAILPLUS)"
-msgstr "CH - HalbtaxAbo (met RAILPLUS)"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:233
 #: src/gui/search_options_button.rs:80
 msgid "CH - HalbtaxAbo (without RAILPLUS)"
-msgstr "CH - HalbtaxAbo (zonder RAILPLUS)"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:234
 #: src/gui/search_options_button.rs:83
 msgid "NL - Voordeelurenabo (with RAILPLUS)"
-msgstr "NL - Voordeelurenabonnement (met RAILPLUS)"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:235
 #: src/gui/search_options_button.rs:87
 msgid "NL - Voordeelurenabo (without RAILPLUS)"
-msgstr "NL - Voordeelurenabonnement (zonder RAILPLUS)"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:236
 #: src/gui/search_options_button.rs:89
 msgid "SH-Card"
-msgstr "SH-Card"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:237
 #: src/gui/search_options_button.rs:90
 msgid "CH - General-Abonnement"
-msgstr "CH - Algemeen abonnement"
+msgstr ""
 
 #: data/resources/ui/search_page.ui:41
 msgid "From"
-msgstr "Van"
+msgstr ""
 
 #: data/resources/ui/search_page.ui:54
 msgid "To"
-msgstr "Naar"
+msgstr ""
 
 #: data/resources/ui/search_page.ui:77 data/resources/ui/window.ui:26
 msgid "Search"
-msgstr "Zoeken"
+msgstr ""
 
 #: data/resources/ui/transition.ui:21
-#, fuzzy
 msgid "Transition:"
-msgstr "Aantal overstappen"
+msgstr ""
 
 #: data/resources/ui/window.ui:115
 msgid "Journeys"
-msgstr "Reismogelijkheden"
+msgstr ""
 
 #: data/resources/ui/window.ui:182
 msgid "Journey"
-msgstr "Reismogelijkheid"
+msgstr ""
 
 #: data/resources/ui/window.ui:208
 msgid "Preferences"
@@ -228,15 +225,14 @@ msgstr ""
 #: src/gui/search_page.rs:162 src/gui/journey_detail_page.rs:69
 #: src/gui/journeys_page.rs:198 src/gui/journeys_page.rs:258
 msgid "language"
-msgstr "nl"
+msgstr ""
 
 #. Translators: How many transitions the train has. For the plural-variant, the {} will be replaced by the number, e.g. '5 transitions'.
 #: src/gui/journey_detail_page.rs:92
-#, fuzzy
 msgid "One transition"
 msgid_plural "{} transitions"
-msgstr[0] "Aantal overstappen"
-msgstr[1] "Aantal overstappen"
+msgstr[0] ""
+msgstr[1] ""
 
 #. Translators: How long a journey takes, e.g. 'Travel time: 05:32'.
 #: src/gui/journey_detail_page.rs:99
@@ -245,21 +241,19 @@ msgstr ""
 
 #: src/gui/transition.rs:13
 msgid "{} Minutes"
-msgstr "{} minuten"
+msgstr ""
 
 #: src/gui/transition.rs:16 src/gui/search_options_button.rs:97
 msgid "Unknown"
 msgstr ""
 
 #: src/gui/search_options_button.rs:135
-#, fuzzy
 msgid "1st class"
-msgstr "Eerst klas"
+msgstr ""
 
 #: src/gui/search_options_button.rs:137
-#, fuzzy
 msgid "2nd class"
-msgstr "Tweede klas"
+msgstr ""
 
 #: src/gui/search_options_button.rs:182
 msgid "Regional only"
@@ -270,35 +264,32 @@ msgid "Custom selection"
 msgstr ""
 
 #: src/gui/search_options_button.rs:196
-#, fuzzy
 msgid "Direct connection"
-msgstr "Zonder overstap"
+msgstr ""
 
 #: src/gui/error.rs:18
 msgid "Failed to fetch data. Are you connected to the internet?"
 msgstr ""
-"De gegevens kunnen niet worden opgehaald. Bent u verbonden met het internet?"
 
 #: src/gui/error.rs:21
 msgid "The API returned a error. Please report this."
-msgstr "De api gaf een foutcode - meld dit voorval."
+msgstr ""
 
 #: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
 msgid "More information"
-msgstr "Meer informatie"
+msgstr ""
 
 #: src/gui/error.rs:25
 msgid "Failed to parse response. Please report this."
-msgstr "Het antwoord kan niet worden verwerkt - meld dit voorval."
+msgstr ""
 
 #: src/gui/error.rs:29
-#, fuzzy
 msgid "Unknown issue. Please report this."
-msgstr "Het antwoord kan niet worden verwerkt - meld dit voorval."
+msgstr ""
 
 #: src/gui/error.rs:56
 msgid "Error"
-msgstr "Foutmelding"
+msgstr ""
 
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.gtk.org/glib/method.DateTime.format.html>
@@ -312,15 +303,14 @@ msgid "{train} to {destination}"
 msgstr ""
 
 #: src/gui/leg_item.rs:161
-#, fuzzy
 msgid "{} stopover"
 msgid_plural "{} stopovers"
-msgstr[0] "Tussenstops"
-msgstr[1] "Tussenstops"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/gui/window.rs:113
 msgid "translators"
-msgstr "Heimen Stoffels <vistausss@fastmail.com>"
+msgstr ""
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
 #: src/backend/hafas_client.rs:36 src/backend/hafas_client.rs:54
@@ -345,36 +335,3 @@ msgstr ""
 #: src/backend/leg.rs:109
 msgid "Walk"
 msgstr ""
-
-#~ msgid "Earlier"
-#~ msgstr "Eerder"
-
-#~ msgid "Later"
-#~ msgstr "Later"
-
-#~ msgid "Departure"
-#~ msgstr "Vertrekdatum/-tijd"
-
-#~ msgid "to"
-#~ msgstr "naar"
-
-#~ msgid "BahnCard 25"
-#~ msgstr "BahnCard 25"
-
-#~ msgid "BahnCard 50"
-#~ msgstr "BahnCard 50"
-
-#~ msgid "BahnCard 100"
-#~ msgstr "BahnCard 100"
-
-#~ msgid "Settings"
-#~ msgstr "Voorkeuren"
-
-#~ msgid "About"
-#~ msgstr "Over"
-
-#~ msgid ""
-#~ "The prices displayed using a BahnCard might not always match the real "
-#~ "prices"
-#~ msgstr ""
-#~ "De getoonde reiskosten kunnen afwijken van de daadwerkelijke reiskosten"

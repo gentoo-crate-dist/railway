@@ -22,12 +22,12 @@ pub mod imp {
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
     use glib::subclass::InitializingObject;
-    use gtk::SizeGroup;
-    use gtk::SizeGroupMode;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use gtk::SizeGroup;
+    use gtk::SizeGroupMode;
     use once_cell::sync::Lazy;
 
     use crate::backend::Leg;
@@ -61,6 +61,19 @@ pub mod imp {
         leg: RefCell<Option<Leg>>,
     }
 
+    #[gtk::template_callbacks]
+    impl LegItem {
+        /// Every time when the page is not yet filled with the journeys, load more.
+        #[template_callback(function)]
+        fn format_train_direction(train: &str, destination: &str) -> String {
+            // Translators: The formattign of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
+            let format = gettextrs::gettext("{train} to {destination}");
+            format
+                .replace("{train}", train)
+                .replace("{destination}", destination)
+        }
+    }
+
     #[glib::object_subclass]
     impl ObjectSubclass for LegItem {
         const NAME: &'static str = "DBLegItem";
@@ -69,6 +82,7 @@ pub mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
+            Self::bind_template_callbacks(klass);
             Utility::bind_template_callbacks(klass);
         }
 
@@ -129,11 +143,9 @@ pub mod imp {
                     // Fill box_legs
                     for stopover in &stopovers {
                         let widget = StopoverItem::new(&Stopover::new(stopover.clone()));
-                        self.box_stopovers
-                            .append(&widget);
+                        self.box_stopovers.append(&widget);
                         size_group.add_widget(&widget.arrival_label());
                     }
-
 
                     // Fill box_remarks
                     self.remarks_button.set_visible(remarks.len() > 0);
@@ -145,8 +157,13 @@ pub mod imp {
                     let n_stopovers = stopovers.len();
                     if n_stopovers > 0 {
                         self.stopover_button.set_visible(true);
-                        let num_stopovers_fmt = gettextrs::ngettext("{} stopover", "{} stopovers", n_stopovers.try_into().unwrap());
-                        let num_stopovers_str = num_stopovers_fmt.replace("{}", &n_stopovers.to_string());
+                        let num_stopovers_fmt = gettextrs::ngettext(
+                            "{} stopover",
+                            "{} stopovers",
+                            n_stopovers.try_into().unwrap(),
+                        );
+                        let num_stopovers_str =
+                            num_stopovers_fmt.replace("{}", &n_stopovers.to_string());
                         self.label_num_stopovers.set_label(&num_stopovers_str);
                     } else {
                         self.stopover_button.set_visible(false);

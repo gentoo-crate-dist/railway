@@ -50,22 +50,21 @@
                         </style>
                         <property name="wrap">True</property>
                         <binding name="label">
-                          <closure function="concat_and_translate" type="gchararray">
-                              <lookup name="name">
-                                <lookup name="origin">
-                                  <lookup name="first-leg">
-                                    <lookup name="journey" type="DBJourneyDetailPage"/>
-                                  </lookup>
+                          <closure function="format_source_destination" type="gchararray">
+                            <lookup name="name">
+                              <lookup name="origin">
+                                <lookup name="first-leg">
+                                  <lookup name="journey" type="DBJourneyDetailPage"/>
                                 </lookup>
                               </lookup>
-                            <constant type="gchararray">→</constant>
-                              <lookup name="name">
-                                <lookup name="destination">
-                                  <lookup name="last-leg">
-                                    <lookup name="journey" type="DBJourneyDetailPage"/>
-                                  </lookup>
+                            </lookup>
+                            <lookup name="name">
+                              <lookup name="destination">
+                                <lookup name="last-leg">
+                                  <lookup name="journey" type="DBJourneyDetailPage"/>
                                 </lookup>
                               </lookup>
+                            </lookup>
                           </closure>
                         </binding>
                       </object>
@@ -80,13 +79,10 @@
                             <property name="hexpand">True</property>
                             <property name="halign">start</property>
                             <binding name="label">
-                              <closure function="concat_and_translate" type="gchararray">
-                                <closure function="u32_to_string" type="gchararray">
-                                  <lookup name="transitions">
-                                    <lookup name="journey" type="DBJourneyDetailPage"/>
-                                  </lookup>
-                                </closure>
-                                <constant type="gchararray">transitions</constant>
+                              <closure function="format_transitions" type="gchararray">
+                                <lookup name="transitions">
+                                  <lookup name="journey" type="DBJourneyDetailPage"/>
+                                </lookup>
                               </closure>
                             </binding>
                           </object>
@@ -94,8 +90,7 @@
                         <child>
                           <object class="GtkLabel">
                             <binding name="label">
-                              <closure function="concat_and_translate" type="gchararray">
-                                <constant type="gchararray">travel time:</constant>
+                              <closure function="format_travel_time" type="gchararray">
                                 <lookup name="total-time">
                                   <lookup name="journey" type="DBJourneyDetailPage"/>
                                 </lookup>

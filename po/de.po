@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-07 16:13+0100\n"
+"POT-Creation-Date: 2023-09-01 14:55+0200\n"
 "PO-Revision-Date: 2022-04-02 14:55+0100\n"
 "Last-Translator: Julian Schmidhuber <translation@schmiddi.anonaddy.com>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -17,49 +17,261 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ui/journey_detail_page.ui:46
+#: data/resources/ui/date_time_picker.ui:48
+msgid "Date"
+msgstr ""
+
+#: data/resources/ui/date_time_picker.ui:148
 msgid "Time"
 msgstr "Zeit"
 
-#: ui/journey_detail_page.ui:32
-msgid "Transitions"
-msgstr "Umstiege"
+#: data/resources/ui/journey_detail_page.ui:125
+#: data/resources/ui/journeys_page.ui:78
+msgid "Search first"
+msgstr "Suchen Sie zuerst"
 
-#: ui/journeys_page.ui:28
-msgid "Earlier"
-msgstr "Früher"
+#: data/resources/ui/journey_store_item.ui:89
+#: data/resources/ui/search_store_item.ui:53
+msgid "Details"
+msgstr "Details"
 
-#: ui/journeys_page.ui:38
-msgid "Later"
-msgstr "Später"
+#: data/resources/ui/leg_item.ui:161
+#, fuzzy
+msgid "Re_marks"
+msgstr "Hinweise"
 
-#: ui/leg_item.ui:67
-msgid "Stopovers"
-msgstr "Halte"
+#: data/resources/ui/preferences_window.ui:9
+#: data/resources/ui/search_options_window.ui:9
+msgid "General"
+msgstr "Allgemein"
 
-#: ui/search_page.ui:11
+#: data/resources/ui/preferences_window.ui:15
+msgid "Delete old journeys from the store"
+msgstr "Lösche alte Verbindungen aus dem Speicher"
+
+#: data/resources/ui/preferences_window.ui:26
+msgid "Hours after planned arrival journeys will be kept"
+msgstr "Stunden, nachdem alte Verbindungen gelöscht werden"
+
+#: data/resources/ui/search_options_button.ui:24
+#, fuzzy
+msgid "More Options"
+msgstr "Mehr Informationen."
+
+#: data/resources/ui/search_options_window.ui:15
+msgid "BahnCard"
+msgstr "BahnCard"
+
+#: data/resources/ui/search_options_window.ui:38
+msgid "Class"
+msgstr "Klasse"
+
+#: data/resources/ui/search_options_window.ui:44
+msgid "First class"
+msgstr "1. Klasse"
+
+#: data/resources/ui/search_options_window.ui:51
+msgid "Second class"
+msgstr "2. Klasse"
+
+#: data/resources/ui/search_options_window.ui:63
+#: src/gui/search_options_button.rs:189
+msgid "Bike accessible"
+msgstr "Fahrradtauglich"
+
+#: data/resources/ui/search_options_window.ui:74
+msgid "Minimum transfer time"
+msgstr "Minimale Umsteigezeit"
+
+#: data/resources/ui/search_options_window.ui:86
+msgid "Direct connections only"
+msgstr "Nur Direktverbindungen"
+
+#: data/resources/ui/search_options_window.ui:101
+msgid "Modes of transport"
+msgstr "Verkehrsmittel"
+
+#: data/resources/ui/search_options_window.ui:107
+msgid "ICE"
+msgstr "ICE"
+
+#: data/resources/ui/search_options_window.ui:118
+msgid "IC/EC"
+msgstr "IC/EC"
+
+#: data/resources/ui/search_options_window.ui:129
+msgid "Interregio/RegionalExpress"
+msgstr "Interregio- und Schellzug"
+
+#: data/resources/ui/search_options_window.ui:140
+msgid "Regio"
+msgstr "Regio- und Nahverkehr"
+
+#: data/resources/ui/search_options_window.ui:151
+msgid "Suburban"
+msgstr "S-Bahn"
+
+#: data/resources/ui/search_options_window.ui:162
+msgid "Bus"
+msgstr "Bus"
+
+#: data/resources/ui/search_options_window.ui:173
+msgid "Ferry"
+msgstr "Schiff"
+
+#: data/resources/ui/search_options_window.ui:184
+msgid "Subway"
+msgstr "U-Bahn"
+
+#: data/resources/ui/search_options_window.ui:195
+msgid "Tram"
+msgstr "Straßenbahn"
+
+#: data/resources/ui/search_options_window.ui:206
+msgid "Taxi"
+msgstr "Anruf-Sammeltaxi"
+
+#: data/resources/ui/search_options_window.ui:226
+#: src/gui/search_options_button.rs:73
+msgid "None"
+msgstr "Keine"
+
+#: data/resources/ui/search_options_window.ui:227
+#: src/gui/search_options_button.rs:74
+msgid "BahnCard 25, 1st class"
+msgstr "BahnCard 25, 1. Klasse"
+
+#: data/resources/ui/search_options_window.ui:228
+#: src/gui/search_options_button.rs:75
+msgid "BahnCard 25, 2nd class"
+msgstr "BahnCard 25, 2. Klasse"
+
+#: data/resources/ui/search_options_window.ui:229
+#: src/gui/search_options_button.rs:76
+msgid "BahnCard 50, 1st class"
+msgstr "BahnCard 50, 1. Klasse"
+
+#: data/resources/ui/search_options_window.ui:230
+#: src/gui/search_options_button.rs:77
+msgid "BahnCard 50, 2nd class"
+msgstr "BahnCard 50, 2. Klasse"
+
+#: data/resources/ui/search_options_window.ui:231
+#: src/gui/search_options_button.rs:78
+msgid "A - VORTEILScard (with RAILPLUS)"
+msgstr "A - VORTEILScard (mit RAILPLUS)"
+
+#: data/resources/ui/search_options_window.ui:232
+#: src/gui/search_options_button.rs:79
+msgid "CH - HalbtaxAbo (with RAILPLUS)"
+msgstr "CH - HalbtaxAbo (mit RAILPLUS)"
+
+#: data/resources/ui/search_options_window.ui:233
+#: src/gui/search_options_button.rs:80
+msgid "CH - HalbtaxAbo (without RAILPLUS)"
+msgstr "CH - HalbtaxAbo (ohne RAILPLUS)"
+
+#: data/resources/ui/search_options_window.ui:234
+#: src/gui/search_options_button.rs:83
+msgid "NL - Voordeelurenabo (with RAILPLUS)"
+msgstr "NL - Voordeelurenabo (mit RAILPLUS)"
+
+#: data/resources/ui/search_options_window.ui:235
+#: src/gui/search_options_button.rs:87
+msgid "NL - Voordeelurenabo (without RAILPLUS)"
+msgstr "NL - Voordeelurenabo (ohne RAILPLUS)"
+
+#: data/resources/ui/search_options_window.ui:236
+#: src/gui/search_options_button.rs:89
+msgid "SH-Card"
+msgstr "SH-Card"
+
+#: data/resources/ui/search_options_window.ui:237
+#: src/gui/search_options_button.rs:90
+msgid "CH - General-Abonnement"
+msgstr "CH - General-Abonnement"
+
+#: data/resources/ui/search_page.ui:41
 msgid "From"
 msgstr "Von"
 
-#: ui/search_page.ui:16
+#: data/resources/ui/search_page.ui:54
 msgid "To"
 msgstr "Nach"
 
-#: ui/search_page.ui:23
-msgid "Departure"
-msgstr "Abreise"
-
-#: ui/search_page.ui:34 ui/window.ui:25
+#: data/resources/ui/search_page.ui:77 data/resources/ui/window.ui:26
 msgid "Search"
 msgstr "Suche"
 
-#: ui/window.ui:63
+#: data/resources/ui/transition.ui:21
+#, fuzzy
+msgid "Transition:"
+msgstr "Umstiege"
+
+#: data/resources/ui/window.ui:115
 msgid "Journeys"
 msgstr "Verbindungen"
 
-#: ui/window.ui:106
+#: data/resources/ui/window.ui:182
 msgid "Journey"
 msgstr "Reiseplan"
+
+#: data/resources/ui/window.ui:208
+msgid "Preferences"
+msgstr ""
+
+#: data/resources/ui/window.ui:212
+msgid "About DieBahn"
+msgstr ""
+
+#: src/gui/search_page.rs:162 src/gui/journey_detail_page.rs:69
+#: src/gui/journeys_page.rs:198 src/gui/journeys_page.rs:258
+msgid "language"
+msgstr "de"
+
+#. Translators: How many transitions the train has. For the plural-variant, the {} will be replaced by the number, e.g. '5 transitions'.
+#: src/gui/journey_detail_page.rs:92
+#, fuzzy
+msgid "One transition"
+msgid_plural "{} transitions"
+msgstr[0] "Umstiege"
+msgstr[1] "Umstiege"
+
+#. Translators: How long a journey takes, e.g. 'Travel time: 05:32'.
+#: src/gui/journey_detail_page.rs:99
+msgid "Travel time: {}"
+msgstr ""
+
+#: src/gui/transition.rs:13
+msgid "{} Minutes"
+msgstr "{} Minuten"
+
+#: src/gui/transition.rs:16 src/gui/search_options_button.rs:97
+msgid "Unknown"
+msgstr ""
+
+#: src/gui/search_options_button.rs:135
+#, fuzzy
+msgid "1st class"
+msgstr "1. Klasse"
+
+#: src/gui/search_options_button.rs:137
+#, fuzzy
+msgid "2nd class"
+msgstr "2. Klasse"
+
+#: src/gui/search_options_button.rs:182
+msgid "Regional only"
+msgstr ""
+
+#: src/gui/search_options_button.rs:184
+msgid "Custom selection"
+msgstr ""
+
+#: src/gui/search_options_button.rs:196
+#, fuzzy
+msgid "Direct connection"
+msgstr "Nur Direktverbindungen"
 
 #: src/gui/error.rs:18
 msgid "Failed to fetch data. Are you connected to the internet?"
@@ -69,7 +281,7 @@ msgstr "Konnte Daten nicht holen. Sind Sie mit dem Internet verbunden?"
 msgid "The API returned a error. Please report this."
 msgstr "Die API hat einen Fehler zurückgegeben. Bitte melden Sie dies."
 
-#: src/gui/error.rs:22 src/gui/error.rs:26
+#: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
 msgid "More information"
 msgstr "Mehr Informationen."
 
@@ -77,203 +289,97 @@ msgstr "Mehr Informationen."
 msgid "Failed to parse response. Please report this."
 msgstr "Konnte Antwort nicht interpretieren. Bitte melden Sie dies."
 
-#: src/gui/error.rs:51
+#: src/gui/error.rs:29
+#, fuzzy
+msgid "Unknown issue. Please report this."
+msgstr "Konnte Antwort nicht interpretieren. Bitte melden Sie dies."
+
+#: src/gui/error.rs:56
 msgid "Error"
 msgstr "Fehler"
 
-#: src/gui/journey_detail_page.rs:146
-msgid "{} Minutes"
-msgstr "{} Minuten"
+#. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
+#. For a full list of supported identifiers, see <https://docs.gtk.org/glib/method.DateTime.format.html>
+#: src/gui/date_time_picker.rs:89
+msgid "%a %b %d"
+msgstr ""
 
-#: ui/journey_detail_page.ui:77 ui/journeys_page.ui:62
-msgid "Search first"
-msgstr "Suchen Sie zuerst"
+#. Translators: The formattign of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
+#: src/gui/leg_item.rs:70
+msgid "{train} to {destination}"
+msgstr ""
 
-#: ui/journey_store_item.ui:86
-msgid "Details"
-msgstr "Details"
+#: src/gui/leg_item.rs:161
+#, fuzzy
+msgid "{} stopover"
+msgid_plural "{} stopovers"
+msgstr[0] "Halte"
+msgstr[1] "Halte"
 
-#: src/gui/search_page.rs:173 The language to use for querying the api.
-msgid "language"
-msgstr "de"
-
-#: ui/leg_item.ui:81
-msgid "Remarks"
-msgstr "Hinweise"
-
-#: ui/leg_item.ui:21
-msgid "to"
-msgstr "nach"
-
-#: ui/preferences_window.ui:13
-msgid "BahnCard"
-msgstr "BahnCard"
-
-#: ui/preferences_window.ui:46
-msgid "BahnCard 25"
-msgstr "BahnCard 25"
-
-#: ui/preferences_window.ui:50
-msgid "BahnCard 50"
-msgstr "BahnCard 50"
-
-#: ui/preferences_window.ui:54
-msgid "BahnCard 100"
-msgstr "BahnCard 100"
-
-#: ui/window.ui:175
-msgid "Settings"
-msgstr "Einstellungen"
-
-#: ui/window.ui:179
-msgid "About"
-msgstr "Über"
-
-#: ui/preferences_window.ui:14
-msgid ""
-"The prices displayed using a BahnCard might not always match the real prices"
-msgstr "Die angezeigten Preise mit der BahnCard stimmen eventuall nicht immer mit den realen Preisen überein"
-
-#: src/gui/window.rs:117 Add your name here for credit in the about page
+#: src/gui/window.rs:113
 msgid "translators"
 msgstr "Julian Schmidhuber"
 
-#: ui/preferences_window.ui:32
-msgid "Class"
-msgstr "Klasse"
+#. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
+#: src/backend/hafas_client.rs:36 src/backend/hafas_client.rs:54
+msgid "Nordrhein-Westfalen"
+msgstr ""
 
-#: ui/preferences_window.ui:38
-msgid "First class"
-msgstr "1. Klasse"
+#. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
+#: src/backend/hafas_client.rs:62
+msgid "Schleswig-Holstein"
+msgstr ""
 
-#: ui/preferences_window.ui:43
-msgid "Second class"
-msgstr "2. Klasse"
+#. Translators: The country, see https://en.wikipedia.org/wiki/Germany
+#: src/backend/hafas_client.rs:79
+msgid "Germany"
+msgstr ""
 
-#: ui/preferences_window.ui:62
-msgid "None"
-msgstr "Keine"
+#. Translators: The country, see https://en.wikipedia.org/wiki/Austria
+#: src/backend/hafas_client.rs:94
+msgid "Austria"
+msgstr ""
 
-#: ui/preferences_window.ui:63
-msgid "BahnCard 25, 1st class"
-msgstr "BahnCard 25, 1. Klasse"
-
-#: ui/preferences_window.ui:64
-msgid "BahnCard 25, 2nd class"
-msgstr "BahnCard 25, 2. Klasse"
-
-#: ui/preferences_window.ui:65
-msgid "BahnCard 50, 1st class"
-msgstr "BahnCard 50, 1. Klasse"
-
-#: ui/preferences_window.ui:66
-msgid "BahnCard 50, 2nd class"
-msgstr "BahnCard 50, 2. Klasse"
-
-#: ui/preferences_window.ui:67
-msgid "A - VORTEILScard (with RAILPLUS)"
-msgstr "A - VORTEILScard (mit RAILPLUS)"
-
-#: ui/preferences_window.ui:68
-msgid "CH - HalbtaxAbo (with RAILPLUS)"
-msgstr "CH - HalbtaxAbo (mit RAILPLUS)"
-
-#: ui/preferences_window.ui:69
-msgid "CH - HalbtaxAbo (without RAILPLUS)"
-msgstr "CH - HalbtaxAbo (ohne RAILPLUS)"
-
-#: ui/preferences_window.ui:70
-msgid "NL - Voordeelurenabo (with RAILPLUS)"
-msgstr "NL - Voordeelurenabo (mit RAILPLUS)"
-
-#: ui/preferences_window.ui:71
-msgid "NL - Voordeelurenabo (without RAILPLUS)"
-msgstr "NL - Voordeelurenabo (ohne RAILPLUS)"
-
-#: ui/preferences_window.ui:72
-msgid "SH-Card"
-msgstr "SH-Card"
-
-#: ui/preferences_window.ui:73
-msgid "CH - General-Abonnement"
-msgstr "CH - General-Abonnement"
-
-#: ui/preferences_window.ui:65
-msgid "ICE"
-msgstr "ICE"
-
-#: ui/preferences_window.ui:74
-msgid "IC/EC"
-msgstr "IC/EC"
-
-#: ui/preferences_window.ui:83
-msgid "Interregio/RegionalExpress"
-msgstr "Interregio- und Schellzug"
-
-#: ui/preferences_window.ui:92
-msgid "Regio"
-msgstr "Regio- und Nahverkehr"
-
-#: ui/preferences_window.ui:101
-msgid "Suburban"
-msgstr "S-Bahn"
-
-#: ui/preferences_window.ui:110
-msgid "Bus"
-msgstr "Bus"
-
-#: ui/preferences_window.ui:119
-msgid "Ferry"
-msgstr "Schiff"
-
-#: ui/preferences_window.ui:128
-msgid "Subway"
-msgstr "U-Bahn"
-
-#: ui/preferences_window.ui:137
-msgid "Tram"
-msgstr "Straßenbahn"
-
-#: ui/preferences_window.ui:146
-msgid "Taxi"
-msgstr "Anruf-Sammeltaxi"
-
-#: ui/preferences_window.ui:9
-msgid "General"
-msgstr "Allgemein"
-
-#: ui/preferences_window.ui:59
-msgid "Modes of transport"
-msgstr "Verkehrsmittel"
-
-#: ui/preferences_window.ui:55
-msgid "Bike accessible"
-msgstr "Fahrradtauglich"
-
-#: ui/preferences_window.ui:64
-msgid "Minimum transfer time"
-msgstr "Minimale Umsteigezeit"
-
-#: ui/preferences_window.ui:74
-msgid "Direct connections only"
-msgstr "Nur Direktverbindungen"
-
-#: ui/preferences_window.ui:83
-msgid "Delete old journeys from the store"
-msgstr "Lösche alte Verbindungen aus dem Speicher"
-
-#: ui/preferences_window.ui:92
-msgid "Hours after planned arrival journeys will be kept"
-msgstr "Stunden, nachdem alte Verbindungen gelöscht werden"
-
-#: ui/preferences_window.ui:92
-msgid "Search Provider"
-msgstr "Suchprofil"
-
-#: ui/preferences_window.ui:92
-msgid "Requires application restart"
-msgstr "Benötigt einen Neustart der Applikation"
-
-#: ui/preferences_window.ui:92
+#: src/backend/leg.rs:109
 msgid "Walk"
 msgstr "Gehen"
+
+#~ msgid "Earlier"
+#~ msgstr "Früher"
+
+#~ msgid "Later"
+#~ msgstr "Später"
+
+#~ msgid "Departure"
+#~ msgstr "Abreise"
+
+#~ msgid "to"
+#~ msgstr "nach"
+
+#~ msgid "BahnCard 25"
+#~ msgstr "BahnCard 25"
+
+#~ msgid "BahnCard 50"
+#~ msgstr "BahnCard 50"
+
+#~ msgid "BahnCard 100"
+#~ msgstr "BahnCard 100"
+
+#~ msgid "Settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "About"
+#~ msgstr "Über"
+
+#~ msgid ""
+#~ "The prices displayed using a BahnCard might not always match the real "
+#~ "prices"
+#~ msgstr ""
+#~ "Die angezeigten Preise mit der BahnCard stimmen eventuall nicht immer mit "
+#~ "den realen Preisen überein"
+
+#~ msgid "Search Provider"
+#~ msgstr "Suchprofil"
+
+#~ msgid "Requires application restart"
+#~ msgstr "Benötigt einen Neustart der Applikation"
