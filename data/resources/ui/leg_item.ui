@@ -132,12 +132,11 @@
                       <object class="GtkLabel">
                         <property name="wrap">True</property>
                         <binding name="label">
-                          <closure function="concat_and_translate" type="gchararray">
+                          <closure function="format_train_direction" type="gchararray">
                             <lookup name="name">
                               <lookup name="leg" type="DBLegItem">
                               </lookup>
                             </lookup>
-                            <constant type="gchararray">to</constant>
                             <lookup name="direction">
                               <lookup name="leg" type="DBLegItem">
                               </lookup>

@@ -25,6 +25,7 @@ pub mod imp {
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
+    use gtk::template_callbacks;
     use gtk::CompositeTemplate;
     use hafas_rs::api::refresh_journey::RefreshJourneyOptions;
     use libadwaita::ToastOverlay;
@@ -78,6 +79,28 @@ pub mod imp {
         }
     }
 
+    #[template_callbacks]
+    impl JourneyDetailPage {
+        #[template_callback(function)]
+        fn format_source_destination(source: &str, destination: &str) -> String {
+            format!("{source} → {destination}")
+        }
+
+        #[template_callback(function)]
+        fn format_transitions(transitions: u32) -> String {
+            // Translators: How many transitions the train has. For the plural-variant, the {} will be replaced by the number, e.g. '5 transitions'.
+            let format = gettextrs::ngettext("One transition", "{} transitions", transitions);
+            format.replace("{}", &transitions.to_string())
+        }
+
+        #[template_callback(function)]
+        fn format_travel_time(time: &str) -> String {
+            // Translators: How long a journey takes, e.g. 'Travel time: 05:32'.
+            let format = gettextrs::gettext("Travel time: {}");
+            format.replace("{}", time)
+        }
+    }
+
     #[glib::object_subclass]
     impl ObjectSubclass for JourneyDetailPage {
         const NAME: &'static str = "DBJourneyDetailPage";
@@ -86,6 +109,7 @@ pub mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
+            Self::bind_template_callbacks(klass);
             Utility::bind_template_callbacks(klass);
         }
 
