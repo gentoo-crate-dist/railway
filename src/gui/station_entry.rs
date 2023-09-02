@@ -5,32 +5,35 @@ use crate::backend::Place;
 
 gtk::glib::wrapper! {
     pub struct StationEntry(ObjectSubclass<imp::StationEntry>)
-        @extends gtk::Box, gtk::Widget,
-        @implements gtk::gio::ActionGroup, gtk::gio::ActionMap, gtk::Accessible, gtk::Buildable,
+        @extends libadwaita::EntryRow, libadwaita::PreferencesRow, gtk::ListBoxRow, gtk::Widget,
+        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable,
             gtk::ConstraintTarget, gtk::Editable;
 }
 
 impl StationEntry {
     pub fn set_input(&self, input: String) {
-        self.imp().text.set_text(&input);
+        self.set_text(&input);
+        self.set_place(None);
     }
 
     pub fn input(&self) -> String {
-        self.imp().text.text().to_string()
+        self.text().to_string()
     }
 
     pub fn set_place(&self, place: Option<&Place>) {
         self.set_property("place", place);
         if let Some(place) = place {
             // When something is selected, set the text of the input and clear all completion suggestions.
-            self.imp().text.set_text(&place.name().unwrap_or_default());
+            let name = place.name().unwrap_or_default();
+            if self.text() != name {
+                self.set_text(&name);
+            }
             self.imp().completions.borrow().remove_all();
         }
     }
 }
 
 pub mod imp {
-    use std::borrow::Borrow;
     use std::cell::RefCell;
     use std::sync::atomic::{AtomicBool, Ordering};
     use std::sync::{Arc, Mutex};
@@ -42,9 +45,10 @@ pub mod imp {
     use gdk::glib::{clone, ParamSpec, ParamSpecBoolean, ParamSpecObject, ParamSpecString, Value};
     use gtk::subclass::prelude::*;
     use gtk::{gio::ListStore, glib};
-    use gtk::{prelude::*, ListItem, SignalListItemFactory, Text, Widget};
+    use gtk::{prelude::*, ListItem, SignalListItemFactory, Widget};
     use gtk::{CompositeTemplate, Popover};
     use hafas_rs::api::locations::LocationsOptions;
+    use libadwaita::subclass::prelude::{EntryRowImpl, PreferencesRowImpl};
     use once_cell::sync::Lazy;
 
     use crate::backend::{HafasClient, Place};
@@ -56,8 +60,6 @@ pub mod imp {
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/station_entry.ui")]
     pub struct StationEntry {
-        #[template_child]
-        pub(super) text: TemplateChild<Text>,
         #[template_child]
         popover: TemplateChild<Popover>,
         #[template_child]
@@ -97,7 +99,7 @@ pub mod imp {
                                             @strong request_pending,
                                             @strong completions,
                                             => async move {
-                let entry = &obj.imp().text;
+                let entry = &obj;
                 let to_wait = {
                     let mut last_request = last_request.lock().expect("last_request to be lockable.");
                     if last_request.is_none() {
@@ -154,7 +156,7 @@ pub mod imp {
         }
 
         fn connect_changed(&self, obj: &super::StationEntry) {
-            self.text
+            self.obj()
                 .connect_changed(clone!(@strong obj => move |_entry| {
                     obj.imp().on_changed();
                 }));
@@ -162,9 +164,17 @@ pub mod imp {
         }
 
         fn update_popover_visible(&self) {
+            // Position the popover at the bottom-left of the entry.
+            self.popover.set_pointing_to(Some(&gdk::Rectangle::new(
+                self.popover.width_request() / 2, // Half the width of the popover.
+                self.obj().height(),              // The height of the entry
+                0,
+                0,
+            )));
+
             self.popover.set_visible(
                 self.completions.borrow().n_items() != 0
-                    && self.text.has_focus()
+                    && self.obj().has_css_class("focused")
                     && self.place.borrow().is_none(),
             );
         }
@@ -214,11 +224,10 @@ pub mod imp {
     impl ObjectSubclass for StationEntry {
         const NAME: &'static str = "DBStationEntry";
         type Type = super::StationEntry;
-        type ParentType = gtk::Box;
+        type ParentType = libadwaita::EntryRow;
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
-            Self::bind_template_callbacks(klass);
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -226,18 +235,12 @@ pub mod imp {
         }
     }
 
-    #[gtk::template_callbacks]
-    impl StationEntry {
-        #[template_callback]
-        fn handle_focus(&self) {
-            self.text.grab_focus();
-        }
-    }
-
     impl ObjectImpl for StationEntry {
         fn constructed(&self) {
             let obj = self.obj();
             self.parent_constructed();
+
+            self.popover.set_parent(obj.as_ref());
             self.connect_changed(&obj);
             self.setup_model(&obj);
 
@@ -248,12 +251,11 @@ pub mod imp {
                 }),
             );
 
-            self.text.borrow().connect_notify_local(
-                Some("has-focus"),
-                clone!(@strong obj => move |_, _| {
+            self.obj()
+                .connect_css_classes_notify(clone!(@strong obj => move |_| {
+                    // Update when e.g. focus changed.
                     obj.imp().update_popover_visible();
-                }),
-            );
+                }));
 
             obj.connect_notify_local(
                 Some("place"),
@@ -334,5 +336,7 @@ pub mod imp {
     }
 
     impl WidgetImpl for StationEntry {}
-    impl BoxImpl for StationEntry {}
+    impl ListBoxRowImpl for StationEntry {}
+    impl PreferencesRowImpl for StationEntry {}
+    impl EntryRowImpl for StationEntry {}
 }
