@@ -3,74 +3,39 @@
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libadwaita" version="1.0"/>
 
-  <template class="DBStationEntry" parent="GtkBox">
+  <template class="DBStationEntry" parent="AdwEntryRow">
     <style>
       <class name="error"/>
-      <class name="view"/>
-      <class name="linked"/>
     </style>
+  </template>
 
-    <property name="orientation">vertical</property>
-    <property name="spacing">6</property>
-    <property name="vexpand">false</property>
-    <child>
-      <object class="GtkLabel" id="label">
-        <style>
-          <class name="dim-label"/>
-        </style>
-
-        <property name="halign">start</property>
-        <property name="xalign">0</property>
-
-        <binding name="label">
-          <lookup name="title" type="DBStationEntry"/>
-        </binding>
-      </object>
-    </child>
+  <object class="GtkPopover" id="popover">
+    <style>
+      <class name="menu"/>
+    </style>
+    <!-- XXX: Automatically resize to fit with the entry -->
+    <property name="width-request">250</property>
+    <property name="has-arrow">False</property>
+    <property name="autohide">False</property>
+    <property name="can-focus">False</property>
+    <property name="hexpand">TRUE</property>
 
     <child>
-      <object class="GtkText" id="text">
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkPopover" id="popover">
-        <style>
-          <class name="menu"/>
-        </style>
-        <!-- XXX: Automatically resize to fit with the entry -->
-        <property name="width-request">250</property>
-        <property name="has-arrow">False</property>
-        <property name="autohide">False</property>
-        <property name="can-focus">False</property>
+      <object class="GtkScrolledWindow" id="scrolled_window">
+        <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
+        <property name="propagate-natural-height">true</property>
+        <property name="vexpand">TRUE</property>
         <property name="hexpand">TRUE</property>
+        <property name="max-content-height">300</property>
 
         <child>
-          <object class="GtkScrolledWindow" id="scrolled_window">
-            <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
-            <property name="propagate-natural-height">true</property>
-            <property name="vexpand">TRUE</property>
-            <property name="hexpand">TRUE</property>
-            <property name="max-content-height">300</property>
-
-            <child>
-              <object class="GtkListView" id="list_completions">
-                <style>
-                  <class name="navigation-sidebar"/>
-                </style>
-              </object>
-            </child>
+          <object class="GtkListView" id="list_completions">
+            <style>
+              <class name="navigation-sidebar"/>
+            </style>
           </object>
         </child>
       </object>
     </child>
-
-    <child>
-      <object class="GtkGestureClick">
-        <property name="button">1</property>
-        <property name="exclusive">true</property>
-        <signal name="pressed" handler="handle_focus" swapped="true"/>
-      </object>
-    </child>
-  </template>
+  </object>
 </interface>
