@@ -4,9 +4,16 @@
   <requires lib="libadwaita" version="1.0"/>
 
   <template class="DBSearchOptionsButton" parent="GtkButton">
+    <accessibility>
+      <property name="label" translatable="yes">More search options</property>
+      <relation name="labelled-by">label_more_options</relation>
+      <relation name="described-by">label_extra_options</relation>
+    </accessibility>
+
     <style>
       <class name="card"/>
     </style>
+
     <signal name="clicked" handler="handle_clicked" swapped="true"/>
 
     <child>
@@ -17,7 +24,7 @@
             <property name="spacing">6</property>
             <property name="hexpand">true</property>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="label_more_options">
                 <style>
                   <class name="heading"/>
                 </style>
@@ -28,7 +35,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="label_extra_options">
                 <style>
                   <class name="caption"/>
                 </style>

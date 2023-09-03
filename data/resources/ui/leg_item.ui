@@ -131,6 +131,8 @@
                     <child>
                       <object class="GtkLabel">
                         <property name="wrap">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="xalign">0.2</property>
                         <binding name="label">
                           <closure function="format_train_direction" type="gchararray">
                             <lookup name="name">
@@ -145,11 +147,93 @@
                         </binding>
                       </object>
                     </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">horizontal</property>
+                    <property name="halign">fill</property>
+                    <property name="spacing">6</property>
+                    <property name="margin-start">12</property>
+                    <child>
+                      <object class="GtkToggleButton" id="stopover_button">
+                        <accessibility>
+                          <property name="label">Open Stopovers</property>
+                        </accessibility>
+                        <property name="tooltip-text">Open Stopovers</property>
+
+                        <property name="hexpand">False</property>
+                        <property name="halign">start</property>
+                        <style>
+                          <class name="pill"/>
+                        </style>
+                        <property name="child">
+                          <object class="GtkBox">
+                            <property name="margin-start">12</property>
+                            <property name="margin-end">6</property>
+                            <property name="spacing">6</property>
+                            <child>
+                              <object class="GtkLabel" id="label_num_stopovers">
+                                <property name="halign">start</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">go-next-symbolic</property>
+                                <property name="visible" bind-source="stopover_button" bind-property="active" bind-flags="sync-create|invert-boolean"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">go-down-symbolic</property>
+                                <property name="visible" bind-source="stopover_button" bind-property="active" bind-flags="sync-create"/>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="DBIndicatorIcons">
+                        <property name="hexpand">true</property>
+                        <property name="halign">end</property>
+                        <binding name="load-factor">
+                          <lookup name="load-factor">
+                            <lookup name="leg" type="DBLegItem"/>
+                          </lookup>
+                        </binding>
+                        <binding name="late-factor">
+                          <lookup name="late-factor">
+                            <lookup name="leg" type="DBLegItem"/>
+                          </lookup>
+                        </binding>
+                        <binding name="change-platform">
+                          <lookup name="change-platform">
+                            <lookup name="leg" type="DBLegItem"/>
+                          </lookup>
+                        </binding>
+                        <binding name="is-unreachable">
+                          <lookup name="is-unreachable">
+                            <lookup name="leg" type="DBLegItem"/>
+                          </lookup>
+                        </binding>
+                        <binding name="is-cancelled">
+                          <lookup name="is-cancelled">
+                            <lookup name="leg" type="DBLegItem"/>
+                          </lookup>
+                        </binding>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkToggleButton" id="remarks_button">
+                        <accessibility>
+                          <property name="label">Open Remarks</property>
+                        </accessibility>
+                        <property name="tooltip-text">Open Remarks</property>
+
                         <property name="valign">center</property>
                         <property name="halign">end</property>
-                        <property name="hexpand">True</property>
                         <style>
                           <class name="pill"/>
                         </style>
@@ -158,7 +242,6 @@
                             <property name="margin-start">12</property>
                             <property name="margin-end">12</property>
                             <property name="icon-name">dialog-information-symbolic</property>
-                            <property name="label" translatable="yes">Re_marks</property>
                             <property name="use-underline">True</property>
                           </object>
                         </property>
@@ -166,6 +249,7 @@
                     </child>
                   </object>
                 </child>
+
                 <child>
                   <object class="GtkRevealer">
                     <property name="vexpand">False</property>
@@ -183,39 +267,6 @@
                       <lookup name="active">remarks_button</lookup>
                     </binding>
                     <property name="transition-type">slide-up</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkToggleButton" id="stopover_button">
-                    <property name="hexpand">False</property>
-                    <property name="halign">start</property>
-                    <style>
-                      <class name="pill"/>
-                    </style>
-                    <property name="child">
-                      <object class="GtkBox">
-                        <property name="margin-start">12</property>
-                        <property name="margin-end">6</property>
-                        <property name="spacing">6</property>
-                        <child>
-                          <object class="GtkLabel" id="label_num_stopovers">
-                            <property name="halign">start</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">go-next-symbolic</property>
-                            <property name="visible" bind-source="stopover_button" bind-property="active" bind-flags="sync-create|invert-boolean"/>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">go-down-symbolic</property>
-                            <property name="visible" bind-source="stopover_button" bind-property="active" bind-flags="sync-create"/>
-                          </object>
-                        </child>
-                      </object>
-                    </property>
                   </object>
                 </child>
               </object>

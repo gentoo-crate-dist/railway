@@ -55,3 +55,50 @@
 .list-button {
   border-radius: 12px;
 }
+
+/* Currently disabled. Styling for the indicator icons */
+/*
+.load-unknown {
+  color: @green_1;
+}
+
+.load-low-to-medium {
+  color: @yellow_1;
+}
+
+.load-high {
+  color: @orange_1;
+}
+
+.load-very-high {
+  color: @red_1;
+}
+
+.load-exceptionally-high {
+  color: @red_5;
+}
+
+.late-on-time {
+  color: @blue_1;
+}
+
+.late-little-late {
+  color: @blue_2;
+}
+
+.late-late {
+  color: @blue_4;
+}
+
+.late-very-late {
+  color: @purple_4;
+}
+
+.late-extremely-late {
+  color: @purple_5;
+}
+
+.change-platform {
+  color: @orange_5;
+}
+*/

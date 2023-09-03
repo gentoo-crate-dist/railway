@@ -41,6 +41,7 @@ pub mod imp {
     use crate::backend::Place;
     use crate::gui::alt_label::AltLabel;
     use crate::gui::date_time_picker::DateTimePicker;
+    use crate::gui::indicator_icons::IndicatorIcons;
     use crate::gui::journey_detail_page::JourneyDetailPage;
     use crate::gui::journeys_page::JourneysPage;
     use crate::gui::preferences_window::PreferencesWindow;
@@ -224,6 +225,7 @@ pub mod imp {
             JourneysStore::ensure_type();
             SearchesStore::ensure_type();
             SearchOptionsButton::ensure_type();
+            IndicatorIcons::ensure_type();
             Self::bind_template(klass);
             Self::bind_template_callbacks(klass);
             Utility::bind_template_callbacks(klass);
