@@ -19,6 +19,7 @@
     <file preprocess="xml-stripblanks">ui/provider_list_item.ui</file>
     <file preprocess="xml-stripblanks">ui/search_options_window.ui</file>
     <file preprocess="xml-stripblanks">ui/search_options_button.ui</file>
+    <file preprocess="xml-stripblanks">ui/indicator_icons.ui</file>
 
     <file preprocess="xml-stripblanks">ui/alt_label.ui</file>
     <file preprocess="xml-stripblanks">ui/date_time_picker.ui</file>

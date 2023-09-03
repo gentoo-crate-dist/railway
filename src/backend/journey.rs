@@ -32,12 +32,14 @@ mod imp {
     use chrono::NaiveDate;
 
     use gdk::{
-        glib::{ParamSpec, ParamSpecObject, ParamSpecString, Value},
+        glib::{
+            ParamSpec, ParamSpecBoolean, ParamSpecEnum, ParamSpecObject, ParamSpecString, Value,
+        },
         prelude::{ParamSpecBuilderExt, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass},
     };
 
-    use crate::backend::Leg;
+    use crate::backend::{LateFactor, Leg, LoadFactor};
 
     pub struct Journey {
         pub(super) journey: RefCell<Option<hafas_rs::Journey>>,
@@ -69,6 +71,21 @@ mod imp {
                     ParamSpecString::builder("total-time").read_only().build(),
                     ParamSpecString::builder("transitions").read_only().build(),
                     ParamSpecString::builder("types").read_only().build(),
+                    ParamSpecEnum::builder::<LoadFactor>("load-factor")
+                        .read_only()
+                        .build(),
+                    ParamSpecEnum::builder::<LateFactor>("late-factor")
+                        .read_only()
+                        .build(),
+                    ParamSpecBoolean::builder("change-platform")
+                        .read_only()
+                        .build(),
+                    ParamSpecBoolean::builder("is-unreachable")
+                        .read_only()
+                        .build(),
+                    ParamSpecBoolean::builder("is-cancelled")
+                        .read_only()
+                        .build(),
                 ]
             });
             PROPERTIES.as_ref()
@@ -138,17 +155,78 @@ mod imp {
                         o.legs
                             .iter()
                             .filter_map(|l| {
-                                l.line
-                                    .as_ref()
-                                    .map(|l| {
-                                        l.product_name
-                                            .clone()
-                                            .unwrap_or_else(|| l.product.name.to_string())
-                                    })
+                                l.line.as_ref().map(|l| {
+                                    l.product_name
+                                        .clone()
+                                        .unwrap_or_else(|| l.product.name.to_string())
+                                })
                             })
                             .collect::<Vec<String>>()
                             .join(" • ")
                     })
+                    .unwrap_or_default()
+                    .to_value(),
+                "load-factor" => self
+                    .journey
+                    .borrow()
+                    .as_ref()
+                    .and_then(|o| o.legs.iter().map(|l| LoadFactor::from(l.load_factor)).max())
+                    .unwrap_or_default()
+                    .to_value(),
+                "late-factor" => self
+                    .journey
+                    .borrow()
+                    .as_ref()
+                    .and_then(|o| {
+                        o.legs
+                            .iter()
+                            .map(|l| {
+                                std::cmp::max(
+                                    match (l.arrival, l.planned_arrival) {
+                                        (Some(real), Some(planned)) => {
+                                            LateFactor::from(real - planned)
+                                        }
+                                        _ => LateFactor::default(),
+                                    },
+                                    match (l.departure, l.planned_departure) {
+                                        (Some(real), Some(planned)) => {
+                                            LateFactor::from(real - planned)
+                                        }
+                                        _ => LateFactor::default(),
+                                    },
+                                )
+                            })
+                            .max()
+                    })
+                    .unwrap_or_default()
+                    .to_value(),
+                "change-platform" => self
+                    .journey
+                    .borrow()
+                    .as_ref()
+                    .map(|o| {
+                        o.legs
+                            .iter()
+                            .map(|l| {
+                                l.departure_platform != l.planned_departure_platform
+                                    || l.arrival_platform != l.planned_arrival_platform
+                            })
+                            .any(|b| b)
+                    })
+                    .unwrap_or_default()
+                    .to_value(),
+                "is-unreachable" => self
+                    .journey
+                    .borrow()
+                    .as_ref()
+                    .map(|o| o.legs.iter().flat_map(|l| l.reachable).any(|b| !b))
+                    .unwrap_or_default()
+                    .to_value(),
+                "is-cancelled" => self
+                    .journey
+                    .borrow()
+                    .as_ref()
+                    .map(|o| o.legs.iter().flat_map(|l| l.cancelled).any(|b| b))
                     .unwrap_or_default()
                     .to_value(),
                 _ => unimplemented!(),

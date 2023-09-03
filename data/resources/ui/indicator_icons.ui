@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="libadwaita" version="1.0"/>
+
+  <template class="DBIndicatorIcons" parent="GtkBox">
+    <property name="orientation">horizontal</property>
+    <child>
+      <object class="GtkImage" id="img_load_factor">
+        <property name="visible">false</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImage" id="img_late_factor">
+        <property name="visible">false</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImage" id="img_change_platform">
+        <property name="visible">false</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImage" id="img_unreachable">
+        <property name="visible">false</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImage" id="img_cancelled">
+        <property name="visible">false</property>
+      </object>
+    </child>
+  </template>
+</interface>

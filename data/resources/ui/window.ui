@@ -28,9 +28,15 @@
                 </property>
                 <child>
                   <object class="GtkMenuButton">
+                    <accessibility>
+                      <property name="label" translatable="yes">Select Provider</property>
+                    </accessibility>
+
                     <style>
                       <class name="window-menu-button-provider"/>
                     </style>
+
+                    <property name="tooltip-text" translatable="yes">Select Provider</property>
                     <property name="always-show-arrow">true</property>
                     <property name="popover">
                       <object class="DBProviderPopover" id="provider_popover">

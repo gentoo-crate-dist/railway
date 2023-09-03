@@ -9,6 +9,13 @@
 
     <child>
       <object class="GtkMenuButton" id="btn_input_date">
+        <accessibility>
+          <property name="label" translatable="yes">Input date</property>
+          <property name="has-popup">true</property>
+          <relation name="labelled-by">date-label</relation>
+          <relation name="described-by">label_date</relation>
+        </accessibility>
+
         <style>
           <class name="card"/>
           <class name="flat"/>
@@ -40,7 +47,7 @@
                 <property name="spacing">6</property>
                 <property name="hexpand">true</property>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="date-label">
                     <style>
                       <class name="caption"/>
                       <class name="dim-label"/>
@@ -79,6 +86,12 @@
 
     <child>
       <object class="GtkMenuButton" id="btn_input_time">
+        <accessibility>
+          <property name="label" translatable="yes">Input time</property>
+          <property name="has-popup">true</property>
+          <relation name="labelled-by">time-label</relation>
+          <relation name="described-by">label_time</relation>
+        </accessibility>
         <style>
           <class name="card"/>
           <class name="flat"/>
@@ -140,7 +153,7 @@
                 <property name="spacing">6</property>
                 <property name="hexpand">true</property>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="time-label">
                     <style>
                       <class name="caption"/>
                       <class name="dim-label"/>

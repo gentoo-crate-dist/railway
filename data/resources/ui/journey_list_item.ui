@@ -147,6 +147,36 @@
         <property name="spacing">12</property>
 
         <child>
+          <object class="DBIndicatorIcons">
+            <binding name="load-factor">
+              <lookup name="load-factor">
+                <lookup name="journey" type="DBJourneyListItem"/>
+              </lookup>
+            </binding>
+            <binding name="late-factor">
+              <lookup name="late-factor">
+                <lookup name="journey" type="DBJourneyListItem"/>
+              </lookup>
+            </binding>
+            <binding name="change-platform">
+              <lookup name="change-platform">
+                <lookup name="journey" type="DBJourneyListItem"/>
+              </lookup>
+            </binding>
+            <binding name="is-unreachable">
+              <lookup name="is-unreachable">
+                <lookup name="journey" type="DBJourneyListItem"/>
+              </lookup>
+            </binding>
+            <binding name="is-cancelled">
+              <lookup name="is-cancelled">
+                <lookup name="journey" type="DBJourneyListItem"/>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+
+        <child>
           <object class="GtkLabel">
             <style>
               <class name="dim-label"/>

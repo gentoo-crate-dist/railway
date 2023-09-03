@@ -28,13 +28,15 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{ParamSpec, ParamSpecObject, ParamSpecString, Value},
+        glib::{
+            ParamSpec, ParamSpecBoolean, ParamSpecEnum, ParamSpecObject, ParamSpecString, Value,
+        },
         prelude::{ObjectExt, ParamSpecBuilderExt, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass, ObjectSubclassExt},
     };
     use once_cell::sync::Lazy;
 
-    use crate::backend::Place;
+    use crate::backend::{LateFactor, LoadFactor, Place};
 
     #[derive(Default)]
     pub struct Leg {
@@ -77,6 +79,21 @@ mod imp {
                         .read_only()
                         .build(),
                     ParamSpecObject::builder::<Place>("destination")
+                        .read_only()
+                        .build(),
+                    ParamSpecEnum::builder::<LoadFactor>("load-factor")
+                        .read_only()
+                        .build(),
+                    ParamSpecEnum::builder::<LateFactor>("late-factor")
+                        .read_only()
+                        .build(),
+                    ParamSpecBoolean::builder("change-platform")
+                        .read_only()
+                        .build(),
+                    ParamSpecBoolean::builder("is-unreachable")
+                        .read_only()
+                        .build(),
+                    ParamSpecBoolean::builder("is-cancelled")
                         .read_only()
                         .build(),
                 ]
@@ -171,6 +188,55 @@ mod imp {
                     .borrow()
                     .as_ref()
                     .map(|o| Place::new(o.destination.clone()))
+                    .to_value(),
+                "load-factor" => self
+                    .leg
+                    .borrow()
+                    .as_ref()
+                    .map(|o| LoadFactor::from(o.load_factor))
+                    .unwrap_or_default()
+                    .to_value(),
+                "late-factor" => self
+                    .leg
+                    .borrow()
+                    .as_ref()
+                    .map(|o| {
+                        std::cmp::max(
+                            match (o.arrival, o.planned_arrival) {
+                                (Some(real), Some(planned)) => LateFactor::from(real - planned),
+                                _ => LateFactor::default(),
+                            },
+                            match (o.departure, o.planned_departure) {
+                                (Some(real), Some(planned)) => LateFactor::from(real - planned),
+                                _ => LateFactor::default(),
+                            },
+                        )
+                    })
+                    .unwrap_or_default()
+                    .to_value(),
+                "change-platform" => self
+                    .leg
+                    .borrow()
+                    .as_ref()
+                    .map(|o| {
+                        o.departure_platform != o.planned_departure_platform
+                            || o.arrival_platform != o.planned_arrival_platform
+                    })
+                    .unwrap_or_default()
+                    .to_value(),
+                "is-unreachable" => self
+                    .leg
+                    .borrow()
+                    .as_ref()
+                    .and_then(|o| o.reachable.map(|b| !b))
+                    .unwrap_or_default()
+                    .to_value(),
+                "is-cancelled" => self
+                    .leg
+                    .borrow()
+                    .as_ref()
+                    .and_then(|o| o.cancelled)
+                    .unwrap_or_default()
                     .to_value(),
                 _ => unimplemented!(),
             }

@@ -1,6 +1,7 @@
 mod alt_label;
 mod date_time_picker;
 mod error;
+mod indicator_icons;
 mod journey_detail_page;
 mod journey_list_item;
 mod journey_store_item;

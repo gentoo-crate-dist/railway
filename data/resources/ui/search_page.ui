@@ -62,11 +62,16 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="btn_search">
+                        <accessibility>
+                          <property name="label" translatable="yes">Search</property>
+                        </accessibility>
                         <style>
                           <class name="suggested-action"/>
                           <class name="list-button"/>
                         </style>
+
                         <signal name="clicked" handler="handle_search" swapped="true"/>
+
                         <property name="label" translatable="yes">Search</property>
                         <property name="margin-top">12</property>
                         <property name="height-request">48</property>
