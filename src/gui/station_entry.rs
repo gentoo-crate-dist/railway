@@ -229,6 +229,23 @@ pub mod imp {
                 }),
             );
         }
+
+        // Libadwaita has an `document-edit-symbolic. This does not fit in this use case.
+        // Upstream does not want to introduce a feature for this. See <https://gitlab.gnome.org/GNOME/libadwaita/-/issues/727>.
+        fn hide_edit_icon(&self) {
+            let mut child = self.obj().first_child();
+            while let Some(c) = child {
+                if c.has_css_class("edit-icon") {
+                    c.set_visible(false);
+                    c.unparent();
+                    break;
+                } else if c.has_css_class("header") {
+                    child = c.first_child();
+                } else {
+                    child = c.next_sibling();
+                }
+            }
+        }
     }
 
     #[glib::object_subclass]
@@ -255,6 +272,8 @@ pub mod imp {
             self.popover.set_parent(obj.as_ref());
             self.connect_changed(&obj);
             self.setup_model(&obj);
+
+            self.hide_edit_icon();
 
             self.completions.borrow().connect_notify_local(
                 Some("n-items"),
