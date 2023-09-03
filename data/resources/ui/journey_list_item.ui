@@ -197,8 +197,10 @@
           <object class="GtkLabel">
             <property name="halign">end</property>
             <binding name="label">
-              <lookup name="price">
-                <lookup name="journey" type="DBJourneyListItem"/>
+              <lookup name="formatted">
+                <lookup name="price">
+                  <lookup name="journey" type="DBJourneyListItem"/>
+                </lookup>
               </lookup>
             </binding>
           </object>

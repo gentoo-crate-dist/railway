@@ -39,7 +39,7 @@ mod imp {
         subclass::prelude::{ObjectImpl, ObjectSubclass},
     };
 
-    use crate::backend::{LateFactor, Leg, LoadFactor};
+    use crate::backend::{LateFactor, Leg, LoadFactor, Price};
 
     pub struct Journey {
         pub(super) journey: RefCell<Option<hafas_rs::Journey>>,
@@ -61,7 +61,9 @@ mod imp {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecString::builder("price").read_only().build(),
+                    ParamSpecObject::builder::<Price>("price")
+                        .read_only()
+                        .build(),
                     ParamSpecObject::builder::<Leg>("first-leg")
                         .read_only()
                         .build(),
@@ -100,7 +102,7 @@ mod imp {
                     .borrow()
                     .as_ref()
                     .and_then(|o| o.price.as_ref())
-                    .map(|p| format!("{:.2} {}", p.amount, p.currency))
+                    .map(|p| Price::new(p.clone()))
                     .to_value(),
                 "first-leg" => self
                     .journey
