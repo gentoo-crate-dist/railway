@@ -12,6 +12,7 @@
 
     <style>
       <class name="card"/>
+      <class name="button-card"/>
     </style>
 
     <signal name="clicked" handler="handle_clicked" swapped="true"/>

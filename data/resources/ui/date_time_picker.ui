@@ -18,6 +18,7 @@
 
         <style>
           <class name="card"/>
+          <class name="button-card"/>
           <class name="flat"/>
         </style>
 
@@ -26,15 +27,7 @@
         <property name="hexpand">true</property>
 
         <property name="popover">
-          <object class="GtkPopover">
-            <child>
-              <object class="GtkCalendar" id="pick_cal">
-                <style>
-                  <class name="background"/>
-                </style>
-              </object>
-            </child>
-          </object>
+          popover-date
         </property>
 
         <child>
@@ -77,6 +70,18 @@
               <object class="GtkImage">
                 <property name="icon-name">go-down-symbolic</property>
                 <property name="margin-end">12</property>
+
+                <child>
+                  <object class="GtkPopover" id="popover-date">
+                    <child>
+                      <object class="GtkCalendar" id="pick_cal">
+                        <style>
+                          <class name="background"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
@@ -94,6 +99,7 @@
         </accessibility>
         <style>
           <class name="card"/>
+          <class name="button-card"/>
           <class name="flat"/>
         </style>
 
@@ -102,45 +108,7 @@
         <property name="width-request">150</property>
 
         <property name="popover">
-          <object class="GtkPopover">
-            <child>
-              <object class="GtkBox">
-                <child>
-                  <object class="GtkSpinButton" id="pick_hour">
-                    <style>
-                      <class name="vertical"/>
-                    </style>
-
-                    <property name="orientation">vertical</property>
-                    <property name="valign">center</property>
-                    <property name="numeric">True</property>
-                    <property name="wrap">true</property>
-                    <property name="adjustment">adj_hour</property>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkLabel">
-                    <property name="label"> ∶ </property>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkSpinButton" id="pick_minute">
-                    <style>
-                      <class name="vertical"/>
-                    </style>
-
-                    <property name="orientation">vertical</property>
-                    <property name="valign">center</property>
-                    <property name="numeric">True</property>
-                    <property name="wrap">true</property>
-                    <property name="adjustment">adj_minute</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
+          popover-time
         </property>
 
         <child>
@@ -183,6 +151,48 @@
               <object class="GtkImage">
                 <property name="icon-name">go-down-symbolic</property>
                 <property name="margin-end">12</property>
+
+                <child>
+                  <object class="GtkPopover" id="popover-time">
+                    <child>
+                      <object class="GtkBox">
+                        <child>
+                          <object class="GtkSpinButton" id="pick_hour">
+                            <style>
+                              <class name="vertical"/>
+                            </style>
+
+                            <property name="orientation">vertical</property>
+                            <property name="valign">center</property>
+                            <property name="numeric">True</property>
+                            <property name="wrap">true</property>
+                            <property name="adjustment">adj_hour</property>
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label"> ∶ </property>
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkSpinButton" id="pick_minute">
+                            <style>
+                              <class name="vertical"/>
+                            </style>
+
+                            <property name="orientation">vertical</property>
+                            <property name="valign">center</property>
+                            <property name="numeric">True</property>
+                            <property name="wrap">true</property>
+                            <property name="adjustment">adj_minute</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

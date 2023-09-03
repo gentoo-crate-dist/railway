@@ -42,7 +42,7 @@
 
 
 /* Fixes buttons inside cards having a bigger border radius compared to the card, which leads to the highlight spanning outside of the box. */
-.card button {
+.button-card > button {
   border-radius: 12px;
   padding: 0px;
 }
