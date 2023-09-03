@@ -7,6 +7,18 @@
     <style>
       <class name="error"/>
     </style>
+
+    <child>
+      <object class="GtkButton">
+        <style>
+          <class name="flat"/>
+        </style>
+        <property name="icon-name">route-reverse-symbolic</property>
+        <property name="visible" bind-source="DBStationEntry" bind-property="show-swap-button" bind-flags="sync-create"/>
+
+        <signal name="clicked" handler="handle_swapped_clicked" swapped="true"/>
+      </object>
+    </child>
   </template>
 
   <object class="GtkPopover" id="popover">

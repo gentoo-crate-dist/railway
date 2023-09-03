@@ -136,7 +136,7 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_swap(&self, _: gtk::Button) {
+        fn handle_swap(&self) {
             let from = self.in_from.input();
             let to = self.in_to.input();
             self.in_from.set_input(to);
