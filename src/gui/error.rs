@@ -6,10 +6,10 @@ use gdk::{
 };
 use gettextrs::gettext;
 use gtk::{
-    traits::{DialogExt, GtkWindowExt, WidgetExt},
-    ButtonsType, MessageType, Window,
+    traits::{GtkWindowExt, WidgetExt},
+    Window,
 };
-use libadwaita::{Toast, ToastOverlay};
+use libadwaita::{Toast, ToastOverlay, MessageDialog, prelude::MessageDialogExt};
 
 pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
     log::error!("Displaying error: {}", err);
@@ -41,9 +41,7 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
     if let Some(msg) = msg {
         let action_more_info = SimpleAction::new("more-info", None);
         action_more_info.connect_activate(clone!(@strong overlay => move |_, _| {
-            let dialog = gtk::MessageDialog::builder()
-                .message_type(MessageType::Error)
-                .use_header_bar(1)
+            let dialog = MessageDialog::builder()
                 .transient_for(
                     &overlay
                         .root()
@@ -51,13 +49,12 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
                         .downcast::<Window>()
                         .expect("Root of overlay to be a Window."),
                 )
-                .deletable(true)
-                .buttons(ButtonsType::Close)
-                .title(gettext("Error"))
-                .text(&msg)
+                .heading(gettext("Error"))
+                .body(&msg)
+                .default_response("close")
                 .build();
+            dialog.add_response("close", &gettextrs::gettext("_Close"));
             dialog.present();
-            dialog.connect_response(|dialog, _| dialog.close());
         }));
         toast.set_action_name(Some("toast.more-info"));
 
