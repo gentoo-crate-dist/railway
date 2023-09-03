@@ -16,6 +16,7 @@ impl SearchOptionsWindow {
 }
 
 pub mod imp {
+    use gdk::glib::clone;
     use gdk::gio::Settings;
     use gdk::gio::SettingsBindFlags;
     use glib::subclass::InitializingObject;
@@ -25,12 +26,14 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use libadwaita::subclass::prelude::AdwWindowImpl;
     use libadwaita::subclass::prelude::PreferencesWindowImpl;
+    use libadwaita::prelude::ComboRowExt;
+    use crate::backend::DiscountCard;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/search_options_window.ui")]
     pub struct SearchOptionsWindow {
         #[template_child]
-        dropdown_bahncard: TemplateChild<gtk::ComboBox>,
+        dropdown_bahncard: TemplateChild<libadwaita::ComboRow>,
 
         #[template_child]
         radio_first_class: TemplateChild<gtk::CheckButton>,
@@ -71,14 +74,60 @@ pub mod imp {
     #[gtk::template_callbacks]
     impl SearchOptionsWindow {
         fn init_settings(&self) {
-            self.dropdown_bahncard
-                .set_active_id(Some(&self.settings.enum_("bahncard").to_string()));
-
             if self.settings.boolean("first-class") {
                 self.radio_first_class.set_active(true);
             } else {
                 self.radio_second_class.set_active(true);
             }
+
+            let model_bahncard = gdk::gio::ListStore::new::<DiscountCard>();
+            if let Some(settings_schema) = self.settings.settings_schema() {
+                let bahncard_range = settings_schema.key("bahncard").range();
+
+                assert!(bahncard_range.is_container());
+                assert_eq!(bahncard_range.child_value(0).get::<String>().expect(""), "enum");
+
+                for card_id in bahncard_range.child_value(1)
+                    .as_variant().expect("bahncard's enum's values to be boxed")
+                    .array_iter_str().expect("bahncard's enum's values to be of string type") {
+                    model_bahncard.append(&DiscountCard::new(card_id))
+                }
+            }
+            self.dropdown_bahncard.get().set_model(Some(&model_bahncard));
+            self.settings
+                .bind("bahncard", &self.dropdown_bahncard.get(), "selected")
+                .mapping(clone!(@weak model_bahncard => @default-panic, move |variant, value_type| {
+                    assert_eq!(value_type, glib::types::Type::U32);
+
+                    variant.str().map(|card_id| {
+                        let position = model_bahncard.iter::<glib::Object>().position(|entry| {
+                            card_id == entry.expect("our model to only contain GObjects")
+                                .downcast::<DiscountCard>()
+                                .expect("our model to only contain DiscountCards")
+                                .id()
+                        });
+
+                        assert!(position.is_some());
+
+                        (position.unwrap() as u32).to_value()
+                    })
+                }))
+                .set_mapping(clone!(@weak model_bahncard => @default-panic, move |value, variant_type| {
+                    assert_eq!(variant_type.as_str(), "s");
+
+                    match value.get::<u32>() {
+                        Ok(position) => {
+                            glib::variant::Variant::parse(
+                                Some(&variant_type),
+                                &format!("'{}'", model_bahncard.item(position)
+                                    .and_downcast::<DiscountCard>()?.id())
+                            ).ok()
+                        },
+                        _ => None
+                    }
+                }))
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
 
             self.settings
                 .bind(
@@ -153,15 +202,6 @@ pub mod imp {
                 .bind("include-taxi", &self.switch_taxi.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
-        }
-
-        #[template_callback]
-        fn handle_bahncard_dropdown(&self, dropdown: gtk::ComboBox) {
-            let id_str = dropdown.property::<String>("active-id");
-            let id = id_str.parse::<i32>().expect("active-id must be i32");
-            self.settings
-                .set_enum("bahncard", id)
-                .expect("Failed to set enum value");
         }
 
         #[template_callback]
