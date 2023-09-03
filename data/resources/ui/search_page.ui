@@ -38,6 +38,7 @@
                           <object class="DBStationEntry" id="in_from">
                             <property name="title" translatable="yes">From</property>
                             <property name="client" bind-source="DBSearchPage" bind-property="client" bind-flags="sync-create"/>
+                            <property name="show-swap-button">false</property>
                           </object>
                         </child>
                         <child>
@@ -45,6 +46,8 @@
                             <property name="hexpand">True</property>
                             <property name="title" translatable="yes">To</property>
                             <property name="client" bind-source="DBSearchPage" bind-property="client" bind-flags="sync-create"/>
+                            <property name="show-swap-button">true</property>
+                            <signal name="swap" handler="handle_swap" swapped="true"/>
                           </object>
                         </child>
                       </object>

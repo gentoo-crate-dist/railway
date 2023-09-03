@@ -34,15 +34,16 @@ impl StationEntry {
 }
 
 pub mod imp {
-    use std::cell::RefCell;
+    use std::cell::{Cell, RefCell};
     use std::sync::atomic::{AtomicBool, Ordering};
     use std::sync::{Arc, Mutex};
     use std::time::{Duration, Instant};
 
     use gdk::gio;
-    use gdk::glib::subclass::InitializingObject;
-    use gdk::glib::MainContext;
+    use gdk::glib::subclass::{InitializingObject, Signal};
     use gdk::glib::{clone, ParamSpec, ParamSpecBoolean, ParamSpecObject, ParamSpecString, Value};
+    use gdk::glib::{MainContext, Properties};
+    use gdk::prelude::ObjectExt;
     use gtk::subclass::prelude::*;
     use gtk::{gio::ListStore, glib};
     use gtk::{prelude::*, ListItem, SignalListItemFactory, Widget};
@@ -57,8 +58,9 @@ pub mod imp {
     const REQUEST_DURATION: Duration = Duration::from_secs(1);
     const MIN_REQUEST_LEN: usize = 3;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
     #[template(resource = "/ui/station_entry.ui")]
+    #[properties(wrapper_type=super::StationEntry)]
     pub struct StationEntry {
         #[template_child]
         popover: TemplateChild<Popover>,
@@ -76,9 +78,18 @@ pub mod imp {
         request_pending: Arc<AtomicBool>,
 
         title: RefCell<String>,
+
+        #[property(get, set)]
+        show_swap_button: Cell<bool>,
     }
 
+    #[gtk::template_callbacks]
     impl StationEntry {
+        #[template_callback]
+        fn handle_swapped_clicked(&self) {
+            self.obj().emit_by_name::<()>("swap", &[]);
+        }
+
         fn on_changed(&self) {
             let request_pending = &self.request_pending;
             let last_request = &self.last_request;
@@ -228,6 +239,7 @@ pub mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
+            Self::bind_template_callbacks(klass);
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -273,7 +285,8 @@ pub mod imp {
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
+                let mut v = StationEntry::derived_properties().to_owned();
+                v.extend(vec![
                     ParamSpecObject::builder::<Place>("place").build(),
                     ParamSpecBoolean::builder("set").read_only().build(),
                     ParamSpecObject::builder::<HafasClient>("client").build(),
@@ -281,7 +294,8 @@ pub mod imp {
                         .read_only()
                         .build(),
                     ParamSpecString::builder("title").build(),
-                ]
+                ]);
+                v
             });
             PROPERTIES.as_ref()
         }
@@ -319,7 +333,7 @@ pub mod imp {
                             .expect("Property title of StationEntry must be String"),
                     );
                 }
-                _ => unimplemented!(),
+                _ => self.derived_set_property(_id, value, pspec),
             }
         }
 
@@ -330,8 +344,14 @@ pub mod imp {
                 "client" => self.client.borrow().to_value(),
                 "completions" => self.completions.borrow().to_value(),
                 "title" => self.title.borrow().to_value(),
-                _ => unimplemented!(),
+                _ => self.derived_property(_id, pspec),
             }
+        }
+
+        fn signals() -> &'static [Signal] {
+            static SIGNALS: Lazy<Vec<Signal>> =
+                Lazy::new(|| -> Vec<Signal> { vec![Signal::builder("swap").build()] });
+            SIGNALS.as_ref()
         }
     }
 
