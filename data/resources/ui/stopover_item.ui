@@ -43,14 +43,13 @@
             <property name="vexpand">True</property>
             <property name="halign">center</property>
             <property name="margin-start">18</property>
-            <property name="margin-end">12</property>
+            <property name="margin-end">18</property>
           </object>
         </child>
         <child>
           <object class="GtkImage">
             <property name="icon-name">circle-filled-symbolic</property>
-            <property name="pixel-size">13</property>
-            <property name="margin-start">6</property>
+            <property name="pixel-size">9</property>
             <property name="hexpand">False</property>
           </object>
         </child>
@@ -60,7 +59,7 @@
             <property name="vexpand">True</property>
             <property name="halign">center</property>
             <property name="margin-start">18</property>
-            <property name="margin-end">12</property>
+            <property name="margin-end">18</property>
           </object>
         </child>
       </object>

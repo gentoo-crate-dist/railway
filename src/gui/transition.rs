@@ -1,5 +1,7 @@
 use gdk::glib::Object;
 
+use crate::gui::utility::Utility;
+
 gtk::glib::wrapper! {
     pub struct Transition(ObjectSubclass<imp::Transition>)
         @extends gtk::Box, gtk::Widget,
@@ -10,8 +12,7 @@ gtk::glib::wrapper! {
 impl Transition {
     pub fn new(duration: &Option<chrono::Duration>) -> Self {
         let label = if let Some(duration) = duration {
-            let minutes_fmt = gettextrs::gettext("{} Minutes");
-            minutes_fmt.replace("{}", &duration.num_minutes().to_string())
+            Utility::format_duration(*duration)
         } else {
             gettextrs::gettext("Unknown")
         };
