@@ -133,7 +133,7 @@ pub mod imp {
                 list_journeys: Default::default(),
                 toast_errors: Default::default(),
                 destination_alignment_group: gtk::SizeGroup::new(gtk::SizeGroupMode::Horizontal),
-                model: Default::default(),
+                model: RefCell::new(gtk::gio::ListStore::new::<Journey>()),
                 journeys_result: Default::default(),
                 settings: Settings::new("de.schmidhuberj.DieBahn"),
                 client: Default::default(),
@@ -293,7 +293,7 @@ pub mod imp {
         }
 
         fn setup_model(&self, obj: &super::JourneysPage) {
-            let model = gtk::gio::ListStore::new(Journey::static_type());
+            let model = gtk::gio::ListStore::new::<Journey>();
             let selection_model = gtk::NoSelection::new(Some(model.clone()));
             self.list_journeys.get().set_model(Some(&selection_model));
 

@@ -2,7 +2,7 @@ use gdk::prelude::{ApplicationExt, ApplicationExtManual};
 use gdk::Display;
 use gtk::glib::IsA;
 use gtk::traits::{GtkWindowExt, WidgetExt};
-use gtk::{CssProvider, StyleContext};
+use gtk::CssProvider;
 
 #[macro_export]
 macro_rules! gspawn {
@@ -25,7 +25,7 @@ fn load_css() {
     provider.load_from_resource("/de/schmidhuberj/DieBahn/style.css");
 
     // Add the provider to the default screen
-    StyleContext::add_provider_for_display(
+    gtk::style_context_add_provider_for_display(
         &Display::default().expect("Could not connect to a display."),
         &provider,
         gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,

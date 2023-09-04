@@ -56,7 +56,7 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
                 .title(gettext("Error"))
                 .text(&msg)
                 .build();
-            dialog.show();
+            dialog.present();
             dialog.connect_response(|dialog, _| dialog.close());
         }));
         toast.set_action_name(Some("toast.more-info"));

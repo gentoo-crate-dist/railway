@@ -58,7 +58,7 @@ pub mod imp {
     const REQUEST_DURATION: Duration = Duration::from_secs(1);
     const MIN_REQUEST_LEN: usize = 3;
 
-    #[derive(CompositeTemplate, Default, Properties)]
+    #[derive(CompositeTemplate, Properties)]
     #[template(resource = "/ui/station_entry.ui")]
     #[properties(wrapper_type=super::StationEntry)]
     pub struct StationEntry {
@@ -81,6 +81,22 @@ pub mod imp {
 
         #[property(get, set)]
         show_swap_button: Cell<bool>,
+    }
+
+    impl Default for StationEntry {
+        fn default() -> Self {
+            StationEntry {
+                popover: Default::default(),
+                list_completions: Default::default(),
+                completions: RefCell::new(ListStore::new::<Place>()),
+                last_request: Default::default(),
+                client: Default::default(),
+                place: Default::default(),
+                request_pending: Default::default(),
+                title: Default::default(),
+                show_swap_button: Default::default(),
+            }
+        }
     }
 
     #[gtk::template_callbacks]

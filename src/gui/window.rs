@@ -23,13 +23,13 @@ pub mod imp {
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
+    use glib::signal::Propagation;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::glib::clone;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
-    use gtk::Inhibit;
     use libadwaita::subclass::prelude::AdwApplicationWindowImpl;
     use libadwaita::subclass::prelude::AdwWindowImpl;
     use once_cell::sync::Lazy;
@@ -88,7 +88,7 @@ pub mod imp {
             let action_settings = SimpleAction::new("settings", None);
             action_settings.connect_activate(clone!(@weak obj as window => move |_, _| {
                 let settings = PreferencesWindow::new(&window);
-                settings.show();
+                settings.present();
             }));
             let action_about = SimpleAction::new("about", None);
             action_about.connect_activate(clone!(@weak obj as window => move |_, _| {
@@ -116,7 +116,7 @@ pub mod imp {
                     .website(env!("CARGO_PKG_HOMEPAGE"))
                     .build();
                 about_dialog.add_link("GitLab", "https://gitlab.com/schmiddi-on-mobile/diebahn");
-                about_dialog.show();
+                about_dialog.present();
             }));
 
             let actions = SimpleActionGroup::new();
@@ -264,10 +264,10 @@ pub mod imp {
 
     impl WidgetImpl for Window {}
     impl WindowImpl for Window {
-        fn close_request(&self) -> Inhibit {
+        fn close_request(&self) -> Propagation {
             self.store_journeys.get().flush();
             self.store_searches.get().flush();
-            Inhibit(false)
+            Propagation::Proceed
         }
     }
     impl ApplicationWindowImpl for Window {}

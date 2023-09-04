@@ -65,7 +65,7 @@ pub mod imp {
         #[template_callback]
         fn handle_clicked(&self, _: gtk::Button) {
             let settings = SearchOptionsWindow::new(&self.window());
-            settings.show();
+            settings.present();
         }
 
         fn bahncards() -> HashMap<usize, String> {
