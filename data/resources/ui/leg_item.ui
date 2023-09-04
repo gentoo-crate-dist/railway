@@ -46,14 +46,13 @@
                     <property name="vexpand">True</property>
                     <property name="halign">center</property>
                     <property name="margin-start">18</property>
-                    <property name="margin-end">12</property>
+                    <property name="margin-end">18</property>
                   </object>
                 </child>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">circle-outline-thick-symbolic</property>
-                    <property name="margin-start">6</property>
-                    <property name="pixel-size">17</property>
+                    <property name="pixel-size">13</property>
                     <property name="hexpand">False</property>
                   </object>
                 </child>
@@ -63,14 +62,16 @@
                     <property name="vexpand">True</property>
                     <property name="halign">center</property>
                     <property name="margin-start">18</property>
-                    <property name="margin-end">12</property>
+                    <property name="margin-end">18</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
               <object class="GtkLabel">
-                <property name="margin-start">12</property>
+                <style>
+                  <class name="route-segment-station-start-end"/>
+                </style>
                 <property name="halign">start</property>
                 <property name="ellipsize">end</property>
                 <binding name="label">
@@ -115,7 +116,7 @@
               <object class="GtkSeparator">
                 <property name="orientation">vertical</property>
                 <property name="margin-start">18</property>
-                <property name="margin-end">12</property>
+                <property name="margin-end">18</property>
               </object>
             </child>
             <child>
@@ -132,7 +133,7 @@
                       <object class="GtkLabel">
                         <property name="wrap">True</property>
                         <property name="hexpand">True</property>
-                        <property name="xalign">0.2</property>
+                        <property name="xalign">0</property>
                         <binding name="label">
                           <closure function="format_train_direction" type="gchararray">
                             <lookup name="name">
@@ -154,7 +155,6 @@
                     <property name="orientation">horizontal</property>
                     <property name="halign">fill</property>
                     <property name="spacing">6</property>
-                    <property name="margin-start">12</property>
                     <child>
                       <object class="GtkToggleButton" id="stopover_button">
                         <accessibility>
@@ -165,12 +165,11 @@
                         <property name="hexpand">False</property>
                         <property name="halign">start</property>
                         <style>
-                          <class name="pill"/>
+                          <class name="small-pill"/>
                         </style>
                         <property name="child">
                           <object class="GtkBox">
-                            <property name="margin-start">12</property>
-                            <property name="margin-end">6</property>
+                            <property name="margin-start">6</property>
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkLabel" id="label_num_stopovers">
@@ -234,17 +233,10 @@
 
                         <property name="valign">center</property>
                         <property name="halign">end</property>
+                        <property name="icon-name">dialog-information-symbolic</property>
                         <style>
-                          <class name="pill"/>
+                          <class name="circular"/>
                         </style>
-                        <property name="child">
-                          <object class="AdwButtonContent">
-                            <property name="margin-start">12</property>
-                            <property name="margin-end">12</property>
-                            <property name="icon-name">dialog-information-symbolic</property>
-                            <property name="use-underline">True</property>
-                          </object>
-                        </property>
                       </object>
                     </child>
                   </object>
@@ -324,14 +316,13 @@
                     <property name="vexpand">True</property>
                     <property name="halign">center</property>
                     <property name="margin-start">18</property>
-                    <property name="margin-end">12</property>
+                    <property name="margin-end">18</property>
                   </object>
                 </child>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">circle-outline-thick-symbolic</property>
-                    <property name="margin-start">6</property>
-                    <property name="pixel-size">17</property>
+                    <property name="pixel-size">13</property>
                     <property name="hexpand">False</property>
                   </object>
                 </child>
@@ -341,15 +332,17 @@
                     <property name="vexpand">True</property>
                     <property name="halign">center</property>
                     <property name="margin-start">18</property>
-                    <property name="margin-end">12</property>
+                    <property name="margin-end">18</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
               <object class="GtkLabel">
+                <style>
+                  <class name="route-segment-station-start-end"/>
+                </style>
                 <property name="halign">start</property>
-                <property name="margin-start">12</property>
                 <property name="ellipsize">end</property>
                 <binding name="label">
                   <lookup name="name">

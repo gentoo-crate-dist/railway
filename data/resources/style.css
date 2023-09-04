@@ -56,6 +56,15 @@
   border-radius: 12px;
 }
 
+.small-pill {
+  padding: 3px 12px;
+  border-radius: 9999px;
+}
+
+.route-segment-station-start-end {
+  font-weight: bold;
+}
+
 /* Currently disabled. Styling for the indicator icons */
 /*
 .load-unknown {

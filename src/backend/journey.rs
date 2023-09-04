@@ -29,7 +29,7 @@ mod imp {
     use once_cell::sync::Lazy;
     use std::cell::RefCell;
 
-    use chrono::NaiveDate;
+    use crate::gui::utility::Utility;
 
     use gdk::{
         glib::{
@@ -128,16 +128,7 @@ mod imp {
                     let arrival = leg_last.and_then(|o| o.arrival);
 
                     if let (Some(arrival), Some(departure)) = (arrival, departure) {
-                        let needed_time = arrival - departure;
-
-                        (NaiveDate::from_ymd_opt(2022, 1, 1)
-                            .unwrap_or_default()
-                            .and_hms_opt(0, 0, 0)
-                            .unwrap_or_default()
-                            + needed_time)
-                            .format("%H:%M")
-                            .to_string()
-                            .to_value()
+                        Utility::format_duration(arrival - departure).to_value()
                     } else {
                         "".to_string().to_value()
                     }

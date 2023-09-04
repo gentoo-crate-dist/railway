@@ -85,20 +85,6 @@ pub mod imp {
         fn format_source_destination(source: &str, destination: &str) -> String {
             format!("{source} → {destination}")
         }
-
-        #[template_callback(function)]
-        fn format_transitions(transitions: u32) -> String {
-            // Translators: How many transitions the train has. For the plural-variant, the {} will be replaced by the number, e.g. '5 transitions'.
-            let format = gettextrs::ngettext("One transition", "{} transitions", transitions);
-            format.replace("{}", &transitions.to_string())
-        }
-
-        #[template_callback(function)]
-        fn format_travel_time(time: &str) -> String {
-            // Translators: How long a journey takes, e.g. 'Travel time: 05:32'.
-            let format = gettextrs::gettext("Travel time: {}");
-            format.replace("{}", time)
-        }
     }
 
     #[glib::object_subclass]
