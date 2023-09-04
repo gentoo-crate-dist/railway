@@ -10,9 +10,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-gtk = { version = "0.6.4", package = "gtk4", features = ["v4_8"] }
-gdk = { version = "0.6.3", package = "gdk4" }
-libadwaita = { version = "0.3.0", features = ["v1_2"] }
+gtk = { version = "0.7.2", package = "gtk4", features = ["v4_8"] }
+gdk = { version = "0.7.2", package = "gdk4" }
+libadwaita = { version = "0.5.2", features = ["v1_2"] }
 gettext-rs = { version = "0.7.0", features = ["gettext-system"] }
 
 once_cell = "1.17.1"

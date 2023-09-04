@@ -277,8 +277,7 @@ mod imp {
         fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "providers" => {
-                    // XXX: Need to rewrite with GTK 4.12.
-                    let list = ListStore::default();
+                    let list = ListStore::new::<super::Provider>();
                     list.extend_from_slice(&super::providers());
                     list.to_value()
                 }
