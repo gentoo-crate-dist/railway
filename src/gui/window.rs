@@ -39,6 +39,7 @@ pub mod imp {
     use crate::backend::JourneysResult;
     use crate::backend::Leg;
     use crate::backend::Place;
+    use crate::backend::DiscountCard;
     use crate::gui::alt_label::AltLabel;
     use crate::gui::date_time_picker::DateTimePicker;
     use crate::gui::indicator_icons::IndicatorIcons;
@@ -213,6 +214,7 @@ pub mod imp {
         type ParentType = libadwaita::ApplicationWindow;
 
         fn class_init(klass: &mut Self::Class) {
+            DiscountCard::ensure_type();
             AltLabel::ensure_type();
             ProviderPopover::ensure_type();
             DateTimePicker::ensure_type();
