@@ -65,6 +65,8 @@
                               <class name="icon-dropshadow"/>
                             </style>
                             <property name="pixel-size">28</property>
+                            <!-- Required as otherwise the header bar would be 1px too large -->
+                            <property name="height-request">0</property>
                             <binding name="icon-name">
                               <lookup name="icon-name">
                                 <lookup name="current-selection">

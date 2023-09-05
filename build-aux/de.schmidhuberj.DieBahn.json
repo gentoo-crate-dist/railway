@@ -20,7 +20,8 @@
         "env": {
             "CARGO_HOME": "/run/build/diebahn/cargo",
             "RUST_BACKTRACE": "1"
-        }
+        },
+        "build-args": [ "--share=network" ]
     },
     "modules": [
         {
@@ -29,7 +30,7 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "."
+                    "url" : ".."
                 }
             ]
         }
