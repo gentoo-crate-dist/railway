@@ -2,13 +2,17 @@
   description = "Travel with all your train information in one place";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgsgnome.url = "github:NixOS/nixpkgs/gnome";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  outputs = { self, nixpkgs, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgsgnome, flake-utils, ... }@inputs:
     (flake-utils.lib.eachDefaultSystem
       (system:
         let
           pkgs = import nixpkgs {
+            inherit system;
+          };
+          pkgsgnome = import nixpkgsgnome {
             inherit system;
           };
           name = "diebahn";
@@ -24,8 +28,8 @@
                 };
               };
               src = ./.;
-              buildInputs = with pkgs; [ libadwaita ];
-              nativeBuildInputs = with pkgs; [ wrapGAppsHook4 rustPlatform.cargoSetupHook meson gettext glib pkg-config desktop-file-utils appstream-glib ninja rustc cargo ];
+              buildInputs = [ pkgsgnome.libadwaita pkgsgnome.gtk4 ];
+              nativeBuildInputs = [ pkgsgnome.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson pkgs.gettext pkgsgnome.glib pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream-glib pkgs.ninja pkgs.rustc pkgscargo ];
 
               inherit name;
             };
@@ -42,8 +46,8 @@
             with pkgs;
             pkgs.mkShell {
               src = ./.;
-              buildInputs = with pkgs; [];
-              nativeBuildInputs = with pkgs; [ wrapGAppsHook4 meson gettext glib gtk4 libadwaita pkg-config desktop-file-utils appstream-glib ninja rustc cargo clippy run check ];
+              buildInputs = [];
+              nativeBuildInputs = [ pkgsgnome.wrapGAppsHook4 pkgs.meson pkgs.gettext pkgsgnome.glib pkgsgnome.gtk4 pkgsgnome.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream-glib pkgs.ninja pkgs.rustc pkgs.cargo pkgs.clippy run check ];
               shellHook = ''
                 meson setup -Dprofile=development build
               '';

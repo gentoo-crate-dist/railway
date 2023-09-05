@@ -39,6 +39,7 @@ pub mod imp {
     use crate::backend::JourneysResult;
     use crate::backend::Leg;
     use crate::backend::Place;
+    use crate::backend::DiscountCard;
     use crate::gui::alt_label::AltLabel;
     use crate::gui::date_time_picker::DateTimePicker;
     use crate::gui::indicator_icons::IndicatorIcons;
@@ -57,7 +58,9 @@ pub mod imp {
     #[template(resource = "/ui/window.ui")]
     pub struct Window {
         #[template_child]
-        leaflet: TemplateChild<libadwaita::Leaflet>,
+        search_view: TemplateChild<libadwaita::NavigationSplitView>,
+        #[template_child]
+        result_view: TemplateChild<libadwaita::NavigationSplitView>,
 
         #[template_child]
         search_page: TemplateChild<SearchPage>,
@@ -126,16 +129,9 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_go_back(&self) {
-            self.leaflet.navigate(libadwaita::NavigationDirection::Back);
-        }
-
-        #[template_callback]
         fn handle_details(&self, journey: Journey) {
-            self.leaflet
-                .navigate(libadwaita::NavigationDirection::Forward);
-            self.leaflet
-                .navigate(libadwaita::NavigationDirection::Forward);
+            self.search_view.set_show_content(true);
+            self.result_view.set_show_content(true);
             self.journey_detail_page.set_property("journey", journey);
             self.journey_detail_page.reload();
         }
@@ -144,8 +140,8 @@ pub mod imp {
         fn handle_search_page(&self, journeys_result: JourneysResult) {
             self.journeys_page
                 .set_property("journeys-result", journeys_result);
-            self.leaflet
-                .navigate(libadwaita::NavigationDirection::Forward);
+            self.search_view.set_show_content(true);
+            self.result_view.set_show_content(false);
         }
 
         #[template_callback]
@@ -156,8 +152,8 @@ pub mod imp {
         #[template_callback]
         fn handle_journeys_page(&self, journey: Journey) {
             self.journey_detail_page.set_property("journey", journey);
-            self.leaflet
-                .navigate(libadwaita::NavigationDirection::Forward);
+            self.search_view.set_show_content(true);
+            self.result_view.set_show_content(true);
         }
 
         #[template_callback]
@@ -218,6 +214,7 @@ pub mod imp {
         type ParentType = libadwaita::ApplicationWindow;
 
         fn class_init(klass: &mut Self::Class) {
+            DiscountCard::ensure_type();
             AltLabel::ensure_type();
             ProviderPopover::ensure_type();
             DateTimePicker::ensure_type();
