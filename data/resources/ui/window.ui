@@ -37,6 +37,11 @@
               <object class="AdwToolbarView">
                 <child type="top">
                   <object class="AdwHeaderBar">
+                    <property name="title-widget">
+                      <object class="AdwWindowTitle">
+                        <property name="title" translatable="yes">DieBahn</property>
+                      </object>
+                    </property>
                     <child>
                       <object class="GtkMenuButton">
                         <accessibility>
