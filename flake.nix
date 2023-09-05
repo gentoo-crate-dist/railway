@@ -36,7 +36,7 @@
           devShells.default =
             let 
               run = pkgs.writeShellScriptBin "run" ''
-                export GSETTINGS_SCHEMA_DIR=./build/data/
+                export GSETTINGS_SCHEMA_DIR=${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}/glib-2.0/schemas/:${pkgsgnome.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgsgnome.gsettings-desktop-schemas.name}/glib-2.0/schemas/:./build/data/
                 meson compile -C build && ./build/target/debug/${name}
               '';
               check = pkgs.writeShellScriptBin "check" ''
