@@ -165,14 +165,6 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_search_provider_dropdown(&self, dropdown: gtk::ComboBox) {
-            let id_str = dropdown.property::<String>("active-id");
-            self.settings
-                .set_string("search-provider", &id_str)
-                .expect("Failed to set search-provider value");
-        }
-
-        #[template_callback]
         fn handle_first_class(&self, radio: gtk::CheckButton) {
             let active = radio.property::<bool>("active");
             self.settings
