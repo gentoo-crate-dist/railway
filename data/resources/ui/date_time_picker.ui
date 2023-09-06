@@ -70,6 +70,8 @@
               <object class="GtkImage">
                 <property name="icon-name">go-down-symbolic</property>
                 <property name="margin-end">12</property>
+                <property name="valign">center</property>
+                <property name="halign">center</property>
 
                 <child>
                   <object class="GtkPopover" id="popover-date">
@@ -151,6 +153,8 @@
               <object class="GtkImage">
                 <property name="icon-name">go-down-symbolic</property>
                 <property name="margin-end">12</property>
+                <property name="valign">center</property>
+                <property name="halign">center</property>
 
                 <child>
                   <object class="GtkPopover" id="popover-time">
