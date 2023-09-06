@@ -6,6 +6,7 @@
   <template class="DBDateTimePicker" parent="GtkBox">
     <property name="orientation">horizontal</property>
     <property name="spacing">12</property>
+    <property name="homogeneous">True</property>
 
     <child>
       <object class="GtkMenuButton" id="btn_input_date">
@@ -59,9 +60,6 @@
                     <property name="halign">start</property>
                     <property name="margin-bottom">12</property>
                     <property name="margin-start">12</property>
-                    <property name="lines">2</property>
-                    <property name="ellipsize">end</property>
-                    <property name="wrap">true</property>
                   </object>
                 </child>
               </object>
@@ -105,7 +103,6 @@
 
         <property name="valign">center</property>
         <property name="halign">fill</property>
-        <property name="width-request">150</property>
 
         <property name="popover">
           popover-time
@@ -140,9 +137,6 @@
                     <property name="halign">start</property>
                     <property name="margin-bottom">12</property>
                     <property name="margin-start">12</property>
-                    <property name="lines">2</property>
-                    <property name="ellipsize">end</property>
-                    <property name="wrap">true</property>
                   </object>
                 </child>
               </object>

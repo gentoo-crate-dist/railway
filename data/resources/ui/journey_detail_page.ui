@@ -31,66 +31,70 @@
               <object class="GtkViewport">
               <property name="overflow">visible</property>
                 <child>
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">18</property>
-                    <property name="vexpand">TRUE</property>
-                    <property name="valign">GTK_ALIGN_FILL</property>
-                    <property name="hexpand">TRUE</property>
-                    <property name="halign">GTK_ALIGN_FILL</property>
-                    <property name="margin-top">12</property>
-                    <property name="margin-bottom">12</property>
-                    <property name="margin-start">12</property>
-                    <property name="margin-end">12</property>
-
-                    <child>
-                      <object class="GtkLabel">
-                        <style>
-                          <class name="title-1"/>
-                        </style>
-                        <property name="wrap">True</property>
-                        <property name="xalign">0</property>
-                        <binding name="label">
-                          <closure function="format_source_destination" type="gchararray">
-                            <lookup name="name">
-                              <lookup name="origin">
-                                <lookup name="first-leg">
-                                  <lookup name="journey" type="DBJourneyDetailPage"/>
-                                </lookup>
-                              </lookup>
-                            </lookup>
-                            <lookup name="name">
-                              <lookup name="destination">
-                                <lookup name="last-leg">
-                                  <lookup name="journey" type="DBJourneyDetailPage"/>
-                                </lookup>
-                              </lookup>
-                            </lookup>
-                          </closure>
-                        </binding>
-                      </object>
-                    </child>
-
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="xalign">0</property>
-                        <accessibility>
-                          <property name="description" translatable="yes">Travel time</property>
-                        </accessibility>
-                        <binding name="label">
-                          <lookup name="total-time">
-                            <lookup name="journey" type="DBJourneyDetailPage"/>
-                          </lookup>
-                        </binding>
-                      </object>
-                    </child>
-
-                    <child>
-                      <object class="GtkBox" id="box_legs">
+                  <object class="AdwClamp">
+                    <property name="child">
+                      <object class="GtkBox">
                         <property name="orientation">vertical</property>
-                        <property name="spacing">12</property>
+                        <property name="spacing">18</property>
+                        <property name="vexpand">True</property>
+                        <property name="valign">fill</property>
+                        <property name="hexpand">True</property>
+                        <property name="halign">fill</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-end">12</property>
+
+                        <child>
+                          <object class="GtkLabel">
+                            <style>
+                              <class name="title-1"/>
+                            </style>
+                            <property name="wrap">True</property>
+                            <property name="xalign">0</property>
+                            <binding name="label">
+                              <closure function="format_source_destination" type="gchararray">
+                                <lookup name="name">
+                                  <lookup name="origin">
+                                    <lookup name="first-leg">
+                                      <lookup name="journey" type="DBJourneyDetailPage"/>
+                                    </lookup>
+                                  </lookup>
+                                </lookup>
+                                <lookup name="name">
+                                  <lookup name="destination">
+                                    <lookup name="last-leg">
+                                      <lookup name="journey" type="DBJourneyDetailPage"/>
+                                    </lookup>
+                                  </lookup>
+                                </lookup>
+                              </closure>
+                            </binding>
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="xalign">0</property>
+                            <accessibility>
+                              <property name="description" translatable="yes">Travel time</property>
+                            </accessibility>
+                            <binding name="label">
+                              <lookup name="total-time">
+                                <lookup name="journey" type="DBJourneyDetailPage"/>
+                              </lookup>
+                            </binding>
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkBox" id="box_legs">
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">12</property>
+                          </object>
+                        </child>
                       </object>
-                    </child>
+                    </property>
                   </object>
                 </child>
               </object>
@@ -106,8 +110,9 @@
             <lookup name="journey" type="DBJourneyDetailPage"/>
           </closure>
         </binding>
-        <property name="title" translatable="yes">Search first</property>
-        <property name="icon-name">system-search-symbolic</property>
+        <property name="vexpand">True</property>
+        <property name="title" translatable="yes">Choose a Trip</property>
+        <property name="icon-name">train-symbolic</property>
       </object>
     </child>
   </template>

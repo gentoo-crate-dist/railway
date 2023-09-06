@@ -103,7 +103,7 @@
                     </child>
                     <child>
                       <object class="AdwCarousel" id="carousel_searches">
-                        <property name="spacing">16</property>
+                        <property name="spacing">18</property>
                         <property name="overflow">visible</property>
                       </object>
                     </child>

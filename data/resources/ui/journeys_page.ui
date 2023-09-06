@@ -75,7 +75,8 @@
             <lookup name="journeys-result" type="DBJourneysPage"/>
           </closure>
         </binding>
-        <property name="title" translatable="yes">Search first</property>
+        <property name="vexpand">True</property>
+        <property name="title" translatable="yes">Search for Trips</property>
         <property name="icon-name">system-search-symbolic</property>
       </object>
     </child>
