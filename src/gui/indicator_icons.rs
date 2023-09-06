@@ -6,7 +6,6 @@ gtk::glib::wrapper! {
 }
 
 pub mod imp {
-
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecBoolean;
     use gdk::glib::ParamSpecEnum;
@@ -55,7 +54,23 @@ pub mod imp {
     }
 
     impl IndicatorIcons {
+        fn images(&self) -> Vec<gtk::Image> {
+            vec![
+                self.img_load_factor.get(),
+                self.img_late_factor.get(),
+                self.img_change_platform.get(),
+                self.img_unreachable.get(),
+                self.img_cancelled.get(),
+            ]
+        }
+
+        fn recompute_visible(&self) {
+            self.obj()
+                .set_visible(self.images().iter().any(|i| i.is_visible()));
+        }
+
         fn set_icon(
+            &self,
             img: &gtk::Image,
             visible: bool,
             icon_name: &str,
@@ -67,6 +82,8 @@ pub mod imp {
             img.set_css_classes(css_classes);
             img.set_tooltip_text(Some(tooltip));
             img.update_property(&[Property::Label(tooltip)]);
+
+            self.recompute_visible();
         }
     }
 
@@ -107,35 +124,35 @@ pub mod imp {
                     let img = &self.img_load_factor;
 
                     match obj {
-                        LoadFactor::Unknown => Self::set_icon(
+                        LoadFactor::Unknown => self.set_icon(
                             img,
                             false,
                             "network-cellular-signal-none-symbolic",
                             &gettextrs::gettext("Unknown load"),
                             &["load-unknown"],
                         ),
-                        LoadFactor::LowToMedium => Self::set_icon(
+                        LoadFactor::LowToMedium => self.set_icon(
                             img,
                             true,
                             "network-cellular-signal-weak-symbolic",
                             &gettextrs::gettext("Low or medium load"),
                             &["load-low-to-medium"],
                         ),
-                        LoadFactor::High => Self::set_icon(
+                        LoadFactor::High => self.set_icon(
                             img,
                             true,
                             "network-cellular-signal-ok-symbolic",
                             &gettextrs::gettext("High load"),
                             &["load-high"],
                         ),
-                        LoadFactor::VeryHigh => Self::set_icon(
+                        LoadFactor::VeryHigh => self.set_icon(
                             img,
                             true,
                             "network-cellular-signal-good-symbolic",
                             &gettextrs::gettext("Very high load"),
                             &["load-very-high"],
                         ),
-                        LoadFactor::ExceptionallyHigh => Self::set_icon(
+                        LoadFactor::ExceptionallyHigh => self.set_icon(
                             img,
                             true,
                             "network-cellular-signal-excellent-symbolic",
@@ -151,35 +168,35 @@ pub mod imp {
                     let img = &self.img_late_factor;
 
                     match obj {
-                        LateFactor::OnTime => Self::set_icon(
+                        LateFactor::OnTime => self.set_icon(
                             img,
                             false,
                             "face-angel-symbolic",
                             &gettextrs::gettext("On time"),
                             &["late-on-time"],
                         ),
-                        LateFactor::LittleLate => Self::set_icon(
+                        LateFactor::LittleLate => self.set_icon(
                             img,
                             true,
                             "face-plain-symbolic",
                             &gettextrs::gettext("Minor delays"),
                             &["late-little-late"],
                         ),
-                        LateFactor::Late => Self::set_icon(
+                        LateFactor::Late => self.set_icon(
                             img,
                             true,
                             "face-sad-symbolic",
                             &gettextrs::gettext("Delayed"),
                             &["late-late"],
                         ),
-                        LateFactor::VeryLate => Self::set_icon(
+                        LateFactor::VeryLate => self.set_icon(
                             img,
                             true,
                             "face-angry-symbolic",
                             &gettextrs::gettext("Very delayed"),
                             &["late-very-late"],
                         ),
-                        LateFactor::ExtremelyLate => Self::set_icon(
+                        LateFactor::ExtremelyLate => self.set_icon(
                             img,
                             true,
                             "face-monkey-symbolic",
@@ -194,7 +211,7 @@ pub mod imp {
                     );
                     let img = &self.img_change_platform;
 
-                    Self::set_icon(
+                    self.set_icon(
                         img,
                         obj,
                         "change-symbolic",
@@ -212,7 +229,7 @@ pub mod imp {
                     );
                     let img = &self.img_unreachable;
 
-                    Self::set_icon(
+                    self.set_icon(
                         img,
                         obj,
                         "dialog-warning-symbolic",
@@ -230,7 +247,7 @@ pub mod imp {
                     );
                     let img = &self.img_cancelled;
 
-                    Self::set_icon(
+                    self.set_icon(
                         img,
                         obj,
                         "dialog-warning-symbolic",
