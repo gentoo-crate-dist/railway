@@ -24,12 +24,12 @@
               cargoDeps = rustPlatform.importCargoLock {
                 lockFile = ./Cargo.lock;
                 outputHashes = {
-                  "hafas-rs-0.1.0" = "9YmWiief8Nux1ZkPTZjzer/qKAa5hORVn8HngMtKDxM=";
+                  "hafas-rs-0.1.0" = "ihRwxoubkopa+SN0bXUs0ho7DuxCj2bnhuiMAQw5oCI=";
                 };
               };
               src = ./.;
               buildInputs = [ pkgsgnome.libadwaita pkgsgnome.gtk4 ];
-              nativeBuildInputs = [ pkgsgnome.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson pkgs.gettext pkgsgnome.glib pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream-glib pkgs.ninja pkgs.rustc pkgscargo ];
+              nativeBuildInputs = [ pkgsgnome.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson pkgs.gettext pkgsgnome.glib pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream-glib pkgs.ninja pkgs.rustc pkgs.cargo ];
 
               inherit name;
             };
