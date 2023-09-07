@@ -25,6 +25,7 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use libadwaita::subclass::prelude::AdwWindowImpl;
     use libadwaita::subclass::prelude::PreferencesWindowImpl;
+    use crate::config;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/preferences_window.ui")]
@@ -59,7 +60,7 @@ pub mod imp {
 
         fn new() -> Self {
             Self {
-                settings: Settings::new("de.schmidhuberj.DieBahn"),
+                settings: Settings::new(config::BASE_ID),
                 switch_delete_old: TemplateChild::default(),
                 spin_deletion_time: TemplateChild::default(),
             }

@@ -100,6 +100,7 @@ pub mod imp {
     use crate::gui::error::error_to_toast;
     use crate::gui::journey_list_item::JourneyListItem;
     use crate::gui::utility::Utility;
+    use crate::config;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/journeys_page.ui")]
@@ -135,7 +136,7 @@ pub mod imp {
                 destination_alignment_group: gtk::SizeGroup::new(gtk::SizeGroupMode::Horizontal),
                 model: RefCell::new(gtk::gio::ListStore::new::<Journey>()),
                 journeys_result: Default::default(),
-                settings: Settings::new("de.schmidhuberj.DieBahn"),
+                settings: Settings::new(config::BASE_ID),
                 client: Default::default(),
                 loading_earlier: Default::default(),
                 loading_later: Default::default(),

@@ -59,6 +59,7 @@ pub mod imp {
     use crate::gui::search_store_item::SearchStoreItem;
     use crate::gui::station_entry::StationEntry;
     use crate::gui::utility::Utility;
+    use crate::config;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/search_page.ui")]
@@ -203,7 +204,7 @@ pub mod imp {
 
         fn new() -> Self {
             Self {
-                settings: Settings::new("de.schmidhuberj.DieBahn"),
+                settings: Settings::new(config::BASE_ID),
                 in_from: Default::default(),
                 in_to: Default::default(),
                 pick_date_time: Default::default(),

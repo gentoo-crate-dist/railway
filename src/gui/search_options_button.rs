@@ -22,6 +22,7 @@ pub mod imp {
 
     use crate::backend::Remark;
     use crate::gui::search_options_window::SearchOptionsWindow;
+    use crate::config;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/search_options_button.ui")]
@@ -32,7 +33,7 @@ pub mod imp {
     impl Default for SearchOptionsButton {
         fn default() -> Self {
             Self {
-                settings: Settings::new("de.schmidhuberj.DieBahn"),
+                settings: Settings::new(config::BASE_ID),
             }
         }
     }

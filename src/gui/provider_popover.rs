@@ -26,6 +26,7 @@ pub mod imp {
     use crate::backend::Provider;
     use crate::gui::provider_list_item::ProviderListItem;
     use crate::gui::utility::Utility;
+    use crate::config;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/provider_popover.ui")]
@@ -43,7 +44,7 @@ pub mod imp {
         fn default() -> Self {
             Self {
                 list_providers: Default::default(),
-                settings: Settings::new("de.schmidhuberj.DieBahn"),
+                settings: Settings::new(config::BASE_ID),
                 current_selection: RefCell::new(None),
                 client: Default::default(),
             }

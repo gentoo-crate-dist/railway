@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Icon=de.schmidhuberj.DieBahn
+Icon=@app-id@
 Name=DieBahn
 StartupWMClass=DieBahn
 Exec=@bindir@/diebahn

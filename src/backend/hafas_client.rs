@@ -231,6 +231,8 @@ mod imp {
     use once_cell::sync::Lazy;
     use std::cell::RefCell;
 
+    use crate::config;
+
     pub struct HafasClient {
         pub(super) internal: RefCell<Option<hafas_rs::client::HafasClient>>,
 
@@ -241,7 +243,7 @@ mod imp {
         fn default() -> Self {
             Self {
                 internal: Default::default(),
-                settings: Settings::new("de.schmidhuberj.DieBahn"),
+                settings: Settings::new(config::BASE_ID),
             }
         }
     }

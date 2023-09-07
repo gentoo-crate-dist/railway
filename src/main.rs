@@ -1,8 +1,6 @@
 use gdk::prelude::{ApplicationExt, ApplicationExtManual};
-use gdk::Display;
 use gtk::glib::IsA;
 use gtk::traits::{GtkWindowExt, WidgetExt};
-use gtk::CssProvider;
 
 #[macro_export]
 macro_rules! gspawn {
@@ -17,20 +15,8 @@ mod config;
 mod error;
 mod gui;
 
-use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_BYTES};
+use config::{APP_ID, RESOURCES_PATH, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_BYTES};
 pub use error::Error;
-
-fn load_css() {
-    let provider = CssProvider::new();
-    provider.load_from_resource("/de/schmidhuberj/DieBahn/style.css");
-
-    // Add the provider to the default screen
-    gtk::style_context_add_provider_for_display(
-        &Display::default().expect("Could not connect to a display."),
-        &provider,
-        gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
-    );
-}
 
 fn init_resources() {
     let gbytes = gtk::glib::Bytes::from_static(RESOURCES_BYTES);
@@ -42,7 +28,6 @@ fn init_resources() {
 fn init_icons<P: IsA<gdk::Display>>(display: &P) {
     let icon_theme = gtk::IconTheme::for_display(display);
 
-    icon_theme.add_resource_path("/");
     icon_theme.add_resource_path("/de/schmidhuberj/DieBahn/providers/");
 }
 
@@ -58,10 +43,11 @@ async fn main() {
     init_internationalization().expect("Failed to initialize internationalization");
 
     env_logger::init();
-    gtk::init().expect("Failed to initialize gtk");
-    libadwaita::init().expect("Failed to initilize libadwaita");
+
+    init_resources();
     let app = libadwaita::Application::builder()
         .application_id(APP_ID)
+        .resource_base_path(RESOURCES_PATH)
         .build();
 
     app.connect_activate(build_ui);
@@ -69,8 +55,6 @@ async fn main() {
 }
 
 fn build_ui(app: &libadwaita::Application) {
-    init_resources();
-    load_css();
     let window = crate::gui::window::Window::new(app);
     init_icons(&window.display());
     window.present();

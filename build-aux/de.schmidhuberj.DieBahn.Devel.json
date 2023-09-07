@@ -1,5 +1,5 @@
 {
-    "app-id": "de.schmidhuberj.DieBahn",
+    "app-id": "de.schmidhuberj.DieBahn.Devel",
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
@@ -28,7 +28,7 @@
             "name": "diebahn",
             "buildsystem": "meson",
             "config-opts": [
-                "-Dprofile=default"
+                "-Dprofile=development"
             ],
             "sources" : [
                 {
