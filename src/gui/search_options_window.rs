@@ -28,6 +28,7 @@ pub mod imp {
     use libadwaita::subclass::prelude::PreferencesWindowImpl;
     use libadwaita::prelude::ComboRowExt;
     use crate::backend::DiscountCard;
+    use crate::config;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/search_options_window.ui")]
@@ -221,7 +222,7 @@ pub mod imp {
 
         fn new() -> Self {
             Self {
-                settings: Settings::new("de.schmidhuberj.DieBahn"),
+                settings: Settings::new(config::BASE_ID),
                 dropdown_bahncard: TemplateChild::default(),
                 switch_bike_accessible: TemplateChild::default(),
                 spin_transfer_time: TemplateChild::default(),

@@ -15,7 +15,7 @@
     <value value="15" nick="CH - General-Abonnement"/>
   </enum>
 
-  <schema id="de.schmidhuberj.DieBahn" path="/de/schmidhuberj/DieBahn/">
+  <schema id="de.schmidhuberj.DieBahn" path="/de/schmidhuberj/DieBahn/" gettext-domain="de.schmidhuberj.DieBahn">
     <key name="bahncard" enum="de.schmidhuberj.DieBahn.bahncard">
       <default>'None'</default>
       <summary>Type of loyality card owned</summary>

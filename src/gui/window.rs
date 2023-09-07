@@ -53,6 +53,7 @@ pub mod imp {
     use crate::gui::stores::journey_store::JourneysStore;
     use crate::gui::stores::search_store::SearchesStore;
     use crate::gui::utility::Utility;
+    use crate::config;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/window.ui")]
@@ -85,6 +86,10 @@ pub mod imp {
         fn setup(&self) {
             self.store_journeys.setup();
             self.store_searches.setup();
+
+            if config::PROFILE == "Devel" {
+                self.obj().add_css_class("devel");
+            }
         }
 
         fn setup_actions(&self, obj: &super::Window) {
@@ -112,7 +117,7 @@ pub mod imp {
                             .unwrap_or_default(),
                     ))
                     .license_type(gtk::License::Gpl30)
-                    .application_icon("icon")
+                    .application_icon(config::APP_ID)
                     .application_name("DieBahn")
                     .translator_credits(gettextrs::gettext("translators"))
                     .version(env!("CARGO_PKG_VERSION"))

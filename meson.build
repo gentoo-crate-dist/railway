@@ -11,6 +11,7 @@ gnome = import('gnome')
 
 base_id = 'de.schmidhuberj.DieBahn'
 application_id = 'de.schmidhuberj.DieBahn'
+resources_path = '/de/schmidhuberj/DieBahn/'
 
 dependency('glib-2.0', version: '>= 2.66')
 dependency('gio-2.0', version: '>= 2.66')
@@ -46,6 +47,11 @@ if get_option('profile') == 'development'
 else
   profile = ''
   version_suffix = ''
+endif
+
+if profile != ''
+  application_id = '@0@.@1@'.format(base_id, profile)
+else
   application_id = base_id
 endif
 

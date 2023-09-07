@@ -35,6 +35,7 @@ pub mod imp {
     use once_cell::sync::Lazy;
 
     use crate::backend::Journey;
+    use crate::config;
 
     pub struct JourneysStore {
         path: PathBuf,
@@ -85,7 +86,7 @@ pub mod imp {
             Self {
                 path,
                 stored: RefCell::new(vec![]),
-                settings: Settings::new("de.schmidhuberj.DieBahn"),
+                settings: Settings::new(config::BASE_ID),
             }
         }
     }
