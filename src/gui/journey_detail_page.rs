@@ -31,6 +31,8 @@ pub mod imp {
     use libadwaita::ToastOverlay;
     use once_cell::sync::Lazy;
 
+    use chrono::Duration;
+
     use crate::backend::HafasClient;
     use crate::backend::Journey;
     use crate::backend::Leg;
@@ -133,20 +135,49 @@ pub mod imp {
 
                     // Fill box_legs
                     let legs = obj.as_ref().map(|j| j.journey().legs).unwrap_or_default();
-                    for i in 0..legs.len() {
-                        if i != 0 {
+                    let mut i = 0;
+                    while i < legs.len() {
+                        let mut walking_time: Option<Duration> = None;
+                        let is_start = i == 0;
+                        let mut to = &legs[i];
+
+                        while to.walking.unwrap_or(false) {
+                            walking_time = Some(walking_time.unwrap_or(Duration::zero())
+                                + to.arrival.map_or(Duration::zero(), |arrival| {
+                                    arrival - to.departure.unwrap_or(arrival)
+                                }));
+                            i += 1;
+                            if i < legs.len() {
+                                to = &legs[i];
+                            } else {
+                                break;
+                            }
+                        }
+
+                        let is_end = i == legs.len();
+
+                        let waiting_time: Option<Duration> = if !is_start && !is_end {
                             let from = &legs[i - 1];
-                            let to = &legs[i];
-                            let duration = if to.departure.is_some() && from.arrival.is_some() {
+                            if to.departure.is_some() && from.arrival.is_some() {
                                 Some(to.departure.unwrap() - from.arrival.unwrap())
                             } else {
                                 None
-                            };
+                            }
+                        } else {
+                            None
+                        };
 
-                            self.box_legs.append(&Transition::new(&duration));
+                        if walking_time.is_some() || waiting_time.is_some() {
+                            self.box_legs.append(&Transition::new(&Some(
+                                walking_time.unwrap_or(Duration::zero()) + waiting_time.unwrap_or(Duration::zero())
+                            )));
                         }
-                        self.box_legs
-                            .append(&LegItem::new(&Leg::new(legs[i].clone())));
+
+                        if !is_end {
+                            self.box_legs.append(&LegItem::new(&Leg::new(legs[i].clone())));
+                        }
+
+                        i += 1;
                     }
 
                     self.journey.replace(obj);
