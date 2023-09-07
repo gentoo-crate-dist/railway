@@ -45,14 +45,21 @@
 
                 <signal name="edge-overshot" handler="handle_edge_reached" swapped="true"/>
 
-                <child>
-                  <object class="GtkListView" id="list_journeys">
-                    <style>
-                      <class name="navigation-sidebar"/>
-                    </style>
-                    <property name="valign">GTK_ALIGN_START</property>
+                <property name="child">
+                  <object class="AdwClampScrollable">
+                    <!-- follows width of search pane, adjusted for margins -->
+                    <property name="tightening-threshold">400</property>
+                    <property name="maximum-size">540</property>
+                    <property name="child">
+                      <object class="GtkListView" id="list_journeys">
+                        <style>
+                          <class name="navigation-sidebar"/>
+                        </style>
+                        <property name="valign">GTK_ALIGN_START</property>
+                      </object>
+                    </property>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
 

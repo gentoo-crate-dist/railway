@@ -6,7 +6,6 @@
   <template class="DBSearchPage" parent="GtkBox">
     <property name="orientation">horizontal</property>
     <property name="hexpand">True</property>
-    <property name="spacing">8</property>
 
     <child>
       <object class="AdwToastOverlay" id="toast_errors">
@@ -14,10 +13,11 @@
           <object class="GtkScrolledWindow">
             <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
 
-            <child>
-              <object class="GtkViewport">
-              <property name="overflow">visible</property>
-                <child>
+            <property name="child">
+              <object class="AdwClamp">
+                <property name="tightening-threshold">376</property> <!-- 376 = 400 - 2 * 12 = maximum with as sidebar - margin -->
+                <property name="maximum-size">516</property>
+                <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
                     <property name="hexpand">True</property>
@@ -113,9 +113,9 @@
                       </object>
                     </child>
                   </object>
-                </child>
+                </property>
               </object>
-            </child>
+            </property>
           </object>
         </child>
       </object>
