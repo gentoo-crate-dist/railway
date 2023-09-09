@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-01 14:55+0200\n"
+"POT-Creation-Date: 2023-09-16 11:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,26 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: data/resources/ui/date_time_picker.ui:48
+#: data/resources/ui/date_time_picker.ui:14
+msgid "Input date"
+msgstr ""
+
+#: data/resources/ui/date_time_picker.ui:49
 msgid "Date"
 msgstr ""
 
-#: data/resources/ui/date_time_picker.ui:148
+#: data/resources/ui/date_time_picker.ui:95
+msgid "Input time"
+msgstr ""
+
+#: data/resources/ui/date_time_picker.ui:128
 msgid "Time"
 msgstr ""
 
-#: data/resources/ui/journey_detail_page.ui:125
-#: data/resources/ui/journeys_page.ui:78
-msgid "Search first"
+#: data/resources/ui/journey_detail_page.ui:80
+msgid "Travel time"
+msgstr ""
+
+#: data/resources/ui/journey_detail_page.ui:114
+msgid "Choose a Trip"
+msgstr ""
+
+#: data/resources/ui/journeys_page.ui:79
+msgid "Search for Trips"
 msgstr ""
 
 #: data/resources/ui/journey_store_item.ui:89
 #: data/resources/ui/search_store_item.ui:53
 msgid "Details"
-msgstr ""
-
-#: data/resources/ui/leg_item.ui:161
-msgid "Re_marks"
 msgstr ""
 
 #: data/resources/ui/preferences_window.ui:9
@@ -53,7 +64,11 @@ msgstr ""
 msgid "Hours after planned arrival journeys will be kept"
 msgstr ""
 
-#: data/resources/ui/search_options_button.ui:24
+#: data/resources/ui/search_options_button.ui:8
+msgid "More search options"
+msgstr ""
+
+#: data/resources/ui/search_options_button.ui:32
 msgid "More Options"
 msgstr ""
 
@@ -61,144 +76,85 @@ msgstr ""
 msgid "BahnCard"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:38
+#: data/resources/ui/search_options_window.ui:23
 msgid "Class"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:44
+#: data/resources/ui/search_options_window.ui:29
 msgid "First class"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:51
+#: data/resources/ui/search_options_window.ui:36
 msgid "Second class"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:63
-#: src/gui/search_options_button.rs:189
+#: data/resources/ui/search_options_window.ui:48
+#: src/gui/search_options_button.rs:190
 msgid "Bike accessible"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:74
+#: data/resources/ui/search_options_window.ui:59
 msgid "Minimum transfer time"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:86
+#: data/resources/ui/search_options_window.ui:71
 msgid "Direct connections only"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:101
+#: data/resources/ui/search_options_window.ui:86
 msgid "Modes of transport"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:107
+#: data/resources/ui/search_options_window.ui:92
 msgid "ICE"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:118
+#: data/resources/ui/search_options_window.ui:103
 msgid "IC/EC"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:129
+#: data/resources/ui/search_options_window.ui:114
 msgid "Interregio/RegionalExpress"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:140
+#: data/resources/ui/search_options_window.ui:125
 msgid "Regio"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:151
+#: data/resources/ui/search_options_window.ui:136
 msgid "Suburban"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:162
+#: data/resources/ui/search_options_window.ui:147
 msgid "Bus"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:173
+#: data/resources/ui/search_options_window.ui:158
 msgid "Ferry"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:184
+#: data/resources/ui/search_options_window.ui:169
 msgid "Subway"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:195
+#: data/resources/ui/search_options_window.ui:180
 msgid "Tram"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:206
+#: data/resources/ui/search_options_window.ui:191
 msgid "Taxi"
 msgstr ""
 
-#: data/resources/ui/search_options_window.ui:226
-#: src/gui/search_options_button.rs:73
-msgid "None"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:227
-#: src/gui/search_options_button.rs:74
-msgid "BahnCard 25, 1st class"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:228
-#: src/gui/search_options_button.rs:75
-msgid "BahnCard 25, 2nd class"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:229
-#: src/gui/search_options_button.rs:76
-msgid "BahnCard 50, 1st class"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:230
-#: src/gui/search_options_button.rs:77
-msgid "BahnCard 50, 2nd class"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:231
-#: src/gui/search_options_button.rs:78
-msgid "A - VORTEILScard (with RAILPLUS)"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:232
-#: src/gui/search_options_button.rs:79
-msgid "CH - HalbtaxAbo (with RAILPLUS)"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:233
-#: src/gui/search_options_button.rs:80
-msgid "CH - HalbtaxAbo (without RAILPLUS)"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:234
-#: src/gui/search_options_button.rs:83
-msgid "NL - Voordeelurenabo (with RAILPLUS)"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:235
-#: src/gui/search_options_button.rs:87
-msgid "NL - Voordeelurenabo (without RAILPLUS)"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:236
-#: src/gui/search_options_button.rs:89
-msgid "SH-Card"
-msgstr ""
-
-#: data/resources/ui/search_options_window.ui:237
-#: src/gui/search_options_button.rs:90
-msgid "CH - General-Abonnement"
-msgstr ""
-
-#: data/resources/ui/search_page.ui:41
+#: data/resources/ui/search_page.ui:39
 msgid "From"
 msgstr ""
 
-#: data/resources/ui/search_page.ui:54
+#: data/resources/ui/search_page.ui:47
 msgid "To"
 msgstr ""
 
-#: data/resources/ui/search_page.ui:77 data/resources/ui/window.ui:26
+#: data/resources/ui/search_page.ui:66 data/resources/ui/search_page.ui:75
+#: data/resources/ui/window.ui:35
 msgid "Search"
 msgstr ""
 
@@ -206,64 +162,114 @@ msgstr ""
 msgid "Transition:"
 msgstr ""
 
-#: data/resources/ui/window.ui:115
+#: data/resources/ui/window.ui:42
+msgid "Railway"
+msgstr ""
+
+#: data/resources/ui/window.ui:48 data/resources/ui/window.ui:55
+msgid "Select Provider"
+msgstr ""
+
+#: data/resources/ui/window.ui:111
 msgid "Journeys"
 msgstr ""
 
-#: data/resources/ui/window.ui:182
+#: data/resources/ui/window.ui:158
 msgid "Journey"
 msgstr ""
 
-#: data/resources/ui/window.ui:208
+#: data/resources/ui/window.ui:227
 msgid "Preferences"
 msgstr ""
 
-#: data/resources/ui/window.ui:212
-msgid "About DieBahn"
+#: data/resources/ui/window.ui:231
+msgid "About Railway"
 msgstr ""
 
-#: src/gui/search_page.rs:162 src/gui/journey_detail_page.rs:69
-#: src/gui/journeys_page.rs:198 src/gui/journeys_page.rs:258
+#: src/gui/search_page.rs:163 src/gui/journey_detail_page.rs:69
+#: src/gui/journeys_page.rs:199 src/gui/journeys_page.rs:259
 msgid "language"
 msgstr ""
 
-#. Translators: How many transitions the train has. For the plural-variant, the {} will be replaced by the number, e.g. '5 transitions'.
-#: src/gui/journey_detail_page.rs:92
-msgid "One transition"
-msgid_plural "{} transitions"
-msgstr[0] ""
-msgstr[1] ""
-
-#. Translators: How long a journey takes, e.g. 'Travel time: 05:32'.
-#: src/gui/journey_detail_page.rs:99
-msgid "Travel time: {}"
-msgstr ""
-
-#: src/gui/transition.rs:13
-msgid "{} Minutes"
-msgstr ""
-
-#: src/gui/transition.rs:16 src/gui/search_options_button.rs:97
+#: src/gui/transition.rs:17 src/gui/search_options_button.rs:98
 msgid "Unknown"
 msgstr ""
 
-#: src/gui/search_options_button.rs:135
+#. Translators: duration in minutes, {} must not be translated as it will be replaced with an actual number
+#: src/gui/utility.rs:42
+msgid "{} min"
+msgstr ""
+
+#. Translators: duration format with hours and minutes, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:50
+msgid "%_H hrs %_M min"
+msgstr ""
+
+#: src/gui/search_options_button.rs:74
+msgid "None"
+msgstr ""
+
+#: src/gui/search_options_button.rs:75
+msgid "BahnCard 25, 1st class"
+msgstr ""
+
+#: src/gui/search_options_button.rs:76
+msgid "BahnCard 25, 2nd class"
+msgstr ""
+
+#: src/gui/search_options_button.rs:77
+msgid "BahnCard 50, 1st class"
+msgstr ""
+
+#: src/gui/search_options_button.rs:78
+msgid "BahnCard 50, 2nd class"
+msgstr ""
+
+#: src/gui/search_options_button.rs:79
+msgid "A - VORTEILScard (with RAILPLUS)"
+msgstr ""
+
+#: src/gui/search_options_button.rs:80
+msgid "CH - HalbtaxAbo (with RAILPLUS)"
+msgstr ""
+
+#: src/gui/search_options_button.rs:81
+msgid "CH - HalbtaxAbo (without RAILPLUS)"
+msgstr ""
+
+#: src/gui/search_options_button.rs:84
+msgid "NL - Voordeelurenabo (with RAILPLUS)"
+msgstr ""
+
+#: src/gui/search_options_button.rs:88
+msgid "NL - Voordeelurenabo (without RAILPLUS)"
+msgstr ""
+
+#: src/gui/search_options_button.rs:90
+msgid "SH-Card"
+msgstr ""
+
+#: src/gui/search_options_button.rs:91
+msgid "CH - General-Abonnement"
+msgstr ""
+
+#: src/gui/search_options_button.rs:136
 msgid "1st class"
 msgstr ""
 
-#: src/gui/search_options_button.rs:137
+#: src/gui/search_options_button.rs:138
 msgid "2nd class"
 msgstr ""
 
-#: src/gui/search_options_button.rs:182
+#: src/gui/search_options_button.rs:183
 msgid "Regional only"
 msgstr ""
 
-#: src/gui/search_options_button.rs:184
+#: src/gui/search_options_button.rs:185
 msgid "Custom selection"
 msgstr ""
 
-#: src/gui/search_options_button.rs:196
+#: src/gui/search_options_button.rs:197
 msgid "Direct connection"
 msgstr ""
 
@@ -287,8 +293,12 @@ msgstr ""
 msgid "Unknown issue. Please report this."
 msgstr ""
 
-#: src/gui/error.rs:56
+#: src/gui/error.rs:52
 msgid "Error"
+msgstr ""
+
+#: src/gui/error.rs:56
+msgid "_Close"
 msgstr ""
 
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
@@ -308,7 +318,7 @@ msgid_plural "{} stopovers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/gui/window.rs:113
+#: src/gui/window.rs:122
 msgid "translators"
 msgstr ""
 
@@ -332,6 +342,6 @@ msgstr ""
 msgid "Austria"
 msgstr ""
 
-#: src/backend/leg.rs:109
+#: src/backend/leg.rs:126
 msgid "Walk"
 msgstr ""

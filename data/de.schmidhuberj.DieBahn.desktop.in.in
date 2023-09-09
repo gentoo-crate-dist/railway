@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Icon=@app-id@
-Name=DieBahn
-StartupWMClass=DieBahn
+Name=Railway
+StartupWMClass=Railway
 Exec=@bindir@/diebahn
 X-Purism-FormFactor=Workstation;Mobile;
 Keywords=train;railway;journey;planner;timetables;

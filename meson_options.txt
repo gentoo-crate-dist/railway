@@ -6,5 +6,5 @@ option(
     'development',
   ],
   value: 'default',
-  description: 'The build profile for DieBahn. One of "default" or "development".'
+  description: 'The build profile for Railway. One of "default" or "development".'
 )

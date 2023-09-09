@@ -40,6 +40,7 @@ pub mod imp {
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
     use crate::backend::Place;
+    use crate::config;
     use crate::gui::alt_label::AltLabel;
     use crate::gui::date_time_picker::DateTimePicker;
     use crate::gui::indicator_icons::IndicatorIcons;
@@ -53,7 +54,6 @@ pub mod imp {
     use crate::gui::stores::journey_store::JourneysStore;
     use crate::gui::stores::search_store::SearchesStore;
     use crate::gui::utility::Utility;
-    use crate::config;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/window.ui")]
@@ -118,7 +118,7 @@ pub mod imp {
                     ))
                     .license_type(gtk::License::Gpl30)
                     .application_icon(config::APP_ID)
-                    .application_name("DieBahn")
+                    .application_name("Railway")
                     .translator_credits(gettextrs::gettext("translators"))
                     .version(env!("CARGO_PKG_VERSION"))
                     .website(env!("CARGO_PKG_HOMEPAGE"))

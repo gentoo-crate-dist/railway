@@ -5,7 +5,7 @@
 
   <template class="DBWindow" parent="AdwApplicationWindow">
     <property name="can-focus">True</property>
-    <property name="title">DieBahn</property>
+    <property name="title">Railway</property>
     <property name="default-height">800</property>
     <property name="default-width">1440</property>
     <property name="width-request">360</property>
@@ -39,7 +39,7 @@
                   <object class="AdwHeaderBar">
                     <property name="title-widget">
                       <object class="AdwWindowTitle">
-                        <property name="title" translatable="yes">DieBahn</property>
+                        <property name="title" translatable="yes">Railway</property>
                       </object>
                     </property>
                     <child>
@@ -228,7 +228,7 @@
         <attribute name="action">win.settings</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">About DieBahn</attribute>
+        <attribute name="label" translatable="yes">About Railway</attribute>
         <attribute name="action">win.about</attribute>
       </item>
     </section>
