@@ -33,6 +33,8 @@
     <file alias="change-symbolic.svg">../icons/timeline/change-symbolic.svg</file>
     <file alias="train-symbolic.svg">../icons/symbolic/train-symbolic.svg</file>
     <file alias="route-reverse-symbolic.svg">../icons/search/route-reverse-symbolic.svg</file>
+    <file alias="bookmark-toggled-symbolic.svg">../icons/general/bookmark-toggled-symbolic.svg</file>
+    <file alias="bookmark-untoggled-symbolic.svg">../icons/general/bookmark-untoggled-symbolic.svg</file>
   </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/providers/">
     <file alias="avv.svg">../icons/providers/avv.svg</file>

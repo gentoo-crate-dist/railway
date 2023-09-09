@@ -301,19 +301,21 @@ pub mod imp {
             self.model.replace(model);
 
             let factory = SignalListItemFactory::new();
-            factory.connect_setup(clone!(@weak self.destination_alignment_group as size_group => move |_, list_item| {
-                let journey_item = JourneyListItem::new();
-                let list_item = list_item
-                    .downcast_ref::<ListItem>()
-                    .expect("The factory item to be a `ListItem`");
+            factory.connect_setup(
+                clone!(@weak self.destination_alignment_group as size_group => move |_, list_item| {
+                    let journey_item = JourneyListItem::new();
+                    let list_item = list_item
+                        .downcast_ref::<ListItem>()
+                        .expect("The factory item to be a `ListItem`");
 
-                list_item.set_child(Some(&journey_item));
-                list_item
-                    .property_expression("item")
-                    .bind(&journey_item, "journey", Widget::NONE);
+                    list_item.set_child(Some(&journey_item));
+                    list_item
+                        .property_expression("item")
+                        .bind(&journey_item, "journey", Widget::NONE);
 
-                size_group.add_widget(&journey_item.get_destination_box());
-            }));
+                    size_group.add_widget(&journey_item.get_destination_box());
+                }),
+            );
             self.list_journeys.set_factory(Some(&factory));
             self.list_journeys.set_single_click_activate(true);
 

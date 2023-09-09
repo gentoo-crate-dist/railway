@@ -204,6 +204,8 @@ impl HafasClient {
             self.internal()
                 .journeys(from.place(), to.place(), opts)
                 .await?,
+            from,
+            to,
         ))
     }
 

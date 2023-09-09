@@ -1,11 +1,11 @@
-use gdk::glib::Object;
+use gdk::glib::{Object, Value};
 
 pub struct Utility {}
 
 #[gtk::template_callbacks(functions)]
 impl Utility {
     #[template_callback]
-    fn and(#[rest] values: &[gtk::glib::Value]) -> bool {
+    fn and(#[rest] values: &[Value]) -> bool {
         let val0 = values[0]
             .get::<bool>()
             .expect("Expected boolean for argument");
@@ -16,7 +16,7 @@ impl Utility {
     }
 
     #[template_callback]
-    fn is_some(#[rest] values: &[gtk::glib::Value]) -> bool {
+    fn is_some(#[rest] values: &[Value]) -> bool {
         values
             .iter()
             .next()
@@ -27,7 +27,7 @@ impl Utility {
     }
 
     #[template_callback]
-    fn is_none(#[rest] values: &[gtk::glib::Value]) -> bool {
+    fn is_none(#[rest] values: &[Value]) -> bool {
         !Utility::is_some(values)
     }
 
@@ -42,12 +42,13 @@ impl Utility {
             gettextrs::gettext("{} min").replace("{}", duration.num_minutes().to_string().as_str())
         } else {
             (chrono::NaiveDate::from_ymd_opt(2022, 1, 1)
-                        .unwrap_or_default()
-                        .and_hms_opt(0, 0, 0)
-                        .unwrap_or_default()
-                        + duration)
-                        // Translators: duration format with hours and minutes, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-                        .format(&gettextrs::gettext("%_H hrs %_M min")).to_string()
+                .unwrap_or_default()
+                .and_hms_opt(0, 0, 0)
+                .unwrap_or_default()
+                + duration)
+                // Translators: duration format with hours and minutes, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+                .format(&gettextrs::gettext("%_H hrs %_M min"))
+                .to_string()
         }
     }
 }

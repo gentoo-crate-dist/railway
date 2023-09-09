@@ -114,9 +114,24 @@
                         <child type="top">
                           <object class="AdwHeaderBar">
                             <child>
-                              <object class="GtkButton" id="btn_bookmark_search">
+                              <object class="GtkToggleButton" id="btn_bookmark_search">
                                 <signal name="clicked" handler="handle_searches_store" swapped="true"/>
-                                <property name="icon-name">user-bookmarks-symbolic</property>
+                                <signal name="notify::active" handler="handle_bookmark_button_icon" swapped="true"/>
+                                <property name="icon-name">bookmark-untoggled-symbolic</property>
+                                <binding name="active">
+                                  <closure function="has_search_stored" type="gboolean">
+                                    <lookup name="source">
+                                      <lookup name="journeys-result">
+                                        journeys_page
+                                      </lookup>
+                                    </lookup>
+                                    <lookup name="destination">
+                                      <lookup name="journeys-result">
+                                        journeys_page
+                                      </lookup>
+                                    </lookup>
+                                  </closure>
+                                </binding>
                                 <binding name="visible">
                                   <closure function="is_some" type="gboolean">
                                     <lookup name="journeys-result">
@@ -160,9 +175,17 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkButton" id="btn_bookmark">
+                              <object class="GtkToggleButton" id="btn_bookmark">
                                 <signal name="clicked" handler="handle_journey_store" swapped="true"/>
-                                <property name="icon-name">user-bookmarks-symbolic</property>
+                                <property name="icon-name">bookmark-untoggled-symbolic</property>
+                                <signal name="notify::active" handler="handle_bookmark_button_icon" swapped="true"/>
+                                <binding name="active">
+                                  <closure function="has_journey_stored" type="gboolean">
+                                    <lookup name="journey">
+                                        journey_detail_page
+                                    </lookup>
+                                  </closure>
+                                </binding>
                                 <binding name="visible">
                                   <closure function="is_some" type="gboolean">
                                     <lookup name="journey">

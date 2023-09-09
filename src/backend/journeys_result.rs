@@ -3,15 +3,22 @@ use std::cell::RefCell;
 use gdk::glib::Object;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
-use super::Journey;
+use super::{Journey, Place};
 
 gtk::glib::wrapper! {
     pub struct JourneysResult(ObjectSubclass<imp::JourneysResult>);
 }
 
 impl JourneysResult {
-    pub fn new(journeys_response: hafas_rs::api::journeys::JourneysResponse) -> Self {
-        let s: Self = Object::builder().build();
+    pub fn new(
+        journeys_response: hafas_rs::api::journeys::JourneysResponse,
+        source: Place,
+        destination: Place,
+    ) -> Self {
+        let s: Self = Object::builder()
+            .property("source", source)
+            .property("destination", destination)
+            .build();
         s.imp()
             .journeys_response
             .swap(&RefCell::new(Some(journeys_response)));
@@ -67,11 +74,24 @@ mod imp {
     use gtk::glib;
     use std::cell::RefCell;
 
-    use gdk::subclass::prelude::{ObjectImpl, ObjectSubclass};
+    use gdk::subclass::prelude::DerivedObjectProperties;
+    use gdk::{
+        glib::Properties,
+        prelude::ObjectExt,
+        subclass::prelude::{ObjectImpl, ObjectSubclass},
+    };
 
-    #[derive(Default)]
+    use crate::backend::Place;
+
+    #[derive(Default, Properties)]
+    #[properties(wrapper_type = super::JourneysResult)]
     pub struct JourneysResult {
         pub(super) journeys_response: RefCell<Option<hafas_rs::api::journeys::JourneysResponse>>,
+
+        #[property(get, set, construct_only)]
+        source: RefCell<Option<Place>>,
+        #[property(get, set, construct_only)]
+        destination: RefCell<Option<Place>>,
     }
 
     #[glib::object_subclass]
@@ -80,5 +100,6 @@ mod imp {
         type Type = super::JourneysResult;
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for JourneysResult {}
 }
