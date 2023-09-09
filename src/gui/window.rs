@@ -30,16 +30,16 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use gtk::ToggleButton;
     use libadwaita::subclass::prelude::AdwApplicationWindowImpl;
     use libadwaita::subclass::prelude::AdwWindowImpl;
     use once_cell::sync::Lazy;
 
+    use crate::backend::DiscountCard;
     use crate::backend::HafasClient;
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
-    use crate::backend::Leg;
     use crate::backend::Place;
-    use crate::backend::DiscountCard;
     use crate::gui::alt_label::AltLabel;
     use crate::gui::date_time_picker::DateTimePicker;
     use crate::gui::indicator_icons::IndicatorIcons;
@@ -182,20 +182,39 @@ pub mod imp {
         }
 
         #[template_callback]
+        fn has_journey_stored(&self, journey: Option<Journey>) -> bool {
+            if let Some(journey) = journey {
+                self.store_journeys.contains(&journey)
+            } else {
+                false
+            }
+        }
+
+        #[template_callback]
+        fn has_search_stored(&self, source: Option<Place>, destination: Option<Place>) -> bool {
+            if let (Some(source), Some(destination)) = (
+                source.and_then(|p| p.name()),
+                destination.and_then(|p| p.name()),
+            ) {
+                self.store_searches.contains(&source, &destination)
+            } else {
+                false
+            }
+        }
+
+        #[template_callback]
         fn handle_searches_store(&self, _: gtk::Button) {
             if let Some(journeys_result) = self
                 .journeys_page
                 .property::<Option<JourneysResult>>("journeys-result")
             {
-                let origin = journeys_result.journeys()[0]
-                    .property::<Leg>("first-leg")
-                    .property::<Place>("origin")
-                    .name()
+                let origin = journeys_result
+                    .source()
+                    .and_then(|p| p.name())
                     .unwrap_or_default();
-                let destination = journeys_result.journeys()[0]
-                    .property::<Leg>("last-leg")
-                    .property::<Place>("destination")
-                    .name()
+                let destination = journeys_result
+                    .destination()
+                    .and_then(|p| p.name())
                     .unwrap_or_default();
                 self.store_searches.store(origin, destination);
             }
@@ -209,6 +228,15 @@ pub mod imp {
         #[template_callback]
         fn handle_searches_store_remove(&self, origin: String, destination: String) {
             self.search_page.remove_search_store(origin, destination);
+        }
+
+        #[template_callback]
+        fn handle_bookmark_button_icon(&self, _param: ParamSpec, button: ToggleButton) {
+            if button.is_active() {
+                button.set_icon_name("bookmark-toggled-symbolic");
+            } else {
+                button.set_icon_name("bookmark-untoggled-symbolic");
+            }
         }
     }
 

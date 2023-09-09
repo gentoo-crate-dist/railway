@@ -5,8 +5,13 @@ gtk::glib::wrapper! {
 }
 
 impl SearchesStore {
+    // XXX: Store Place instead of String.
     pub fn store(&self, origin: String, destination: String) {
         self.imp().store(origin, destination);
+    }
+
+    pub fn contains<S: AsRef<str>>(&self, origin: S, destination: S) -> bool {
+        self.imp().contains(origin, destination)
     }
 
     pub fn flush(&self) {
@@ -91,6 +96,16 @@ pub mod imp {
                 .expect("Failed to open searches_store.json file");
 
             serde_json::to_writer(file, &*searches).expect("Failed to write to file");
+        }
+
+        pub(super) fn contains<S: AsRef<str>>(&self, origin: S, destination: S) -> bool {
+            let search = Search {
+                origin: origin.as_ref().to_owned(),
+                destination: destination.as_ref().to_owned(),
+            };
+
+            let stored = self.stored.borrow();
+            stored.iter().any(|s| s == &search)
         }
 
         pub(super) fn store(&self, origin: String, destination: String) {

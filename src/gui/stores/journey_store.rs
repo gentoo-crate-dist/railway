@@ -11,6 +11,10 @@ impl JourneysStore {
         self.imp().store(journey);
     }
 
+    pub fn contains(&self, journey: &Journey) -> bool {
+        self.imp().contains(journey)
+    }
+
     pub fn flush(&self) {
         self.imp().flush();
     }
@@ -129,6 +133,13 @@ pub mod imp {
                 self.obj().emit_by_name::<()>("add", &[&journey]);
                 stored.insert(0, journey);
             }
+        }
+
+        pub(super) fn contains(&self, journey: &Journey) -> bool {
+            let stored = self.stored.borrow();
+            stored
+                .iter()
+                .any(|j| j.journey().refresh_token == journey.journey().refresh_token)
         }
     }
 
