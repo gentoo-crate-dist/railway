@@ -35,9 +35,7 @@ impl StationEntry {
 
 pub mod imp {
     use std::cell::{Cell, RefCell};
-    use std::sync::atomic::{AtomicBool, Ordering};
-    use std::sync::{Arc, Mutex};
-    use std::time::{Duration, Instant};
+    use std::time::Duration;
 
     use gdk::gio;
     use gdk::glib::subclass::{InitializingObject, Signal};
@@ -52,7 +50,7 @@ pub mod imp {
     use libadwaita::subclass::prelude::{EntryRowImpl, PreferencesRowImpl};
     use once_cell::sync::Lazy;
 
-    use crate::backend::{HafasClient, Place};
+    use crate::backend::{HafasClient, Place, RequestLimiter};
     use crate::gui::place_list_item::PlaceListItem;
 
     const REQUEST_DURATION: Duration = Duration::from_secs(1);
@@ -69,15 +67,13 @@ pub mod imp {
 
         pub(super) completions: RefCell<ListStore>,
 
-        last_request: Arc<Mutex<Option<Instant>>>,
-
         client: RefCell<Option<HafasClient>>,
 
         place: RefCell<Option<Place>>,
 
-        request_pending: Arc<AtomicBool>,
-
         title: RefCell<String>,
+
+        request_limiter: RequestLimiter<String>,
 
         #[property(get, set)]
         show_swap_button: Cell<bool>,
@@ -89,12 +85,11 @@ pub mod imp {
                 popover: Default::default(),
                 list_completions: Default::default(),
                 completions: RefCell::new(ListStore::new::<Place>()),
-                last_request: Default::default(),
                 client: Default::default(),
                 place: Default::default(),
-                request_pending: Default::default(),
                 title: Default::default(),
                 show_swap_button: Default::default(),
+                request_limiter: RequestLimiter::new(REQUEST_DURATION),
             }
         }
     }
@@ -106,79 +101,53 @@ pub mod imp {
             self.obj().emit_by_name::<()>("swap", &[]);
         }
 
-        fn on_changed(&self) {
-            let request_pending = &self.request_pending;
-            let last_request = &self.last_request;
-            let completions = &self.completions;
-            let obj = self.obj();
+        fn try_fill_exact_match(&self, search: &str) {
+            self.obj().set_place(
+                self.completions
+                    .borrow()
+                    .into_iter()
+                    .flatten()
+                    .flat_map(|p| p.dynamic_cast::<Place>().ok())
+                    .find(|p| p.name() == Some(search.to_owned()))
+                    .as_ref(),
+            );
+        }
 
-            if request_pending.load(Ordering::SeqCst) {
-                log::trace!("Station changed, but there is already a request pending");
-                return;
-            } else {
-                log::trace!("Station changed. Block other requests");
-                request_pending.store(true, Ordering::SeqCst);
-            }
+        fn on_changed(&self) {
+            let obj = self.obj();
+            let completions = &self.completions;
+
+            let request_limiter = &self.request_limiter;
 
             let main_context = MainContext::default();
             main_context.spawn_local(clone!(@strong obj,
-                                            @strong last_request,
-                                            @strong request_pending,
                                             @strong completions,
+                                            @strong request_limiter
                                             => async move {
                 let entry = &obj;
-                let to_wait = {
-                    let mut last_request = last_request.lock().expect("last_request to be lockable.");
-                    if last_request.is_none() {
-                        *last_request = Some(Instant::now() - REQUEST_DURATION);
-                    }
-                    let duration_from_last_request = Instant::now() - last_request.expect("last_request to be set");
-                    if duration_from_last_request >= REQUEST_DURATION {
-                        Duration::ZERO
-                    } else {
-                        REQUEST_DURATION - duration_from_last_request
-                    }
-                };
+                let text = entry.text().to_string();
 
-                log::trace!("Station entry changed. Wait {:?} for next request.", to_wait);
+                if text.len() < MIN_REQUEST_LEN {
+                    return;
+                }
 
-                tokio::time::sleep(to_wait).await;
+                obj.imp().try_fill_exact_match(&text);
 
-                let text = entry.text();
+                let request = request_limiter.request(text).await;
 
-                // Only request if text did not change since last time.
-                if text.len() >= MIN_REQUEST_LEN {
-                    log::trace!("Request is allowed with text {}.", text);
-                    {
-                        // Update last_request
-                        let mut last_request = last_request.lock().expect("last_request to be lockable.");
-                        *last_request = Some(Instant::now());
-                    }
-
-                    let text = entry.text().to_string();
-                    let places = obj.property::<HafasClient>("client").locations(LocationsOptions {query: text.clone(), ..Default::default()}).await;
+                if let Some(request) = request {
+                    let places = obj.property::<HafasClient>("client").locations(LocationsOptions {query: request.clone(), ..Default::default()}).await;
 
                     if let Ok(places) = places {
-                        let mut exact_match: Option<Place> = None;
+                        log::trace!("Got results back. Filling up completions.");
                         let completions = completions.borrow();
-                        completions.remove_all();
-                        for place in places {
-                            if place.id().is_none() {
-                                // Skip things without ID
-                                continue;
-                            }
-                            if place.name().as_ref() == Some(&text) {
-                                exact_match = Some(place.clone());
-                            }
-
-                            completions.append(&place);
-                        }
+                        completions.splice(0, completions.n_items(), &places.into_iter().filter(|p| p.id().is_some()).collect::<Vec<_>>());
                         drop(completions);
-                        obj.set_place(exact_match.as_ref());
+                        obj.imp().try_fill_exact_match(&request);
                     }
+                } else {
+                    log::trace!("No request needed");
                 }
-                log::trace!("Unlock pending request.");
-                request_pending.store(false, Ordering::SeqCst);
             }));
         }
 
@@ -352,7 +321,7 @@ pub mod imp {
                     if let Some(obj) = &obj {
                         let s = self.obj();
                         obj.connect_local("provider-changed", true, clone!(@weak s => @default-return None, move |_| {
-                            log::trace!("Station-entry got provider change from hafas_client. Restting");
+                            log::trace!("Station-entry got provider change from hafas_client. Resetting");
                             s.set_place(None);
                             s.imp().on_changed();
                             None
