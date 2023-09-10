@@ -73,6 +73,7 @@
 
                 <child>
                   <object class="GtkPopover" id="popover-date">
+                    <signal name="notify::visible" handler="handle_date_popover_open" swapped="true"/>
                     <child>
                       <object class="GtkCalendar" id="pick_cal">
                         <style>
@@ -152,39 +153,55 @@
 
                 <child>
                   <object class="GtkPopover" id="popover-time">
+                    <signal name="notify::visible" handler="handle_time_popover_open" swapped="true"/>
                     <child>
                       <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
                         <child>
-                          <object class="GtkSpinButton" id="pick_hour">
-                            <style>
-                              <class name="vertical"/>
-                            </style>
+                          <object class="GtkBox">
+                            <child>
+                              <object class="GtkSpinButton" id="pick_hour">
+                                <style>
+                                  <class name="vertical"/>
+                                </style>
 
-                            <property name="orientation">vertical</property>
-                            <property name="valign">center</property>
-                            <property name="numeric">True</property>
-                            <property name="wrap">true</property>
-                            <property name="adjustment">adj_hour</property>
+                                <property name="orientation">vertical</property>
+                                <property name="valign">center</property>
+                                <property name="numeric">True</property>
+                                <property name="wrap">true</property>
+                                <property name="adjustment">adj_hour</property>
+                              </object>
+                            </child>
+
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label"> ∶ </property>
+                              </object>
+                            </child>
+
+                            <child>
+                              <object class="GtkSpinButton" id="pick_minute">
+                                <style>
+                                  <class name="vertical"/>
+                                </style>
+
+                                <property name="orientation">vertical</property>
+                                <property name="valign">center</property>
+                                <property name="numeric">True</property>
+                                <property name="wrap">true</property>
+                                <property name="adjustment">adj_minute</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
-
                         <child>
-                          <object class="GtkLabel">
-                            <property name="label"> ∶ </property>
-                          </object>
-                        </child>
-
-                        <child>
-                          <object class="GtkSpinButton" id="pick_minute">
-                            <style>
-                              <class name="vertical"/>
-                            </style>
-
-                            <property name="orientation">vertical</property>
-                            <property name="valign">center</property>
-                            <property name="numeric">True</property>
-                            <property name="wrap">true</property>
-                            <property name="adjustment">adj_minute</property>
+                          <object class="GtkToggleButton">
+                            <binding name="active">
+                              <lookup name="now" type="DBDateTimePicker"/>
+                            </binding>
+                            <property name="label" translatable="yes">Now</property>
+                            <signal name="toggled" handler="handle_toggle_now" swapped="true"/>
                           </object>
                         </child>
                       </object>
