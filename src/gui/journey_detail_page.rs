@@ -28,6 +28,7 @@ pub mod imp {
     use gtk::template_callbacks;
     use gtk::CompositeTemplate;
     use hafas_rs::api::refresh_journey::RefreshJourneyOptions;
+    use hafas_rs::Place::Stop;
     use libadwaita::ToastOverlay;
     use once_cell::sync::Lazy;
 
@@ -36,6 +37,7 @@ pub mod imp {
     use crate::backend::HafasClient;
     use crate::backend::Journey;
     use crate::backend::Leg;
+    use crate::backend::Place;
     use crate::gui::error::error_to_toast;
     use crate::gui::leg_item::LegItem;
     use crate::gui::transition::Transition;
@@ -139,6 +141,7 @@ pub mod imp {
                     while i < legs.len() {
                         let mut walking_time: Option<Duration> = None;
                         let is_start = i == 0;
+                        let i_start = i;
                         let mut to = &legs[i];
 
                         while to.walking.unwrap_or(false) {
@@ -167,10 +170,28 @@ pub mod imp {
                             None
                         };
 
-                        if walking_time.is_some() || waiting_time.is_some() {
-                            self.box_legs.append(&Transition::new(&Some(
-                                walking_time.unwrap_or(Duration::zero()) + waiting_time.unwrap_or(Duration::zero())
-                            )));
+                        let walk_to = if !is_start && !is_end {
+                            let to_place = to.origin.clone();
+                            let from_place = legs[i_start].origin.clone();
+
+                            match (from_place, to_place.clone()) {
+                                (Stop(from_stop), Stop(to_stop)) => {
+                                    if from_stop.id != to_stop.id {
+                                        Some(Place::new(to_place))
+                                    } else {
+                                        None
+                                    }
+                                },
+                                (_, _) => None,
+                            }
+                        } else if walking_time.is_some() {
+                            Some(Place::new(to.origin.clone()))
+                        } else {
+                            None
+                        };
+
+                        if walking_time.is_some() || !is_start {
+                            self.box_legs.append(&Transition::new(&walking_time, &walk_to, &waiting_time, is_start || is_end));
                         }
 
                         if !is_end {
