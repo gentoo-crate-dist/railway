@@ -66,7 +66,7 @@ pub mod imp {
 
         fn recompute_visible(&self) {
             self.obj()
-                .set_visible(self.images().iter().any(|i| i.is_visible()));
+                .set_visible(self.images().iter().any(|i| i.get_visible()));
         }
 
         fn set_icon(
@@ -171,35 +171,35 @@ pub mod imp {
                         LateFactor::OnTime => self.set_icon(
                             img,
                             false,
-                            "face-angel-symbolic",
+                            "",
                             &gettextrs::gettext("On time"),
                             &["late-on-time"],
                         ),
                         LateFactor::LittleLate => self.set_icon(
                             img,
                             true,
-                            "face-plain-symbolic",
+                            "delay-small-symbolic",
                             &gettextrs::gettext("Minor delays"),
                             &["late-little-late"],
                         ),
                         LateFactor::Late => self.set_icon(
                             img,
                             true,
-                            "face-sad-symbolic",
+                            "delay-small-symbolic",
                             &gettextrs::gettext("Delayed"),
                             &["late-late"],
                         ),
                         LateFactor::VeryLate => self.set_icon(
                             img,
                             true,
-                            "face-angry-symbolic",
+                            "delay-long-small-symbolic",
                             &gettextrs::gettext("Very delayed"),
                             &["late-very-late"],
                         ),
                         LateFactor::ExtremelyLate => self.set_icon(
                             img,
                             true,
-                            "face-monkey-symbolic",
+                            "delay-extreme-small-symbolic",
                             &gettextrs::gettext("Extremely delayed"),
                             &["late-extremely-late"],
                         ),
@@ -218,7 +218,7 @@ pub mod imp {
                         &if obj {
                             gettextrs::gettext("Platform changed")
                         } else {
-                            gettextrs::gettext("No platform changes")
+                            "".to_string()
                         },
                         if obj { &["change-platform"] } else { &[] },
                     );
@@ -234,9 +234,9 @@ pub mod imp {
                         obj,
                         "dialog-warning-symbolic",
                         &if obj {
-                            gettextrs::gettext("Reachable")
-                        } else {
                             gettextrs::gettext("Unreachable")
+                        } else {
+                            "".to_string()
                         },
                         if obj { &["unreachable"] } else { &[] },
                     );
@@ -250,11 +250,11 @@ pub mod imp {
                     self.set_icon(
                         img,
                         obj,
-                        "dialog-warning-symbolic",
+                        "dialog-error-symbolic",
                         &if obj {
-                            gettextrs::gettext("Reachable")
+                            gettextrs::gettext("Cancelled")
                         } else {
-                            gettextrs::gettext("cancelled")
+                            "".to_string()
                         },
                         if obj { &["cancelled"] } else { &[] },
                     );

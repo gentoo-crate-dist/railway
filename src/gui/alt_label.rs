@@ -132,7 +132,11 @@ pub mod imp {
             match pspec.name() {
                 "main" => self.main.borrow().to_value(),
                 "alt" => self.alt.borrow().to_value(),
-                "is-different" => (self.main.borrow().as_ref() != self.alt.borrow().as_ref()).to_value(),
+                "is-different" => {
+                    let main = self.main.borrow();
+                    let alt = self.alt.borrow();
+                    (main.is_some() && alt.is_some() && main.as_ref() != alt.as_ref()).to_value()
+                }
                 _ => unimplemented!(),
             }
         }

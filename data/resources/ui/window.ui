@@ -108,7 +108,7 @@
                 <property name="sidebar-width-fraction">0.4</property>
                 <property name="sidebar">
                   <object class="AdwNavigationPage">
-                    <property name="title" translatable="yes">Journeys</property>
+                    <property name="title" translatable="yes">Connections</property>
                     <child>
                       <object class="AdwToolbarView">
                         <child type="top">
@@ -155,7 +155,7 @@
                 </property>
                 <property name="content">
                   <object class="AdwNavigationPage">
-                    <property name="title" translatable="yes">Journey</property>
+                    <property name="title" translatable="yes">Trip Details</property>
                     <child>
                       <object class="AdwToolbarView">
                         <property name="width-request">200</property>
