@@ -162,7 +162,7 @@
                         </accessibility>
                         <property name="tooltip-text">Open Stopovers</property>
 
-                        <property name="hexpand">False</property>
+                        <property name="hexpand">True</property>
                         <property name="halign">start</property>
                         <style>
                           <class name="small-pill"/>
@@ -194,49 +194,57 @@
                     </child>
 
                     <child>
-                      <object class="DBIndicatorIcons">
+                      <object class="GtkBox">
+                        <property name="halign">end</property>
                         <property name="hexpand">true</property>
-                        <property name="halign">end</property>
-                        <binding name="load-factor">
-                          <lookup name="load-factor">
-                            <lookup name="leg" type="DBLegItem"/>
-                          </lookup>
-                        </binding>
-                        <binding name="late-factor">
-                          <lookup name="late-factor">
-                            <lookup name="leg" type="DBLegItem"/>
-                          </lookup>
-                        </binding>
-                        <binding name="change-platform">
-                          <lookup name="change-platform">
-                            <lookup name="leg" type="DBLegItem"/>
-                          </lookup>
-                        </binding>
-                        <binding name="is-unreachable">
-                          <lookup name="is-unreachable">
-                            <lookup name="leg" type="DBLegItem"/>
-                          </lookup>
-                        </binding>
-                        <binding name="is-cancelled">
-                          <lookup name="is-cancelled">
-                            <lookup name="leg" type="DBLegItem"/>
-                          </lookup>
-                        </binding>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkToggleButton" id="remarks_button">
-                        <accessibility>
-                          <property name="label">Open Remarks</property>
-                        </accessibility>
-                        <property name="tooltip-text">Open Remarks</property>
+                        <property name="spacing">6</property>
 
-                        <property name="valign">center</property>
-                        <property name="halign">end</property>
-                        <property name="icon-name">dialog-information-symbolic</property>
-                        <style>
-                          <class name="circular"/>
-                        </style>
+                        <child>
+                          <object class="DBIndicatorIcons">
+                            <property name="hexpand">true</property>
+                            <property name="halign">end</property>
+                            <binding name="load-factor">
+                              <lookup name="load-factor">
+                                <lookup name="leg" type="DBLegItem"/>
+                              </lookup>
+                            </binding>
+                            <binding name="late-factor">
+                              <lookup name="late-factor">
+                                <lookup name="leg" type="DBLegItem"/>
+                              </lookup>
+                            </binding>
+                            <binding name="change-platform">
+                              <lookup name="change-platform">
+                                <lookup name="leg" type="DBLegItem"/>
+                              </lookup>
+                            </binding>
+                            <binding name="is-unreachable">
+                              <lookup name="is-unreachable">
+                                <lookup name="leg" type="DBLegItem"/>
+                              </lookup>
+                            </binding>
+                            <binding name="is-cancelled">
+                              <lookup name="is-cancelled">
+                                <lookup name="leg" type="DBLegItem"/>
+                              </lookup>
+                            </binding>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkToggleButton" id="remarks_button">
+                            <accessibility>
+                              <property name="label">Open Remarks</property>
+                            </accessibility>
+                            <property name="tooltip-text">Open Remarks</property>
+
+                            <property name="valign">center</property>
+                            <property name="halign">end</property>
+                            <property name="icon-name">dialog-information-symbolic</property>
+                            <style>
+                              <class name="circular"/>
+                            </style>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
