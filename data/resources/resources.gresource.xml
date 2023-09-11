@@ -33,6 +33,7 @@
     <file alias="change-symbolic.svg">../icons/timeline/change-symbolic.svg</file>
     <file alias="train-symbolic.svg">../icons/symbolic/train-symbolic.svg</file>
     <file alias="route-reverse-symbolic.svg">../icons/search/route-reverse-symbolic.svg</file>
+    <file alias="down-small-symbolic.svg">../icons/search/down-small-symbolic.svg</file>
     <file alias="bookmark-toggled-symbolic.svg">../icons/general/bookmark-toggled-symbolic.svg</file>
     <file alias="bookmark-untoggled-symbolic.svg">../icons/general/bookmark-untoggled-symbolic.svg</file>
     <file alias="delay-small-symbolic.svg">../icons/indicators/delay-small-symbolic.svg</file>

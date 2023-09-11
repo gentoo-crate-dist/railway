@@ -221,7 +221,8 @@ pub mod imp {
 
                     self.set_icon(
                         img,
-                        obj,
+                        // Do not show if cancelled.
+                        obj && !self.img_cancelled.get_visible(),
                         "dialog-warning-symbolic",
                         &if obj {
                             gettextrs::gettext("Unreachable")
@@ -248,6 +249,10 @@ pub mod imp {
                         },
                         if obj { &["cancelled"] } else { &[] },
                     );
+
+                    if obj {
+                        self.img_unreachable.set_visible(false);
+                    }
                 }
                 _ => unimplemented!(),
             }

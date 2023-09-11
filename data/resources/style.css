@@ -65,6 +65,10 @@
   font-weight: bold;
 }
 
+/* Don't have a pressed-in look for bookmark icons as they already have a "filled" icon */
+.bookmark-button:checked {
+  background-color: @view_fg;
+}
 /* Currently disabled. Styling for the indicator icons */
 /*
 .load-unknown {

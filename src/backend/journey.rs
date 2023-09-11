@@ -1,6 +1,7 @@
 use std::cell::RefCell;
 
 use gdk::glib::Object;
+use gdk::prelude::ObjectExt;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
 gtk::glib::wrapper! {
@@ -21,6 +22,14 @@ impl Journey {
             .as_ref()
             .expect("Journey has not yet been set up")
             .clone()
+    }
+
+    pub fn is_unreachable(&self) -> bool {
+        self.property("is-unreachable")
+    }
+
+    pub fn is_cancelled(&self) -> bool {
+        self.property("is-cancelled")
     }
 }
 
