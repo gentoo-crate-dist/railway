@@ -124,38 +124,28 @@ pub mod imp {
                     let img = &self.img_load_factor;
 
                     match obj {
-                        LoadFactor::Unknown => self.set_icon(
-                            img,
-                            false,
-                            "network-cellular-signal-none-symbolic",
-                            &gettextrs::gettext("Unknown load"),
-                            &["load-unknown"],
-                        ),
-                        LoadFactor::LowToMedium => self.set_icon(
-                            img,
-                            true,
-                            "network-cellular-signal-weak-symbolic",
-                            &gettextrs::gettext("Low or medium load"),
-                            &["load-low-to-medium"],
-                        ),
+                        LoadFactor::Unknown => self.set_icon(img, false, "", "", &["load-unknown"]),
+                        LoadFactor::LowToMedium => {
+                            self.set_icon(img, false, "", "", &["load-low-to-medium"])
+                        }
                         LoadFactor::High => self.set_icon(
                             img,
                             true,
-                            "network-cellular-signal-ok-symbolic",
+                            "train-load-high-symbolic",
                             &gettextrs::gettext("High load"),
                             &["load-high"],
                         ),
                         LoadFactor::VeryHigh => self.set_icon(
                             img,
                             true,
-                            "network-cellular-signal-good-symbolic",
+                            "train-load-veryhigh-symbolic",
                             &gettextrs::gettext("Very high load"),
                             &["load-very-high"],
                         ),
                         LoadFactor::ExceptionallyHigh => self.set_icon(
                             img,
                             true,
-                            "network-cellular-signal-excellent-symbolic",
+                            "train-load-extreme-symbolic",
                             &gettextrs::gettext("Exceptionally high load"),
                             &["load-exceptionally-high"],
                         ),
