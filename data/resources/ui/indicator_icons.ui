@@ -5,6 +5,7 @@
 
   <template class="DBIndicatorIcons" parent="GtkBox">
     <property name="orientation">horizontal</property>
+    <property name="spacing">2</property>
     <child>
       <object class="GtkImage" id="img_load_factor">
         <property name="visible">false</property>

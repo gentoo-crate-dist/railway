@@ -115,6 +115,10 @@
                           <object class="AdwHeaderBar">
                             <child>
                               <object class="GtkToggleButton" id="btn_bookmark_search">
+                                <style>
+                                  <class name="bookmark-button"/>
+                                </style>
+
                                 <signal name="clicked" handler="handle_searches_store" swapped="true"/>
                                 <signal name="notify::active" handler="handle_bookmark_button_icon" swapped="true"/>
                                 <property name="icon-name">bookmark-untoggled-symbolic</property>
@@ -176,6 +180,10 @@
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="btn_bookmark">
+                                <style>
+                                  <class name="bookmark-button"/>
+                                </style>
+
                                 <signal name="clicked" handler="handle_journey_store" swapped="true"/>
                                 <property name="icon-name">bookmark-untoggled-symbolic</property>
                                 <signal name="notify::active" handler="handle_bookmark_button_icon" swapped="true"/>
