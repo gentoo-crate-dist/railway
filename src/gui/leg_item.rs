@@ -148,7 +148,7 @@ pub mod imp {
                     }
 
                     // Fill box_remarks
-                    self.remarks_button.set_visible(remarks.len() > 0);
+                    self.remarks_button.set_visible(!remarks.is_empty());
                     for remark in remarks {
                         self.box_remarks
                             .append(&RemarkItem::new(&Remark::new(remark.clone())));
