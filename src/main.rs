@@ -1,6 +1,7 @@
 use gdk::prelude::{ApplicationExt, ApplicationExtManual};
 use gtk::glib::IsA;
 use gtk::traits::{GtkWindowExt, WidgetExt};
+use once_cell::sync::Lazy;
 
 #[macro_export]
 macro_rules! gspawn {
@@ -10,13 +11,23 @@ macro_rules! gspawn {
     };
 }
 
+#[macro_export]
+macro_rules! tspawn {
+    ($future:expr) => {
+        $crate::TOKIO_RUNTIME.spawn($future)
+    };
+}
+
 mod backend;
 mod config;
 mod error;
 mod gui;
 
-use config::{APP_ID, RESOURCES_PATH, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_BYTES};
+use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_BYTES, RESOURCES_PATH};
 pub use error::Error;
+
+pub static TOKIO_RUNTIME: Lazy<tokio::runtime::Runtime> =
+    Lazy::new(|| tokio::runtime::Runtime::new().unwrap());
 
 fn init_resources() {
     let gbytes = gtk::glib::Bytes::from_static(RESOURCES_BYTES);

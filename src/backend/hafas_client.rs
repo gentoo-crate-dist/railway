@@ -1,5 +1,3 @@
-use std::cell::RefCell;
-
 use gdk::gio;
 use gdk::glib::clone;
 use gdk::prelude::{ObjectExt, SettingsExt};
@@ -158,12 +156,15 @@ impl HafasClient {
             "The hafas client was changed to: {}.",
             profile_name.as_ref()
         );
-        self.imp()
+        let mut write = self
+            .imp()
             .internal
-            .swap(&RefCell::new(Some(hafas_rs::client::HafasClient::new(
-                profile_from_name(profile_name.as_ref()).unwrap_or(Box::new(DbProfile {})),
-                hafas_rs::requester::hyper::HyperRustlsRequester::new(),
-            ))));
+            .write()
+            .expect("Profile to be writeable");
+        *write = Some(hafas_rs::client::HafasClient::new(
+            profile_from_name(profile_name.as_ref()).unwrap_or(Box::new(DbProfile {})),
+            hafas_rs::requester::hyper::HyperRustlsRequester::new(),
+        ));
         self.emit_by_name::<()>("provider-changed", &[]);
     }
 
@@ -186,10 +187,11 @@ impl HafasClient {
         &self,
         opts: LocationsOptions,
     ) -> Result<impl Iterator<Item = Place>, Error> {
-        Ok(self
-            .internal()
-            .locations(opts)
-            .await?
+        let client = self.internal();
+
+        Ok(tspawn!(async move { client.locations(opts).await })
+            .await
+            .expect("Failed to join tokio")?
             .into_iter()
             .map(Place::new))
     }
@@ -200,10 +202,13 @@ impl HafasClient {
         to: Place,
         opts: JourneysOptions,
     ) -> Result<JourneysResult, Error> {
+        let client = self.internal();
+        let from_place = from.place();
+        let to_place = to.place();
         Ok(JourneysResult::new(
-            self.internal()
-                .journeys(from.place(), to.place(), opts)
-                .await?,
+            tspawn!(async move { client.journeys(from_place, to_place, opts).await })
+                .await
+                .expect("Failed to join tokio")?,
             from,
             to,
         ))
@@ -214,10 +219,12 @@ impl HafasClient {
         refresh_token: S,
         opts: RefreshJourneyOptions,
     ) -> Result<Journey, Error> {
+        let client = self.internal();
+        let refresh_token = refresh_token.as_ref().to_owned();
         Ok(Journey::new(
-            self.internal()
-                .refresh_journey(refresh_token.as_ref(), opts)
-                .await?,
+            tspawn!(async move { client.refresh_journey(&refresh_token, opts).await })
+                .await
+                .expect("Failed to join tokio")?,
         ))
     }
 }
@@ -231,12 +238,12 @@ mod imp {
     use gtk::gio::Settings;
     use gtk::glib;
     use once_cell::sync::Lazy;
-    use std::cell::RefCell;
+    use std::sync::RwLock;
 
     use crate::config;
 
     pub struct HafasClient {
-        pub(super) internal: RefCell<Option<hafas_rs::client::HafasClient>>,
+        pub(super) internal: RwLock<Option<hafas_rs::client::HafasClient>>,
 
         pub(super) settings: Settings,
     }
@@ -253,7 +260,8 @@ mod imp {
     impl HafasClient {
         pub(super) fn internal(&self) -> hafas_rs::client::HafasClient {
             self.internal
-                .borrow()
+                .read()
+                .expect("Failed to read internal client")
                 .as_ref()
                 .expect("HafasClient internal not yet set")
                 .clone()
