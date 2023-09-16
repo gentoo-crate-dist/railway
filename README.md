@@ -1,6 +1,6 @@
 # Railway
 
-[![Matrix](https://img.shields.io/badge/Matrix-Join-brightgreen)](https://matrix.to/#/%23diebahn:matrix.org)
+[![Matrix](https://img.shields.io/badge/Matrix-Join-brightgreen)](https://matrix.to/#/%23railwayapp:matrix.org)
 
 Railway lets you look up travel information for many different railways, all without needing to navigate through different websites.
 
