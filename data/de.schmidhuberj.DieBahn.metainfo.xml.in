@@ -12,11 +12,11 @@
   <translation type="gettext">@gettext-package@</translation>
   <update_contact>flatpak@schmiddi.anonaddy.com</update_contact>
 
-  <url type="homepage">https://mobile.schmidhuberj.de/diebahn</url>
-  <url type="bugtracker">https://gitlab.com/schmiddi-on-mobile/diebahn/-/issues</url>
-  <url type="donation">https://gitlab.com/schmiddi-on-mobile/diebahn#donate</url>
-  <url type="contact">https://matrix.to/#/#diebahn:matrix.org</url>
-  <url type="vcs-browser">https://gitlab.com/schmiddi-on-mobile/diebahn</url>
+  <url type="homepage">https://mobile.schmidhuberj.de/railway</url>
+  <url type="bugtracker">https://gitlab.com/schmiddi-on-mobile/railway/-/issues</url>
+  <url type="donation">https://gitlab.com/schmiddi-on-mobile/railway#donate</url>
+  <url type="contact">https://matrix.to/#/#railwayapp:matrix.org</url>
+  <url type="vcs-browser">https://gitlab.com/schmiddi-on-mobile/railway</url>
 
   <description>
     <p>
@@ -146,19 +146,19 @@
   <screenshots>
     <screenshot type="default">
       <caption>Search</caption>
-      <image>https://gitlab.com/schmiddi-on-mobile/diebahn/blob/master/data/screenshots/overview.png?raw=true</image>
+      <image>https://gitlab.com/schmiddi-on-mobile/railway/blob/master/data/screenshots/overview.png?raw=true</image>
     </screenshot>
     <screenshot type="default">
       <caption>Search</caption>
-      <image>https://gitlab.com/schmiddi-on-mobile/diebahn/blob/master/data/screenshots/search.png?raw=true</image>
+      <image>https://gitlab.com/schmiddi-on-mobile/railway/blob/master/data/screenshots/search.png?raw=true</image>
     </screenshot>
     <screenshot type="default">
       <caption>Journeys</caption>
-      <image>https://gitlab.com/schmiddi-on-mobile/diebahn/blob/master/data/screenshots/journeys.png?raw=true</image>
+      <image>https://gitlab.com/schmiddi-on-mobile/railway/blob/master/data/screenshots/journeys.png?raw=true</image>
     </screenshot>
     <screenshot type="default">
       <caption>Journey</caption>
-      <image>https://gitlab.com/schmiddi-on-mobile/diebahn/blob/master/data/screenshots/journey.png?raw=true</image>
+      <image>https://gitlab.com/schmiddi-on-mobile/railway/blob/master/data/screenshots/journey.png?raw=true</image>
     </screenshot>
   </screenshots>
 
