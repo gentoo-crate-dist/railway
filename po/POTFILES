@@ -20,6 +20,7 @@ data/resources/ui/transition.ui
 data/resources/ui/window.ui
 
 src/config.rs
+src/gui/indicator_icons.rs
 src/gui/remark_item.rs
 src/gui/search_store_item.rs
 src/gui/stores/journey_store.rs
@@ -48,8 +49,10 @@ src/gui/mod.rs
 src/gui/window.rs
 src/error.rs
 src/config.rs.in
+src/backend/discount_card.rs
 src/backend/journeys_result.rs
 src/backend/place.rs
+src/backend/price.rs
 src/backend/stop.rs
 src/backend/stopover.rs
 src/backend/remark.rs
