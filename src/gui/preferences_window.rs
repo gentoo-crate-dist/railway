@@ -16,6 +16,7 @@ impl PreferencesWindow {
 }
 
 pub mod imp {
+    use crate::config;
     use gdk::gio::Settings;
     use gdk::gio::SettingsBindFlags;
     use glib::subclass::InitializingObject;
@@ -25,15 +26,14 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use libadwaita::subclass::prelude::AdwWindowImpl;
     use libadwaita::subclass::prelude::PreferencesWindowImpl;
-    use crate::config;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/preferences_window.ui")]
     pub struct PreferencesWindow {
         #[template_child]
-        switch_delete_old: TemplateChild<gtk::Switch>,
+        switch_delete_old: TemplateChild<libadwaita::SwitchRow>,
         #[template_child]
-        spin_deletion_time: TemplateChild<gtk::SpinButton>,
+        spin_deletion_time: TemplateChild<libadwaita::SpinRow>,
 
         settings: Settings,
     }
