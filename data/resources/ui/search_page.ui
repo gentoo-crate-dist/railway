@@ -91,25 +91,25 @@
                       </object>
                     </child>
                     <child>
-                      <object class="AdwCarousel" id="carousel_journeys">
-                        <property name="spacing">18</property>
-                        <property name="overflow">visible</property>
+                      <object class="GtkListBox" id="box_journeys">
+                        <style>
+                          <class name="boxed-list"/>
+                        </style>
+                        <property name="visible">false</property>
+                        <property name="activate-on-single-click">True</property>
+                        <property name="selection-mode">none</property>
+                        <signal name="row-activated" handler="handle_journeys_row_activated" swapped="true"/>
                       </object>
                     </child>
                     <child>
-                      <object class="AdwCarouselIndicatorDots">
-                        <property name="carousel">carousel_journeys</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwCarousel" id="carousel_searches">
-                        <property name="spacing">18</property>
-                        <property name="overflow">visible</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwCarouselIndicatorDots">
-                        <property name="carousel">carousel_searches</property>
+                      <object class="GtkListBox" id="box_searches">
+                        <style>
+                          <class name="boxed-list"/>
+                        </style>
+                        <property name="visible">false</property>
+                        <property name="activate-on-single-click">True</property>
+                        <property name="selection-mode">none</property>
+                        <signal name="row-activated" handler="handle_searches_row_activated" swapped="true"/>
                       </object>
                     </child>
                   </object>
