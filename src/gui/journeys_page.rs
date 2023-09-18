@@ -96,11 +96,10 @@ pub mod imp {
     use crate::backend::HafasClient;
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
-    use crate::backend::Place;
+    use crate::config;
     use crate::gui::error::error_to_toast;
     use crate::gui::journey_list_item::JourneyListItem;
     use crate::gui::utility::Utility;
-    use crate::config;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/journeys_page.ui")]
@@ -194,7 +193,7 @@ pub mod imp {
                     let journeys_result = journeys_result_obj.journeys_response();
 
                     let result_journeys_result = obj.property::<HafasClient>("client")
-                        .journeys(Place::new(journeys_result.journeys[0].legs[0].origin.clone()), Place::new(journeys_result.journeys[0].legs.last().expect("Every journey should have at least one leg.").destination.clone()), JourneysOptions {
+                        .journeys(journeys_result_obj.source().expect("Journey to have a source"), journeys_result_obj.destination().expect("Journey to have a destination"), JourneysOptions {
                             earlier_than: journeys_result.earlier_ref.clone(),
                             language: Some(gettextrs::gettext("language")),
                             stopovers: Some(true),
@@ -254,7 +253,7 @@ pub mod imp {
                     let journeys_result = journeys_result_obj.journeys_response();
 
                     let result_journeys_result = obj.property::<HafasClient>("client")
-                        .journeys(Place::new(journeys_result.journeys[0].legs[0].origin.clone()), Place::new(journeys_result.journeys[0].legs.last().expect("Every journey should have at least one leg.").destination.clone()), JourneysOptions {
+                        .journeys(journeys_result_obj.source().expect("Journey to have a source"), journeys_result_obj.destination().expect("Journey to have a destination"), JourneysOptions {
                             later_than: journeys_result.later_ref.clone(),
                             language: Some(gettextrs::gettext("language")),
                             stopovers: Some(true),

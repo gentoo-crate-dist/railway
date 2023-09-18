@@ -29,14 +29,12 @@ impl SearchPage {
 
 pub mod imp {
     use gdk::gio::Settings;
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use gdk::glib::clone;
     use gdk::glib::MainContext;
-    use gdk::glib::closure_local;
     use gdk::glib::subclass::Signal;
     use glib::subclass::InitializingObject;
+    use gtk::ListBoxRow;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
@@ -47,6 +45,7 @@ pub mod imp {
     use hafas_rs::api::journeys::JourneysOptions;
     use once_cell::sync::Lazy;
 
+    use std::cell::Cell;
     use std::cell::RefCell;
 
     use crate::backend::HafasClient;
@@ -61,7 +60,8 @@ pub mod imp {
     use crate::gui::utility::Utility;
     use crate::config;
 
-    #[derive(CompositeTemplate)]
+    #[derive(CompositeTemplate, Properties)]
+    #[properties(wrapper_type = super::SearchPage)]
     #[template(resource = "/ui/search_page.ui")]
     pub struct SearchPage {
         #[template_child]
@@ -76,63 +76,89 @@ pub mod imp {
         btn_search: TemplateChild<gtk::Button>,
 
         #[template_child]
-        carousel_journeys: TemplateChild<libadwaita::Carousel>,
+        box_journeys: TemplateChild<gtk::ListBox>,
         #[template_child]
-        carousel_searches: TemplateChild<libadwaita::Carousel>,
+        box_searches: TemplateChild<gtk::ListBox>,
 
         #[template_child]
         toast_errors: TemplateChild<libadwaita::ToastOverlay>,
 
         settings: Settings,
+        #[property(get, set)]
         client: RefCell<Option<HafasClient>>,
+        #[property(get, set)]
+        search_when_ready: Cell<bool>,
     }
 
     #[gtk::template_callbacks]
     impl SearchPage {
+        #[template_callback]
+        fn handle_journeys_row_activated(&self, row: ListBoxRow) {
+            self.obj().emit_by_name::<()>("details", &[&row.first_child().expect("Activated row to have a child").property::<Journey>("journey")]);
+        }
+
+        #[template_callback]
+        fn handle_searches_row_activated(&self, row: ListBoxRow) {
+            let search = &row.first_child().expect("Activated row to have a child");
+            self.in_from.set_input(search.property::<String>("origin"));
+            self.in_to.set_input(search.property::<String>("destination"));
+            self.obj().set_search_when_ready(true);
+        }
+
+        fn setup_search_when_ready(&self) {
+            let obj = self.obj();
+            self.btn_search.connect_sensitive_notify(clone!(@weak obj => move |_| {
+                let s = obj.imp();
+                if s.btn_search.is_sensitive() && obj.search_when_ready() {
+                    s.handle_search();
+                }
+                // XXX: Not the best place to unset search when ready. It would be better to do that when the station entry changed manually, but that will not work as it also changes when directly set.
+                obj.set_search_when_ready(false);
+            }));
+        }
+
         pub(super) fn add_journey_store(&self, journey: Journey) {
             let item = JourneyStoreItem::new(journey);
-            let obj = self.obj().clone();
-            item.connect_closure("details", false, 
-                                 closure_local!(move |_item: JourneyStoreItem, journey: Journey| {
-                obj.emit_by_name::<()>("details", &[&journey]);
-            }));
-            self.carousel_journeys.append(&item);
+            self.box_journeys.append(&item);
+            self.box_journeys.set_visible(true);
         }
 
         pub(super) fn remove_journey_store(&self, journey: Journey) {
-            let mut child = self.carousel_journeys.first_child();
+            let mut child = self.box_journeys.first_child();
 
             while let Some(c) = child {
-                if c.property::<Journey>("journey").journey() == journey.journey() {
-                    self.carousel_journeys.remove(&c);
+                if c.first_child().expect("ListBoxRow to have a JourneyStoreItem child").property::<Journey>("journey").journey() == journey.journey() {
+                    self.box_journeys.remove(&c);
                 } 
 
                 child = c.next_sibling();
+            }
+
+            if self.box_journeys.first_child().is_none() {
+                self.box_journeys.set_visible(false);
             }
         }
 
         pub(super) fn add_search_store(&self, origin: String, destination: String) {
             let item = SearchStoreItem::new(origin, destination);
-            let obj = self.obj().clone();
-            item.connect_closure("details", false, 
-                                 closure_local!(move |_item: SearchStoreItem, origin: String, destination: String| {
-                                     let s = obj.imp();
-                                     s.in_from.set_input(origin);
-                                     s.in_to.set_input(destination);
-            }));
-            self.carousel_searches.append(&item);
+            self.box_searches.append(&item);
+            self.box_searches.set_visible(true);
         }
 
         pub(super) fn remove_search_store(&self, origin: String, destination: String) {
-            let mut child = self.carousel_searches.first_child();
+            let mut child = self.box_searches.first_child();
 
             while let Some(c) = child {
-                if c.property::<Option<String>>("origin") == Some(origin.clone()) 
-                    && c.property::<Option<String>>("destination") == Some(destination.clone()) {
-                    self.carousel_searches.remove(&c);
+                let s = c.first_child().expect("ListBoxRow to have a child");
+                if s.property::<Option<String>>("origin") == Some(origin.clone()) 
+                    && s.property::<Option<String>>("destination") == Some(destination.clone()) {
+                    self.box_searches.remove(&c);
                 } 
 
                 child = c.next_sibling();
+            }
+            if self.box_searches.first_child().is_none() {
+                self.box_searches.set_visible(false);
             }
         }
 
@@ -145,7 +171,7 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_search(&self, _: gtk::Button) {
+        fn handle_search(&self) {
             let obj = self.obj();
             let from = self.in_from.property::<Place>("place");
             let to = self.in_to.property::<Place>("place");
@@ -209,10 +235,11 @@ pub mod imp {
                 in_to: Default::default(),
                 pick_date_time: Default::default(),
                 btn_search: Default::default(),
-                carousel_journeys: Default::default(),
-                carousel_searches: Default::default(),
+                box_journeys: Default::default(),
+                box_searches: Default::default(),
                 toast_errors: Default::default(),
-                client: Default::default()
+                client: Default::default(),
+                search_when_ready: Default::default(),
             }
         }
 
@@ -227,9 +254,11 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for SearchPage {
         fn constructed(&self) {
             self.parent_constructed();
+            self.setup_search_when_ready();
             self.in_from.set_input(self.settings.string("search-from").to_string());
             self.in_to.set_input(self.settings.string("search-to").to_string());
         }
@@ -246,33 +275,6 @@ pub mod imp {
                 ]
             });
             SIGNALS.as_ref()
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::builder::<HafasClient>("client").build()]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "client" => {
-                    let obj = value
-                        .get::<Option<HafasClient>>()
-                        .expect("Property `client` of `SearchPage` has to be of type `HafasClient`");
-
-                    self.client.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "client" => self.client.borrow().to_value(),
-                _ => unimplemented!(),
-            }
         }
     }
 

@@ -18,7 +18,6 @@ impl JourneyStoreItem {
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::subclass::Signal;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
@@ -37,21 +36,6 @@ pub mod imp {
         journey: RefCell<Option<Journey>>,
     }
 
-    #[gtk::template_callbacks]
-    impl JourneyStoreItem {
-        #[template_callback]
-        fn handle_details(&self, _: gtk::Button) {
-            self.obj().emit_by_name(
-                "details",
-                &[self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .expect("`JourneyStoreItem` to have a `journey`")],
-            )
-        }
-    }
-
     #[glib::object_subclass]
     impl ObjectSubclass for JourneyStoreItem {
         const NAME: &'static str = "DBJourneyStoreItem";
@@ -60,7 +44,6 @@ pub mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
-            Self::bind_template_callbacks(klass);
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -97,15 +80,6 @@ pub mod imp {
                 "journey" => self.journey.borrow().to_value(),
                 _ => unimplemented!(),
             }
-        }
-
-        fn signals() -> &'static [Signal] {
-            static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| -> Vec<Signal> {
-                vec![Signal::builder("details")
-                    .param_types([Journey::static_type()])
-                    .build()]
-            });
-            SIGNALS.as_ref()
         }
     }
 
