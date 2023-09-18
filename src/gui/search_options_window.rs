@@ -47,6 +47,8 @@ pub mod imp {
         spin_transfer_time: TemplateChild<libadwaita::SpinRow>,
         #[template_child]
         switch_direct_only: TemplateChild<libadwaita::SwitchRow>,
+        #[template_child]
+        switch_accessible: TemplateChild<libadwaita::SwitchRow>,
 
         #[template_child]
         switch_national_express: TemplateChild<libadwaita::SwitchRow>,
@@ -159,6 +161,10 @@ pub mod imp {
                 .bind("direct-only", &self.switch_direct_only.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
+            self.settings
+                .bind("accessible", &self.switch_accessible.get(), "active")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
 
             self.settings
                 .bind(
@@ -242,6 +248,7 @@ pub mod imp {
                 switch_direct_only: TemplateChild::default(),
                 radio_first_class: TemplateChild::default(),
                 radio_second_class: TemplateChild::default(),
+                switch_accessible: TemplateChild::default(),
                 switch_national_express: TemplateChild::default(),
                 switch_national: TemplateChild::default(),
                 switch_regional_express: TemplateChild::default(),

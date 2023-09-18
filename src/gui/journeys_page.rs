@@ -87,6 +87,7 @@ pub mod imp {
     use gtk::SignalListItemFactory;
     use gtk::Widget;
     use hafas_rs::api::journeys::JourneysOptions;
+    use hafas_rs::Accessibility;
     use hafas_rs::LoyaltyCard;
     use hafas_rs::ProductsSelection;
     use hafas_rs::TariffClass;
@@ -219,6 +220,7 @@ pub mod imp {
                                 tram: Some(settings.boolean("include-tram")),
                                 taxi: Some(settings.boolean("include-taxi")),
                             },
+                            accessibility: if settings.boolean("accessible") { Some(Accessibility::Complete) } else { None },
                             ..Default::default()
                         })
                         .await;
@@ -278,6 +280,7 @@ pub mod imp {
                                 tram: Some(settings.boolean("include-tram")),
                                 taxi: Some(settings.boolean("include-taxi")),
                             },
+                            accessibility: if settings.boolean("accessible") { Some(Accessibility::Complete) } else { None },
                             ..Default::default()
                         })
                         .await;

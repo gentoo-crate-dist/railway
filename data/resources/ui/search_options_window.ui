@@ -59,6 +59,11 @@
                 <property name="title" translatable="yes">Direct connections only</property>
               </object>
             </child>
+            <child>
+              <object class="AdwSwitchRow" id="switch_accessible">
+                <property name="title" translatable="yes">Accessible</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>

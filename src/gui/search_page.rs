@@ -39,6 +39,7 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use hafas_rs::Accessibility;
     use hafas_rs::LoyaltyCard;
     use hafas_rs::ProductsSelection;
     use hafas_rs::TariffClass;
@@ -210,6 +211,7 @@ pub mod imp {
                         tram: Some(settings.boolean("include-tram")),
                         taxi: Some(settings.boolean("include-taxi")),
                     },
+                    accessibility: if settings.boolean("accessible") { Some(Accessibility::Complete) } else { None },
                     ..Default::default()
                 }).await;
                 if journeys.is_err() {

@@ -21,8 +21,8 @@ pub mod imp {
     use once_cell::sync::Lazy;
 
     use crate::backend::Remark;
-    use crate::gui::search_options_window::SearchOptionsWindow;
     use crate::config;
+    use crate::gui::search_options_window::SearchOptionsWindow;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/search_options_button.ui")]
@@ -199,12 +199,20 @@ pub mod imp {
                         None
                     };
 
+                    let accessible = self.settings.boolean("accessible");
+                    let accessible_string = if accessible {
+                        Some(gettextrs::gettext("Accessible"))
+                    } else {
+                        None
+                    };
+
                     [
                         first_class_string,
                         bahncard_string,
                         types_string,
                         bike_accessible_string,
                         direct_only_string,
+                        accessible_string,
                     ]
                     .into_iter()
                     .flatten()

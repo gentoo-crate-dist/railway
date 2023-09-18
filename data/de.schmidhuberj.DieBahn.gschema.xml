@@ -36,6 +36,10 @@
       <default>false</default>
       <summary>Search for only direct connections</summary>
     </key>
+    <key name="accessible" type="b">
+      <default>false</default>
+      <summary>Search for accessible journeys only</summary>
+    </key>
 
     <key name="delete-old" type="b">
       <default>true</default>
