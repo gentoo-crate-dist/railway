@@ -56,7 +56,9 @@ pub mod imp {
         #[template_child]
         destination_arrival_label: TemplateChild<AltLabel>,
         #[template_child]
-        spacing: TemplateChild<libadwaita::Bin>,
+        spacing_1: TemplateChild<libadwaita::Bin>,
+        #[template_child]
+        spacing_2: TemplateChild<libadwaita::Bin>,
 
         leg: RefCell<Option<Leg>>,
     }
@@ -138,7 +140,8 @@ pub mod imp {
 
                     size_group.add_widget(&self.start_departure_label.get());
                     size_group.add_widget(&self.destination_arrival_label.get());
-                    size_group.add_widget(&self.spacing.get());
+                    size_group.add_widget(&self.spacing_1.get());
+                    size_group.add_widget(&self.spacing_2.get());
 
                     // Fill box_legs
                     for stopover in &stopovers {
