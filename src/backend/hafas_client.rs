@@ -27,23 +27,23 @@ fn providers() -> Vec<Provider> {
         ),
         Provider::new("CMTA", "CapMetro", Some("Austin, Texas"), true),
         Provider::new("DART", "DART", Some("Des Moines Area Rapid Transit"), true),
-        Provider::new(
-            "DB-Busradar-Nrw",
-            "DB Busradar NRW",
-            // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-            Some(&gettextrs::gettext("Nordrhein-Westfalen")),
-            true,
-        ),
+        // Provider::new(
+        //     "DB-Busradar-Nrw",
+        //     "DB Busradar NRW",
+        //     // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
+        //     Some(&gettextrs::gettext("Nordrhein-Westfalen")),
+        //     true,
+        // ),
         Provider::new("DB", "DB", Some("Deutsche Bahn"), true),
         Provider::new("HVV", "HVV", Some("Hamburg public transport"), true),
         Provider::new("INSA", "NASA", Some("Nahverkehr Sachsen-Anhalt"), true),
         Provider::new(
-            "INVG",
-            "INVG",
-            Some("Ingolstädter Verkehrsgesellschaft"),
+            "VGI",
+            "VGI",
+            Some("Verkehrsgemeinschaft Region Ingolstadt"),
             true,
         ),
-        Provider::new("Irish-Railway", "Irish Rail", Some("Iarnród Éireann"), true),
+        Provider::new("Irish-Rail", "Irish Rail", Some("Iarnród Éireann"), true),
         Provider::new("Mobiliteit-Lu", "Mobiliteit", Some("Luxembourg"), true),
         Provider::new(
             "mobil-nrw",
@@ -77,14 +77,14 @@ fn providers() -> Vec<Provider> {
             Some(&gettextrs::gettext("Germany")),
             true,
         ),
-        Provider::new("STV", "STV", Some("Steirischer Verkehrsverbund"), true),
-        Provider::new("SVV", "SVV", Some("Salzburger Verkehrsverbund"), true),
         Provider::new(
-            "Saarfahrplan",
-            "saarvv",
-            Some("Saarfahrplan/VGS Saarland"),
+            "Verbundlinie",
+            "Verbundlinie",
+            Some("Steirischer Verkehrsverbund"),
             true,
         ),
+        Provider::new("SVV", "SVV", Some("Salzburger Verkehrsverbund"), true),
+        Provider::new("saarvv", "saarVV", Some("Saarfahrplan/VGS Saarland"), true),
         Provider::new(
             "Salzburg",
             "Salzburg",
@@ -122,7 +122,7 @@ fn providers() -> Vec<Provider> {
         ),
         Provider::new("VVT", "VVT", Some("Verkehrsverbund Tirol"), true),
         Provider::new("VVV", "VVV", Some("Verkehrsverbund Vorarlberg"), true),
-        Provider::new("ZVV", "ZVV", Some("Zürich public transport"), true),
+        // Provider::new("ZVV", "ZVV", Some("Zürich public transport"), true),
     ]
 }
 

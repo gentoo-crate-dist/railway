@@ -680,7 +680,7 @@ dependencies = [
 [[package]]
 name = "hafas-rs"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/hafas-rs?rev=1cf76df9792e6c9dbbb21d27ed01e924f940972d#1cf76df9792e6c9dbbb21d27ed01e924f940972d"
+source = "git+https://gitlab.com/schmiddi-on-mobile/hafas-rs?rev=cdb2c418e4f487420c66b6e464028585c4beef3a#cdb2c418e4f487420c66b6e464028585c4beef3a"
 dependencies = [
  "async-trait",
  "chrono",
