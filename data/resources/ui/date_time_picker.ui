@@ -9,70 +9,38 @@
     <property name="homogeneous">True</property>
 
     <child>
-      <object class="GtkMenuButton" id="btn_input_date">
-        <accessibility>
-          <property name="label" translatable="yes">Input date</property>
-          <property name="has-popup">true</property>
-          <relation name="labelled-by">date-label</relation>
-          <relation name="described-by">label_date</relation>
-        </accessibility>
-
+      <object class="GtkListBox">
+        <property name="selection-mode">none</property>
         <style>
-          <class name="card"/>
-          <class name="button-card"/>
-          <class name="flat"/>
+          <class name="boxed-list"/>
         </style>
-
-        <property name="valign">center</property>
-        <property name="halign">fill</property>
-        <property name="hexpand">true</property>
-
-        <property name="popover">
-          popover-date
-        </property>
-
         <child>
-          <object class="GtkBox">
-            <property name="halign">fill</property>
-            <property name="hexpand">true</property>
-            <child>
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="spacing">3</property>
-                <property name="hexpand">true</property>
-                <child>
-                  <object class="GtkLabel" id="date-label">
-                    <style>
-                      <class name="caption"/>
-                      <class name="dim-label"/>
-                    </style>
-                    <property name="label" translatable="yes">Date</property>
-                    <property name="halign">start</property>
-                    <property name="margin-top">9</property>
-                    <property name="margin-start">12</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="label_date">
-                    <style>
-                      <class name="body"/>
-                    </style>
-                    <property name="halign">start</property>
-                    <property name="margin-bottom">9</property>
-                    <property name="margin-start">12</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">down-small-symbolic</property>
-                <property name="margin-end">12</property>
-                <property name="valign">center</property>
-                <property name="halign">center</property>
+          <object class="AdwActionRow" id="btn_input_date">
+            <accessibility>
+              <property name="label" translatable="yes">Input date</property>
+              <property name="has-popup">true</property>
+            </accessibility>
 
+            <style>
+              <class name="property"/>
+            </style>
+
+            <property name="title" translatable="yes">Date</property>
+
+            <property name="activatable">True</property>
+            <child type="suffix">
+              <object class="GtkBox">
+                <property name="valign">center</property>
+                <property name="visible" bind-property="sensitive" bind-source="btn_input_date" bind-flags="sync-create"/>
                 <child>
-                  <object class="GtkPopover" id="popover-date">
+                  <object class="GtkImage">
+                    <property name="icon-name">down-small-symbolic</property>
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkPopover" id="popover_date">
                     <signal name="notify::visible" handler="handle_date_popover_open" swapped="true"/>
                     <child>
                       <object class="GtkCalendar" id="pick_cal">
@@ -89,71 +57,39 @@
         </child>
       </object>
     </child>
-
     <child>
-      <object class="GtkMenuButton" id="btn_input_time">
-        <accessibility>
-          <property name="label" translatable="yes">Input time</property>
-          <property name="has-popup">true</property>
-          <relation name="labelled-by">time-label</relation>
-          <relation name="described-by">label_time</relation>
-        </accessibility>
+      <object class="GtkListBox">
+        <property name="selection-mode">none</property>
         <style>
-          <class name="card"/>
-          <class name="button-card"/>
-          <class name="flat"/>
+          <class name="boxed-list"/>
         </style>
-
-        <property name="valign">center</property>
-        <property name="halign">fill</property>
-
-        <property name="popover">
-          popover-time
-        </property>
-
         <child>
-          <object class="GtkBox">
-            <property name="halign">fill</property>
-            <property name="hexpand">true</property>
-            <child>
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="spacing">3</property>
-                <property name="hexpand">true</property>
-                <child>
-                  <object class="GtkLabel" id="time-label">
-                    <style>
-                      <class name="caption"/>
-                      <class name="dim-label"/>
-                    </style>
-                    <property name="label" translatable="yes">Time</property>
-                    <property name="halign">start</property>
-                    <property name="margin-top">9</property>
-                    <property name="margin-start">12</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="label_time">
-                    <style>
-                      <class name="numeric"/>
-                      <class name="body"/>
-                    </style>
-                    <property name="halign">start</property>
-                    <property name="margin-bottom">9</property>
-                    <property name="margin-start">12</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">down-small-symbolic</property>
-                <property name="margin-end">12</property>
-                <property name="valign">center</property>
-                <property name="halign">center</property>
+          <object class="AdwActionRow" id="btn_input_time">
+            <accessibility>
+              <property name="label" translatable="yes">Input time</property>
+              <property name="has-popup">true</property>
+            </accessibility>
 
+            <style>
+              <class name="property"/>
+            </style>
+
+            <property name="title" translatable="yes">Time</property>
+
+            <property name="activatable">True</property>
+            <child type="suffix">
+              <object class="GtkBox">
+                <property name="valign">center</property>
+                <property name="visible" bind-property="sensitive" bind-source="btn_input_time" bind-flags="sync-create"/>
                 <child>
-                  <object class="GtkPopover" id="popover-time">
+                  <object class="GtkImage">
+                    <property name="icon-name">down-small-symbolic</property>
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkPopover" id="popover_time">
                     <signal name="notify::visible" handler="handle_time_popover_open" swapped="true"/>
                     <child>
                       <object class="GtkBox">
@@ -161,6 +97,7 @@
                         <property name="spacing">6</property>
                         <child>
                           <object class="GtkBox">
+                            <property name="halign">center</property>
                             <child>
                               <object class="GtkSpinButton" id="pick_hour">
                                 <style>

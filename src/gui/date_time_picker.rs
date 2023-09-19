@@ -29,13 +29,13 @@ pub mod imp {
     use gdk::glib::Properties;
     use gdk::prelude::*;
     use gtk::glib;
+    use gtk::prelude::PopoverExt;
     use gtk::subclass::prelude::*;
     use gtk::template_callbacks;
-    use gtk::traits::WidgetExt;
-    use gtk::Align;
     use gtk::CompositeTemplate;
     use libadwaita::prelude::EditableExt;
     use libadwaita::prelude::ToggleButtonExt;
+    use libadwaita::prelude::ActionRowExt;
 
     #[derive(CompositeTemplate, Default, Properties)]
     #[template(resource = "/ui/date_time_picker.ui")]
@@ -49,14 +49,14 @@ pub mod imp {
         pick_minute: TemplateChild<gtk::SpinButton>,
 
         #[template_child]
-        btn_input_time: TemplateChild<gtk::MenuButton>,
+        btn_input_time: TemplateChild<libadwaita::ActionRow>,
         #[template_child]
-        btn_input_date: TemplateChild<gtk::MenuButton>,
+        btn_input_date: TemplateChild<libadwaita::ActionRow>,
 
         #[template_child]
-        label_time: TemplateChild<gtk::Label>,
+        popover_time: TemplateChild<gtk::Popover>,
         #[template_child]
-        label_date: TemplateChild<gtk::Label>,
+        popover_date: TemplateChild<gtk::Popover>,
 
         #[property(get, set)]
         now: Cell<bool>,
@@ -88,25 +88,25 @@ pub mod imp {
         fn update_date_label(&self) {
             let date = self.get().date_naive();
             if date == Local::now().date_naive() {
-                self.label_date.set_label(&gettextrs::gettext("Today"));
+                self.btn_input_date.set_subtitle(&gettextrs::gettext("Today"));
             } else {
                 // How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
                 // For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
                 let format = gettextrs::gettext("%a %b %d");
-                self.label_date.set_label(&date.format(&format).to_string())
+                self.btn_input_date.set_subtitle(&date.format(&format).to_string())
             }
         }
 
         fn update_time_label(&self) {
             if self.obj().now() {
-                self.label_time.set_label(&gettextrs::gettext("Now"));
+                self.btn_input_time.set_subtitle(&gettextrs::gettext("Now"));
             } else {
                 let hour = self.pick_hour.value().floor() as u32;
                 let minute = self.pick_minute.value().floor() as u32;
 
                 // TODO: Internationalization
-                self.label_time
-                    .set_label(&format!("{:02}:{:02}", hour, minute))
+                self.btn_input_time
+                    .set_subtitle(&format!("{:02}:{:02}", hour, minute))
             }
         }
 
@@ -222,23 +222,15 @@ pub mod imp {
             // Now will be unset has `handle_*` will be set to new values.
             obj.set_now(true);
 
-            // Ever menu button looks like:
-            // MenuButton -> ToggleButton -> Box
-            // For some reason, the Box is set to `halign=center`, which breaks the halign of the child widget.
-            if let Some(b) = self
-                .btn_input_time
-                .first_child()
-                .and_then(|w| w.first_child())
-            {
-                b.set_halign(Align::Fill)
-            }
-            if let Some(b) = self
-                .btn_input_date
-                .first_child()
-                .and_then(|w| w.first_child())
-            {
-                b.set_halign(Align::Fill)
-            }
+            let popover_date = self.popover_date.get();
+            self.btn_input_date.connect_activated(clone!(@weak popover_date => move |_| {
+                popover_date.popup();
+            }));
+
+            let popover_time = self.popover_time.get();
+            self.btn_input_time.connect_activated(clone!(@weak popover_time => move |_| {
+                popover_time.popup();
+            }));
         }
     }
 
