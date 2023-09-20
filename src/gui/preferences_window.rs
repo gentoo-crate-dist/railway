@@ -46,8 +46,12 @@ pub mod imp {
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("deletion-time", &self.spin_deletion_time.get(), "value")
+                .bind("delete-old", &self.spin_deletion_time.get(), "sensitive")
                 .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("deletion-time", &self.spin_deletion_time.get(), "value")
+                .flags(SettingsBindFlags::NO_SENSITIVITY)
                 .build();
         }
     }

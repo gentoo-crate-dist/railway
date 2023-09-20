@@ -40,11 +40,25 @@
   font-size: small;
 }
 
+.overlay-spinner {
+  border-radius: 50%;
+  padding: 6px;
+}
+
 
 /* Fixes buttons inside cards having a bigger border radius compared to the card, which leads to the highlight spanning outside of the box. */
 .button-card > button {
   border-radius: 12px;
   padding: 0px;
+}
+
+/* Recolours date and time picker buttons to not reflect checked state */
+.button-card > button {
+    background-color: @view_bg_color;
+}
+
+.button-card > button:hover {
+    background-color: mix(@view_bg_color, @view_fg_color, 0.04);
 }
 
 /* Fixes padding of toggle-button inside menu button at the provider popover being too big and resizing the header bar */
@@ -67,8 +81,13 @@
 
 /* Don't have a pressed-in look for bookmark icons as they already have a "filled" icon */
 .bookmark-button:checked {
-  background-color: @view_fg;
+  background-color: transparent;
 }
+
+.bookmark-button:checked:hover {
+  background-color: alpha(@view_fg_color, 0.07);
+}
+
 /* Currently disabled. Styling for the indicator icons */
 /*
 .load-unknown {

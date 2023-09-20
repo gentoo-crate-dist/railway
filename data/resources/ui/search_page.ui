@@ -6,7 +6,6 @@
   <template class="DBSearchPage" parent="GtkBox">
     <property name="orientation">horizontal</property>
     <property name="hexpand">True</property>
-    <property name="spacing">8</property>
 
     <child>
       <object class="AdwToastOverlay" id="toast_errors">
@@ -14,10 +13,11 @@
           <object class="GtkScrolledWindow">
             <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
 
-            <child>
-              <object class="GtkViewport">
-              <property name="overflow">visible</property>
-                <child>
+            <property name="child">
+              <object class="AdwClamp">
+                <property name="tightening-threshold">376</property> <!-- 376 = 400 - 2 * 12 = maximum with as sidebar - margin -->
+                <property name="maximum-size">516</property>
+                <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
                     <property name="hexpand">True</property>
@@ -74,6 +74,7 @@
 
                         <property name="label" translatable="yes">Search</property>
                         <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
                         <property name="height-request">48</property>
                         <binding name="sensitive">
                           <closure function="and" type="gboolean">
@@ -81,13 +82,6 @@
                             <lookup name="set">in_to</lookup>
                           </closure>
                         </binding>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparator">
-                        <property name="orientation">horizontal</property>
-                        <property name="margin-top">12</property>
-                        <property name="margin-bottom">12</property>
                       </object>
                     </child>
                     <child>
@@ -113,9 +107,9 @@
                       </object>
                     </child>
                   </object>
-                </child>
+                </property>
               </object>
-            </child>
+            </property>
           </object>
         </child>
       </object>
