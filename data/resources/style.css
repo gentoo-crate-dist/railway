@@ -1,4 +1,4 @@
-.main-label-on-time {
+.journeys-page .main-label-on-time {
   font-size: large;
 }
 
@@ -12,7 +12,7 @@
   font-size: small;
 }
 
-.alt-label-late {
+.journeys-page .alt-label-late {
   font-size: large;
 }
 
@@ -44,7 +44,6 @@
   border-radius: 50%;
   padding: 6px;
 }
-
 
 /* Fixes buttons inside cards having a bigger border radius compared to the card, which leads to the highlight spanning outside of the box. */
 .button-card > button {
