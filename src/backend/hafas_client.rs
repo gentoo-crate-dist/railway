@@ -17,7 +17,8 @@ fn providers() -> Vec<Provider> {
     vec![
         // TODO: BVG, KVB, SNCB, PKP, SNCF, TPG
         Provider::new("AVV", "AVV", Some("Aachener Verkehrsverbund"), true),
-        Provider::new("BART", "BART", Some("Bay Area Rapid Transit"), true),
+        // Seems to use a custom certificate now.
+        // Provider::new("BART", "BART", Some("Bay Area Rapid Transit"), true),
         Provider::new("BLS", "BLS", Some("BLS AG"), true),
         Provider::new(
             "CFL",
@@ -27,6 +28,7 @@ fn providers() -> Vec<Provider> {
         ),
         Provider::new("CMTA", "CapMetro", Some("Austin, Texas"), true),
         Provider::new("DART", "DART", Some("Des Moines Area Rapid Transit"), true),
+        // Always shows "no provider"
         // Provider::new(
         //     "DB-Busradar-Nrw",
         //     "DB Busradar NRW",
@@ -35,7 +37,6 @@ fn providers() -> Vec<Provider> {
         //     true,
         // ),
         Provider::new("DB", "DB", Some("Deutsche Bahn"), true),
-        Provider::new("HVV", "HVV", Some("Hamburg public transport"), true),
         Provider::new("INSA", "NASA", Some("Nahverkehr Sachsen-Anhalt"), true),
         Provider::new(
             "VGI",

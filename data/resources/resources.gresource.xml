@@ -46,14 +46,14 @@
   </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/providers/">
     <file alias="avv.svg">../icons/providers/avv.svg</file>
-    <file alias="bart.svg">../icons/providers/bart.svg</file>
+    <!-- <file alias="bart.svg">../icons/providers/bart.svg</file> -->
     <file alias="bls.svg">../icons/providers/bls.svg</file>
     <file alias="cfl.svg">../icons/providers/cfl.svg</file>
     <file alias="cmta.svg">../icons/providers/cmta.svg</file>
     <file alias="dart.svg">../icons/providers/dart.svg</file>
     <file alias="db.svg">../icons/providers/db.svg</file>
     <!-- <file alias="db-busradar-nrw.svg">../icons/providers/db-busradar-nrw.svg</file> -->
-    <file alias="hvv.svg">../icons/providers/hvv.svg</file>
+    <!-- <file alias="hvv.svg">../icons/providers/hvv.svg</file> -->
     <file alias="insa.svg">../icons/providers/insa.svg</file>
     <file alias="vgi.svg">../icons/providers/vgi.svg</file>
     <file alias="irish-rail.svg">../icons/providers/irish-rail.svg</file>
