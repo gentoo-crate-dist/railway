@@ -4,27 +4,21 @@
   <requires lib="libadwaita" version="1.0"/>
 
   <template class="DBTransition" parent="GtkBox">
-    <style>
-      <class name="transition-item"/>
-    </style>
     <property name="orientation">horizontal</property>
-    <property name="hexpand">TRUE</property>
-    <property name="spacing">6</property>
     <child>
       <object class="GtkImage">
-        <property name="icon-name">change-symbolic</property>
+        <binding name="icon-name">
+          <lookup name="icon" type="DBTransition"/>
+        </binding>
         <property name="margin-start">66</property>
+        <property name="margin-end">12</property>
       </object>
     </child>
     <child>
       <object class="GtkLabel">
-        <property name="label" translatable="yes">Transition:</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkLabel" id="label_duration">
+        <property name="wrap">True</property>
         <binding name="label">
-          <lookup name="duration" type="DBTransition"/>
+          <lookup name="label" type="DBTransition"/>
         </binding>
       </object>
     </child>
