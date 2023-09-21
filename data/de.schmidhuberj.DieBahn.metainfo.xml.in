@@ -43,29 +43,13 @@
       </li>
     </ul>
   </description>
-  <description xml:lang="de">
-    <p>
-      Eine GTK4-Application für die Reiseauskunft der Bahnen
-    </p>
-    <ul>
-      <li>
-        Suche eine Verbindung
-      </li>
-      <li>
-        Liste alle verfügbaren Verbindungen auf
-      </li>
-      <li>
-        Betrachte die Details eines Reiseplans, beispielsweise die Abfahrt, Ankunft, Verspätungen, Gleise
-      </li>
-      <li>
-        Verbindung speichern
-      </li>
-      <li>
-        Geeignet für kleine Bildschirme
-      </li>
-    </ul>
-  </description>
+
   <releases>
+    <release version="v2.0.0" date="2023-09-21">
+      <description>
+        <p>Complete UI overhaul.</p>
+      </description>
+    </release>
     <release version="v1.5.0" date="2023-07-16">
       <description>
         <p>New icon.</p>
@@ -145,20 +129,8 @@
 
   <screenshots>
     <screenshot type="default">
-      <caption>Search</caption>
+      <caption>Application Overview</caption>
       <image>https://gitlab.com/schmiddi-on-mobile/railway/blob/master/data/screenshots/overview.png?raw=true</image>
-    </screenshot>
-    <screenshot type="default">
-      <caption>Search</caption>
-      <image>https://gitlab.com/schmiddi-on-mobile/railway/blob/master/data/screenshots/search.png?raw=true</image>
-    </screenshot>
-    <screenshot type="default">
-      <caption>Journeys</caption>
-      <image>https://gitlab.com/schmiddi-on-mobile/railway/blob/master/data/screenshots/journeys.png?raw=true</image>
-    </screenshot>
-    <screenshot type="default">
-      <caption>Journey</caption>
-      <image>https://gitlab.com/schmiddi-on-mobile/railway/blob/master/data/screenshots/journey.png?raw=true</image>
     </screenshot>
   </screenshots>
 
