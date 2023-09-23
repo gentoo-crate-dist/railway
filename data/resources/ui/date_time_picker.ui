@@ -172,6 +172,8 @@
                                 <property name="numeric">True</property>
                                 <property name="wrap">true</property>
                                 <property name="adjustment">adj_hour</property>
+
+                                <signal name="output" handler="handle_spinner_output_two_digit" swapped="true"/>
                               </object>
                             </child>
 
@@ -192,6 +194,8 @@
                                 <property name="numeric">True</property>
                                 <property name="wrap">true</property>
                                 <property name="adjustment">adj_minute</property>
+
+                                <signal name="output" handler="handle_spinner_output_two_digit" swapped="true"/>
                               </object>
                             </child>
                           </object>

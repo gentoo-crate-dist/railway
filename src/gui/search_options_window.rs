@@ -37,9 +37,9 @@ pub mod imp {
         dropdown_bahncard: TemplateChild<libadwaita::ComboRow>,
 
         #[template_child]
-        radio_first_class: TemplateChild<gtk::CheckButton>,
+        toggle_first_class: TemplateChild<gtk::ToggleButton>,
         #[template_child]
-        radio_second_class: TemplateChild<gtk::CheckButton>,
+        toggle_second_class: TemplateChild<gtk::ToggleButton>,
 
         #[template_child]
         switch_bike_accessible: TemplateChild<libadwaita::SwitchRow>,
@@ -76,9 +76,9 @@ pub mod imp {
     impl SearchOptionsWindow {
         fn init_settings(&self) {
             if self.settings.boolean("first-class") {
-                self.radio_first_class.set_active(true);
+                self.toggle_first_class.set_active(true);
             } else {
-                self.radio_second_class.set_active(true);
+                self.toggle_second_class.set_active(true);
             }
 
             let model_bahncard = gdk::gio::ListStore::new::<DiscountCard>();
@@ -219,11 +219,17 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_first_class(&self, radio: gtk::CheckButton) {
-            let active = radio.property::<bool>("active");
+        fn handle_first_class(&self, toggle: gtk::ToggleButton) {
+            let active = toggle.is_active();
             self.settings
                 .set_boolean("first-class", active)
                 .expect("Failed to set first-class value");
+        }
+
+        #[template_callback]
+        fn handle_transfer_time_output(&self, s: libadwaita::SpinRow) -> bool {
+            s.set_text(&gettextrs::gettext!("{} min", s.value()));
+            true
         }
     }
 
@@ -240,8 +246,8 @@ pub mod imp {
                 switch_bike_accessible: TemplateChild::default(),
                 spin_transfer_time: TemplateChild::default(),
                 switch_direct_only: TemplateChild::default(),
-                radio_first_class: TemplateChild::default(),
-                radio_second_class: TemplateChild::default(),
+                toggle_first_class: TemplateChild::default(),
+                toggle_second_class: TemplateChild::default(),
                 switch_national_express: TemplateChild::default(),
                 switch_national: TemplateChild::default(),
                 switch_regional_express: TemplateChild::default(),

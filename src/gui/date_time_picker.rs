@@ -104,23 +104,10 @@ pub mod imp {
                 let hour = self.pick_hour.value().floor() as u32;
                 let minute = self.pick_minute.value().floor() as u32;
 
-                self.pick_hour.set_text(&format!("{:02}", hour));
-                self.pick_minute.set_text(&format!("{:02}", minute));
-
                 // TODO: Internationalization
                 self.label_time
                     .set_label(&format!("{:02}:{:02}", hour, minute))
             }
-        }
-
-        fn connect_expander_date_subtitle(&self) {
-            let obj = self.obj();
-            self.pick_cal.connect_day_selected(clone!(
-                @weak obj
-                => move |_| {
-                    obj.set_now(false);
-                    obj.imp().update_date_label();
-            }));
         }
 
         fn connect_btn_input_time_label(&self) {
@@ -138,6 +125,22 @@ pub mod imp {
                     obj.set_now(false);
                     obj.imp().update_time_label();
             }));
+        }
+
+        fn connect_expander_date_subtitle(&self) {
+            let obj = self.obj();
+            self.pick_cal.connect_day_selected(clone!(
+                @weak obj
+                => move |_| {
+                    obj.set_now(false);
+                    obj.imp().update_date_label();
+            }));
+        }
+
+        #[template_callback]
+        fn handle_spinner_output_two_digit(&self, s: gtk::SpinButton) -> bool {
+            s.set_text(&format!("{:02}", s.value()));
+            true
         }
 
         #[template_callback]
