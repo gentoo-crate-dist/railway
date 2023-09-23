@@ -32,10 +32,9 @@ Railway lets you look up travel information for many different railways, all wit
 - Show more information like prices
 - Many different search profiles, e.g
     - DB
-    - SNCF
     - ÖBB
     - BART
-    - ... (36 more). For a full list of supported profiles, see [hafas-rs](https://gitlab.com/schmiddi-on-mobile/hafas-rs#profiles) which is used to query the application data.
+    - ... (many more). For a full list of supported profiles, see [hafas-rs](https://gitlab.com/schmiddi-on-mobile/hafas-rs#profiles) which is used to query the application data.
 
 ## Donate
 
