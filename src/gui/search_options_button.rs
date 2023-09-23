@@ -21,8 +21,8 @@ pub mod imp {
     use once_cell::sync::Lazy;
 
     use crate::backend::Remark;
-    use crate::gui::search_options_window::SearchOptionsWindow;
     use crate::config;
+    use crate::gui::search_options_window::SearchOptionsWindow;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/search_options_button.ui")]
@@ -166,7 +166,6 @@ pub mod imp {
                     let include_taxi = self.settings.boolean("include-taxi");
 
                     let regional = [
-                        include_regional_express,
                         include_regional,
                         include_suburban,
                         include_bus,
@@ -175,7 +174,11 @@ pub mod imp {
                         include_tram,
                         include_taxi,
                     ];
-                    let ic = [include_national_express, include_national];
+                    let ic = [
+                        include_national_express,
+                        include_national,
+                        include_regional_express,
+                    ];
 
                     let types_string = if regional.iter().all(|b| *b) && ic.iter().all(|b| *b) {
                         None

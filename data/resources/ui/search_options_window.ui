@@ -4,6 +4,7 @@
   <requires lib="libadwaita" version="1.0"/>
 
   <template class="DBSearchOptionsWindow" parent="AdwPreferencesWindow">
+    <property name="search-enabled">false</property>
     <child>
       <object class="AdwPreferencesPage">
         <property name="title" translatable="yes">General</property>
@@ -12,7 +13,7 @@
           <object class="AdwPreferencesGroup">
             <child>
               <object class="AdwComboRow" id="dropdown_bahncard">
-                <property name="title" translatable="yes">BahnCard</property>
+                <property name="title" translatable="yes">Discount Card</property>
                 <property name="expression">
                   <lookup name="name" type="DBDiscountCard"/>
                 </property>
@@ -23,20 +24,21 @@
                 <property name="title" translatable="yes">Class</property>
                 <child>
                   <object class="GtkBox">
+                    <style>
+                      <class name="linked"/>
+                    </style>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                     <child>
-                      <object class="GtkCheckButton" id="radio_first_class">
+                      <object class="GtkToggleButton" id="toggle_first_class">
+                        <property name="label" translatable="yes">First Class</property>
                         <signal name="toggled" handler="handle_first_class" swapped="true"/>
-                        <property name="label" translatable="yes">First class</property>
-                        <property name="valign">center</property>
-                        <property name="halign">center</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="radio_second_class">
-                        <property name="label" translatable="yes">Second class</property>
-                        <property name="group">radio_first_class</property>
-                        <property name="valign">center</property>
-                        <property name="halign">center</property>
+                      <object class="GtkToggleButton" id="toggle_second_class">
+                        <property name="label" translatable="yes">Second Class</property>
+                        <property name="group">toggle_first_class</property>
                       </object>
                     </child>
                   </object>
@@ -45,18 +47,19 @@
             </child>
             <child>
               <object class="AdwSwitchRow" id="switch_bike_accessible">
-                <property name="title" translatable="yes">Bike accessible</property>
+                <property name="title" translatable="yes">Bike Accessible</property>
               </object>
             </child>
             <child>
               <object class="AdwSpinRow" id="spin_transfer_time">
-                <property name="title" translatable="yes">Minimum transfer time</property>
+                <signal name="output" handler="handle_transfer_time_output" swapped="true"/>
+                <property name="title" translatable="yes">Minimum Transfer Time</property>
                 <property name="adjustment">adj_transfer_time</property>
               </object>
             </child>
             <child>
               <object class="AdwSwitchRow" id="switch_direct_only">
-                <property name="title" translatable="yes">Direct connections only</property>
+                <property name="title" translatable="yes">Direct Connections Only</property>
               </object>
             </child>
           </object>
@@ -65,7 +68,7 @@
     </child>
     <child>
       <object class="AdwPreferencesPage">
-        <property name="title" translatable="yes">Modes of transport</property>
+        <property name="title" translatable="yes">Modes of Transport</property>
         <property name="icon-name">edit-find-replace-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">

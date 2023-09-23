@@ -54,6 +54,17 @@ pub mod imp {
                 .flags(SettingsBindFlags::NO_SENSITIVITY)
                 .build();
         }
+
+        #[template_callback]
+        fn handle_deletion_time_output(&self, s: libadwaita::SpinRow) -> bool {
+            s.set_text(&gettextrs::ngettext!(
+                "{} hour",
+                "{} hours",
+                s.value() as u32,
+                s.value()
+            ));
+            true
+        }
     }
 
     #[glib::object_subclass]
