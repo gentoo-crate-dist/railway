@@ -23,9 +23,6 @@
             stdenv.mkDerivation rec {
               cargoDeps = rustPlatform.importCargoLock {
                 lockFile = ./Cargo.lock;
-                outputHashes = {
-                  "hafas-rs-0.1.0" = "ihRwxoubkopa+SN0bXUs0ho7DuxCj2bnhuiMAQw5oCI=";
-                };
               };
               src = ./.;
               buildInputs = [ pkgsgnome.libadwaita pkgsgnome.gtk4 ];

@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- UI improvements on the preferences.
+
+### Fixed
+
+- Spinners in the time dropdown not being two-digit sometimes.
+
+### Packaging
+
+- `hafas-rs` is now taken from `crates.io` instead of git.
+
 ## [2.0.0] - 2023-09-21
 
 ### Changed

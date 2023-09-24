@@ -680,7 +680,8 @@ dependencies = [
 [[package]]
 name = "hafas-rs"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/hafas-rs?rev=cdb2c418e4f487420c66b6e464028585c4beef3a#cdb2c418e4f487420c66b6e464028585c4beef3a"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "24af9a6a93f50c80f1ee4ddb6352f485f5cf85e0b79bab02c13b7d4d4a28fa22"
 dependencies = [
  "async-trait",
  "chrono",
