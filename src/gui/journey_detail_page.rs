@@ -170,28 +170,25 @@ pub mod imp {
                             None
                         };
 
-                        let walk_to = if !is_start && !is_end {
-                            let to_place = to.origin.clone();
-                            let from_place = legs[i_start].origin.clone();
-
-                            match (from_place, to_place.clone()) {
-                                (Stop(from_stop), Stop(to_stop)) => {
-                                    if from_stop.id != to_stop.id {
-                                        Some(Place::new(to_place))
-                                    } else {
-                                        None
-                                    }
-                                },
-                                (_, _) => None,
-                            }
-                        } else if walking_time.is_some() {
-                            Some(Place::new(to.origin.clone()))
-                        } else {
-                            None
-                        };
-
                         if walking_time.is_some() || !is_start {
-                            self.box_legs.append(&Transition::new(&walking_time, &walk_to, &waiting_time, is_start || is_end));
+                            let final_station = if is_end {
+                                Some(Place::new(to.destination.clone()))
+                            } else {
+                                None
+                            };
+                            let has_walk = walking_time.is_some() || (!is_end && {
+                                let to_place = to.origin.clone();
+                                let from_place = legs[i_start].origin.clone();
+
+                                match (from_place, to_place.clone()) {
+                                    (Stop(from_stop), Stop(to_stop)) => {
+                                        from_stop.id != to_stop.id
+                                    },
+                                    (_, _) => false,
+                                }
+                            });
+
+                            self.box_legs.append(&Transition::new(&walking_time, &waiting_time, has_walk, is_start || is_end, &final_station));
                         }
 
                         if !is_end {
