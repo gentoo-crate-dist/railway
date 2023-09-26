@@ -1,0 +1,29 @@
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <name xml:lang="en">Railway</name>
+  <shortdesc xml:lang="en">Travel with all your train information in one place</shortdesc>
+  <homepage rdf:resource="https://gitlab.com/schmiddi-on-mobile/railway" />
+  <bug-database rdf:resource="https://gitlab.com/schmiddi-on-mobile/railway/-/issues"/>
+  <programming-language>Rust</programming-language>
+  <platform>GTK 4</platform>
+  <platform>Libadwaita</platform>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Julian Schmidhuber</foaf:name>
+      <foaf:mbox rdf:resource="mailto:gitlab@schmiddi.anonaddy.com" />
+    </foaf:Person>
+  </maintainer>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Markus Göllnitz</foaf:name>
+      <foaf:mbox rdf:resource="mailto:camelcasenick@bewares.it" />
+      <gnome:userid>mgoellnitz</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+</Project>

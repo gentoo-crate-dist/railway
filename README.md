@@ -36,6 +36,10 @@ Railway lets you look up travel information for many different railways, all wit
     - BART
     - ... (many more). For a full list of supported profiles, see [hafas-rs](https://gitlab.com/schmiddi-on-mobile/hafas-rs#profiles) which is used to query the application data.
 
+## Code of Conduct
+
+This project follows [GNOME's Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct).
+
 ## Donate
 
 If you like this project and have some spare Monero left, consider donating to my Monero address:
