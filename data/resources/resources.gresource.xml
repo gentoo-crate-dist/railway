@@ -19,6 +19,8 @@
     <file preprocess="xml-stripblanks">ui/search_options_button.ui</file>
     <file preprocess="xml-stripblanks">ui/indicator_icons.ui</file>
 
+    <file preprocess="xml-stripblanks">ui/shortcuts.ui</file>
+
     <file preprocess="xml-stripblanks">ui/alt_label.ui</file>
     <file preprocess="xml-stripblanks">ui/date_time_picker.ui</file>
     <file preprocess="xml-stripblanks">ui/station_entry.ui</file>

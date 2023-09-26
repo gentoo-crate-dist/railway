@@ -1,4 +1,5 @@
 use gtk::glib::Object;
+use gtk::prelude::GtkApplicationExt;
 
 gtk::glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -9,6 +10,15 @@ gtk::glib::wrapper! {
 
 impl Window {
     pub fn new(app: &libadwaita::Application) -> Self {
+        app.set_accels_for_action("win.settings", &["<Control>comma"]);
+        app.set_accels_for_action("win.about", &["F1"]);
+        app.set_accels_for_action("win.show-help-overlay", &["<Control>question"]);
+        app.set_accels_for_action("window.close", &["<Control>q"]);
+
+        app.set_accels_for_action("journey-list.bookmark", &["<Control>s"]);
+        app.set_accels_for_action("journey-details.bookmark", &["<Control>d"]);
+        app.set_accels_for_action("journey-details.reload", &["<Control>r"]);
+
         Object::builder::<Self>()
             .property("application", app)
             .build()
@@ -29,7 +39,9 @@ pub mod imp {
     use gtk::glib::clone;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
+    use gtk::Builder;
     use gtk::CompositeTemplate;
+    use gtk::ShortcutsWindow;
     use gtk::ToggleButton;
     use libadwaita::subclass::prelude::AdwApplicationWindowImpl;
     use libadwaita::subclass::prelude::AdwWindowImpl;
@@ -72,6 +84,10 @@ pub mod imp {
 
         #[template_child]
         btn_reload_detail: TemplateChild<gtk::Button>,
+        #[template_child]
+        btn_bookmark_search: TemplateChild<gtk::ToggleButton>,
+        #[template_child]
+        btn_bookmark_journey: TemplateChild<gtk::ToggleButton>,
 
         #[template_child]
         store_journeys: TemplateChild<JourneysStore>,
@@ -127,10 +143,45 @@ pub mod imp {
                 about_dialog.present();
             }));
 
+            let action_show_help_overlay = SimpleAction::new("show-help-overlay", None);
+            action_show_help_overlay.connect_activate(|_, _| {
+                let builder = Builder::from_resource("/ui/shortcuts.ui");
+                let shortcuts_window: ShortcutsWindow = builder
+                    .object("help_overlay")
+                    .expect("shortcuts.ui to have at least one object help_overlay");
+                shortcuts_window.present();
+            });
+
             let actions = SimpleActionGroup::new();
             obj.insert_action_group("win", Some(&actions));
             actions.add_action(&action_settings);
             actions.add_action(&action_about);
+            actions.add_action(&action_show_help_overlay);
+
+            let action_journey_list_bookmark = SimpleAction::new("bookmark", None);
+            action_journey_list_bookmark.connect_activate(clone!(@weak self as s => move |_, _| {
+                s.handle_searches_store();
+            }));
+
+            let actions_journey_list = SimpleActionGroup::new();
+            obj.insert_action_group("journey-list", Some(&actions_journey_list));
+            actions_journey_list.add_action(&action_journey_list_bookmark);
+
+            let action_journey_details_bookmark = SimpleAction::new("bookmark", None);
+            action_journey_details_bookmark.connect_activate(
+                clone!(@weak self as s => move |_, _| {
+                    s.handle_journey_store();
+                }),
+            );
+            let action_journey_details_reload = SimpleAction::new("reload", None);
+            action_journey_details_reload.connect_activate(clone!(@weak self as s => move |_, _| {
+                s.handle_journey_reload();
+            }));
+
+            let actions_journey_details = SimpleActionGroup::new();
+            obj.insert_action_group("journey-details", Some(&actions_journey_details));
+            actions_journey_details.add_action(&action_journey_details_bookmark);
+            actions_journey_details.add_action(&action_journey_details_reload);
         }
 
         #[template_callback]
@@ -150,7 +201,7 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_journey_reload(&self, _: gtk::Button) {
+        fn handle_journey_reload(&self) {
             self.journey_detail_page.reload();
         }
 
@@ -162,12 +213,14 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_journey_store(&self, _: gtk::Button) {
+        fn handle_journey_store(&self) {
             if let Some(journey) = self
                 .journey_detail_page
                 .property::<Option<Journey>>("journey")
             {
-                self.store_journeys.store(journey)
+                self.store_journeys.store(journey.clone());
+                self.btn_bookmark_journey
+                    .set_active(self.store_journeys.contains(&journey));
             }
         }
 
@@ -203,7 +256,7 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_searches_store(&self, _: gtk::Button) {
+        fn handle_searches_store(&self) {
             if let Some(journeys_result) = self
                 .journeys_page
                 .property::<Option<JourneysResult>>("journeys-result")
@@ -216,7 +269,10 @@ pub mod imp {
                     .destination()
                     .and_then(|p| p.name())
                     .unwrap_or_default();
-                self.store_searches.store(origin, destination);
+                self.store_searches
+                    .store(origin.clone(), destination.clone());
+                self.btn_bookmark_search
+                    .set_active(self.store_searches.contains(origin, destination));
             }
         }
 
@@ -268,8 +324,9 @@ pub mod imp {
 
     impl ObjectImpl for Window {
         fn constructed(&self) {
+            let obj = self.obj();
             self.parent_constructed();
-            self.setup_actions(&self.obj());
+            self.setup_actions(&obj);
             self.setup();
         }
 

@@ -179,7 +179,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkToggleButton" id="btn_bookmark">
+                              <object class="GtkToggleButton" id="btn_bookmark_journey">
                                 <style>
                                   <class name="bookmark-button"/>
                                 </style>
@@ -234,6 +234,10 @@
       <item>
         <attribute name="label" translatable="yes">Preferences</attribute>
         <attribute name="action">win.settings</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">About Railway</attribute>
