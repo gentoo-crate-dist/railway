@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Spinners in the time dropdown not being two-digit sometimes.
+- Duration of over one day being displayed incorrectly.
 
 ### Packaging
 
