@@ -150,11 +150,9 @@ pub mod imp {
 
             let time = self.get();
 
-            self.pick_hour.set_text(&format!("{:02}", time.hour()));
             self.pick_hour.set_value(time.hour() as f64);
 
-            self.pick_minute.set_text(&format!("{:02}", time.minute()));
-            self.pick_minute.set_value(time.minute() as f64);
+            self.pick_minute.set_value((time.minute() / 5 * 5) as f64);
 
             // Reset the old `now` as it will be changed by `set_value`.
             obj.set_now(was_now);
