@@ -4,6 +4,8 @@ use gdk::glib::Object;
 use gdk::prelude::ObjectExt;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
+use crate::gui::utility::Utility;
+
 gtk::glib::wrapper! {
     pub struct Journey(ObjectSubclass<imp::Journey>);
 }
@@ -30,6 +32,24 @@ impl Journey {
 
     pub fn is_cancelled(&self) -> bool {
         self.property("is-cancelled")
+    }
+
+    pub fn day_timestamp(&self) -> u32 {
+        self.property::<super::Leg>("first-leg")
+            .leg()
+            .departure
+            .map(|d| d.timestamp() / (60 * 60 * 24))
+            .unwrap_or_default()
+            .try_into()
+            .unwrap_or_default()
+    }
+
+    pub fn departure_day(&self) -> String {
+        self.property::<super::Leg>("first-leg")
+            .leg()
+            .departure
+            .map(|d| Utility::format_date_human(d.date_naive()))
+            .unwrap_or_default()
     }
 }
 
