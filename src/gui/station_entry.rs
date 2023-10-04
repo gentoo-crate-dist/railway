@@ -175,6 +175,21 @@ pub mod imp {
             );
         }
 
+        #[template_callback]
+        fn handle_select_first(&self) {
+            log::trace!("Select first");
+            let obj = self.obj();
+            let place = self
+                .completions
+                .borrow()
+                .item(0)
+                .and_dynamic_cast::<Place>();
+            if let Ok(place) = place {
+                obj.set_place(Some(&place));
+                self.popover.popdown();
+            }
+        }
+
         fn setup_model(&self, obj: &super::StationEntry) {
             let model = &self.completions.borrow();
             let model: &gio::ListModel = model

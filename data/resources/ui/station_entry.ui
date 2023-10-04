@@ -8,6 +8,8 @@
       <class name="error"/>
     </style>
 
+    <signal name="entry-activated" handler="handle_select_first" swapped="true"/>
+
     <child>
       <object class="GtkButton">
         <style>
