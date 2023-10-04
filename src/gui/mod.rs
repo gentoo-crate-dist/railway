@@ -19,6 +19,7 @@ mod search_store_item;
 mod station_entry;
 mod stopover_item;
 mod stores;
+mod time_divider;
 mod transition;
 pub mod utility;
 pub mod window;

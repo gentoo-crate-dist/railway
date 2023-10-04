@@ -68,7 +68,6 @@ pub mod imp {
     use std::cell::Cell;
     use std::cell::RefCell;
 
-    use gdk::gio::ListStore;
     use gdk::gio::Settings;
     use gdk::glib::clone;
     use gdk::glib::subclass::Signal;
@@ -99,6 +98,7 @@ pub mod imp {
     use crate::config;
     use crate::gui::error::error_to_toast;
     use crate::gui::journey_list_item::JourneyListItem;
+    use crate::gui::time_divider::TimeDivider;
     use crate::gui::utility::Utility;
 
     #[derive(CompositeTemplate)]
@@ -113,8 +113,6 @@ pub mod imp {
         toast_errors: TemplateChild<ToastOverlay>,
 
         destination_alignment_group: gtk::SizeGroup,
-
-        model: RefCell<ListStore>,
 
         journeys_result: RefCell<Option<JourneysResult>>,
 
@@ -133,7 +131,6 @@ pub mod imp {
                 list_journeys: Default::default(),
                 toast_errors: Default::default(),
                 destination_alignment_group: gtk::SizeGroup::new(gtk::SizeGroupMode::Horizontal),
-                model: RefCell::new(gtk::gio::ListStore::new::<Journey>()),
                 journeys_result: Default::default(),
                 settings: Settings::new(config::BASE_ID),
                 client: Default::default(),
@@ -146,6 +143,11 @@ pub mod imp {
 
     #[gtk::template_callbacks]
     impl JourneysPage {
+        #[template_callback(function)]
+        fn no_selection(result: Option<JourneysResult>) -> gtk::SelectionModel {
+            gtk::NoSelection::new(result).into()
+        }
+
         /// Every time when the page is not yet filled with the journeys, load more.
         fn connect_initial_loading(&self) {
             let obj = self.obj();
@@ -189,12 +191,11 @@ pub mod imp {
                        @strong obj,
                        @strong self.settings as settings,
                        @strong self.toast_errors as toast_errors => async move {
-                    let journeys_result_obj = obj.property::<JourneysResult>("journeys-result");
-                    let journeys_result = journeys_result_obj.journeys_response();
+                    let journeys_result = obj.property::<JourneysResult>("journeys-result");
 
                     let result_journeys_result = obj.property::<HafasClient>("client")
-                        .journeys(journeys_result_obj.source().expect("Journey to have a source"), journeys_result_obj.destination().expect("Journey to have a destination"), JourneysOptions {
-                            earlier_than: journeys_result.earlier_ref.clone(),
+                        .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), JourneysOptions {
+                            earlier_than: journeys_result.earlier_ref(),
                             language: Some(gettextrs::gettext("language")),
                             stopovers: Some(true),
                             loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
@@ -223,8 +224,7 @@ pub mod imp {
                         })
                         .await;
                     if let Ok(result_journeys_result) = result_journeys_result {
-                        result_journeys_result.merge_append(&journeys_result_obj);
-                        obj.set_property("journeys-result", result_journeys_result);
+                        journeys_result.merge_prepend(&result_journeys_result)
                     } else {
                         error_to_toast(&toast_errors, result_journeys_result.expect_err("Error to be present"));
                     }
@@ -249,12 +249,11 @@ pub mod imp {
                        @strong obj,
                        @strong self.settings as settings,
                        @strong self.toast_errors as toast_errors => async move {
-                    let journeys_result_obj = obj.property::<JourneysResult>("journeys-result");
-                    let journeys_result = journeys_result_obj.journeys_response();
+                    let journeys_result = obj.property::<JourneysResult>("journeys-result");
 
                     let result_journeys_result = obj.property::<HafasClient>("client")
-                        .journeys(journeys_result_obj.source().expect("Journey to have a source"), journeys_result_obj.destination().expect("Journey to have a destination"), JourneysOptions {
-                            later_than: journeys_result.later_ref.clone(),
+                        .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), JourneysOptions {
+                            later_than: journeys_result.later_ref(),
                             language: Some(gettextrs::gettext("language")),
                             stopovers: Some(true),
                             loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
@@ -282,8 +281,7 @@ pub mod imp {
                         })
                         .await;
                     if let Ok(result_journeys_result) = result_journeys_result {
-                        result_journeys_result.merge_prepend(&journeys_result_obj);
-                        obj.set_property("journeys-result", result_journeys_result);
+                        journeys_result.merge_append(&result_journeys_result);
                     } else {
                         error_to_toast(&toast_errors, result_journeys_result.expect_err("Error to be present"));
                     }
@@ -293,12 +291,6 @@ pub mod imp {
         }
 
         fn setup_model(&self, obj: &super::JourneysPage) {
-            let model = gtk::gio::ListStore::new::<Journey>();
-            let selection_model = gtk::NoSelection::new(Some(model.clone()));
-            self.list_journeys.get().set_model(Some(&selection_model));
-
-            self.model.replace(model);
-
             let factory = SignalListItemFactory::new();
             factory.connect_setup(
                 clone!(@weak self.destination_alignment_group as size_group => move |_, list_item| {
@@ -315,7 +307,17 @@ pub mod imp {
                     size_group.add_widget(&journey_item.get_destination_box());
                 }),
             );
+
+            let header_factory = SignalListItemFactory::new();
+            header_factory.connect_setup(clone!(@weak obj => move |_, object| {
+                let widget = TimeDivider::default();
+                let header_item = object.downcast_ref::<gtk::ListHeader>().unwrap();
+                header_item.set_child(Some(&widget));
+                header_item.bind_property("item", &widget, "item").build();
+            }));
+
             self.list_journeys.set_factory(Some(&factory));
+            self.list_journeys.set_header_factory(Some(&header_factory));
             self.list_journeys.set_single_click_activate(true);
 
             self.list_journeys
@@ -375,15 +377,7 @@ pub mod imp {
                     let obj = value.get::<Option<JourneysResult>>()
                         .expect("Property `journeys-result` of `JourneysPage` has to be of type `JourneysResult`");
 
-                    let model = self.model.borrow();
-                    model.remove_all();
-
-                    model.splice(
-                        0,
-                        0,
-                        &obj.as_ref().map(|o| o.journeys()).unwrap_or_default(),
-                    );
-                    self.journeys_result.replace(obj);
+                    self.journeys_result.replace(obj.clone());
                 }
                 "client" => {
                     let obj = value.get::<Option<HafasClient>>().expect(

@@ -25,6 +25,7 @@
     <file preprocess="xml-stripblanks">ui/date_time_picker.ui</file>
     <file preprocess="xml-stripblanks">ui/station_entry.ui</file>
     <file preprocess="xml-stripblanks">ui/place_list_item.ui</file>
+    <file preprocess="xml-stripblanks">ui/time_divider.ui</file>
   </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/">
     <file compressed="true">style.css</file>

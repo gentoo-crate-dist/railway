@@ -49,8 +49,7 @@ fn init_internationalization() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-#[tokio::main]
-async fn main() {
+fn main() {
     init_internationalization().expect("Failed to initialize internationalization");
 
     env_logger::init();

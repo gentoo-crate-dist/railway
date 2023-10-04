@@ -1,3 +1,4 @@
+use chrono::{Datelike, Days, Local};
 use gdk::glib::{Object, Value};
 
 pub struct Utility {}
@@ -63,6 +64,23 @@ impl Utility {
                     duration.num_hours().try_into().unwrap_or_default(),
                 ))
                 .to_string()
+        }
+    }
+
+    pub fn format_date_human(date: chrono::NaiveDate) -> String {
+        let today = Local::now().date_naive();
+        if today == date {
+            gettextrs::gettext("Today")
+        } else if today + Days::new(1) == date {
+            gettextrs::gettext("Tomorrow")
+        } else if today - Days::new(1) == date {
+            gettextrs::gettext("Yesterday")
+        } else if today.year() == date.year() {
+            // Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+            date.format(&gettextrs::gettext("%a, %d. %B")).to_string()
+        } else {
+            // Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+            date.format(&gettextrs::gettext("%Y-%m-%d")).to_string()
         }
     }
 }
