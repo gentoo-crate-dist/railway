@@ -45,6 +45,26 @@
   </description>
 
   <releases>
+    <release version="v2.1.0" date="2023-10-07">
+      <description>
+        <p>Added</p>
+        <ul>
+          <li>Keyboard shortcuts</li>
+          <li>Date dividers between journeys.</li>
+        </ul>
+        <p>Changed</p>
+        <ul>
+          <li>UI improvements on the preferences.</li>
+          <li>Don't display walk destination, unless it is the final walk.</li>
+        </ul>
+        <p>Fixed</p>
+        <ul>
+          <li>Spinners in the time dropdown not being two-digit sometimes.</li>
+          <li>Duration of over one day being displayed incorrectly.</li>
+          <li>The date and time cards having a different color than the rest when in dark mode.</li>
+        </ul>
+      </description>
+    </release>
     <release version="v2.0.0" date="2023-09-21">
       <description>
         <p>Complete UI overhaul.</p>
