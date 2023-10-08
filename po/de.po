@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-16 11:00+0200\n"
-"PO-Revision-Date: 2023-10-08 16:39+0000\n"
-"Last-Translator: Julian <juliannfairfax@protonmail.com>\n"
+"PO-Revision-Date: 2023-10-09 10:56+0000\n"
+"Last-Translator: Markus Göllnitz <camelcasenick@bewares.it>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/de/>\n"
 "Language: de\n"
@@ -71,7 +71,7 @@ msgstr "Mehr Suchoptionen"
 
 #: data/resources/ui/search_options_button.ui:32
 msgid "More Options"
-msgstr "Mehr Optionen"
+msgstr "Weitere Optionen"
 
 #: data/resources/ui/search_options_window.ui:15
 msgid "BahnCard"
