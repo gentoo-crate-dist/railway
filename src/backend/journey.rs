@@ -1,5 +1,6 @@
 use std::cell::RefCell;
 
+use chrono::Datelike;
 use gdk::glib::Object;
 use gdk::prelude::ObjectExt;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
@@ -38,9 +39,7 @@ impl Journey {
         self.property::<super::Leg>("first-leg")
             .leg()
             .departure
-            .map(|d| d.timestamp() / (60 * 60 * 24))
-            .unwrap_or_default()
-            .try_into()
+            .map(|d| d.ordinal())
             .unwrap_or_default()
     }
 
