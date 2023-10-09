@@ -8,27 +8,28 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-09 13:03+0200\n"
-"PO-Revision-Date: 2022-08-16 19:32+0200\n"
+"PO-Revision-Date: 2023-10-10 19:02+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
+"railway/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
-msgstr ""
+msgstr "Voer een datum in"
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
-msgstr ""
+msgstr "Voer een tijdstip in"
 
 #: data/resources/ui/date_time_picker.ui:77
 msgid "Time"
@@ -36,30 +37,27 @@ msgstr "Tijdstip"
 
 #: data/resources/ui/date_time_picker.ui:145 src/gui/date_time_picker.rs:102
 msgid "Now"
-msgstr ""
+msgstr "Nu"
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Travel time"
-msgstr ""
+msgstr "Reistijd"
 
 #: data/resources/ui/journey_detail_page.ui:114
 msgid "Choose a Trip"
-msgstr ""
+msgstr "Kies een reismogelijkheid"
 
 #: data/resources/ui/journeys_page.ui:122
-#, fuzzy
 msgid "Search for Trips"
-msgstr "Voer een zoekopdracht uit"
+msgstr "Zoeken naar reismogelijkheden"
 
 #: data/resources/ui/leg_item.ui:161 data/resources/ui/leg_item.ui:163
-#, fuzzy
 msgid "Open Stopovers"
-msgstr "Tussenstops"
+msgstr "Tussenstops tonen"
 
 #: data/resources/ui/leg_item.ui:236 data/resources/ui/leg_item.ui:238
-#, fuzzy
 msgid "Open Remarks"
-msgstr "Opmerkingen"
+msgstr "Opmerkingen tonen"
 
 #: data/resources/ui/preferences_window.ui:10
 #: data/resources/ui/search_options_window.ui:10
@@ -67,9 +65,8 @@ msgid "General"
 msgstr "Algemeen"
 
 #: data/resources/ui/preferences_window.ui:16
-#, fuzzy
 msgid "Delete Old Journeys"
-msgstr "Reisgeschiedenis uit lokale opslag wissen"
+msgstr "Reisgeschiedenis wissen"
 
 #: data/resources/ui/preferences_window.ui:22
 msgid "Time to Keep Journey After Arrival"
