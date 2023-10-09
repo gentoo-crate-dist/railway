@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Translation support using Weblate.
+
+### Changed
+
+- Improved UI for date-dividers.
+
 ## [2.1.0] - 2023-10-07
 
 ### Added
