@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-16 11:00+0200\n"
+"POT-Creation-Date: 2023-10-09 13:03+0200\n"
 "PO-Revision-Date: 2023-10-09 10:56+0000\n"
 "Last-Translator: Markus Göllnitz <camelcasenick@bewares.it>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +47,7 @@ msgstr "Reisezeit"
 msgid "Choose a Trip"
 msgstr "Reisen wählen"
 
-#: data/resources/ui/journeys_page.ui:79
+#: data/resources/ui/journeys_page.ui:122
 msgid "Search for Trips"
 msgstr "Reisen suchen"
 
@@ -79,7 +79,7 @@ msgstr ""
 msgid "More search options"
 msgstr "Mehr Suchoptionen"
 
-#: data/resources/ui/search_options_button.ui:32
+#: data/resources/ui/search_options_button.ui:33
 msgid "More Options"
 msgstr "Weitere Optionen"
 
@@ -174,10 +174,6 @@ msgstr "Nach"
 msgid "Search"
 msgstr "Suche"
 
-#: data/resources/ui/transition.ui:21
-msgid "Transition:"
-msgstr "Transfer:"
-
 #: data/resources/ui/window.ui:42
 msgid "Railway"
 msgstr "Railway"
@@ -200,7 +196,11 @@ msgstr "Details"
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: data/resources/ui/window.ui:231
+#: data/resources/ui/window.ui:239
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: data/resources/ui/window.ui:243
 msgid "About Railway"
 msgstr "Über Railway"
 
@@ -253,9 +253,10 @@ msgstr ""
 msgid "language"
 msgstr "de"
 
-#: src/gui/transition.rs:17 src/gui/search_options_button.rs:98
-msgid "Unknown"
-msgstr "Unbekannt"
+#: src/gui/transition.rs:172
+#, fuzzy
+msgid "Transition"
+msgstr "Transfer:"
 
 #. Translators: duration in minutes, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:43
@@ -345,7 +346,7 @@ msgstr "CH - General-Abonnement"
 
 #: src/gui/search_options_button.rs:98
 msgid "Unknown"
-msgstr ""
+msgstr "Unbekannt"
 
 #: src/gui/search_options_button.rs:136
 msgid "1st class"
@@ -363,7 +364,12 @@ msgstr "Nur regional"
 msgid "Custom selection"
 msgstr "Benutzerdefinierte Auswahl"
 
-#: src/gui/search_options_button.rs:197
+#: src/gui/search_options_button.rs:193
+#, fuzzy
+msgid "Bike accessible"
+msgstr "Fahrradtauglich"
+
+#: src/gui/search_options_button.rs:200
 msgid "Direct connection"
 msgstr "Direktverbindung"
 
@@ -406,7 +412,7 @@ msgstr "%a %b %d"
 msgid "{train} to {destination}"
 msgstr "{train} nach {destination}"
 
-#: src/gui/leg_item.rs:161
+#: src/gui/leg_item.rs:164
 msgid "{} stopover"
 msgid_plural "{} stopovers"
 msgstr[0] "Halt"
