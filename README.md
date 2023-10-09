@@ -1,6 +1,7 @@
 # Railway
 
 [![Matrix](https://img.shields.io/badge/Matrix-Join-brightgreen)](https://matrix.to/#/%23railwayapp:matrix.org)
+[![Translation status](https://hosted.weblate.org/widgets/schmiddi-on-mobile/-/railway/svg-badge.svg)](https://hosted.weblate.org/engage/schmiddi-on-mobile/)
 
 Railway lets you look up travel information for many different railways, all without needing to navigate through different websites.
 
@@ -35,6 +36,14 @@ Railway lets you look up travel information for many different railways, all wit
     - ÖBB
     - BART
     - ... (many more). For a full list of supported profiles, see [hafas-rs](https://gitlab.com/schmiddi-on-mobile/hafas-rs#profiles) which is used to query the application data.
+
+## Translation
+
+Railway can easily be translated for other languages, as it uses gettext. Please consider contributing translations using [Weblate](https://hosted.weblate.org/engage/schmiddi-on-mobile/), as an alternative you can also open merge requests and I will notify you if updates are necessary. Thanks to Weblate for free hosting and all the translators for their great work keeping the translations up-to-date.
+
+<a href="https://hosted.weblate.org/engage/schmiddi-on-mobile/">
+<img src="https://hosted.weblate.org/widgets/schmiddi-on-mobile/-/railway/multi-auto.svg" alt="Translation status" />
+</a>
 
 ## Code of Conduct
 
