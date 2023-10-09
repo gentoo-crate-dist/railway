@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-09 13:03+0200\n"
 "PO-Revision-Date: 2023-10-09 15:19+0000\n"
-"Last-Translator: rene-coty <irenee.thirion@e.email>\n"
+"Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/fr/>\n"
 "Language: fr\n"
@@ -38,7 +38,7 @@ msgstr "Heure"
 
 #: data/resources/ui/date_time_picker.ui:145 src/gui/date_time_picker.rs:102
 msgid "Now"
-msgstr ""
+msgstr "Maintenant"
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Travel time"
@@ -83,24 +83,21 @@ msgstr "Plus d’options"
 
 #: data/resources/ui/search_options_window.ui:16
 msgid "Discount Card"
-msgstr ""
+msgstr "Carte de réduction"
 
 #: data/resources/ui/search_options_window.ui:24
 msgid "Class"
 msgstr "Classe"
 
 #: data/resources/ui/search_options_window.ui:34
-#, fuzzy
 msgid "First Class"
 msgstr "Première classe"
 
 #: data/resources/ui/search_options_window.ui:40
-#, fuzzy
 msgid "Second Class"
 msgstr "Seconde classe"
 
 #: data/resources/ui/search_options_window.ui:50
-#, fuzzy
 msgid "Bike Accessible"
 msgstr "Accessible en vélo"
 
@@ -182,9 +179,8 @@ msgid "Connections"
 msgstr "Connexions"
 
 #: data/resources/ui/window.ui:162
-#, fuzzy
 msgid "Trip Details"
-msgstr "Détails"
+msgstr "Détails du voyage"
 
 #: data/resources/ui/window.ui:235
 msgid "Preferences"
@@ -192,7 +188,7 @@ msgstr "Préférences"
 
 #: data/resources/ui/window.ui:239
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Raccourcis clavier"
 
 #: data/resources/ui/window.ui:243
 msgid "About Railway"
@@ -211,21 +207,20 @@ msgid "Exceptionally high load"
 msgstr ""
 
 #: src/gui/indicator_icons.rs:165
-#, fuzzy
 msgid "On time"
-msgstr "Heure saisie"
+msgstr "À l’heure"
 
 #: src/gui/indicator_icons.rs:172
 msgid "Minor delays"
-msgstr ""
+msgstr "Retards mineurs"
 
 #: src/gui/indicator_icons.rs:179
 msgid "Delayed"
-msgstr ""
+msgstr "Retardé"
 
 #: src/gui/indicator_icons.rs:186
 msgid "Very delayed"
-msgstr ""
+msgstr "Très retardé"
 
 #: src/gui/indicator_icons.rs:193
 msgid "Extremely delayed"
@@ -241,7 +236,7 @@ msgstr ""
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
-msgstr ""
+msgstr "Annulé"
 
 #: src/gui/search_page.rs:189 src/gui/journey_detail_page.rs:73
 #: src/gui/journeys_page.rs:199 src/gui/journeys_page.rs:257
@@ -249,9 +244,8 @@ msgid "language"
 msgstr "langue"
 
 #: src/gui/transition.rs:172
-#, fuzzy
 msgid "Transition"
-msgstr "Correspondance :"
+msgstr "Correspondance"
 
 #. Translators: duration in minutes, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:43
@@ -272,15 +266,15 @@ msgstr[1] "%_H h %_M min"
 
 #: src/gui/utility.rs:73 src/gui/date_time_picker.rs:91
 msgid "Today"
-msgstr ""
+msgstr "Aujourd’hui"
 
 #: src/gui/utility.rs:75
 msgid "Tomorrow"
-msgstr ""
+msgstr "Demain"
 
 #: src/gui/utility.rs:77
 msgid "Yesterday"
-msgstr ""
+msgstr "Hier"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:80
@@ -420,17 +414,17 @@ msgstr "Irénée THIRION"
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
 msgid "{amount} €"
-msgstr ""
+msgstr "{amount} €"
 
 #. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
 #: src/backend/price.rs:74
 msgid "{amount} $"
-msgstr ""
+msgstr "{amount} $"
 
 #. Translators: How to format unknown currentcy "currency". Do not translate in {}.
 #: src/backend/price.rs:81
 msgid "{amount} {currency}"
-msgstr ""
+msgstr "{amount} {currency}"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
 #: src/backend/hafas_client.rs:53
