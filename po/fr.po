@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-09 13:03+0200\n"
-"PO-Revision-Date: 2023-09-22 23:13+0200\n"
-"Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
-"Language-Team: French <gnomefr@traduc.org>\n"
+"PO-Revision-Date: 2023-10-09 15:19+0000\n"
+"Last-Translator: rene-coty <irenee.thirion@e.email>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -52,9 +53,8 @@ msgid "Search for Trips"
 msgstr "Recherchez un trajet"
 
 #: data/resources/ui/leg_item.ui:161 data/resources/ui/leg_item.ui:163
-#, fuzzy
 msgid "Open Stopovers"
-msgstr "{} arrêt"
+msgstr "Dérouler les arrêts"
 
 #: data/resources/ui/leg_item.ui:236 data/resources/ui/leg_item.ui:238
 msgid "Open Remarks"
@@ -66,9 +66,8 @@ msgid "General"
 msgstr "Général"
 
 #: data/resources/ui/preferences_window.ui:16
-#, fuzzy
 msgid "Delete Old Journeys"
-msgstr "Supprimer les anciens trajets du magasin"
+msgstr "Supprimer les anciens trajets"
 
 #: data/resources/ui/preferences_window.ui:22
 msgid "Time to Keep Journey After Arrival"
@@ -106,17 +105,14 @@ msgid "Bike Accessible"
 msgstr "Accessible en vélo"
 
 #: data/resources/ui/search_options_window.ui:56
-#, fuzzy
 msgid "Minimum Transfer Time"
 msgstr "Délai minimal de correspondance"
 
 #: data/resources/ui/search_options_window.ui:62
-#, fuzzy
 msgid "Direct Connections Only"
 msgstr "Connexions directes uniquement"
 
 #: data/resources/ui/search_options_window.ui:71
-#, fuzzy
 msgid "Modes of Transport"
 msgstr "Modes de transport"
 
@@ -182,9 +178,8 @@ msgid "Select Provider"
 msgstr "Sélectionnez un fournisseur"
 
 #: data/resources/ui/window.ui:111
-#, fuzzy
 msgid "Connections"
-msgstr "Connexion directe"
+msgstr "Connexions"
 
 #: data/resources/ui/window.ui:162
 #, fuzzy
