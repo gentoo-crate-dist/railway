@@ -16,23 +16,29 @@ pub mod imp {
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
+    use gtk::AnyFilter;
     use gtk::CompositeTemplate;
+    use gtk::Expression;
+    use gtk::FilterListModel;
     use gtk::ListItem;
+    use gtk::PropertyExpression;
     use gtk::SignalListItemFactory;
     use gtk::Widget;
     use once_cell::sync::Lazy;
 
     use crate::backend::HafasClient;
     use crate::backend::Provider;
+    use crate::config;
     use crate::gui::provider_list_item::ProviderListItem;
     use crate::gui::utility::Utility;
-    use crate::config;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/provider_popover.ui")]
     pub struct ProviderPopover {
         #[template_child]
         list_providers: TemplateChild<gtk::ListView>,
+        #[template_child]
+        entry_search: TemplateChild<gtk::SearchEntry>,
 
         current_selection: RefCell<Option<Provider>>,
 
@@ -44,6 +50,7 @@ pub mod imp {
         fn default() -> Self {
             Self {
                 list_providers: Default::default(),
+                entry_search: Default::default(),
                 settings: Settings::new(config::BASE_ID),
                 current_selection: RefCell::new(None),
                 client: Default::default(),
@@ -60,7 +67,32 @@ pub mod imp {
                 .as_ref()
                 .expect("The client to be set up")
                 .providers();
-            let selection_model = gtk::NoSelection::new(Some(model));
+
+            let filter_short = gtk::StringFilter::new(Some(PropertyExpression::new(
+                Provider::static_type(),
+                None::<Expression>,
+                "short-name",
+            )));
+            let filter_long = gtk::StringFilter::new(Some(PropertyExpression::new(
+                Provider::static_type(),
+                None::<Expression>,
+                "name",
+            )));
+
+            self.entry_search
+                .bind_property("text", &filter_short, "search")
+                .build();
+            self.entry_search
+                .bind_property("text", &filter_long, "search")
+                .build();
+
+            let filter = AnyFilter::new();
+            filter.append(filter_short);
+            filter.append(filter_long);
+
+            let filter_model = FilterListModel::new(Some(model), Some(filter));
+
+            let selection_model = gtk::NoSelection::new(Some(filter_model));
             self.list_providers.get().set_model(Some(&selection_model));
 
             let factory = SignalListItemFactory::new();
