@@ -1,6 +1,9 @@
 use chrono::DateTime;
 use chrono::Local;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
+use libadwaita::prelude::ToggleButtonExt;
+
+use crate::backend::TimeType;
 
 gtk::glib::wrapper! {
     pub struct DateTimePicker(ObjectSubclass<imp::DateTimePicker>)
@@ -12,6 +15,14 @@ gtk::glib::wrapper! {
 impl DateTimePicker {
     pub fn get(&self) -> DateTime<Local> {
         self.imp().get()
+    }
+
+    pub fn time_type(&self) -> TimeType {
+        if self.imp().toggle_departure.is_active() {
+            TimeType::Departure
+        } else {
+            TimeType::Arrival
+        }
     }
 }
 
@@ -35,7 +46,7 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use libadwaita::prelude::EditableExt;
     use libadwaita::prelude::ToggleButtonExt;
-    use libadwaita::prelude::ActionRowExt;
+    use libadwaita::prelude::{ActionRowExt, PreferencesRowExt};
 
     #[derive(CompositeTemplate, Default, Properties)]
     #[template(resource = "/ui/date_time_picker.ui")]
@@ -57,6 +68,11 @@ pub mod imp {
         popover_time: TemplateChild<gtk::Popover>,
         #[template_child]
         popover_date: TemplateChild<gtk::Popover>,
+
+        #[template_child]
+        toggle_arrival: TemplateChild<gtk::ToggleButton>,
+        #[template_child]
+        pub(super) toggle_departure: TemplateChild<gtk::ToggleButton>,
 
         #[property(get, set)]
         now: Cell<bool>,
@@ -88,12 +104,14 @@ pub mod imp {
         fn update_date_label(&self) {
             let date = self.get().date_naive();
             if date == Local::now().date_naive() {
-                self.btn_input_date.set_subtitle(&gettextrs::gettext("Today"));
+                self.btn_input_date
+                    .set_subtitle(&gettextrs::gettext("Today"));
             } else {
                 // How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
                 // For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
                 let format = gettextrs::gettext("%a %b %d");
-                self.btn_input_date.set_subtitle(&date.format(&format).to_string())
+                self.btn_input_date
+                    .set_subtitle(&date.format(&format).to_string())
             }
         }
 
@@ -135,6 +153,17 @@ pub mod imp {
                     obj.set_now(false);
                     obj.imp().update_date_label();
             }));
+        }
+
+        #[template_callback]
+        fn handle_toggle_departure_active(&self) {
+            if self.toggle_departure.is_active() {
+                self.btn_input_time
+                    .set_title(&gettextrs::gettext("Departure"));
+            } else {
+                self.btn_input_time
+                    .set_title(&gettextrs::gettext("Arrival"));
+            }
         }
 
         #[template_callback]
@@ -217,20 +246,26 @@ pub mod imp {
             obj.set_now(true);
             self.handle_date_popover_open();
             self.handle_time_popover_open();
+            self.handle_toggle_departure_active();
             self.update_date_label();
             self.update_time_label();
             // Now will be unset has `handle_*` will be set to new values.
             obj.set_now(true);
 
             let popover_date = self.popover_date.get();
-            self.btn_input_date.connect_activated(clone!(@weak popover_date => move |_| {
-                popover_date.popup();
-            }));
+            self.btn_input_date
+                .connect_activated(clone!(@weak popover_date => move |_| {
+                    popover_date.popup();
+                }));
 
             let popover_time = self.popover_time.get();
-            self.btn_input_time.connect_activated(clone!(@weak popover_time => move |_| {
-                popover_time.popup();
-            }));
+            self.btn_input_time
+                .connect_activated(clone!(@weak popover_time => move |_| {
+                    popover_time.popup();
+                }));
+
+            self.toggle_arrival.set_active(false);
+            self.toggle_departure.set_active(true);
         }
     }
 
