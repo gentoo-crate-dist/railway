@@ -1,4 +1,4 @@
-use gdk::glib::Object;
+use gdk::{glib::Object, prelude::ObjectExt};
 
 use crate::backend::Leg;
 
@@ -12,6 +12,10 @@ gtk::glib::wrapper! {
 impl LegItem {
     pub fn new(leg: &Leg) -> Self {
         Object::builder().property("leg", leg).build()
+    }
+
+    pub fn set_leg(&self, leg: &Leg) {
+        self.set_property("leg", leg);
     }
 }
 

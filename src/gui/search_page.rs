@@ -88,6 +88,8 @@ pub mod imp {
         client: RefCell<Option<HafasClient>>,
         #[property(get, set)]
         search_when_ready: Cell<bool>,
+        #[property(get, set)]
+        searching: Cell<bool>,
     }
 
     #[gtk::template_callbacks]
@@ -184,6 +186,7 @@ pub mod imp {
                                             @strong obj, 
                                             @strong self.settings as settings,
                                             @strong self.toast_errors as toast_errors => async move {
+                obj.set_searching(true);
                 let journeys = obj.property::<HafasClient>("client").journeys(from, to, JourneysOptions {
                     departure: departure.map(|d| d.timestamp()),
                     language: Some(gettextrs::gettext("language")),
@@ -212,6 +215,7 @@ pub mod imp {
                     },
                     ..Default::default()
                 }).await;
+                obj.set_searching(false);
                 if journeys.is_err() {
                     error_to_toast(&toast_errors, journeys.err().unwrap());
                     return;
@@ -240,6 +244,7 @@ pub mod imp {
                 toast_errors: Default::default(),
                 client: Default::default(),
                 search_when_ready: Default::default(),
+                searching: Default::default()
             }
         }
 

@@ -1,4 +1,4 @@
-use gdk::subclass::prelude::ObjectSubclassIsExt;
+use gdk::{prelude::ObjectExt, subclass::prelude::ObjectSubclassIsExt};
 
 gtk::glib::wrapper! {
     pub struct JourneyDetailPage(ObjectSubclass<imp::JourneyDetailPage>)
@@ -11,14 +11,21 @@ impl JourneyDetailPage {
     pub fn reload(&self) {
         self.imp().reload(self);
     }
+
+    fn set_refresh_in_progress(&self, b: bool) {
+        self.set_property("refresh-in-progress", b)
+    }
 }
 
 pub mod imp {
+    use std::cell::Cell;
     use std::cell::RefCell;
 
+    use chrono::Local;
     use gdk::glib::clone;
     use gdk::glib::MainContext;
     use gdk::glib::ParamSpec;
+    use gdk::glib::ParamSpecBoolean;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
     use glib::subclass::InitializingObject;
@@ -48,9 +55,12 @@ pub mod imp {
     pub struct JourneyDetailPage {
         #[template_child]
         box_legs: TemplateChild<gtk::Box>,
-
+        #[template_child]
+        label_last_refreshed: TemplateChild<gtk::Label>,
         #[template_child]
         toast_errors: TemplateChild<ToastOverlay>,
+
+        refresh_in_progress: Cell<bool>,
 
         journey: RefCell<Option<Journey>>,
 
@@ -67,6 +77,7 @@ pub mod imp {
                 let token = journey.borrow().as_ref().and_then(|j| j.journey().refresh_token);
 
                 if let Some(token) = token {
+                    obj.set_refresh_in_progress(true);
                     let result_journey = obj.property::<HafasClient>("client")
                         .refresh_journey(token, RefreshJourneyOptions {
                             stopovers: Some(true),
@@ -75,11 +86,20 @@ pub mod imp {
                         }).await;
                     if let Ok(result_journey) = result_journey {
                         obj.set_property("journey", result_journey);
+                        obj.imp().update_last_refreshed();
                     } else {
                         error_to_toast(&toast_errors, result_journey.expect_err("A error"));
                     }
+                    obj.set_refresh_in_progress(false);
                 }
             }));
+        }
+
+        fn update_last_refreshed(&self) {
+            self.label_last_refreshed.set_label(&gettextrs::gettext!(
+                "Data From: {}",
+                Utility::format_time_human(&Local::now().time())
+            ))
         }
     }
 
@@ -118,6 +138,7 @@ pub mod imp {
                 vec![
                     ParamSpecObject::builder::<Journey>("journey").build(),
                     ParamSpecObject::builder::<HafasClient>("client").build(),
+                    ParamSpecBoolean::builder("refresh-in-progress").build(),
                 ]
             });
             PROPERTIES.as_ref()
@@ -130,10 +151,21 @@ pub mod imp {
                         "Property `journey` of `JourneyDetailPage` has to be of type `Journey`",
                     );
 
-                    // Clear box_legs
-                    while let Some(child) = self.box_legs.first_child() {
-                        self.box_legs.remove(&child);
+                    // Clear box_legs if journey has completely changed (i.e. completely new journey with different legs).
+                    // Different journeys can be identified by different refresh tokens.
+                    if obj.as_ref().and_then(|j| j.refresh_token())
+                        != self
+                            .journey
+                            .borrow()
+                            .as_ref()
+                            .and_then(|j| j.refresh_token())
+                    {
+                        while let Some(child) = self.box_legs.first_child() {
+                            self.box_legs.remove(&child);
+                        }
                     }
+
+                    let mut current_child = self.box_legs.first_child();
 
                     // Fill box_legs
                     let legs = obj.as_ref().map(|j| j.journey().legs).unwrap_or_default();
@@ -145,10 +177,12 @@ pub mod imp {
                         let mut to = &legs[i];
 
                         while to.walking.unwrap_or(false) {
-                            walking_time = Some(walking_time.unwrap_or(Duration::zero())
-                                + to.arrival.map_or(Duration::zero(), |arrival| {
-                                    arrival - to.departure.unwrap_or(arrival)
-                                }));
+                            walking_time = Some(
+                                walking_time.unwrap_or(Duration::zero())
+                                    + to.arrival.map_or(Duration::zero(), |arrival| {
+                                        arrival - to.departure.unwrap_or(arrival)
+                                    }),
+                            );
                             i += 1;
                             if i < legs.len() {
                                 to = &legs[i];
@@ -176,33 +210,103 @@ pub mod imp {
                             } else {
                                 None
                             };
-                            let has_walk = walking_time.is_some() || (!is_end && {
-                                let to_place = to.origin.clone();
-                                let from_place = legs[i_start].origin.clone();
+                            let has_walk = walking_time.is_some()
+                                || (!is_end && {
+                                    let to_place = to.origin.clone();
+                                    let from_place = legs[i_start].origin.clone();
 
-                                match (from_place, to_place.clone()) {
-                                    (Stop(from_stop), Stop(to_stop)) => {
-                                        from_stop.id != to_stop.id
-                                    },
-                                    (_, _) => false,
+                                    match (from_place, to_place.clone()) {
+                                        (Stop(from_stop), Stop(to_stop)) => {
+                                            from_stop.id != to_stop.id
+                                        }
+                                        (_, _) => false,
+                                    }
+                                });
+
+                            if let Some(child) = &current_child {
+                                if let Some(transition) = child.dynamic_cast_ref::<Transition>() {
+                                    // There is already a transition in the correct place.
+                                    transition.setup(
+                                        &walking_time,
+                                        &waiting_time,
+                                        has_walk,
+                                        is_start || is_end,
+                                        &final_station,
+                                    )
+                                } else {
+                                    // There is something there, but it is no transition. Clear the box from here to the end and insert a new transition.
+                                    while let Some(c) = current_child {
+                                        current_child = c.next_sibling();
+                                        self.box_legs.remove(&c);
+                                    }
+
+                                    self.box_legs.append(&Transition::new(
+                                        &walking_time,
+                                        &waiting_time,
+                                        has_walk,
+                                        is_start || is_end,
+                                        &final_station,
+                                    ));
                                 }
-                            });
+                            } else {
+                                // There is no child left, append a new transition.
+                                self.box_legs.append(&Transition::new(
+                                    &walking_time,
+                                    &waiting_time,
+                                    has_walk,
+                                    is_start || is_end,
+                                    &final_station,
+                                ));
+                            }
 
-                            self.box_legs.append(&Transition::new(&walking_time, &waiting_time, has_walk, is_start || is_end, &final_station));
+                            current_child = current_child.and_then(|c| c.next_sibling());
                         }
 
                         if !is_end {
-                            self.box_legs.append(&LegItem::new(&Leg::new(legs[i].clone())));
+                            if let Some(child) = &current_child {
+                                if let Some(leg_item) = child.dynamic_cast_ref::<LegItem>() {
+                                    // There is already a leg item in the correct place.
+                                    leg_item.set_leg(&Leg::new(legs[i].clone()));
+                                } else {
+                                    // There is something there, but it is no leg item. Clear the box from here to the end and insert a new transition.
+                                    while let Some(c) = current_child {
+                                        current_child = c.next_sibling();
+                                        self.box_legs.remove(&c);
+                                    }
+
+                                    self.box_legs
+                                        .append(&LegItem::new(&Leg::new(legs[i].clone())));
+                                }
+                            } else {
+                                // There is no child left, append a new leg item.
+                                self.box_legs
+                                    .append(&LegItem::new(&Leg::new(legs[i].clone())));
+                            }
+
+                            current_child = current_child.and_then(|c| c.next_sibling());
                         }
 
                         i += 1;
                     }
 
+                    // Remove the remaining children.
+                    while let Some(c) = current_child {
+                        current_child = c.next_sibling();
+                        self.box_legs.remove(&c);
+                    }
+
                     self.journey.replace(obj);
+                }
+                "refresh-in-progress" => {
+                    let obj = value.get::<bool>().expect(
+                        "Property `refresh-in-progress` of `JourneyDetailPage` has to be of type `bool`",
+                    );
+
+                    self.refresh_in_progress.replace(obj);
                 }
                 "client" => {
                     let obj = value.get::<Option<HafasClient>>().expect(
-                        "Property `client` of `SearchPage` has to be of type `HafasClient`",
+                        "Property `client` of `JourneyDetailPage` has to be of type `HafasClient`",
                     );
 
                     self.client.replace(obj);
@@ -214,6 +318,7 @@ pub mod imp {
         fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "journey" => self.journey.borrow().to_value(),
+                "refresh-in-progress" => self.refresh_in_progress.get().to_value(),
                 "client" => self.client.borrow().to_value(),
                 _ => unimplemented!(),
             }

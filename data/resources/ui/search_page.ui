@@ -80,6 +80,9 @@
                           <closure function="and" type="gboolean">
                             <lookup name="set">in_from</lookup>
                             <lookup name="set">in_to</lookup>
+                            <closure function="not" type="gboolean">
+                              <lookup name="searching" type="DBSearchPage"></lookup>
+                            </closure>
                           </closure>
                         </binding>
                       </object>

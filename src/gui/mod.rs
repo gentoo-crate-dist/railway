@@ -11,6 +11,7 @@ mod place_list_item;
 mod preferences_window;
 mod provider_list_item;
 mod provider_popover;
+mod refresh_button;
 mod remark_item;
 mod search_options_button;
 mod search_options_window;

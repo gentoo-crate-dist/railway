@@ -10,10 +10,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Translation support using Weblate.
 - Filter for providers.
+- Indicate when journey was last refreshed.
 
 ### Changed
 
 - Improved UI for date-dividers.
+- Disable search button while search is in progress.
+- Disable refresh button while refreshing journey is in progress.
+- Added timeout to all requests.
+
+### Fixed
+
+- Don't collapse journey legs stopovers and remarks after refreshing.
 
 ## [2.1.0] - 2023-10-07
 
