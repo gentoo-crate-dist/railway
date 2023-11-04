@@ -18,6 +18,7 @@ data/resources/ui/station_entry.ui
 data/resources/ui/stopover_item.ui
 data/resources/ui/transition.ui
 data/resources/ui/window.ui
+data/resources/ui/refresh_button.ui
 
 src/config.rs
 src/gui/indicator_icons.rs

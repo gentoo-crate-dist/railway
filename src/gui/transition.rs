@@ -1,4 +1,5 @@
 use gdk::glib::Object;
+use gdk::prelude::ObjectExt;
 
 use crate::gui::utility::Utility;
 
@@ -12,21 +13,40 @@ gtk::glib::wrapper! {
 }
 
 impl Transition {
-    pub fn new(walking_time: &Option<chrono::Duration>,
+    pub fn new(
+        walking_time: &Option<chrono::Duration>,
         waiting_time: &Option<chrono::Duration>,
         has_walk: bool,
         is_last_mile: bool,
-        final_destination: &Option<Place>) -> Self {
+        final_destination: &Option<Place>,
+    ) -> Self {
+        let s: Self = Object::builder().build();
+        s.setup(
+            walking_time,
+            waiting_time,
+            has_walk,
+            is_last_mile,
+            final_destination,
+        );
+        s
+    }
+
+    pub fn setup(
+        &self,
+        walking_time: &Option<chrono::Duration>,
+        waiting_time: &Option<chrono::Duration>,
+        has_walk: bool,
+        is_last_mile: bool,
+        final_destination: &Option<Place>,
+    ) {
         let walking_time_label = walking_time.map(|duration| Utility::format_duration(duration));
         let final_destination_label = final_destination.clone().and_then(|stop| stop.name());
         let waiting_time_label = waiting_time.map(|duration| Utility::format_duration(duration));
-        Object::builder::<Self>()
-            .property("walking-time", walking_time_label)
-            .property("waiting-time", waiting_time_label)
-            .property("is-last-mile", is_last_mile)
-            .property("has-walk", has_walk)
-            .property("final-destination", final_destination_label)
-            .build()
+        self.set_property("walking-time", walking_time_label);
+        self.set_property("waiting-time", waiting_time_label);
+        self.set_property("is-last-mile", is_last_mile);
+        self.set_property("has-walk", has_walk);
+        self.set_property("final-destination", final_destination_label);
     }
 }
 
@@ -34,10 +54,11 @@ pub mod imp {
     use std::cell::Cell;
     use std::cell::RefCell;
 
+    use crate::gui::utility::Utility;
     use gdk::glib::object::ObjectExt;
     use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecString;
     use gdk::glib::ParamSpecBoolean;
+    use gdk::glib::ParamSpecString;
     use gdk::glib::Value;
     use glib::subclass::InitializingObject;
     use gtk::glib;
@@ -45,7 +66,6 @@ pub mod imp {
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
-    use crate::gui::utility::Utility;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/transition.ui")]
@@ -84,15 +104,13 @@ pub mod imp {
         }
 
         fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| {
+            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
                     ParamSpecString::builder("walking-time").build(),
                     ParamSpecString::builder("waiting-time").build(),
                     ParamSpecBoolean::builder("is-last-mile").build(),
                     ParamSpecBoolean::builder("has-walk").build(),
                     ParamSpecString::builder("final-destination").build(),
-
                     ParamSpecString::builder("icon").read_only().build(),
                     ParamSpecString::builder("label").read_only().build(),
                 ]
@@ -119,17 +137,17 @@ pub mod imp {
                     self.waiting_time.replace(obj);
                 }
                 "is-last-mile" => {
-                    let obj = value.get::<bool>().expect(
-                        "Property `is-last-mile` of `Transition` has to be of type `bool`",
-                    );
+                    let obj = value
+                        .get::<bool>()
+                        .expect("Property `is-last-mile` of `Transition` has to be of type `bool`");
 
                     self.obj().notify("icon");
                     self.is_last_mile.replace(obj);
                 }
                 "has-walk" => {
-                    let obj = value.get::<bool>().expect(
-                        "Property `has-walk` of `Transition` has to be of type `bool`",
-                    );
+                    let obj = value
+                        .get::<bool>()
+                        .expect("Property `has-walk` of `Transition` has to be of type `bool`");
 
                     self.obj().notify("icon");
                     self.has_walk.replace(obj);
@@ -140,7 +158,8 @@ pub mod imp {
                     );
 
                     self.destination_box.set_visible(obj.is_some());
-                    self.destination_label.set_label(&obj.clone().unwrap_or_default());
+                    self.destination_label
+                        .set_label(&obj.clone().unwrap_or_default());
 
                     self.final_destination.replace(obj);
                 }
@@ -156,22 +175,24 @@ pub mod imp {
                 "has-walk" => self.has_walk.get().to_value(),
                 "final-destination" => self.final_destination.borrow().to_value(),
 
-                "icon" => {
-                    (if !self.has_walk.get() && !self.is_last_mile.get() {
-                        "change-symbolic"
-                    } else {
-                        "walking-symbolic"
-                    }).to_value()
-                },
-                "label" => {
-                    (match (self.walking_time.borrow().clone(),
-                        self.waiting_time.borrow().clone()) {
-                        (Some(walking), Some(waiting)) => gettextrs::gettext!("{} walk, {} waiting", walking, waiting),
-                        (None, Some(waiting)) => gettextrs::gettext!("Transition: {}", waiting),
-                        (Some(walking), None) => gettextrs::gettext!("{} walk", walking),
-                        (None, None) => gettextrs::gettext("Transition")
-                    }).to_value()
-                },
+                "icon" => (if !self.has_walk.get() && !self.is_last_mile.get() {
+                    "change-symbolic"
+                } else {
+                    "walking-symbolic"
+                })
+                .to_value(),
+                "label" => (match (
+                    self.walking_time.borrow().clone(),
+                    self.waiting_time.borrow().clone(),
+                ) {
+                    (Some(walking), Some(waiting)) => {
+                        gettextrs::gettext!("{} walk, {} waiting", walking, waiting)
+                    }
+                    (None, Some(waiting)) => gettextrs::gettext!("Transition: {}", waiting),
+                    (Some(walking), None) => gettextrs::gettext!("{} walk", walking),
+                    (None, None) => gettextrs::gettext("Transition"),
+                })
+                .to_value(),
 
                 _ => unimplemented!(),
             }

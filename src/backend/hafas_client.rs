@@ -1,3 +1,5 @@
+use std::time::Duration;
+
 use gdk::gio;
 use gdk::glib::clone;
 use gdk::prelude::{ObjectExt, SettingsExt};
@@ -8,6 +10,9 @@ use hafas_rs::api::{
 };
 use hafas_rs::profile::db::DbProfile;
 use hafas_rs::profile::profile_from_name;
+
+// Timeout in seconds.
+const TIMEOUT: u64 = 30;
 
 use crate::Error;
 
@@ -190,11 +195,16 @@ impl HafasClient {
     ) -> Result<impl Iterator<Item = Place>, Error> {
         let client = self.internal();
 
-        Ok(tspawn!(async move { client.locations(opts).await })
-            .await
-            .expect("Failed to join tokio")?
-            .into_iter()
-            .map(Place::new))
+        Ok(tspawn!(async move {
+            tokio::time::timeout(Duration::from_secs(TIMEOUT), client.locations(opts))
+                .await
+                .map(|r| r.map_err(Error::Hafas))
+                .unwrap_or(Err(Error::Timeout))
+        })
+        .await
+        .expect("Failed to join tokio")?
+        .into_iter()
+        .map(Place::new))
     }
 
     pub async fn journeys(
@@ -207,9 +217,17 @@ impl HafasClient {
         let from_place = from.place();
         let to_place = to.place();
         Ok(JourneysResult::new(
-            tspawn!(async move { client.journeys(from_place, to_place, opts).await })
+            tspawn!(async move {
+                tokio::time::timeout(
+                    Duration::from_secs(TIMEOUT),
+                    client.journeys(from_place, to_place, opts),
+                )
                 .await
-                .expect("Failed to join tokio")?,
+                .map(|r| r.map_err(Error::Hafas))
+                .unwrap_or(Err(Error::Timeout))
+            })
+            .await
+            .expect("Failed to join tokio")?,
             from,
             to,
         ))
@@ -223,9 +241,17 @@ impl HafasClient {
         let client = self.internal();
         let refresh_token = refresh_token.as_ref().to_owned();
         Ok(Journey::new(
-            tspawn!(async move { client.refresh_journey(&refresh_token, opts).await })
+            tspawn!(async move {
+                tokio::time::timeout(
+                    Duration::from_secs(TIMEOUT),
+                    client.refresh_journey(&refresh_token, opts),
+                )
                 .await
-                .expect("Failed to join tokio")?,
+                .map(|r| r.map_err(Error::Hafas))
+                .unwrap_or(Err(Error::Timeout))
+            })
+            .await
+            .expect("Failed to join tokio")?,
         ))
     }
 }

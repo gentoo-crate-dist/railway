@@ -50,6 +50,10 @@ impl Journey {
             .map(|d| Utility::format_date_human(d.date_naive()))
             .unwrap_or_default()
     }
+
+    pub fn refresh_token(&self) -> Option<String> {
+        self.journey().refresh_token.clone()
+    }
 }
 
 mod imp {

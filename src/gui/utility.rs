@@ -7,13 +7,10 @@ pub struct Utility {}
 impl Utility {
     #[template_callback]
     fn and(#[rest] values: &[Value]) -> bool {
-        let val0 = values[0]
-            .get::<bool>()
-            .expect("Expected boolean for argument");
-        let val1 = values[1]
-            .get::<bool>()
-            .expect("Expected boolean for argument");
-        val0 && val1
+        values
+            .into_iter()
+            .map(|v| v.get::<bool>().expect("Bool for an argument"))
+            .all(|b| b)
     }
 
     #[template_callback]
@@ -65,6 +62,11 @@ impl Utility {
                 ))
                 .to_string()
         }
+    }
+
+    pub fn format_time_human(time: &chrono::NaiveTime) -> String {
+        // Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+        time.format(&gettextrs::gettext("%H:%M")).to_string()
     }
 
     pub fn format_date_human(date: chrono::NaiveDate) -> String {

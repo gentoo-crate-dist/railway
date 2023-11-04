@@ -138,6 +138,7 @@ pub mod imp {
                 if let Some(request) = request {
                     let places = obj.property::<HafasClient>("client").locations(LocationsOptions {query: request.clone(), ..Default::default()}).await;
 
+                    // XXX: Handle error case.
                     if let Ok(places) = places {
                         log::trace!("Got results back. Filling up completions.");
                         let completions = completions.borrow();

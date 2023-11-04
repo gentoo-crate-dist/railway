@@ -60,6 +60,7 @@ pub mod imp {
     use crate::gui::journeys_page::JourneysPage;
     use crate::gui::preferences_window::PreferencesWindow;
     use crate::gui::provider_popover::ProviderPopover;
+    use crate::gui::refresh_button::RefreshButton;
     use crate::gui::search_options_button::SearchOptionsButton;
     use crate::gui::search_page::SearchPage;
     use crate::gui::station_entry::StationEntry;
@@ -82,8 +83,6 @@ pub mod imp {
         #[template_child]
         journey_detail_page: TemplateChild<JourneyDetailPage>,
 
-        #[template_child]
-        btn_reload_detail: TemplateChild<gtk::Button>,
         #[template_child]
         btn_bookmark_search: TemplateChild<gtk::ToggleButton>,
         #[template_child]
@@ -312,6 +311,7 @@ pub mod imp {
             SearchesStore::ensure_type();
             SearchOptionsButton::ensure_type();
             IndicatorIcons::ensure_type();
+            RefreshButton::ensure_type();
             Self::bind_template(klass);
             Self::bind_template_callbacks(klass);
             Utility::bind_template_callbacks(klass);

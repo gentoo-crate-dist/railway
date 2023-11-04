@@ -166,9 +166,13 @@
                         <child type="top">
                           <object class="AdwHeaderBar">
                             <child>
-                              <object class="GtkButton" id="btn_reload_detail">
+                              <object class="DBRefreshButton" id="btn_reload_detail">
                                 <signal name="clicked" handler="handle_journey_reload" swapped="true"/>
-                                <property name="icon-name">view-refresh-symbolic</property>
+                                <binding name="refreshing">
+                                  <lookup name="refresh-in-progress">
+                                      journey_detail_page
+                                  </lookup>
+                                </binding>
                                 <binding name="visible">
                                   <closure function="is_some" type="gboolean">
                                     <lookup name="journey">
