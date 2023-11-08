@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Don't collapse journey legs stopovers and remarks after refreshing.
+- Build on i386.
 
 ## [2.1.0] - 2023-10-07
 
