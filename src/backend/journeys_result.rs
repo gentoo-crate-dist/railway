@@ -133,7 +133,7 @@ mod imp {
 
             // As per the doc: <https://docs.gtk.org/gtk4/method.SectionModel.get_section.html>
             // > If the position is larger than the number of items, a single range from n_items to G_MAXUINT will be returned.
-            if pos >= list.len().try_into().unwrap_or_default() {
+            if pos >= TryInto::<u32>::try_into(list.len()).unwrap_or_default() {
                 return (list.len().try_into().unwrap_or_default(), u32::MAX);
             }
 
