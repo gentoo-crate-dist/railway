@@ -1,4 +1,5 @@
 mod discount_card;
+mod frequency;
 mod hafas_client;
 mod journey;
 mod journeys_result;
@@ -14,6 +15,7 @@ mod stop;
 mod stopover;
 
 pub use discount_card::DiscountCard;
+pub use frequency::Frequency;
 pub use hafas_client::HafasClient;
 pub use journey::Journey;
 pub use journeys_result::JourneysResult;
