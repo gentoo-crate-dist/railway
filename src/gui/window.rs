@@ -94,6 +94,7 @@ pub mod imp {
     use crate::config;
     use crate::gui::alt_label::AltLabel;
     use crate::gui::date_time_picker::DateTimePicker;
+    use crate::gui::frequency_label::FrequencyLabel;
     use crate::gui::indicator_icons::IndicatorIcons;
     use crate::gui::journey_detail_page::JourneyDetailPage;
     use crate::gui::journeys_page::JourneysPage;
@@ -357,6 +358,7 @@ pub mod imp {
             SearchOptionsButton::ensure_type();
             IndicatorIcons::ensure_type();
             RefreshButton::ensure_type();
+            FrequencyLabel::ensure_type();
             Self::bind_template(klass);
             Self::bind_template_callbacks(klass);
             Utility::bind_template_callbacks(klass);
