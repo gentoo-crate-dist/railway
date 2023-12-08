@@ -58,6 +58,25 @@ i18n:
   script:
     - ./build-aux/test/i18n-strings-check.sh
 
+test run:
+  stage: test
+  dependencies:
+    - flatpak
+  image: debian:testing
+  variables:
+    XDG_RUNTIME_DIR: '/tmp/run/user/0'
+    WAYLAND_DISPLAY: 'wayland-0'
+  script:
+    - apt-get update -y && apt-get install -y flatpak pipewire pipewire-pulse weston
+    - flatpak install -y --user de.schmidhuberj.DieBahn.Devel.flatpak
+    # see https://github.com/flatpak/flatpak/issues/5076
+    - mkdir -p /tmp/run/user/0
+    - dbus-send --system /org/freedesktop/DBus org.freedesktop.DBus || dbus-daemon --system --fork
+    - dbus-send --session /org/freedesktop/DBus org.freedesktop.DBus || dbus-daemon --session --fork
+    - weston --no-config --socket=wayland-0 --backend=headless &
+    - timeout 5 flatpak run --nosocket=pulseaudio de.schmidhuberj.DieBahn.Devel
+    - EXIT_CODE=$? && if [ $EXIT_CODE = 124 ]; then exit 0; elif [ $EXIT_CODE = 0 ]; then exit 1; else echo $EXIT_CODE; fi
+
 build_release:
   stage: build
   image: archlinux:base-devel
