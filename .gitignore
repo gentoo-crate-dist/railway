@@ -4,3 +4,5 @@ resources.gresource
 LC_MESSAGES
 src/config.rs
 .direnv
+result
+.nixos-test-history
