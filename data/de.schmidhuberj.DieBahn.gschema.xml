@@ -16,6 +16,19 @@
   </enum>
 
   <schema id="de.schmidhuberj.DieBahn" path="/de/schmidhuberj/DieBahn/" gettext-domain="de.schmidhuberj.DieBahn">
+    <key name="window-width" type="i">
+      <default>1000</default>
+      <summary>Window width</summary>
+    </key>
+    <key name="window-height" type="i">
+      <default>600</default>
+      <summary>Window height</summary>
+    </key>
+    <key name="is-maximized" type="b">
+      <default>false</default>
+      <summary>Window maximized state</summary>
+    </key>
+
     <key name="bahncard" enum="de.schmidhuberj.DieBahn.bahncard">
       <default>'None'</default>
       <summary>Type of loyality card owned</summary>

@@ -1,5 +1,10 @@
+use gdk::gio::Settings;
+use gdk::glib;
+use gdk::prelude::SettingsExt;
 use gtk::glib::Object;
-use gtk::prelude::GtkApplicationExt;
+use gtk::prelude::{GtkApplicationExt, GtkWindowExt};
+
+use crate::config::BASE_ID;
 
 gtk::glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -22,6 +27,33 @@ impl Window {
         Object::builder::<Self>()
             .property("application", app)
             .build()
+    }
+
+    fn save_window_size(&self) -> Result<(), glib::BoolError> {
+        let settings = Settings::new(BASE_ID);
+
+        let (width, height) = self.default_size();
+
+        settings.set_int("window-width", width)?;
+        settings.set_int("window-height", height)?;
+
+        settings.set_boolean("is-maximized", self.is_maximized())?;
+
+        Ok(())
+    }
+
+    fn load_window_size(&self) {
+        let settings = Settings::new(BASE_ID);
+
+        let width = settings.int("window-width");
+        let height = settings.int("window-height");
+        let is_maximized = settings.boolean("is-maximized");
+
+        self.set_default_size(width, height);
+
+        if is_maximized {
+            self.maximize();
+        }
     }
 }
 
@@ -105,6 +137,8 @@ pub mod imp {
             if config::PROFILE == "Devel" {
                 self.obj().add_css_class("devel");
             }
+
+            self.obj().load_window_size();
         }
 
         fn setup_actions(&self, obj: &super::Window) {
@@ -352,6 +386,10 @@ pub mod imp {
     impl WidgetImpl for Window {}
     impl WindowImpl for Window {
         fn close_request(&self) -> Propagation {
+            if let Err(err) = self.obj().save_window_size() {
+                log::warn!("Failed to save window state, {}", &err);
+            }
+
             self.store_journeys.get().flush();
             self.store_searches.get().flush();
             Propagation::Proceed
