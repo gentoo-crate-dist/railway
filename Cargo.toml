@@ -22,7 +22,8 @@ chrono = "0.4.31"
 log = "0.4.20"
 env_logger = "0.10.1"
 
-hafas-rs = { version = "0.1.0", default-features = false, features = [ "hyper-requester", "all-profiles", "rt-multi-thread" ] }
+# hafas-rs = { version = "0.1.0", default-features = false, features = [ "hyper-requester", "all-profiles", "rt-multi-thread" ] }
+hafas-rs = { git = "https://gitlab.com/schmiddi-on-mobile/hafas-rs", rev = "6e0480dc47886947d4fe926a9dd640da15c2065b", default-features = false, features = [ "hyper-requester", "all-profiles", "rt-multi-thread" ] }
 
 serde = { version = "1.0.192", features = ["derive"] }
 serde_json = "1.0.108"
