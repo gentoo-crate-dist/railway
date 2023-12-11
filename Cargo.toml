@@ -4,7 +4,7 @@ description = "Travel with all your train information in one place"
 authors = ["Julian Schmidhuber <schmidhuberj2@protonmail.com>"]
 homepage = "https://mobile.schmidhuberj.de/railway"
 repository = "https://gitlab.com/schmiddi-on-mobile/railway"
-version = "2.1.0"
+version = "2.2.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
