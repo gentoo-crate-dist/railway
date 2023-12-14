@@ -1,6 +1,6 @@
 stages:
-  - build
   - test
+  - build
   - deploy
 
 variables:
@@ -57,6 +57,16 @@ i18n:
   stage: test
   script:
     - ./build-aux/test/i18n-strings-check.sh
+
+clippy:
+  stage: test
+  allow_failure: true
+  image: debian:testing
+  script:
+    - apt update -y && apt install -y build-essential rustup libadwaita-1-dev libgtk-4-dev
+    - rustup default stable
+    - rustup component add clippy
+    - cargo clippy
 
 build_release:
   stage: build
