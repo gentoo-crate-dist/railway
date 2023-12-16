@@ -8,64 +8,68 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-09 13:03+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-12-16 12:09+0000\n"
+"Last-Translator: two <two@envs.net>\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.3\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
-msgstr ""
+msgstr "Уведіть дату"
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
-msgstr ""
+msgstr "Уведіть час"
 
 #: data/resources/ui/date_time_picker.ui:77
 msgid "Time"
-msgstr ""
+msgstr "Час"
 
 #: data/resources/ui/date_time_picker.ui:145 src/gui/date_time_picker.rs:102
 msgid "Now"
-msgstr ""
+msgstr "Зараз"
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Travel time"
-msgstr ""
+msgstr "Час поїздки"
 
 #: data/resources/ui/journey_detail_page.ui:114
 msgid "Choose a Trip"
-msgstr ""
+msgstr "Оберіть поїздку"
 
 #: data/resources/ui/journeys_page.ui:122
 msgid "Search for Trips"
-msgstr ""
+msgstr "Шукати поїздки"
 
 #: data/resources/ui/leg_item.ui:161 data/resources/ui/leg_item.ui:163
+#, fuzzy
 msgid "Open Stopovers"
-msgstr ""
+msgstr "Відкрити зупинки"
 
 #: data/resources/ui/leg_item.ui:236 data/resources/ui/leg_item.ui:238
+#, fuzzy
 msgid "Open Remarks"
-msgstr ""
+msgstr "Відкрити примітки"
 
 #: data/resources/ui/preferences_window.ui:10
 #: data/resources/ui/search_options_window.ui:10
 msgid "General"
-msgstr ""
+msgstr "Загальне"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Delete Old Journeys"
-msgstr ""
+msgstr "Видалити старі поїздки"
 
 #: data/resources/ui/preferences_window.ui:22
 msgid "Time to Keep Journey After Arrival"
