@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-09 13:03+0200\n"
-"PO-Revision-Date: 2023-12-16 09:08+0000\n"
+"PO-Revision-Date: 2023-12-16 10:27+0000\n"
 "Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/sv/>\n"
@@ -53,397 +53,397 @@ msgstr "Sök efter resor"
 
 #: data/resources/ui/leg_item.ui:161 data/resources/ui/leg_item.ui:163
 msgid "Open Stopovers"
-msgstr ""
+msgstr "Öppna mellanlandningar"
 
 #: data/resources/ui/leg_item.ui:236 data/resources/ui/leg_item.ui:238
 msgid "Open Remarks"
-msgstr ""
+msgstr "Öppna anmärkningar"
 
 #: data/resources/ui/preferences_window.ui:10
 #: data/resources/ui/search_options_window.ui:10
 msgid "General"
-msgstr ""
+msgstr "Allmänt"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Delete Old Journeys"
-msgstr ""
+msgstr "Radera gamla resor"
 
 #: data/resources/ui/preferences_window.ui:22
 msgid "Time to Keep Journey After Arrival"
-msgstr ""
+msgstr "Tid att behålla resan efter ankomsten"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
-msgstr ""
+msgstr "Mer sök alternativ"
 
 #: data/resources/ui/search_options_button.ui:33
 msgid "More Options"
-msgstr ""
+msgstr "Mer alternativ"
 
 #: data/resources/ui/search_options_window.ui:16
 msgid "Discount Card"
-msgstr ""
+msgstr "Rabattkort"
 
 #: data/resources/ui/search_options_window.ui:24
 msgid "Class"
-msgstr ""
+msgstr "Klass"
 
 #: data/resources/ui/search_options_window.ui:34
 msgid "First Class"
-msgstr ""
+msgstr "Första klass"
 
 #: data/resources/ui/search_options_window.ui:40
 msgid "Second Class"
-msgstr ""
+msgstr "Andra klass"
 
 #: data/resources/ui/search_options_window.ui:50
 msgid "Bike Accessible"
-msgstr ""
+msgstr "Cykel tillgänglig"
 
 #: data/resources/ui/search_options_window.ui:56
 msgid "Minimum Transfer Time"
-msgstr ""
+msgstr "Minsta transfertid"
 
 #: data/resources/ui/search_options_window.ui:62
 msgid "Direct Connections Only"
-msgstr ""
+msgstr "Direktanslutningar endast"
 
 #: data/resources/ui/search_options_window.ui:71
 msgid "Modes of Transport"
-msgstr ""
+msgstr "Transportsätt"
 
 #: data/resources/ui/search_options_window.ui:77
 msgid "ICE"
-msgstr ""
+msgstr "ICE"
 
 #: data/resources/ui/search_options_window.ui:82
 msgid "IC/EC"
-msgstr ""
+msgstr "IC/EC"
 
 #: data/resources/ui/search_options_window.ui:87
 msgid "Interregio/RegionalExpress"
-msgstr ""
+msgstr "Interregio/RegionalExpress"
 
 #: data/resources/ui/search_options_window.ui:92
 msgid "Regio"
-msgstr ""
+msgstr "Regio"
 
 #: data/resources/ui/search_options_window.ui:97
 msgid "Suburban"
-msgstr ""
+msgstr "Pendeltåg"
 
 #: data/resources/ui/search_options_window.ui:102
 msgid "Bus"
-msgstr ""
+msgstr "Buss"
 
 #: data/resources/ui/search_options_window.ui:107
 msgid "Ferry"
-msgstr ""
+msgstr "Färja"
 
 #: data/resources/ui/search_options_window.ui:112
 msgid "Subway"
-msgstr ""
+msgstr "Tunnelbana"
 
 #: data/resources/ui/search_options_window.ui:117
 msgid "Tram"
-msgstr ""
+msgstr "Spårvagn"
 
 #: data/resources/ui/search_options_window.ui:122
 msgid "Taxi"
-msgstr ""
+msgstr "Taxi"
 
 #: data/resources/ui/search_page.ui:39
 msgid "From"
-msgstr ""
+msgstr "Från"
 
 #: data/resources/ui/search_page.ui:47
 msgid "To"
-msgstr ""
+msgstr "Till"
 
 #: data/resources/ui/search_page.ui:66 data/resources/ui/search_page.ui:75
 #: data/resources/ui/window.ui:35
 msgid "Search"
-msgstr ""
+msgstr "Sök"
 
 #: data/resources/ui/window.ui:42
 msgid "Railway"
-msgstr ""
+msgstr "Järnväg"
 
 #: data/resources/ui/window.ui:48 data/resources/ui/window.ui:55
 msgid "Select Provider"
-msgstr ""
+msgstr "Välj operatör"
 
 #: data/resources/ui/window.ui:111
 msgid "Connections"
-msgstr ""
+msgstr "Anslutningar"
 
 #: data/resources/ui/window.ui:162
 msgid "Trip Details"
-msgstr ""
+msgstr "Detaljer om resan"
 
 #: data/resources/ui/window.ui:235
 msgid "Preferences"
-msgstr ""
+msgstr "Inställningar"
 
 #: data/resources/ui/window.ui:239
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Tangentbordsgenvägar"
 
 #: data/resources/ui/window.ui:243
 msgid "About Railway"
-msgstr ""
+msgstr "Om Järnväg"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High load"
-msgstr ""
+msgstr "Hög belastning"
 
 #: src/gui/indicator_icons.rs:142
 msgid "Very high load"
-msgstr ""
+msgstr "Väldigt hög belastning"
 
 #: src/gui/indicator_icons.rs:149
 msgid "Exceptionally high load"
-msgstr ""
+msgstr "Exceptionellt hög belastning"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On time"
-msgstr ""
+msgstr "I tid"
 
 #: src/gui/indicator_icons.rs:172
 msgid "Minor delays"
-msgstr ""
+msgstr "Mindre förseningar"
 
 #: src/gui/indicator_icons.rs:179
 msgid "Delayed"
-msgstr ""
+msgstr "Försenad"
 
 #: src/gui/indicator_icons.rs:186
 msgid "Very delayed"
-msgstr ""
+msgstr "Väldigt försenad"
 
 #: src/gui/indicator_icons.rs:193
 msgid "Extremely delayed"
-msgstr ""
+msgstr "Extremt försenad"
 
 #: src/gui/indicator_icons.rs:209
 msgid "Platform changed"
-msgstr ""
+msgstr "Plattform ändrad"
 
 #: src/gui/indicator_icons.rs:228
 msgid "Unreachable"
-msgstr ""
+msgstr "Onåbar"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
-msgstr ""
+msgstr "Inställt"
 
 #: src/gui/search_page.rs:189 src/gui/journey_detail_page.rs:73
 #: src/gui/journeys_page.rs:199 src/gui/journeys_page.rs:257
 msgid "language"
-msgstr ""
+msgstr "språk"
 
 #: src/gui/transition.rs:172
 msgid "Transition"
-msgstr ""
+msgstr "Övergång"
 
 #. Translators: duration in minutes, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:43
 msgid "{} min"
-msgstr ""
+msgstr "{} min"
 
 #. Translators: duration format with hours and minutes, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:51
 msgid "%_H hrs %_M min"
-msgstr ""
+msgstr "%_H tim %_M min"
 
 #: src/gui/utility.rs:62
 msgid "%_d day %_H hrs %_M min"
 msgid_plural "%_d days %_H hrs %_M min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%_d dag %_H tim %_M min"
+msgstr[1] "%_d dagar %_H tim %_M min"
 
 #: src/gui/utility.rs:73 src/gui/date_time_picker.rs:91
 msgid "Today"
-msgstr ""
+msgstr "Idag"
 
 #: src/gui/utility.rs:75
 msgid "Tomorrow"
-msgstr ""
+msgstr "Imorgon"
 
 #: src/gui/utility.rs:77
 msgid "Yesterday"
-msgstr ""
+msgstr "Igår"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:80
 msgid "%a, %d. %B"
-msgstr ""
+msgstr "%a, %d. %B"
 
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:83
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #: src/gui/search_options_button.rs:74
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #: src/gui/search_options_button.rs:75
 msgid "BahnCard 25, 1st class"
-msgstr ""
+msgstr "BahnCard 25, 1:a klass"
 
 #: src/gui/search_options_button.rs:76
 msgid "BahnCard 25, 2nd class"
-msgstr ""
+msgstr "BahnCard 25, 2:a klass"
 
 #: src/gui/search_options_button.rs:77
 msgid "BahnCard 50, 1st class"
-msgstr ""
+msgstr "BahnCard 50, 1:a klass"
 
 #: src/gui/search_options_button.rs:78
 msgid "BahnCard 50, 2nd class"
-msgstr ""
+msgstr "BahnCard 50, 2:a klass"
 
 #: src/gui/search_options_button.rs:79
 msgid "A - VORTEILScard (with RAILPLUS)"
-msgstr ""
+msgstr "A - VORTEILScard (med RAILPLUS)"
 
 #: src/gui/search_options_button.rs:80
 msgid "CH - HalbtaxAbo (with RAILPLUS)"
-msgstr ""
+msgstr "CH - HalbtaxAbo (med RAILPLUS)"
 
 #: src/gui/search_options_button.rs:81
 msgid "CH - HalbtaxAbo (without RAILPLUS)"
-msgstr ""
+msgstr "CH - HalbtaxAbo (utan RAILPLUS)"
 
 #: src/gui/search_options_button.rs:84
 msgid "NL - Voordeelurenabo (with RAILPLUS)"
-msgstr ""
+msgstr "NL - Voordeelurenabo (med RAILPLUS)"
 
 #: src/gui/search_options_button.rs:88
 msgid "NL - Voordeelurenabo (without RAILPLUS)"
-msgstr ""
+msgstr "NL - Voordeelurenabo (utan RAILPLUS)"
 
 #: src/gui/search_options_button.rs:90
 msgid "SH-Card"
-msgstr ""
+msgstr "SH-kort"
 
 #: src/gui/search_options_button.rs:91
 msgid "CH - General-Abonnement"
-msgstr ""
+msgstr "CH - General-Abonnement"
 
 #: src/gui/search_options_button.rs:98
 msgid "Unknown"
-msgstr ""
+msgstr "Okänd"
 
 #: src/gui/search_options_button.rs:136
 msgid "1st class"
-msgstr ""
+msgstr "1:a klass"
 
 #: src/gui/search_options_button.rs:138
 msgid "2nd class"
-msgstr ""
+msgstr "2:a klass"
 
 #: src/gui/search_options_button.rs:186
 msgid "Regional only"
-msgstr ""
+msgstr "Regionalt endast"
 
 #: src/gui/search_options_button.rs:188
 msgid "Custom selection"
-msgstr ""
+msgstr "Anpassat urval"
 
 #: src/gui/search_options_button.rs:193
 msgid "Bike accessible"
-msgstr ""
+msgstr "Cykel tillgänglig"
 
 #: src/gui/search_options_button.rs:200
 msgid "Direct connection"
-msgstr ""
+msgstr "Direktanslutning"
 
 #: src/gui/error.rs:18
 msgid "Failed to fetch data. Are you connected to the internet?"
-msgstr ""
+msgstr "Misslyckades att hämta data. Är du ansluten till internet?"
 
 #: src/gui/error.rs:21
 msgid "The API returned a error. Please report this."
-msgstr ""
+msgstr "API:et returnerade ett fel. Vänligen rapportera detta."
 
 #: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
 msgid "More information"
-msgstr ""
+msgstr "Mer information"
 
 #: src/gui/error.rs:25
 msgid "Failed to parse response. Please report this."
-msgstr ""
+msgstr "Det gick inte att tolka svar. Vänligen rapportera detta."
 
 #: src/gui/error.rs:29
 msgid "Unknown issue. Please report this."
-msgstr ""
+msgstr "Okänt fel. Vänligen rapportera detta."
 
 #: src/gui/error.rs:52
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: src/gui/error.rs:56
 msgid "_Close"
-msgstr ""
+msgstr "_Stäng"
 
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:95
 msgid "%a %b %d"
-msgstr ""
+msgstr "%a %b %d"
 
 #. Translators: The formattign of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:72
 msgid "{train} to {destination}"
-msgstr ""
+msgstr "{train} till {destination}"
 
 #: src/gui/leg_item.rs:164
 msgid "{} stopover"
 msgid_plural "{} stopovers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} mellanlandning"
+msgstr[1] "{} mellanlandningar"
 
 #: src/gui/window.rs:138
 msgid "translators"
-msgstr ""
+msgstr "Luna Jernberg <lunajernberg@gnome.org>"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
 msgid "{amount} €"
-msgstr ""
+msgstr "{amount} €"
 
 #. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
 #: src/backend/price.rs:74
 msgid "{amount} $"
-msgstr ""
+msgstr "{amount} $"
 
 #. Translators: How to format unknown currentcy "currency". Do not translate in {}.
 #: src/backend/price.rs:81
 msgid "{amount} {currency}"
-msgstr ""
+msgstr "{amount} {currency}"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
 #: src/backend/hafas_client.rs:53
 msgid "Nordrhein-Westfalen"
-msgstr ""
+msgstr "Nordrhein-Westfalen"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/hafas_client.rs:61
 msgid "Schleswig-Holstein"
-msgstr ""
+msgstr "Schleswig-Holstein"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
 #: src/backend/hafas_client.rs:78
 msgid "Germany"
-msgstr ""
+msgstr "Tyskland"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
 #: src/backend/hafas_client.rs:93
 msgid "Austria"
-msgstr ""
+msgstr "Österrike"
 
 #: src/backend/leg.rs:126
 msgid "Walk"
-msgstr ""
+msgstr "Gå"
