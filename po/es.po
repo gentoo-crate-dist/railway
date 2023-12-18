@@ -8,67 +8,69 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-09 13:03+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-12-19 18:09+0000\n"
+"Last-Translator: Sergio Varela <sergitroll9@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.3\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
-msgstr ""
+msgstr "Introducir fecha"
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
-msgstr ""
+msgstr "Introducir hora"
 
 #: data/resources/ui/date_time_picker.ui:77
 msgid "Time"
-msgstr ""
+msgstr "Hora"
 
 #: data/resources/ui/date_time_picker.ui:145 src/gui/date_time_picker.rs:102
 msgid "Now"
-msgstr ""
+msgstr "Ahora"
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Travel time"
-msgstr ""
+msgstr "Duración del viaje"
 
 #: data/resources/ui/journey_detail_page.ui:114
 msgid "Choose a Trip"
-msgstr ""
+msgstr "Elige un viaje"
 
 #: data/resources/ui/journeys_page.ui:122
 msgid "Search for Trips"
-msgstr ""
+msgstr "Buscar viajes"
 
 #: data/resources/ui/leg_item.ui:161 data/resources/ui/leg_item.ui:163
 msgid "Open Stopovers"
-msgstr ""
+msgstr "Paradas abiertas"
 
 #: data/resources/ui/leg_item.ui:236 data/resources/ui/leg_item.ui:238
 msgid "Open Remarks"
-msgstr ""
+msgstr "Abrir observaciones"
 
 #: data/resources/ui/preferences_window.ui:10
 #: data/resources/ui/search_options_window.ui:10
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Delete Old Journeys"
-msgstr ""
+msgstr "Borrar trayectos antiguos"
 
 #: data/resources/ui/preferences_window.ui:22
 msgid "Time to Keep Journey After Arrival"
-msgstr ""
+msgstr "Tiempo para continuar el trayecto tras la llegada"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
