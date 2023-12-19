@@ -39,9 +39,9 @@ impl Transition {
         is_last_mile: bool,
         final_destination: &Option<Place>,
     ) {
-        let walking_time_label = walking_time.map(|duration| Utility::format_duration(duration));
-        let final_destination_label = final_destination.clone().and_then(|stop| stop.name());
-        let waiting_time_label = waiting_time.map(|duration| Utility::format_duration(duration));
+        let walking_time_label = walking_time.map(Utility::format_duration);
+        let final_destination_label = final_destination.as_ref().and_then(Place::name);
+        let waiting_time_label = waiting_time.map(Utility::format_duration);
         self.set_property("walking-time", walking_time_label);
         self.set_property("waiting-time", waiting_time_label);
         self.set_property("is-last-mile", is_last_mile);

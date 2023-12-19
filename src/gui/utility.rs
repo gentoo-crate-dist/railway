@@ -8,7 +8,7 @@ impl Utility {
     #[template_callback]
     fn and(#[rest] values: &[Value]) -> bool {
         values
-            .into_iter()
+            .iter()
             .map(|v| v.get::<bool>().expect("Bool for an argument"))
             .all(|b| b)
     }
