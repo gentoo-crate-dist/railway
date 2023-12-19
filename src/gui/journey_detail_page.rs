@@ -35,7 +35,6 @@ pub mod imp {
     use gtk::template_callbacks;
     use gtk::CompositeTemplate;
     use hafas_rs::api::refresh_journey::RefreshJourneyOptions;
-    use hafas_rs::Place::Stop;
     use libadwaita::ToastOverlay;
     use once_cell::sync::Lazy;
 
@@ -211,17 +210,7 @@ pub mod imp {
                                 None
                             };
                             let has_walk = walking_time.is_some()
-                                || (!is_end && {
-                                    let to_place = to.origin.clone();
-                                    let from_place = legs[i_start].origin.clone();
-
-                                    match (from_place, to_place.clone()) {
-                                        (Stop(from_stop), Stop(to_stop)) => {
-                                            from_stop.id != to_stop.id
-                                        }
-                                        (_, _) => false,
-                                    }
-                                });
+                                || (!is_end && to.origin != legs[i_start].origin);
 
                             if let Some(child) = &current_child {
                                 if let Some(transition) = child.dynamic_cast_ref::<Transition>() {

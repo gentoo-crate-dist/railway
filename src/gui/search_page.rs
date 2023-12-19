@@ -178,7 +178,7 @@ pub mod imp {
             let from = self.in_from.property::<Place>("place");
             let to = self.in_to.property::<Place>("place");
 
-            let departure = Some(self.pick_date_time.get().get());
+            let departure = Some(self.pick_date_time.get().get().naive_local());
 
             let main_context = MainContext::default();
             main_context.spawn_local(clone!(@strong from,
@@ -188,7 +188,7 @@ pub mod imp {
                                             @strong self.toast_errors as toast_errors => async move {
                 obj.set_searching(true);
                 let journeys = obj.property::<HafasClient>("client").journeys(from, to, JourneysOptions {
-                    departure: departure.map(|d| d.timestamp()),
+                    departure,
                     language: Some(gettextrs::gettext("language")),
                     stopovers: Some(true),
                     loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
