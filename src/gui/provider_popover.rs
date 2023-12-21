@@ -148,7 +148,24 @@ pub mod imp {
 
     impl ObjectImpl for ProviderPopover {
         fn constructed(&self) {
+            let obj = self.obj();
             self.parent_constructed();
+
+            self.entry_search.set_key_capture_widget(Some(obj.as_ref()));
+
+            let escape_controller = gtk::EventControllerKey::new();
+
+            escape_controller.connect_key_pressed(clone!(@weak obj as popover => @default-return glib::Propagation::Proceed, move |_, key, _, _| {
+                match key {
+                    gdk::Key::Escape => {
+                         popover.popdown();
+                    }
+                    _ => (),
+                }
+                glib::Propagation::Proceed
+            }));
+
+            self.entry_search.add_controller(escape_controller);
         }
 
         fn properties() -> &'static [ParamSpec] {
