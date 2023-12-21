@@ -177,13 +177,14 @@ pub mod imp {
             }));
 
             let action_show_help_overlay = SimpleAction::new("show-help-overlay", None);
-            action_show_help_overlay.connect_activate(|_, _| {
+            action_show_help_overlay.connect_activate(clone!(@weak obj as window => move |_, _| {
                 let builder = Builder::from_resource("/ui/shortcuts.ui");
                 let shortcuts_window: ShortcutsWindow = builder
                     .object("help_overlay")
                     .expect("shortcuts.ui to have at least one object help_overlay");
+                shortcuts_window.set_transient_for(Some(&window));
                 shortcuts_window.present();
-            });
+            }));
 
             let actions = SimpleActionGroup::new();
             obj.insert_action_group("win", Some(&actions));
