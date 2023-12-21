@@ -85,6 +85,7 @@
                             <property name="primary">True</property>
                             <property name="icon-name">open-menu-symbolic</property>
                             <property name="menu-model">menubar</property>
+                            <property name="tooltip-text" translatable="yes">Main Menu</property>
                           </object>
                         </child>
                       </object>
@@ -124,6 +125,7 @@
                                     <signal name="clicked" handler="handle_searches_store" swapped="true"/>
                                     <signal name="notify::active" handler="handle_bookmark_button_icon" swapped="true"/>
                                     <property name="icon-name">bookmark-untoggled-symbolic</property>
+                                    <property name="tooltip-text" translatable="yes">Bookmark This Search</property>
                                     <binding name="active">
                                       <closure function="has_search_stored" type="gboolean">
                                         <lookup name="source">
@@ -170,6 +172,7 @@
                                 <child>
                                   <object class="DBRefreshButton" id="btn_reload_detail">
                                     <signal name="clicked" handler="handle_journey_reload" swapped="true"/>
+                                    <property name="tooltip-text" translatable="yes">Refresh This Trip</property>
                                     <binding name="refreshing">
                                       <lookup name="refresh-in-progress">
                                           journey_detail_page
@@ -193,6 +196,7 @@
                                     <signal name="clicked" handler="handle_journey_store" swapped="true"/>
                                     <property name="icon-name">bookmark-untoggled-symbolic</property>
                                     <signal name="notify::active" handler="handle_bookmark_button_icon" swapped="true"/>
+                                    <property name="tooltip-text" translatable="yes">Bookmark This Trip</property>
                                     <binding name="active">
                                       <closure function="has_journey_stored" type="gboolean">
                                         <lookup name="journey">
