@@ -13,6 +13,7 @@
         <style>
           <class name="flat"/>
         </style>
+        <property name="tooltip-text">Swap Start and Destination</property>
         <property name="valign">center</property>
         <property name="icon-name">route-reverse-symbolic</property>
         <property name="visible" bind-source="DBStationEntry" bind-property="show-swap-button" bind-flags="sync-create"/>
