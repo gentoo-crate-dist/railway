@@ -4,10 +4,6 @@
   <requires lib="libadwaita" version="1.0"/>
 
   <template class="DBStationEntry" parent="AdwEntryRow">
-    <style>
-      <class name="error"/>
-    </style>
-
     <child>
       <object class="GtkButton">
         <style>

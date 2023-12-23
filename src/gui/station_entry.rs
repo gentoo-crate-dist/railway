@@ -274,18 +274,9 @@ pub mod imp {
                     obj.imp().update_popover_visible();
                 }));
 
-            obj.connect_notify_local(
-                Some("place"),
-                clone!(@strong obj as entry => move |obj, _| {
-                    let option: Option<Place> = obj.property("place");
-                    if option.is_some() {
-                        entry.remove_css_class("error");
-                    } else {
-                        entry.add_css_class("error");
-                    }
-                    obj.notify("set");
-                }),
-            );
+            obj.connect_notify_local(Some("place"), |obj, _| {
+                obj.notify("set");
+            });
         }
 
         fn properties() -> &'static [ParamSpec] {
