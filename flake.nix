@@ -1,5 +1,5 @@
 {
-  description = "Travel with all your train information in one place";
+  description = "Find all your travel information";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";

@@ -1,6 +1,6 @@
 [package]
 name = "diebahn"
-description = "Travel with all your train information in one place"
+description = "Find all your travel information"
 authors = ["Julian Schmidhuber <schmidhuberj2@protonmail.com>"]
 homepage = "https://mobile.schmidhuberj.de/railway"
 repository = "https://gitlab.com/schmiddi-on-mobile/railway"
