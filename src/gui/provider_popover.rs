@@ -166,6 +166,11 @@ pub mod imp {
             }));
 
             self.entry_search.add_controller(escape_controller);
+
+            let entry_search = self.entry_search.get();
+            obj.connect_closed(clone!(@weak entry_search => move |_| {
+                entry_search.set_text("");
+            }));
         }
 
         fn properties() -> &'static [ParamSpec] {
