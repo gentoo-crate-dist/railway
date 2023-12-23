@@ -242,7 +242,7 @@
         <attribute name="action">win.show-help-overlay</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">About Railway</attribute>
+        <attribute name="label" translatable="yes">_About Railway</attribute>
         <attribute name="action">win.about</attribute>
       </item>
     </section>

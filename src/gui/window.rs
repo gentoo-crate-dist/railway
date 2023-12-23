@@ -16,7 +16,6 @@ gtk::glib::wrapper! {
 impl Window {
     pub fn new(app: &libadwaita::Application) -> Self {
         app.set_accels_for_action("win.settings", &["<Control>comma"]);
-        app.set_accels_for_action("win.about", &["F1"]);
         app.set_accels_for_action("win.show-help-overlay", &["<Control>question"]);
         app.set_accels_for_action("window.close", &["<Control>q"]);
 
