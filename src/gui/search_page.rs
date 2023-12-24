@@ -107,6 +107,20 @@ pub mod imp {
             self.obj().set_search_when_ready(true);
         }
 
+        fn update_search_button(&self) {
+            let from_set = self.in_from.property::<bool>("set");
+            let to_set = self.in_to.property::<bool>("set");
+            let searching = self.searching.get();
+
+            self.btn_search.set_tooltip_text(match (from_set, to_set, searching) {
+                (false, false, _) => Some("Start and destination are missing"),
+                (false, true, _) => Some("Start is missing"),
+                (true, false, _) => Some("Destination is missing"),
+                (true, true, true) => Some("Search ongoing"),
+                (_, _, _) => None,
+            });
+        }
+
         fn setup_search_when_ready(&self) {
             let obj = self.obj();
             self.btn_search.connect_sensitive_notify(clone!(@weak obj => move |_| {
@@ -266,6 +280,17 @@ pub mod imp {
             self.setup_search_when_ready();
             self.in_from.set_input(self.settings.string("search-from").to_string());
             self.in_to.set_input(self.settings.string("search-to").to_string());
+
+            self.update_search_button();
+            self.in_from.connect_notify_local(Some("set"), clone!(@weak self as search_page => move |_, _| {
+                search_page.update_search_button();
+            }));
+            self.in_to.connect_notify_local(Some("set"), clone!(@weak self as search_page => move |_, _| {
+                search_page.update_search_button();
+            }));
+            self.obj().connect_notify_local(Some("searching"), clone!(@weak self as search_page => move |_, _| {
+                search_page.update_search_button();
+            }));
         }
 
         fn signals() -> &'static [Signal] {
