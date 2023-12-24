@@ -4,8 +4,17 @@
   <requires lib="libadwaita" version="1.0"/>
   <template class="DBPlaceListItem" parent="GtkBox">
     <property name="orientation">horizontal</property>
-    <property name="halign">start</property>
+    <property name="halign">fill</property>
+    <property name="hexpand">true</property>
     <property name="spacing">9</property>
+
+    <child>
+      <object class="GtkGestureClick">
+        <property name="button">1</property>
+        <property name="exclusive">True</property>
+        <signal name="pressed" handler="handle_pressed" swapped="true"/>
+      </object>
+    </child>
 
     <child>
       <object class="GtkLabel">

@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixes
+### Added
+
+- Keyboard navigation to station search.
+
+### Fixed
 
 - For the station search, clear the place when the entry is cleared.
 
