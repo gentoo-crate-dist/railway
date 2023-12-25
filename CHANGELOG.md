@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixes
+
+- For the station search, clear the place when the entry is cleared.
+
 ## [2.2.0] - 2023-12-11
 
 ### Added

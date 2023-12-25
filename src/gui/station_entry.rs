@@ -128,6 +128,7 @@ pub mod imp {
                 let text = entry.text().to_string();
 
                 if text.len() < MIN_REQUEST_LEN {
+                    obj.set_place(None);
                     return;
                 }
 
