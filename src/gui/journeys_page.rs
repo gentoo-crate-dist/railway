@@ -89,17 +89,16 @@ pub mod imp {
     use hafas_rs::LoyaltyCard;
     use hafas_rs::ProductsSelection;
     use hafas_rs::TariffClass;
-    use libadwaita::ToastOverlay;
     use once_cell::sync::Lazy;
 
     use crate::backend::HafasClient;
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
     use crate::config;
-    use crate::gui::error::error_to_toast;
     use crate::gui::journey_list_item::JourneyListItem;
     use crate::gui::time_divider::TimeDivider;
     use crate::gui::utility::Utility;
+    use crate::gui::window::Window;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/journeys_page.ui")]
@@ -109,8 +108,6 @@ pub mod imp {
 
         #[template_child]
         list_journeys: TemplateChild<gtk::ListView>,
-        #[template_child]
-        toast_errors: TemplateChild<ToastOverlay>,
 
         destination_alignment_group: gtk::SizeGroup,
 
@@ -129,7 +126,6 @@ pub mod imp {
             Self {
                 scrolled_window: Default::default(),
                 list_journeys: Default::default(),
-                toast_errors: Default::default(),
                 destination_alignment_group: gtk::SizeGroup::new(gtk::SizeGroupMode::Horizontal),
                 journeys_result: Default::default(),
                 settings: Settings::new(config::BASE_ID),
@@ -186,11 +182,13 @@ pub mod imp {
             obj.set_loading_earlier(true);
 
             let main_context = MainContext::default();
+            let window = self.obj().root().and_downcast::<Window>()
+                .expect("search page must be mapped and realised when a template callback is called");
             main_context.spawn_local(
                 clone!(
                        @strong obj,
                        @strong self.settings as settings,
-                       @strong self.toast_errors as toast_errors => async move {
+                       @strong window => async move {
                     let journeys_result = obj.property::<JourneysResult>("journeys-result");
 
                     let result_journeys_result = obj.property::<HafasClient>("client")
@@ -226,7 +224,7 @@ pub mod imp {
                     if let Ok(result_journeys_result) = result_journeys_result {
                         journeys_result.merge_prepend(&result_journeys_result)
                     } else {
-                        error_to_toast(&toast_errors, result_journeys_result.expect_err("Error to be present"));
+                        window.display_error_toast(result_journeys_result.expect_err("Error to be present"));
                     }
                     obj.set_loading_earlier(false);
                     obj.scroll_up();
@@ -244,11 +242,13 @@ pub mod imp {
             obj.set_loading_later(true);
 
             let main_context = MainContext::default();
+            let window = self.obj().root().and_downcast::<Window>()
+                .expect("search page must be mapped and realised when a template callback is called");
             main_context.spawn_local(
                 clone!(
                        @strong obj,
                        @strong self.settings as settings,
-                       @strong self.toast_errors as toast_errors => async move {
+                       @strong window => async move {
                     let journeys_result = obj.property::<JourneysResult>("journeys-result");
 
                     let result_journeys_result = obj.property::<HafasClient>("client")
@@ -283,7 +283,7 @@ pub mod imp {
                     if let Ok(result_journeys_result) = result_journeys_result {
                         journeys_result.merge_append(&result_journeys_result);
                     } else {
-                        error_to_toast(&toast_errors, result_journeys_result.expect_err("Error to be present"));
+                        window.display_error_toast(result_journeys_result.expect_err("Error to be present"));
                     }
                     obj.set_loading_later(false);
                     obj.scroll_down();

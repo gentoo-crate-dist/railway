@@ -15,7 +15,10 @@
     <property name="halign">GTK_ALIGN_FILL</property>
 
     <child>
-      <object class="AdwToastOverlay" id="toast_errors">
+      <object class="GtkScrolledWindow">
+        <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
+        <property name="overflow">visible</property>
+
         <binding name="visible">
           <closure function="is_some" type="gboolean">
             <lookup name="journey" type="DBJourneyDetailPage"/>
@@ -23,91 +26,84 @@
         </binding>
 
         <child>
-          <object class="GtkScrolledWindow">
-            <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
-            <property name="overflow">visible</property>
-
+          <object class="GtkViewport">
+          <property name="overflow">visible</property>
             <child>
-              <object class="GtkViewport">
-              <property name="overflow">visible</property>
-                <child>
-                  <object class="AdwClamp">
-                    <property name="child">
-                      <object class="GtkBox">
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">18</property>
-                        <property name="vexpand">True</property>
-                        <property name="valign">fill</property>
-                        <property name="hexpand">True</property>
-                        <property name="halign">fill</property>
-                        <property name="margin-top">12</property>
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-end">12</property>
+              <object class="AdwClamp">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">18</property>
+                    <property name="vexpand">True</property>
+                    <property name="valign">fill</property>
+                    <property name="hexpand">True</property>
+                    <property name="halign">fill</property>
+                    <property name="margin-top">12</property>
+                    <property name="margin-bottom">12</property>
+                    <property name="margin-start">12</property>
+                    <property name="margin-end">12</property>
 
+                    <child>
+                      <object class="GtkLabel">
+                        <style>
+                          <class name="title-1"/>
+                        </style>
+                        <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <binding name="label">
+                          <closure function="format_source_destination" type="gchararray">
+                            <lookup name="name">
+                              <lookup name="origin">
+                                <lookup name="first-leg">
+                                  <lookup name="journey" type="DBJourneyDetailPage"/>
+                                </lookup>
+                              </lookup>
+                            </lookup>
+                            <lookup name="name">
+                              <lookup name="destination">
+                                <lookup name="last-leg">
+                                  <lookup name="journey" type="DBJourneyDetailPage"/>
+                                </lookup>
+                              </lookup>
+                            </lookup>
+                          </closure>
+                        </binding>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
                         <child>
                           <object class="GtkLabel">
-                            <style>
-                              <class name="title-1"/>
-                            </style>
-                            <property name="wrap">True</property>
                             <property name="xalign">0</property>
+                            <property name="hexpand">true</property>
+                            <accessibility>
+                              <property name="description" translatable="yes">Travel time</property>
+                            </accessibility>
                             <binding name="label">
-                              <closure function="format_source_destination" type="gchararray">
-                                <lookup name="name">
-                                  <lookup name="origin">
-                                    <lookup name="first-leg">
-                                      <lookup name="journey" type="DBJourneyDetailPage"/>
-                                    </lookup>
-                                  </lookup>
-                                </lookup>
-                                <lookup name="name">
-                                  <lookup name="destination">
-                                    <lookup name="last-leg">
-                                      <lookup name="journey" type="DBJourneyDetailPage"/>
-                                    </lookup>
-                                  </lookup>
-                                </lookup>
-                              </closure>
+                              <lookup name="total-time">
+                                <lookup name="journey" type="DBJourneyDetailPage"/>
+                              </lookup>
                             </binding>
                           </object>
                         </child>
-
                         <child>
-                          <object class="GtkBox">
-                            <property name="orientation">horizontal</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="xalign">0</property>
-                                <property name="hexpand">true</property>
-                                <accessibility>
-                                  <property name="description" translatable="yes">Travel time</property>
-                                </accessibility>
-                                <binding name="label">
-                                  <lookup name="total-time">
-                                    <lookup name="journey" type="DBJourneyDetailPage"/>
-                                  </lookup>
-                                </binding>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="label_last_refreshed">
-                                <property name="xalign">0</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-
-                        <child>
-                          <object class="GtkBox" id="box_legs">
-                            <property name="orientation">vertical</property>
-                            <property name="spacing">12</property>
+                          <object class="GtkLabel" id="label_last_refreshed">
+                            <property name="xalign">0</property>
                           </object>
                         </child>
                       </object>
-                    </property>
+                    </child>
+
+                    <child>
+                      <object class="GtkBox" id="box_legs">
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">12</property>
+                      </object>
+                    </child>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
           </object>

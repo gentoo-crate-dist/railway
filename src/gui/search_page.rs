@@ -53,11 +53,11 @@ pub mod imp {
     use crate::backend::JourneysResult;
     use crate::backend::Place;
     use crate::gui::date_time_picker::DateTimePicker;
-    use crate::gui::error::error_to_toast;
     use crate::gui::journey_store_item::JourneyStoreItem;
     use crate::gui::search_store_item::SearchStoreItem;
     use crate::gui::station_entry::StationEntry;
     use crate::gui::utility::Utility;
+    use crate::gui::window::Window;
     use crate::config;
 
     #[derive(CompositeTemplate, Properties)]
@@ -79,9 +79,6 @@ pub mod imp {
         box_journeys: TemplateChild<gtk::ListBox>,
         #[template_child]
         box_searches: TemplateChild<gtk::ListBox>,
-
-        #[template_child]
-        toast_errors: TemplateChild<libadwaita::ToastOverlay>,
 
         settings: Settings,
         #[property(get, set)]
@@ -195,11 +192,13 @@ pub mod imp {
             let departure = Some(self.pick_date_time.get().get().naive_local());
 
             let main_context = MainContext::default();
+            let window = self.obj().root().and_downcast::<Window>()
+                .expect("search page must be mapped and realised when a template callback is called");
             main_context.spawn_local(clone!(@strong from,
                                             @strong to,
                                             @strong obj, 
                                             @strong self.settings as settings,
-                                            @strong self.toast_errors as toast_errors => async move {
+                                            @strong window => async move {
                 obj.set_searching(true);
                 let journeys = obj.property::<HafasClient>("client").journeys(from, to, JourneysOptions {
                     departure,
@@ -231,7 +230,7 @@ pub mod imp {
                 }).await;
                 obj.set_searching(false);
                 if journeys.is_err() {
-                    error_to_toast(&toast_errors, journeys.err().unwrap());
+                    window.display_error_toast(journeys.err().unwrap());
                     return;
                 }
 
@@ -255,7 +254,6 @@ pub mod imp {
                 btn_search: Default::default(),
                 box_journeys: Default::default(),
                 box_searches: Default::default(),
-                toast_errors: Default::default(),
                 client: Default::default(),
                 search_when_ready: Default::default(),
                 searching: Default::default()

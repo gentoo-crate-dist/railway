@@ -13,100 +13,95 @@
     <property name="halign">GTK_ALIGN_FILL</property>
 
     <child>
-      <object class="AdwToastOverlay" id="toast_errors">
-        <property name="overflow">visible</property>
+      <object class="GtkOverlay">
+        <property name="vexpand">True</property>
+        <property name="hexpand">True</property>
+
         <binding name="visible">
           <closure function="is_some" type="gboolean">
             <lookup name="journeys-result" type="DBJourneysPage"/>
           </closure>
         </binding>
 
-        <child>
-          <object class="GtkOverlay">
-            <property name="vexpand">True</property>
-            <property name="hexpand">True</property>
-
-            <child type="overlay">
-              <object class="GtkRevealer">
-                <property name="halign">center</property>
-                <property name="valign">start</property>
-                <property name="transition-type">slide-down</property>
-                <binding name="reveal-child">
-                  <lookup name="is-loading-earlier" type="DBJourneysPage"/>
-                </binding>
-                <property name="child">
-                  <object class="AdwBin">
-                    <style>
-                      <class name="overlay-spinner"/>
-                      <class name="osd"/>
-                    </style>
-                    <property name="margin-top">12</property>
-                    <property name="child">
-                      <object class="GtkSpinner">
-                        <property name="spinning">True</property>
-                      </object>
-                    </property>
-                  </object>
-                </property>
-              </object>
-            </child>
-
+        <child type="overlay">
+          <object class="GtkRevealer">
+            <property name="halign">center</property>
+            <property name="valign">start</property>
+            <property name="transition-type">slide-down</property>
+            <binding name="reveal-child">
+              <lookup name="is-loading-earlier" type="DBJourneysPage"/>
+            </binding>
             <property name="child">
-              <object class="GtkScrolledWindow" id="scrolled_window">
-                <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
-                <property name="vexpand">TRUE</property>
-
-                <signal name="edge-overshot" handler="handle_edge_reached" swapped="true"/>
-
+              <object class="AdwBin">
+                <style>
+                  <class name="overlay-spinner"/>
+                  <class name="osd"/>
+                </style>
+                <property name="margin-top">12</property>
                 <property name="child">
-                  <object class="AdwClampScrollable">
-                    <!-- follows width of search pane, adjusted for margins -->
-                    <property name="tightening-threshold">400</property>
-                    <property name="maximum-size">540</property>
-                    <property name="child">
-                      <object class="GtkListView" id="list_journeys">
-                        <style>
-                          <class name="navigation-sidebar"/>
-                        </style>
-                        <property name="tab-behavior">item</property>
-                        <property name="valign">GTK_ALIGN_START</property>
-
-                        <binding name="model">
-                          <closure function="no_selection" type="GtkSelectionModel">
-                            <lookup name="journeys-result" type="DBJourneysPage"/>
-                          </closure>
-                        </binding>
-                      </object>
-                    </property>
+                  <object class="GtkSpinner">
+                    <property name="spinning">True</property>
                   </object>
                 </property>
               </object>
             </property>
+          </object>
+        </child>
 
-            <child type="overlay">
-              <object class="GtkRevealer">
-                <property name="halign">center</property>
-                <property name="valign">end</property>
-                <property name="transition-type">slide-up</property>
-                <binding name="reveal-child">
-                  <lookup name="is-loading-later" type="DBJourneysPage"/>
-                </binding>
+        <property name="child">
+          <object class="GtkScrolledWindow" id="scrolled_window">
+            <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
+            <property name="vexpand">TRUE</property>
+
+            <signal name="edge-overshot" handler="handle_edge_reached" swapped="true"/>
+
+            <property name="child">
+              <object class="AdwClampScrollable">
+                <!-- follows width of search pane, adjusted for margins -->
+                <property name="tightening-threshold">400</property>
+                <property name="maximum-size">540</property>
                 <property name="child">
-                  <object class="AdwBin">
+                  <object class="GtkListView" id="list_journeys">
                     <style>
-                      <class name="overlay-spinner"/>
-                      <class name="osd"/>
+                      <class name="navigation-sidebar"/>
                     </style>
-                    <property name="margin-bottom">12</property>
-                    <property name="child">
-                      <object class="GtkSpinner">
-                        <property name="spinning">True</property>
-                      </object>
-                    </property>
+                    <property name="tab-behavior">item</property>
+                    <property name="valign">GTK_ALIGN_START</property>
+
+                    <binding name="model">
+                      <closure function="no_selection" type="GtkSelectionModel">
+                        <lookup name="journeys-result" type="DBJourneysPage"/>
+                      </closure>
+                    </binding>
                   </object>
                 </property>
               </object>
-            </child>
+            </property>
+          </object>
+        </property>
+
+        <child type="overlay">
+          <object class="GtkRevealer">
+            <property name="halign">center</property>
+            <property name="valign">end</property>
+            <property name="transition-type">slide-up</property>
+            <binding name="reveal-child">
+              <lookup name="is-loading-later" type="DBJourneysPage"/>
+            </binding>
+            <property name="child">
+              <object class="AdwBin">
+                <style>
+                  <class name="overlay-spinner"/>
+                  <class name="osd"/>
+                </style>
+                <property name="margin-bottom">12</property>
+                <property name="child">
+                  <object class="GtkSpinner">
+                    <property name="spinning">True</property>
+                  </object>
+                </property>
+              </object>
+            </property>
           </object>
         </child>
       </object>

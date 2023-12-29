@@ -23,203 +23,210 @@
       </object>
     </child>
 
+
     <child>
-      <object class="AdwNavigationSplitView" id="search_view">
-        <property name="min-sidebar-width">300</property>
-        <property name="max-sidebar-width">400</property>
-        <property name="sidebar-width-fraction">0.25</property>
-        <property name="sidebar">
-          <object class="AdwNavigationPage">
-            <property name="title" translatable="yes">Search</property>
-            <child>
-              <object class="AdwToolbarView">
-                <child type="top">
-                  <object class="AdwHeaderBar">
-                    <property name="title-widget">
-                      <object class="AdwWindowTitle">
-                        <property name="title" translatable="yes">Railway</property>
-                      </object>
-                    </property>
-                    <child>
-                      <object class="GtkMenuButton">
-                        <accessibility>
-                          <property name="label" translatable="yes">Select Provider</property>
-                        </accessibility>
+      <object class="AdwToastOverlay" id="toast_overlay">
 
-                        <style>
-                          <class name="window-menu-button-provider"/>
-                        </style>
-
-                        <property name="tooltip-text" translatable="yes">Select Provider</property>
-                        <property name="always-show-arrow">true</property>
-                        <property name="popover">
-                          <object class="DBProviderPopover" id="provider_popover">
-                            <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
+        <child>
+          <object class="AdwNavigationSplitView" id="search_view">
+            <property name="min-sidebar-width">300</property>
+            <property name="max-sidebar-width">400</property>
+            <property name="sidebar-width-fraction">0.25</property>
+            <property name="sidebar">
+              <object class="AdwNavigationPage">
+                <property name="title" translatable="yes">Search</property>
+                <child>
+                  <object class="AdwToolbarView">
+                    <child type="top">
+                      <object class="AdwHeaderBar">
+                        <property name="title-widget">
+                          <object class="AdwWindowTitle">
+                            <property name="title" translatable="yes">Railway</property>
                           </object>
                         </property>
                         <child>
-                          <object class="GtkImage">
-                            <style>
-                              <class name="icon-dropshadow"/>
-                            </style>
-                            <property name="pixel-size">28</property>
-                            <!-- Required as otherwise the header bar would be 1px too large -->
-                            <property name="height-request">0</property>
-                            <binding name="icon-name">
-                              <lookup name="icon-name">
-                                <lookup name="current-selection">
-                                  provider_popover
-                                </lookup>
-                              </lookup>
-                            </binding>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="end">
-                      <object class="GtkMenuButton">
-                        <property name="primary">True</property>
-                        <property name="icon-name">open-menu-symbolic</property>
-                        <property name="menu-model">menubar</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <property name="content">
-                  <object class="DBSearchPage" id="search_page">
-                    <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
-                    <signal name="details" handler="handle_details" swapped="true"/>
-                    <signal name="search" handler="handle_search_page" swapped="true"/>
-                  </object>
-                </property>
-              </object>
-            </child>
-          </object>
-        </property>
-        <property name="content">
-          <object class="AdwNavigationPage">
-            <property name="title">Search Results</property> <!-- not user-facing thus no translatable="yes" -->
-            <child>
-              <object class="AdwNavigationSplitView" id="result_view">
-                <property name="min-sidebar-width">300</property>
-                <property name="max-sidebar-width">450</property>
-                <property name="sidebar-width-fraction">0.4</property>
-                <property name="sidebar">
-                  <object class="AdwNavigationPage">
-                    <property name="title" translatable="yes">Connections</property>
-                    <child>
-                      <object class="AdwToolbarView">
-                        <child type="top">
-                          <object class="AdwHeaderBar">
-                            <child>
-                              <object class="GtkToggleButton" id="btn_bookmark_search">
-                                <style>
-                                  <class name="bookmark-button"/>
-                                </style>
+                          <object class="GtkMenuButton">
+                            <accessibility>
+                              <property name="label" translatable="yes">Select Provider</property>
+                            </accessibility>
 
-                                <signal name="clicked" handler="handle_searches_store" swapped="true"/>
-                                <signal name="notify::active" handler="handle_bookmark_button_icon" swapped="true"/>
-                                <property name="icon-name">bookmark-untoggled-symbolic</property>
-                                <binding name="active">
-                                  <closure function="has_search_stored" type="gboolean">
-                                    <lookup name="source">
-                                      <lookup name="journeys-result">
-                                        journeys_page
-                                      </lookup>
-                                    </lookup>
-                                    <lookup name="destination">
-                                      <lookup name="journeys-result">
-                                        journeys_page
-                                      </lookup>
-                                    </lookup>
-                                  </closure>
-                                </binding>
-                                <binding name="visible">
-                                  <closure function="is_some" type="gboolean">
-                                    <lookup name="journeys-result">
-                                        journeys_page
-                                    </lookup>
-                                  </closure>
-                                </binding>
+                            <style>
+                              <class name="window-menu-button-provider"/>
+                            </style>
+
+                            <property name="tooltip-text" translatable="yes">Select Provider</property>
+                            <property name="always-show-arrow">true</property>
+                            <property name="popover">
+                              <object class="DBProviderPopover" id="provider_popover">
+                                <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
                               </object>
-                            </child>
-                          </object>
-                        </child>
-                        <property name="content">
-                          <object class="DBJourneysPage" id="journeys_page">
-                            <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
-                            <signal name="select" handler="handle_journeys_page" swapped="true"/>
-                          </object>
-                        </property>
-                      </object>
-                    </child>
-                  </object>
-                </property>
-                <property name="content">
-                  <object class="AdwNavigationPage">
-                    <property name="title" translatable="yes">Trip Details</property>
-                    <child>
-                      <object class="AdwToolbarView">
-                        <property name="width-request">200</property>
-                        <child type="top">
-                          <object class="AdwHeaderBar">
+                            </property>
                             <child>
-                              <object class="DBRefreshButton" id="btn_reload_detail">
-                                <signal name="clicked" handler="handle_journey_reload" swapped="true"/>
-                                <binding name="refreshing">
-                                  <lookup name="refresh-in-progress">
-                                      journey_detail_page
+                              <object class="GtkImage">
+                                <style>
+                                  <class name="icon-dropshadow"/>
+                                </style>
+                                <property name="pixel-size">28</property>
+                                <!-- Required as otherwise the header bar would be 1px too large -->
+                                <property name="height-request">0</property>
+                                <binding name="icon-name">
+                                  <lookup name="icon-name">
+                                    <lookup name="current-selection">
+                                      provider_popover
+                                    </lookup>
                                   </lookup>
                                 </binding>
-                                <binding name="visible">
-                                  <closure function="is_some" type="gboolean">
-                                    <lookup name="journey">
-                                        journey_detail_page
-                                    </lookup>
-                                  </closure>
-                                </binding>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkToggleButton" id="btn_bookmark_journey">
-                                <style>
-                                  <class name="bookmark-button"/>
-                                </style>
-
-                                <signal name="clicked" handler="handle_journey_store" swapped="true"/>
-                                <property name="icon-name">bookmark-untoggled-symbolic</property>
-                                <signal name="notify::active" handler="handle_bookmark_button_icon" swapped="true"/>
-                                <binding name="active">
-                                  <closure function="has_journey_stored" type="gboolean">
-                                    <lookup name="journey">
-                                        journey_detail_page
-                                    </lookup>
-                                  </closure>
-                                </binding>
-                                <binding name="visible">
-                                  <closure function="is_some" type="gboolean">
-                                    <lookup name="journey">
-                                        journey_detail_page
-                                    </lookup>
-                                  </closure>
-                                </binding>
                               </object>
                             </child>
                           </object>
                         </child>
-                        <property name="content">
-                          <object class="DBJourneyDetailPage" id="journey_detail_page">
-                            <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
+                        <child type="end">
+                          <object class="GtkMenuButton">
+                            <property name="primary">True</property>
+                            <property name="icon-name">open-menu-symbolic</property>
+                            <property name="menu-model">menubar</property>
                           </object>
-                        </property>
+                        </child>
                       </object>
                     </child>
+                    <property name="content">
+                      <object class="DBSearchPage" id="search_page">
+                        <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
+                        <signal name="details" handler="handle_details" swapped="true"/>
+                        <signal name="search" handler="handle_search_page" swapped="true"/>
+                      </object>
+                    </property>
                   </object>
-                </property>
+                </child>
               </object>
-            </child>
+            </property>
+            <property name="content">
+              <object class="AdwNavigationPage">
+                <property name="title">Search Results</property> <!-- not user-facing thus no translatable="yes" -->
+                <child>
+                  <object class="AdwNavigationSplitView" id="result_view">
+                    <property name="min-sidebar-width">300</property>
+                    <property name="max-sidebar-width">450</property>
+                    <property name="sidebar-width-fraction">0.4</property>
+                    <property name="sidebar">
+                      <object class="AdwNavigationPage">
+                        <property name="title" translatable="yes">Connections</property>
+                        <child>
+                          <object class="AdwToolbarView">
+                            <child type="top">
+                              <object class="AdwHeaderBar">
+                                <child>
+                                  <object class="GtkToggleButton" id="btn_bookmark_search">
+                                    <style>
+                                      <class name="bookmark-button"/>
+                                    </style>
+
+                                    <signal name="clicked" handler="handle_searches_store" swapped="true"/>
+                                    <signal name="notify::active" handler="handle_bookmark_button_icon" swapped="true"/>
+                                    <property name="icon-name">bookmark-untoggled-symbolic</property>
+                                    <binding name="active">
+                                      <closure function="has_search_stored" type="gboolean">
+                                        <lookup name="source">
+                                          <lookup name="journeys-result">
+                                            journeys_page
+                                          </lookup>
+                                        </lookup>
+                                        <lookup name="destination">
+                                          <lookup name="journeys-result">
+                                            journeys_page
+                                          </lookup>
+                                        </lookup>
+                                      </closure>
+                                    </binding>
+                                    <binding name="visible">
+                                      <closure function="is_some" type="gboolean">
+                                        <lookup name="journeys-result">
+                                            journeys_page
+                                        </lookup>
+                                      </closure>
+                                    </binding>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <property name="content">
+                              <object class="DBJourneysPage" id="journeys_page">
+                                <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
+                                <signal name="select" handler="handle_journeys_page" swapped="true"/>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                    <property name="content">
+                      <object class="AdwNavigationPage">
+                        <property name="title" translatable="yes">Trip Details</property>
+                        <child>
+                          <object class="AdwToolbarView">
+                            <property name="width-request">200</property>
+                            <child type="top">
+                              <object class="AdwHeaderBar">
+                                <child>
+                                  <object class="DBRefreshButton" id="btn_reload_detail">
+                                    <signal name="clicked" handler="handle_journey_reload" swapped="true"/>
+                                    <binding name="refreshing">
+                                      <lookup name="refresh-in-progress">
+                                          journey_detail_page
+                                      </lookup>
+                                    </binding>
+                                    <binding name="visible">
+                                      <closure function="is_some" type="gboolean">
+                                        <lookup name="journey">
+                                            journey_detail_page
+                                        </lookup>
+                                      </closure>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="btn_bookmark_journey">
+                                    <style>
+                                      <class name="bookmark-button"/>
+                                    </style>
+
+                                    <signal name="clicked" handler="handle_journey_store" swapped="true"/>
+                                    <property name="icon-name">bookmark-untoggled-symbolic</property>
+                                    <signal name="notify::active" handler="handle_bookmark_button_icon" swapped="true"/>
+                                    <binding name="active">
+                                      <closure function="has_journey_stored" type="gboolean">
+                                        <lookup name="journey">
+                                            journey_detail_page
+                                        </lookup>
+                                      </closure>
+                                    </binding>
+                                    <binding name="visible">
+                                      <closure function="is_some" type="gboolean">
+                                        <lookup name="journey">
+                                            journey_detail_page
+                                        </lookup>
+                                      </closure>
+                                    </binding>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <property name="content">
+                              <object class="DBJourneyDetailPage" id="journey_detail_page">
+                                <property name="client" bind-source="DBWindow" bind-property="client" bind-flags="sync-create"/>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </property>
           </object>
-        </property>
+        </child>
+
       </object>
     </child>
   </template>
