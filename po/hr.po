@@ -8,296 +8,299 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-09 13:03+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-12-31 16:09+0000\n"
+"Last-Translator: Krešo Kunjas <kkunjas@gmail.com>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
-msgstr ""
+msgstr "Unos datuma"
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
-msgstr ""
+msgstr "Unos vremena"
 
 #: data/resources/ui/date_time_picker.ui:77
 msgid "Time"
-msgstr ""
+msgstr "Vrijeme"
 
 #: data/resources/ui/date_time_picker.ui:145 src/gui/date_time_picker.rs:102
 msgid "Now"
-msgstr ""
+msgstr "Sada"
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Travel time"
-msgstr ""
+msgstr "Vrijeme putovanja"
 
 #: data/resources/ui/journey_detail_page.ui:114
 msgid "Choose a Trip"
-msgstr ""
+msgstr "Izaberi putovanje"
 
 #: data/resources/ui/journeys_page.ui:122
 msgid "Search for Trips"
-msgstr ""
+msgstr "Pretraži putovanja"
 
 #: data/resources/ui/leg_item.ui:161 data/resources/ui/leg_item.ui:163
 msgid "Open Stopovers"
-msgstr ""
+msgstr "Otvori staqnice"
 
 #: data/resources/ui/leg_item.ui:236 data/resources/ui/leg_item.ui:238
 msgid "Open Remarks"
-msgstr ""
+msgstr "Otvori primjedbe"
 
 #: data/resources/ui/preferences_window.ui:10
 #: data/resources/ui/search_options_window.ui:10
 msgid "General"
-msgstr ""
+msgstr "Općenito"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Delete Old Journeys"
-msgstr ""
+msgstr "Obriši stara putovanja"
 
 #: data/resources/ui/preferences_window.ui:22
 msgid "Time to Keep Journey After Arrival"
-msgstr ""
+msgstr "Vrijeme zadržavanja putovanja nakon dolaska"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
-msgstr ""
+msgstr "Više opcija pretrage"
 
 #: data/resources/ui/search_options_button.ui:33
 msgid "More Options"
-msgstr ""
+msgstr "Više opcija"
 
 #: data/resources/ui/search_options_window.ui:16
 msgid "Discount Card"
-msgstr ""
+msgstr "Kartica s popustom"
 
 #: data/resources/ui/search_options_window.ui:24
 msgid "Class"
-msgstr ""
+msgstr "Klasa"
 
 #: data/resources/ui/search_options_window.ui:34
 msgid "First Class"
-msgstr ""
+msgstr "Prva klasa"
 
 #: data/resources/ui/search_options_window.ui:40
 msgid "Second Class"
-msgstr ""
+msgstr "Druga klasa"
 
 #: data/resources/ui/search_options_window.ui:50
 msgid "Bike Accessible"
-msgstr ""
+msgstr "Dozvoljen bicikl"
 
 #: data/resources/ui/search_options_window.ui:56
 msgid "Minimum Transfer Time"
-msgstr ""
+msgstr "Minimalno vrijeme transfera"
 
 #: data/resources/ui/search_options_window.ui:62
 msgid "Direct Connections Only"
-msgstr ""
+msgstr "Samo direktne veze"
 
 #: data/resources/ui/search_options_window.ui:71
 msgid "Modes of Transport"
-msgstr ""
+msgstr "Vrste transporta"
 
 #: data/resources/ui/search_options_window.ui:77
 msgid "ICE"
-msgstr ""
+msgstr "ICE"
 
 #: data/resources/ui/search_options_window.ui:82
 msgid "IC/EC"
-msgstr ""
+msgstr "IC/EC"
 
 #: data/resources/ui/search_options_window.ui:87
 msgid "Interregio/RegionalExpress"
-msgstr ""
+msgstr "Interregionalni/Regionalni express"
 
 #: data/resources/ui/search_options_window.ui:92
 msgid "Regio"
-msgstr ""
+msgstr "Regija"
 
 #: data/resources/ui/search_options_window.ui:97
 msgid "Suburban"
-msgstr ""
+msgstr "Prigradski"
 
 #: data/resources/ui/search_options_window.ui:102
 msgid "Bus"
-msgstr ""
+msgstr "Autobus"
 
 #: data/resources/ui/search_options_window.ui:107
 msgid "Ferry"
-msgstr ""
+msgstr "Trajekt"
 
 #: data/resources/ui/search_options_window.ui:112
 msgid "Subway"
-msgstr ""
+msgstr "Podzemna željeznica"
 
 #: data/resources/ui/search_options_window.ui:117
 msgid "Tram"
-msgstr ""
+msgstr "Tramvaj"
 
 #: data/resources/ui/search_options_window.ui:122
 msgid "Taxi"
-msgstr ""
+msgstr "Taksi"
 
 #: data/resources/ui/search_page.ui:39
 msgid "From"
-msgstr ""
+msgstr "Od"
 
 #: data/resources/ui/search_page.ui:47
 msgid "To"
-msgstr ""
+msgstr "Do"
 
 #: data/resources/ui/search_page.ui:66 data/resources/ui/search_page.ui:75
 #: data/resources/ui/window.ui:35
 msgid "Search"
-msgstr ""
+msgstr "Pretraga"
 
 #: data/resources/ui/window.ui:42
 msgid "Railway"
-msgstr ""
+msgstr "Željeznica"
 
 #: data/resources/ui/window.ui:48 data/resources/ui/window.ui:55
 msgid "Select Provider"
-msgstr ""
+msgstr "Izaberi pružatelja usluge"
 
 #: data/resources/ui/window.ui:111
 msgid "Connections"
-msgstr ""
+msgstr "Konekcije"
 
 #: data/resources/ui/window.ui:162
 msgid "Trip Details"
-msgstr ""
+msgstr "Detalji putovanja"
 
 #: data/resources/ui/window.ui:235
 msgid "Preferences"
-msgstr ""
+msgstr "Postavke"
 
 #: data/resources/ui/window.ui:239
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Tipkovničke kratice"
 
 #: data/resources/ui/window.ui:243
 msgid "About Railway"
-msgstr ""
+msgstr "o Željeznicama"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High load"
-msgstr ""
+msgstr "Veliko opterećenje"
 
 #: src/gui/indicator_icons.rs:142
 msgid "Very high load"
-msgstr ""
+msgstr "Vrlo veliko opterećenje"
 
 #: src/gui/indicator_icons.rs:149
 msgid "Exceptionally high load"
-msgstr ""
+msgstr "Posebno veliko opterećenje"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On time"
-msgstr ""
+msgstr "Na vrijeme"
 
 #: src/gui/indicator_icons.rs:172
 msgid "Minor delays"
-msgstr ""
+msgstr "Manje kašnjenje"
 
 #: src/gui/indicator_icons.rs:179
 msgid "Delayed"
-msgstr ""
+msgstr "Kasni"
 
 #: src/gui/indicator_icons.rs:186
 msgid "Very delayed"
-msgstr ""
+msgstr "Dosta kasni"
 
 #: src/gui/indicator_icons.rs:193
 msgid "Extremely delayed"
-msgstr ""
+msgstr "Kasni jako puno"
 
 #: src/gui/indicator_icons.rs:209
 msgid "Platform changed"
-msgstr ""
+msgstr "Promjena platforme"
 
 #: src/gui/indicator_icons.rs:228
 msgid "Unreachable"
-msgstr ""
+msgstr "Nedostupno"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
-msgstr ""
+msgstr "Otkazano"
 
 #: src/gui/search_page.rs:189 src/gui/journey_detail_page.rs:73
 #: src/gui/journeys_page.rs:199 src/gui/journeys_page.rs:257
 msgid "language"
-msgstr ""
+msgstr "jezik"
 
 #: src/gui/transition.rs:172
 msgid "Transition"
-msgstr ""
+msgstr "Prijelaz"
 
 #. Translators: duration in minutes, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:43
 msgid "{} min"
-msgstr ""
+msgstr "{} minuta"
 
 #. Translators: duration format with hours and minutes, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:51
 msgid "%_H hrs %_M min"
-msgstr ""
+msgstr "%_H sati, %_M minuta"
 
 #: src/gui/utility.rs:62
 msgid "%_d day %_H hrs %_M min"
 msgid_plural "%_d days %_H hrs %_M min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%_d dan %_H sati, %_M minuta"
+msgstr[1] "%_d dana %_H sati, %_M minuta"
+msgstr[2] "%_d dana %_H sati, %_M minuta"
 
 #: src/gui/utility.rs:73 src/gui/date_time_picker.rs:91
 msgid "Today"
-msgstr ""
+msgstr "Danas"
 
 #: src/gui/utility.rs:75
 msgid "Tomorrow"
-msgstr ""
+msgstr "Sutra"
 
 #: src/gui/utility.rs:77
 msgid "Yesterday"
-msgstr ""
+msgstr "Jučer"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:80
 msgid "%a, %d. %B"
-msgstr ""
+msgstr "%a, %d.%B"
 
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:83
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%d.%m.%Y"
 
 #: src/gui/search_options_button.rs:74
 msgid "None"
-msgstr ""
+msgstr "Niti jedan"
 
 #: src/gui/search_options_button.rs:75
 msgid "BahnCard 25, 1st class"
-msgstr ""
+msgstr "BahnCard 25, prvi razred"
 
 #: src/gui/search_options_button.rs:76
 msgid "BahnCard 25, 2nd class"
-msgstr ""
+msgstr "BahnCard 25, drugi razred"
 
 #: src/gui/search_options_button.rs:77
 msgid "BahnCard 50, 1st class"
-msgstr ""
+msgstr "BahnCard 50, prvi razred"
 
 #: src/gui/search_options_button.rs:78
 msgid "BahnCard 50, 2nd class"
