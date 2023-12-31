@@ -20,7 +20,7 @@ Railway lets you look up travel information for many different railways, all wit
   </tr>
   <tr>
     <td>Arch Linux (AUR)</td>
-    <td>[diebahn](https://aur.archlinux.org/packages/diebahn)</td>
+    <td>[railway](https://aur.archlinux.org/packages/railway)</td>
   </tr>
 </table>
 
