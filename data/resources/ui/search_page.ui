@@ -8,113 +8,109 @@
     <property name="hexpand">True</property>
 
     <child>
-      <object class="AdwToastOverlay" id="toast_errors">
-        <child>
-          <object class="GtkScrolledWindow">
-            <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
+      <object class="GtkScrolledWindow">
+        <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
 
+        <property name="child">
+          <object class="AdwClamp">
+            <property name="tightening-threshold">376</property> <!-- 376 = 400 - 2 * 12 = maximum with as sidebar - margin -->
+            <property name="maximum-size">516</property>
             <property name="child">
-              <object class="AdwClamp">
-                <property name="tightening-threshold">376</property> <!-- 376 = 400 - 2 * 12 = maximum with as sidebar - margin -->
-                <property name="maximum-size">516</property>
-                <property name="child">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
-                    <property name="spacing">12</property>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="spacing">12</property>
 
-                    <property name="margin-top">12</property>
-                    <property name="margin-bottom">12</property>
-                    <property name="margin-start">12</property>
-                    <property name="margin-end">12</property>
+                <property name="margin-top">12</property>
+                <property name="margin-bottom">12</property>
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
 
+                <child>
+                  <object class="GtkListBox">
+                    <style>
+                      <class name="boxed-list"/>
+                    </style>
                     <child>
-                      <object class="GtkListBox">
-                        <style>
-                          <class name="boxed-list"/>
-                        </style>
-                        <child>
-                          <object class="DBStationEntry" id="in_from">
-                            <property name="title" translatable="yes">From</property>
-                            <property name="client" bind-source="DBSearchPage" bind-property="client" bind-flags="sync-create"/>
-                            <property name="show-swap-button">false</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="DBStationEntry" id="in_to">
-                            <property name="hexpand">True</property>
-                            <property name="title" translatable="yes">To</property>
-                            <property name="client" bind-source="DBSearchPage" bind-property="client" bind-flags="sync-create"/>
-                            <property name="show-swap-button">true</property>
-                            <signal name="swap" handler="handle_swap" swapped="true"/>
-                          </object>
-                        </child>
+                      <object class="DBStationEntry" id="in_from">
+                        <property name="title" translatable="yes">From</property>
+                        <property name="client" bind-source="DBSearchPage" bind-property="client" bind-flags="sync-create"/>
+                        <property name="show-swap-button">false</property>
                       </object>
                     </child>
                     <child>
-                      <object class="DBDateTimePicker" id="pick_date_time">
-                      </object>
-                    </child>
-                    <child>
-                      <object class="DBSearchOptionsButton">
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="btn_search">
-                        <accessibility>
-                          <property name="label" translatable="yes">Search</property>
-                        </accessibility>
-                        <style>
-                          <class name="suggested-action"/>
-                          <class name="list-button"/>
-                        </style>
-
-                        <signal name="clicked" handler="handle_search" swapped="true"/>
-
-                        <property name="label" translatable="yes">Search</property>
-                        <property name="margin-top">12</property>
-                        <property name="margin-bottom">12</property>
-                        <property name="height-request">48</property>
-                        <binding name="sensitive">
-                          <closure function="and" type="gboolean">
-                            <lookup name="set">in_from</lookup>
-                            <lookup name="set">in_to</lookup>
-                            <closure function="not" type="gboolean">
-                              <lookup name="searching" type="DBSearchPage"></lookup>
-                            </closure>
-                          </closure>
-                        </binding>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkListBox" id="box_journeys">
-                        <style>
-                          <class name="boxed-list"/>
-                        </style>
-                        <property name="visible">false</property>
-                        <property name="activate-on-single-click">True</property>
-                        <property name="selection-mode">none</property>
-                        <signal name="row-activated" handler="handle_journeys_row_activated" swapped="true"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkListBox" id="box_searches">
-                        <style>
-                          <class name="boxed-list"/>
-                        </style>
-                        <property name="visible">false</property>
-                        <property name="activate-on-single-click">True</property>
-                        <property name="selection-mode">none</property>
-                        <signal name="row-activated" handler="handle_searches_row_activated" swapped="true"/>
+                      <object class="DBStationEntry" id="in_to">
+                        <property name="hexpand">True</property>
+                        <property name="title" translatable="yes">To</property>
+                        <property name="client" bind-source="DBSearchPage" bind-property="client" bind-flags="sync-create"/>
+                        <property name="show-swap-button">true</property>
+                        <signal name="swap" handler="handle_swap" swapped="true"/>
                       </object>
                     </child>
                   </object>
-                </property>
+                </child>
+                <child>
+                  <object class="DBDateTimePicker" id="pick_date_time">
+                  </object>
+                </child>
+                <child>
+                  <object class="DBSearchOptionsButton">
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btn_search">
+                    <accessibility>
+                      <property name="label" translatable="yes">Search</property>
+                    </accessibility>
+                    <style>
+                      <class name="suggested-action"/>
+                      <class name="list-button"/>
+                    </style>
+
+                    <signal name="clicked" handler="handle_search" swapped="true"/>
+
+                    <property name="label" translatable="yes">Search</property>
+                    <property name="margin-top">12</property>
+                    <property name="margin-bottom">12</property>
+                    <property name="height-request">48</property>
+                    <binding name="sensitive">
+                      <closure function="and" type="gboolean">
+                        <lookup name="set">in_from</lookup>
+                        <lookup name="set">in_to</lookup>
+                        <closure function="not" type="gboolean">
+                          <lookup name="searching" type="DBSearchPage"></lookup>
+                        </closure>
+                      </closure>
+                    </binding>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBox" id="box_journeys">
+                    <style>
+                      <class name="boxed-list"/>
+                    </style>
+                    <property name="visible">false</property>
+                    <property name="activate-on-single-click">True</property>
+                    <property name="selection-mode">none</property>
+                    <signal name="row-activated" handler="handle_journeys_row_activated" swapped="true"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBox" id="box_searches">
+                    <style>
+                      <class name="boxed-list"/>
+                    </style>
+                    <property name="visible">false</property>
+                    <property name="activate-on-single-click">True</property>
+                    <property name="selection-mode">none</property>
+                    <signal name="row-activated" handler="handle_searches_row_activated" swapped="true"/>
+                  </object>
+                </child>
               </object>
             </property>
           </object>
-        </child>
+        </property>
       </object>
     </child>
   </template>

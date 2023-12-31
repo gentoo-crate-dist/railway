@@ -1,9 +1,12 @@
 use gdk::gio::Settings;
 use gdk::glib;
+use gdk::subclass::prelude::ObjectSubclassIsExt;
 use gdk::prelude::SettingsExt;
 use gtk::glib::Object;
 use gtk::prelude::{GtkApplicationExt, GtkWindowExt};
 
+use crate::Error;
+use crate::gui::error::error_to_toast;
 use crate::config::BASE_ID;
 
 gtk::glib::wrapper! {
@@ -53,6 +56,11 @@ impl Window {
         if is_maximized {
             self.maximize();
         }
+    }
+
+    pub fn display_error_toast(&self, err: Error) {
+        let toast_overlay = self.imp().toast_overlay.get();
+        error_to_toast(&toast_overlay, err);
     }
 }
 
@@ -123,6 +131,9 @@ pub mod imp {
         store_journeys: TemplateChild<JourneysStore>,
         #[template_child]
         store_searches: TemplateChild<SearchesStore>,
+
+        #[template_child]
+        pub toast_overlay: TemplateChild<libadwaita::ToastOverlay>,
 
         client: RefCell<HafasClient>,
     }

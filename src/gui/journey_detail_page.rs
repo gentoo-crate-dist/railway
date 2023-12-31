@@ -35,7 +35,6 @@ pub mod imp {
     use gtk::template_callbacks;
     use gtk::CompositeTemplate;
     use hafas_rs::api::refresh_journey::RefreshJourneyOptions;
-    use libadwaita::ToastOverlay;
     use once_cell::sync::Lazy;
 
     use chrono::Duration;
@@ -44,10 +43,10 @@ pub mod imp {
     use crate::backend::Journey;
     use crate::backend::Leg;
     use crate::backend::Place;
-    use crate::gui::error::error_to_toast;
     use crate::gui::leg_item::LegItem;
     use crate::gui::transition::Transition;
     use crate::gui::utility::Utility;
+    use crate::gui::window::Window;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/journey_detail_page.ui")]
@@ -56,8 +55,6 @@ pub mod imp {
         box_legs: TemplateChild<gtk::Box>,
         #[template_child]
         label_last_refreshed: TemplateChild<gtk::Label>,
-        #[template_child]
-        toast_errors: TemplateChild<ToastOverlay>,
 
         refresh_in_progress: Cell<bool>,
 
@@ -69,9 +66,11 @@ pub mod imp {
     impl JourneyDetailPage {
         pub(super) fn reload(&self, obj: &super::JourneyDetailPage) {
             let main_context = MainContext::default();
+            let window = self.obj().root().and_downcast::<Window>()
+                .expect("search page must be mapped and realised when a template callback is called");
             main_context.spawn_local(clone!(
                        @strong obj,
-                       @strong self.toast_errors as toast_errors,
+                       @strong window,
                        @strong self.journey as journey => async move {
                 let token = journey.borrow().as_ref().and_then(|j| j.journey().refresh_token);
 
@@ -87,7 +86,7 @@ pub mod imp {
                         obj.set_property("journey", result_journey);
                         obj.imp().update_last_refreshed();
                     } else {
-                        error_to_toast(&toast_errors, result_journey.expect_err("A error"));
+                        window.display_error_toast(result_journey.expect_err("A error"));
                     }
                     obj.set_refresh_in_progress(false);
                 }
