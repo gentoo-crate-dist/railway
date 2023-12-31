@@ -1,4 +1,6 @@
-use gdk::glib::Object;
+use gdk::glib::{Object, ObjectExt};
+
+use crate::backend::Place;
 
 gtk::glib::wrapper! {
     pub struct PlaceListItem(ObjectSubclass<imp::PlaceListItem>)
@@ -11,6 +13,10 @@ impl PlaceListItem {
     pub fn new() -> Self {
         Object::builder().build()
     }
+
+    pub fn place(&self) -> Option<Place> {
+        self.property("place")
+    }
 }
 
 impl Default for PlaceListItem {
@@ -22,6 +28,8 @@ impl Default for PlaceListItem {
 pub mod imp {
     use std::cell::RefCell;
 
+    use gdk::glib::subclass::Signal;
+    use gdk::glib::ObjectExt;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
@@ -41,6 +49,14 @@ pub mod imp {
         place: RefCell<Option<Place>>,
     }
 
+    #[gtk::template_callbacks]
+    impl PlaceListItem {
+        #[template_callback]
+        fn handle_pressed(&self) {
+            self.obj().emit_by_name::<()>("pressed", &[]);
+        }
+    }
+
     #[glib::object_subclass]
     impl ObjectSubclass for PlaceListItem {
         const NAME: &'static str = "DBPlaceListItem";
@@ -49,6 +65,7 @@ pub mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
+            Self::bind_template_callbacks(klass);
             Utility::bind_template_callbacks(klass);
         }
 
@@ -86,6 +103,12 @@ pub mod imp {
                 "place" => self.place.borrow().to_value(),
                 _ => unimplemented!(),
             }
+        }
+
+        fn signals() -> &'static [Signal] {
+            static SIGNALS: Lazy<Vec<Signal>> =
+                Lazy::new(|| -> Vec<Signal> { vec![Signal::builder("pressed").build()] });
+            SIGNALS.as_ref()
         }
     }
 

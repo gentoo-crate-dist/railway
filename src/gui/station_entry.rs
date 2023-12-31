@@ -27,6 +27,7 @@ impl StationEntry {
             let name = place.name().unwrap_or_default();
             if self.text() != name {
                 self.set_text(&name);
+                self.set_position(-1);
             }
             self.imp().completions.borrow().remove_all();
         }
@@ -37,14 +38,19 @@ pub mod imp {
     use std::cell::{Cell, RefCell};
     use std::time::Duration;
 
-    use gdk::gio;
     use gdk::glib::subclass::{InitializingObject, Signal};
-    use gdk::glib::{clone, ParamSpec, ParamSpecBoolean, ParamSpecObject, ParamSpecString, Value};
+    use gdk::glib::{
+        clone, ParamSpec, ParamSpecBoolean, ParamSpecObject, ParamSpecString, Propagation, Value,
+    };
     use gdk::glib::{MainContext, Properties};
     use gdk::prelude::ObjectExt;
+    use gdk::{gio, Key, ModifierType};
     use gtk::subclass::prelude::*;
     use gtk::{gio::ListStore, glib};
-    use gtk::{prelude::*, ListItem, SignalListItemFactory, Widget};
+    use gtk::{
+        prelude::*, ListItem, ListScrollFlags, SignalListItemFactory, SingleSelection, Widget,
+        INVALID_LIST_POSITION,
+    };
     use gtk::{CompositeTemplate, Popover};
     use hafas_rs::api::locations::LocationsOptions;
     use libadwaita::subclass::prelude::{EntryRowImpl, PreferencesRowImpl};
@@ -66,6 +72,7 @@ pub mod imp {
         list_completions: TemplateChild<gtk::ListView>,
 
         pub(super) completions: RefCell<ListStore>,
+        selection: RefCell<SingleSelection>,
 
         client: RefCell<Option<HafasClient>>,
 
@@ -85,6 +92,7 @@ pub mod imp {
                 popover: Default::default(),
                 list_completions: Default::default(),
                 completions: RefCell::new(ListStore::new::<Place>()),
+                selection: RefCell::new(SingleSelection::builder().autoselect(false).build()),
                 client: Default::default(),
                 place: Default::default(),
                 title: Default::default(),
@@ -99,6 +107,85 @@ pub mod imp {
         #[template_callback]
         fn handle_swapped_clicked(&self) {
             self.obj().emit_by_name::<()>("swap", &[]);
+        }
+
+        #[template_callback]
+        fn handle_activated(&self) {
+            if let Some(selected) = self
+                .selection
+                .borrow()
+                .selected_item()
+                .and_downcast::<Place>()
+            {
+                self.obj().set_place(Some(&selected));
+            }
+        }
+
+        #[template_callback]
+        fn handle_completion_activate(&self, pos: u32) {
+            if let Some(selected) = self.completions.borrow().item(pos).and_downcast::<Place>() {
+                self.obj().set_place(Some(&selected))
+            }
+        }
+
+        // Adapted from <https://gitlab.gnome.org/GNOME/epiphany/-/blob/b6203597637b4b7725372750983f6e38ca92c2ac/src/ephy-location-entry.c#L436-512>.
+        #[template_callback]
+        fn handle_key_pressed(&self, key: Key, _: u32, modifier: ModifierType) -> Propagation {
+            if modifier.intersects(
+                gdk::ModifierType::SHIFT_MASK
+                    .union(gdk::ModifierType::ALT_MASK)
+                    .union(gdk::ModifierType::CONTROL_MASK),
+            ) {
+                return Propagation::Proceed;
+            }
+
+            if key != gdk::Key::Up
+                && key != gdk::Key::KP_Up
+                && key != gdk::Key::Down
+                && key != gdk::Key::KP_Down
+            {
+                return Propagation::Proceed;
+            }
+
+            let selection = self.selection.borrow();
+            let model = self.completions.borrow();
+
+            let selected = selection.selected();
+            let selected = if selected == INVALID_LIST_POSITION {
+                None
+            } else {
+                Some(selected)
+            };
+            let matches = model.n_items();
+
+            if matches == 0 {
+                return Propagation::Stop;
+            }
+
+            let new_selected = match (selected, key) {
+                (None, gdk::Key::Up) | (None, gdk::Key::KP_Up) => Some(matches - 1),
+                (Some(0), gdk::Key::Up) | (Some(0), gdk::Key::KP_Up) => None,
+                (Some(s), gdk::Key::Up) | (Some(s), gdk::Key::KP_Up) => Some(s - 1),
+                (None, gdk::Key::Down) | (None, gdk::Key::KP_Down) => Some(0),
+                (Some(s), gdk::Key::Down) | (Some(s), gdk::Key::KP_Down) if s == matches - 1 => {
+                    None
+                }
+                (Some(s), gdk::Key::Down) | (Some(s), gdk::Key::KP_Down) => Some(s + 1),
+                _ => {
+                    // All other cases should be impossible.
+                    log::error!("Station entry keyboard selection match incomplete. This should be impossible.");
+                    None
+                }
+            };
+
+            selection.set_selected(new_selected.unwrap_or(INVALID_LIST_POSITION));
+            self.list_completions.scroll_to(
+                new_selected.unwrap_or_default(),
+                ListScrollFlags::NONE,
+                None,
+            );
+
+            Propagation::Stop
         }
 
         fn try_fill_exact_match(&self, search: &str) {
@@ -157,6 +244,7 @@ pub mod imp {
             self.obj()
                 .connect_changed(clone!(@strong obj => move |_entry| {
                     obj.imp().on_changed();
+                    obj.imp().selection.borrow().set_selected(INVALID_LIST_POSITION);
                 }));
             self.on_changed();
         }
@@ -177,18 +265,20 @@ pub mod imp {
             );
         }
 
-        fn setup_model(&self, obj: &super::StationEntry) {
+        fn setup_model(&self) {
+            let obj = self.obj();
             let model = &self.completions.borrow();
             let model: &gio::ListModel = model
                 .dynamic_cast_ref()
                 .expect("ListStore to be a ListModel");
-            let selection_model = gtk::NoSelection::new(Some(model.clone()));
+            let selection = self.selection.borrow();
+            selection.set_model(Some(model));
             self.list_completions
                 .get()
-                .set_model(Some(&selection_model));
+                .set_model(Some(&selection.clone()));
 
             let factory = SignalListItemFactory::new();
-            factory.connect_setup(move |_, list_item| {
+            factory.connect_setup(clone!(@weak obj => move |_, list_item| {
                 let place_item = PlaceListItem::new();
                 let list_item = list_item
                     .downcast_ref::<ListItem>()
@@ -198,23 +288,13 @@ pub mod imp {
                 list_item
                     .property_expression("item")
                     .bind(&place_item, "place", Widget::NONE);
-            });
+
+                place_item.connect_local("pressed", false, clone!(@weak obj, @weak place_item => @default-return None, move |_| {
+                    obj.set_place(place_item.place().as_ref());
+                    None
+                }));
+            }));
             self.list_completions.set_factory(Some(&factory));
-            self.list_completions.set_single_click_activate(true);
-
-            self.list_completions.connect_activate(
-                clone!(@strong obj => move |list_view, position| {
-                    let model = list_view.model().expect("The model has to exist.");
-                    let place_model = model
-                        .item(position)
-                        .expect("The item has to exist.")
-                        .downcast::<Place>()
-                        .expect("The item has to be an `Place`.");
-
-                    obj.set_place(Some(&place_model));
-                    obj.imp().popover.popdown();
-                }),
-            );
         }
 
         // Libadwaita has an `document-edit-symbolic. This does not fit in this use case.
@@ -258,7 +338,7 @@ pub mod imp {
 
             self.popover.set_parent(obj.as_ref());
             self.connect_changed(&obj);
-            self.setup_model(&obj);
+            self.setup_model();
 
             self.hide_edit_icon();
 
