@@ -48,6 +48,7 @@ src/gui/place_list_item.rs
 src/gui/station_entry.rs
 src/gui/mod.rs
 src/gui/window.rs
+src/gui/frequency_label.rs
 src/error.rs
 src/config.rs.in
 src/backend/discount_card.rs

@@ -36,7 +36,7 @@ mod imp {
     };
     use once_cell::sync::Lazy;
 
-    use crate::backend::{LateFactor, LoadFactor, Place};
+    use crate::backend::{Frequency, LateFactor, LoadFactor, Place};
 
     #[derive(Default)]
     pub struct Leg {
@@ -85,6 +85,9 @@ mod imp {
                         .read_only()
                         .build(),
                     ParamSpecEnum::builder::<LateFactor>("late-factor")
+                        .read_only()
+                        .build(),
+                    ParamSpecObject::builder::<Frequency>("frequency")
                         .read_only()
                         .build(),
                     ParamSpecBoolean::builder("change-platform")
@@ -213,6 +216,13 @@ mod imp {
                         )
                     })
                     .unwrap_or_default()
+                    .to_value(),
+                "frequency" => self
+                    .leg
+                    .borrow()
+                    .as_ref()
+                    .and_then(|o| o.frequency.clone())
+                    .map(Frequency::new)
                     .to_value(),
                 "change-platform" => self
                     .leg
