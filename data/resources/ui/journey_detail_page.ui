@@ -27,7 +27,6 @@
 
         <child>
           <object class="GtkViewport">
-          <property name="overflow">visible</property>
             <child>
               <object class="AdwClamp">
                 <property name="child">
