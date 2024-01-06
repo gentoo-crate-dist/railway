@@ -18,6 +18,8 @@
             <property name="margin-top">6</property>
             <property name="margin-bottom">6</property>
             <property name="placeholder-text" translatable="yes">Search Networks…</property>
+            <property name="input-purpose">free-form</property>
+            <property name="input-hints">no-spellcheck | no-emoji</property>
           </object>
         </child>
 
