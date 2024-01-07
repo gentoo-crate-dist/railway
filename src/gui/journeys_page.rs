@@ -7,6 +7,8 @@ use gdk::{
 };
 use gtk::traits::AdjustmentExt;
 
+use crate::backend::JourneysResult;
+
 gtk::glib::wrapper! {
     pub struct JourneysPage(ObjectSubclass<imp::JourneysPage>)
         @extends gtk::Box, gtk::Widget,
@@ -62,6 +64,10 @@ impl JourneysPage {
             }));
         }
     }
+
+    fn journeys_result(&self) -> JourneysResult {
+        self.property("journeys-result")
+    }
 }
 
 pub mod imp {
@@ -94,6 +100,7 @@ pub mod imp {
     use crate::backend::HafasClient;
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
+    use crate::backend::TimeType;
     use crate::config;
     use crate::gui::journey_list_item::JourneyListItem;
     use crate::gui::time_divider::TimeDivider;
@@ -154,7 +161,11 @@ pub mod imp {
                     if adj.upper() <= adj.page_size() {
                         // Do not scroll for the initial loading.
                         obj.set_auto_scroll(false);
-                        obj.imp().handle_later()
+                        if obj.journeys_result().time_type() == TimeType::Departure {
+                            obj.imp().handle_later()
+                        } else {
+                            obj.imp().handle_earlier()
+                        }
                     } else {
                         // Scroll if the page is already filled and more is manually requested.
                         obj.set_auto_scroll(true);
@@ -192,7 +203,7 @@ pub mod imp {
                     let journeys_result = obj.property::<JourneysResult>("journeys-result");
 
                     let result_journeys_result = obj.property::<HafasClient>("client")
-                        .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), JourneysOptions {
+                        .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), journeys_result.time_type(), JourneysOptions {
                             earlier_than: journeys_result.earlier_ref(),
                             language: Some(gettextrs::gettext("language")),
                             stopovers: Some(true),
@@ -252,7 +263,7 @@ pub mod imp {
                     let journeys_result = obj.property::<JourneysResult>("journeys-result");
 
                     let result_journeys_result = obj.property::<HafasClient>("client")
-                        .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), JourneysOptions {
+                        .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), journeys_result.time_type(), JourneysOptions {
                             later_than: journeys_result.later_ref(),
                             language: Some(gettextrs::gettext("language")),
                             stopovers: Some(true),

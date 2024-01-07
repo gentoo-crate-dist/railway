@@ -16,7 +16,7 @@ const TIMEOUT: u64 = 30;
 
 use crate::Error;
 
-use super::{Journey, JourneysResult, Place, Provider};
+use super::{Journey, JourneysResult, Place, Provider, TimeType};
 
 fn providers() -> Vec<Provider> {
     vec![
@@ -211,6 +211,7 @@ impl HafasClient {
         &self,
         from: Place,
         to: Place,
+        time_type: TimeType,
         opts: JourneysOptions,
     ) -> Result<JourneysResult, Error> {
         let client = self.internal();
@@ -230,6 +231,7 @@ impl HafasClient {
             .expect("Failed to join tokio")?,
             from,
             to,
+            time_type,
         ))
     }
 

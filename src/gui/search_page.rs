@@ -53,6 +53,7 @@ pub mod imp {
     use crate::backend::JourneysResult;
     use crate::backend::Place;
     use crate::gui::date_time_picker::DateTimePicker;
+    use crate::backend::TimeType;
     use crate::gui::journey_store_item::JourneyStoreItem;
     use crate::gui::search_store_item::SearchStoreItem;
     use crate::gui::station_entry::StationEntry;
@@ -189,7 +190,8 @@ pub mod imp {
             let from = self.in_from.property::<Place>("place");
             let to = self.in_to.property::<Place>("place");
 
-            let departure = Some(self.pick_date_time.get().get().naive_local());
+            let time = Some(self.pick_date_time.get().get().naive_local());
+            let time_type = self.pick_date_time.time_type();
 
             let main_context = MainContext::default();
             let window = self.obj().root().and_downcast::<Window>()
@@ -200,8 +202,9 @@ pub mod imp {
                                             @strong self.settings as settings,
                                             @strong window => async move {
                 obj.set_searching(true);
-                let journeys = obj.property::<HafasClient>("client").journeys(from, to, JourneysOptions {
-                    departure,
+                let journeys = obj.property::<HafasClient>("client").journeys(from, to, time_type, JourneysOptions {
+                    departure: if time_type == TimeType::Departure { time } else { None },
+                    arrival: if time_type == TimeType::Arrival { time } else { None },
                     language: Some(gettextrs::gettext("language")),
                     stopovers: Some(true),
                     loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),

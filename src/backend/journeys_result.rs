@@ -1,8 +1,22 @@
 use gdk::prelude::{Cast, ListModelExt};
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 use gdk::{gio, glib::Object};
+use gtk::glib;
 
 use super::{Journey, Place};
+
+#[derive(Debug, Copy, Clone, PartialEq, Eq, glib::Enum)]
+#[enum_type(name = "DBTimeType")]
+pub enum TimeType {
+    Arrival,
+    Departure,
+}
+
+impl Default for TimeType {
+    fn default() -> Self {
+        Self::Departure
+    }
+}
 
 gtk::glib::wrapper! {
     pub struct JourneysResult(ObjectSubclass<imp::JourneysResult>)
@@ -14,12 +28,14 @@ impl JourneysResult {
         journeys_response: hafas_rs::api::journeys::JourneysResponse,
         source: Place,
         destination: Place,
+        time_type: TimeType,
     ) -> Self {
         let s: Self = Object::builder()
             .property("source", source)
             .property("destination", destination)
             .property("earlier-ref", journeys_response.earlier_ref)
             .property("later-ref", journeys_response.later_ref)
+            .property("time-type", time_type)
             .build();
         let mut to_insert: Vec<_> = journeys_response
             .journeys
@@ -85,6 +101,8 @@ mod imp {
 
     use crate::backend::{Journey, Place};
 
+    use super::TimeType;
+
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::JourneysResult)]
     pub struct JourneysResult {
@@ -98,6 +116,9 @@ mod imp {
         earlier_ref: RefCell<Option<String>>,
         #[property(get, set, nullable)]
         later_ref: RefCell<Option<String>>,
+
+        #[property(get, set, construct_only, builder(TimeType::Departure))]
+        time_type: RefCell<TimeType>,
     }
 
     #[glib::object_subclass]

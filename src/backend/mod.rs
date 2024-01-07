@@ -19,6 +19,7 @@ pub use frequency::Frequency;
 pub use hafas_client::HafasClient;
 pub use journey::Journey;
 pub use journeys_result::JourneysResult;
+pub use journeys_result::TimeType;
 pub use late_factor::LateFactor;
 pub use leg::Leg;
 pub use load_factor::LoadFactor;
