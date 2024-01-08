@@ -22,6 +22,10 @@ Railway lets you look up travel information for many different railways, all wit
     <td>Arch Linux (AUR)</td>
     <td>[railway](https://aur.archlinux.org/packages/railway)</td>
   </tr>
+  <tr>
+    <td>Debian (testing, unstable)</td>
+    <td>[railway-gtk](https://packages.debian.org/trixie/railway-gtk)</td>
+  </tr>
 </table>
 
 ## Features
