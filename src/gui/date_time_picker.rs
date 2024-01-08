@@ -1,7 +1,6 @@
 use chrono::DateTime;
 use chrono::Local;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
-use libadwaita::prelude::ToggleButtonExt;
 
 use crate::backend::TimeType;
 
@@ -18,11 +17,8 @@ impl DateTimePicker {
     }
 
     pub fn time_type(&self) -> TimeType {
-        if self.imp().toggle_departure.is_active() {
-            TimeType::Departure
-        } else {
-            TimeType::Arrival
-        }
+        // Note: Currently always departure due to the lack of good UI for switching departure and arrival.
+        TimeType::Departure
     }
 }
 
@@ -44,9 +40,9 @@ pub mod imp {
     use gtk::subclass::prelude::*;
     use gtk::template_callbacks;
     use gtk::CompositeTemplate;
+    use libadwaita::prelude::ActionRowExt;
     use libadwaita::prelude::EditableExt;
     use libadwaita::prelude::ToggleButtonExt;
-    use libadwaita::prelude::{ActionRowExt, PreferencesRowExt};
 
     use crate::gui::utility::Utility;
 
@@ -70,11 +66,6 @@ pub mod imp {
         popover_time: TemplateChild<gtk::Popover>,
         #[template_child]
         popover_date: TemplateChild<gtk::Popover>,
-
-        #[template_child]
-        toggle_arrival: TemplateChild<gtk::ToggleButton>,
-        #[template_child]
-        pub(super) toggle_departure: TemplateChild<gtk::ToggleButton>,
 
         #[property(get, set)]
         now: Cell<bool>,
@@ -158,17 +149,6 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_toggle_departure_active(&self) {
-            if self.toggle_departure.is_active() {
-                self.btn_input_time
-                    .set_title(&gettextrs::gettext("Departure"));
-            } else {
-                self.btn_input_time
-                    .set_title(&gettextrs::gettext("Arrival"));
-            }
-        }
-
-        #[template_callback]
         fn handle_spinner_output_two_digit(&self, s: gtk::SpinButton) -> bool {
             s.set_text(&format!("{:02}", s.value()));
             true
@@ -249,7 +229,6 @@ pub mod imp {
             obj.set_now(true);
             self.handle_date_popover_open();
             self.handle_time_popover_open();
-            self.handle_toggle_departure_active();
             self.update_date_label();
             self.update_time_label();
             // Now will be unset has `handle_*` will be set to new values.
@@ -266,9 +245,6 @@ pub mod imp {
                 .connect_activated(clone!(@weak popover_time => move |_| {
                     popover_time.popup();
                 }));
-
-            self.toggle_arrival.set_active(false);
-            self.toggle_departure.set_active(true);
         }
     }
 
