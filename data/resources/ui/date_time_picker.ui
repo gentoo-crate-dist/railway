@@ -75,6 +75,7 @@
             </style>
 
             <property name="activatable">True</property>
+            <property name="title" translatable="yes">Time</property>
             <child type="suffix">
               <object class="GtkBox">
                 <property name="valign">center</property>
@@ -93,103 +94,50 @@
                       <object class="GtkBox">
                         <property name="orientation">vertical</property>
                         <property name="spacing">6</property>
-
                         <child>
                           <object class="GtkBox">
-                            <style>
-                              <class name="linked"/>
-                            </style>
-
-                            <property name="orientation">vertical</property>
-                            <property name="homogeneous">true</property>
-
+                            <property name="halign">center</property>
                             <child>
-                              <object class="GtkToggleButton" id="toggle_departure">
-                                <property name="label" translatable="yes">Leaving</property>
-                                <signal name="notify::active" handler="handle_toggle_departure_active" swapped="true"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkToggleButton" id="toggle_arrival">
-                                <property name="label" translatable="yes">Arriving</property>
-                                <property name="group">toggle_departure</property>
-                              </object>
-                            </child>
+                              <object class="GtkSpinButton" id="pick_hour">
+                                <style>
+                                  <class name="vertical"/>
+                                </style>
 
-                          </object>
-                        </child>
-
-                        <child>
-                          <object class="GtkRevealer">
-                            <binding name="reveal-child">
-                              <closure function="not" type="gboolean">
-                                <lookup name="now" type="DBDateTimePicker"/>
-                              </closure>
-                            </binding>
-                            <property name="child">
-                              <object class="GtkBox">
                                 <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkBox">
-                                    <property name="orientation">horizontal</property>
-                                    <property name="halign">center</property>
-                                    <child>
-                                      <object class="GtkSpinButton" id="pick_hour">
-                                        <style>
-                                          <class name="vertical"/>
-                                        </style>
+                                <property name="valign">center</property>
+                                <property name="numeric">True</property>
+                                <property name="wrap">true</property>
+                                <property name="adjustment">adj_hour</property>
 
-                                        <property name="orientation">vertical</property>
-                                        <property name="valign">center</property>
-                                        <property name="numeric">True</property>
-                                        <property name="wrap">true</property>
-                                        <property name="adjustment">adj_hour</property>
-
-                                        <signal name="output" handler="handle_spinner_output_two_digit" swapped="true"/>
-                                      </object>
-                                    </child>
-
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="label"> ∶ </property>
-                                      </object>
-                                    </child>
-
-                                    <child>
-                                      <object class="GtkSpinButton" id="pick_minute">
-                                        <style>
-                                          <class name="vertical"/>
-                                        </style>
-
-                                        <property name="orientation">vertical</property>
-                                        <property name="valign">center</property>
-                                        <property name="numeric">True</property>
-                                        <property name="wrap">true</property>
-                                        <property name="adjustment">adj_minute</property>
-
-                                        <signal name="output" handler="handle_spinner_output_two_digit" swapped="true"/>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-
-                                <child>
-                                  <object class="GtkSeparator">
-                                    <property name="orientation">horizontal</property>
-                                    <property name="margin-top">12</property>
-                                    <property name="margin-bottom">6</property>
-                                  </object>
-                                </child>
+                                <signal name="output" handler="handle_spinner_output_two_digit" swapped="true"/>
                               </object>
-                            </property>
+                            </child>
+
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label"> ∶ </property>
+                              </object>
+                            </child>
+
+                            <child>
+                              <object class="GtkSpinButton" id="pick_minute">
+                                <style>
+                                  <class name="vertical"/>
+                                </style>
+
+                                <property name="orientation">vertical</property>
+                                <property name="valign">center</property>
+                                <property name="numeric">True</property>
+                                <property name="wrap">true</property>
+                                <property name="adjustment">adj_minute</property>
+
+                                <signal name="output" handler="handle_spinner_output_two_digit" swapped="true"/>
+                              </object>
+                            </child>
                           </object>
                         </child>
-
                         <child>
                           <object class="GtkToggleButton">
-                            <style>
-                              <class name="pill"/>
-                            </style>
                             <binding name="active">
                               <lookup name="now" type="DBDateTimePicker"/>
                             </binding>

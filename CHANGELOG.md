@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Keyboard navigation to station search.
 - Label for frequency of trains.
-- Search for arrival time.
 
 ### Fixed
 
