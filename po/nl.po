@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-09 13:03+0200\n"
+"POT-Creation-Date: 2024-01-20 21:59+0100\n"
 "PO-Revision-Date: 2023-10-11 21:02+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
@@ -31,33 +31,39 @@ msgstr "Datum"
 msgid "Input time"
 msgstr "Voer een tijdstip in"
 
-#: data/resources/ui/date_time_picker.ui:77
+#: data/resources/ui/date_time_picker.ui:78
 msgid "Time"
 msgstr "Tijdstip"
 
-#: data/resources/ui/date_time_picker.ui:145 src/gui/date_time_picker.rs:102
+#: data/resources/ui/date_time_picker.ui:144 src/gui/date_time_picker.rs:113
 msgid "Now"
 msgstr "Nu"
 
-#: data/resources/ui/journey_detail_page.ui:80
-msgid "Travel time"
+#: data/resources/ui/journey_detail_page.ui:81
+#, fuzzy
+msgid "Total Travel Time"
 msgstr "Reistijd"
 
-#: data/resources/ui/journey_detail_page.ui:114
+#: data/resources/ui/journey_detail_page.ui:120
 msgid "Choose a Trip"
 msgstr "Kies een reismogelijkheid"
 
-#: data/resources/ui/journeys_page.ui:122
+#: data/resources/ui/journeys_page.ui:117
 msgid "Search for Trips"
 msgstr "Zoeken naar reismogelijkheden"
 
-#: data/resources/ui/leg_item.ui:161 data/resources/ui/leg_item.ui:163
-msgid "Open Stopovers"
+#: data/resources/ui/leg_item.ui:176
+#, fuzzy
+msgid "Show Stopovers"
 msgstr "Tussenstops tonen"
 
-#: data/resources/ui/leg_item.ui:236 data/resources/ui/leg_item.ui:238
-msgid "Open Remarks"
-msgstr "Opmerkingen tonen"
+#: data/resources/ui/leg_item.ui:178
+msgid "Show Stopovers in Between"
+msgstr ""
+
+#: data/resources/ui/leg_item.ui:251 data/resources/ui/leg_item.ui:253
+msgid "Show Announcements"
+msgstr ""
 
 #: data/resources/ui/preferences_window.ui:10
 #: data/resources/ui/search_options_window.ui:10
@@ -65,18 +71,22 @@ msgid "General"
 msgstr "Algemeen"
 
 #: data/resources/ui/preferences_window.ui:16
-msgid "Delete Old Journeys"
-msgstr "Reisgeschiedenis wissen"
+msgid "Remove Past Trips From Bookmarks"
+msgstr ""
 
 #: data/resources/ui/preferences_window.ui:22
-msgid "Time to Keep Journey After Arrival"
-msgstr "Reis na aankomst bewaren gedurende"
+msgid "Time After Arrival After Which to Remove Them"
+msgstr ""
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
 msgstr "Meer zoekopties"
 
-#: data/resources/ui/search_options_button.ui:33
+#: data/resources/ui/search_options_button.ui:20
+msgid "Refine Advanced Search Options"
+msgstr ""
+
+#: data/resources/ui/search_options_button.ui:35
 msgid "More Options"
 msgstr "Meer opties"
 
@@ -97,6 +107,7 @@ msgid "Second Class"
 msgstr "Tweede klas"
 
 #: data/resources/ui/search_options_window.ui:50
+#: src/gui/search_options_button.rs:193
 msgid "Bike Accessible"
 msgstr "Toegankelijk voor fietsen"
 
@@ -129,8 +140,8 @@ msgid "Regio"
 msgstr "Regionaal/Streekvervoer"
 
 #: data/resources/ui/search_options_window.ui:97
-msgid "Suburban"
-msgstr "Stadsvervoer"
+msgid "S-Bahn"
+msgstr ""
 
 #: data/resources/ui/search_options_window.ui:102
 msgid "Bus"
@@ -152,65 +163,89 @@ msgstr "Tram"
 msgid "Taxi"
 msgstr "Taxi"
 
-#: data/resources/ui/search_page.ui:39
+#: data/resources/ui/search_page.ui:37
 msgid "From"
 msgstr "Van"
 
-#: data/resources/ui/search_page.ui:47
+#: data/resources/ui/search_page.ui:45
 msgid "To"
 msgstr "Naar"
 
-#: data/resources/ui/search_page.ui:66 data/resources/ui/search_page.ui:75
-#: data/resources/ui/window.ui:35
+#: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:73
+#: data/resources/ui/window.ui:37
 msgid "Search"
 msgstr "Zoeken"
 
-#: data/resources/ui/window.ui:42
-msgid "Railway"
-msgstr "Trein"
-
-#: data/resources/ui/window.ui:48 data/resources/ui/window.ui:55
-msgid "Select Provider"
+#: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
+#, fuzzy
+msgid "Select Network"
 msgstr "Kies een dienst"
 
-#: data/resources/ui/window.ui:111
+#: data/resources/ui/window.ui:88
+msgid "Main Menu"
+msgstr ""
+
+#: data/resources/ui/window.ui:114
 msgid "Connections"
 msgstr "Aansluitingen"
 
-#: data/resources/ui/window.ui:162
+#: data/resources/ui/window.ui:128
+msgid "Bookmark This Search"
+msgstr ""
+
+#: data/resources/ui/window.ui:166
 msgid "Trip Details"
 msgstr "Reisinformatie"
 
-#: data/resources/ui/window.ui:235
+#: data/resources/ui/window.ui:175
+msgid "Refresh This Trip"
+msgstr ""
+
+#: data/resources/ui/window.ui:199
+msgid "Bookmark This Trip"
+msgstr ""
+
+#: data/resources/ui/window.ui:248
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: data/resources/ui/window.ui:239
+#: data/resources/ui/window.ui:252
 msgid "Keyboard Shortcuts"
 msgstr "Sneltoetsen"
 
-#: data/resources/ui/window.ui:243
-msgid "About Railway"
+#: data/resources/ui/window.ui:256
+#, fuzzy
+msgid "_About Railway"
 msgstr "Over Trein"
 
+#: data/resources/ui/refresh_button.ui:25
+#, fuzzy
+msgid "Refresh Journey"
+msgstr "Reismogelijkheid"
+
 #: src/gui/indicator_icons.rs:135
-msgid "High load"
+#, fuzzy
+msgid "High Load"
 msgstr "Erg druk"
 
 #: src/gui/indicator_icons.rs:142
-msgid "Very high load"
+#, fuzzy
+msgid "Very High Load"
 msgstr "Extreem druk"
 
 #: src/gui/indicator_icons.rs:149
-msgid "Exceptionally high load"
+#, fuzzy
+msgid "Exceptionally High Load"
 msgstr "Overvol"
 
 #: src/gui/indicator_icons.rs:165
-msgid "On time"
-msgstr "Op tijd"
+#, fuzzy
+msgid "On Time"
+msgstr "Tijdstip"
 
 #: src/gui/indicator_icons.rs:172
-msgid "Minor delays"
+#, fuzzy
+msgid "Minor Delays"
 msgstr "Kleine vertragingen"
 
 #: src/gui/indicator_icons.rs:179
@@ -218,69 +253,81 @@ msgid "Delayed"
 msgstr "Vertraagd"
 
 #: src/gui/indicator_icons.rs:186
-msgid "Very delayed"
+#, fuzzy
+msgid "Very Delayed"
 msgstr "Erg vertraagd"
 
 #: src/gui/indicator_icons.rs:193
-msgid "Extremely delayed"
+#, fuzzy
+msgid "Extremely Delayed"
 msgstr "Extreem vertraagd"
 
 #: src/gui/indicator_icons.rs:209
-msgid "Platform changed"
+#, fuzzy
+msgid "Platform Changes"
 msgstr "Perronwijziging"
 
 #: src/gui/indicator_icons.rs:228
-msgid "Unreachable"
-msgstr "Onbereikbaar"
+#, fuzzy
+msgid "Connection Not Possible"
+msgstr "Aansluitingen"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
 msgstr "Geannuleerd"
 
-#: src/gui/search_page.rs:189 src/gui/journey_detail_page.rs:73
-#: src/gui/journeys_page.rs:199 src/gui/journeys_page.rs:257
+#: src/gui/search_page.rs:208 src/gui/journey_detail_page.rs:82
+#: src/gui/journeys_page.rs:208 src/gui/journeys_page.rs:268
 msgid "language"
 msgstr "nl"
 
-#: src/gui/transition.rs:172
-msgid "Transition"
-msgstr "Overstap"
+#: src/gui/transition.rs:193
+msgid "Transfer"
+msgstr ""
 
 #. Translators: duration in minutes, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:43
-msgid "{} min"
+#: src/gui/utility.rs:40
+#, fuzzy
+msgid "{} min."
 msgstr "{} min."
 
 #. Translators: duration format with hours and minutes, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:51
-msgid "%_H hrs %_M min"
+#: src/gui/utility.rs:48
+#, fuzzy
+msgid "%_H hrs. %_M min."
 msgstr "%_H uur en %_M min."
 
-#: src/gui/utility.rs:62
-msgid "%_d day %_H hrs %_M min"
-msgid_plural "%_d days %_H hrs %_M min"
+#: src/gui/utility.rs:59
+#, fuzzy
+msgid "%_d day %_H hrs. %_M min."
+msgid_plural "%_d days %_H hrs. %_M min."
 msgstr[0] "%_d dag, %_H uur en %_M min."
 msgstr[1] "%_d dagen, %_H uur en %_M min."
 
-#: src/gui/utility.rs:73 src/gui/date_time_picker.rs:91
+#. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:69
+msgid "%H:%M"
+msgstr ""
+
+#: src/gui/utility.rs:75 src/gui/date_time_picker.rs:101
 msgid "Today"
 msgstr "Vandaag"
 
-#: src/gui/utility.rs:75
+#: src/gui/utility.rs:77
 msgid "Tomorrow"
 msgstr "Morgen"
 
-#: src/gui/utility.rs:77
+#: src/gui/utility.rs:79
 msgid "Yesterday"
 msgstr "Gisteren"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:80
+#: src/gui/utility.rs:82
 msgid "%a, %d. %B"
 msgstr "%a %e %B"
 
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:83
+#: src/gui/utility.rs:85
 msgid "%Y-%m-%d"
 msgstr "%d %m %Y"
 
@@ -305,23 +352,28 @@ msgid "BahnCard 50, 2nd class"
 msgstr "BahnCard 50, 2e klas"
 
 #: src/gui/search_options_button.rs:79
-msgid "A - VORTEILScard (with RAILPLUS)"
+#, fuzzy
+msgid "A – VORTEILScard (with RAILPLUS)"
 msgstr "A - VORTEILScard (met RAILPLUS)"
 
 #: src/gui/search_options_button.rs:80
-msgid "CH - HalbtaxAbo (with RAILPLUS)"
+#, fuzzy
+msgid "CH – HalbtaxAbo (with RAILPLUS)"
 msgstr "CH - HalbtaxAbo (met RAILPLUS)"
 
 #: src/gui/search_options_button.rs:81
-msgid "CH - HalbtaxAbo (without RAILPLUS)"
+#, fuzzy
+msgid "CH – HalbtaxAbo (without RAILPLUS)"
 msgstr "CH - HalbtaxAbo (zonder RAILPLUS)"
 
 #: src/gui/search_options_button.rs:84
-msgid "NL - Voordeelurenabo (with RAILPLUS)"
+#, fuzzy
+msgid "NL – Voordeelurenabo (with RAILPLUS)"
 msgstr "NL - Voordeelurenabonnement (met RAILPLUS)"
 
 #: src/gui/search_options_button.rs:88
-msgid "NL - Voordeelurenabo (without RAILPLUS)"
+#, fuzzy
+msgid "NL – Voordeelurenabo (without RAILPLUS)"
 msgstr "NL - Voordeelurenabonnement (zonder RAILPLUS)"
 
 #: src/gui/search_options_button.rs:90
@@ -329,7 +381,8 @@ msgid "SH-Card"
 msgstr "SH-Card"
 
 #: src/gui/search_options_button.rs:91
-msgid "CH - General-Abonnement"
+#, fuzzy
+msgid "CH – General-Abonnement"
 msgstr "CH - Algemeen abonnement"
 
 #: src/gui/search_options_button.rs:98
@@ -344,20 +397,20 @@ msgstr "1e klas"
 msgid "2nd class"
 msgstr "2e klas"
 
+#. TODO: Germany specific, only display for networks there
 #: src/gui/search_options_button.rs:186
-msgid "Regional only"
+#, fuzzy
+msgid "Regional Only"
 msgstr "Alleen regionaal vervoer"
 
 #: src/gui/search_options_button.rs:188
-msgid "Custom selection"
-msgstr "Eigen keuze"
-
-#: src/gui/search_options_button.rs:193
-msgid "Bike accessible"
-msgstr "Toegankelijk voor fietsen"
+#, fuzzy
+msgid "Selected Modes of Transport"
+msgstr "Vervoersmogelijkheden"
 
 #: src/gui/search_options_button.rs:200
-msgid "Direct connection"
+#, fuzzy
+msgid "Direct Connection"
 msgstr "Zonder overstap"
 
 #: src/gui/error.rs:18
@@ -366,19 +419,20 @@ msgstr ""
 "De gegevens kunnen niet worden opgehaald. Bent u verbonden met het internet?"
 
 #: src/gui/error.rs:21
-msgid "The API returned a error. Please report this."
-msgstr "De api gaf een foutcode - meld dit voorval."
+msgid "Received an error. Please share feedback."
+msgstr ""
 
 #: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
 msgid "More information"
 msgstr "Meer informatie"
 
 #: src/gui/error.rs:25
-msgid "Failed to parse response. Please report this."
-msgstr "Het antwoord kan niet worden verwerkt - meld dit voorval."
+msgid "Received an invalid response. Please share feedback."
+msgstr ""
 
 #: src/gui/error.rs:29
-msgid "Unknown issue. Please report this."
+#, fuzzy
+msgid "An unknown issue occured. Please share feedback."
 msgstr "Er is een onbekend probleem opgetreden - meld dit voorval."
 
 #: src/gui/error.rs:52
@@ -391,63 +445,110 @@ msgstr "_Sluiten"
 
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
-#: src/gui/date_time_picker.rs:95
+#: src/gui/date_time_picker.rs:105
+#, fuzzy, c-format
 msgid "%a %b %d"
 msgstr "%a %d %b"
 
-#. Translators: The formattign of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
-#: src/gui/leg_item.rs:72
-msgid "{train} to {destination}"
+#. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
+#: src/gui/leg_item.rs:75
+#, fuzzy
+msgid "{train} in the direction of {destination}"
 msgstr "{train} naar {destination}"
 
-#: src/gui/leg_item.rs:164
+#: src/gui/leg_item.rs:167
 msgid "{} stopover"
 msgid_plural "{} stopovers"
 msgstr[0] "{} tussenstop"
 msgstr[1] "{} tussenstops"
 
-#: src/gui/window.rs:138
+#: src/gui/window.rs:182
 msgid "translators"
 msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
-msgid "{amount} €"
-msgstr "€{amount}"
+#, fuzzy
+msgid "€{amount}"
+msgstr "${amount}"
 
 #. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
 #: src/backend/price.rs:74
-msgid "{amount} $"
+#, fuzzy
+msgid "${amount}"
 msgstr "${amount}"
 
-#. Translators: How to format unknown currentcy "currency". Do not translate in {}.
+#. Translators: How to format unknown currency "currency". Do not translate in {}.
 #: src/backend/price.rs:81
-msgid "{amount} {currency}"
-msgstr "{currency}{amount}"
+msgid "{currency} {amount}"
+msgstr ""
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-#: src/backend/hafas_client.rs:53
-msgid "Nordrhein-Westfalen"
+#: src/backend/hafas_client.rs:58
+#, fuzzy
+msgid "North Rhine-Westphalia"
 msgstr "Noordrijn-Westfalen"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
-#: src/backend/hafas_client.rs:61
+#: src/backend/hafas_client.rs:66
 msgid "Schleswig-Holstein"
 msgstr "Sleeswijk-Holstein"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
-#: src/backend/hafas_client.rs:78
+#: src/backend/hafas_client.rs:83
 msgid "Germany"
 msgstr "Duitsland"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
-#: src/backend/hafas_client.rs:93
+#: src/backend/hafas_client.rs:98
 msgid "Austria"
 msgstr "Oostenrijk"
 
-#: src/backend/leg.rs:126
+#: src/backend/leg.rs:129
 msgid "Walk"
 msgstr "Wandelen"
+
+#~ msgid "Open Remarks"
+#~ msgstr "Opmerkingen tonen"
+
+#~ msgid "Delete Old Journeys"
+#~ msgstr "Reisgeschiedenis wissen"
+
+#~ msgid "Time to Keep Journey After Arrival"
+#~ msgstr "Reis na aankomst bewaren gedurende"
+
+#~ msgid "Suburban"
+#~ msgstr "Stadsvervoer"
+
+#~ msgid "Railway"
+#~ msgstr "Trein"
+
+#~ msgid "On time"
+#~ msgstr "Op tijd"
+
+#~ msgid "Unreachable"
+#~ msgstr "Onbereikbaar"
+
+#~ msgid "Transition"
+#~ msgstr "Overstap"
+
+#~ msgid "Custom selection"
+#~ msgstr "Eigen keuze"
+
+#~ msgid "Bike accessible"
+#~ msgstr "Toegankelijk voor fietsen"
+
+#~ msgid "The API returned a error. Please report this."
+#~ msgstr "De api gaf een foutcode - meld dit voorval."
+
+#~ msgid "Failed to parse response. Please report this."
+#~ msgstr "Het antwoord kan niet worden verwerkt - meld dit voorval."
+
+#~ msgid "{amount} €"
+#~ msgstr "€{amount}"
+
+#~ msgid "{amount} {currency}"
+#~ msgstr "{currency}{amount}"
 
 #~ msgid "Hours after planned arrival journeys will be kept"
 #~ msgstr "Reizen met nog geplande aankomsttijden worden bewaard"
@@ -457,9 +558,6 @@ msgstr "Wandelen"
 
 #~ msgid "Journeys"
 #~ msgstr "Reismogelijkheden"
-
-#~ msgid "Journey"
-#~ msgstr "Reismogelijkheid"
 
 #, fuzzy
 #~ msgid "One transition"
