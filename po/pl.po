@@ -8,39 +8,41 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-20 21:59+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-01-22 10:01+0000\n"
+"Last-Translator: Eryk Michalak <gnu.ewm@protonmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
-msgstr ""
+msgstr "Wprowadź datę"
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
-msgstr ""
+msgstr "Wprowadź godzinę"
 
 #: data/resources/ui/date_time_picker.ui:78
 msgid "Time"
-msgstr ""
+msgstr "Czas"
 
 #: data/resources/ui/date_time_picker.ui:144 src/gui/date_time_picker.rs:113
 msgid "Now"
-msgstr ""
+msgstr "Teraz"
 
 #: data/resources/ui/journey_detail_page.ui:81
 msgid "Total Travel Time"
-msgstr ""
+msgstr "Całkowity czas podróży"
 
 #: data/resources/ui/journey_detail_page.ui:120
 msgid "Choose a Trip"
@@ -60,12 +62,12 @@ msgstr ""
 
 #: data/resources/ui/leg_item.ui:251 data/resources/ui/leg_item.ui:253
 msgid "Show Announcements"
-msgstr ""
+msgstr "Pokaż ogłoszenia"
 
 #: data/resources/ui/preferences_window.ui:10
 #: data/resources/ui/search_options_window.ui:10
 msgid "General"
-msgstr ""
+msgstr "Ogólne"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Remove Past Trips From Bookmarks"
@@ -77,7 +79,7 @@ msgstr ""
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
-msgstr ""
+msgstr "Więcej opcji wyszukiwania"
 
 #: data/resources/ui/search_options_button.ui:20
 msgid "Refine Advanced Search Options"
@@ -85,28 +87,28 @@ msgstr ""
 
 #: data/resources/ui/search_options_button.ui:35
 msgid "More Options"
-msgstr ""
+msgstr "Więcej opcji"
 
 #: data/resources/ui/search_options_window.ui:16
 msgid "Discount Card"
-msgstr ""
+msgstr "Karta zniżkowa"
 
 #: data/resources/ui/search_options_window.ui:24
 msgid "Class"
-msgstr ""
+msgstr "Klasa"
 
 #: data/resources/ui/search_options_window.ui:34
 msgid "First Class"
-msgstr ""
+msgstr "Pierwsza klasa"
 
 #: data/resources/ui/search_options_window.ui:40
 msgid "Second Class"
-msgstr ""
+msgstr "Druga klasa"
 
 #: data/resources/ui/search_options_window.ui:50
 #: src/gui/search_options_button.rs:193
 msgid "Bike Accessible"
-msgstr ""
+msgstr "Dostępne dla rowerów"
 
 #: data/resources/ui/search_options_window.ui:56
 msgid "Minimum Transfer Time"
@@ -114,7 +116,7 @@ msgstr ""
 
 #: data/resources/ui/search_options_window.ui:62
 msgid "Direct Connections Only"
-msgstr ""
+msgstr "Tylko połączenia bezpośrednie"
 
 #: data/resources/ui/search_options_window.ui:71
 msgid "Modes of Transport"
@@ -122,27 +124,27 @@ msgstr ""
 
 #: data/resources/ui/search_options_window.ui:77
 msgid "ICE"
-msgstr ""
+msgstr "ICE"
 
 #: data/resources/ui/search_options_window.ui:82
 msgid "IC/EC"
-msgstr ""
+msgstr "IC/EC"
 
 #: data/resources/ui/search_options_window.ui:87
 msgid "Interregio/RegionalExpress"
-msgstr ""
+msgstr "Interregio/RegionalExpress"
 
 #: data/resources/ui/search_options_window.ui:92
 msgid "Regio"
-msgstr ""
+msgstr "Regio"
 
 #: data/resources/ui/search_options_window.ui:97
 msgid "S-Bahn"
-msgstr ""
+msgstr "S-Bahn"
 
 #: data/resources/ui/search_options_window.ui:102
 msgid "Bus"
-msgstr ""
+msgstr "Bus"
 
 #: data/resources/ui/search_options_window.ui:107
 msgid "Ferry"
@@ -154,68 +156,68 @@ msgstr ""
 
 #: data/resources/ui/search_options_window.ui:117
 msgid "Tram"
-msgstr ""
+msgstr "Tramwaj"
 
 #: data/resources/ui/search_options_window.ui:122
 msgid "Taxi"
-msgstr ""
+msgstr "Taksi"
 
 #: data/resources/ui/search_page.ui:37
 msgid "From"
-msgstr ""
+msgstr "Z"
 
 #: data/resources/ui/search_page.ui:45
 msgid "To"
-msgstr ""
+msgstr "Do"
 
 #: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:73
 #: data/resources/ui/window.ui:37
 msgid "Search"
-msgstr ""
+msgstr "Szukaj"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
 msgid "Select Network"
-msgstr ""
+msgstr "Wybierz sieć"
 
 #: data/resources/ui/window.ui:88
 msgid "Main Menu"
-msgstr ""
+msgstr "Menu główne"
 
 #: data/resources/ui/window.ui:114
 msgid "Connections"
-msgstr ""
+msgstr "Połączenia"
 
 #: data/resources/ui/window.ui:128
 msgid "Bookmark This Search"
-msgstr ""
+msgstr "Dodaj to wyszukiwanie do zakładek"
 
 #: data/resources/ui/window.ui:166
 msgid "Trip Details"
-msgstr ""
+msgstr "Szczegóły podróży"
 
 #: data/resources/ui/window.ui:175
 msgid "Refresh This Trip"
-msgstr ""
+msgstr "Odśwież tą podróż"
 
 #: data/resources/ui/window.ui:199
 msgid "Bookmark This Trip"
-msgstr ""
+msgstr "Dodaj tą podróż do zakładek"
 
 #: data/resources/ui/window.ui:248
 msgid "Preferences"
-msgstr ""
+msgstr "Preferencje"
 
 #: data/resources/ui/window.ui:252
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Skróty klawiszowe"
 
 #: data/resources/ui/window.ui:256
 msgid "_About Railway"
-msgstr ""
+msgstr "_O Railway"
 
 #: data/resources/ui/refresh_button.ui:25
 msgid "Refresh Journey"
-msgstr ""
+msgstr "Odśwież podróż"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
