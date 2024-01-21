@@ -74,7 +74,7 @@
           <object class="AdwPreferencesGroup">
             <child>
               <object class="AdwSwitchRow" id="switch_national_express">
-                <property name="title" translatable="yes">ICE</property>
+                <property name="title" translatable="yes">ICE</property> <!-- TODO: more generic term: Highspeed Trains? -->
               </object>
             </child>
             <child>
@@ -94,7 +94,7 @@
             </child>
             <child>
               <object class="AdwSwitchRow" id="switch_suburban">
-                <property name="title" translatable="yes">Suburban</property>
+                <property name="title" translatable="yes">S-Bahn</property> <!-- TODO: more generic term, incl. Overground? -->
               </object>
             </child>
             <child>
@@ -109,7 +109,7 @@
             </child>
             <child>
               <object class="AdwSwitchRow" id="switch_subway">
-                <property name="title" translatable="yes">Subway</property>
+                <property name="title" translatable="yes">Subway</property> <!-- TODO: more generic term, incl. Metro, Tube, Underground, U-Bahn? -->
               </object>
             </child>
             <child>

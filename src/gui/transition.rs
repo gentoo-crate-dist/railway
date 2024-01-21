@@ -186,11 +186,11 @@ pub mod imp {
                     self.waiting_time.borrow().clone(),
                 ) {
                     (Some(walking), Some(waiting)) => {
-                        gettextrs::gettext!("{} walk, {} waiting", walking, waiting)
+                        gettextrs::gettext!("Walk {} Wait {}", walking, waiting)
                     }
-                    (None, Some(waiting)) => gettextrs::gettext!("Transition: {}", waiting),
-                    (Some(walking), None) => gettextrs::gettext!("{} walk", walking),
-                    (None, None) => gettextrs::gettext("Transition"),
+                    (None, Some(waiting)) => gettextrs::gettext!("Transfer Time {}", waiting),
+                    (Some(walking), None) => gettextrs::gettext!("Walk {}", walking),
+                    (None, None) => gettextrs::gettext("Transfer"),
                 })
                 .to_value(),
 

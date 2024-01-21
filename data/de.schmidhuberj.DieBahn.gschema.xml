@@ -6,13 +6,13 @@
     <value value="2" nick="BahnCard 25, 2nd class"/>
     <value value="3" nick="BahnCard 50, 1st class"/>
     <value value="4" nick="BahnCard 50, 2nd class"/>
-    <value value="9" nick="A - VORTEILScard (with RAILPLUS)"/>
-    <value value="10" nick="CH - HalbtaxAbo (with RAILPLUS)"/>
-    <value value="11" nick="CH - HalbtaxAbo (without RAILPLUS)"/>
-    <value value="12" nick="NL - Voordeelurenabo (with RAILPLUS)"/>
-    <value value="13" nick="NL - Voordeelurenabo (without RAILPLUS)"/>
+    <value value="9" nick="A – VORTEILScard (with RAILPLUS)"/>
+    <value value="10" nick="CH – HalbtaxAbo (with RAILPLUS)"/>
+    <value value="11" nick="CH – HalbtaxAbo (without RAILPLUS)"/>
+    <value value="12" nick="NL – Voordeelurenabo (with RAILPLUS)"/>
+    <value value="13" nick="NL – Voordeelurenabo (without RAILPLUS)"/>
     <value value="14" nick="SH-Card"/>
-    <value value="15" nick="CH - General-Abonnement"/>
+    <value value="15" nick="CH – General-Abonnement"/>
   </enum>
 
   <schema id="de.schmidhuberj.DieBahn" path="/de/schmidhuberj/DieBahn/" gettext-domain="de.schmidhuberj.DieBahn">
@@ -47,16 +47,16 @@
     </key>
     <key name="direct-only" type="b">
       <default>false</default>
-      <summary>Search for only direct connections</summary>
+      <summary>Search for direct connections only</summary>
     </key>
 
     <key name="delete-old" type="b">
       <default>true</default>
-      <summary>Delete old journeys from storage</summary>
+      <summary>Remove past trips from bookmarks</summary>
     </key>
     <key name="deletion-time" type="i">
       <default>2</default>
-      <summary>Hours after which journeys will be deleted from the store</summary>
+      <summary>Hours past arrival after which to remove them</summary>
     </key>
 
     <key name="include-national-express" type="b">

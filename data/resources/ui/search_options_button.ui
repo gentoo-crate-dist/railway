@@ -17,6 +17,8 @@
 
     <signal name="clicked" handler="handle_clicked" swapped="true"/>
 
+    <property name="tooltip-text" translatable="yes">Refine Advanced Search Options</property>
+
     <child>
       <object class="GtkBox">
         <child>

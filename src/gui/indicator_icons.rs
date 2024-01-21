@@ -132,21 +132,21 @@ pub mod imp {
                             img,
                             true,
                             "train-load-high-symbolic",
-                            &gettextrs::gettext("High load"),
+                            &gettextrs::gettext("High Load"),
                             &["load-high"],
                         ),
                         LoadFactor::VeryHigh => self.set_icon(
                             img,
                             true,
                             "train-load-veryhigh-symbolic",
-                            &gettextrs::gettext("Very high load"),
+                            &gettextrs::gettext("Very High Load"),
                             &["load-very-high"],
                         ),
                         LoadFactor::ExceptionallyHigh => self.set_icon(
                             img,
                             true,
                             "train-load-extreme-symbolic",
-                            &gettextrs::gettext("Exceptionally high load"),
+                            &gettextrs::gettext("Exceptionally High Load"),
                             &["load-exceptionally-high"],
                         ),
                     }
@@ -162,14 +162,14 @@ pub mod imp {
                             img,
                             false,
                             "",
-                            &gettextrs::gettext("On time"),
+                            &gettextrs::gettext("On Time"),
                             &["late-on-time"],
                         ),
                         LateFactor::LittleLate => self.set_icon(
                             img,
                             true,
                             "delay-small-symbolic",
-                            &gettextrs::gettext("Minor delays"),
+                            &gettextrs::gettext("Minor Delays"),
                             &["late-little-late"],
                         ),
                         LateFactor::Late => self.set_icon(
@@ -183,14 +183,14 @@ pub mod imp {
                             img,
                             true,
                             "delay-long-small-symbolic",
-                            &gettextrs::gettext("Very delayed"),
+                            &gettextrs::gettext("Very Delayed"),
                             &["late-very-late"],
                         ),
                         LateFactor::ExtremelyLate => self.set_icon(
                             img,
                             true,
                             "delay-extreme-small-symbolic",
-                            &gettextrs::gettext("Extremely delayed"),
+                            &gettextrs::gettext("Extremely Delayed"),
                             &["late-extremely-late"],
                         ),
                     }
@@ -206,7 +206,7 @@ pub mod imp {
                         obj,
                         "change-symbolic",
                         &if obj {
-                            gettextrs::gettext("Platform changed")
+                            gettextrs::gettext("Platform Changes")
                         } else {
                             "".to_string()
                         },
@@ -225,7 +225,7 @@ pub mod imp {
                         obj && !self.img_cancelled.get_visible(),
                         "dialog-warning-symbolic",
                         &if obj {
-                            gettextrs::gettext("Unreachable")
+                            gettextrs::gettext("Connection Not Possible")
                         } else {
                             "".to_string()
                         },

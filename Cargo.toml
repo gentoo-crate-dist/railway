@@ -1,6 +1,6 @@
 [package]
 name = "diebahn"
-description = "Find all your travel information"
+description = "Find all your travel information" # keep in sync with metainfo
 authors = ["Julian Schmidhuber <schmidhuberj2@protonmail.com>"]
 homepage = "https://mobile.schmidhuberj.de/railway"
 repository = "https://gitlab.com/schmiddi-on-mobile/railway"

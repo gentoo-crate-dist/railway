@@ -72,7 +72,7 @@ pub mod imp {
         #[template_callback(function)]
         fn format_train_direction(train: &str, destination: &str) -> String {
             // Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
-            let format = gettextrs::gettext("{train} to {destination}");
+            let format = gettextrs::gettext("{train} in the direction of {destination}");
             format
                 .replace("{train}", train)
                 .replace("{destination}", destination)
