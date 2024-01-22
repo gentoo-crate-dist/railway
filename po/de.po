@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-22 18:19+0100\n"
-"PO-Revision-Date: 2024-01-22 10:01+0000\n"
+"PO-Revision-Date: 2024-01-23 18:01+0000\n"
 "Last-Translator: Markus Göllnitz <camelcasenick@bewares.it>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -264,20 +264,19 @@ msgstr "Fällt aus"
 
 #: src/gui/search_page.rs:116
 msgid "Start and destination are missing"
-msgstr ""
+msgstr "Start und Ziel fehlen"
 
 #: src/gui/search_page.rs:117
 msgid "Start is missing"
-msgstr ""
+msgstr "Start fehlt"
 
 #: src/gui/search_page.rs:118
 msgid "Destination is missing"
-msgstr ""
+msgstr "Ziel fehlt"
 
 #: src/gui/search_page.rs:119
-#, fuzzy
 msgid "Search ongoing"
-msgstr "Verbindungen suchen"
+msgstr "Suche läuft"
 
 #: src/gui/search_page.rs:218 src/gui/journey_detail_page.rs:82
 #: src/gui/journeys_page.rs:208 src/gui/journeys_page.rs:268
