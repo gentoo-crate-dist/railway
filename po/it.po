@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-20 21:59+0100\n"
+"POT-Creation-Date: 2024-01-22 18:19+0100\n"
 "PO-Revision-Date: 2023-12-18 14:09+0000\n"
 "Last-Translator: boblaspugna4f1ee5d391024b4c <boblaspugna@null.net>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/schmiddi-on-"
@@ -171,7 +171,7 @@ msgstr "Da"
 msgid "To"
 msgstr "A"
 
-#: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:73
+#: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:96
 #: data/resources/ui/window.ui:37
 msgid "Search"
 msgstr "Cerca"
@@ -275,7 +275,24 @@ msgstr "Connessioni"
 msgid "Cancelled"
 msgstr "Cancellato"
 
-#: src/gui/search_page.rs:208 src/gui/journey_detail_page.rs:82
+#: src/gui/search_page.rs:116
+msgid "Start and destination are missing"
+msgstr ""
+
+#: src/gui/search_page.rs:117
+msgid "Start is missing"
+msgstr ""
+
+#: src/gui/search_page.rs:118
+msgid "Destination is missing"
+msgstr ""
+
+#: src/gui/search_page.rs:119
+#, fuzzy
+msgid "Search ongoing"
+msgstr "Cerca Percorsi"
+
+#: src/gui/search_page.rs:218 src/gui/journey_detail_page.rs:82
 #: src/gui/journeys_page.rs:208 src/gui/journeys_page.rs:268
 msgid "language"
 msgstr "Lingua"
@@ -444,7 +461,6 @@ msgstr "_Chiudere"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:105
-#, c-format
 msgid "%a %b %d"
 msgstr "%a %b %d"
 
