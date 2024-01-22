@@ -75,6 +75,8 @@ pub mod imp {
 
         #[template_child]
         btn_search: TemplateChild<gtk::Button>,
+        #[template_child]
+        stack_search_btn: TemplateChild<gtk::Stack>,
 
         #[template_child]
         box_journeys: TemplateChild<gtk::ListBox>,
@@ -110,13 +112,21 @@ pub mod imp {
             let to_set = self.in_to.property::<bool>("set");
             let searching = self.searching.get();
 
-            self.btn_search.set_tooltip_text(match (from_set, to_set, searching) {
-                (false, false, _) => Some("Start and destination are missing"),
-                (false, true, _) => Some("Start is missing"),
-                (true, false, _) => Some("Destination is missing"),
-                (true, true, true) => Some("Search ongoing"),
+            let tooltip = match (from_set, to_set, searching) {
+                (false, false, _) => Some(gettextrs::gettext("Start and destination are missing")),
+                (false, true, _) => Some(gettextrs::gettext("Start is missing")),
+                (true, false, _) => Some(gettextrs::gettext("Destination is missing")),
+                (true, true, true) => Some(gettextrs::gettext("Search ongoing")),
                 (_, _, _) => None,
-            });
+            };
+
+            self.btn_search.set_tooltip_text(tooltip.as_deref());
+
+            if self.obj().searching() {
+                self.stack_search_btn.set_visible_child_name("spinner");
+            } else {
+                self.stack_search_btn.set_visible_child_name("label");
+            }
         }
 
         fn setup_search_when_ready(&self) {
@@ -255,6 +265,7 @@ pub mod imp {
                 in_to: Default::default(),
                 pick_date_time: Default::default(),
                 btn_search: Default::default(),
+                stack_search_btn: Default::default(),
                 box_journeys: Default::default(),
                 box_searches: Default::default(),
                 client: Default::default(),

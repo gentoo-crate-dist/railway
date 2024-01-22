@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-20 21:59+0100\n"
+"POT-Creation-Date: 2024-01-22 18:19+0100\n"
 "PO-Revision-Date: 2024-01-22 10:01+0000\n"
 "Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/sv/>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,7 +169,7 @@ msgstr "Från"
 msgid "To"
 msgstr "Till"
 
-#: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:73
+#: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:96
 #: data/resources/ui/window.ui:37
 msgid "Search"
 msgstr "Sök"
@@ -262,7 +262,24 @@ msgstr "Anslutning ej möjlig"
 msgid "Cancelled"
 msgstr "Inställt"
 
-#: src/gui/search_page.rs:208 src/gui/journey_detail_page.rs:82
+#: src/gui/search_page.rs:116
+msgid "Start and destination are missing"
+msgstr ""
+
+#: src/gui/search_page.rs:117
+msgid "Start is missing"
+msgstr ""
+
+#: src/gui/search_page.rs:118
+msgid "Destination is missing"
+msgstr ""
+
+#: src/gui/search_page.rs:119
+#, fuzzy
+msgid "Search ongoing"
+msgstr "Sök efter resor"
+
+#: src/gui/search_page.rs:218 src/gui/journey_detail_page.rs:82
 #: src/gui/journeys_page.rs:208 src/gui/journeys_page.rs:268
 msgid "language"
 msgstr "språk"
@@ -418,7 +435,6 @@ msgstr "_Stäng"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:105
-#, c-format
 msgid "%a %b %d"
 msgstr "%a %b %d"
 

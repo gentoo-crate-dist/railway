@@ -70,7 +70,6 @@
 
                     <signal name="clicked" handler="handle_search" swapped="true"/>
 
-                    <property name="label" translatable="yes">Search</property>
                     <property name="margin-top">12</property>
                     <property name="margin-bottom">12</property>
                     <property name="height-request">48</property>
@@ -83,6 +82,38 @@
                         </closure>
                       </closure>
                     </binding>
+
+                    <child>
+                      <object class="GtkStack" id="stack_search_btn">
+                        <property name="transition-type">crossfade</property>
+
+                        <child>
+                          <object class="GtkStackPage">
+                            <property name="name">label</property>
+                            <property name="title">label</property>
+                            <property name="child">
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Search</property>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        
+                        <child>
+                          <object class="GtkStackPage">
+                            <property name="name">spinner</property>
+                            <property name="title">spinner</property>
+                            <property name="child">
+                              <object class="GtkSpinner">
+                                <property name="spinning">true</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <child>
