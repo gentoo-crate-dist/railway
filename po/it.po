@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-22 18:19+0100\n"
-"PO-Revision-Date: 2023-12-18 14:09+0000\n"
+"PO-Revision-Date: 2024-01-25 08:01+0000\n"
 "Last-Translator: boblaspugna4f1ee5d391024b4c <boblaspugna@null.net>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/it/>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -40,9 +40,8 @@ msgid "Now"
 msgstr "Adesso"
 
 #: data/resources/ui/journey_detail_page.ui:81
-#, fuzzy
 msgid "Total Travel Time"
-msgstr "Durata"
+msgstr "Durata Totale Del Viaggio"
 
 #: data/resources/ui/journey_detail_page.ui:120
 msgid "Choose a Trip"
@@ -53,17 +52,16 @@ msgid "Search for Trips"
 msgstr "Cerca Percorsi"
 
 #: data/resources/ui/leg_item.ui:176
-#, fuzzy
 msgid "Show Stopovers"
-msgstr "Mostra Fermate Intermedie"
+msgstr "Mostra Fermate"
 
 #: data/resources/ui/leg_item.ui:178
 msgid "Show Stopovers in Between"
-msgstr ""
+msgstr "Mostra Fermate Intermedie"
 
 #: data/resources/ui/leg_item.ui:251 data/resources/ui/leg_item.ui:253
 msgid "Show Announcements"
-msgstr ""
+msgstr "Mostra Annunci"
 
 #: data/resources/ui/preferences_window.ui:10
 #: data/resources/ui/search_options_window.ui:10
@@ -72,11 +70,11 @@ msgstr "Informazioni Generali"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Remove Past Trips From Bookmarks"
-msgstr ""
+msgstr "Cancella Vecchi Percorsi Dai Preferiti"
 
 #: data/resources/ui/preferences_window.ui:22
 msgid "Time After Arrival After Which to Remove Them"
-msgstr ""
+msgstr "Tempo Dopo Il Quale Rimuoverli"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
@@ -84,15 +82,15 @@ msgstr "Più opzioni di ricerca"
 
 #: data/resources/ui/search_options_button.ui:20
 msgid "Refine Advanced Search Options"
-msgstr ""
+msgstr "Perfeziona Le Opzioni Di Ricerca Avanzata"
 
 #: data/resources/ui/search_options_button.ui:35
 msgid "More Options"
-msgstr "Più opzioni"
+msgstr "Più Opzioni"
 
 #: data/resources/ui/search_options_window.ui:16
 msgid "Discount Card"
-msgstr "Carta sconto"
+msgstr "Carta Sconto"
 
 #: data/resources/ui/search_options_window.ui:24
 msgid "Class"
@@ -100,28 +98,28 @@ msgstr "Classe"
 
 #: data/resources/ui/search_options_window.ui:34
 msgid "First Class"
-msgstr "Prima classe"
+msgstr "Prima Classe"
 
 #: data/resources/ui/search_options_window.ui:40
 msgid "Second Class"
-msgstr "Seconda classe"
+msgstr "Seconda Classe"
 
 #: data/resources/ui/search_options_window.ui:50
 #: src/gui/search_options_button.rs:193
 msgid "Bike Accessible"
-msgstr "Accessibilità biciclette"
+msgstr "Accessibilità Biciclette"
 
 #: data/resources/ui/search_options_window.ui:56
 msgid "Minimum Transfer Time"
-msgstr "Tempo minimo di cambio"
+msgstr "Tempo Minimo Di Cambio"
 
 #: data/resources/ui/search_options_window.ui:62
 msgid "Direct Connections Only"
-msgstr "Solo connessioni dirette"
+msgstr "Solo Connessioni Dirette"
 
 #: data/resources/ui/search_options_window.ui:71
 msgid "Modes of Transport"
-msgstr "Tipi di trasporto"
+msgstr "Tipi di Trasporto"
 
 #: data/resources/ui/search_options_window.ui:77
 msgid "ICE"
@@ -141,7 +139,7 @@ msgstr "Regionale"
 
 #: data/resources/ui/search_options_window.ui:97
 msgid "S-Bahn"
-msgstr ""
+msgstr "S-Bahn"
 
 #: data/resources/ui/search_options_window.ui:102
 msgid "Bus"
@@ -177,13 +175,12 @@ msgid "Search"
 msgstr "Cerca"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
-#, fuzzy
 msgid "Select Network"
 msgstr "Seleziona il Servizio"
 
 #: data/resources/ui/window.ui:88
 msgid "Main Menu"
-msgstr ""
+msgstr "Menu Principale"
 
 #: data/resources/ui/window.ui:114
 msgid "Connections"
@@ -191,19 +188,19 @@ msgstr "Connessioni"
 
 #: data/resources/ui/window.ui:128
 msgid "Bookmark This Search"
-msgstr ""
+msgstr "Aggiungi Questa Ricerca Ai Preferiti"
 
 #: data/resources/ui/window.ui:166
 msgid "Trip Details"
-msgstr "Dettagli di Viaggio"
+msgstr "Dettagli Percorso"
 
 #: data/resources/ui/window.ui:175
 msgid "Refresh This Trip"
-msgstr ""
+msgstr "Aggiorna Questo Percorso"
 
 #: data/resources/ui/window.ui:199
 msgid "Bookmark This Trip"
-msgstr ""
+msgstr "Aggiungi Questo Percorso Ai Preferiti"
 
 #: data/resources/ui/window.ui:248
 msgid "Preferences"
@@ -214,36 +211,30 @@ msgid "Keyboard Shortcuts"
 msgstr "Scorciatoie da Tastiera"
 
 #: data/resources/ui/window.ui:256
-#, fuzzy
 msgid "_About Railway"
-msgstr "Riguardo Railway"
+msgstr "_Riguardo Railway"
 
 #: data/resources/ui/refresh_button.ui:25
 msgid "Refresh Journey"
-msgstr ""
+msgstr "Aggiorna Viaggio"
 
 #: src/gui/indicator_icons.rs:135
-#, fuzzy
 msgid "High Load"
 msgstr "Affollato"
 
 #: src/gui/indicator_icons.rs:142
-#, fuzzy
 msgid "Very High Load"
-msgstr "Molto affollato"
+msgstr "Molto Affollato"
 
 #: src/gui/indicator_icons.rs:149
-#, fuzzy
 msgid "Exceptionally High Load"
-msgstr "Estremamente affollato"
+msgstr "Estremamente Affollato"
 
 #: src/gui/indicator_icons.rs:165
-#, fuzzy
 msgid "On Time"
-msgstr "Ora"
+msgstr "Puntuale"
 
 #: src/gui/indicator_icons.rs:172
-#, fuzzy
 msgid "Minor Delays"
 msgstr "Brevi Ritardi"
 
@@ -252,24 +243,20 @@ msgid "Delayed"
 msgstr "In ritardo"
 
 #: src/gui/indicator_icons.rs:186
-#, fuzzy
 msgid "Very Delayed"
-msgstr "Molto in ritardo"
+msgstr "Molto Ritardo"
 
 #: src/gui/indicator_icons.rs:193
-#, fuzzy
 msgid "Extremely Delayed"
-msgstr "Estremamente in ritardo"
+msgstr "Estremamente In Ritardo"
 
 #: src/gui/indicator_icons.rs:209
-#, fuzzy
 msgid "Platform Changes"
-msgstr "Binario modificato"
+msgstr "Binario Modificato"
 
 #: src/gui/indicator_icons.rs:228
-#, fuzzy
 msgid "Connection Not Possible"
-msgstr "Connessioni"
+msgstr "Connessione Non Possibile"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
@@ -277,20 +264,19 @@ msgstr "Cancellato"
 
 #: src/gui/search_page.rs:116
 msgid "Start and destination are missing"
-msgstr ""
+msgstr "Partenza e Destinazione non indicate"
 
 #: src/gui/search_page.rs:117
 msgid "Start is missing"
-msgstr ""
+msgstr "Partenza non indicata"
 
 #: src/gui/search_page.rs:118
 msgid "Destination is missing"
-msgstr ""
+msgstr "Destinazione non indicata"
 
 #: src/gui/search_page.rs:119
-#, fuzzy
 msgid "Search ongoing"
-msgstr "Cerca Percorsi"
+msgstr "Ricerca in corso"
 
 #: src/gui/search_page.rs:218 src/gui/journey_detail_page.rs:82
 #: src/gui/journeys_page.rs:208 src/gui/journeys_page.rs:268
@@ -299,31 +285,28 @@ msgstr "Lingua"
 
 #: src/gui/transition.rs:193
 msgid "Transfer"
-msgstr ""
+msgstr "Transizione"
 
 #. Translators: duration in minutes, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:40
-#, fuzzy
 msgid "{} min."
-msgstr "{} min"
+msgstr "{} min."
 
 #. Translators: duration format with hours and minutes, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:48
-#, fuzzy
 msgid "%_H hrs. %_M min."
-msgstr "%_H ore %_M min"
+msgstr "%_H ore %_M min."
 
 #: src/gui/utility.rs:59
-#, fuzzy
 msgid "%_d day %_H hrs. %_M min."
 msgid_plural "%_d days %_H hrs. %_M min."
-msgstr[0] "%_d giorno %_H ora %_M min"
-msgstr[1] "%_d giorni %_H ore %_M min"
+msgstr[0] "%_d giorno %_H ora %_M min."
+msgstr[1] "%_d giorni %_H ore %_M min."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:69
 msgid "%H:%M"
-msgstr ""
+msgstr "%H:%M"
 
 #: src/gui/utility.rs:75 src/gui/date_time_picker.rs:101
 msgid "Today"
@@ -368,27 +351,22 @@ msgid "BahnCard 50, 2nd class"
 msgstr "BahnCard 50, Seconda Classe"
 
 #: src/gui/search_options_button.rs:79
-#, fuzzy
 msgid "A – VORTEILScard (with RAILPLUS)"
 msgstr "A - VORTEILScard (con RAILPLUS)"
 
 #: src/gui/search_options_button.rs:80
-#, fuzzy
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
 msgstr "CH - HalbtaxAbo (con RAILPLUS)"
 
 #: src/gui/search_options_button.rs:81
-#, fuzzy
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
 msgstr "CH - HalbtaxAbo (senza RAILPLUS)"
 
 #: src/gui/search_options_button.rs:84
-#, fuzzy
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
 msgstr "NL - Voordeelurenabo (con RAILPLUS)"
 
 #: src/gui/search_options_button.rs:88
-#, fuzzy
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
 msgstr "NL - Voordeelurenabo (senza RAILPLUS)"
 
@@ -397,9 +375,8 @@ msgid "SH-Card"
 msgstr "Carta SH"
 
 #: src/gui/search_options_button.rs:91
-#, fuzzy
 msgid "CH – General-Abonnement"
-msgstr "CH - Abbonamento generico"
+msgstr "CH - Abbonamento Generico"
 
 #: src/gui/search_options_button.rs:98
 msgid "Unknown"
@@ -415,17 +392,14 @@ msgstr "Seconda Classe"
 
 #. TODO: Germany specific, only display for networks there
 #: src/gui/search_options_button.rs:186
-#, fuzzy
 msgid "Regional Only"
 msgstr "Solo Regionali"
 
 #: src/gui/search_options_button.rs:188
-#, fuzzy
 msgid "Selected Modes of Transport"
-msgstr "Tipi di trasporto"
+msgstr "Tipi di Trasporto Selezionati"
 
 #: src/gui/search_options_button.rs:200
-#, fuzzy
 msgid "Direct Connection"
 msgstr "Connessione Diretta"
 
@@ -435,7 +409,7 @@ msgstr "Impossibile recuperare informazioni. La connessione internet è attiva?"
 
 #: src/gui/error.rs:21
 msgid "Received an error. Please share feedback."
-msgstr ""
+msgstr "Si è verificato un errore. Per favore apri una segnalazione."
 
 #: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
 msgid "More information"
@@ -443,10 +417,9 @@ msgstr "Più informazioni"
 
 #: src/gui/error.rs:25
 msgid "Received an invalid response. Please share feedback."
-msgstr ""
+msgstr "Risposta non valida. Per favore apri una segnalazione."
 
 #: src/gui/error.rs:29
-#, fuzzy
 msgid "An unknown issue occured. Please share feedback."
 msgstr "Errore sconosciuto. Per favore apri una segnalazione."
 
@@ -466,9 +439,8 @@ msgstr "%a %b %d"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:75
-#, fuzzy
 msgid "{train} in the direction of {destination}"
-msgstr "{train} verso {destination}"
+msgstr "{train} in direzione di {destination}"
 
 #: src/gui/leg_item.rs:167
 msgid "{} stopover"
@@ -482,24 +454,21 @@ msgstr "traduttori"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
-#, fuzzy
 msgid "€{amount}"
-msgstr "{amount} $"
+msgstr "€{amount}"
 
 #. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
 #: src/backend/price.rs:74
-#, fuzzy
 msgid "${amount}"
-msgstr "{amount} $"
+msgstr "${amount}"
 
 #. Translators: How to format unknown currency "currency". Do not translate in {}.
 #: src/backend/price.rs:81
 msgid "{currency} {amount}"
-msgstr ""
+msgstr "{currency} {amount}"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
 #: src/backend/hafas_client.rs:58
-#, fuzzy
 msgid "North Rhine-Westphalia"
 msgstr "Renania Settentrionale-Vestfalia"
 
