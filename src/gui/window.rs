@@ -170,6 +170,8 @@ pub mod imp {
                         .collect::<Vec<&str>>())
                 );
                 about_dialog.set_translator_credits(&gettextrs::gettext("translators"));
+                about_dialog.set_designers(&[ "Tobias Bernard" ]);
+                about_dialog.add_credit_section(Some(&gettextrs::gettext("Source Translation Supported by")), &[ "Sydney Sharpe" ]);
                 about_dialog.add_link("GitLab", "https://gitlab.com/schmiddi-on-mobile/railway");
 
                 about_dialog.set_transient_for(Some(&window));
