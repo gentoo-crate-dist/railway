@@ -478,7 +478,7 @@ msgstr[0] "{} parada"
 msgstr[1] "{} paradas"
 
 #: src/gui/window.rs:172
-msgid "translators"
+msgid "translator-credits"
 msgstr ""
 
 #: src/gui/window.rs:174

@@ -450,7 +450,7 @@ msgstr[0] "{} mellanlandning"
 msgstr[1] "{} mellanlandningar"
 
 #: src/gui/window.rs:172
-msgid "translators"
+msgid "translator-credits"
 msgstr "Luna Jernberg <lunajernberg@gnome.org>"
 
 #: src/gui/window.rs:174

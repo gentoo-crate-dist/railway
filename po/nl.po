@@ -450,7 +450,7 @@ msgstr[0] "{} tussenstop"
 msgstr[1] "{} tussenstops"
 
 #: src/gui/window.rs:172
-msgid "translators"
+msgid "translator-credits"
 msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
 #: src/gui/window.rs:174

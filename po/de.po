@@ -451,7 +451,7 @@ msgstr[0] "{} Zwischenhalt"
 msgstr[1] "{} Zwischenhalte"
 
 #: src/gui/window.rs:172
-msgid "translators"
+msgid "translator-credits"
 msgstr ""
 "Julian Schmidhuber\n"
 "Markus Göllnitz <camelcasenick@bewares.it>"

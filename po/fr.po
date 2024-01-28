@@ -452,7 +452,7 @@ msgstr[0] "{} arrêt"
 msgstr[1] "{} arrêts"
 
 #: src/gui/window.rs:172
-msgid "translators"
+msgid "translator-credits"
 msgstr "Irénée THIRION"
 
 #: src/gui/window.rs:174

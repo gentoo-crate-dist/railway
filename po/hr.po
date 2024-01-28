@@ -471,7 +471,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/gui/window.rs:172
-msgid "translators"
+msgid "translator-credits"
 msgstr ""
 
 #: src/gui/window.rs:174

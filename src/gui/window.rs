@@ -169,7 +169,8 @@ pub mod imp {
                         .split(':')
                         .collect::<Vec<&str>>())
                 );
-                about_dialog.set_translator_credits(&gettextrs::gettext("translators"));
+                // translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
+                about_dialog.set_translator_credits(&gettextrs::gettext("translator-credits"));
                 about_dialog.set_designers(&[ "Tobias Bernard" ]);
                 about_dialog.add_credit_section(Some(&gettextrs::gettext("Source Translation Supported by")), &[ "Sydney Sharpe" ]);
                 about_dialog.add_link("GitLab", "https://gitlab.com/schmiddi-on-mobile/railway");

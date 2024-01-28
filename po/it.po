@@ -450,7 +450,7 @@ msgstr[0] "{} fermata"
 msgstr[1] "{} fermate"
 
 #: src/gui/window.rs:172
-msgid "translators"
+msgid "translator-credits"
 msgstr "Bob Sponge <boblaspugna@null.net>"
 
 #: src/gui/window.rs:174
