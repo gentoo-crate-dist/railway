@@ -449,9 +449,13 @@ msgid_plural "{} stopovers"
 msgstr[0] "{} tussenstop"
 msgstr[1] "{} tussenstops"
 
-#: src/gui/window.rs:182
+#: src/gui/window.rs:172
 msgid "translators"
 msgstr "Heimen Stoffels <vistausss@fastmail.com>"
+
+#: src/gui/window.rs:174
+msgid "Source Translation Supported by"
+msgstr ""
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
