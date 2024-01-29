@@ -325,6 +325,7 @@ pub mod imp {
                 let header_item = object.downcast_ref::<gtk::ListHeader>().unwrap();
                 header_item.set_child(Some(&widget));
                 header_item.bind_property("item", &widget, "item").build();
+                header_item.bind_property("start", &widget, "start").build();
             }));
 
             self.list_journeys.set_factory(Some(&factory));

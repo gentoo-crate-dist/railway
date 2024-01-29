@@ -49,6 +49,9 @@ mod imp {
             static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
                 vec![glib::ParamSpecObject::builder::<Journey>("item")
                     .write_only()
+                    .build(),
+                    glib::ParamSpecUInt::builder("start")
+                    .write_only()
                     .build()]
             });
 
@@ -64,6 +67,12 @@ mod imp {
 
                     let formatted = v.map(|v| v.departure_day());
                     self.label_date.set_text(&formatted.unwrap_or_default());
+                }
+                "start" => {
+                    let v = value
+                        .get::<u32>()
+                        .expect("TimeDivider to only get an unsigned integer");
+                    self.obj().set_visible(v != 0);
                 }
                 _ => unimplemented!(),
             }
