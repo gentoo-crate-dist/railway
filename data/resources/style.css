@@ -45,6 +45,8 @@
   padding: 6px;
 }
 
+.journeys-page header { padding: 0; }
+
 /* Fixes buttons inside cards having a bigger border radius compared to the card, which leads to the highlight spanning outside of the box. */
 .button-card > button {
   border-radius: 12px;
