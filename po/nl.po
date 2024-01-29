@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-22 18:19+0100\n"
-"PO-Revision-Date: 2023-10-11 21:02+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"PO-Revision-Date: 2024-01-30 08:01+0000\n"
+"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -53,7 +53,6 @@ msgid "Search for Trips"
 msgstr "Zoeken naar reismogelijkheden"
 
 #: data/resources/ui/leg_item.ui:176
-#, fuzzy
 msgid "Show Stopovers"
 msgstr "Tussenstops tonen"
 
@@ -63,7 +62,7 @@ msgstr ""
 
 #: data/resources/ui/leg_item.ui:251 data/resources/ui/leg_item.ui:253
 msgid "Show Announcements"
-msgstr ""
+msgstr "Aankondigingen tonen"
 
 #: data/resources/ui/preferences_window.ui:10
 #: data/resources/ui/search_options_window.ui:10
@@ -177,13 +176,12 @@ msgid "Search"
 msgstr "Zoeken"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
-#, fuzzy
 msgid "Select Network"
-msgstr "Kies een dienst"
+msgstr "Netwerk selecteren"
 
 #: data/resources/ui/window.ui:88
 msgid "Main Menu"
-msgstr ""
+msgstr "Hoofdmenu"
 
 #: data/resources/ui/window.ui:114
 msgid "Connections"
@@ -214,19 +212,16 @@ msgid "Keyboard Shortcuts"
 msgstr "Sneltoetsen"
 
 #: data/resources/ui/window.ui:256
-#, fuzzy
 msgid "_About Railway"
-msgstr "Over Trein"
+msgstr "_Over Railway"
 
 #: data/resources/ui/refresh_button.ui:25
-#, fuzzy
 msgid "Refresh Journey"
-msgstr "Reismogelijkheid"
+msgstr "Reis verversen"
 
 #: src/gui/indicator_icons.rs:135
-#, fuzzy
 msgid "High Load"
-msgstr "Erg druk"
+msgstr "Druk"
 
 #: src/gui/indicator_icons.rs:142
 #, fuzzy
@@ -239,12 +234,10 @@ msgid "Exceptionally High Load"
 msgstr "Overvol"
 
 #: src/gui/indicator_icons.rs:165
-#, fuzzy
 msgid "On Time"
-msgstr "Tijdstip"
+msgstr "Op tijd"
 
 #: src/gui/indicator_icons.rs:172
-#, fuzzy
 msgid "Minor Delays"
 msgstr "Kleine vertragingen"
 
@@ -253,19 +246,16 @@ msgid "Delayed"
 msgstr "Vertraagd"
 
 #: src/gui/indicator_icons.rs:186
-#, fuzzy
 msgid "Very Delayed"
 msgstr "Erg vertraagd"
 
 #: src/gui/indicator_icons.rs:193
-#, fuzzy
 msgid "Extremely Delayed"
 msgstr "Extreem vertraagd"
 
 #: src/gui/indicator_icons.rs:209
-#, fuzzy
 msgid "Platform Changes"
-msgstr "Perronwijziging"
+msgstr "Perron­wijzigingen"
 
 #: src/gui/indicator_icons.rs:228
 #, fuzzy
@@ -300,11 +290,10 @@ msgstr "nl"
 
 #: src/gui/transition.rs:193
 msgid "Transfer"
-msgstr ""
+msgstr "Overstap"
 
 #. Translators: duration in minutes, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:40
-#, fuzzy
 msgid "{} min."
 msgstr "{} min."
 
@@ -324,7 +313,7 @@ msgstr[1] "%_d dagen, %_H uur en %_M min."
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:69
 msgid "%H:%M"
-msgstr ""
+msgstr "%H:%M"
 
 #: src/gui/utility.rs:75 src/gui/date_time_picker.rs:101
 msgid "Today"
@@ -416,7 +405,6 @@ msgstr "2e klas"
 
 #. TODO: Germany specific, only display for networks there
 #: src/gui/search_options_button.rs:186
-#, fuzzy
 msgid "Regional Only"
 msgstr "Alleen regionaal vervoer"
 
@@ -426,9 +414,8 @@ msgid "Selected Modes of Transport"
 msgstr "Vervoersmogelijkheden"
 
 #: src/gui/search_options_button.rs:200
-#, fuzzy
 msgid "Direct Connection"
-msgstr "Zonder overstap"
+msgstr "Directe verbinding"
 
 #: src/gui/error.rs:18
 msgid "Failed to fetch data. Are you connected to the internet?"
@@ -485,24 +472,21 @@ msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
-#, fuzzy
 msgid "€{amount}"
-msgstr "${amount}"
+msgstr "€ {amount}"
 
 #. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
 #: src/backend/price.rs:74
-#, fuzzy
 msgid "${amount}"
-msgstr "${amount}"
+msgstr "$ {amount}"
 
 #. Translators: How to format unknown currency "currency". Do not translate in {}.
 #: src/backend/price.rs:81
 msgid "{currency} {amount}"
-msgstr ""
+msgstr "{currency} {amount}"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
 #: src/backend/hafas_client.rs:58
-#, fuzzy
 msgid "North Rhine-Westphalia"
 msgstr "Noordrijn-Westfalen"
 
