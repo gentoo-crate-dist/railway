@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-22 18:19+0100\n"
-"PO-Revision-Date: 2024-01-30 08:01+0000\n"
+"PO-Revision-Date: 2024-01-31 15:01+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -40,9 +40,8 @@ msgid "Now"
 msgstr "Nu"
 
 #: data/resources/ui/journey_detail_page.ui:81
-#, fuzzy
 msgid "Total Travel Time"
-msgstr "Reistijd"
+msgstr "Totale reistijd"
 
 #: data/resources/ui/journey_detail_page.ui:120
 msgid "Choose a Trip"
@@ -54,11 +53,11 @@ msgstr "Zoeken naar reismogelijkheden"
 
 #: data/resources/ui/leg_item.ui:176
 msgid "Show Stopovers"
-msgstr "Tussenstops tonen"
+msgstr "Haltes tonen"
 
 #: data/resources/ui/leg_item.ui:178
 msgid "Show Stopovers in Between"
-msgstr ""
+msgstr "Tussenstops tonen"
 
 #: data/resources/ui/leg_item.ui:251 data/resources/ui/leg_item.ui:253
 msgid "Show Announcements"
@@ -71,11 +70,11 @@ msgstr "Algemeen"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Remove Past Trips From Bookmarks"
-msgstr ""
+msgstr "Vorige ritten uit bladwijzers verwijderen"
 
 #: data/resources/ui/preferences_window.ui:22
 msgid "Time After Arrival After Which to Remove Them"
-msgstr ""
+msgstr "Tijd na aankomst waarna deze verwijderd moeten worden"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
@@ -83,7 +82,7 @@ msgstr "Meer zoekopties"
 
 #: data/resources/ui/search_options_button.ui:20
 msgid "Refine Advanced Search Options"
-msgstr ""
+msgstr "Geavanceerde zoek­opties verfijnen"
 
 #: data/resources/ui/search_options_button.ui:35
 msgid "More Options"
@@ -91,7 +90,7 @@ msgstr "Meer opties"
 
 #: data/resources/ui/search_options_window.ui:16
 msgid "Discount Card"
-msgstr "Kortingkaart"
+msgstr "Kortings­kaart"
 
 #: data/resources/ui/search_options_window.ui:24
 msgid "Class"
@@ -140,7 +139,7 @@ msgstr "Regionaal/Streekvervoer"
 
 #: data/resources/ui/search_options_window.ui:97
 msgid "S-Bahn"
-msgstr ""
+msgstr "S-Bahn"
 
 #: data/resources/ui/search_options_window.ui:102
 msgid "Bus"
@@ -189,7 +188,7 @@ msgstr "Aansluitingen"
 
 #: data/resources/ui/window.ui:128
 msgid "Bookmark This Search"
-msgstr ""
+msgstr "Zoekresultaat opslaan"
 
 #: data/resources/ui/window.ui:166
 msgid "Trip Details"
@@ -197,11 +196,11 @@ msgstr "Reisinformatie"
 
 #: data/resources/ui/window.ui:175
 msgid "Refresh This Trip"
-msgstr ""
+msgstr "Rit verversen"
 
 #: data/resources/ui/window.ui:199
 msgid "Bookmark This Trip"
-msgstr ""
+msgstr "Deze rit opslaan"
 
 #: data/resources/ui/window.ui:248
 msgid "Preferences"
@@ -224,14 +223,12 @@ msgid "High Load"
 msgstr "Druk"
 
 #: src/gui/indicator_icons.rs:142
-#, fuzzy
 msgid "Very High Load"
-msgstr "Extreem druk"
+msgstr "Erg druk"
 
 #: src/gui/indicator_icons.rs:149
-#, fuzzy
 msgid "Exceptionally High Load"
-msgstr "Overvol"
+msgstr "Heel druk"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On Time"
@@ -258,9 +255,8 @@ msgid "Platform Changes"
 msgstr "Perron­wijzigingen"
 
 #: src/gui/indicator_icons.rs:228
-#, fuzzy
 msgid "Connection Not Possible"
-msgstr "Aansluitingen"
+msgstr "Verbinding niet mogelijk"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
@@ -268,20 +264,19 @@ msgstr "Geannuleerd"
 
 #: src/gui/search_page.rs:116
 msgid "Start and destination are missing"
-msgstr ""
+msgstr "Start en bestemming ontbreken"
 
 #: src/gui/search_page.rs:117
 msgid "Start is missing"
-msgstr ""
+msgstr "Start ontbreekt"
 
 #: src/gui/search_page.rs:118
 msgid "Destination is missing"
-msgstr ""
+msgstr "Bestemming ontbreekt"
 
 #: src/gui/search_page.rs:119
-#, fuzzy
 msgid "Search ongoing"
-msgstr "Zoeken naar reismogelijkheden"
+msgstr "Bezig met zoeken"
 
 #: src/gui/search_page.rs:218 src/gui/journey_detail_page.rs:82
 #: src/gui/journeys_page.rs:208 src/gui/journeys_page.rs:268
@@ -299,12 +294,10 @@ msgstr "{} min."
 
 #. Translators: duration format with hours and minutes, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:48
-#, fuzzy
 msgid "%_H hrs. %_M min."
 msgstr "%_H uur en %_M min."
 
 #: src/gui/utility.rs:59
-#, fuzzy
 msgid "%_d day %_H hrs. %_M min."
 msgid_plural "%_d days %_H hrs. %_M min."
 msgstr[0] "%_d dag, %_H uur en %_M min."
@@ -358,38 +351,32 @@ msgid "BahnCard 50, 2nd class"
 msgstr "BahnCard 50, 2e klas"
 
 #: src/gui/search_options_button.rs:79
-#, fuzzy
 msgid "A – VORTEILScard (with RAILPLUS)"
-msgstr "A - VORTEILScard (met RAILPLUS)"
+msgstr "A – VORTEILScard (met RAILPLUS)"
 
 #: src/gui/search_options_button.rs:80
-#, fuzzy
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
-msgstr "CH - HalbtaxAbo (met RAILPLUS)"
+msgstr "CH – HalbtaxAbo (met RAILPLUS)"
 
 #: src/gui/search_options_button.rs:81
-#, fuzzy
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
-msgstr "CH - HalbtaxAbo (zonder RAILPLUS)"
+msgstr "CH – HalbtaxAbo (zonder RAILPLUS)"
 
 #: src/gui/search_options_button.rs:84
-#, fuzzy
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
-msgstr "NL - Voordeelurenabonnement (met RAILPLUS)"
+msgstr "NL – Voordeel­uren­abonnement (met RAILPLUS)"
 
 #: src/gui/search_options_button.rs:88
-#, fuzzy
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
-msgstr "NL - Voordeelurenabonnement (zonder RAILPLUS)"
+msgstr "NL – Voordeel­uren­abonnement (zonder RAILPLUS)"
 
 #: src/gui/search_options_button.rs:90
 msgid "SH-Card"
 msgstr "SH-Card"
 
 #: src/gui/search_options_button.rs:91
-#, fuzzy
 msgid "CH – General-Abonnement"
-msgstr "CH - Algemeen abonnement"
+msgstr "CH – General-Abonnement"
 
 #: src/gui/search_options_button.rs:98
 msgid "Unknown"
@@ -409,9 +396,8 @@ msgid "Regional Only"
 msgstr "Alleen regionaal vervoer"
 
 #: src/gui/search_options_button.rs:188
-#, fuzzy
 msgid "Selected Modes of Transport"
-msgstr "Vervoersmogelijkheden"
+msgstr "Geselecteerde vervoers­methoden"
 
 #: src/gui/search_options_button.rs:200
 msgid "Direct Connection"
@@ -424,7 +410,7 @@ msgstr ""
 
 #: src/gui/error.rs:21
 msgid "Received an error. Please share feedback."
-msgstr ""
+msgstr "Fout ontvangen; deel dit alstublieft met ons."
 
 #: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
 msgid "More information"
@@ -432,12 +418,11 @@ msgstr "Meer informatie"
 
 #: src/gui/error.rs:25
 msgid "Received an invalid response. Please share feedback."
-msgstr ""
+msgstr "Ongeldige reactie ontvangen; deel dit alstublieft met ons."
 
 #: src/gui/error.rs:29
-#, fuzzy
 msgid "An unknown issue occured. Please share feedback."
-msgstr "Er is een onbekend probleem opgetreden - meld dit voorval."
+msgstr "Er is een onbekend probleem opgetreden; deel dit alstublieft met ons."
 
 #: src/gui/error.rs:52
 msgid "Error"
@@ -450,13 +435,11 @@ msgstr "_Sluiten"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:105
-#, fuzzy
 msgid "%a %b %d"
 msgstr "%a %d %b"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:75
-#, fuzzy
 msgid "{train} in the direction of {destination}"
 msgstr "{train} naar {destination}"
 
