@@ -164,8 +164,8 @@ pub mod imp {
                     if n_stopovers > 0 {
                         self.stopover_button.set_visible(true);
                         let num_stopovers_fmt = gettextrs::ngettext(
-                            "{} stopover",
-                            "{} stopovers",
+                            "{} Stopover",
+                            "{} Stopovers",
                             n_stopovers.try_into().unwrap(),
                         );
                         let num_stopovers_str =

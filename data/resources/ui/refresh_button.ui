@@ -22,7 +22,7 @@
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">view-refresh-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Refresh Journey</property>
+                    <property name="tooltip-text" translatable="yes">Refresh Trip</property>
                   </object>
                 </child>
               </object>
