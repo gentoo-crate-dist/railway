@@ -14,6 +14,7 @@ data/resources/ui/search_options_button.ui
 data/resources/ui/search_options_window.ui
 data/resources/ui/search_page.ui
 data/resources/ui/search_store_item.ui
+data/resources/ui/shortcuts.ui
 data/resources/ui/station_entry.ui
 data/resources/ui/stopover_item.ui
 data/resources/ui/transition.ui
