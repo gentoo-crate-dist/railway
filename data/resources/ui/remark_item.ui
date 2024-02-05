@@ -9,13 +9,20 @@
     <property name="spacing">6</property>
     <child>
       <object class="GtkImage">
-        <property name="icon-name">dialog-information-symbolic</property>
+        <binding name="icon-name">
+          <lookup name="icon-name">
+            <lookup name="remark" type="DBRemarkItem">
+            </lookup>
+          </lookup>
+        </binding>
+        <property name="valign">start</property>
       </object>
     </child>
     <child>
       <object class="GtkLabel">
-        <property name="ellipsize">end</property>
-        <property name="lines">2</property>
+        <style>
+          <class name="dim-label"/>
+        </style>
         <property name="wrap">True</property>
         <property name="wrap-mode">word</property>
         <binding name="label">

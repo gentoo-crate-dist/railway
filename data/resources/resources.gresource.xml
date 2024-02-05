@@ -48,6 +48,12 @@
     <file alias="train-load-high-symbolic.svg">../icons/indicators/train-load-high-symbolic.svg</file>
     <file alias="train-load-veryhigh-symbolic.svg">../icons/indicators/train-load-veryhigh-symbolic.svg</file>
     <file alias="train-load-extreme-symbolic.svg">../icons/indicators/train-load-extreme-symbolic.svg</file>
+    <file alias="cycling-symbolic.svg">../icons/remarks/cycling-symbolic.svg</file>
+    <file alias="network-wireless-signal-excellent-symbolic.svg">../icons/remarks/network-wireless-signal-excellent-symbolic.svg</file>
+    <file alias="power-symbolic.svg">../icons/remarks/power-symbolic.svg</file>
+    <file alias="wheelchair-symbolic.svg">../icons/remarks/wheelchair-symbolic.svg</file>
+    <file alias="thermometer-symbolic.svg">../icons/remarks/thermometer-symbolic.svg</file>
+    <file alias="ticket-symbolic.svg">../icons/remarks/ticket-symbolic.svg</file>
   </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/providers/">
     <file alias="avv.svg">../icons/providers/avv.svg</file>
