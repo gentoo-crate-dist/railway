@@ -1,5 +1,4 @@
 subdir('icons')
-subdir('resources')
 
 # Desktop file
 desktop_conf = configuration_data()
@@ -23,7 +22,7 @@ appdata_conf = configuration_data()
 appdata_conf.set('base-id', base_id)
 appdata_conf.set('app-id', application_id)
 appdata_conf.set('gettext-package', gettext_package)
-configure_file(
+appdata = configure_file(
   input: '@0@.metainfo.xml.in'.format(base_id),
   output: '@0@.metainfo.xml'.format(application_id),
   configuration: appdata_conf,
@@ -40,3 +39,5 @@ install_data(
 # Compile schemas
 settings_schemas = [ '@0@.gschema.xml'.format(base_id) ]
 gnome.compile_schemas(depend_files: files(settings_schemas))
+
+subdir('resources')

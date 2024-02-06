@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2024-01-22 18:19+0100\n"
 "PO-Revision-Date: 2024-01-30 08:01+0000\n"
 "Last-Translator: boblaspugna4f1ee5d391024b4c <boblaspugna@null.net>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/it/>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -434,6 +434,7 @@ msgstr "_Chiudere"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:105
+#, c-format
 msgid "%a %b %d"
 msgstr "%a %b %d"
 
@@ -448,9 +449,13 @@ msgid_plural "{} stopovers"
 msgstr[0] "{} fermata"
 msgstr[1] "{} fermate"
 
-#: src/gui/window.rs:182
-msgid "translators"
+#: src/gui/window.rs:172
+msgid "translator-credits"
 msgstr "Bob Sponge <boblaspugna@null.net>"
+
+#: src/gui/window.rs:174
+msgid "Source Translation Supported by"
+msgstr ""
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68

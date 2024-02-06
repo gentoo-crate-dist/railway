@@ -451,9 +451,13 @@ msgid_plural "{} stopovers"
 msgstr[0] "{} arrêt"
 msgstr[1] "{} arrêts"
 
-#: src/gui/window.rs:182
-msgid "translators"
+#: src/gui/window.rs:172
+msgid "translator-credits"
 msgstr "Irénée THIRION"
+
+#: src/gui/window.rs:174
+msgid "Source Translation Supported by"
+msgstr ""
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68

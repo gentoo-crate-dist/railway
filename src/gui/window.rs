@@ -160,30 +160,22 @@ pub mod imp {
             }));
             let action_about = SimpleAction::new("about", None);
             action_about.connect_activate(clone!(@weak obj as window => move |_, _| {
-                let about_dialog = libadwaita::AboutWindow::builder()
-                    .transient_for(&window)
-                    .developers(
-                        env!("CARGO_PKG_AUTHORS")
-                            .split(';')
-                            .map(|s| s.to_string())
-                            .collect::<Vec<_>>(),
-                    )
-                    .comments(env!("CARGO_PKG_DESCRIPTION"))
-                    .copyright(glib::markup_escape_text(
-                        include_str!("../../NOTICE")
-                            .to_string()
-                            .lines()
-                            .next()
-                            .unwrap_or_default(),
-                    ))
-                    .license_type(gtk::License::Gpl30)
-                    .application_icon(config::APP_ID)
-                    .application_name("Railway")
-                    .translator_credits(gettextrs::gettext("translators"))
-                    .version(env!("CARGO_PKG_VERSION"))
-                    .website(env!("CARGO_PKG_HOMEPAGE"))
-                    .build();
+                let about_dialog = libadwaita::AboutWindow::from_appdata(&(config::RESOURCES_PATH.to_owned() + config::APP_ID + ".metainfo.xml"),
+                    Some(env!("CARGO_PKG_VERSION")));
+
+                about_dialog.set_comments(env!("CARGO_PKG_DESCRIPTION"));
+                about_dialog.set_developers(
+                    &(env!("CARGO_PKG_AUTHORS")
+                        .split(':')
+                        .collect::<Vec<&str>>())
+                );
+                // translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
+                about_dialog.set_translator_credits(&gettextrs::gettext("translator-credits"));
+                about_dialog.set_designers(&[ "Tobias Bernard" ]);
+                about_dialog.add_credit_section(Some(&gettextrs::gettext("Source Translation Supported by")), &[ "Sydney Sharpe" ]);
                 about_dialog.add_link("GitLab", "https://gitlab.com/schmiddi-on-mobile/railway");
+
+                about_dialog.set_transient_for(Some(&window));
                 about_dialog.present();
             }));
 

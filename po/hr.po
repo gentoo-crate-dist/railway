@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-22 18:19+0100\n"
+"POT-Creation-Date: 2024-01-28 15:02+0100\n"
 "PO-Revision-Date: 2023-12-31 16:09+0000\n"
 "Last-Translator: Krešo Kunjas <kkunjas@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/schmiddi-on-"
@@ -455,6 +455,7 @@ msgstr ""
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:105
+#, c-format
 msgid "%a %b %d"
 msgstr ""
 
@@ -469,8 +470,12 @@ msgid_plural "{} stopovers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/gui/window.rs:182
-msgid "translators"
+#: src/gui/window.rs:172
+msgid "translator-credits"
+msgstr ""
+
+#: src/gui/window.rs:174
+msgid "Source Translation Supported by"
 msgstr ""
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
