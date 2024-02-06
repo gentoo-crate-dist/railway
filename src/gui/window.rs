@@ -1,13 +1,13 @@
 use gdk::gio::Settings;
 use gdk::glib;
-use gdk::subclass::prelude::ObjectSubclassIsExt;
 use gdk::prelude::SettingsExt;
+use gdk::subclass::prelude::ObjectSubclassIsExt;
 use gtk::glib::Object;
 use gtk::prelude::{GtkApplicationExt, GtkWindowExt};
 
-use crate::Error;
-use crate::gui::error::error_to_toast;
 use crate::config::BASE_ID;
+use crate::gui::error::error_to_toast;
+use crate::Error;
 
 gtk::glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -20,7 +20,7 @@ impl Window {
     pub fn new(app: &libadwaita::Application) -> Self {
         app.set_accels_for_action("win.settings", &["<Control>comma"]);
         app.set_accels_for_action("win.show-help-overlay", &["<Control>question"]);
-        app.set_accels_for_action("window.close", &["<Control>q"]);
+        app.set_accels_for_action("window.close", &["<Control>w"]);
 
         app.set_accels_for_action("journey-list.bookmark", &["<Control>s"]);
         app.set_accels_for_action("journey-details.bookmark", &["<Control>d"]);
