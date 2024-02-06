@@ -126,6 +126,7 @@ pub mod imp {
         loading_earlier: Cell<bool>,
         loading_later: Cell<bool>,
         auto_scroll: Cell<bool>,
+        compact: Cell<bool>,
     }
 
     impl Default for JourneysPage {
@@ -140,6 +141,7 @@ pub mod imp {
                 loading_earlier: Default::default(),
                 loading_later: Default::default(),
                 auto_scroll: Cell::new(true),
+                compact: Cell::new(false),
             }
         }
     }
@@ -193,8 +195,9 @@ pub mod imp {
             obj.set_loading_earlier(true);
 
             let main_context = MainContext::default();
-            let window = self.obj().root().and_downcast::<Window>()
-                .expect("search page must be mapped and realised when a template callback is called");
+            let window = self.obj().root().and_downcast::<Window>().expect(
+                "search page must be mapped and realised when a template callback is called",
+            );
             main_context.spawn_local(
                 clone!(
                        @strong obj,
@@ -253,8 +256,9 @@ pub mod imp {
             obj.set_loading_later(true);
 
             let main_context = MainContext::default();
-            let window = self.obj().root().and_downcast::<Window>()
-                .expect("search page must be mapped and realised when a template callback is called");
+            let window = self.obj().root().and_downcast::<Window>().expect(
+                "search page must be mapped and realised when a template callback is called",
+            );
             main_context.spawn_local(
                 clone!(
                        @strong obj,
@@ -304,7 +308,7 @@ pub mod imp {
         fn setup_model(&self, obj: &super::JourneysPage) {
             let factory = SignalListItemFactory::new();
             factory.connect_setup(
-                clone!(@weak self.destination_alignment_group as size_group => move |_, list_item| {
+                clone!(@weak obj, @weak self.destination_alignment_group as size_group => move |_, list_item| {
                     let journey_item = JourneyListItem::new();
                     let list_item = list_item
                         .downcast_ref::<ListItem>()
@@ -314,6 +318,7 @@ pub mod imp {
                     list_item
                         .property_expression("item")
                         .bind(&journey_item, "journey", Widget::NONE);
+                    obj.property_expression("compact").bind(&journey_item, "compact", Widget::NONE);
 
                     size_group.add_widget(&journey_item.get_destination_box());
                 }),
@@ -378,6 +383,7 @@ pub mod imp {
                     ParamSpecBoolean::builder("is-loading-earlier").build(),
                     ParamSpecBoolean::builder("is-loading-later").build(),
                     ParamSpecBoolean::builder("auto-scroll").build(),
+                    ParamSpecBoolean::builder("compact").build(),
                 ]
             });
             PROPERTIES.as_ref()
@@ -419,6 +425,13 @@ pub mod imp {
 
                     self.auto_scroll.replace(obj);
                 }
+                "compact" => {
+                    let obj = value
+                        .get::<bool>()
+                        .expect("Property `compact` of `JourneysPage` has to be of type `bool`");
+
+                    self.compact.replace(obj);
+                }
                 _ => unimplemented!(),
             }
         }
@@ -430,6 +443,7 @@ pub mod imp {
                 "is-loading-earlier" => self.loading_earlier.get().to_value(),
                 "is-loading-later" => self.loading_later.get().to_value(),
                 "auto-scroll" => self.auto_scroll.get().to_value(),
+                "compact" => self.compact.get().to_value(),
                 _ => unimplemented!(),
             }
         }
