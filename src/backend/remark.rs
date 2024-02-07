@@ -49,8 +49,8 @@ fn code_to_icon<S: AsRef<str>>(code: S) -> &'static str {
         // WiFi
         "WV" => "network-wireless-signal-excellent-symbolic",
 
-        // TODO Only second class
-        "K2" |
+        // Only second class
+        "K2" => "ticket-second-class-symbolic",
 
 
         // Hamburg mobility info link

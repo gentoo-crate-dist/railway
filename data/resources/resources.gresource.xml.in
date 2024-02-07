@@ -56,6 +56,7 @@
     <file alias="wheelchair-symbolic.svg">../icons/remarks/wheelchair-symbolic.svg</file>
     <file alias="thermometer-symbolic.svg">../icons/remarks/thermometer-symbolic.svg</file>
     <file alias="ticket-symbolic.svg">../icons/remarks/ticket-symbolic.svg</file>
+    <file alias="ticket-second-class-symbolic.svg">../icons/remarks/ticket-second-class-symbolic.svg</file>
   </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/providers/">
     <file alias="avv.svg">../icons/providers/avv.svg</file>
