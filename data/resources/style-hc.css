@@ -1,0 +1,8 @@
+/* Don't have a pressed-in look for bookmark icons as they already have a "filled" icon */
+.bookmark-button:checked {
+  box-shadow: none;
+}
+
+.bookmark-button:checked:hover {
+  box-shadow: inset 0 0 0 1px @borders;
+}

@@ -31,6 +31,7 @@
   </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/">
     <file compressed="true">style.css</file>
+    <file compressed="true">style-hc.css</file>
     <file preprocess="xml-stripblanks">@app-id@.metainfo.xml</file>
   </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/icons/scalable/apps/">
