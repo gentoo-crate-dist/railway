@@ -13,13 +13,15 @@
           <object class="AdwPreferencesGroup">
             <child>
               <object class="AdwSwitchRow" id="switch_delete_old">
-                <property name="title" translatable="yes">Remove Past Trips From Bookmarks</property>
+                <property name="title" translatable="yes">Automatically Remove Old Bookmarks</property>
+                <property name="subtitle" translatable="yes">Past trips are kept only for a period of time</property>
               </object>
             </child>
             <child>
               <object class="AdwSpinRow" id="spin_deletion_time">
                 <signal name="output" handler="handle_deletion_time_output" swapped="true"/>
-                <property name="title" translatable="yes">Time After Arrival After Which to Remove Them</property>
+                <property name="title" translatable="yes">Preservation Time For Trips</property>
+                <property name="subtitle" translatable="yes">For how long to retain trips after arrival</property>
                 <property name="adjustment">adj_deletion_time</property>
               </object>
             </child>

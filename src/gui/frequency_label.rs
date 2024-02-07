@@ -86,7 +86,7 @@ pub mod imp {
                         (Some(d), _) | (_, Some(d)) => Some(d),
                         _ => None,
                     })
-                    .map(Utility::format_duration)
+                    .map(Utility::format_duration_inline)
                     // Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
                     .map(|x| gettextrs::gettext!("every ~{}", x))
                     .to_value(),

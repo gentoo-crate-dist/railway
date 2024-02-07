@@ -6,23 +6,23 @@
       <object class="GtkShortcutsSection">
         <child>
           <object class="GtkShortcutsGroup">
-            <property name="title">Application</property>
+            <property name="title" translatable="yes">Application</property>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Control&gt;s</property>
-                <property name="title">Bookmark Search</property>
+                <property name="title" translatable="yes">Bookmark Search</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Control&gt;d</property>
-                <property name="title">Bookmark Trip</property>
+                <property name="title" translatable="yes">Bookmark Trip</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Control&gt;r</property>
-                <property name="title">Reload Trip</property>
+                <property name="title" translatable="yes">Reload Trip</property>
               </object>
             </child>
           </object>
@@ -32,32 +32,26 @@
             <property name="title">General</property>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="accelerator">F1</property>
-                <property name="title">Show About Dialog</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Control&gt;q</property>
-                <property name="title">Quit</property>
+                <property name="title" translatable="yes">Quit</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Control&gt;question</property>
-                <property name="title">Show Shortcuts</property>
+                <property name="title" translatable="yes">Show Shortcuts</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Control&gt;comma</property>
-                <property name="title">Show Preferences</property>
+                <property name="title" translatable="yes">Show Preferences</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">F10</property>
-                <property name="title">Open Menu</property>
+                <property name="title" translatable="yes">Open Menu</property>
               </object>
             </child>
           </object>

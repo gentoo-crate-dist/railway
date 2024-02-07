@@ -57,9 +57,10 @@ pub mod imp {
 
         #[template_callback]
         fn handle_deletion_time_output(&self, s: libadwaita::SpinRow) -> bool {
+            // Translators: duration in hours, standalone in preferences
             s.set_text(&gettextrs::ngettext!(
-                "{} hr.",
-                "{} hrs.",
+                "{} h",
+                "{} h",
                 s.value() as u32,
                 s.value()
             ));

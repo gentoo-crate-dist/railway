@@ -19,15 +19,15 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
         )),
         Error::Hafas(hafas_rs::Error::Hafas { .. }) => Toast::builder()
             .title(gettext("Received an error. Please share feedback."))
-            .button_label(gettext("More information"))
+            .button_label(gettext("More Information"))
             .build(),
         Error::Hafas(hafas_rs::Error::Json { .. }) => Toast::builder()
             .title(gettext("Received an invalid response. Please share feedback."))
-            .button_label(gettext("More information"))
+            .button_label(gettext("More Information"))
             .build(),
         _ => Toast::builder()
             .title(gettext("An unknown issue occured. Please share feedback."))
-            .button_label(gettext("More information"))
+            .button_label(gettext("More Information"))
             .build(),
     };
 

@@ -160,7 +160,7 @@ mod imp {
                     let arrival = leg_last.and_then(|o| o.arrival);
 
                     if let (Some(arrival), Some(departure)) = (arrival, departure) {
-                        Utility::format_duration(arrival - departure).to_value()
+                        Utility::format_duration_tabular(arrival - departure).to_value()
                     } else {
                         "".to_string().to_value()
                     }
