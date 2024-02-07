@@ -118,6 +118,9 @@
                 </child>
                 <child>
                   <object class="GtkListBox" id="box_journeys">
+                    <accessibility>
+                      <property name="label" translatable="yes">Bookmarked Trips</property>
+                    </accessibility>
                     <style>
                       <class name="boxed-list"/>
                     </style>
@@ -129,6 +132,9 @@
                 </child>
                 <child>
                   <object class="GtkListBox" id="box_searches">
+                    <accessibility>
+                      <property name="label" translatable="yes">Bookmarked Searches</property>
+                    </accessibility>
                     <style>
                       <class name="boxed-list"/>
                     </style>

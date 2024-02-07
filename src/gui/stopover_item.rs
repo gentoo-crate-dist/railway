@@ -42,6 +42,7 @@ pub mod imp {
     use gtk::DirectionType;
     use once_cell::sync::Lazy;
 
+    use crate::backend::Place;
     use crate::backend::Stopover;
     use crate::gui::alt_label::AltLabel;
     use crate::gui::utility::Utility;
@@ -53,6 +54,18 @@ pub mod imp {
         pub(super) alt_label_arrival: TemplateChild<AltLabel>,
 
         stopover: RefCell<Option<Stopover>>,
+    }
+
+    impl StopoverItem {
+        fn format_stopover_description(stop: &str, arrival: &Option<String>) -> String {
+            // Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
+            let format = gettextrs::gettext("{stop} at {arrival}");
+
+            match arrival {
+                Some(arrival) => format.replace("{stop}", stop).replace("{arrival}", &arrival),
+                None => stop.to_string(),
+            }
+        }
     }
 
     #[glib::object_subclass]
@@ -74,6 +87,19 @@ pub mod imp {
     impl ObjectImpl for StopoverItem {
         fn constructed(&self) {
             self.parent_constructed();
+
+            self.obj().connect_notify_local(Some("stopover"), |stopover_item, _| {
+                let stopover = stopover_item.property::<Stopover>("stopover");
+                let stop = stopover.property::<Place>("stop");
+
+                stopover_item.update_property(&[
+                    gtk::accessible::Property::Label(&StopoverItem::format_stopover_description(
+                        &stop.name().unwrap_or_default(),
+                        &stopover.property::<Option<String>>("arrival")
+                            .or(stopover.property::<Option<String>>("planned-arrival")),
+                    ))
+                ]);
+            });
         }
 
         fn properties() -> &'static [ParamSpec] {

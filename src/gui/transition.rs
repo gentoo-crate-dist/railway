@@ -62,6 +62,7 @@ pub mod imp {
     use gdk::glib::Value;
     use glib::subclass::InitializingObject;
     use gtk::glib;
+    use gtk::glib::clone;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
@@ -81,6 +82,17 @@ pub mod imp {
         destination_box: TemplateChild<gtk::Box>,
         #[template_child]
         destination_label: TemplateChild<gtk::Label>,
+    }
+
+    impl Transition {
+        fn format_transfer_description(transfer_description: &str, destination: &Option<&String>) -> String {
+            // Translators: Do not translate the strings in {}.
+            let format = gettextrs::gettext("Arrive at {destination}.");
+            match destination {
+                Some(destination) => format!("{} {}", transfer_description, format.replace("{destination}", destination)),
+                None => transfer_description.to_string(),
+            }
+        }
     }
 
     #[glib::object_subclass]
@@ -103,6 +115,15 @@ pub mod imp {
     impl ObjectImpl for Transition {
         fn constructed(&self) {
             self.parent_constructed();
+
+            self.obj().connect_notify_local(None, clone!(@weak self as transition => move |obj, _| {
+                obj.update_property(&[
+                    gtk::accessible::Property::Label(&Transition::format_transfer_description(
+                        &obj.property::<String>("label"),
+                        &transition.final_destination.borrow().as_ref(),
+                    ))
+                ]);
+            }));
         }
 
         fn properties() -> &'static [ParamSpec] {

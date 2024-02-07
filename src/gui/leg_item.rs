@@ -36,6 +36,7 @@ pub mod imp {
     use once_cell::sync::Lazy;
 
     use crate::backend::Leg;
+    use crate::backend::Place;
     use crate::backend::Remark;
     use crate::backend::Stopover;
     use crate::gui::alt_label::AltLabel;
@@ -78,6 +79,34 @@ pub mod imp {
                 .replace("{train}", train)
                 .replace("{destination}", destination)
         }
+
+        fn format_trip_segment_description(start: &str, departure: &str, platform_start: &Option<String>, destination: &str, arrival: &str, platform_destination: &Option<String>) -> String {
+            let format_departure = match platform_start {
+                Some(_) => { // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+                    gettextrs::gettext("Depart {start} from platform {platform} at {departure}.")
+                }
+                None => { // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+                    gettextrs::gettext("Depart {start} at {departure}.")
+                }
+            };
+            let format_arrival = match platform_destination {
+                Some(_) => { // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+                    gettextrs::gettext("Arrive at {destination} on platform {platform} at {arrival}.")
+                }
+                None => { // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+                    gettextrs::gettext("Arrive at {destination} at {arrival}.")
+                }
+            };
+            format!("{} {}", format_departure
+                .replace("{start}", start)
+                .replace("{departure}", departure)
+                // uses fact that None format does not include "{platform}"
+                .replace("{platform}", &platform_start.as_ref().unwrap_or(&"".to_string())), format_arrival
+                .replace("{destination}", destination)
+                .replace("{arrival}", arrival)
+                // uses fact that None format does not include "{platform}"
+                .replace("{platform}", &platform_destination.as_ref().unwrap_or(&"".to_string())))
+        }
     }
 
     #[glib::object_subclass]
@@ -100,6 +129,29 @@ pub mod imp {
     impl ObjectImpl for LegItem {
         fn constructed(&self) {
             self.parent_constructed();
+
+            self.obj().connect_notify_local(Some("leg"), |leg_item, _| {
+                let leg = leg_item.property::<Leg>("leg");
+                let origin = leg.property::<Place>("origin");
+                let destination = leg.property::<Place>("destination");
+
+                leg_item.update_property(&[
+                    gtk::accessible::Property::Description(&LegItem::format_trip_segment_description(
+                        &origin.name().expect("origin of leg must be set"),
+                        &leg.property::<Option<String>>("departure")
+                            .or(leg.property::<Option<String>>("planned-departure"))
+                            .unwrap_or("".to_string()),
+                        &leg.property::<Option<String>>("departure-platform")
+                            .or(leg.property::<Option<String>>("planned-departure-platform")),
+                        &destination.name().expect("destination of leg must be set"),
+                        &leg.property::<Option<String>>("arrival")
+                            .or(leg.property::<Option<String>>("planned-arrival"))
+                            .unwrap_or("".to_string()),
+                        &leg.property::<Option<String>>("arrival-platform")
+                            .or(leg.property::<Option<String>>("planned-arrival-platform")),
+                    ))
+                ]);
+            });
         }
 
         fn properties() -> &'static [ParamSpec] {
