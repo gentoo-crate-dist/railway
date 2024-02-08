@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-22 18:19+0100\n"
-"PO-Revision-Date: 2024-01-31 15:01+0000\n"
+"PO-Revision-Date: 2024-02-08 11:01+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -451,11 +451,13 @@ msgstr[1] "{} tussenstops"
 
 #: src/gui/window.rs:172
 msgid "translator-credits"
-msgstr "Heimen Stoffels <vistausss@fastmail.com>"
+msgstr ""
+"Heimen Stoffels <vistausss@fastmail.com>\n"
+"Philip Goto https://philipgoto.nl/"
 
 #: src/gui/window.rs:174
 msgid "Source Translation Supported by"
-msgstr ""
+msgstr "Bron­vertaling ondersteund door"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
