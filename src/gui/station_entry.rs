@@ -263,6 +263,8 @@ pub mod imp {
                     && self.obj().has_css_class("focused")
                     && self.place.borrow().is_none(),
             );
+
+            self.popover.set_width_request(self.obj().width());
         }
 
         fn setup_model(&self) {

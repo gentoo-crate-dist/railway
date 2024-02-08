@@ -35,7 +35,6 @@
     <style>
       <class name="menu"/>
     </style>
-    <!-- XXX: Automatically resize to fit with the entry -->
     <property name="width-request">250</property>
     <property name="has-arrow">False</property>
     <property name="autohide">False</property>
