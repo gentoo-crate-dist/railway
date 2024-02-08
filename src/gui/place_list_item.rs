@@ -1,4 +1,5 @@
-use gdk::glib::{Object, ObjectExt};
+use gdk::glib::Object;
+use gdk::glib::prelude::ObjectExt;
 
 use crate::backend::Place;
 
@@ -29,7 +30,7 @@ pub mod imp {
     use std::cell::RefCell;
 
     use gdk::glib::subclass::Signal;
-    use gdk::glib::ObjectExt;
+    use gdk::glib::prelude::ObjectExt;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;

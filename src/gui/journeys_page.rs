@@ -5,7 +5,7 @@ use gdk::{
     prelude::ObjectExt,
     subclass::prelude::ObjectSubclassIsExt,
 };
-use gtk::traits::AdjustmentExt;
+use gtk::prelude::AdjustmentExt;
 
 use crate::backend::JourneysResult;
 

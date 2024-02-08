@@ -1,6 +1,6 @@
 use gdk::prelude::{ApplicationExt, ApplicationExtManual};
-use gtk::glib::IsA;
-use gtk::traits::{GtkWindowExt, WidgetExt};
+use gtk::prelude::IsA;
+use gtk::prelude::{GtkWindowExt, WidgetExt};
 use once_cell::sync::Lazy;
 
 #[macro_export]

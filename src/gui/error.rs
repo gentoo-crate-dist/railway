@@ -6,7 +6,7 @@ use gdk::{
 };
 use gettextrs::gettext;
 use gtk::{
-    traits::{GtkWindowExt, WidgetExt},
+    prelude::{GtkWindowExt, WidgetExt},
     Window,
 };
 use libadwaita::{Toast, ToastOverlay, MessageDialog, prelude::MessageDialogExt};
