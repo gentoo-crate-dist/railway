@@ -6,10 +6,10 @@ use gdk::{
 };
 use gettextrs::gettext;
 use gtk::{
-    prelude::{GtkWindowExt, WidgetExt},
+    prelude::WidgetExt,
     Window,
 };
-use libadwaita::{Toast, ToastOverlay, MessageDialog, prelude::MessageDialogExt};
+use libadwaita::{Toast, ToastOverlay, AlertDialog, prelude::AlertDialogExt, prelude::AdwDialogExt};
 
 pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
     log::error!("Displaying error: {}", err);
@@ -41,20 +41,17 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
     if let Some(msg) = msg {
         let action_more_info = SimpleAction::new("more-info", None);
         action_more_info.connect_activate(clone!(@strong overlay => move |_, _| {
-            let dialog = MessageDialog::builder()
-                .transient_for(
-                    &overlay
-                        .root()
-                        .expect("Overlay to have a root.")
-                        .downcast::<Window>()
-                        .expect("Root of overlay to be a Window."),
-                )
+            let dialog = AlertDialog::builder()
                 .heading(gettext("Error"))
                 .body(&msg)
                 .default_response("close")
                 .build();
             dialog.add_response("close", &gettextrs::gettext("_Close"));
-            dialog.present();
+            dialog.present(&overlay
+                            .root()
+                            .expect("Overlay to have a root.")
+                            .downcast::<Window>()
+                            .expect("Root of overlay to be a Window."));
         }));
         toast.set_action_name(Some("toast.more-info"));
 

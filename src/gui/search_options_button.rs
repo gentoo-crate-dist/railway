@@ -18,11 +18,12 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use libadwaita::prelude::AdwDialogExt;
     use once_cell::sync::Lazy;
 
     use crate::backend::Remark;
     use crate::config;
-    use crate::gui::search_options_window::SearchOptionsWindow;
+    use crate::gui::search_options_dialog::SearchOptionsDialog;
 
     #[derive(CompositeTemplate)]
     #[template(resource = "/ui/search_options_button.ui")]
@@ -65,8 +66,8 @@ pub mod imp {
 
         #[template_callback]
         fn handle_clicked(&self, _: gtk::Button) {
-            let settings = SearchOptionsWindow::new(&self.window());
-            settings.present();
+            let settings = SearchOptionsDialog::new();
+            settings.present(&self.window());
         }
 
         fn bahncards() -> HashMap<usize, String> {

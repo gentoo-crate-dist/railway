@@ -1,17 +1,15 @@
 use gdk::glib::Object;
 
-use crate::gui::window::Window;
-
 gtk::glib::wrapper! {
-    pub struct PreferencesWindow(ObjectSubclass<imp::PreferencesWindow>)
-        @extends libadwaita::PreferencesWindow, libadwaita::Window, gtk::Window, gtk::Widget,
+    pub struct PreferencesDialog(ObjectSubclass<imp::PreferencesDialog>)
+        @extends libadwaita::PreferencesDialog, libadwaita::Dialog, gtk::Widget,
         @implements gtk::gio::ActionGroup, gtk::gio::ActionMap, gtk::Accessible, gtk::Buildable,
             gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
 
-impl PreferencesWindow {
-    pub fn new(window: &Window) -> Self {
-        Object::builder().property("transient-for", window).build()
+impl PreferencesDialog {
+    pub fn new() -> Self {
+        Object::builder().build()
     }
 }
 
@@ -24,12 +22,12 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
-    use libadwaita::subclass::prelude::AdwWindowImpl;
-    use libadwaita::subclass::prelude::PreferencesWindowImpl;
+    use libadwaita::subclass::prelude::AdwDialogImpl;
+    use libadwaita::subclass::prelude::PreferencesDialogImpl;
 
     #[derive(CompositeTemplate)]
-    #[template(resource = "/ui/preferences_window.ui")]
-    pub struct PreferencesWindow {
+    #[template(resource = "/ui/preferences_dialog.ui")]
+    pub struct PreferencesDialog {
         #[template_child]
         switch_delete_old: TemplateChild<libadwaita::SwitchRow>,
         #[template_child]
@@ -39,7 +37,7 @@ pub mod imp {
     }
 
     #[gtk::template_callbacks]
-    impl PreferencesWindow {
+    impl PreferencesDialog {
         fn init_settings(&self) {
             self.settings
                 .bind("delete-old", &self.switch_delete_old.get(), "active")
@@ -68,10 +66,10 @@ pub mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for PreferencesWindow {
-        const NAME: &'static str = "DBPreferencesWindow";
-        type Type = super::PreferencesWindow;
-        type ParentType = libadwaita::PreferencesWindow;
+    impl ObjectSubclass for PreferencesDialog {
+        const NAME: &'static str = "DBPreferencesDialog";
+        type Type = super::PreferencesDialog;
+        type ParentType = libadwaita::PreferencesDialog;
 
         fn new() -> Self {
             Self {
@@ -91,14 +89,13 @@ pub mod imp {
         }
     }
 
-    impl ObjectImpl for PreferencesWindow {
+    impl ObjectImpl for PreferencesDialog {
         fn constructed(&self) {
             self.parent_constructed();
             self.init_settings();
         }
     }
-    impl WidgetImpl for PreferencesWindow {}
-    impl WindowImpl for PreferencesWindow {}
-    impl PreferencesWindowImpl for PreferencesWindow {}
-    impl AdwWindowImpl for PreferencesWindow {}
+    impl WidgetImpl for PreferencesDialog {}
+    impl PreferencesDialogImpl for PreferencesDialog {}
+    impl AdwDialogImpl for PreferencesDialog {}
 }

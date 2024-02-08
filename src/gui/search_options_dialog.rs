@@ -1,17 +1,15 @@
 use gdk::glib::Object;
 
-use crate::gui::window::Window;
-
 gtk::glib::wrapper! {
-    pub struct SearchOptionsWindow(ObjectSubclass<imp::SearchOptionsWindow>)
-        @extends libadwaita::PreferencesWindow, libadwaita::Window, gtk::Window, gtk::Widget,
+    pub struct SearchOptionsDialog(ObjectSubclass<imp::SearchOptionsDialog>)
+        @extends libadwaita::PreferencesDialog, libadwaita::Dialog, gtk::Widget,
         @implements gtk::gio::ActionGroup, gtk::gio::ActionMap, gtk::Accessible, gtk::Buildable,
             gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
 
-impl SearchOptionsWindow {
-    pub fn new(window: &Window) -> Self {
-        Object::builder().property("transient-for", window).build()
+impl SearchOptionsDialog {
+    pub fn new() -> Self {
+        Object::builder().build()
     }
 }
 
@@ -27,12 +25,12 @@ pub mod imp {
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use libadwaita::prelude::ComboRowExt;
-    use libadwaita::subclass::prelude::AdwWindowImpl;
-    use libadwaita::subclass::prelude::PreferencesWindowImpl;
+    use libadwaita::subclass::prelude::AdwDialogImpl;
+    use libadwaita::subclass::prelude::PreferencesDialogImpl;
 
     #[derive(CompositeTemplate)]
-    #[template(resource = "/ui/search_options_window.ui")]
-    pub struct SearchOptionsWindow {
+    #[template(resource = "/ui/search_options_dialog.ui")]
+    pub struct SearchOptionsDialog {
         #[template_child]
         dropdown_bahncard: TemplateChild<libadwaita::ComboRow>,
 
@@ -73,7 +71,7 @@ pub mod imp {
     }
 
     #[gtk::template_callbacks]
-    impl SearchOptionsWindow {
+    impl SearchOptionsDialog {
         fn init_settings(&self) {
             if self.settings.boolean("first-class") {
                 self.toggle_first_class.set_active(true);
@@ -235,10 +233,10 @@ pub mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for SearchOptionsWindow {
-        const NAME: &'static str = "DBSearchOptionsWindow";
-        type Type = super::SearchOptionsWindow;
-        type ParentType = libadwaita::PreferencesWindow;
+    impl ObjectSubclass for SearchOptionsDialog {
+        const NAME: &'static str = "DBSearchOptionsDialog";
+        type Type = super::SearchOptionsDialog;
+        type ParentType = libadwaita::PreferencesDialog;
 
         fn new() -> Self {
             Self {
@@ -272,14 +270,13 @@ pub mod imp {
         }
     }
 
-    impl ObjectImpl for SearchOptionsWindow {
+    impl ObjectImpl for SearchOptionsDialog {
         fn constructed(&self) {
             self.parent_constructed();
             self.init_settings();
         }
     }
-    impl WidgetImpl for SearchOptionsWindow {}
-    impl WindowImpl for SearchOptionsWindow {}
-    impl PreferencesWindowImpl for SearchOptionsWindow {}
-    impl AdwWindowImpl for SearchOptionsWindow {}
+    impl WidgetImpl for SearchOptionsDialog {}
+    impl PreferencesDialogImpl for SearchOptionsDialog {}
+    impl AdwDialogImpl for SearchOptionsDialog {}
 }
