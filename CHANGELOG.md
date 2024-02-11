@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Keyboard navigation to station search.
 - Label for frequency of trains.
 
+### Changed
+
+- Strings used in the UI.
+- Improved remarks for journey legs.
+- Many minor UI improvements.
+
 ### Fixed
 
 - For the station search, clear the place when the entry is cleared.
