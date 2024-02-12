@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-22 18:19+0100\n"
-"PO-Revision-Date: 2024-02-03 17:01+0000\n"
+"PO-Revision-Date: 2024-02-13 08:02+0000\n"
 "Last-Translator: rene-coty <irenee.thirion@e.email>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/fr/>\n"
@@ -212,9 +212,8 @@ msgid "Keyboard Shortcuts"
 msgstr "Raccourcis clavier"
 
 #: data/resources/ui/window.ui:256
-#, fuzzy
 msgid "_About Railway"
-msgstr "À propos de Chemin de fer"
+msgstr "À _propos de Railway"
 
 #: data/resources/ui/refresh_button.ui:25
 #, fuzzy
