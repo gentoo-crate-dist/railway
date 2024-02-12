@@ -94,9 +94,8 @@ pub mod imp {
         }
 
         fn update_last_refreshed(&self) {
-            self.label_last_refreshed.set_label(&gettextrs::gettext!(
-                "Last refreshed {}",
-                Utility::format_time_human(&Local::now().time())
+            self.label_last_refreshed.set_label(&gettextrs::gettext("Last refreshed {}")
+                .replace("{}", &Utility::format_time_human(&Local::now().time())
             ))
         }
     }
