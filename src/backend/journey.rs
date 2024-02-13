@@ -169,7 +169,9 @@ mod imp {
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| (o.legs.len() - 1) as u32)
+                    .map(|o| (o.legs.iter().filter(|leg| {
+                        !leg.walking.unwrap_or(false)
+                    }).collect::<Vec<_>>().len() - 1) as u32)
                     .unwrap_or_default()
                     .to_value(),
                 "types" => self
