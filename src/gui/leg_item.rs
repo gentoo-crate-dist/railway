@@ -30,6 +30,7 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use gtk::DirectionType;
     use gtk::SizeGroup;
     use gtk::SizeGroupMode;
     use once_cell::sync::Lazy;
@@ -189,6 +190,11 @@ pub mod imp {
         }
     }
 
-    impl WidgetImpl for LegItem {}
+    impl WidgetImpl for LegItem {
+        fn focus(&self, direction: DirectionType) -> bool {
+            Utility::move_focus_within_container(self, direction)
+        }
+    }
+
     impl BoxImpl for LegItem {}
 }

@@ -5,6 +5,7 @@
 
   <template class="DBRemarkItem" parent="GtkBox">
     <property name="orientation">horizontal</property>
+    <property name="focusable">True</property>
     <property name="hexpand">TRUE</property>
     <property name="spacing">6</property>
     <child>

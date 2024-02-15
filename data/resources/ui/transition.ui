@@ -5,6 +5,7 @@
 
   <template class="DBTransition" parent="GtkBox">
     <property name="orientation">vertical</property>
+    <property name="focusable">True</property>
     <property name="spacing">6</property>
     <child>
       <object class="GtkBox">

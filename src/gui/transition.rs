@@ -65,6 +65,7 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use gtk::DirectionType;
     use once_cell::sync::Lazy;
 
     #[derive(CompositeTemplate, Default)]
@@ -91,6 +92,7 @@ pub mod imp {
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
             Utility::bind_template_callbacks(klass);
+            WidgetClassExt::set_css_name(klass, "TransferItem");
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -199,6 +201,11 @@ pub mod imp {
         }
     }
 
-    impl WidgetImpl for Transition {}
+    impl WidgetImpl for Transition {
+        fn focus(&self, direction: DirectionType) -> bool {
+            Utility::move_focus_within_container(self, direction)
+        }
+    }
+
     impl BoxImpl for Transition {}
 }
