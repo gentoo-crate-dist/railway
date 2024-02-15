@@ -1,4 +1,3 @@
-use gdk::glib::prelude::Cast;
 use gdk::glib::subclass::prelude::ObjectSubclassIsExt;
 use gdk::glib::Object;
 use std::borrow::Borrow;
@@ -16,12 +15,7 @@ impl JourneyListItem {
     }
 
     pub fn get_destination_box(&self) -> gtk::Box {
-        self.imp()
-            .destination_box
-            .borrow()
-            .dynamic_cast_ref::<gtk::Box>()
-            .expect("the destination's box to be a gtk box")
-            .clone()
+        self.imp().destination_box.borrow().get().clone()
     }
 }
 
