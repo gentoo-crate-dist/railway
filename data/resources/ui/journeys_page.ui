@@ -49,6 +49,19 @@
         </child>
 
         <property name="child">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkButton">
+                <style>
+                  <class name="kb-ui-focus-only"/>
+                  <class name="kb-ui-button"/>
+                </style>
+                <property name="label">Load Earlier Trips</property>
+                <signal name="clicked" handler="handle_earlier" swapped="true"/>
+              </object>
+            </child>
+            <child>
           <object class="GtkScrolledWindow" id="scrolled_window">
             <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
             <property name="vexpand">TRUE</property>
@@ -77,6 +90,18 @@
                 </property>
               </object>
             </property>
+          </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <style>
+                  <class name="kb-ui-focus-only"/>
+                  <class name="kb-ui-button"/>
+                </style>
+                <property name="label">Load Later Trips</property>
+                <signal name="clicked" handler="handle_later" swapped="true"/>
+              </object>
+            </child>
           </object>
         </property>
 
