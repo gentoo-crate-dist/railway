@@ -126,51 +126,39 @@
                 <property name="margin-bottom">6</property>
                 <property name="spacing">6</property>
                 <child>
-                  <!-- XXX: Somewhat hacky. Replace with AdwWrapBox when it comes out. https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/219 -->
-                  <object class="GtkFlowBox">
+                  <!-- TODO: annoying ellipses in frequency label. Replace with AdwWrapBox when it comes out. https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/219 -->
+                  <object class="GtkBox">
                     <property name="orientation">horizontal</property>
                     <property name="margin-bottom">6</property>
-                    <property name="column-spacing">12</property>
-                    <property name="row-spacing">0</property>
-                    <property name="max-children-per-line">999</property>
-                    <property name="selection-mode">none</property>
+                    <property name="spacing">12</property> <!-- column-spacing -->
+                    <!--property name="row-spacing">0</property-->
                     <child>
-                      <object class="GtkFlowBoxChild">
-                        <property name="focusable">False</property>
-                        <property name="child">
-                          <object class="GtkLabel">
-                            <property name="wrap">True</property>
-                            <property name="hexpand">False</property>
-                            <property name="xalign">0</property>
-                            <binding name="label">
-                              <closure function="format_train_direction" type="gchararray">
-                                <lookup name="name">
-                                  <lookup name="leg" type="DBLegItem">
-                                  </lookup>
-                                </lookup>
-                                <lookup name="direction">
-                                  <lookup name="leg" type="DBLegItem">
-                                  </lookup>
-                                </lookup>
-                              </closure>
-                            </binding>
-                          </object>
-                        </property>
+                      <object class="GtkLabel">
+                        <property name="wrap">True</property>
+                        <property name="hexpand">False</property>
+                        <property name="xalign">0</property>
+                        <binding name="label">
+                          <closure function="format_train_direction" type="gchararray">
+                            <lookup name="name">
+                              <lookup name="leg" type="DBLegItem">
+                              </lookup>
+                            </lookup>
+                            <lookup name="direction">
+                              <lookup name="leg" type="DBLegItem">
+                              </lookup>
+                            </lookup>
+                          </closure>
+                        </binding>
                       </object>
                     </child>
 
                     <child>
-                      <object class="GtkFlowBoxChild">
-                        <property name="focusable">False</property>
-                        <property name="child">
-                          <object class="DBFrequencyLabel">
-                            <binding name="frequency">
-                              <lookup name="frequency">
-                                <lookup name="leg" type="DBLegItem"/>
-                              </lookup>
-                            </binding>
-                          </object>
-                        </property>
+                      <object class="DBFrequencyLabel">
+                        <binding name="frequency">
+                          <lookup name="frequency">
+                            <lookup name="leg" type="DBLegItem"/>
+                          </lookup>
+                        </binding>
                       </object>
                     </child>
                   </object>
