@@ -49,30 +49,43 @@
         </child>
 
         <property name="child">
-          <object class="GtkScrolledWindow" id="scrolled_window">
-            <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
-            <property name="vexpand">TRUE</property>
-
-            <signal name="edge-overshot" handler="handle_edge_reached" swapped="true"/>
+          <object class="AdwBreakpointBin">
+            <property name="width-request">300</property>
+            <property name="height-request">300</property> <!-- Note: Same height request as window -->
+            <child>
+              <object class="AdwBreakpoint">
+                <condition>max-width: 372sp</condition>
+                <setter object="DBJourneysPage" property="compact">True</setter>
+              </object>
+            </child>
 
             <property name="child">
-              <object class="AdwClampScrollable">
-                <!-- follows width of search pane, adjusted for margins -->
-                <property name="tightening-threshold">400</property>
-                <property name="maximum-size">540</property>
-                <property name="child">
-                  <object class="GtkListView" id="list_journeys">
-                    <style>
-                      <class name="navigation-sidebar"/>
-                    </style>
-                    <property name="tab-behavior">item</property>
-                    <property name="valign">GTK_ALIGN_START</property>
+              <object class="GtkScrolledWindow" id="scrolled_window">
+                <property name="hscrollbar-policy">GTK_POLICY_NEVER</property>
+                <property name="vexpand">TRUE</property>
 
-                    <binding name="model">
-                      <closure function="no_selection" type="GtkSelectionModel">
-                        <lookup name="journeys-result" type="DBJourneysPage"/>
-                      </closure>
-                    </binding>
+                <signal name="edge-overshot" handler="handle_edge_reached" swapped="true"/>
+
+                <property name="child">
+                  <object class="AdwClampScrollable">
+                    <!-- follows width of search pane, adjusted for margins -->
+                    <property name="tightening-threshold">400</property>
+                    <property name="maximum-size">540</property>
+                    <property name="child">
+                      <object class="GtkListView" id="list_journeys">
+                        <style>
+                          <class name="navigation-sidebar"/>
+                        </style>
+                        <property name="tab-behavior">item</property>
+                        <property name="valign">GTK_ALIGN_START</property>
+
+                        <binding name="model">
+                          <closure function="no_selection" type="GtkSelectionModel">
+                            <lookup name="journeys-result" type="DBJourneysPage"/>
+                          </closure>
+                        </binding>
+                      </object>
+                    </property>
                   </object>
                 </property>
               </object>

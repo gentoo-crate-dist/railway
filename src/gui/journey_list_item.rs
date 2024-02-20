@@ -35,6 +35,7 @@ pub mod imp {
     use std::cell::RefCell;
 
     use gdk::glib::ParamSpec;
+    use gdk::glib::ParamSpecBoolean;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
     use glib::subclass::InitializingObject;
@@ -52,8 +53,26 @@ pub mod imp {
     pub struct JourneyListItem {
         #[template_child]
         pub(super) destination_box: TemplateChild<gtk::Box>,
+        #[template_child]
+        from_time: TemplateChild<gtk::Box>,
+        #[template_child]
+        to_time: TemplateChild<gtk::Box>,
 
         journey: RefCell<Option<Journey>>,
+    }
+
+    impl JourneyListItem {
+        fn set_compact(&self, compact: bool) {
+            let (orientation, spacing) = if compact {
+                (gtk::Orientation::Vertical, 0)
+            } else {
+                (gtk::Orientation::Horizontal, 6)
+            };
+            self.from_time.set_orientation(orientation);
+            self.from_time.set_spacing(spacing);
+            self.to_time.set_orientation(orientation);
+            self.to_time.set_spacing(spacing);
+        }
     }
 
     #[glib::object_subclass]
@@ -78,8 +97,12 @@ pub mod imp {
         }
 
         fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| vec![ParamSpecObject::builder::<Journey>("journey").build()]);
+            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
+                vec![
+                    ParamSpecObject::builder::<Journey>("journey").build(),
+                    ParamSpecBoolean::builder("compact").write_only().build(),
+                ]
+            });
             PROPERTIES.as_ref()
         }
 
@@ -100,6 +123,13 @@ pub mod imp {
                     }
 
                     self.journey.replace(obj);
+                }
+                "compact" => {
+                    let obj = value
+                        .get::<bool>()
+                        .expect("Property `compact` of `JourneyListItem` has to be of type `bool`");
+
+                    self.set_compact(obj);
                 }
                 _ => unimplemented!(),
             }
