@@ -20,7 +20,7 @@ impl Default for TimeType {
 
 gtk::glib::wrapper! {
     pub struct JourneysResult(ObjectSubclass<imp::JourneysResult>)
-        @implements gio::ListModel, gtk::SectionModel;
+        @implements gio::ListModel, gtk::SectionModel, gtk::SelectionModel;
 }
 
 impl JourneysResult {
@@ -87,9 +87,12 @@ impl JourneysResult {
 
 mod imp {
     use gdk::gio;
+    use gdk::glib::subclass::types::ObjectSubclassExt;
     use gdk::prelude::{Cast, StaticType};
     use gtk::glib;
+    use gtk::prelude::SelectionModelExt;
     use gtk::subclass::section_model::SectionModelImpl;
+    use gtk::subclass::selection_model::SelectionModelImpl;
     use std::cell::RefCell;
 
     use gdk::subclass::prelude::{DerivedObjectProperties, ListModelImpl};
@@ -117,15 +120,27 @@ mod imp {
         #[property(get, set, nullable)]
         later_ref: RefCell<Option<String>>,
 
+        #[property(get, set = Self::set_selected, nullable)]
+        selected: RefCell<Option<Journey>>,
+
         #[property(get, set, construct_only, builder(TimeType::Departure))]
         time_type: RefCell<TimeType>,
+    }
+
+    impl JourneysResult {
+        fn set_selected(&self, selected: Option<Journey>) {
+            self.selected.replace(selected);
+            // Don't know where exactly it changed; emit that it changed everywhere.
+            self.obj()
+                .selection_changed(0, self.journeys.borrow().len() as u32);
+        }
     }
 
     #[glib::object_subclass]
     impl ObjectSubclass for JourneysResult {
         const NAME: &'static str = "DBJourneysResult";
         type Type = super::JourneysResult;
-        type Interfaces = (gio::ListModel, gtk::SectionModel);
+        type Interfaces = (gio::ListModel, gtk::SectionModel, gtk::SelectionModel);
     }
 
     #[glib::derived_properties]
@@ -171,6 +186,37 @@ mod imp {
                 first_in.try_into().unwrap_or_default(),
                 first_out.try_into().unwrap_or_default(),
             )
+        }
+    }
+
+    impl SelectionModelImpl for JourneysResult {
+        fn is_selected(&self, position: u32) -> bool {
+            let list = self.journeys.borrow();
+            let selection = self.selected.borrow();
+            // Compare by refresh token.
+            list.get(position as usize).is_some_and(|j| {
+                j.refresh_token() == selection.as_ref().and_then(|j| j.refresh_token())
+            })
+        }
+
+        fn selection_in_range(&self, position: u32, n_items: u32) -> gtk::Bitset {
+            let result = gtk::Bitset::new_range(position, n_items);
+            let list = self.journeys.borrow();
+            let selection = self.selected.borrow();
+
+            let index = list
+                .iter()
+                .position(|j| {
+                    j.refresh_token() == selection.as_ref().and_then(|j| j.refresh_token())
+                })
+                .and_then(|v| v.try_into().ok());
+
+            if let Some(index) = index {
+                if position <= index && index < position + n_items {
+                    result.add(position);
+                }
+            }
+            result
         }
     }
 }

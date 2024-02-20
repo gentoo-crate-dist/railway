@@ -80,9 +80,7 @@
                         <property name="valign">GTK_ALIGN_START</property>
 
                         <binding name="model">
-                          <closure function="no_selection" type="GtkSelectionModel">
-                            <lookup name="journeys-result" type="DBJourneysPage"/>
-                          </closure>
+                          <lookup name="journeys-result" type="DBJourneysPage"/>
                         </binding>
                       </object>
                     </property>

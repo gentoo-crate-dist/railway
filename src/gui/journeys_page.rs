@@ -148,11 +148,6 @@ pub mod imp {
 
     #[gtk::template_callbacks]
     impl JourneysPage {
-        #[template_callback(function)]
-        fn no_selection(result: Option<JourneysResult>) -> gtk::SelectionModel {
-            gtk::NoSelection::new(result).into()
-        }
-
         /// Every time when the page is not yet filled with the journeys, load more.
         fn connect_initial_loading(&self) {
             let obj = self.obj();

@@ -223,10 +223,17 @@ pub mod imp {
 
         #[template_callback]
         fn handle_details(&self, journey: Journey) {
+            self.journey_detail_page
+                .set_property("journey", journey.clone());
             self.search_view.set_show_content(true);
             self.result_view.set_show_content(true);
-            self.journey_detail_page.set_property("journey", journey);
             self.journey_detail_page.reload();
+            if let Some(journeys_result) = self
+                .journeys_page
+                .property::<Option<JourneysResult>>("journeys-result")
+            {
+                journeys_result.set_selected(Some(journey));
+            }
         }
 
         #[template_callback]
@@ -244,9 +251,16 @@ pub mod imp {
 
         #[template_callback]
         fn handle_journeys_page(&self, journey: Journey) {
-            self.journey_detail_page.set_property("journey", journey);
+            self.journey_detail_page
+                .set_property("journey", journey.clone());
             self.search_view.set_show_content(true);
             self.result_view.set_show_content(true);
+            if let Some(journeys_result) = self
+                .journeys_page
+                .property::<Option<JourneysResult>>("journeys-result")
+            {
+                journeys_result.set_selected(Some(journey));
+            }
         }
 
         #[template_callback]
