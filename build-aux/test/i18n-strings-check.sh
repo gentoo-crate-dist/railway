@@ -21,3 +21,24 @@ if [ ${#missing} -ne 0 ]; then
   echo >&2
   exit 1
 fi
+
+# Test 2: find potentially translatable properties with the translatable attribute
+translatable_properties="$(grep -Roh --include='*.ui' 'name=\".*\" translatable=\".*\">' $uidirs | sed 's/^name=\"\([^\"]*\)\".*/\1/' | sort | uniq)"
+missed_properties=0
+
+for p in ${translatable_properties}; do
+  missed_translatable="$(grep -lRP --include='*.ui' "<property name=\"$p\"(?! translatable=\"(no|yes)\")")"
+  if [ ${#missed_translatable} -ne 0 ]; then
+    missed_properties=$(expr $missed_properties + 1)
+
+    echo >&2 "The following files contain a <property name=\"$p\"> without translatable=\"[yes|no]\":"
+    for f in ${missed_translatable}; do
+      echo "  $f" >&2
+    done
+    echo >&2
+  fi
+done
+
+if [ ${missed_properties} -ne 0 ]; then
+  exit 1
+fi
