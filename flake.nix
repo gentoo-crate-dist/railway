@@ -52,7 +52,7 @@
             pkgs.mkShell {
               src = ./.;
               buildInputs = [];
-              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.meson pkgs.gettext pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream-glib pkgs.ninja pkgs.rustc pkgs.cargo pkgs.clippy run check ];
+              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.meson pkgs.gettext pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream-glib pkgs.ninja pkgs.rustc pkgs.cargo pkgs.clippy pkgs.cargo-deny run check ];
               shellHook = ''
                 meson setup -Dprofile=development build
               '';

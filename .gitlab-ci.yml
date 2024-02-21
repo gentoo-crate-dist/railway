@@ -58,6 +58,15 @@ i18n:
   script:
     - ./build-aux/test/i18n-strings-check.sh
 
+test:cargo-deny:
+  stage: test
+  image: archlinux:base-devel
+  script:
+    - pacman -Syu rustup cargo-deny --noconfirm
+    - rustup default stable
+    - cargo deny check
+  allow_failure: true
+
 build_release:
   stage: build
   image: archlinux:base-devel
