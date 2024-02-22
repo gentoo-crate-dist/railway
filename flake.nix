@@ -41,19 +41,23 @@
           devShells.default =
             let 
               run = pkgs.writeShellScriptBin "run" ''
-                export GSETTINGS_SCHEMA_DIR=${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}/glib-2.0/schemas/:${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas/:./build/data/
                 meson compile -C build && ./build/target/debug/${name}
               '';
               check = pkgs.writeShellScriptBin "check" ''
                 cargo clippy
+              '';
+              prof = pkgs.writeShellScriptBin "prof" ''
+                RUSTFLAGS="-C force-frame-pointers=yes" meson compile -C build
+                sysprof-cli --force --no-battery --use-trace-fd --speedtrack --gtk $@ diebahn.syscap -- ./build/target/debug/${name}
               '';
             in
             with pkgs;
             pkgs.mkShell {
               src = ./.;
               buildInputs = [];
-              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.meson pkgs.gettext pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream-glib pkgs.ninja pkgs.rustc pkgs.cargo pkgs.clippy pkgs.cargo-deny run check ];
+              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.meson pkgs.gettext pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream-glib pkgs.ninja pkgs.rustc pkgs.cargo pkgs.clippy pkgs.cargo-deny pkgs.sysprof run check prof ];
               shellHook = ''
+                export GSETTINGS_SCHEMA_DIR=${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}/glib-2.0/schemas/:${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas/:./build/data/
                 meson setup -Dprofile=development build
               '';
             };

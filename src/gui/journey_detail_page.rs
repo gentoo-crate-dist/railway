@@ -23,6 +23,7 @@ pub mod imp {
 
     use chrono::Local;
     use gdk::glib::clone;
+    use gdk::glib::JoinHandle;
     use gdk::glib::MainContext;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecBoolean;
@@ -61,13 +62,16 @@ pub mod imp {
         journey: RefCell<Option<Journey>>,
 
         client: RefCell<Option<HafasClient>>,
+
+        load_handle: RefCell<Option<JoinHandle<()>>>,
     }
 
     impl JourneyDetailPage {
         pub(super) fn reload(&self, obj: &super::JourneyDetailPage) {
             let main_context = MainContext::default();
-            let window = self.obj().root().and_downcast::<Window>()
-                .expect("search page must be mapped and realised when a template callback is called");
+            let window = self.obj().root().and_downcast::<Window>().expect(
+                "search page must be mapped and realised when a template callback is called",
+            );
             main_context.spawn_local(clone!(
                        @strong obj,
                        @strong window,
@@ -105,6 +109,142 @@ pub mod imp {
         #[template_callback(function)]
         fn format_source_destination(source: &str, destination: &str) -> String {
             format!("{source} → {destination}")
+        }
+
+        async fn setup(&self, redo: bool) {
+            // Clear box_legs if journey has completely changed (i.e. completely new journey with different legs).
+            if redo {
+                while let Some(child) = self.box_legs.first_child() {
+                    self.box_legs.remove(&child);
+                }
+            }
+
+            // Fill box_legs
+            let legs = self
+                .journey
+                .borrow()
+                .as_ref()
+                .map(|j| j.journey().legs)
+                .unwrap_or_default();
+
+            let mut i = 0;
+            while i < legs.len() {
+                let mut walking_time: Option<Duration> = None;
+                let is_start = i == 0;
+                let i_start = i;
+                let mut to = &legs[i];
+
+                while to.walking.unwrap_or(false) {
+                    walking_time = Some(
+                        walking_time.unwrap_or(Duration::zero())
+                            + to.arrival.map_or(Duration::zero(), |arrival| {
+                                arrival - to.departure.unwrap_or(arrival)
+                            }),
+                    );
+                    i += 1;
+                    if i < legs.len() {
+                        to = &legs[i];
+                    } else {
+                        break;
+                    }
+                }
+
+                let is_end = i == legs.len();
+
+                let waiting_time: Option<Duration> = if !is_start && !is_end {
+                    let from = &legs[i - 1];
+                    if to.departure.is_some() && from.arrival.is_some() {
+                        Some(to.departure.unwrap() - from.arrival.unwrap())
+                    } else {
+                        None
+                    }
+                } else {
+                    None
+                };
+
+                if walking_time.is_some() || !is_start {
+                    let final_station = if is_end {
+                        Some(Place::new(to.destination.clone()))
+                    } else {
+                        None
+                    };
+                    let has_walk =
+                        walking_time.is_some() || (!is_end && to.origin != legs[i_start].origin);
+
+                    if let Some(child) = &current_child {
+                        if let Some(transition) = child.dynamic_cast_ref::<Transition>() {
+                            // There is already a transition in the correct place.
+                            transition.setup(
+                                &walking_time,
+                                &waiting_time,
+                                has_walk,
+                                is_start || is_end,
+                                &final_station,
+                            )
+                        } else {
+                            // There is something there, but it is no transition. Clear the box from here to the end and insert a new transition.
+                            while let Some(c) = current_child {
+                                current_child = c.next_sibling();
+                                self.box_legs.remove(&c);
+                            }
+
+                            self.box_legs.append(&Transition::new(
+                                &walking_time,
+                                &waiting_time,
+                                has_walk,
+                                is_start || is_end,
+                                &final_station,
+                            ));
+                        }
+                    } else {
+                        // There is no child left, append a new transition.
+                        self.box_legs.append(&Transition::new(
+                            &walking_time,
+                            &waiting_time,
+                            has_walk,
+                            is_start || is_end,
+                            &final_station,
+                        ));
+                    }
+
+                    current_child = current_child.and_then(|c| c.next_sibling());
+                }
+
+                if !is_end {
+                    if let Some(child) = &current_child {
+                        if let Some(leg_item) = child.dynamic_cast_ref::<LegItem>() {
+                            // There is already a leg item in the correct place.
+                            leg_item.set_leg(&Leg::new(legs[i].clone()));
+                        } else {
+                            // There is something there, but it is no leg item. Clear the box from here to the end and insert a new transition.
+                            while let Some(c) = current_child {
+                                current_child = c.next_sibling();
+                                self.box_legs.remove(&c);
+                            }
+
+                            self.box_legs
+                                .append(&LegItem::new(&Leg::new(legs[i].clone())));
+                        }
+                    } else {
+                        // There is no child left, append a new leg item.
+                        self.box_legs
+                            .append(&LegItem::new(&Leg::new(legs[i].clone())));
+                    }
+
+                    current_child = current_child.and_then(|c| c.next_sibling());
+                }
+
+                i += 1;
+
+                // Even though we are in glib runtime now, `yield_now` is runtime-agnostic and also seems to work with glib.
+                tokio::task::yield_now().await;
+            }
+
+            // Remove the remaining children.
+            while let Some(c) = current_child {
+                current_child = c.next_sibling();
+                self.box_legs.remove(&c);
+            }
         }
     }
 
@@ -148,141 +288,26 @@ pub mod imp {
                         "Property `journey` of `JourneyDetailPage` has to be of type `Journey`",
                     );
 
-                    // Clear box_legs if journey has completely changed (i.e. completely new journey with different legs).
                     // Different journeys can be identified by different refresh tokens.
-                    if obj.as_ref().and_then(|j| j.refresh_token())
+                    let redo = obj.as_ref().and_then(|j| j.refresh_token())
                         != self
                             .journey
                             .borrow()
                             .as_ref()
-                            .and_then(|j| j.refresh_token())
-                    {
-                        while let Some(child) = self.box_legs.first_child() {
-                            self.box_legs.remove(&child);
-                        }
-                    }
-
-                    let mut current_child = self.box_legs.first_child();
-
-                    // Fill box_legs
-                    let legs = obj.as_ref().map(|j| j.journey().legs).unwrap_or_default();
-                    let mut i = 0;
-                    while i < legs.len() {
-                        let mut walking_time: Option<Duration> = None;
-                        let is_start = i == 0;
-                        let i_start = i;
-                        let mut to = &legs[i];
-
-                        while to.walking.unwrap_or(false) {
-                            walking_time = Some(
-                                walking_time.unwrap_or(Duration::zero())
-                                    + to.arrival.map_or(Duration::zero(), |arrival| {
-                                        arrival - to.departure.unwrap_or(arrival)
-                                    }),
-                            );
-                            i += 1;
-                            if i < legs.len() {
-                                to = &legs[i];
-                            } else {
-                                break;
-                            }
-                        }
-
-                        let is_end = i == legs.len();
-
-                        let waiting_time: Option<Duration> = if !is_start && !is_end {
-                            let from = &legs[i - 1];
-                            if to.departure.is_some() && from.arrival.is_some() {
-                                Some(to.departure.unwrap() - from.arrival.unwrap())
-                            } else {
-                                None
-                            }
-                        } else {
-                            None
-                        };
-
-                        if walking_time.is_some() || !is_start {
-                            let final_station = if is_end {
-                                Some(Place::new(to.destination.clone()))
-                            } else {
-                                None
-                            };
-                            let has_walk = walking_time.is_some()
-                                || (!is_end && to.origin != legs[i_start].origin);
-
-                            if let Some(child) = &current_child {
-                                if let Some(transition) = child.dynamic_cast_ref::<Transition>() {
-                                    // There is already a transition in the correct place.
-                                    transition.setup(
-                                        &walking_time,
-                                        &waiting_time,
-                                        has_walk,
-                                        is_start || is_end,
-                                        &final_station,
-                                    )
-                                } else {
-                                    // There is something there, but it is no transition. Clear the box from here to the end and insert a new transition.
-                                    while let Some(c) = current_child {
-                                        current_child = c.next_sibling();
-                                        self.box_legs.remove(&c);
-                                    }
-
-                                    self.box_legs.append(&Transition::new(
-                                        &walking_time,
-                                        &waiting_time,
-                                        has_walk,
-                                        is_start || is_end,
-                                        &final_station,
-                                    ));
-                                }
-                            } else {
-                                // There is no child left, append a new transition.
-                                self.box_legs.append(&Transition::new(
-                                    &walking_time,
-                                    &waiting_time,
-                                    has_walk,
-                                    is_start || is_end,
-                                    &final_station,
-                                ));
-                            }
-
-                            current_child = current_child.and_then(|c| c.next_sibling());
-                        }
-
-                        if !is_end {
-                            if let Some(child) = &current_child {
-                                if let Some(leg_item) = child.dynamic_cast_ref::<LegItem>() {
-                                    // There is already a leg item in the correct place.
-                                    leg_item.set_leg(&Leg::new(legs[i].clone()));
-                                } else {
-                                    // There is something there, but it is no leg item. Clear the box from here to the end and insert a new transition.
-                                    while let Some(c) = current_child {
-                                        current_child = c.next_sibling();
-                                        self.box_legs.remove(&c);
-                                    }
-
-                                    self.box_legs
-                                        .append(&LegItem::new(&Leg::new(legs[i].clone())));
-                                }
-                            } else {
-                                // There is no child left, append a new leg item.
-                                self.box_legs
-                                    .append(&LegItem::new(&Leg::new(legs[i].clone())));
-                            }
-
-                            current_child = current_child.and_then(|c| c.next_sibling());
-                        }
-
-                        i += 1;
-                    }
-
-                    // Remove the remaining children.
-                    while let Some(c) = current_child {
-                        current_child = c.next_sibling();
-                        self.box_legs.remove(&c);
-                    }
+                            .and_then(|j| j.refresh_token());
 
                     self.journey.replace(obj);
+                    // Ensure the load is not called twice at the same time by aborting the old one if needed.
+                    if let Some(handle) = self.load_handle.replace(None) {
+                        handle.abort();
+                    }
+
+                    let o = self.obj().clone();
+                    let handle = gspawn!(
+                        async move { o.imp().setup(redo).await },
+                        glib::Priority::LOW
+                    );
+                    self.load_handle.replace(Some(handle));
                 }
                 "refresh-in-progress" => {
                     let obj = value.get::<bool>().expect(
