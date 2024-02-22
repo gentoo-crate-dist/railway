@@ -197,18 +197,15 @@
   </screenshots>
 
   <provides>
-    <id>@app-id@</id>
     <binary>diebahn</binary>
   </provides>
 
   <supports>
     <control>keyboard</control>
-    <control>pointing</control>
-    <control>touch</control>
   </supports>
   <recommends>
-    <control>keyboard</control>
     <control>pointing</control>
+    <control>touch</control>
     <internet>always</internet>
   </recommends>
   <requires>
