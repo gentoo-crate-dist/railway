@@ -5,6 +5,7 @@ authors = ["Julian Schmidhuber <schmidhuberj2@protonmail.com>", "Markus Göllnit
 homepage = "https://mobile.schmidhuberj.de/railway"
 repository = "https://gitlab.com/schmiddi-on-mobile/railway"
 version = "2.3.0"
+license = "GPL-3.0-or-later"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
