@@ -112,10 +112,24 @@ pub mod imp {
         }
 
         async fn setup(&self, redo: bool) {
+            enum SetupStep {
+                Add(gtk::Widget),
+                Remove(gtk::Widget),
+            }
+
+            // Plan setup steps.
+
+            // TODO: Maybe allocate initial size?
+            let mut steps = Vec::new();
+
+            let mut current_child = self.box_legs.first_child();
+
             // Clear box_legs if journey has completely changed (i.e. completely new journey with different legs).
             if redo {
-                while let Some(child) = self.box_legs.first_child() {
-                    self.box_legs.remove(&child);
+                while let Some(child) = current_child {
+                    current_child = child.next_sibling();
+                    steps.push(SetupStep::Remove(child));
+                    // self.box_legs.remove(&child);
                 }
             }
 
@@ -185,26 +199,48 @@ pub mod imp {
                             // There is something there, but it is no transition. Clear the box from here to the end and insert a new transition.
                             while let Some(c) = current_child {
                                 current_child = c.next_sibling();
-                                self.box_legs.remove(&c);
+                                // self.box_legs.remove(&c);
+                                steps.push(SetupStep::Remove(c))
                             }
 
-                            self.box_legs.append(&Transition::new(
+                            steps.push(SetupStep::Add(
+                                Transition::new(
+                                    &walking_time,
+                                    &waiting_time,
+                                    has_walk,
+                                    is_start || is_end,
+                                    &final_station,
+                                )
+                                .upcast(),
+                            ));
+
+                            // self.box_legs.append(&Transition::new(
+                            //     &walking_time,
+                            //     &waiting_time,
+                            //     has_walk,
+                            //     is_start || is_end,
+                            //     &final_station,
+                            // ));
+                        }
+                    } else {
+                        // There is no child left, append a new transition.
+                        steps.push(SetupStep::Add(
+                            Transition::new(
                                 &walking_time,
                                 &waiting_time,
                                 has_walk,
                                 is_start || is_end,
                                 &final_station,
-                            ));
-                        }
-                    } else {
-                        // There is no child left, append a new transition.
-                        self.box_legs.append(&Transition::new(
-                            &walking_time,
-                            &waiting_time,
-                            has_walk,
-                            is_start || is_end,
-                            &final_station,
+                            )
+                            .upcast(),
                         ));
+                        // self.box_legs.append(&Transition::new(
+                        //     &walking_time,
+                        //     &waiting_time,
+                        //     has_walk,
+                        //     is_start || is_end,
+                        //     &final_station,
+                        // ));
                     }
 
                     current_child = current_child.and_then(|c| c.next_sibling());
@@ -219,16 +255,23 @@ pub mod imp {
                             // There is something there, but it is no leg item. Clear the box from here to the end and insert a new transition.
                             while let Some(c) = current_child {
                                 current_child = c.next_sibling();
-                                self.box_legs.remove(&c);
+                                // self.box_legs.remove(&c);
+                                steps.push(SetupStep::Remove(c));
                             }
 
-                            self.box_legs
-                                .append(&LegItem::new(&Leg::new(legs[i].clone())));
+                            steps.push(SetupStep::Add(
+                                LegItem::new(&Leg::new(legs[i].clone())).upcast(),
+                            ));
+                            // self.box_legs
+                            //     .append(&LegItem::new(&Leg::new(legs[i].clone())));
                         }
                     } else {
                         // There is no child left, append a new leg item.
-                        self.box_legs
-                            .append(&LegItem::new(&Leg::new(legs[i].clone())));
+                        steps.push(SetupStep::Add(
+                            LegItem::new(&Leg::new(legs[i].clone())).upcast(),
+                        ));
+                        // self.box_legs
+                        //     .append(&LegItem::new(&Leg::new(legs[i].clone())));
                     }
 
                     current_child = current_child.and_then(|c| c.next_sibling());
@@ -243,7 +286,16 @@ pub mod imp {
             // Remove the remaining children.
             while let Some(c) = current_child {
                 current_child = c.next_sibling();
-                self.box_legs.remove(&c);
+                // self.box_legs.remove(&c);
+                steps.push(SetupStep::Remove(c));
+            }
+
+            // Execute setup steps
+            for step in steps {
+                match step {
+                    SetupStep::Add(w) => self.box_legs.append(&w),
+                    SetupStep::Remove(w) => self.box_legs.remove(&w),
+                }
             }
         }
     }
