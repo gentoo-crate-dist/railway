@@ -6,3 +6,4 @@ src/config.rs
 .direnv
 result
 .nixos-test-history
+*.syscap
