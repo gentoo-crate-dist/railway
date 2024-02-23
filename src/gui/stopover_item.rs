@@ -57,13 +57,26 @@ pub mod imp {
     }
 
     impl StopoverItem {
-        fn format_stopover_description(stop: &str, arrival: &Option<String>) -> String {
+        fn format_stopover_description(stop: &str, arrival: &Option<String>, platform: &Option<String>) -> String {
             // Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
-            let format = gettextrs::gettext("{stop} at {arrival}");
+            let format_full = gettextrs::gettext("{stop} at {arrival} on platform {platform}");
 
-            match arrival {
-                Some(arrival) => format.replace("{stop}", stop).replace("{arrival}", &arrival),
-                None => stop.to_string(),
+            // Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
+            let format_no_platform = gettextrs::gettext("{stop} at {arrival}");
+
+            match (arrival, platform) {
+                (Some(arrival), Some(platform)) => {
+                    format_full
+                        .replace("{stop}", stop)
+                        .replace("{arrival}", &arrival)
+                        .replace("{platform}", &platform)
+                }
+                (Some(arrival), None) => {
+                    format_no_platform
+                        .replace("{stop}", stop)
+                        .replace("{arrival}", &arrival)
+                }
+                (_, _) => stop.to_string(),
             }
         }
     }
@@ -97,6 +110,8 @@ pub mod imp {
                         &stop.name().unwrap_or_default(),
                         &stopover.property::<Option<String>>("arrival")
                             .or(stopover.property::<Option<String>>("planned-arrival")),
+                        &stopover.property::<Option<String>>("arrival-platform")
+                            .or(stopover.property::<Option<String>>("planned-arrival-platform")),
                     ))
                 ]);
             });

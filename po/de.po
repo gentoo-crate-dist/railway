@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 19:56+0100\n"
+"POT-Creation-Date: 2024-02-23 23:29+0100\n"
 "PO-Revision-Date: 2024-02-08 11:01+0000\n"
 "Last-Translator: Markus Göllnitz <camelcasenick@bewares.it>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/schmiddi-on-"
@@ -248,7 +248,7 @@ msgstr "Einstellungen"
 msgid "Open Menu"
 msgstr "Hauptmenü"
 
-#: data/resources/ui/station_entry.ui:16
+#: data/resources/ui/station_entry.ui:19
 #, fuzzy
 msgid "Swap Start and Destination"
 msgstr "Start und Ziel fehlen"
@@ -616,6 +616,11 @@ msgstr[1] "{} Zwischenhalte"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
+msgid "{stop} at {arrival} on platform {platform}"
+msgstr ""
+
+#. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
+#: src/gui/stopover_item.rs:65
 msgid "{stop} at {arrival}"
 msgstr ""
 

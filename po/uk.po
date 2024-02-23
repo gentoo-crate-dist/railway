@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 19:56+0100\n"
+"POT-Creation-Date: 2024-02-23 23:29+0100\n"
 "PO-Revision-Date: 2023-12-16 12:09+0000\n"
 "Last-Translator: two <two@envs.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/schmiddi-on-"
@@ -243,7 +243,7 @@ msgstr ""
 msgid "Open Menu"
 msgstr ""
 
-#: data/resources/ui/station_entry.ui:16
+#: data/resources/ui/station_entry.ui:19
 msgid "Swap Start and Destination"
 msgstr ""
 
@@ -610,6 +610,11 @@ msgstr[2] "Відкрити зупинки"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
+msgid "{stop} at {arrival} on platform {platform}"
+msgstr ""
+
+#. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
+#: src/gui/stopover_item.rs:65
 msgid "{stop} at {arrival}"
 msgstr ""
 
