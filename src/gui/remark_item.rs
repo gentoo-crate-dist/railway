@@ -26,9 +26,11 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use gtk::DirectionType;
     use once_cell::sync::Lazy;
 
     use crate::backend::Remark;
+    use crate::gui::utility::Utility;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/remark_item.ui")]
@@ -44,6 +46,7 @@ pub mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
+            WidgetClassExt::set_css_name(klass, "AnnouncementItem");
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -83,6 +86,11 @@ pub mod imp {
         }
     }
 
-    impl WidgetImpl for RemarkItem {}
+    impl WidgetImpl for RemarkItem {
+        fn focus(&self, direction: DirectionType) -> bool {
+            Utility::move_focus_within_container(self, direction)
+        }
+    }
+
     impl BoxImpl for RemarkItem {}
 }

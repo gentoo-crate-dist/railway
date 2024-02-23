@@ -1,7 +1,10 @@
-use gdk::glib::prelude::Cast;
 use gdk::glib::subclass::prelude::ObjectSubclassIsExt;
 use gdk::glib::Object;
+use gtk::prelude::ObjectExt;
 use std::borrow::Borrow;
+use crate::backend::Leg;
+use crate::backend::Journey;
+use crate::gui::indicator_icons::IndicatorIcons;
 
 gtk::glib::wrapper! {
     pub struct JourneyListItem(ObjectSubclass<imp::JourneyListItem>)
@@ -16,12 +19,39 @@ impl JourneyListItem {
     }
 
     pub fn get_destination_box(&self) -> gtk::Box {
-        self.imp()
-            .destination_box
-            .borrow()
-            .dynamic_cast_ref::<gtk::Box>()
-            .expect("the destination's box to be a gtk box")
-            .clone()
+        self.imp().destination_box.borrow().get().clone()
+    }
+
+    pub fn get_indicators(&self) -> IndicatorIcons {
+        self.imp().indicators.borrow().get().clone()
+    }
+
+    pub fn format_trip_description(&self) -> String {
+        let journey: Journey = self.imp().journey.borrow().as_ref()
+            .expect("trip description formatting only works for an already set trip").clone();
+
+        let first_leg = journey.property::<Leg>("first-leg");
+        let last_leg = journey.property::<Leg>("last-leg");
+
+        let changes = journey.property::<u32>("transitions");
+        let departure = first_leg.property::<Option<String>>("departure")
+            .or(first_leg.property::<Option<String>>("planned-departure"))
+            .unwrap_or("".to_string());
+        let arrival = last_leg.property::<Option<String>>("arrival")
+            .or(last_leg.property::<Option<String>>("planned-arrival"))
+            .unwrap_or("".to_string());
+        let travel_time = journey.property::<String>("total-time");
+
+        let changes_text = gettextrs::ngettext("{} change", "{} changes", changes)
+            .replace("{}", &changes.to_string());
+
+        // Translators: changes_text is the plural-aware string "{} change" already
+        gettextrs::gettext("From {departure} to {arrival} in {travel_time} with {changes_text}")
+            .replace("{departure}", &departure)
+            .replace("{arrival}", &arrival)
+            .replace("{travel_time}", &travel_time)
+            .replace("{changes_text}", &changes_text)
+            .to_string()
     }
 }
 
@@ -46,6 +76,7 @@ pub mod imp {
     use once_cell::sync::Lazy;
 
     use crate::backend::Journey;
+    use crate::gui::indicator_icons::IndicatorIcons;
     use crate::gui::utility::Utility;
 
     #[derive(CompositeTemplate, Default)]
@@ -58,7 +89,10 @@ pub mod imp {
         #[template_child]
         to_time: TemplateChild<gtk::Box>,
 
-        journey: RefCell<Option<Journey>>,
+        #[template_child]
+        pub(super) indicators: TemplateChild<IndicatorIcons>,
+
+        pub(super) journey: RefCell<Option<Journey>>,
     }
 
     impl JourneyListItem {

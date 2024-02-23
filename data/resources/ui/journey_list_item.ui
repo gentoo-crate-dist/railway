@@ -167,7 +167,7 @@
         <property name="spacing">6</property>
 
         <child>
-          <object class="DBIndicatorIcons">
+          <object class="DBIndicatorIcons" id="indicators">
             <binding name="load-factor">
               <lookup name="load-factor">
                 <lookup name="journey" type="DBJourneyListItem"/>

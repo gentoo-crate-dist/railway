@@ -62,9 +62,11 @@ pub mod imp {
     use gdk::glib::Value;
     use glib::subclass::InitializingObject;
     use gtk::glib;
+    use gtk::glib::clone;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use gtk::DirectionType;
     use once_cell::sync::Lazy;
 
     #[derive(CompositeTemplate, Default)]
@@ -82,6 +84,17 @@ pub mod imp {
         destination_label: TemplateChild<gtk::Label>,
     }
 
+    impl Transition {
+        fn format_transfer_description(transfer_description: &str, destination: &Option<&String>) -> String {
+            // Translators: Do not translate the strings in {}.
+            let format = gettextrs::gettext("Arrive at {destination}.");
+            match destination {
+                Some(destination) => format!("{} {}", transfer_description, format.replace("{destination}", destination)),
+                None => transfer_description.to_string(),
+            }
+        }
+    }
+
     #[glib::object_subclass]
     impl ObjectSubclass for Transition {
         const NAME: &'static str = "DBTransition";
@@ -91,6 +104,7 @@ pub mod imp {
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
             Utility::bind_template_callbacks(klass);
+            WidgetClassExt::set_css_name(klass, "TransferItem");
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -101,6 +115,15 @@ pub mod imp {
     impl ObjectImpl for Transition {
         fn constructed(&self) {
             self.parent_constructed();
+
+            self.obj().connect_notify_local(None, clone!(@weak self as transition => move |obj, _| {
+                obj.update_property(&[
+                    gtk::accessible::Property::Label(&Transition::format_transfer_description(
+                        &obj.property::<String>("label"),
+                        &transition.final_destination.borrow().as_ref(),
+                    ))
+                ]);
+            }));
         }
 
         fn properties() -> &'static [ParamSpec] {
@@ -199,6 +222,11 @@ pub mod imp {
         }
     }
 
-    impl WidgetImpl for Transition {}
+    impl WidgetImpl for Transition {
+        fn focus(&self, direction: DirectionType) -> bool {
+            Utility::move_focus_within_container(self, direction)
+        }
+    }
+
     impl BoxImpl for Transition {}
 }

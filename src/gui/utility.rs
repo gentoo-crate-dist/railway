@@ -1,7 +1,26 @@
 use chrono::{Datelike, Days, Local};
 use gdk::glib::{Object, Value};
+use gtk::subclass::prelude::WidgetImpl;
+use gtk::prelude::IsA;
+use gtk::subclass::prelude::ObjectSubclassExt;
+use gtk::DirectionType;
+use gtk::Widget;
+use gtk::prelude::WidgetExt;
 
 pub struct Utility {}
+
+#[derive(PartialEq)]
+enum Direction {
+    Forward,
+    Backward,
+}
+
+#[derive(PartialEq)]
+enum ChildAccess {
+    Skip,
+    Include,
+    Only,
+}
 
 #[gtk::template_callbacks(functions)]
 impl Utility {
@@ -81,7 +100,7 @@ impl Utility {
                     // Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
                     .format(&gettextrs::gettext("%-H hrs. %-M min."))
                     .to_string()
-                }
+            }
         } else {
             // Start one day before the new year, otherwise %_d would skip 2.
             (chrono::NaiveDate::from_ymd_opt(2021, 12, 31)
@@ -118,6 +137,73 @@ impl Utility {
         } else {
             // Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
             date.format(&gettextrs::gettext("%Y-%m-%d")).to_string()
+        }
+    }
+
+    pub fn move_focus_within_container<T: IsA<Widget>>(widget: &(impl WidgetImpl + ObjectSubclassExt<Type = T>), direction: DirectionType) -> bool {
+        /* if has child with focus and it keeps focus within, keep within this widget as well */
+        if let Some(focus_child) = widget.obj().focus_child() {
+            if focus_child.child_focus(direction) {
+                return true;
+            }
+        }
+
+        let move_direction = match direction {
+            DirectionType::TabBackward
+            | DirectionType::Up
+            | DirectionType::Left => Direction::Backward,
+            DirectionType::TabForward
+            | DirectionType::Down
+            | DirectionType::Right => Direction::Forward,
+            _ => {
+                log::error!("Widget's focus implementation incomplete");
+                Direction::Forward
+            }
+        };
+        let child_access = match direction {
+            DirectionType::TabBackward | DirectionType::TabForward => ChildAccess::Include,
+            DirectionType::Up | DirectionType::Down => ChildAccess::Skip,
+            DirectionType::Left | DirectionType::Right => ChildAccess::Only,
+            _ => {
+                log::error!("Widget's focus implementation incomplete");
+                ChildAccess::Include
+            }
+        };
+
+        match move_direction {
+            Direction::Backward => {
+                /* if this widget has focus, it is tabbing out */
+                if widget.obj().has_focus() {
+                    child_access == ChildAccess::Only
+                } else {
+                    /* when tabbing in, start it children */
+                    if child_access != ChildAccess::Skip && widget.obj().last_child()
+                        .map(|child| child.child_focus(direction))
+                        .unwrap_or(false) {
+                        return true;
+                    }
+                    /* when tabbing in and no child grabs focus, focus this widget */
+                    widget.grab_focus()
+                }
+            }
+            Direction::Forward => {
+                /* when a child had focus and didn't keep it, it is tabbing out */
+                if widget.obj().focus_child().is_some () {
+                    child_access == ChildAccess::Only
+                } else {
+                    /* if this widget had no focus, it is tabbing in */
+                    if !widget.obj().has_focus() && widget.grab_focus() {
+                        true
+                    } else if child_access != ChildAccess::Skip {
+                        /* if this widget had focus, pass on to children, tabbing out otherwise */
+                        widget.obj().first_child()
+                            .map(|child| child.child_focus(direction))
+                            .unwrap_or(false)
+                    } else {
+                        child_access == ChildAccess::Only
+                    }
+                }
+            }
         }
     }
 }

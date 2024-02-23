@@ -316,8 +316,31 @@ pub mod imp {
                     obj.property_expression("compact").bind(&journey_item, "compact", Widget::NONE);
 
                     size_group.add_widget(&journey_item.get_destination_box());
+
+                    journey_item.connect_parent_notify(|journey_item| {
+                        if let Some(parent) = journey_item.property::<Option<Widget>>("parent") {
+                            parent.update_relation(&[
+                                gtk::accessible::Relation::DescribedBy(&[
+                                    &journey_item.get_indicators().upcast_ref()
+                                ])
+                            ]);
+                        }
+                    });
                 }),
             );
+            factory.connect_bind(|_, list_item| {
+                let list_item = list_item
+                    .downcast_ref::<ListItem>()
+                    .expect("The factory item to be a `ListItem`");
+                let journey_item = list_item
+                    .child()
+                    .expect("The ListItem to have a child")
+                    .downcast_ref::<JourneyListItem>()
+                    .expect("The ListItem's child to be a `JourneyListItem`")
+                    .clone();
+
+                list_item.set_accessible_label(&journey_item.format_trip_description());
+            });
 
             let header_factory = SignalListItemFactory::new();
             header_factory.connect_setup(clone!(@weak obj => move |_, object| {

@@ -40,6 +40,12 @@
   font-size: small;
 }
 
+TransferItem:focus image,
+StopoverItem:focus image,
+AnnouncementItem:focus image {
+  color: @accent_color;
+}
+
 .overlay-spinner {
   border-radius: 50%;
   padding: 6px;

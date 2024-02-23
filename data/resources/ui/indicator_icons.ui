@@ -4,6 +4,14 @@
   <requires lib="libadwaita" version="1.0"/>
 
   <template class="DBIndicatorIcons" parent="GtkBox">
+    <property name="accessible-role">group</property>
+    <accessibility>
+      <relation name="described-by">img_load_factor</relation>
+      <relation name="described-by">img_late_factor</relation>
+      <relation name="described-by">img_change_platform</relation>
+      <relation name="described-by">img_unreachable</relation>
+      <relation name="described-by">img_cancelled</relation>
+    </accessibility>
     <property name="orientation">horizontal</property>
     <property name="spacing">2</property>
     <child>

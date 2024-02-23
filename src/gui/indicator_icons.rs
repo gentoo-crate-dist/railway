@@ -81,7 +81,7 @@ pub mod imp {
             img.set_icon_name(Some(icon_name));
             img.set_css_classes(css_classes);
             img.set_tooltip_text(Some(tooltip));
-            img.update_property(&[Property::Label(tooltip)]);
+            img.update_property(&[Property::Description(tooltip)]);
 
             self.recompute_visible();
         }

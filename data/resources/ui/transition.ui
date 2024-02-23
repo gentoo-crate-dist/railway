@@ -4,7 +4,10 @@
   <requires lib="libadwaita" version="1.0"/>
 
   <template class="DBTransition" parent="GtkBox">
+    <property name="accessible-role">list-item</property>
+
     <property name="orientation">vertical</property>
+    <property name="focusable">True</property>
     <property name="spacing">6</property>
     <child>
       <object class="GtkBox">
@@ -19,7 +22,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkLabel" id="transfer_label">
             <property name="wrap">True</property>
             <binding name="label">
               <lookup name="label" type="DBTransition"/>

@@ -7,6 +7,9 @@
     <style>
       <class name="stopover-item"/>
     </style>
+    <property name="accessible-role">list-item</property>
+    <property name="focusable">True</property>
+
     <property name="orientation">horizontal</property>
     <property name="hexpand">TRUE</property>
     <child>
