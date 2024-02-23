@@ -44,9 +44,8 @@ msgid "Total Travel Time"
 msgstr "Reisedauer"
 
 #: data/resources/ui/journey_detail_page.ui:100
-#, fuzzy
 msgid "Trip Segments"
-msgstr "Details"
+msgstr "Reiseabschnitte"
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
@@ -69,14 +68,12 @@ msgid "Show Announcements"
 msgstr "Ankündigungen anzeigen"
 
 #: data/resources/ui/leg_item.ui:283
-#, fuzzy
 msgid "Announcements"
-msgstr "Ankündigungen anzeigen"
+msgstr "Ankündigungen"
 
 #: data/resources/ui/leg_item.ui:315
-#, fuzzy
 msgid "Stopovers"
-msgstr "Zwischenhalte anzeigen"
+msgstr "Zwischenhalte"
 
 #: data/resources/ui/preferences_window.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
@@ -84,24 +81,24 @@ msgstr "Allgemein"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "Automatisch gespeicherte Verbindungen entfernen"
 
 #: data/resources/ui/preferences_window.ui:17
 msgid "Past trips are kept only for a period of time"
 msgstr ""
+"Zurückliegende Verbindungen werden nur für eine begrenzte Zeit gespeichert"
 
 #: data/resources/ui/preferences_window.ui:23
 msgid "Preservation Time For Trips"
-msgstr ""
+msgstr "Speicherdauer für Verbindungen"
 
 #: data/resources/ui/preferences_window.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "Für wie lange eine Verbindung nach der Ankunft behalten werden soll"
 
 #: data/resources/ui/provider_popover.ui:20
-#, fuzzy
 msgid "Search Networks…"
-msgstr "Verkehrsnetz auswählen"
+msgstr "Verkehrsnetz heraussuchen …"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
@@ -138,7 +135,7 @@ msgstr "Fahrradtauglich"
 
 #: data/resources/ui/search_options_window.ui:54
 msgid "Minimum Transfer Time"
-msgstr "Minimale Umsteigezeit"
+msgstr "Minimale Umstiegszeit"
 
 #: data/resources/ui/search_options_window.ui:60
 msgid "Direct Connections Only"
@@ -202,56 +199,48 @@ msgid "Search"
 msgstr "Suchen"
 
 #: data/resources/ui/search_page.ui:120
-#, fuzzy
 msgid "Bookmarked Trips"
-msgstr "Verbindung speichern"
+msgstr "Gespeicherte Verbindung"
 
 #: data/resources/ui/search_page.ui:134
-#, fuzzy
 msgid "Bookmarked Searches"
-msgstr "Suche speichern"
+msgstr "Gespeicherte Suchen"
 
 #: data/resources/ui/shortcuts.ui:9
 msgid "Application"
-msgstr ""
+msgstr "Anwendung"
 
 #: data/resources/ui/shortcuts.ui:13
-#, fuzzy
 msgid "Bookmark Search"
 msgstr "Suche speichern"
 
 #: data/resources/ui/shortcuts.ui:19
-#, fuzzy
 msgid "Bookmark Trip"
 msgstr "Verbindung speichern"
 
 #: data/resources/ui/shortcuts.ui:25
 msgid "Reload Trip"
-msgstr ""
+msgstr "Verbindung aktualisieren"
 
 #: data/resources/ui/shortcuts.ui:36
 msgid "Quit"
-msgstr ""
+msgstr "Beenden"
 
 #: data/resources/ui/shortcuts.ui:42
-#, fuzzy
 msgid "Show Shortcuts"
-msgstr "Tastenkürzel"
+msgstr "Tastenkürzel anzeigen"
 
 #: data/resources/ui/shortcuts.ui:48
-#, fuzzy
 msgid "Show Preferences"
-msgstr "Einstellungen"
+msgstr "Einstellungen öffnen"
 
 #: data/resources/ui/shortcuts.ui:54
-#, fuzzy
 msgid "Open Menu"
-msgstr "Hauptmenü"
+msgstr "Hauptmenü öffnen"
 
-#: data/resources/ui/station_entry.ui:19
-#, fuzzy
+#: data/resources/ui/station_entry.ui:16
 msgid "Swap Start and Destination"
-msgstr "Start und Ziel fehlen"
+msgstr "Start und Ziel tauschen"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
 msgid "Select Network"
@@ -294,7 +283,6 @@ msgid "_About Railway"
 msgstr "Ü_ber Railway"
 
 #: data/resources/ui/refresh_button.ui:24
-#, fuzzy
 msgid "Refresh Trip"
 msgstr "Verbindung aktualisieren"
 
@@ -365,26 +353,24 @@ msgstr "de"
 
 #: src/gui/journey_detail_page.rs:97
 msgid "Last refreshed {}"
-msgstr ""
+msgstr "Zuletzt aktualisiert {}"
 
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:90
 msgid "Arrive at {destination}."
-msgstr ""
+msgstr "Erreiche das Ziel {}."
 
 #: src/gui/transition.rs:212
 msgid "Walk {walk} Wait {wait}"
-msgstr ""
+msgstr "{walk} Fußweg, {wait} Wartezeit"
 
 #: src/gui/transition.rs:217
-#, fuzzy
 msgid "Transfer Time {}"
-msgstr "Minimale Umsteigezeit"
+msgstr "Umstiegszeit {}"
 
 #: src/gui/transition.rs:221
-#, fuzzy
 msgid "Walk {}"
-msgstr "Fußweg"
+msgstr "{} Fußweg"
 
 #: src/gui/transition.rs:224
 msgid "Transfer"
@@ -393,41 +379,39 @@ msgstr "Umstieg"
 #. Translators: duration in minutes, standalone or tabular setting, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:59 src/gui/search_options_window.rs:231
 msgid "{}\\u{202F}min"
-msgstr ""
+msgstr "{}\\u{202F}min"
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:67
 msgid "%_H\\u{202F}h %_M\\u{202F}min"
-msgstr ""
+msgstr "%_H\\u{202F}h %_M\\u{202F}min"
 
 #: src/gui/utility.rs:78
-#, fuzzy
 msgid " %_d day %_H\\u{202F}h %_M\\u{202F}min"
 msgid_plural "%_d days %_H\\u{202F}h %_M\\u{202F}min"
-msgstr[0] "%_d Tag %_H h %_M min"
-msgstr[1] "%_d Tage %_H h %_M min"
+msgstr[0] " %_d Tag %_H\\u{202F}h %_M\\u{202F}min"
+msgstr[1] "%_d Tage %_H\\u{202F}h %_M\\u{202F}min"
 
 #. Translators: duration in minutes, embedded in text, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:89
 msgid "{}\\u{202F}min."
-msgstr ""
+msgstr "{}\\u{202F}min"
 
 #. Translators: duration in hours, embedded in text, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:93
 msgid "{}\\u{202F}hrs."
-msgstr ""
+msgstr "{}\\u{202F}h"
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:101
 msgid "%-H\\u{202F}hrs. %-M\\u{202F}min."
-msgstr ""
+msgstr "%-H\\u{202F}h %-M\\u{202F}min"
 
 #: src/gui/utility.rs:113
-#, fuzzy
 msgid "%-d day %-H\\u{202F}hrs. %-M\\u{202F}min."
 msgid_plural "%-d days %-H\\u{202F}hrs. %-M\\u{202F}min."
-msgstr[0] "%_d Tag %_H h %_M min"
-msgstr[1] "%_d Tage %_H h %_M min"
+msgstr[0] "%_d Tag %_H\\u{202F}h %_M\\u{202F}min"
+msgstr[1] "%_d Tage %_H\\u{202F}h %_M\\u{202F}min"
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:123
@@ -459,8 +443,8 @@ msgstr "%d.%m.%Y"
 #: src/gui/preferences_window.rs:62
 msgid "{}\\u{202F}h"
 msgid_plural "{}\\u{202F}h"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{}\\u{202F}h"
+msgstr[1] "{}\\u{202F}h"
 
 #: src/gui/search_options_button.rs:74
 msgid "None"
@@ -543,9 +527,8 @@ msgid "Received an error. Please share feedback."
 msgstr "Ein Fehler ist aufgetreten. Melden Sie das gerne zurück."
 
 #: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
-#, fuzzy
 msgid "More Information"
-msgstr "Mehr Informationen"
+msgstr "Weitere Informationen"
 
 #: src/gui/error.rs:25
 msgid "Received an invalid response. Please share feedback."
@@ -574,13 +557,13 @@ msgstr "%a %d. %b"
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
 msgid_plural "{} changes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} Umstieg"
+msgstr[1] "{} Umstiege"
 
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
 msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr ""
+msgstr "Von {departure} nach {arrival} in {travel_time} mit {changes_text}"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:77
@@ -590,25 +573,24 @@ msgstr "{train} in Richtung {destination}"
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:86
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr ""
+msgstr "Start {start} – Abfahrt von Plattform {platform} um {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:89
 msgid "Depart {start} at {departure}."
-msgstr ""
+msgstr "Start {start} – Abfahrt um {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr ""
+msgstr "Ziel {destination} – Ankunft an Plattform {platform} um {arrival}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:97
 msgid "Arrive at {destination} at {arrival}."
-msgstr ""
+msgstr "Ziel {destination} – Ankunft um {arrival}."
 
 #: src/gui/leg_item.rs:220
-#, fuzzy
 msgid "{} Stopover"
 msgid_plural "{} Stopovers"
 msgstr[0] "{} Zwischenhalt"
@@ -620,9 +602,9 @@ msgid "{stop} at {arrival} on platform {platform}"
 msgstr ""
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
-#: src/gui/stopover_item.rs:65
+#: src/gui/stopover_item.rs:62
 msgid "{stop} at {arrival}"
-msgstr ""
+msgstr "{stop} um {arrival}"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:173
@@ -638,7 +620,7 @@ msgstr "Ausgangsübersetzung unterstützt durch"
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
 msgid "every ~{}"
-msgstr ""
+msgstr "alle ~{}"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
