@@ -115,7 +115,7 @@
 
                             <child>
                               <object class="GtkLabel">
-                                <property name="label"> ∶ </property>
+                                <property name="label" translatable="no"> ∶ </property>
                               </object>
                             </child>
 

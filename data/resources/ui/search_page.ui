@@ -90,7 +90,6 @@
                         <child>
                           <object class="GtkStackPage">
                             <property name="name">label</property>
-                            <property name="title">label</property>
                             <property name="child">
                               <object class="GtkLabel">
                                 <property name="label" translatable="yes">Search</property>
@@ -102,7 +101,6 @@
                         <child>
                           <object class="GtkStackPage">
                             <property name="name">spinner</property>
-                            <property name="title">spinner</property>
                             <property name="child">
                               <object class="GtkSpinner">
                                 <property name="spinning">true</property>

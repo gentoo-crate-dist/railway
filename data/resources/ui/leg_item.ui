@@ -180,9 +180,9 @@
                     <child>
                       <object class="GtkToggleButton" id="stopover_button">
                         <accessibility>
-                          <property name="label" translatable="true">Show Stopovers</property>
+                          <property name="label" translatable="yes">Show Stopovers</property>
                         </accessibility>
-                        <property name="tooltip-text" translatable="true">Show Stopovers in Between</property>
+                        <property name="tooltip-text" translatable="yes">Show Stopovers in Between</property>
 
                         <property name="hexpand">True</property>
                         <property name="halign">start</property>
@@ -255,10 +255,10 @@
                         <child>
                           <object class="GtkToggleButton" id="remarks_button">
                             <accessibility>
-                              <property name="label" translatable="true">Show Announcements</property>
+                              <property name="label" translatable="yes">Show Announcements</property>
                               <relation name="controls">box_remarks</relation>
                             </accessibility>
-                            <property name="tooltip-text" translatable="true">Show Announcements</property>
+                            <property name="tooltip-text" translatable="yes">Show Announcements</property>
 
                             <property name="valign">center</property>
                             <property name="halign">end</property>

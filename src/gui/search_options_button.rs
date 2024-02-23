@@ -182,8 +182,9 @@ pub mod imp {
 
                     let types_string = if regional.iter().all(|b| *b) && ic.iter().all(|b| *b) {
                         None
-                    } else if regional.iter().all(|b| *b) && ic.iter().all(|b| !*b) { // TODO: Germany specific, only display for networks there
+                    } else if regional.iter().all(|b| *b) && ic.iter().all(|b| !*b) {
                         Some(gettextrs::gettext("Regional Only"))
+                        // TODO: Germany specific, only display for networks there
                     } else {
                         Some(gettextrs::gettext("Selected Modes of Transport"))
                     };
