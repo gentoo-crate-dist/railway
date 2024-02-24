@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-23 23:29+0100\n"
-"PO-Revision-Date: 2024-02-16 20:02+0000\n"
+"PO-Revision-Date: 2024-02-25 14:02+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -44,9 +44,8 @@ msgid "Total Travel Time"
 msgstr "Totale reistijd"
 
 #: data/resources/ui/journey_detail_page.ui:100
-#, fuzzy
 msgid "Trip Segments"
-msgstr "Reisinformatie"
+msgstr "Rit­segmenten"
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
@@ -69,14 +68,12 @@ msgid "Show Announcements"
 msgstr "Aankondigingen tonen"
 
 #: data/resources/ui/leg_item.ui:283
-#, fuzzy
 msgid "Announcements"
-msgstr "Aankondigingen tonen"
+msgstr "Aankondigingen"
 
 #: data/resources/ui/leg_item.ui:315
-#, fuzzy
 msgid "Stopovers"
-msgstr "Haltes tonen"
+msgstr "Haltes"
 
 #: data/resources/ui/preferences_window.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
@@ -84,24 +81,23 @@ msgstr "Algemeen"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "Oude blad­wijzers auto­matisch verwijderen"
 
 #: data/resources/ui/preferences_window.ui:17
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "Eerdere ritten worden slechts een bepaalde periode bewaard"
 
 #: data/resources/ui/preferences_window.ui:23
 msgid "Preservation Time For Trips"
-msgstr ""
+msgstr "Bewaar­tijd voor ritten"
 
 #: data/resources/ui/preferences_window.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "Hoe lang ritten na aankomst moeten worden bewaard"
 
 #: data/resources/ui/provider_popover.ui:20
-#, fuzzy
 msgid "Search Networks…"
-msgstr "Netwerk selecteren"
+msgstr "Netwerken zoeken…"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
@@ -202,56 +198,48 @@ msgid "Search"
 msgstr "Zoeken"
 
 #: data/resources/ui/search_page.ui:120
-#, fuzzy
 msgid "Bookmarked Trips"
-msgstr "Deze rit opslaan"
+msgstr "Opgeslagen ritten"
 
 #: data/resources/ui/search_page.ui:134
-#, fuzzy
 msgid "Bookmarked Searches"
-msgstr "Zoekresultaat opslaan"
+msgstr "Opgeslagen zoek­opdrachten"
 
 #: data/resources/ui/shortcuts.ui:9
 msgid "Application"
-msgstr ""
+msgstr "App"
 
 #: data/resources/ui/shortcuts.ui:13
-#, fuzzy
 msgid "Bookmark Search"
-msgstr "Zoekresultaat opslaan"
+msgstr "Zoek­opdracht opslaan"
 
 #: data/resources/ui/shortcuts.ui:19
-#, fuzzy
 msgid "Bookmark Trip"
-msgstr "Deze rit opslaan"
+msgstr "Rit opslaan"
 
 #: data/resources/ui/shortcuts.ui:25
 msgid "Reload Trip"
-msgstr ""
+msgstr "Rit herladen"
 
 #: data/resources/ui/shortcuts.ui:36
 msgid "Quit"
-msgstr ""
+msgstr "Afsluiten"
 
 #: data/resources/ui/shortcuts.ui:42
-#, fuzzy
 msgid "Show Shortcuts"
-msgstr "Snel­toetsen"
+msgstr "Snel­toetsen tonen"
 
 #: data/resources/ui/shortcuts.ui:48
-#, fuzzy
 msgid "Show Preferences"
-msgstr "Voorkeuren"
+msgstr "Voorkeuren tonen"
 
 #: data/resources/ui/shortcuts.ui:54
-#, fuzzy
 msgid "Open Menu"
-msgstr "Hoofdmenu"
+msgstr "Menu openen"
 
 #: data/resources/ui/station_entry.ui:19
-#, fuzzy
 msgid "Swap Start and Destination"
-msgstr "Start en bestemming ontbreken"
+msgstr "Start en bestemming omwisselen"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
 msgid "Select Network"
@@ -294,7 +282,6 @@ msgid "_About Railway"
 msgstr "_Over Railway"
 
 #: data/resources/ui/refresh_button.ui:24
-#, fuzzy
 msgid "Refresh Trip"
 msgstr "Rit verversen"
 
@@ -365,26 +352,24 @@ msgstr "nl"
 
 #: src/gui/journey_detail_page.rs:97
 msgid "Last refreshed {}"
-msgstr ""
+msgstr "{} geleden verversd"
 
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:90
 msgid "Arrive at {destination}."
-msgstr ""
+msgstr "Aankomst op {destination}"
 
 #: src/gui/transition.rs:212
 msgid "Walk {walk} Wait {wait}"
-msgstr ""
+msgstr "Loop {walk}, wacht {wait}"
 
 #: src/gui/transition.rs:217
-#, fuzzy
 msgid "Transfer Time {}"
-msgstr "Minimale overstaptijd"
+msgstr "{} overstap­tijd"
 
 #: src/gui/transition.rs:221
-#, fuzzy
 msgid "Walk {}"
-msgstr "Wandelen"
+msgstr "Lopen {}"
 
 #: src/gui/transition.rs:224
 msgid "Transfer"
@@ -393,41 +378,39 @@ msgstr "Overstap"
 #. Translators: duration in minutes, standalone or tabular setting, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:59 src/gui/search_options_window.rs:231
 msgid "{}\\u{202F}min"
-msgstr ""
+msgstr "{}\\u{202F}min."
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:67
 msgid "%_H\\u{202F}h %_M\\u{202F}min"
-msgstr ""
+msgstr "%-H\\u{202F}uur en %-M\\u{202F}min."
 
 #: src/gui/utility.rs:78
-#, fuzzy
 msgid " %_d day %_H\\u{202F}h %_M\\u{202F}min"
 msgid_plural "%_d days %_H\\u{202F}h %_M\\u{202F}min"
-msgstr[0] "%_d dag, %_H uur en %_M min."
-msgstr[1] "%_d dagen, %_H uur en %_M min."
+msgstr[0] " %-d dag, %-H uur en %-M min."
+msgstr[1] "%-d dagen, %-H uur en %-M min."
 
 #. Translators: duration in minutes, embedded in text, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:89
 msgid "{}\\u{202F}min."
-msgstr ""
+msgstr "{}\\u{202F}min."
 
 #. Translators: duration in hours, embedded in text, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:93
 msgid "{}\\u{202F}hrs."
-msgstr ""
+msgstr "{}\\u{202F}uur"
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:101
 msgid "%-H\\u{202F}hrs. %-M\\u{202F}min."
-msgstr ""
+msgstr "%-H\\u{202F}uur en %-M\\u{202F}min."
 
 #: src/gui/utility.rs:113
-#, fuzzy
 msgid "%-d day %-H\\u{202F}hrs. %-M\\u{202F}min."
 msgid_plural "%-d days %-H\\u{202F}hrs. %-M\\u{202F}min."
-msgstr[0] "%_d dag, %_H uur en %_M min."
-msgstr[1] "%_d dagen, %_H uur en %_M min."
+msgstr[0] "%-d dag, %-H uur en %-M min."
+msgstr[1] "%-d dagen, %-H uur en %-M min."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:123
@@ -459,8 +442,8 @@ msgstr "%d %m %Y"
 #: src/gui/preferences_window.rs:62
 msgid "{}\\u{202F}h"
 msgid_plural "{}\\u{202F}h"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{}\\u{202F}uur"
+msgstr[1] "{}\\u{202F}uur"
 
 #: src/gui/search_options_button.rs:74
 msgid "None"
@@ -544,7 +527,6 @@ msgid "Received an error. Please share feedback."
 msgstr "Fout ontvangen; deel dit alstublieft met ons."
 
 #: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
-#, fuzzy
 msgid "More Information"
 msgstr "Meer informatie"
 
@@ -567,20 +549,20 @@ msgstr "_Sluiten"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:105
-#, fuzzy, c-format
+#, c-format
 msgid "%a %b %d"
-msgstr "%a %d %b"
+msgstr "%a %-d %b"
 
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
 msgid_plural "{} changes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} wijziging"
+msgstr[1] "{} wijzigingen"
 
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
 msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr ""
+msgstr "Van {departure} tot {arrival} in {travel_time} met {changes_text}"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:77
@@ -590,39 +572,38 @@ msgstr "{train} naar {destination}"
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:86
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr ""
+msgstr "Vertrek {start} van platform {platform} om {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:89
 msgid "Depart {start} at {departure}."
-msgstr ""
+msgstr "Vertrek {start} om {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr ""
+msgstr "Aankomst op {destination} op platform {platform} om {arrival}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:97
 msgid "Arrive at {destination} at {arrival}."
-msgstr ""
+msgstr "Aankomst op {destination} om {arrival}."
 
 #: src/gui/leg_item.rs:220
-#, fuzzy
 msgid "{} Stopover"
 msgid_plural "{} Stopovers"
-msgstr[0] "{} tussenstop"
-msgstr[1] "{} tussenstops"
+msgstr[0] "{} halte"
+msgstr[1] "{} haltes"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
 msgid "{stop} at {arrival} on platform {platform}"
-msgstr ""
+msgstr "{stop} om {arrival} op platform {platform}"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:65
 msgid "{stop} at {arrival}"
-msgstr ""
+msgstr "{stop} om {arrival}"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:173
@@ -638,7 +619,7 @@ msgstr "Bron­vertaling ondersteund door"
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
 msgid "every ~{}"
-msgstr ""
+msgstr "elke ~{}"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
