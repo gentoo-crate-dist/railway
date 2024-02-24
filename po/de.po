@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-23 23:29+0100\n"
-"PO-Revision-Date: 2024-02-08 11:01+0000\n"
+"PO-Revision-Date: 2024-02-25 14:02+0000\n"
 "Last-Translator: Markus Göllnitz <camelcasenick@bewares.it>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -366,7 +366,7 @@ msgstr "{walk} Fußweg, {wait} Wartezeit"
 
 #: src/gui/transition.rs:217
 msgid "Transfer Time {}"
-msgstr "Umstiegszeit {}"
+msgstr "{} Umstiegszeit"
 
 #: src/gui/transition.rs:221
 msgid "Walk {}"
@@ -599,7 +599,7 @@ msgstr[1] "{} Zwischenhalte"
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
 msgid "{stop} at {arrival} on platform {platform}"
-msgstr ""
+msgstr "{stop} an Plattform {platform} um {arrival}"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
