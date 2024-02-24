@@ -44,9 +44,8 @@ msgid "Total Travel Time"
 msgstr "Total restid"
 
 #: data/resources/ui/journey_detail_page.ui:100
-#, fuzzy
 msgid "Trip Segments"
-msgstr "Detaljer om resan"
+msgstr "Resesegment"
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
@@ -69,14 +68,12 @@ msgid "Show Announcements"
 msgstr "Visa meddelanden"
 
 #: data/resources/ui/leg_item.ui:283
-#, fuzzy
 msgid "Announcements"
-msgstr "Visa meddelanden"
+msgstr "Meddelanden"
 
 #: data/resources/ui/leg_item.ui:315
-#, fuzzy
 msgid "Stopovers"
-msgstr "Visa mellanlandningar"
+msgstr "Mellanlandningar"
 
 #: data/resources/ui/preferences_window.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
@@ -84,24 +81,23 @@ msgstr "Allmänt"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "Ta bort gamla bokmärken automatiskt"
 
 #: data/resources/ui/preferences_window.ui:17
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "Tidigare resor sparas endast under en viss tid"
 
 #: data/resources/ui/preferences_window.ui:23
 msgid "Preservation Time For Trips"
-msgstr ""
+msgstr "Tid för bevarande av resor"
 
 #: data/resources/ui/preferences_window.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "Hur länge ska resor behållas efter ankomst"
 
 #: data/resources/ui/provider_popover.ui:20
-#, fuzzy
 msgid "Search Networks…"
-msgstr "Välj nätverk"
+msgstr "Sök nätverk…"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
@@ -202,56 +198,48 @@ msgid "Search"
 msgstr "Sök"
 
 #: data/resources/ui/search_page.ui:120
-#, fuzzy
 msgid "Bookmarked Trips"
-msgstr "Bokmärk denna resa"
+msgstr "Bokmärkta resor"
 
 #: data/resources/ui/search_page.ui:134
-#, fuzzy
 msgid "Bookmarked Searches"
-msgstr "Bokmärk denna sökningen"
+msgstr "Bokmärkta sökningar"
 
 #: data/resources/ui/shortcuts.ui:9
 msgid "Application"
-msgstr ""
+msgstr "Applikation"
 
 #: data/resources/ui/shortcuts.ui:13
-#, fuzzy
 msgid "Bookmark Search"
-msgstr "Bokmärk denna sökningen"
+msgstr "Bokmärkessökning"
 
 #: data/resources/ui/shortcuts.ui:19
-#, fuzzy
 msgid "Bookmark Trip"
-msgstr "Bokmärk denna resa"
+msgstr "Bokmärk resa"
 
 #: data/resources/ui/shortcuts.ui:25
 msgid "Reload Trip"
-msgstr ""
+msgstr "Ladda om resa"
 
 #: data/resources/ui/shortcuts.ui:36
 msgid "Quit"
-msgstr ""
+msgstr "Avsluta"
 
 #: data/resources/ui/shortcuts.ui:42
-#, fuzzy
 msgid "Show Shortcuts"
-msgstr "Tangentbordsgenvägar"
+msgstr "Visa genvägar"
 
 #: data/resources/ui/shortcuts.ui:48
-#, fuzzy
 msgid "Show Preferences"
-msgstr "Inställningar"
+msgstr "Visa inställningar"
 
 #: data/resources/ui/shortcuts.ui:54
-#, fuzzy
 msgid "Open Menu"
-msgstr "Huvudmeny"
+msgstr "Öppna meny"
 
-#: data/resources/ui/station_entry.ui:19
-#, fuzzy
+#: data/resources/ui/station_entry.ui:16
 msgid "Swap Start and Destination"
-msgstr "Start och destination saknas"
+msgstr "Växla start och destination"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
 msgid "Select Network"
@@ -294,9 +282,8 @@ msgid "_About Railway"
 msgstr "_Om Järnväg"
 
 #: data/resources/ui/refresh_button.ui:24
-#, fuzzy
 msgid "Refresh Trip"
-msgstr "Uppdatera denna resa"
+msgstr "Uppdatera resa"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
@@ -365,26 +352,24 @@ msgstr "språk"
 
 #: src/gui/journey_detail_page.rs:97
 msgid "Last refreshed {}"
-msgstr ""
+msgstr "Senast uppdaterad {}"
 
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:90
 msgid "Arrive at {destination}."
-msgstr ""
+msgstr "Anländer till {destination}."
 
 #: src/gui/transition.rs:212
 msgid "Walk {walk} Wait {wait}"
-msgstr ""
+msgstr "Gå {walk} Vänta {wait}"
 
 #: src/gui/transition.rs:217
-#, fuzzy
 msgid "Transfer Time {}"
-msgstr "Minsta transfertid"
+msgstr "Transfertid {}"
 
 #: src/gui/transition.rs:221
-#, fuzzy
 msgid "Walk {}"
-msgstr "Gå"
+msgstr "Gå {}"
 
 #: src/gui/transition.rs:224
 msgid "Transfer"
@@ -393,41 +378,39 @@ msgstr "Transfer"
 #. Translators: duration in minutes, standalone or tabular setting, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:59 src/gui/search_options_window.rs:231
 msgid "{}\\u{202F}min"
-msgstr ""
+msgstr "{}\\u{202F}min"
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:67
 msgid "%_H\\u{202F}h %_M\\u{202F}min"
-msgstr ""
+msgstr "%_T\\u{202F}h %_M\\u{202F}min"
 
 #: src/gui/utility.rs:78
-#, fuzzy
 msgid " %_d day %_H\\u{202F}h %_M\\u{202F}min"
 msgid_plural "%_d days %_H\\u{202F}h %_M\\u{202F}min"
-msgstr[0] "%_d dag %_H tim. %_M min."
-msgstr[1] "%_d dagar %_H timmar. %_M min."
+msgstr[0] " %_d dag %_T\\u{202F}h %_M\\u{202F}min"
+msgstr[1] "%_d dagar %_T\\u{202F}h %_M\\u{202F}min"
 
 #. Translators: duration in minutes, embedded in text, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:89
 msgid "{}\\u{202F}min."
-msgstr ""
+msgstr "{}\\u{202F}min."
 
 #. Translators: duration in hours, embedded in text, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:93
 msgid "{}\\u{202F}hrs."
-msgstr ""
+msgstr "{}\\u{202F}timmar."
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:101
 msgid "%-H\\u{202F}hrs. %-M\\u{202F}min."
-msgstr ""
+msgstr "%-T\\u{202F}timmar. %-M\\u{202F}min."
 
 #: src/gui/utility.rs:113
-#, fuzzy
 msgid "%-d day %-H\\u{202F}hrs. %-M\\u{202F}min."
 msgid_plural "%-d days %-H\\u{202F}hrs. %-M\\u{202F}min."
-msgstr[0] "%_d dag %_H tim. %_M min."
-msgstr[1] "%_d dagar %_H timmar. %_M min."
+msgstr[0] "%-d dag %-T\\u{202F}timme %-M\\u{202F}min."
+msgstr[1] "%-d dagar %-T\\u{202F}timmar. %-M\\u{202F}minuter."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:123
@@ -459,8 +442,8 @@ msgstr "%Y-%m-%d"
 #: src/gui/preferences_window.rs:62
 msgid "{}\\u{202F}h"
 msgid_plural "{}\\u{202F}h"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{}\\u{202F}t"
+msgstr[1] "{}\\u{202F}t"
 
 #: src/gui/search_options_button.rs:74
 msgid "None"
@@ -543,7 +526,6 @@ msgid "Received an error. Please share feedback."
 msgstr "Fick ett fel. Vänligen dela feedback."
 
 #: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
-#, fuzzy
 msgid "More Information"
 msgstr "Mer information"
 
@@ -573,13 +555,13 @@ msgstr "%a %b %d"
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
 msgid_plural "{} changes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} byte"
+msgstr[1] "{} byten"
 
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
 msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr ""
+msgstr "Från {departure} till {arrival} om {travel_time} med {changes_text}"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:77
@@ -589,29 +571,28 @@ msgstr "{train} i riktning mot {destination}"
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:86
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr ""
+msgstr "Avresa {start} från plattform {platform} vid {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:89
 msgid "Depart {start} at {departure}."
-msgstr ""
+msgstr "Avresa {start} vid {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr ""
+msgstr "Ankomst till {destination} på plattform {platform} vid {arrival}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:97
 msgid "Arrive at {destination} at {arrival}."
-msgstr ""
+msgstr "Ankomst till {destination} vid {arrival}."
 
 #: src/gui/leg_item.rs:220
-#, fuzzy
 msgid "{} Stopover"
 msgid_plural "{} Stopovers"
-msgstr[0] "{} mellanlandning"
-msgstr[1] "{} mellanlandningar"
+msgstr[0] "{} Mellanlandning"
+msgstr[1] "{} Mellanlandningar"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
@@ -619,9 +600,9 @@ msgid "{stop} at {arrival} on platform {platform}"
 msgstr ""
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
-#: src/gui/stopover_item.rs:65
+#: src/gui/stopover_item.rs:62
 msgid "{stop} at {arrival}"
-msgstr ""
+msgstr "{stop} vid {arrival}"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:173
@@ -635,7 +616,7 @@ msgstr "Källöversättning som stöds av"
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
 msgid "every ~{}"
-msgstr ""
+msgstr "varje ~{}"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
