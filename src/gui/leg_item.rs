@@ -22,6 +22,7 @@ impl LegItem {
 pub mod imp {
     use std::cell::RefCell;
 
+    use gdk::glib::JoinHandle;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
@@ -31,15 +32,12 @@ pub mod imp {
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use gtk::DirectionType;
-    use gtk::SizeGroup;
-    use gtk::SizeGroupMode;
     use once_cell::sync::Lazy;
 
     use crate::backend::Leg;
     use crate::backend::Place;
     use crate::backend::Remark;
     use crate::backend::Stopover;
-    use crate::gui::alt_label::AltLabel;
     use crate::gui::remark_item::RemarkItem;
     use crate::gui::stopover_item::StopoverItem;
     use crate::gui::utility::Utility;
@@ -52,21 +50,19 @@ pub mod imp {
         #[template_child]
         box_remarks: TemplateChild<gtk::Box>,
         #[template_child]
+        reveal_stopovers: TemplateChild<gtk::Revealer>,
+        #[template_child]
         label_num_stopovers: TemplateChild<gtk::Label>,
         #[template_child]
         stopover_button: TemplateChild<gtk::ToggleButton>,
         #[template_child]
         remarks_button: TemplateChild<gtk::ToggleButton>,
         #[template_child]
-        start_departure_label: TemplateChild<AltLabel>,
-        #[template_child]
-        destination_arrival_label: TemplateChild<AltLabel>,
-        #[template_child]
-        spacing_1: TemplateChild<libadwaita::Bin>,
-        #[template_child]
-        spacing_2: TemplateChild<libadwaita::Bin>,
+        size_group: TemplateChild<gtk::SizeGroup>,
 
         leg: RefCell<Option<Leg>>,
+
+        load_handle: RefCell<Option<JoinHandle<()>>>,
     }
 
     #[gtk::template_callbacks]
@@ -80,32 +76,144 @@ pub mod imp {
                 .replace("{destination}", destination)
         }
 
-        fn format_trip_segment_description(start: &str, departure: &str, platform_start: &Option<String>, destination: &str, arrival: &str, platform_destination: &Option<String>) -> String {
+        fn format_trip_segment_description(
+            start: &str,
+            departure: &str,
+            platform_start: &Option<String>,
+            destination: &str,
+            arrival: &str,
+            platform_destination: &Option<String>,
+        ) -> String {
             let format_departure = match platform_start {
-                Some(_) => { // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+                Some(_) => {
+                    // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
                     gettextrs::gettext("Depart {start} from platform {platform} at {departure}.")
                 }
-                None => { // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+                None => {
+                    // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
                     gettextrs::gettext("Depart {start} at {departure}.")
                 }
             };
             let format_arrival = match platform_destination {
-                Some(_) => { // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-                    gettextrs::gettext("Arrive at {destination} on platform {platform} at {arrival}.")
+                Some(_) => {
+                    // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+                    gettextrs::gettext(
+                        "Arrive at {destination} on platform {platform} at {arrival}.",
+                    )
                 }
-                None => { // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+                None => {
+                    // Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
                     gettextrs::gettext("Arrive at {destination} at {arrival}.")
                 }
             };
-            format!("{} {}", format_departure
-                .replace("{start}", start)
-                .replace("{departure}", departure)
-                // uses fact that None format does not include "{platform}"
-                .replace("{platform}", &platform_start.as_ref().unwrap_or(&"".to_string())), format_arrival
-                .replace("{destination}", destination)
-                .replace("{arrival}", arrival)
-                // uses fact that None format does not include "{platform}"
-                .replace("{platform}", &platform_destination.as_ref().unwrap_or(&"".to_string())))
+            format!(
+                "{} {}",
+                format_departure
+                    .replace("{start}", start)
+                    .replace("{departure}", departure)
+                    // uses fact that None format does not include "{platform}"
+                    .replace(
+                        "{platform}",
+                        &platform_start.as_ref().unwrap_or(&"".to_string())
+                    ),
+                format_arrival
+                    .replace("{destination}", destination)
+                    .replace("{arrival}", arrival)
+                    // uses fact that None format does not include "{platform}"
+                    .replace(
+                        "{platform}",
+                        &platform_destination.as_ref().unwrap_or(&"".to_string())
+                    )
+            )
+        }
+
+        fn setup_sync(&self) {
+            let (n_stopovers, remarks) = {
+                let obj = self.leg.borrow();
+                let n_stopovers = obj
+                    .as_ref()
+                    .and_then(|j| j.leg().stopovers)
+                    .map(|s| s.len() - 2)
+                    .unwrap_or_default();
+                let remarks = obj
+                    .as_ref()
+                    .and_then(|j| j.leg().remarks)
+                    .unwrap_or_default();
+                (n_stopovers, remarks)
+            };
+
+            if n_stopovers > 0 {
+                self.stopover_button.set_visible(true);
+                let num_stopovers_fmt = gettextrs::ngettext(
+                    "{} Stopover",
+                    "{} Stopovers",
+                    n_stopovers.try_into().unwrap(),
+                );
+                let num_stopovers_str = num_stopovers_fmt.replace("{}", &n_stopovers.to_string());
+                self.label_num_stopovers.set_label(&num_stopovers_str);
+            } else {
+                self.stopover_button.set_visible(false);
+            }
+
+            // Clear box_remarks
+            while let Some(child) = self.box_remarks.first_child() {
+                self.box_remarks.remove(&child);
+            }
+
+            // Fill box_remarks
+            self.remarks_button.set_visible(!remarks.is_empty());
+            for remark in remarks {
+                self.box_remarks
+                    .append(&RemarkItem::new(&Remark::new(remark.clone())));
+            }
+        }
+
+        async fn setup_async(&self) {
+            let stopovers = {
+                let obj = self.leg.borrow();
+                let mut stopovers = obj
+                    .as_ref()
+                    .and_then(|j| j.leg().stopovers)
+                    .unwrap_or_default();
+                // Remove start and end. These are already shown as origin and destination.
+                if !stopovers.is_empty() {
+                    stopovers.pop();
+                }
+                if !stopovers.is_empty() {
+                    stopovers.remove(0);
+                }
+                stopovers
+            };
+
+            let size_group = &self.size_group;
+
+            let load_stopovers_async = !self.reveal_stopovers.is_child_revealed();
+
+            let mut current_child = self.box_stopovers.first_child();
+            let mut i = 0;
+            // Fill box_legs
+            while i < stopovers.len() {
+                if load_stopovers_async {
+                    // Even though we are in glib runtime now, `yield_now` is runtime-agnostic and also seems to work with glib.
+                    tokio::task::yield_now().await;
+                }
+
+                let stopover = Stopover::new(stopovers[i].clone());
+                // Check if current child can be reused.
+                if let Some(child) = current_child.and_downcast_ref::<StopoverItem>() {
+                    child.set_property("stopover", stopover);
+                } else {
+                    let widget = StopoverItem::new(&stopover);
+                    self.box_stopovers.append(&widget);
+                    size_group.add_widget(&widget.arrival_label());
+                }
+                current_child = current_child.and_then(|c| c.next_sibling());
+                i += 1;
+            }
+            while let Some(c) = current_child {
+                current_child = c.next_sibling();
+                self.box_stopovers.remove(&c);
+            }
         }
     }
 
@@ -135,8 +243,8 @@ pub mod imp {
                 let origin = leg.property::<Place>("origin");
                 let destination = leg.property::<Place>("destination");
 
-                leg_item.update_property(&[
-                    gtk::accessible::Property::Description(&LegItem::format_trip_segment_description(
+                leg_item.update_property(&[gtk::accessible::Property::Description(
+                    &LegItem::format_trip_segment_description(
                         &origin.name().expect("origin of leg must be set"),
                         &leg.property::<Option<String>>("departure")
                             .or(leg.property::<Option<String>>("planned-departure"))
@@ -149,8 +257,8 @@ pub mod imp {
                             .unwrap_or("".to_string()),
                         &leg.property::<Option<String>>("arrival-platform")
                             .or(leg.property::<Option<String>>("planned-arrival-platform")),
-                    ))
-                ]);
+                    ),
+                )]);
             });
         }
 
@@ -167,68 +275,22 @@ pub mod imp {
                         .get::<Option<Leg>>()
                         .expect("Property `leg` of `LegItem` has to be of type `Leg`");
 
-                    // Clear box_legs
-                    while let Some(child) = self.box_stopovers.first_child() {
-                        self.box_stopovers.remove(&child);
-                    }
-                    // Clear box_remarks
-                    while let Some(child) = self.box_remarks.first_child() {
-                        self.box_remarks.remove(&child);
-                    }
-
-                    let mut stopovers = obj
-                        .as_ref()
-                        .and_then(|j| j.leg().stopovers)
-                        .unwrap_or_default();
-                    let remarks = obj
-                        .as_ref()
-                        .and_then(|j| j.leg().remarks)
-                        .unwrap_or_default();
-                    // Remove start and end. These are already shown as origin and destination.
-                    if !stopovers.is_empty() {
-                        stopovers.pop();
-                    }
-                    if !stopovers.is_empty() {
-                        stopovers.remove(0);
-                    }
-
-                    let size_group = SizeGroup::new(SizeGroupMode::Horizontal);
-
-                    size_group.add_widget(&self.start_departure_label.get());
-                    size_group.add_widget(&self.destination_arrival_label.get());
-                    size_group.add_widget(&self.spacing_1.get());
-                    size_group.add_widget(&self.spacing_2.get());
-
-                    // Fill box_legs
-                    for stopover in &stopovers {
-                        let widget = StopoverItem::new(&Stopover::new(stopover.clone()));
-                        self.box_stopovers.append(&widget);
-                        size_group.add_widget(&widget.arrival_label());
-                    }
-
-                    // Fill box_remarks
-                    self.remarks_button.set_visible(!remarks.is_empty());
-                    for remark in remarks {
-                        self.box_remarks
-                            .append(&RemarkItem::new(&Remark::new(remark.clone())));
-                    }
-
-                    let n_stopovers = stopovers.len();
-                    if n_stopovers > 0 {
-                        self.stopover_button.set_visible(true);
-                        let num_stopovers_fmt = gettextrs::ngettext(
-                            "{} Stopover",
-                            "{} Stopovers",
-                            n_stopovers.try_into().unwrap(),
-                        );
-                        let num_stopovers_str =
-                            num_stopovers_fmt.replace("{}", &n_stopovers.to_string());
-                        self.label_num_stopovers.set_label(&num_stopovers_str);
-                    } else {
-                        self.stopover_button.set_visible(false);
-                    }
-
                     self.leg.replace(obj);
+                    // Ensure the load is not called twice at the same time by aborting the old one if needed.
+                    if let Some(handle) = self.load_handle.replace(None) {
+                        handle.abort();
+                    }
+
+                    let o = self.obj().clone();
+                    // First, setup sync UI which can change the layout.
+                    o.imp().setup_sync();
+                    // Afterwards, asynchronously add information which will not change the layout.
+                    let handle = gspawn!(
+                        async move { o.imp().setup_async().await },
+                        glib::Priority::LOW
+                    );
+
+                    self.load_handle.replace(Some(handle));
                 }
                 _ => unimplemented!(),
             }
