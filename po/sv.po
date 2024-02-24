@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-23 23:29+0100\n"
-"PO-Revision-Date: 2024-02-08 11:01+0000\n"
+"PO-Revision-Date: 2024-02-25 14:02+0000\n"
 "Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/sv/>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -597,7 +597,7 @@ msgstr[1] "{} Mellanlandningar"
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
 msgid "{stop} at {arrival} on platform {platform}"
-msgstr ""
+msgstr "{stop} vid {arrival} på plattform {platform}"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
