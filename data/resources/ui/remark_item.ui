@@ -4,6 +4,9 @@
   <requires lib="libadwaita" version="1.0"/>
 
   <template class="DBRemarkItem" parent="GtkBox">
+    <style>
+      <class name="dim-label"/>
+    </style>
     <property name="accessible-role">list-item</property>
     <accessibility>
       <relation name="labelled-by">announcement_label</relation>
@@ -22,13 +25,11 @@
           </lookup>
         </binding>
         <property name="valign">start</property>
+        <property name="margin-top">1</property>
       </object>
     </child>
     <child>
       <object class="GtkLabel" id="announcement_label">
-        <style>
-          <class name="dim-label"/>
-        </style>
         <property name="wrap">True</property>
         <property name="wrap-mode">word</property>
         <binding name="label">
