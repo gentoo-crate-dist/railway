@@ -46,6 +46,10 @@ AnnouncementItem:focus image {
   color: @accent_color;
 }
 
+AnnouncementItem:focus {
+  opacity: 1;
+}
+
 .overlay-spinner {
   border-radius: 50%;
   padding: 6px;
