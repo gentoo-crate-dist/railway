@@ -228,7 +228,8 @@ pub mod imp {
 
         #[template_callback]
         fn handle_transfer_time_output(&self, s: libadwaita::SpinRow) -> bool {
-            s.set_text(&gettextrs::gettext("{}\u{202F}min").replace("{}", &s.value().to_string()));
+            // Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
+            s.set_text(&gettextrs::gettext("{} min").replace("{}", &s.value().to_string()));
             true
         }
     }
