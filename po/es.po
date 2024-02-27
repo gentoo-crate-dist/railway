@@ -40,14 +40,12 @@ msgid "Now"
 msgstr "Ahora"
 
 #: data/resources/ui/journey_detail_page.ui:80
-#, fuzzy
 msgid "Total Travel Time"
-msgstr "Duración del viaje"
+msgstr "Duración total del viaje"
 
 #: data/resources/ui/journey_detail_page.ui:100
-#, fuzzy
 msgid "Trip Segments"
-msgstr "Información del viaje"
+msgstr "Tramos del viaje"
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
@@ -58,9 +56,8 @@ msgid "Search for Trips"
 msgstr "Buscar viajes"
 
 #: data/resources/ui/leg_item.ui:183
-#, fuzzy
 msgid "Show Stopovers"
-msgstr "Paradas abiertas"
+msgstr "Mostrar escalas"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Stopovers in Between"
@@ -245,7 +242,7 @@ msgstr "Ajustes"
 msgid "Open Menu"
 msgstr ""
 
-#: data/resources/ui/station_entry.ui:16
+#: data/resources/ui/station_entry.ui:16 data/resources/ui/station_entry.ui:19
 msgid "Swap Start and Destination"
 msgstr ""
 
@@ -701,6 +698,51 @@ msgstr "Austria"
 msgid "Walk"
 msgstr "Caminar"
 
+#. Translators: duration in minutes, standalone or tabular setting, {} must not be translated as it will be replaced with an actual number
+#: src/gui/utility.rs:59 src/gui/search_options_window.rs:231
+msgid "{}\\u{202F}min"
+msgstr ""
+
+#. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:67
+msgid "%_H\\u{202F}h %_M\\u{202F}min"
+msgstr ""
+
+#: src/gui/utility.rs:78
+#, fuzzy
+msgid " %_d day %_H\\u{202F}h %_M\\u{202F}min"
+msgid_plural "%_d days %_H\\u{202F}h %_M\\u{202F}min"
+msgstr[0] "%_d día %_H hora %_M minuto"
+msgstr[1] "%_d días %_H horas %_M minutos"
+
+#. Translators: duration in minutes, embedded in text, {} must not be translated as it will be replaced with an actual number
+#: src/gui/utility.rs:89
+msgid "{}\\u{202F}min."
+msgstr ""
+
+#. Translators: duration in hours, embedded in text, {} must not be translated as it will be replaced with an actual number
+#: src/gui/utility.rs:93
+msgid "{}\\u{202F}hrs."
+msgstr ""
+
+#. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:101
+msgid "%-H\\u{202F}hrs. %-M\\u{202F}min."
+msgstr ""
+
+#: src/gui/utility.rs:113
+#, fuzzy
+msgid "%-d day %-H\\u{202F}hrs. %-M\\u{202F}min."
+msgid_plural "%-d days %-H\\u{202F}hrs. %-M\\u{202F}min."
+msgstr[0] "%_d día %_H hora %_M minuto"
+msgstr[1] "%_d días %_H horas %_M minutos"
+
+#: src/gui/preferences_window.rs:62
+msgid "{}\\u{202F}h"
+msgid_plural "{}\\u{202F}h"
+msgstr[0] ""
+msgstr[1] ""
+
 #~ msgid "Open Remarks"
 #~ msgstr "Abrir observaciones"
 
@@ -742,3 +784,11 @@ msgstr "Caminar"
 
 #~ msgid "{amount} {currency}"
 #~ msgstr "{amount} {currency}"
+
+#, fuzzy
+#~ msgid "{} min."
+#~ msgstr "{} min"
+
+#, fuzzy
+#~ msgid "%_H hrs. %_M min."
+#~ msgstr "%_H hrs %_M min"
