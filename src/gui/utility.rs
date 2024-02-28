@@ -77,7 +77,7 @@ impl Utility {
                 .format(&gettextrs::ngettext(
                     " %_d day %_H h %_M min",
                     "%_d days %_H h %_M min",
-                    duration.num_hours().try_into().unwrap_or_default(),
+                    duration.num_days().try_into().unwrap_or_default(),
                 ))
                 .to_string()
         }
@@ -112,7 +112,7 @@ impl Utility {
                 .format(&gettextrs::ngettext(
                     "%-d day %-H hrs. %-M min.",
                     "%-d days %-H hrs. %-M min.",
-                    duration.num_hours().try_into().unwrap_or_default(),
+                    duration.num_days().try_into().unwrap_or_default(),
                 ))
                 .to_string()
         }
