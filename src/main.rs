@@ -5,10 +5,14 @@ use once_cell::sync::Lazy;
 
 #[macro_export]
 macro_rules! gspawn {
-    ($future:expr) => {
+    ($future:expr) => {{
         let ctx = gtk::glib::MainContext::default();
-        ctx.spawn_local($future);
-    };
+        ctx.spawn_local($future)
+    }};
+    ($future:expr, $priority:expr) => {{
+        let ctx = gtk::glib::MainContext::default();
+        ctx.spawn_local_with_priority($priority, $future)
+    }};
 }
 
 #[macro_export]

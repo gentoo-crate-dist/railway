@@ -303,7 +303,7 @@
         </child>
 
         <child>
-          <object class="GtkRevealer">
+          <object class="GtkRevealer" id="reveal_stopovers">
             <property name="vexpand">False</property>
             <property name="child">
               <object class="GtkBox">
@@ -433,5 +433,15 @@
         </child>
       </object>
     </child>
+
+    <object class="GtkSizeGroup" id="size_group">
+      <property name="mode">horizontal</property>
+      <widgets>
+        <widget name="start_departure_label"/>
+        <widget name="destination_arrival_label"/>
+        <widget name="spacing_1"/>
+        <widget name="spacing_2"/>
+      </widgets>
+    </object>
   </template>
 </interface>
