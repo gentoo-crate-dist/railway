@@ -20,7 +20,7 @@ impl Window {
     pub fn new(app: &libadwaita::Application) -> Self {
         app.set_accels_for_action("win.settings", &["<Control>comma"]);
         app.set_accels_for_action("win.show-help-overlay", &["<Control>question"]);
-        app.set_accels_for_action("window.close", &["<Control>w"]);
+        app.set_accels_for_action("window.close", &["<Control>w", "<Control>q"]);
 
         app.set_accels_for_action("journey-list.bookmark", &["<Control>s"]);
         app.set_accels_for_action("journey-details.bookmark", &["<Control>d"]);
