@@ -21,7 +21,7 @@
             <property name="hexpand">True</property>
 
             <child>
-              <object class="GtkBox">
+              <object class="GtkBox" id="from_time_box">
                 <property name="orientation">horizontal</property>
                 <child>
                   <object class="DBAltLabel" id="from_time">
@@ -231,7 +231,7 @@
     <object class="GtkSizeGroup">
       <property name="mode">vertical</property>
       <widgets>
-        <widget name="from_time"/>
+        <widget name="from_time_box"/>
         <widget name="to_time_box"/>
       </widgets>
     </object>
