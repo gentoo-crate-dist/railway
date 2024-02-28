@@ -57,10 +57,10 @@ pub mod imp {
 
         #[template_callback]
         fn handle_deletion_time_output(&self, s: libadwaita::SpinRow) -> bool {
-            // Translators: duration in hours, standalone in preferences
+            // Translators: duration in hours, standalone in preferences, you might want to use a narrow no-breaking space (U+202F) in front of units
             s.set_text(&gettextrs::ngettext(
-                "{}\u{202F}h",
-                "{}\u{202F}h",
+                "{} h",
+                "{} h",
                 s.value() as u32
             ).replace("{}", &s.value().to_string()));
             true

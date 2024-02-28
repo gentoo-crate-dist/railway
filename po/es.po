@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 23:29+0100\n"
+"POT-Creation-Date: 2024-02-28 03:56+0100\n"
 "PO-Revision-Date: 2024-01-12 18:06+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/schmiddi-on-"
@@ -245,7 +245,7 @@ msgstr "Ajustes"
 msgid "Open Menu"
 msgstr ""
 
-#: data/resources/ui/station_entry.ui:19
+#: data/resources/ui/station_entry.ui:16
 msgid "Swap Start and Destination"
 msgstr ""
 
@@ -397,42 +397,46 @@ msgstr "Caminar"
 msgid "Transfer"
 msgstr ""
 
-#. Translators: duration in minutes, standalone or tabular setting, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:59 src/gui/search_options_window.rs:231
-msgid "{}\\u{202F}min"
+#. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
+#. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
+#: src/gui/utility.rs:59 src/gui/search_options_window.rs:232
+msgid "{} min"
 msgstr ""
 
-#. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:67
-msgid "%_H\\u{202F}h %_M\\u{202F}min"
-msgstr ""
+#, fuzzy
+msgid "%_H h %_M min"
+msgstr "%_H hrs %_M min"
 
 #: src/gui/utility.rs:78
 #, fuzzy
-msgid " %_d day %_H\\u{202F}h %_M\\u{202F}min"
-msgid_plural "%_d days %_H\\u{202F}h %_M\\u{202F}min"
+msgid " %_d day %_H h %_M min"
+msgid_plural "%_d days %_H h %_M min"
 msgstr[0] "%_d día %_H hora %_M minuto"
 msgstr[1] "%_d días %_H horas %_M minutos"
 
-#. Translators: duration in minutes, embedded in text, {} must not be translated as it will be replaced with an actual number
+#. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:89
-msgid "{}\\u{202F}min."
-msgstr ""
+#, fuzzy
+msgid "{} min."
+msgstr "{} min"
 
-#. Translators: duration in hours, embedded in text, {} must not be translated as it will be replaced with an actual number
+#. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:93
-msgid "{}\\u{202F}hrs."
+msgid "{} hrs."
 msgstr ""
 
-#. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:101
-msgid "%-H\\u{202F}hrs. %-M\\u{202F}min."
-msgstr ""
+#, fuzzy
+msgid "%-H hrs. %-M min."
+msgstr "%_H hrs %_M min"
 
 #: src/gui/utility.rs:113
 #, fuzzy
-msgid "%-d day %-H\\u{202F}hrs. %-M\\u{202F}min."
-msgid_plural "%-d days %-H\\u{202F}hrs. %-M\\u{202F}min."
+msgid "%-d day %-H hrs. %-M min."
+msgid_plural "%-d days %-H hrs. %-M min."
 msgstr[0] "%_d día %_H hora %_M minuto"
 msgstr[1] "%_d días %_H horas %_M minutos"
 
@@ -464,8 +468,8 @@ msgid "%Y-%m-%d"
 msgstr "%d %m %Y"
 
 #: src/gui/preferences_window.rs:62
-msgid "{}\\u{202F}h"
-msgid_plural "{}\\u{202F}h"
+msgid "{} h"
+msgid_plural "{} h"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -696,14 +700,6 @@ msgstr "Austria"
 #: src/backend/leg.rs:129
 msgid "Walk"
 msgstr "Caminar"
-
-#, fuzzy
-#~ msgid "{} min."
-#~ msgstr "{} min"
-
-#, fuzzy
-#~ msgid "%_H hrs. %_M min."
-#~ msgstr "%_H hrs %_M min"
 
 #~ msgid "Open Remarks"
 #~ msgstr "Abrir observaciones"
