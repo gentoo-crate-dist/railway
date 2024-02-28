@@ -238,6 +238,10 @@ pub mod imp {
 
         #[template_callback]
         fn handle_search_page(&self, journeys_result: JourneysResult) {
+            journeys_result.set_selected(
+                self.journey_detail_page
+                    .property::<Option<Journey>>("journey"),
+            );
             self.journeys_page
                 .set_property("journeys-result", journeys_result);
             self.search_view.set_show_content(true);
