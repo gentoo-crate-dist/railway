@@ -200,7 +200,7 @@ pub mod imp {
             let from = self.in_from.property::<Place>("place");
             let to = self.in_to.property::<Place>("place");
 
-            let time = Some(self.pick_date_time.get().get().naive_local());
+            let time = Some(self.pick_date_time.get().get().naive_utc());
             let time_type = self.pick_date_time.time_type();
 
             let main_context = MainContext::default();
