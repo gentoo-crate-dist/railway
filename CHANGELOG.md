@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Highlight the selected connection in the connections list.
+- Made the trip details page keyboard-navigable.
+- Improved accessibility
+
+### Changed
+
+- Improved positioning for arrival and departure labels in the connections list.
+- Minor UI update regarding journey remarks.
+
+### Fixed
+
+- Some strings not being translatable or using incorrect forms of a plural.
+- Also allow `Ctrl+Q` to close the window.
+- Performance issues with showing the details of large journeys.
+- Bug where an incorrect timezone was used.
+
 ## [2.3.0] - 2024-02-11
 
 ### Added

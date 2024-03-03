@@ -138,7 +138,7 @@
                         (sleep 5)
                         (l.replicate 11 (key "tab"))
                         (key "ret")
-                        (l.replicate 3 (key "tab"))
+                        (l.replicate 4 (key "tab"))
                         (key "ret")
                       ];
 
@@ -146,6 +146,10 @@
                       preExecution = [
                         (sleep 20)
                         (type "Railway")
+                        (sleep 1)
+                        (key "tab")
+                        (key "tab")
+                        (sleep 5)
                         (key "ret")
                       ];
 
