@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2024-03-03
+
 ### Added
 
 - Highlight the selected connection in the connections list.
@@ -90,8 +92,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Complete UI overhaul
 
-[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/v2.3.0...master
-[2.2.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/v2.2.0...v2.3.0
-[2.2.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/v2.1.0...v2.2.0
-[2.1.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/v2.0.0...v2.1.0
-[2.0.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/v1.5.0...v2.0.0
+[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.4.0...master
+[2.4.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.3.0...2.4.0
+[2.3.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.2.0...2.3.0
+[2.2.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.1.0...2.2.0
+[2.1.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.0.0...2.1.0
+[2.0.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/1.5.0...2.0.0

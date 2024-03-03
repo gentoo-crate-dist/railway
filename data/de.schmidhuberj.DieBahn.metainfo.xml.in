@@ -45,6 +45,28 @@
   </description>
 
   <releases>
+    <release version="2.4.0" date="2024-03-03">
+      <description>
+        <p>Added</p>
+        <ul>
+          <li>Highlight the selected connection in the connections list.</li>
+          <li>Made the trip details page keyboard-navigable.</li>
+          <li>Improved accessibility</li>
+        </ul>
+        <p>Changed</p>
+        <ul>
+          <li>Improved positioning for arrival and departure labels in the connections list.</li>
+          <li>Minor UI update regarding journey remarks.</li>
+        </ul>
+        <p>Fixed</p>
+        <ul>
+          <li>Some strings not being translatable or using incorrect forms of a plural.</li>
+          <li>Also allow Ctrl+Q to close the window.</li>
+          <li>Performance issues with showing the details of large journeys.</li>
+          <li>Bug where an incorrect timezone was used.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.3.0" date="2024-02-11">
       <description>
         <p>Added</p>
