@@ -212,5 +212,11 @@
     <display_length compare="ge" side="shortest">300</display_length>
     <display_length compare="ge" side="longest">360</display_length>
   </requires>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#ff7a73</color>
+    <color type="primary" scheme_preference="dark">#a13935</color>
+  </branding>
+
 </component>
 
