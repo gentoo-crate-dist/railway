@@ -15,6 +15,11 @@
   <translation type="gettext">@gettext-package@</translation>
   <update_contact>flatpak@schmiddi.anonaddy.com</update_contact>
 
+  <categories>
+    <category>Maps</category>
+    <category>Utility</category>
+  </categories>
+
   <url type="homepage">https://mobile.schmidhuberj.de/railway</url>
   <url type="bugtracker">https://gitlab.com/schmiddi-on-mobile/railway/-/issues</url>
   <url type="translate">https://hosted.weblate.org/engage/schmiddi-on-mobile/</url>
