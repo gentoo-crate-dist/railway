@@ -665,9 +665,9 @@ dependencies = [
 
 [[package]]
 name = "hafas-rs"
-version = "0.2.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "349960414717784ee53ed194032614838bceb37f5fadb6a0816bdb96fa8ab633"
+checksum = "c175d48c3e98445d3eb02d56ca44d681d8df6e28e9bac4f5abb2b0ff45af7e43"
 dependencies = [
  "async-trait",
  "chrono",
