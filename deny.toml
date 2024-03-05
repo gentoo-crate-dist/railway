@@ -6,9 +6,10 @@ allow = [
     "ISC",
     "Unicode-DFS-2016",
     "AGPL-3.0",
-    "OpenSSL"
+    "OpenSSL",
+    "GPL-3.0",
+    "EUPL-1.2"
 ]
-copyleft = "allow"
 
 [[licenses.clarify]]
 name = "ring"
