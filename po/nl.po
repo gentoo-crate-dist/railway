@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-28 03:56+0100\n"
-"PO-Revision-Date: 2024-03-01 12:00+0000\n"
+"PO-Revision-Date: 2024-03-07 18:01+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -41,7 +41,7 @@ msgstr "Nu"
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Total Travel Time"
-msgstr "Totale reistijd"
+msgstr "Totale reis­tijd"
 
 #: data/resources/ui/journey_detail_page.ui:100
 msgid "Trip Segments"
@@ -49,11 +49,11 @@ msgstr "Rit­segmenten"
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
-msgstr "Kies een reismogelijkheid"
+msgstr "Kies een rit"
 
 #: data/resources/ui/journeys_page.ui:128
 msgid "Search for Trips"
-msgstr "Zoeken naar reismogelijkheden"
+msgstr "Zoek naar ritten"
 
 #: data/resources/ui/leg_item.ui:183
 msgid "Show Stopovers"
@@ -61,15 +61,15 @@ msgstr "Haltes tonen"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Stopovers in Between"
-msgstr "Tussenstops tonen"
+msgstr "Tussen­stops tonen"
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
 msgid "Show Announcements"
-msgstr "Aankondigingen tonen"
+msgstr "Aan­kondigingen tonen"
 
 #: data/resources/ui/leg_item.ui:283
 msgid "Announcements"
-msgstr "Aankondigingen"
+msgstr "Aan­kondigingen"
 
 #: data/resources/ui/leg_item.ui:315
 msgid "Stopovers"
@@ -93,7 +93,7 @@ msgstr "Bewaar­tijd voor ritten"
 
 #: data/resources/ui/preferences_window.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr "Hoe lang ritten na aankomst moeten worden bewaard"
+msgstr "Hoe lang ritten na aan­komst moeten worden bewaard"
 
 #: data/resources/ui/provider_popover.ui:20
 msgid "Search Networks…"
@@ -101,7 +101,7 @@ msgstr "Netwerken zoeken…"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
-msgstr "Meer zoekopties"
+msgstr "Meer zoek­opties"
 
 #: data/resources/ui/search_options_button.ui:20
 msgid "Refine Advanced Search Options"
@@ -134,7 +134,7 @@ msgstr "Toegankelijk voor fietsen"
 
 #: data/resources/ui/search_options_window.ui:54
 msgid "Minimum Transfer Time"
-msgstr "Minimale overstaptijd"
+msgstr "Minimale overstap­tijd"
 
 #: data/resources/ui/search_options_window.ui:60
 msgid "Direct Connections Only"
@@ -142,7 +142,7 @@ msgstr "Zonder overstap"
 
 #: data/resources/ui/search_options_window.ui:67
 msgid "Modes of Transport"
-msgstr "Vervoersmogelijkheden"
+msgstr "Vervoers­methoden"
 
 #: data/resources/ui/search_options_window.ui:70
 msgid "ICE"
@@ -170,7 +170,7 @@ msgstr "Bus"
 
 #: data/resources/ui/search_options_window.ui:100
 msgid "Ferry"
-msgstr "Veerboot"
+msgstr "Veer­boot"
 
 #: data/resources/ui/search_options_window.ui:105
 msgid "Subway"
@@ -255,11 +255,11 @@ msgstr "Aansluitingen"
 
 #: data/resources/ui/window.ui:128
 msgid "Bookmark This Search"
-msgstr "Zoekresultaat opslaan"
+msgstr "Zoek­resultaat opslaan"
 
 #: data/resources/ui/window.ui:166
 msgid "Trip Details"
-msgstr "Reisinformatie"
+msgstr "Rit­details"
 
 #: data/resources/ui/window.ui:175
 msgid "Refresh This Trip"
@@ -267,7 +267,7 @@ msgstr "Rit verversen"
 
 #: data/resources/ui/window.ui:199
 msgid "Bookmark This Trip"
-msgstr "Deze rit opslaan"
+msgstr "Rit opslaan"
 
 #: data/resources/ui/window.ui:248
 msgid "Preferences"
@@ -295,7 +295,7 @@ msgstr "Erg druk"
 
 #: src/gui/indicator_icons.rs:149
 msgid "Exceptionally High Load"
-msgstr "Heel druk"
+msgstr "Extreem druk"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On Time"
