@@ -87,8 +87,8 @@ pub mod imp {
     use libadwaita::subclass::prelude::AdwWindowImpl;
     use once_cell::sync::Lazy;
 
+    use crate::backend::Client;
     use crate::backend::DiscountCard;
-    use crate::backend::HafasClient;
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
     use crate::backend::Place;
@@ -137,7 +137,7 @@ pub mod imp {
         #[template_child]
         pub toast_overlay: TemplateChild<libadwaita::ToastOverlay>,
 
-        client: RefCell<HafasClient>,
+        client: RefCell<Client>,
     }
 
     #[gtk::template_callbacks]
@@ -389,7 +389,7 @@ pub mod imp {
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::builder::<HafasClient>("client")
+                vec![ParamSpecObject::builder::<Client>("client")
                     .read_only()
                     .build()]
             });

@@ -1,11 +1,17 @@
+use std::collections::HashSet;
+
 use chrono::{Datelike, Days, Local};
+use gdk::gio::Settings;
 use gdk::glib::{Object, Value};
+use gdk::prelude::SettingsExt;
 use gtk::prelude::IsA;
 use gtk::prelude::WidgetExt;
 use gtk::subclass::prelude::ObjectSubclassExt;
 use gtk::subclass::prelude::WidgetImpl;
 use gtk::DirectionType;
 use gtk::Widget;
+use rcore::Mode;
+use rcore::ProductsSelection;
 
 pub struct Utility {}
 
@@ -226,5 +232,28 @@ impl Utility {
                 }
             }
         }
+    }
+
+    pub fn products_selection_from_setting(settings: &Settings) -> ProductsSelection {
+        ProductsSelection::from(
+            vec![
+                (
+                    Mode::HighSpeedTrain,
+                    settings.boolean("include-national-express"),
+                ),
+                (Mode::RegionalTrain, settings.boolean("include-regional")),
+                (Mode::SuburbanTrain, settings.boolean("include-suburban")),
+                (Mode::Subway, settings.boolean("include-subway")),
+                (Mode::Tram, settings.boolean("include-tram")),
+                (Mode::Bus, settings.boolean("include-bus")),
+                (Mode::Ferry, settings.boolean("include-ferry")),
+                (Mode::Cablecar, settings.boolean("include-cablecar")),
+                (Mode::OnDemand, settings.boolean("include-taxi")),
+            ]
+            .into_iter()
+            .filter(|(_, b)| *b)
+            .map(|(m, _)| m)
+            .collect::<HashSet<_>>(),
+        )
     }
 }

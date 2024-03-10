@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use gdk::prelude::{Cast, ListModelExt};
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 use gdk::{gio, glib::Object};
@@ -25,7 +27,7 @@ gtk::glib::wrapper! {
 
 impl JourneysResult {
     pub fn new(
-        journeys_response: hafas_rs::api::journeys::JourneysResponse,
+        journeys_response: rcore::JourneysResponse,
         source: Place,
         destination: Place,
         time_type: TimeType,
@@ -53,7 +55,10 @@ impl JourneysResult {
     }
 
     pub fn merge_prepend(&self, other: &Self) {
-        let to_insert = other.journeys();
+        let current_ids = self.current_ids();
+        let mut to_insert = other.journeys();
+        // Don't insert duplicate journey IDs.
+        to_insert.retain(|j| !current_ids.contains(&j.id()));
         let insert_len = to_insert.len();
         let mut journeys = self.imp().journeys.borrow_mut();
         journeys.splice(0..0, to_insert);
@@ -64,7 +69,10 @@ impl JourneysResult {
     }
 
     pub fn merge_append(&self, other: &Self) {
-        let to_insert = other.journeys();
+        let current_ids = self.current_ids();
+        let mut to_insert = other.journeys();
+        // Don't insert duplicate journey IDs.
+        to_insert.retain(|j| !current_ids.contains(&j.id()));
         let mut journeys = self.imp().journeys.borrow_mut();
         let prev_length = journeys.len();
         let insert_len = to_insert.len();
@@ -77,6 +85,15 @@ impl JourneysResult {
             0,
             insert_len.try_into().unwrap_or_default(),
         );
+    }
+
+    fn current_ids(&self) -> HashSet<String> {
+        self.imp()
+            .journeys
+            .borrow()
+            .iter()
+            .map(|j| j.id())
+            .collect()
     }
 
     fn items_changed(&self, position: u32, removed: u32, added: u32) {
@@ -193,10 +210,9 @@ mod imp {
         fn is_selected(&self, position: u32) -> bool {
             let list = self.journeys.borrow();
             let selection = self.selected.borrow();
-            // Compare by refresh token.
-            list.get(position as usize).is_some_and(|j| {
-                j.refresh_token() == selection.as_ref().and_then(|j| j.refresh_token())
-            })
+            // Compare by ID.
+            list.get(position as usize)
+                .is_some_and(|j| Some(j.id()) == selection.as_ref().map(|j| j.id()))
         }
 
         fn selection_in_range(&self, position: u32, n_items: u32) -> gtk::Bitset {
@@ -206,9 +222,7 @@ mod imp {
 
             let index: Option<u32> = list
                 .iter()
-                .position(|j| {
-                    j.refresh_token() == selection.as_ref().and_then(|j| j.refresh_token())
-                })
+                .position(|j| Some(j.id()) == selection.as_ref().map(|j| j.id()))
                 .and_then(|v| v.try_into().ok());
 
             if let Some(index) = index {

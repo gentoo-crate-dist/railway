@@ -19,7 +19,7 @@ data/resources/ui/search_page.ui
 data/resources/ui/search_store_item.ui
 data/resources/ui/shortcuts.ui
 data/resources/ui/station_entry.ui
-data/resources/ui/stopover_item.ui
+data/resources/ui/intermediate_location_item.ui
 data/resources/ui/transition.ui
 data/resources/ui/window.ui
 data/resources/ui/refresh_button.ui
@@ -47,7 +47,7 @@ src/gui/journey_list_item.rs
 src/gui/journeys_page.rs
 src/gui/journey_store_item.rs
 src/gui/leg_item.rs
-src/gui/stopover_item.rs
+src/gui/intermediate_location_item.rs
 src/gui/place_list_item.rs
 src/gui/station_entry.rs
 src/gui/mod.rs
@@ -60,9 +60,9 @@ src/backend/journeys_result.rs
 src/backend/place.rs
 src/backend/price.rs
 src/backend/stop.rs
-src/backend/stopover.rs
+src/backend/intermediate_locations.rs
 src/backend/remark.rs
-src/backend/hafas_client.rs
+src/backend/client.rs
 src/backend/provider.rs
 src/backend/journey.rs
 src/backend/leg.rs

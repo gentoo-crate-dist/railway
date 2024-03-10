@@ -2,71 +2,32 @@ use std::cell::RefCell;
 
 use gdk::glib::Object;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
+use rcore::RemarkAssociation;
 
 gtk::glib::wrapper! {
     pub struct Remark(ObjectSubclass<imp::Remark>);
 }
 
 impl Remark {
-    pub fn new(remark: hafas_rs::Remark) -> Self {
+    pub fn new(remark: rcore::Remark) -> Self {
         let s: Self = Object::builder().build();
         s.imp().remark.swap(&RefCell::new(Some(remark)));
         s
     }
 }
 
-// TODO: This is probably DB-specific.
-// Move this to future profile backend.
-fn code_to_icon<S: AsRef<str>>(code: S) -> &'static str {
-    match code.as_ref() {
-        // Bikes limited
-        "FB" |
-        // Bike free
-        "KF" |
-        // Bike times limited
-        "FS" => "cycling-symbolic",
+fn association_to_icon(association: &RemarkAssociation) -> &'static str {
+    match association {
+        RemarkAssociation::Bike => "cycling-symbolic",
+        RemarkAssociation::Accessibility => "wheelchair-symbolic",
+        RemarkAssociation::Ticket => "ticket-symbolic",
 
-        // Places for wheelchairs
-        "RO" |
-        // Accessible equipment
-        "RG" | "EA" | "ER" |
-        // Ramp for wheelchairs
-        "EH" |
-        // Boarding aid at center of train
-        "ZM" |
-        // Accessible only at limited stations
-        "SI" => "wheelchair-symbolic",
+        RemarkAssociation::Power => "power-symbolic",
+        RemarkAssociation::AirConditioning => "thermometer-symbolic",
+        RemarkAssociation::WiFi => "network-wireless-signal-excellent-symbolic",
 
-        // Ticket machine in train
-        "FM" | "FZ" |
-        // Reservation upfront at service points and vending machines possible
-        "RC" => "ticket-symbolic",
-
-        // Power sockers
-        "LS" => "power-symbolic",
-        // Air conditioning
-        "KL" => "thermometer-symbolic",
-        // WiFi
-        "WV" => "network-wireless-signal-excellent-symbolic",
-
-        // Only second class
-        "K2" => "ticket-second-class-symbolic",
-
-
-        // Hamburg mobility info link
-        "HM" |
-        // Schleswig-Holstein mobility / accesibility info link
-        "SM" |
-        // RRX Rhein-Ruhr-Express
-        "N " |
-
-
-        // Not specified
-        "" => "dialog-information-symbolic",
-        c => {
-            log::debug!("Found unknown remark code: {}", c);
-            "dialog-information-symbolic"
-        }
+        RemarkAssociation::OnlySecondClass => "ticket-second-class-symbolic",
+        _ => "dialog-information-symbolic",
     }
 }
 
@@ -83,7 +44,7 @@ mod imp {
 
     #[derive(Default)]
     pub struct Remark {
-        pub(super) remark: RefCell<Option<hafas_rs::Remark>>,
+        pub(super) remark: RefCell<Option<rcore::Remark>>,
     }
 
     #[glib::object_subclass]
@@ -114,7 +75,7 @@ mod imp {
                     .remark
                     .borrow()
                     .as_ref()
-                    .map(|r| super::code_to_icon(&r.code))
+                    .map(|r| super::association_to_icon(&r.association))
                     .to_value(),
                 _ => unimplemented!(),
             }

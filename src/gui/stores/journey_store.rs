@@ -25,7 +25,12 @@ impl JourneysStore {
 }
 
 pub mod imp {
-    use std::{cell::RefCell, fs::OpenOptions, path::PathBuf};
+    use std::{
+        cell::RefCell,
+        fs::OpenOptions,
+        io::{Seek, SeekFrom},
+        path::PathBuf,
+    };
 
     use chrono::{Duration, Local};
     use gtk::glib;
@@ -38,8 +43,8 @@ pub mod imp {
     };
     use once_cell::sync::Lazy;
 
-    use crate::backend::Journey;
     use crate::config;
+    use crate::{backend::Journey, gui::stores::migrate_journey_store::import_old_store};
 
     pub struct JourneysStore {
         path: PathBuf,
@@ -51,15 +56,21 @@ pub mod imp {
     impl JourneysStore {
         pub(super) fn load(&self) {
             log::debug!("Loading JourneyStore");
-            let file = OpenOptions::new()
+            let mut file = OpenOptions::new()
                 .write(true)
                 .read(true)
                 .create(true)
                 .open(&self.path)
                 .expect("Failed to open journey_store.json file");
 
-            let journeys: Vec<hafas_rs::Journey> =
-                serde_json::from_reader(file).unwrap_or_default();
+            let journeys: Vec<rcore::Journey> = serde_json::from_reader(&file)
+                // Note: The migration will be removed once it is decided it will not be needed anymore.
+                .or_else(|_| {
+                    // Seek back file such that the same will be read again.
+                    let _ = file.seek(SeekFrom::Start(0));
+                    import_old_store(file)
+                })
+                .unwrap_or_default();
             for journey in journeys.into_iter().rev() {
                 if self.settings.boolean("delete-old") {
                     if let Some(arrival) = journey.legs.last().and_then(|l| l.planned_arrival) {
@@ -106,7 +117,7 @@ pub mod imp {
     impl JourneysStore {
         pub(super) fn flush(&self) {
             log::debug!("Flushing JourneyStore");
-            let journeys: Vec<hafas_rs::Journey> =
+            let journeys: Vec<rcore::Journey> =
                 self.stored.borrow().iter().map(|j| j.journey()).collect();
 
             let file = OpenOptions::new()
@@ -123,10 +134,7 @@ pub mod imp {
 
         pub(super) fn store(&self, journey: Journey) {
             let mut stored = self.stored.borrow_mut();
-            if let Some(idx) = stored
-                .iter()
-                .position(|j| j.journey().refresh_token == journey.journey().refresh_token)
-            {
+            if let Some(idx) = stored.iter().position(|j| j.id() == journey.id()) {
                 log::trace!("Removing Journey {:?}", journey.journey());
                 let s = stored.remove(idx);
                 self.obj().emit_by_name::<()>("remove", &[&s]);
@@ -139,9 +147,7 @@ pub mod imp {
 
         pub(super) fn contains(&self, journey: &Journey) -> bool {
             let stored = self.stored.borrow();
-            stored
-                .iter()
-                .any(|j| j.journey().refresh_token == journey.journey().refresh_token)
+            stored.iter().any(|j| j.id() == journey.id())
         }
     }
 

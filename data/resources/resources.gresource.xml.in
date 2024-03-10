@@ -11,7 +11,7 @@
     <file preprocess="xml-stripblanks">ui/journey_detail_page.ui</file>
     <file preprocess="xml-stripblanks">ui/leg_item.ui</file>
     <file preprocess="xml-stripblanks">ui/remark_item.ui</file>
-    <file preprocess="xml-stripblanks">ui/stopover_item.ui</file>
+    <file preprocess="xml-stripblanks">ui/intermediate_location_item.ui</file>
     <file preprocess="xml-stripblanks">ui/transition.ui</file>
     <file preprocess="xml-stripblanks">ui/provider_popover.ui</file>
     <file preprocess="xml-stripblanks">ui/provider_list_item.ui</file>
@@ -60,7 +60,7 @@
   </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/providers/">
     <file alias="avv.svg">../icons/providers/avv.svg</file>
-    <!-- <file alias="bart.svg">../icons/providers/bart.svg</file> -->
+    <file alias="bart.svg">../icons/providers/bart.svg</file>
     <file alias="bls.svg">../icons/providers/bls.svg</file>
     <file alias="cfl.svg">../icons/providers/cfl.svg</file>
     <file alias="cmta.svg">../icons/providers/cmta.svg</file>
@@ -97,5 +97,7 @@
     <file alias="vvt.svg">../icons/providers/vvt.svg</file>
     <file alias="vvv.svg">../icons/providers/vvv.svg</file>
     <!-- <file alias="zvv.svg">../icons/providers/zvv.svg</file> -->
+
+    <file alias="search-ch.svg">../icons/providers/search-ch.svg</file>
   </gresource>
 </gresources>

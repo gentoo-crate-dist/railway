@@ -9,13 +9,13 @@ gtk::glib::wrapper! {
 }
 
 impl Place {
-    pub fn new(place: hafas_rs::Place) -> Self {
+    pub fn new(place: rcore::Place) -> Self {
         let s: Self = Object::builder().build();
         s.imp().place.swap(&RefCell::new(Some(place)));
         s
     }
 
-    pub fn place(&self) -> hafas_rs::Place {
+    pub fn place(&self) -> rcore::Place {
         self.imp()
             .place
             .borrow()
@@ -45,7 +45,7 @@ mod imp {
 
     #[derive(Default)]
     pub struct Place {
-        pub(super) place: RefCell<Option<hafas_rs::Place>>,
+        pub(super) place: RefCell<Option<rcore::Place>>,
     }
 
     #[glib::object_subclass]
@@ -70,10 +70,10 @@ mod imp {
         fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "name" => match self.place.borrow().as_ref() {
-                    Some(hafas_rs::Place::Stop(s)) => s.name.as_ref().unwrap_or(&s.id).to_value(),
-                    Some(hafas_rs::Place::Location(l)) => match l {
-                        hafas_rs::Location::Address { address, .. } => address.to_value(),
-                        hafas_rs::Location::Point { name, id, .. } => name
+                    Some(rcore::Place::Station(s)) => s.name.as_ref().unwrap_or(&s.id).to_value(),
+                    Some(rcore::Place::Location(l)) => match l {
+                        rcore::Location::Address { address, .. } => address.to_value(),
+                        rcore::Location::Point { name, id, .. } => name
                             .as_ref()
                             .unwrap_or_else(|| {
                                 id.as_ref().expect("Either name of id for point set")
@@ -83,10 +83,10 @@ mod imp {
                     _ => unimplemented!(),
                 },
                 "id" => match self.place.borrow().as_ref() {
-                    Some(hafas_rs::Place::Stop(s)) => s.id.to_value(),
-                    Some(hafas_rs::Place::Location(l)) => match l {
-                        hafas_rs::Location::Address { .. } => None::<String>.to_value(),
-                        hafas_rs::Location::Point { id, .. } => id.as_ref().to_value(),
+                    Some(rcore::Place::Station(s)) => s.id.to_value(),
+                    Some(rcore::Place::Location(l)) => match l {
+                        rcore::Location::Address { .. } => None::<String>.to_value(),
+                        rcore::Location::Point { id, .. } => id.as_ref().to_value(),
                     },
                     _ => unimplemented!(),
                 },

@@ -309,7 +309,7 @@
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkBox" id="box_stopovers">
+                  <object class="GtkBox" id="box_intermediate_locations">
                     <property name="accessible-role">list</property>
                     <accessibility>
                       <property name="label" translatable="yes">Stopovers</property>

@@ -3,9 +3,9 @@
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libadwaita" version="1.0"/>
 
-  <template class="DBStopoverItem" parent="GtkBox">
+  <template class="DBIntermediateLocationItem" parent="GtkBox">
     <style>
-      <class name="stopover-item"/>
+      <class name="intermediate-location-item"/>
     </style>
     <property name="accessible-role">list-item</property>
     <property name="focusable">True</property>
@@ -23,13 +23,13 @@
             <property name="margin-bottom">6</property>
             <binding name="main">
               <lookup name="planned-arrival">
-                <lookup name="stopover" type="DBStopoverItem">
+                <lookup name="intermediate-location" type="DBIntermediateLocationItem">
                 </lookup>
               </lookup>
             </binding>
             <binding name="alt">
               <lookup name="arrival">
-                <lookup name="stopover" type="DBStopoverItem">
+                <lookup name="intermediate-location" type="DBIntermediateLocationItem">
                 </lookup>
               </lookup>
             </binding>
@@ -51,6 +51,12 @@
         </child>
         <child>
           <object class="GtkImage">
+            <binding name="visible">
+              <lookup name="is-stop">
+                <lookup name="intermediate-location" type="DBIntermediateLocationItem">
+                </lookup>
+              </lookup>
+            </binding>
             <property name="icon-name">circle-filled-symbolic</property>
             <property name="pixel-size">9</property>
             <property name="hexpand">False</property>
@@ -78,8 +84,8 @@
             <property name="ellipsize">end</property>
             <binding name="label">
               <lookup name="name">
-                <lookup name="stop">
-                  <lookup name="stopover" type="DBStopoverItem">
+                <lookup name="place">
+                  <lookup name="intermediate-location" type="DBIntermediateLocationItem">
                   </lookup>
                 </lookup>
               </lookup>
@@ -94,13 +100,13 @@
             <property name="vexpand">True</property>
             <binding name="main">
               <lookup name="planned-departure-platform">
-                <lookup name="stopover" type="DBStopoverItem">
+                <lookup name="intermediate-location" type="DBIntermediateLocationItem">
                 </lookup>
               </lookup>
             </binding>
             <binding name="alt">
               <lookup name="departure-platform">
-                <lookup name="stopover" type="DBStopoverItem">
+                <lookup name="intermediate-location" type="DBIntermediateLocationItem">
                 </lookup>
               </lookup>
             </binding>

@@ -74,6 +74,7 @@ pub mod imp {
     use std::cell::Cell;
     use std::cell::RefCell;
 
+    use chrono::Duration;
     use gdk::gio::Settings;
     use gdk::glib::clone;
     use gdk::glib::subclass::Signal;
@@ -91,13 +92,13 @@ pub mod imp {
     use gtk::PositionType;
     use gtk::SignalListItemFactory;
     use gtk::Widget;
-    use hafas_rs::api::journeys::JourneysOptions;
-    use hafas_rs::LoyaltyCard;
-    use hafas_rs::ProductsSelection;
-    use hafas_rs::TariffClass;
     use once_cell::sync::Lazy;
+    use rcore::JourneysOptions;
+    use rcore::LoyaltyCard;
+    use rcore::TariffClass;
+    use rcore::TransferOptions;
 
-    use crate::backend::HafasClient;
+    use crate::backend::Client;
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
     use crate::backend::TimeType;
@@ -121,7 +122,7 @@ pub mod imp {
         journeys_result: RefCell<Option<JourneysResult>>,
 
         settings: Settings,
-        client: RefCell<Option<HafasClient>>,
+        client: RefCell<Option<Client>>,
 
         loading_earlier: Cell<bool>,
         loading_later: Cell<bool>,
@@ -200,33 +201,22 @@ pub mod imp {
                        @strong window => async move {
                     let journeys_result = obj.property::<JourneysResult>("journeys-result");
 
-                    let result_journeys_result = obj.property::<HafasClient>("client")
+                    let result_journeys_result = obj.property::<Client>("client")
                         .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), journeys_result.time_type(), JourneysOptions {
                             earlier_than: journeys_result.earlier_ref(),
                             language: Some(Utility::language_code()),
-                            stopovers: Some(true),
+                            stopovers: true,
                             loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
-                            bike_friendly: Some(settings.boolean("bike-accessible")),
-                            start_with_walking: Some(false),
-                            transfers: if settings.boolean("direct-only") {Some(0)} else {None},
-                            transfer_time: Some(settings.int("transfer-time").try_into().unwrap_or_default()),
-                            tariff_class: Some(if settings.boolean("first-class") {
+                            bike_friendly: settings.boolean("bike-accessible"),
+                            transfers: if settings.boolean("direct-only") { TransferOptions::Limited(0) } else { TransferOptions::Unlimited },
+                            // Value clamped in the settings; default should never happen.
+                            transfer_time: Duration::try_minutes(settings.int("transfer-time").into()).unwrap_or_default(),
+                            tariff_class: if settings.boolean("first-class") {
                                 TariffClass::First
                             } else {
                                 TariffClass::Second
-                            }),
-                            products: ProductsSelection {
-                                national_express: Some(settings.boolean("include-national-express")),
-                                national: Some(settings.boolean("include-national")),
-                                regional_exp: Some(settings.boolean("include-regional-express")),
-                                regional: Some(settings.boolean("include-regional")),
-                                suburban: Some(settings.boolean("include-suburban")),
-                                bus: Some(settings.boolean("include-bus")),
-                                ferry: Some(settings.boolean("include-ferry")),
-                                subway: Some(settings.boolean("include-subway")),
-                                tram: Some(settings.boolean("include-tram")),
-                                taxi: Some(settings.boolean("include-taxi")),
                             },
+                            products: Utility::products_selection_from_setting(&settings), 
                             ..Default::default()
                         })
                         .await;
@@ -261,32 +251,22 @@ pub mod imp {
                        @strong window => async move {
                     let journeys_result = obj.property::<JourneysResult>("journeys-result");
 
-                    let result_journeys_result = obj.property::<HafasClient>("client")
+                    let result_journeys_result = obj.property::<Client>("client")
                         .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), journeys_result.time_type(), JourneysOptions {
                             later_than: journeys_result.later_ref(),
                             language: Some(Utility::language_code()),
-                            stopovers: Some(true),
+                            stopovers: true,
                             loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
-                            bike_friendly: Some(settings.boolean("bike-accessible")),
-                            transfers: if settings.boolean("direct-only") {Some(0)} else {None},
-                            transfer_time: Some(settings.int("transfer-time").try_into().unwrap_or_default()),
-                            tariff_class: Some(if settings.boolean("first-class") {
+                            bike_friendly: settings.boolean("bike-accessible"),
+                            transfers: if settings.boolean("direct-only") { TransferOptions::Limited(0) } else { TransferOptions::Unlimited },
+                            // Value clamped in the settings; default should never happen.
+                            transfer_time: Duration::try_minutes(settings.int("transfer-time").into()).unwrap_or_default(),
+                            tariff_class: if settings.boolean("first-class") {
                                 TariffClass::First
                             } else {
                                 TariffClass::Second
-                            }),
-                            products: ProductsSelection {
-                                national_express: Some(settings.boolean("include-national-express")),
-                                national: Some(settings.boolean("include-national")),
-                                regional_exp: Some(settings.boolean("include-regional-express")),
-                                regional: Some(settings.boolean("include-regional")),
-                                suburban: Some(settings.boolean("include-suburban")),
-                                bus: Some(settings.boolean("include-bus")),
-                                ferry: Some(settings.boolean("include-ferry")),
-                                subway: Some(settings.boolean("include-subway")),
-                                tram: Some(settings.boolean("include-tram")),
-                                taxi: Some(settings.boolean("include-taxi")),
                             },
+                            products: Utility::products_selection_from_setting(&settings),
                             ..Default::default()
                         })
                         .await;
@@ -397,7 +377,7 @@ pub mod imp {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
                     ParamSpecObject::builder::<JourneysResult>("journeys-result").build(),
-                    ParamSpecObject::builder::<HafasClient>("client").build(),
+                    ParamSpecObject::builder::<Client>("client").build(),
                     ParamSpecBoolean::builder("is-loading-earlier").build(),
                     ParamSpecBoolean::builder("is-loading-later").build(),
                     ParamSpecBoolean::builder("auto-scroll").build(),
@@ -416,8 +396,8 @@ pub mod imp {
                     self.journeys_result.replace(obj.clone());
                 }
                 "client" => {
-                    let obj = value.get::<Option<HafasClient>>().expect(
-                        "Property `client` of `JourneysPage` has to be of type `HafasClient`",
+                    let obj = value.get::<Option<Client>>().expect(
+                        "Property `client` of `JourneysPage` has to be of type `Client`",
                     );
 
                     self.client.replace(obj);

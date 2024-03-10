@@ -26,7 +26,7 @@ pub mod imp {
     use gtk::Widget;
     use once_cell::sync::Lazy;
 
-    use crate::backend::HafasClient;
+    use crate::backend::Client;
     use crate::backend::Provider;
     use crate::config;
     use crate::gui::provider_list_item::ProviderListItem;
@@ -43,7 +43,7 @@ pub mod imp {
         current_selection: RefCell<Option<Provider>>,
 
         settings: Settings,
-        client: RefCell<Option<HafasClient>>,
+        client: RefCell<Option<Client>>,
     }
 
     impl Default for ProviderPopover {
@@ -176,7 +176,7 @@ pub mod imp {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpecObject::builder::<HafasClient>("client").build(),
+                    ParamSpecObject::builder::<Client>("client").build(),
                     ParamSpecObject::builder::<Provider>("current-selection").build(),
                 ]
             });
@@ -193,8 +193,8 @@ pub mod imp {
                     self.current_selection.replace(obj);
                 }
                 "client" => {
-                    let obj = value.get::<Option<HafasClient>>().expect(
-                        "Property `client` of `ProviderPopover` has to be of type `HafasClient`",
+                    let obj = value.get::<Option<Client>>().expect(
+                        "Property `client` of `ProviderPopover` has to be of type `Client`",
                     );
 
                     let set = obj.is_some();

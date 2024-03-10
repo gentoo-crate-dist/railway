@@ -14,13 +14,13 @@ pub enum LoadFactor {
     ExceptionallyHigh,
 }
 
-impl From<Option<hafas_rs::LoadFactor>> for LoadFactor {
-    fn from(value: Option<hafas_rs::LoadFactor>) -> Self {
+impl From<Option<rcore::LoadFactor>> for LoadFactor {
+    fn from(value: Option<rcore::LoadFactor>) -> Self {
         match value {
-            Some(hafas_rs::LoadFactor::LowToMedium) => Self::LowToMedium,
-            Some(hafas_rs::LoadFactor::High) => Self::High,
-            Some(hafas_rs::LoadFactor::VeryHigh) => Self::VeryHigh,
-            Some(hafas_rs::LoadFactor::ExceptionallyHigh) => Self::ExceptionallyHigh,
+            Some(rcore::LoadFactor::LowToMedium) => Self::LowToMedium,
+            Some(rcore::LoadFactor::High) => Self::High,
+            Some(rcore::LoadFactor::VeryHigh) => Self::VeryHigh,
+            Some(rcore::LoadFactor::ExceptionallyHigh) => Self::ExceptionallyHigh,
             None => Self::Unknown,
         }
     }

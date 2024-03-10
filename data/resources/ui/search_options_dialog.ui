@@ -67,27 +67,17 @@
             <property name="title" translatable="yes">Modes of Transport</property>
             <child>
               <object class="AdwSwitchRow" id="switch_national_express">
-                <property name="title" translatable="yes">ICE</property> <!-- TODO: more generic term: Highspeed Trains? -->
-              </object>
-            </child>
-            <child>
-              <object class="AdwSwitchRow" id="switch_national">
-                <property name="title" translatable="yes">IC/EC</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwSwitchRow" id="switch_regional_express">
-                <property name="title" translatable="yes">Interregio/RegionalExpress</property>
+                <property name="title" translatable="yes">High Speed Train</property> <!-- Incl. ICE? -->
               </object>
             </child>
             <child>
               <object class="AdwSwitchRow" id="switch_regional">
-                <property name="title" translatable="yes">Regio</property>
+                <property name="title" translatable="yes">Regional Train</property>
               </object>
             </child>
             <child>
               <object class="AdwSwitchRow" id="switch_suburban">
-                <property name="title" translatable="yes">S-Bahn</property> <!-- TODO: more generic term, incl. Overground? -->
+                <property name="title" translatable="yes">Suburban Trains</property> <!-- TODO: more generic term, incl. Overground, S-Bahn? -->
               </object>
             </child>
             <child>
@@ -108,6 +98,11 @@
             <child>
               <object class="AdwSwitchRow" id="switch_tram">
                 <property name="title" translatable="yes">Tram</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSwitchRow" id="switch_cablecar">
+                <property name="title" translatable="yes">Cablecar</property>
               </object>
             </child>
             <child>
