@@ -83,7 +83,7 @@ pub mod imp {
                     let result_journey = obj.property::<HafasClient>("client")
                         .refresh_journey(token, RefreshJourneyOptions {
                             stopovers: Some(true),
-                            language: Some(gettextrs::gettext("language")),
+                            language: Some(Utility::language_code()),
                             ..Default::default()
                         }).await;
                     if let Ok(result_journey) = result_journey {
