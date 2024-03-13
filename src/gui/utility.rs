@@ -1,11 +1,11 @@
 use chrono::{Datelike, Days, Local};
 use gdk::glib::{Object, Value};
-use gtk::subclass::prelude::WidgetImpl;
 use gtk::prelude::IsA;
+use gtk::prelude::WidgetExt;
 use gtk::subclass::prelude::ObjectSubclassExt;
+use gtk::subclass::prelude::WidgetImpl;
 use gtk::DirectionType;
 use gtk::Widget;
-use gtk::prelude::WidgetExt;
 
 pub struct Utility {}
 
@@ -24,6 +24,17 @@ enum ChildAccess {
 
 #[gtk::template_callbacks(functions)]
 impl Utility {
+    pub fn language_code() -> String {
+        // Per documentation, the returned value always contains at least one element (`C`). This is therefore save.
+        // APIs also don't seem to like language modifiers (e.g. `_US`) or `.UTF-8` at the end, strip this.
+        gtk::glib::language_names()[0]
+            .to_string()
+            .split(['_', '.'])
+            .next()
+            .unwrap()
+            .to_owned()
+    }
+
     #[template_callback]
     fn and(#[rest] values: &[Value]) -> bool {
         values
@@ -90,7 +101,8 @@ impl Utility {
         } else if duration.num_days() == 0 {
             if duration.num_minutes() == 0 {
                 // Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-                gettextrs::gettext("{} hrs.").replace("{}", duration.num_hours().to_string().as_str())
+                gettextrs::gettext("{} hrs.")
+                    .replace("{}", duration.num_hours().to_string().as_str())
             } else {
                 (chrono::NaiveDate::from_ymd_opt(2022, 1, 1)
                     .unwrap_or_default()
@@ -140,7 +152,10 @@ impl Utility {
         }
     }
 
-    pub fn move_focus_within_container<T: IsA<Widget>>(widget: &(impl WidgetImpl + ObjectSubclassExt<Type = T>), direction: DirectionType) -> bool {
+    pub fn move_focus_within_container<T: IsA<Widget>>(
+        widget: &(impl WidgetImpl + ObjectSubclassExt<Type = T>),
+        direction: DirectionType,
+    ) -> bool {
         /* if has child with focus and it keeps focus within, keep within this widget as well */
         if let Some(focus_child) = widget.obj().focus_child() {
             if focus_child.child_focus(direction) {
@@ -149,12 +164,12 @@ impl Utility {
         }
 
         let move_direction = match direction {
-            DirectionType::TabBackward
-            | DirectionType::Up
-            | DirectionType::Left => Direction::Backward,
-            DirectionType::TabForward
-            | DirectionType::Down
-            | DirectionType::Right => Direction::Forward,
+            DirectionType::TabBackward | DirectionType::Up | DirectionType::Left => {
+                Direction::Backward
+            }
+            DirectionType::TabForward | DirectionType::Down | DirectionType::Right => {
+                Direction::Forward
+            }
             _ => {
                 log::error!("Widget's focus implementation incomplete");
                 Direction::Forward
@@ -177,9 +192,13 @@ impl Utility {
                     child_access == ChildAccess::Only
                 } else {
                     /* when tabbing in, start it children */
-                    if child_access != ChildAccess::Skip && widget.obj().last_child()
-                        .map(|child| child.child_focus(direction))
-                        .unwrap_or(false) {
+                    if child_access != ChildAccess::Skip
+                        && widget
+                            .obj()
+                            .last_child()
+                            .map(|child| child.child_focus(direction))
+                            .unwrap_or(false)
+                    {
                         return true;
                     }
                     /* when tabbing in and no child grabs focus, focus this widget */
@@ -188,7 +207,7 @@ impl Utility {
             }
             Direction::Forward => {
                 /* when a child had focus and didn't keep it, it is tabbing out */
-                if widget.obj().focus_child().is_some () {
+                if widget.obj().focus_child().is_some() {
                     child_access == ChildAccess::Only
                 } else {
                     /* if this widget had no focus, it is tabbing in */
@@ -196,7 +215,9 @@ impl Utility {
                         true
                     } else if child_access != ChildAccess::Skip {
                         /* if this widget had focus, pass on to children, tabbing out otherwise */
-                        widget.obj().first_child()
+                        widget
+                            .obj()
+                            .first_child()
                             .map(|child| child.child_focus(direction))
                             .unwrap_or(false)
                     } else {

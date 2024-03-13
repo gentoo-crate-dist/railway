@@ -203,7 +203,7 @@ pub mod imp {
                     let result_journeys_result = obj.property::<HafasClient>("client")
                         .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), journeys_result.time_type(), JourneysOptions {
                             earlier_than: journeys_result.earlier_ref(),
-                            language: Some(gettextrs::gettext("language")),
+                            language: Some(Utility::language_code()),
                             stopovers: Some(true),
                             loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
                             bike_friendly: Some(settings.boolean("bike-accessible")),
@@ -264,7 +264,7 @@ pub mod imp {
                     let result_journeys_result = obj.property::<HafasClient>("client")
                         .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), journeys_result.time_type(), JourneysOptions {
                             later_than: journeys_result.later_ref(),
-                            language: Some(gettextrs::gettext("language")),
+                            language: Some(Utility::language_code()),
                             stopovers: Some(true),
                             loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
                             bike_friendly: Some(settings.boolean("bike-accessible")),

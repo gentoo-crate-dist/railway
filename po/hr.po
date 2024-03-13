@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-28 03:56+0100\n"
+"POT-Creation-Date: 2024-03-11 17:02+0100\n"
 "PO-Revision-Date: 2023-12-31 16:09+0000\n"
 "Last-Translator: Krešo Kunjas <kkunjas@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/schmiddi-on-"
@@ -366,12 +366,7 @@ msgstr ""
 msgid "Search ongoing"
 msgstr "Pretraži putovanja"
 
-#: src/gui/search_page.rs:218 src/gui/journey_detail_page.rs:82
-#: src/gui/journeys_page.rs:206 src/gui/journeys_page.rs:267
-msgid "language"
-msgstr "jezik"
-
-#: src/gui/journey_detail_page.rs:97
+#: src/gui/journey_detail_page.rs:102
 msgid "Last refreshed {}"
 msgstr ""
 
@@ -399,17 +394,17 @@ msgstr ""
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:59 src/gui/search_options_window.rs:232
+#: src/gui/utility.rs:70 src/gui/search_options_window.rs:232
 msgid "{} min"
 msgstr ""
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:67
+#: src/gui/utility.rs:78
 #, fuzzy
 msgid "%_H h %_M min"
 msgstr "%_H sati, %_M minuta"
 
-#: src/gui/utility.rs:78
+#: src/gui/utility.rs:89
 #, fuzzy
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
@@ -418,23 +413,23 @@ msgstr[1] "%_d dana %_H sati, %_M minuta"
 msgstr[2] "%_d dana %_H sati, %_M minuta"
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:89
+#: src/gui/utility.rs:100
 #, fuzzy
 msgid "{} min."
 msgstr "{} minuta"
 
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:93
+#: src/gui/utility.rs:104
 msgid "{} hrs."
 msgstr ""
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:101
+#: src/gui/utility.rs:113
 #, fuzzy
 msgid "%-H hrs. %-M min."
 msgstr "%_H sati, %_M minuta"
 
-#: src/gui/utility.rs:113
+#: src/gui/utility.rs:125
 #, fuzzy
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
@@ -443,29 +438,29 @@ msgstr[1] "%_d dana %_H sati, %_M minuta"
 msgstr[2] "%_d dana %_H sati, %_M minuta"
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:123
+#: src/gui/utility.rs:135
 msgid "%H:%M"
 msgstr ""
 
-#: src/gui/utility.rs:129 src/gui/date_time_picker.rs:101
+#: src/gui/utility.rs:141 src/gui/date_time_picker.rs:101
 msgid "Today"
 msgstr "Danas"
 
-#: src/gui/utility.rs:131
+#: src/gui/utility.rs:143
 msgid "Tomorrow"
 msgstr "Sutra"
 
-#: src/gui/utility.rs:133
+#: src/gui/utility.rs:145
 msgid "Yesterday"
 msgstr "Jučer"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:136
+#: src/gui/utility.rs:148
 msgid "%a, %d. %B"
 msgstr "%a, %d.%B"
 
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:139
+#: src/gui/utility.rs:151
 msgid "%Y-%m-%d"
 msgstr "%d.%m.%Y"
 
@@ -582,7 +577,6 @@ msgstr ""
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:105
-#, c-format
 msgid "%a %b %d"
 msgstr ""
 
@@ -599,31 +593,30 @@ msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
 msgstr ""
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
-#: src/gui/leg_item.rs:77
+#: src/gui/leg_item.rs:73
 msgid "{train} in the direction of {destination}"
 msgstr ""
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:86
+#: src/gui/leg_item.rs:90
 msgid "Depart {start} from platform {platform} at {departure}."
 msgstr ""
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:89
+#: src/gui/leg_item.rs:94
 msgid "Depart {start} at {departure}."
 msgstr ""
 
-#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:94
+#: src/gui/leg_item.rs:101
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
 msgstr ""
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:97
+#: src/gui/leg_item.rs:106
 msgid "Arrive at {destination} at {arrival}."
 msgstr ""
 
-#: src/gui/leg_item.rs:220
+#: src/gui/leg_item.rs:148
 #, fuzzy
 msgid "{} Stopover"
 msgid_plural "{} Stopovers"
@@ -693,6 +686,10 @@ msgstr ""
 #: src/backend/leg.rs:129
 msgid "Walk"
 msgstr ""
+
+#, fuzzy
+#~ msgid "language-code"
+#~ msgstr "jezik"
 
 #~ msgid "Open Remarks"
 #~ msgstr "Otvori primjedbe"

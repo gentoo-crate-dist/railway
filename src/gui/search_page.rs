@@ -215,7 +215,7 @@ pub mod imp {
                 let journeys = obj.property::<HafasClient>("client").journeys(from, to, time_type, JourneysOptions {
                     departure: if time_type == TimeType::Departure { time } else { None },
                     arrival: if time_type == TimeType::Arrival { time } else { None },
-                    language: Some(gettextrs::gettext("language")),
+                    language: Some(Utility::language_code()),
                     stopovers: Some(true),
                     loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
                     bike_friendly: Some(settings.boolean("bike-accessible")),
