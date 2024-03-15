@@ -1,5 +1,6 @@
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
+use crate::gui::window::Window;
 use crate::backend::Journey;
 
 #[derive(PartialEq)]
@@ -26,7 +27,12 @@ impl JourneysStore {
         self.imp().flush();
     }
 
-    pub fn setup(&self) {
+    pub fn setup(&self, window: Window) {
+        self.imp().window.replace(Some(window));
+        self.imp().load();
+    }
+
+    pub fn reload(&self) {
         self.imp().load();
     }
 }
@@ -41,6 +47,9 @@ pub mod imp {
 
     use chrono::{Duration, Local};
     use gtk::glib;
+    use gtk::glib::clone;
+
+    use gtk::pango;
 
     use gdk::{
         gio::Settings,
@@ -52,11 +61,13 @@ pub mod imp {
 
     use crate::config;
     use crate::{backend::Journey, gui::stores::migrate_journey_store::import_old_store};
+    use crate::gui::window::Window;
     use crate::gui::stores::journey_store::StoreMode;
 
     pub struct JourneysStore {
         path: PathBuf,
         stored: RefCell<Vec<Journey>>,
+        pub(super) window: RefCell<Option<Window>>,
 
         settings: Settings,
     }
@@ -71,6 +82,8 @@ pub mod imp {
                 .open(&self.path)
                 .expect("Failed to open journey_store.json file");
 
+            let mut some_deletable = false;
+
             let journeys: Vec<rcore::Journey> = serde_json::from_reader(&file)
                 // Note: The migration will be removed once it is decided it will not be needed anymore.
                 .or_else(|_| {
@@ -80,22 +93,62 @@ pub mod imp {
                 })
                 .unwrap_or_default();
             for journey in journeys.into_iter().rev() {
-                if self.settings.boolean("delete-old") {
-                    if let Some(arrival) = journey.legs.last().and_then(|l| l.planned_arrival) {
-                        let deletion_time = self.settings.int("deletion-time");
-                        // Note: We limit the deletion time in the settings; the conversion to Duration should never fail.
-                        let deletion =
-                            arrival + Duration::try_hours(deletion_time.into()).unwrap_or_default();
-                        if deletion < Local::now() {
-                            self.store(Journey::new(journey), StoreMode::Remove);
-                            continue;
-                        }
-                    } else {
+                // Note: We limit the deletion time in the settings; the conversion to Duration should never fail.
+                let deletion_time = Duration::try_hours(self.settings.int("deletion-time").into()).unwrap_or_default();
+                let could_be_deleted = journey.legs.last().and_then(|l| {
+                    l.arrival.or(l.planned_arrival)
+                }).map(|arrival| {
+                     arrival + deletion_time < Local::now()
+                }).unwrap_or(true);
+
+                if could_be_deleted {
+                    if self.settings.boolean("delete-old") {
+                        self.settings.set_boolean("bookmark-purge-suggested", true)
+                            .expect("setting bookmark-purge-suggested must exist as a boolean");
                         self.store(Journey::new(journey), StoreMode::Remove);
                         continue;
+                    } else if !self.settings.boolean("bookmark-purge-suggested") {
+                        some_deletable = true;
                     }
                 }
+
                 self.store(Journey::new(journey), StoreMode::Add);
+            }
+
+            if some_deletable {
+                let toast = libadwaita::Toast::builder()
+                    .custom_title(
+                        &gtk::Label::builder()
+                            .label(gettextrs::gettext("A bookmarked trip ended recently."))
+                            .wrap(true)
+                            .lines(2)
+                            /*
+                             * follows libadwaita's default title widget:
+                             * <https://gitlab.gnome.org/GNOME/libadwaita/-/blob/main/src/adw-toast-widget.c#L129-132>
+                             */
+                            .ellipsize(pango::EllipsizeMode::End)
+                            .xalign(0.0)
+                            .css_classes(vec!["heading"])
+                            .build()
+                    )
+                    .button_label(&gettextrs::gettext("Always _Delete"))
+                    .timeout(0)
+                    .build();
+
+                let store = self.obj();
+                toast.connect_button_clicked(clone!(@strong self.settings as settings, @strong store => move |_| {
+                    settings.set_boolean("delete-old", true)
+                            .expect("setting delete-old must exist as a boolean");
+                }));
+
+                toast.connect_dismissed(clone!(@strong self.settings as settings => move |_| {
+                    settings.set_boolean("bookmark-purge-suggested", true)
+                            .expect("setting bookmark-purge-suggested must exist as a boolean");
+                }));
+
+                self.window.borrow().as_ref()
+                    .expect("JourneyStore needs an associated window")
+                    .display_custom_toast(toast);
             }
         }
     }
@@ -113,6 +166,7 @@ pub mod imp {
             Self {
                 path,
                 stored: RefCell::new(vec![]),
+                window: RefCell::new(None),
                 settings: Settings::new(config::BASE_ID),
             }
         }

@@ -62,6 +62,11 @@ impl Window {
         let toast_overlay = self.imp().toast_overlay.get();
         error_to_toast(&toast_overlay, err);
     }
+
+    pub fn display_custom_toast(&self, toast: libadwaita::Toast) {
+        let toast_overlay = self.imp().toast_overlay.get();
+        toast_overlay.add_toast(toast);
+    }
 }
 
 pub mod imp {
@@ -143,7 +148,7 @@ pub mod imp {
     #[gtk::template_callbacks]
     impl Window {
         fn setup(&self) {
-            self.store_journeys.setup();
+            self.store_journeys.setup(self.obj().clone());
             self.store_searches.setup();
 
             if config::PROFILE == "Devel" {
