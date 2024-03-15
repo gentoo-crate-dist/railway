@@ -1,6 +1,6 @@
 stages:
-  - build
   - test
+  - build
   - deploy
 
 variables:
@@ -8,6 +8,20 @@ variables:
   BUILD_RELEASE: "build-release"
   MESON_DIST: "${BUILD_RELEASE}/meson-dist"
   PROJ_NAME_VERSION: "diebahn-${CI_COMMIT_TAG}"
+
+i18n:
+  stage: test
+  script:
+    - ./build-aux/test/i18n-strings-check.sh
+
+test:cargo-deny:
+  stage: test
+  image: archlinux:base-devel
+  script:
+    - pacman -Syu rustup cargo-deny --noconfirm
+    - rustup default stable
+    - cargo deny check
+  allow_failure: true
 
 # flatpak, based on https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml
 flatpak:
@@ -52,20 +66,6 @@ flatpak:
       junit: '.flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-logs/testlog.junit.xml'
     expire_in: 14 days
 # end flatpak
-
-i18n:
-  stage: test
-  script:
-    - ./build-aux/test/i18n-strings-check.sh
-
-test:cargo-deny:
-  stage: test
-  image: archlinux:base-devel
-  script:
-    - pacman -Syu rustup cargo-deny --noconfirm
-    - rustup default stable
-    - cargo deny check
-  allow_failure: true
 
 build_release:
   stage: build
