@@ -67,6 +67,19 @@ flatpak:
     expire_in: 14 days
 # end flatpak
 
+fedora@x86:
+  image: debian:testing-slim
+  stage: build
+  script:
+    - apt update && apt install -y podman
+    - |
+      podman run --arch 386 -a stdout -a stderr --tls-verify=false --network=host -v $CI_PROJECT_DIR:/var/build fedora:rawhide /bin/sh -c "
+      dnf update -y && dnf install -y gettext cargo desktop-file-utils gtk4-devel libadwaita-devel libglibutil-devel meson
+      cd /var/build
+      meson setup _build
+      meson compile -C _build
+      "
+
 build_release:
   stage: build
   image: archlinux:base-devel
