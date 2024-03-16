@@ -128,6 +128,7 @@ pub mod imp {
         loading_later: Cell<bool>,
         auto_scroll: Cell<bool>,
         compact: Cell<bool>,
+        scrolled_up: Cell<bool>,
     }
 
     impl Default for JourneysPage {
@@ -143,6 +144,7 @@ pub mod imp {
                 loading_later: Default::default(),
                 auto_scroll: Cell::new(true),
                 compact: Cell::new(false),
+                scrolled_up: Cell::new(false),
             }
         }
     }
@@ -189,6 +191,10 @@ pub mod imp {
                 return;
             }
             obj.set_loading_earlier(true);
+
+            if self.auto_scroll.get() && !self.scrolled_up.get() {
+                obj.set_property("scrolled-up", &true.to_value());
+            }
 
             let main_context = MainContext::default();
             let window = self.obj().root().and_downcast::<Window>().expect(
@@ -329,6 +335,11 @@ pub mod imp {
                 header_item.set_child(Some(&widget));
                 header_item.bind_property("item", &widget, "item").build();
                 header_item.bind_property("start", &widget, "start").build();
+                obj.bind_property("scrolled-up", &widget, "initial")
+                    .invert_boolean()
+                    .sync_create()
+                    .build();
+                obj.bind_property("journeys-result", &widget, "journeys-result").sync_create().build();
             }));
 
             self.list_journeys.set_factory(Some(&factory));
@@ -382,6 +393,7 @@ pub mod imp {
                     ParamSpecBoolean::builder("is-loading-later").build(),
                     ParamSpecBoolean::builder("auto-scroll").build(),
                     ParamSpecBoolean::builder("compact").build(),
+                    ParamSpecBoolean::builder("scrolled-up").build(),
                 ]
             });
             PROPERTIES.as_ref()
@@ -430,6 +442,13 @@ pub mod imp {
 
                     self.compact.replace(obj);
                 }
+                "scrolled-up" => {
+                    let obj = value
+                        .get::<bool>()
+                        .expect("Property `compact` of `JourneysPage` has to be of type `bool`");
+
+                    self.scrolled_up.replace(obj);
+                }
                 _ => unimplemented!(),
             }
         }
@@ -442,6 +461,7 @@ pub mod imp {
                 "is-loading-later" => self.loading_later.get().to_value(),
                 "auto-scroll" => self.auto_scroll.get().to_value(),
                 "compact" => self.compact.get().to_value(),
+                "scrolled-up" => self.scrolled_up.get().to_value(),
                 _ => unimplemented!(),
             }
         }

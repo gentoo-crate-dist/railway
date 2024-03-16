@@ -1,5 +1,8 @@
 use std::collections::HashSet;
 
+use chrono::DateTime;
+use chrono_tz::Tz;
+
 use gdk::prelude::{Cast, ListModelExt};
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 use gdk::{gio, glib::Object};
@@ -30,6 +33,7 @@ impl JourneysResult {
         journeys_response: rcore::JourneysResponse,
         source: Place,
         destination: Place,
+        requested_time: Option<DateTime<Tz>>,
         time_type: TimeType,
     ) -> Self {
         let s: Self = Object::builder()
@@ -46,6 +50,7 @@ impl JourneysResult {
             .collect();
         let insert_len = to_insert.len();
         s.imp().journeys.borrow_mut().append(&mut to_insert);
+        s.imp().requested_time.replace(requested_time);
         s.items_changed(0, 0, insert_len.try_into().unwrap_or_default());
         s
     }
@@ -87,6 +92,10 @@ impl JourneysResult {
         );
     }
 
+    pub fn requested_time(&self) -> Option<DateTime<Tz>> {
+        self.imp().requested_time.borrow().clone()
+    }
+
     fn current_ids(&self) -> HashSet<String> {
         self.imp()
             .journeys
@@ -103,6 +112,9 @@ impl JourneysResult {
 }
 
 mod imp {
+    use chrono::DateTime;
+    use chrono_tz::Tz;
+
     use gdk::gio;
     use gdk::glib::subclass::types::ObjectSubclassExt;
     use gdk::prelude::{Cast, StaticType};
@@ -139,6 +151,8 @@ mod imp {
 
         #[property(get, set = Self::set_selected, nullable)]
         selected: RefCell<Option<Journey>>,
+
+        pub(super) requested_time: RefCell<Option<DateTime<Tz>>>,
 
         #[property(get, set, construct_only, builder(TimeType::Departure))]
         time_type: RefCell<TimeType>,
