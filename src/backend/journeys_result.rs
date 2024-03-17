@@ -204,7 +204,7 @@ mod imp {
             let list = self.journeys.borrow();
             let selection = self.selected.borrow();
 
-            let index = list
+            let index: Option<u32> = list
                 .iter()
                 .position(|j| {
                     j.refresh_token() == selection.as_ref().and_then(|j| j.refresh_token())
