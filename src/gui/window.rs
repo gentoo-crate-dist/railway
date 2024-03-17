@@ -82,6 +82,7 @@ pub mod imp {
     use gtk::CompositeTemplate;
     use gtk::ShortcutsWindow;
     use gtk::ToggleButton;
+    use libadwaita::prelude::AdwDialogExt;
     use libadwaita::subclass::prelude::AdwApplicationWindowImpl;
     use libadwaita::subclass::prelude::AdwWindowImpl;
     use once_cell::sync::Lazy;
@@ -98,7 +99,7 @@ pub mod imp {
     use crate::gui::indicator_icons::IndicatorIcons;
     use crate::gui::journey_detail_page::JourneyDetailPage;
     use crate::gui::journeys_page::JourneysPage;
-    use crate::gui::preferences_window::PreferencesWindow;
+    use crate::gui::preferences_dialog::PreferencesDialog;
     use crate::gui::provider_popover::ProviderPopover;
     use crate::gui::refresh_button::RefreshButton;
     use crate::gui::search_options_button::SearchOptionsButton;
@@ -155,12 +156,12 @@ pub mod imp {
         fn setup_actions(&self, obj: &super::Window) {
             let action_settings = SimpleAction::new("settings", None);
             action_settings.connect_activate(clone!(@weak obj as window => move |_, _| {
-                let settings = PreferencesWindow::new(&window);
-                settings.present();
+                let settings = PreferencesDialog::new();
+                settings.present(&window);
             }));
             let action_about = SimpleAction::new("about", None);
             action_about.connect_activate(clone!(@weak obj as window => move |_, _| {
-                let about_dialog = libadwaita::AboutWindow::from_appdata(&(config::RESOURCES_PATH.to_owned() + config::APP_ID + ".metainfo.xml"),
+                let about_dialog = libadwaita::AboutDialog::from_appdata(&(config::RESOURCES_PATH.to_owned() + config::APP_ID + ".metainfo.xml"),
                     Some(env!("CARGO_PKG_VERSION")));
 
                 about_dialog.set_comments(env!("CARGO_PKG_DESCRIPTION"));
@@ -175,8 +176,7 @@ pub mod imp {
                 about_dialog.add_credit_section(Some(&gettextrs::gettext("Source Translation Supported by")), &[ "Sydney Sharpe" ]);
                 about_dialog.add_link("GitLab", "https://gitlab.com/schmiddi-on-mobile/railway");
 
-                about_dialog.set_transient_for(Some(&window));
-                about_dialog.present();
+                about_dialog.present(&window);
             }));
 
             let action_show_help_overlay = SimpleAction::new("show-help-overlay", None);
