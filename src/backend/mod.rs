@@ -28,5 +28,4 @@ pub use price::Price;
 pub use provider::Provider;
 pub use remark::Remark;
 pub use request_limiter::RequestLimiter;
-pub use stop::Stop;
 pub use stopover::Stopover;

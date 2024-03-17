@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-20 11:32+0200\n"
+"POT-Creation-Date: 2024-05-01 11:37+0200\n"
 "PO-Revision-Date: 2024-04-21 12:07+0000\n"
 "Last-Translator: Markus Göllnitz <camelcasenick@bewares.it>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,8 +30,8 @@ msgstr "Railway"
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
 msgstr ""
-"train;railway;journey;planner;timetables;Zug;Abfahrten;Reiseplaner;Navigation"
-";Anreise;Abreise;Bus;Fahrt;"
+"train;railway;journey;planner;timetables;Zug;Abfahrten;Reiseplaner;"
+"Navigation;Anreise;Abreise;Bus;Fahrt;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
@@ -80,7 +80,7 @@ msgstr ""
 "Abdeckung in Europa!"
 
 #. Translators: Subtitle of the screenshot in the metainfo
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:230
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
 msgid "Application Overview"
 msgstr "Anwendungsübersicht"
 
@@ -664,6 +664,23 @@ msgstr "{stop} an Plattform {platform} um {arrival}"
 #: src/gui/stopover_item.rs:65
 msgid "{stop} at {arrival}"
 msgstr "{stop} um {arrival}"
+
+#. Translators: Text that will be announced by the screen reader when a suggestion was selected.
+#: src/gui/station_entry.rs:189
+msgid "Suggestion {} selected"
+msgstr ""
+
+#. Translators: Text that will be announced by the screen reader when no selection was selected.
+#: src/gui/station_entry.rs:194
+msgid "No suggestion selected"
+msgstr ""
+
+#. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
+#: src/gui/station_entry.rs:383
+msgid "one suggestion, not selected"
+msgid_plural "{n} suggestions, none selected"
+msgstr[0] ""
+msgstr[1] ""
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:174

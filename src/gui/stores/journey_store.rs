@@ -64,7 +64,9 @@ pub mod imp {
                 if self.settings.boolean("delete-old") {
                     if let Some(arrival) = journey.legs.last().and_then(|l| l.planned_arrival) {
                         let deletion_time = self.settings.int("deletion-time");
-                        let deletion = arrival + Duration::hours(deletion_time.into());
+                        // Note: We limit the deletion time in the settings; the conversion to Duration should never fail.
+                        let deletion =
+                            arrival + Duration::try_hours(deletion_time.into()).unwrap_or_default();
                         if deletion < Local::now() {
                             continue;
                         }
