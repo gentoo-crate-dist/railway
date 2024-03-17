@@ -8,6 +8,9 @@
       <class name="station-entry"/>
     </style>
 
+    <property name="input-purpose">free-form</property>
+    <property name="input-hints">spellcheck | word-completion | no-emoji</property>
+
     <child>
       <object class="GtkButton">
         <style>
