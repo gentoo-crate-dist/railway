@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-11 17:02+0100\n"
-"PO-Revision-Date: 2024-03-21 12:48+0000\n"
+"PO-Revision-Date: 2024-03-22 15:01+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/oc/>\n"
@@ -323,11 +323,11 @@ msgstr ""
 
 #: src/gui/indicator_icons.rs:228
 msgid "Connection Not Possible"
-msgstr ""
+msgstr "Connexion impossibla"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
-msgstr ""
+msgstr "Anullat"
 
 #: src/gui/search_page.rs:116
 msgid "Start and destination are missing"
@@ -343,11 +343,11 @@ msgstr ""
 
 #: src/gui/search_page.rs:119
 msgid "Search ongoing"
-msgstr ""
+msgstr "Recèrca en cors"
 
 #: src/gui/journey_detail_page.rs:102
 msgid "Last refreshed {}"
-msgstr ""
+msgstr "Darrièra actualizacion {}"
 
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:90
@@ -364,22 +364,22 @@ msgstr ""
 
 #: src/gui/transition.rs:221
 msgid "Walk {}"
-msgstr ""
+msgstr "Caminar {}"
 
 #: src/gui/transition.rs:224
 msgid "Transfer"
-msgstr ""
+msgstr "Correspondéncia"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:70 src/gui/search_options_window.rs:232
 msgid "{} min"
-msgstr ""
+msgstr "{} min."
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:78
 msgid "%_H h %_M min"
-msgstr ""
+msgstr "%_H h %_M min"
 
 #: src/gui/utility.rs:89
 msgid " %_d day %_H h %_M min"
@@ -390,40 +390,40 @@ msgstr[1] ""
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:100
 msgid "{} min."
-msgstr ""
+msgstr "{} min."
 
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:104
 msgid "{} hrs."
-msgstr ""
+msgstr "{} h."
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:113
 msgid "%-H hrs. %-M min."
-msgstr ""
+msgstr "%-H h. %-M min."
 
 #: src/gui/utility.rs:125
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%-d jorn %-H hrs. %-M min."
+msgstr[1] "%-d jorns %-H hrs. %-M min."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:135
 msgid "%H:%M"
-msgstr ""
+msgstr "%H : %M"
 
 #: src/gui/utility.rs:141 src/gui/date_time_picker.rs:101
 msgid "Today"
-msgstr ""
+msgstr "Uèi"
 
 #: src/gui/utility.rs:143
 msgid "Tomorrow"
-msgstr ""
+msgstr "Deman"
 
 #: src/gui/utility.rs:145
 msgid "Yesterday"
-msgstr ""
+msgstr "Ièr"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:148
@@ -433,7 +433,7 @@ msgstr ""
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:151
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%d-%m-%Y"
 
 #: src/gui/preferences_window.rs:62
 msgid "{} h"
