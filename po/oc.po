@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-11 17:02+0100\n"
-"PO-Revision-Date: 2024-03-23 19:01+0000\n"
+"PO-Revision-Date: 2024-03-24 21:01+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/oc/>\n"
@@ -487,7 +487,7 @@ msgstr "SH-Card"
 
 #: src/gui/search_options_button.rs:91
 msgid "CH – General-Abonnement"
-msgstr "CH – General-Abonnement"
+msgstr "CH – Abonament general"
 
 #: src/gui/search_options_button.rs:98
 msgid "Unknown"
@@ -532,7 +532,7 @@ msgstr "Responsa invalida recebuda. Mercés d'enviar un comentari."
 
 #: src/gui/error.rs:29
 msgid "An unknown issue occured. Please share feedback."
-msgstr ""
+msgstr "Una error desconeguda se's producha. Mercés de la senhalar."
 
 #: src/gui/error.rs:52
 msgid "Error"
@@ -567,16 +567,16 @@ msgstr "{train} en direccion de {destination}"
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr ""
+msgstr "Partença de {start} de la via {platform} a {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
 msgid "Depart {start} at {departure}."
-msgstr ""
+msgstr "Partença {start} a {departure}."
 
 #: src/gui/leg_item.rs:101
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr ""
+msgstr "Arribada a {destination} a la via {platform} a {arrival}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:106
@@ -586,27 +586,27 @@ msgstr "Arriba a {destination} a {arrival}."
 #: src/gui/leg_item.rs:148
 msgid "{} Stopover"
 msgid_plural "{} Stopovers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} arrèst"
+msgstr[1] "{} arrèstes"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
 msgid "{stop} at {arrival} on platform {platform}"
-msgstr ""
+msgstr "{stop} a {arrival} a la via {platform}"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:65
 msgid "{stop} at {arrival}"
-msgstr ""
+msgstr "{stop} a {arrival}"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:173
 msgid "translator-credits"
-msgstr ""
+msgstr "Quentin PAGÈS"
 
 #: src/gui/window.rs:175
 msgid "Source Translation Supported by"
-msgstr ""
+msgstr "Traduccion de font sostenguda per"
 
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
@@ -631,12 +631,12 @@ msgstr "{currency} {amount}"
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
 #: src/backend/hafas_client.rs:58
 msgid "North Rhine-Westphalia"
-msgstr ""
+msgstr "Renània del Nòrd-Vestfàlia"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/hafas_client.rs:66
 msgid "Schleswig-Holstein"
-msgstr ""
+msgstr "Schleswig-Holstein"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
 #: src/backend/hafas_client.rs:83
@@ -650,4 +650,4 @@ msgstr "Àustria"
 
 #: src/backend/leg.rs:129
 msgid "Walk"
-msgstr ""
+msgstr "Caminar"
