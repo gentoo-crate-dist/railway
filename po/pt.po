@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-11 17:02+0100\n"
-"PO-Revision-Date: 2024-03-27 21:01+0000\n"
+"PO-Revision-Date: 2024-03-29 00:01+0000\n"
 "Last-Translator: Tiago Lucas Flach <tiagolucas9830@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/pt/>\n"
@@ -32,7 +32,6 @@ msgid "Input time"
 msgstr "Hora de entrada"
 
 #: data/resources/ui/date_time_picker.ui:78
-#, fuzzy
 msgid "Time"
 msgstr "Tempo"
 
@@ -98,7 +97,6 @@ msgid "For how long to retain trips after arrival"
 msgstr "Por quanto tempo manter as viagens após a chegada"
 
 #: data/resources/ui/provider_popover.ui:20
-#, fuzzy
 msgid "Search Networks…"
 msgstr "Pesquisar Redes…"
 
@@ -157,7 +155,7 @@ msgstr "IC/EC"
 
 #: data/resources/ui/search_options_window.ui:80
 msgid "Interregio/RegionalExpress"
-msgstr "Inter-regional/RegionalExpress"
+msgstr "Interregio/RegionalExpress"
 
 #: data/resources/ui/search_options_window.ui:85
 msgid "Regio"
@@ -383,18 +381,15 @@ msgstr "Transferência"
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:70 src/gui/search_options_window.rs:232
-#, fuzzy
 msgid "{} min"
 msgstr "{} min"
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:78
-#, fuzzy
 msgid "%_H h %_M min"
 msgstr "%_H h %_M min"
 
 #: src/gui/utility.rs:89
-#, fuzzy
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
 msgstr[0] "%_d dia %_H h %_M min"
@@ -402,24 +397,20 @@ msgstr[1] "%_d dias %_H h %_M min"
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:100
-#, fuzzy
 msgid "{} min."
 msgstr "{} min."
 
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:104
-#, fuzzy
 msgid "{} hrs."
 msgstr "{} hrs."
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:113
-#, fuzzy
 msgid "%-H hrs. %-M min."
 msgstr "%-H hrs. %-M min."
 
 #: src/gui/utility.rs:125
-#, fuzzy
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
 msgstr[0] "%-d dia %-H hrs. %-M min."
@@ -427,7 +418,6 @@ msgstr[1] "%-d dias %-H hrs. %-M min."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:135
-#, fuzzy
 msgid "%H:%M"
 msgstr "%H:%M"
 
@@ -454,7 +444,6 @@ msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
 #: src/gui/preferences_window.rs:62
-#, fuzzy
 msgid "{} h"
 msgid_plural "{} h"
 msgstr[0] "{} h"
@@ -481,36 +470,43 @@ msgid "BahnCard 50, 2nd class"
 msgstr "BahnCard 50, 2ª classe"
 
 #: src/gui/search_options_button.rs:79
+#, fuzzy
 msgid "A – VORTEILScard (with RAILPLUS)"
-msgstr ""
+msgstr "A – VORTEILScard (with RAILPLUS)"
 
 #: src/gui/search_options_button.rs:80
+#, fuzzy
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
-msgstr ""
+msgstr "CH – HalbtaxAbo (with RAILPLUS)"
 
 #: src/gui/search_options_button.rs:81
+#, fuzzy
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
-msgstr ""
+msgstr "CH – HalbtaxAbo (without RAILPLUS)"
 
 #: src/gui/search_options_button.rs:84
+#, fuzzy
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
-msgstr ""
+msgstr "NL – Voordeelurenabo (with RAILPLUS)"
 
 #: src/gui/search_options_button.rs:88
+#, fuzzy
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
-msgstr ""
+msgstr "NL – Voordeelurenabo (without RAILPLUS)"
 
 #: src/gui/search_options_button.rs:90
+#, fuzzy
 msgid "SH-Card"
-msgstr ""
+msgstr "SH-Card"
 
 #: src/gui/search_options_button.rs:91
+#, fuzzy
 msgid "CH – General-Abonnement"
-msgstr ""
+msgstr "CH – General-Abonnement"
 
 #: src/gui/search_options_button.rs:98
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #: src/gui/search_options_button.rs:136
 msgid "1st class"
@@ -607,68 +603,71 @@ msgstr "Chegue em {destination} às {arrival}."
 #: src/gui/leg_item.rs:148
 msgid "{} Stopover"
 msgid_plural "{} Stopovers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} Escala"
+msgstr[1] "{} Escalas"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
 msgid "{stop} at {arrival} on platform {platform}"
-msgstr ""
+msgstr "{stop} em {arrival} na plataforma {platform}"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:65
 msgid "{stop} at {arrival}"
-msgstr ""
+msgstr "{stop} em {arrival}"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:173
 msgid "translator-credits"
-msgstr ""
+msgstr "Tiago Lucas Flach <tiagolucas9830@gmail.com>"
 
 #: src/gui/window.rs:175
+#, fuzzy
 msgid "Source Translation Supported by"
-msgstr ""
+msgstr "Tradução Fonte Apoiada por"
 
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
+#, fuzzy
 msgid "every ~{}"
-msgstr ""
+msgstr "a cada ~{}"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
 msgid "€{amount}"
-msgstr ""
+msgstr "€{amount}"
 
 #. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
 #: src/backend/price.rs:74
 msgid "${amount}"
-msgstr ""
+msgstr "${amount}"
 
 #. Translators: How to format unknown currency "currency". Do not translate in {}.
 #: src/backend/price.rs:81
 msgid "{currency} {amount}"
-msgstr ""
+msgstr "{currency} {amount}"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
 #: src/backend/hafas_client.rs:58
+#, fuzzy
 msgid "North Rhine-Westphalia"
-msgstr ""
+msgstr "North Rhine-Westphalia"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/hafas_client.rs:66
 msgid "Schleswig-Holstein"
-msgstr ""
+msgstr "Schleswig-Holstein"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
 #: src/backend/hafas_client.rs:83
 msgid "Germany"
-msgstr ""
+msgstr "Alemanha"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
 #: src/backend/hafas_client.rs:98
 msgid "Austria"
-msgstr ""
+msgstr "Áustria"
 
 #: src/backend/leg.rs:129
 msgid "Walk"
-msgstr ""
+msgstr "Caminhar"
