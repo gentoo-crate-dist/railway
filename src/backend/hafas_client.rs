@@ -20,7 +20,7 @@ use super::{Journey, JourneysResult, Place, Provider, TimeType};
 
 fn providers() -> Vec<Provider> {
     vec![
-        // TODO: BVG, KVB, SNCB, PKP, SNCF, TPG
+        // TODO: BVG, KVB, SNCB, SNCF, TPG
         Provider::new("AVV", "AVV", Some("Aachener Verkehrsverbund"), true),
         // Seems to use a custom certificate now.
         // Provider::new("BART", "BART", Some("Bay Area Rapid Transit"), true),
@@ -73,6 +73,7 @@ fn providers() -> Vec<Provider> {
             true,
         ),
         Provider::new("OEBB", "ÖBB", Some("Österreichische Bundesbahnen"), true),
+        Provider::new("PKP", "PKP", Some("Polskie Koleje Państwowe"), true),
         Provider::new("RMV", "RMV", Some("Rhein-Main-Verkehrsverbund"), true),
         Provider::new("RSAG", "RSAG", Some("Rostocker Straßenbahn AG"), true),
         Provider::new("Rejseplanen", "Rejseplanen", Some("Denmark"), true),
