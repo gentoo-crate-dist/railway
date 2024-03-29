@@ -42,7 +42,6 @@ fn providers() -> Vec<Provider> {
         //     true,
         // ),
         Provider::new("DB", "DB", Some("Deutsche Bahn"), true),
-        Provider::new("INSA", "NASA", Some("Nahverkehr Sachsen-Anhalt"), true),
         Provider::new(
             "VGI",
             "VGI",
