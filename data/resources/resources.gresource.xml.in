@@ -68,7 +68,6 @@
     <file alias="db.svg">../icons/providers/db.svg</file>
     <!-- <file alias="db-busradar-nrw.svg">../icons/providers/db-busradar-nrw.svg</file> -->
     <!-- <file alias="hvv.svg">../icons/providers/hvv.svg</file> -->
-    <file alias="insa.svg">../icons/providers/insa.svg</file>
     <file alias="vgi.svg">../icons/providers/vgi.svg</file>
     <file alias="irish-rail.svg">../icons/providers/irish-rail.svg</file>
     <file alias="mobiliteit-lu.svg">../icons/providers/mobiliteit-lu.svg</file>
@@ -78,6 +77,7 @@
     <file alias="oebb.svg">../icons/providers/oebb.svg</file>
     <file alias="ooevv.svg">../icons/providers/ooevv.svg</file>
     <file alias="rejseplanen.svg">../icons/providers/rejseplanen.svg</file>
+    <file alias="pkp.svg">../icons/providers/pkp.svg</file>
     <file alias="rmv.svg">../icons/providers/rmv.svg</file>
     <file alias="rsag.svg">../icons/providers/rsag.svg</file>
     <file alias="saarvv.svg">../icons/providers/saarvv.svg</file>

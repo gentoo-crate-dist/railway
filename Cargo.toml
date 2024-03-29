@@ -23,7 +23,7 @@ chrono = "0.4.31"
 log = "0.4.20"
 env_logger = "0.11.1"
 
-hafas-rs = { version = "0.2.1", default-features = false, features = [ "hyper-requester", "all-profiles", "rt-multi-thread" ] }
+hafas-rs = { version = "0.2.2", default-features = false, features = [ "hyper-requester", "all-profiles", "rt-multi-thread" ] }
 
 serde = { version = "1.0.196", features = ["derive"] }
 serde_json = "1.0.113"
