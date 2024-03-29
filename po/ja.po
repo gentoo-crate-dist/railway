@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-11 17:02+0100\n"
-"PO-Revision-Date: 2024-03-21 12:48+0000\n"
-"Last-Translator: Niek Nooijens <nieknooijens@gmail.com>\n"
+"PO-Revision-Date: 2024-03-30 05:01+0000\n"
+"Last-Translator: maboroshin <maboroshin@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/ja/>\n"
 "Language: ja\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
-msgstr "日にち入力"
+msgstr "ひにちを入力"
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
@@ -29,7 +29,7 @@ msgstr "ひにち"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
-msgstr "時間入力"
+msgstr "時間を入力"
 
 #: data/resources/ui/date_time_picker.ui:78
 msgid "Time"
