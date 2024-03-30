@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-11 17:02+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-03-30 16:50+0000\n"
+"Last-Translator: ThinkRoot <social@crism.ro>\n"
+"Language-Team: Romanian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/ro/>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -24,7 +26,7 @@ msgstr ""
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
-msgstr ""
+msgstr "Dată"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
@@ -32,116 +34,116 @@ msgstr ""
 
 #: data/resources/ui/date_time_picker.ui:78
 msgid "Time"
-msgstr ""
+msgstr "Timp"
 
 #: data/resources/ui/date_time_picker.ui:144 src/gui/date_time_picker.rs:113
 msgid "Now"
-msgstr ""
+msgstr "Acum"
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Total Travel Time"
-msgstr ""
+msgstr "Timp total de călătorie"
 
 #: data/resources/ui/journey_detail_page.ui:100
 msgid "Trip Segments"
-msgstr ""
+msgstr "Segmente de călătorie"
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
-msgstr ""
+msgstr "Alegeți o călătorie"
 
 #: data/resources/ui/journeys_page.ui:128
 msgid "Search for Trips"
-msgstr ""
+msgstr "Căutați călătorii"
 
 #: data/resources/ui/leg_item.ui:183
 msgid "Show Stopovers"
-msgstr ""
+msgstr "Afișați escale"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Stopovers in Between"
-msgstr ""
+msgstr "Afișați escale intermediare"
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
 msgid "Show Announcements"
-msgstr ""
+msgstr "Afișați anunțuri"
 
 #: data/resources/ui/leg_item.ui:283
 msgid "Announcements"
-msgstr ""
+msgstr "Anunțuri"
 
 #: data/resources/ui/leg_item.ui:315
 msgid "Stopovers"
-msgstr ""
+msgstr "Escale"
 
 #: data/resources/ui/preferences_window.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "Eliminați automat marcajele vechi"
 
 #: data/resources/ui/preferences_window.ui:17
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "Călătoriile anterioare sunt păstrate doar pentru o perioadă de timp."
 
 #: data/resources/ui/preferences_window.ui:23
 msgid "Preservation Time For Trips"
-msgstr ""
+msgstr "Timp de păstrare pentru călătorii"
 
 #: data/resources/ui/preferences_window.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "Pentru ce perioadă de timp să păstrați călătoriile după sosire"
 
 #: data/resources/ui/provider_popover.ui:20
 msgid "Search Networks…"
-msgstr ""
+msgstr "Căutare rețele…"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
-msgstr ""
+msgstr "Mai multe opțiuni de căutare"
 
 #: data/resources/ui/search_options_button.ui:20
 msgid "Refine Advanced Search Options"
-msgstr ""
+msgstr "Precizați opțiunile de căutare avansată"
 
 #: data/resources/ui/search_options_button.ui:35
 msgid "More Options"
-msgstr ""
+msgstr "Mai multe opțiuni"
 
 #: data/resources/ui/search_options_window.ui:14
 msgid "Discount Card"
-msgstr ""
+msgstr "Card de reducere"
 
 #: data/resources/ui/search_options_window.ui:22
 msgid "Class"
-msgstr ""
+msgstr "Clasa"
 
 #: data/resources/ui/search_options_window.ui:32
 msgid "First Class"
-msgstr ""
+msgstr "Clasa I"
 
 #: data/resources/ui/search_options_window.ui:38
 msgid "Second Class"
-msgstr ""
+msgstr "Clasa a II-a"
 
 #: data/resources/ui/search_options_window.ui:48
 #: src/gui/search_options_button.rs:194
 msgid "Bike Accessible"
-msgstr ""
+msgstr "Accesibil pentru biciclete"
 
 #: data/resources/ui/search_options_window.ui:54
 msgid "Minimum Transfer Time"
-msgstr ""
+msgstr "Timp minim de transfer"
 
 #: data/resources/ui/search_options_window.ui:60
 msgid "Direct Connections Only"
-msgstr ""
+msgstr "Doar conexiuni directe"
 
 #: data/resources/ui/search_options_window.ui:67
 msgid "Modes of Transport"
-msgstr ""
+msgstr "Mijloace de transport"
 
 #: data/resources/ui/search_options_window.ui:70
 msgid "ICE"
