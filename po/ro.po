@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-11 17:02+0100\n"
 "PO-Revision-Date: 2024-03-30 16:50+0000\n"
-"Last-Translator: ThinkRoot <social@crism.ro>\n"
+"Last-Translator: Andrea Andre <andrea.tsg19@slmail.me>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/ro/>\n"
 "Language: ro\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
-msgstr ""
+msgstr "Introdu data"
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
@@ -30,7 +30,7 @@ msgstr "Dată"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
-msgstr ""
+msgstr "Introdu ora"
 
 #: data/resources/ui/date_time_picker.ui:78
 msgid "Time"
@@ -167,92 +167,92 @@ msgstr ""
 
 #: data/resources/ui/search_options_window.ui:95
 msgid "Bus"
-msgstr ""
+msgstr "Autobuz"
 
 #: data/resources/ui/search_options_window.ui:100
 msgid "Ferry"
-msgstr ""
+msgstr "Bac"
 
 #: data/resources/ui/search_options_window.ui:105
 msgid "Subway"
-msgstr ""
+msgstr "Metrou"
 
 #: data/resources/ui/search_options_window.ui:110
 msgid "Tram"
-msgstr ""
+msgstr "Tramvai"
 
 #: data/resources/ui/search_options_window.ui:115
 msgid "Taxi"
-msgstr ""
+msgstr "Taxi"
 
 #: data/resources/ui/search_page.ui:37
 msgid "From"
-msgstr ""
+msgstr "De la"
 
 #: data/resources/ui/search_page.ui:45
 msgid "To"
-msgstr ""
+msgstr "La"
 
 #: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:95
 #: data/resources/ui/window.ui:37
 msgid "Search"
-msgstr ""
+msgstr "Caută"
 
 #: data/resources/ui/search_page.ui:120
 msgid "Bookmarked Trips"
-msgstr ""
+msgstr "Trasee preferate"
 
 #: data/resources/ui/search_page.ui:134
 msgid "Bookmarked Searches"
-msgstr ""
+msgstr "Căutări preferate"
 
 #: data/resources/ui/shortcuts.ui:9
 msgid "Application"
-msgstr ""
+msgstr "Aplicație"
 
 #: data/resources/ui/shortcuts.ui:13
 msgid "Bookmark Search"
-msgstr ""
+msgstr "Salvează căutarea"
 
 #: data/resources/ui/shortcuts.ui:19
 msgid "Bookmark Trip"
-msgstr ""
+msgstr "Salvează traseul"
 
 #: data/resources/ui/shortcuts.ui:25
 msgid "Reload Trip"
-msgstr ""
+msgstr "Actualizează traseul"
 
 #: data/resources/ui/shortcuts.ui:36
 msgid "Quit"
-msgstr ""
+msgstr "Închide"
 
 #: data/resources/ui/shortcuts.ui:42
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "Arată tastele rapide"
 
 #: data/resources/ui/shortcuts.ui:48
 msgid "Show Preferences"
-msgstr ""
+msgstr "Arată preferințele"
 
 #: data/resources/ui/shortcuts.ui:54
 msgid "Open Menu"
-msgstr ""
+msgstr "Arată opțiunile"
 
 #: data/resources/ui/station_entry.ui:16
 msgid "Swap Start and Destination"
-msgstr ""
+msgstr "Schimbă Plecarea cu Destinația"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
 msgid "Select Network"
-msgstr ""
+msgstr "Alege furnizorul de servicii"
 
 #: data/resources/ui/window.ui:88
 msgid "Main Menu"
-msgstr ""
+msgstr "Opțiuni"
 
 #: data/resources/ui/window.ui:114
 msgid "Connections"
-msgstr ""
+msgstr "Legături"
 
 #: data/resources/ui/window.ui:128
 msgid "Bookmark This Search"
