@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-11 17:02+0100\n"
-"PO-Revision-Date: 2024-03-30 19:48+0000\n"
+"PO-Revision-Date: 2024-03-31 23:02+0000\n"
 "Last-Translator: Andrea Andre <andrea.tsg19@slmail.me>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/ro/>\n"
@@ -26,7 +26,7 @@ msgstr "Introdu data"
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
-msgstr "Dată"
+msgstr "Data"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
@@ -34,7 +34,7 @@ msgstr "Introdu ora"
 
 #: data/resources/ui/date_time_picker.ui:78
 msgid "Time"
-msgstr "Timp"
+msgstr "Ora"
 
 #: data/resources/ui/date_time_picker.ui:144 src/gui/date_time_picker.rs:113
 msgid "Now"
@@ -42,7 +42,7 @@ msgstr "Acum"
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Total Travel Time"
-msgstr "Timp total de călătorie"
+msgstr "Durata călătoriei"
 
 #: data/resources/ui/journey_detail_page.ui:100
 msgid "Trip Segments"
@@ -58,15 +58,15 @@ msgstr "Caută trasee"
 
 #: data/resources/ui/leg_item.ui:183
 msgid "Show Stopovers"
-msgstr "Afișați escale"
+msgstr "Arată opririle"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Stopovers in Between"
-msgstr "Afișați escale intermediare"
+msgstr "Arată opririle intermediare"
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
 msgid "Show Announcements"
-msgstr "Afișați anunțuri"
+msgstr "Arată anunțuri"
 
 #: data/resources/ui/leg_item.ui:283
 msgid "Announcements"
@@ -74,11 +74,11 @@ msgstr "Anunțuri"
 
 #: data/resources/ui/leg_item.ui:315
 msgid "Stopovers"
-msgstr "Escale"
+msgstr "Opriri"
 
 #: data/resources/ui/preferences_window.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
-msgstr "General"
+msgstr "Generale"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Automatically Remove Old Bookmarks"
@@ -98,7 +98,7 @@ msgstr "Cât timp să fie păstrate traseele după sosire"
 
 #: data/resources/ui/provider_popover.ui:20
 msgid "Search Networks…"
-msgstr "Căutare rețele…"
+msgstr "Caută furnizorul de servicii…"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
@@ -106,7 +106,7 @@ msgstr "Mai multe opțiuni de căutare"
 
 #: data/resources/ui/search_options_button.ui:20
 msgid "Refine Advanced Search Options"
-msgstr "Precizați opțiunile de căutare avansată"
+msgstr "Precizează opțiunile de căutare avansată"
 
 #: data/resources/ui/search_options_button.ui:35
 msgid "More Options"
@@ -126,7 +126,7 @@ msgstr "Clasa I"
 
 #: data/resources/ui/search_options_window.ui:38
 msgid "Second Class"
-msgstr "Clasa a II-a"
+msgstr "Clasa a 2-a"
 
 #: data/resources/ui/search_options_window.ui:48
 #: src/gui/search_options_button.rs:194
@@ -147,23 +147,23 @@ msgstr "Mijloace de transport"
 
 #: data/resources/ui/search_options_window.ui:70
 msgid "ICE"
-msgstr ""
+msgstr "ICE"
 
 #: data/resources/ui/search_options_window.ui:75
 msgid "IC/EC"
-msgstr ""
+msgstr "IC/EC"
 
 #: data/resources/ui/search_options_window.ui:80
 msgid "Interregio/RegionalExpress"
-msgstr ""
+msgstr "InterRegio/RegionalExpress"
 
 #: data/resources/ui/search_options_window.ui:85
 msgid "Regio"
-msgstr ""
+msgstr "Personal"
 
 #: data/resources/ui/search_options_window.ui:90
 msgid "S-Bahn"
-msgstr ""
+msgstr "S-Bahn"
 
 #: data/resources/ui/search_options_window.ui:95
 msgid "Bus"
@@ -248,7 +248,7 @@ msgstr "Alege furnizorul de servicii"
 
 #: data/resources/ui/window.ui:88
 msgid "Main Menu"
-msgstr "Opțiuni"
+msgstr "Opțiuni principale"
 
 #: data/resources/ui/window.ui:114
 msgid "Connections"
@@ -397,7 +397,7 @@ msgstr "{} min."
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:104
 msgid "{} hrs."
-msgstr "{} ore"
+msgstr "{} ore."
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:113
@@ -511,7 +511,7 @@ msgstr "Doar Personal"
 
 #: src/gui/search_options_button.rs:189
 msgid "Selected Modes of Transport"
-msgstr "Tipuri de transport alese"
+msgstr "Mijloace de transport alese"
 
 #: src/gui/search_options_button.rs:201
 msgid "Direct Connection"
@@ -535,7 +535,7 @@ msgstr "Răspuns incorect. Trimite un comentariu."
 
 #: src/gui/error.rs:29
 msgid "An unknown issue occured. Please share feedback."
-msgstr ""
+msgstr "Eroare necunoscută. Dacă vrei, raporteaz-o."
 
 #: src/gui/error.rs:52
 msgid "Error"
@@ -571,7 +571,7 @@ msgstr "{train} în direcția {destination}"
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr "Pleacă {start} de la peronul {platform} la {departure}."
+msgstr "Plecare {start} de la peronul {platform} la {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
@@ -580,7 +580,7 @@ msgstr "Plecare {start} la {departure}."
 
 #: src/gui/leg_item.rs:101
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr "Sosește la {destination} la peronul {platform} la {arrival}."
+msgstr "Sosire la {destination} la peronul {platform} la {arrival}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:106
@@ -590,8 +590,9 @@ msgstr "Sosire la {destination} la {arrival}."
 #: src/gui/leg_item.rs:148
 msgid "{} Stopover"
 msgid_plural "{} Stopovers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} oprire"
+msgstr[1] "{} opriri"
+msgstr[2] "{} de opriri"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
@@ -610,7 +611,7 @@ msgstr "Andrea Andre"
 
 #: src/gui/window.rs:175
 msgid "Source Translation Supported by"
-msgstr ""
+msgstr "Traducere susținută de"
 
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
@@ -635,12 +636,12 @@ msgstr "{amount} {currency}"
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
 #: src/backend/hafas_client.rs:58
 msgid "North Rhine-Westphalia"
-msgstr ""
+msgstr "Renania de Nord-Westfalia"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/hafas_client.rs:66
 msgid "Schleswig-Holstein"
-msgstr ""
+msgstr "Schleswig-Holstein"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
 #: src/backend/hafas_client.rs:83
