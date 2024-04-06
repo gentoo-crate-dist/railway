@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-11 17:02+0100\n"
-"PO-Revision-Date: 2024-04-04 11:01+0000\n"
-"Last-Translator: Богдан Venture <bogdanventura123@gmail.com>\n"
+"PO-Revision-Date: 2024-04-06 21:01+0000\n"
+"Last-Translator: Даня Степанов <danastepanov393@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/ru/>\n"
 "Language: ru\n"
@@ -42,67 +42,67 @@ msgstr "Сейчас"
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Total Travel Time"
-msgstr ""
+msgstr "Всего времени в пути"
 
 #: data/resources/ui/journey_detail_page.ui:100
 msgid "Trip Segments"
-msgstr ""
+msgstr "Сегменты поездки"
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
-msgstr ""
+msgstr "Выберите поездку"
 
 #: data/resources/ui/journeys_page.ui:128
 msgid "Search for Trips"
-msgstr ""
+msgstr "Поиск поездок"
 
 #: data/resources/ui/leg_item.ui:183
 msgid "Show Stopovers"
-msgstr ""
+msgstr "Показать остановки"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Stopovers in Between"
-msgstr ""
+msgstr "Показывать остановки между ними"
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
 msgid "Show Announcements"
-msgstr ""
+msgstr "Показать объявления"
 
 #: data/resources/ui/leg_item.ui:283
 msgid "Announcements"
-msgstr ""
+msgstr "Объявления"
 
 #: data/resources/ui/leg_item.ui:315
 msgid "Stopovers"
-msgstr ""
+msgstr "Остановки"
 
 #: data/resources/ui/preferences_window.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
-msgstr ""
+msgstr "Общий"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "Автоматически удалять старые закладки"
 
 #: data/resources/ui/preferences_window.ui:17
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "Прошлые поездки хранятся только в течение определенного периода времени"
 
 #: data/resources/ui/preferences_window.ui:23
 msgid "Preservation Time For Trips"
-msgstr ""
+msgstr "Время сохранения для поездок"
 
 #: data/resources/ui/preferences_window.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "Как долго сохранить поездки после прибытия"
 
 #: data/resources/ui/provider_popover.ui:20
 msgid "Search Networks…"
-msgstr ""
+msgstr "Поисковые сети …"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
-msgstr ""
+msgstr "Больше параметров поиска"
 
 #: data/resources/ui/search_options_button.ui:20
 msgid "Refine Advanced Search Options"
