@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-11 17:02+0100\n"
-"PO-Revision-Date: 2024-04-06 21:01+0000\n"
+"PO-Revision-Date: 2024-04-15 10:01+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/tr/>\n"
@@ -561,7 +561,7 @@ msgstr ""
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
 msgid "{train} in the direction of {destination}"
-msgstr ""
+msgstr "{train}, {destination} yönünde"
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
