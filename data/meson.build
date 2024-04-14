@@ -30,6 +30,12 @@ appdata = configure_file(
   install_dir: datadir / 'metainfo'
 )
 
+if appstream_cli.found()
+  test('Validate metainfo file', appstream_cli,
+    args: ['validate', '--no-net', '--explain', appdata]
+  )
+endif
+
 # Schemas
 install_data(
   '@0@.gschema.xml'.format(base_id),
