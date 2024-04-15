@@ -27,6 +27,7 @@
         {
             "name": "diebahn",
             "buildsystem": "meson",
+            "run-tests" : true,
             "config-opts": [
                 "-Dprofile=development"
             ],

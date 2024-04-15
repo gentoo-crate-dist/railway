@@ -17,6 +17,12 @@ desktop_file = i18n.merge_file(
   install_dir: join_paths(datadir, 'applications')
 )
 
+if desktop_file_validate.found()
+  test('Validate desktop file', desktop_file_validate,
+    args: [desktop_file]
+  )
+endif
+
 # Metainfo
 appdata_conf = configuration_data()
 appdata_conf.set('base-id', base_id)
@@ -29,6 +35,12 @@ appdata = configure_file(
   install: true,
   install_dir: datadir / 'metainfo'
 )
+
+if appstream_cli.found()
+  test('Validate metainfo file', appstream_cli,
+    args: ['validate', '--no-net', '--explain', appdata]
+  )
+endif
 
 # Schemas
 install_data(
