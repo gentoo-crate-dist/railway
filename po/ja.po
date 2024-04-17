@@ -7,17 +7,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-11 17:02+0100\n"
+"POT-Creation-Date: 2024-04-20 11:32+0200\n"
 "PO-Revision-Date: 2024-03-30 05:01+0000\n"
 "Last-Translator: maboroshin <maboroshin@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/ja/>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.5-dev\n"
+
+#. Translators: The name of the application.
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:5
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
+#: data/resources/ui/window.ui:8
+#, fuzzy
+msgid "Railway"
+msgstr "_鉄道について"
+
+#. Translators: The keywords from the desktop file.
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:10
+msgid "train;railway;journey;planner;timetables;"
+msgstr ""
+
+#. Translators: The summary of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
+msgid "Find all your travel information"
+msgstr ""
+
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
+msgid "Julian Schmidhuber"
+msgstr ""
+
+#. Translators: Part of the description of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
+msgid ""
+"Railway lets you look up travel information across networks and borders "
+"without having to navigate through different websites. Due to the adaptive "
+"design, it is suitable to plan your trip in advance or mobile on the go:"
+msgstr ""
+
+#. Translators: Part of the description of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
+msgid "View your tripsʼ details including platforms and delays"
+msgstr ""
+
+#. Translators: Part of the description of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
+msgid "Bookmark current and future trips as well as frequent search"
+msgstr ""
+
+#. Translators: Part of the description of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
+msgid "Make use of advance search options like filtering by mode of transport"
+msgstr ""
+
+#. Translators: Part of the description of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
+msgid ""
+"And all that for networks from all around the world, but mostly from Europe."
+msgstr ""
+
+#. Translators: Subtitle of the screenshot in the metainfo
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:230
+#, fuzzy
+msgid "Application Overview"
+msgstr "アプリケーション"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -75,23 +132,23 @@ msgstr "公告"
 msgid "Stopovers"
 msgstr "途中降機"
 
-#: data/resources/ui/preferences_window.ui:10 data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/preferences_dialog.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
 msgstr "一般的"
 
-#: data/resources/ui/preferences_window.ui:16
+#: data/resources/ui/preferences_dialog.ui:16
 msgid "Automatically Remove Old Bookmarks"
 msgstr "自動に古いブックマークを消去"
 
-#: data/resources/ui/preferences_window.ui:17
+#: data/resources/ui/preferences_dialog.ui:17
 msgid "Past trips are kept only for a period of time"
 msgstr "過去の旅行は一定期間のみ保存されています"
 
-#: data/resources/ui/preferences_window.ui:23
+#: data/resources/ui/preferences_dialog.ui:23
 msgid "Preservation Time For Trips"
 msgstr "旅行の予約時間"
 
-#: data/resources/ui/preferences_window.ui:24
+#: data/resources/ui/preferences_dialog.ui:24
 msgid "For how long to retain trips after arrival"
 msgstr "到着後の旅行の保持期間"
 
@@ -111,76 +168,76 @@ msgstr "詳細検索オプションを絞り込む"
 msgid "More Options"
 msgstr "他のオプション"
 
-#: data/resources/ui/search_options_window.ui:14
+#: data/resources/ui/search_options_dialog.ui:14
 msgid "Discount Card"
 msgstr "割引カード"
 
-#: data/resources/ui/search_options_window.ui:22
+#: data/resources/ui/search_options_dialog.ui:22
 msgid "Class"
 msgstr "クラス"
 
-#: data/resources/ui/search_options_window.ui:32
+#: data/resources/ui/search_options_dialog.ui:32
 msgid "First Class"
 msgstr "ファーストクラス"
 
-#: data/resources/ui/search_options_window.ui:38
+#: data/resources/ui/search_options_dialog.ui:38
 msgid "Second Class"
 msgstr "普通クラス"
 
-#: data/resources/ui/search_options_window.ui:48
-#: src/gui/search_options_button.rs:194
+#: data/resources/ui/search_options_dialog.ui:48
+#: src/gui/search_options_button.rs:195
 msgid "Bike Accessible"
 msgstr "自転車利用可"
 
-#: data/resources/ui/search_options_window.ui:54
+#: data/resources/ui/search_options_dialog.ui:54
 msgid "Minimum Transfer Time"
 msgstr "最小転送時間"
 
-#: data/resources/ui/search_options_window.ui:60
+#: data/resources/ui/search_options_dialog.ui:60
 msgid "Direct Connections Only"
 msgstr "直接接続のみ"
 
-#: data/resources/ui/search_options_window.ui:67
+#: data/resources/ui/search_options_dialog.ui:67
 msgid "Modes of Transport"
 msgstr "交通手段"
 
-#: data/resources/ui/search_options_window.ui:70
+#: data/resources/ui/search_options_dialog.ui:70
 msgid "ICE"
 msgstr "都市間特急"
 
-#: data/resources/ui/search_options_window.ui:75
+#: data/resources/ui/search_options_dialog.ui:75
 msgid "IC/EC"
 msgstr "都市間/ユーロシティ"
 
-#: data/resources/ui/search_options_window.ui:80
+#: data/resources/ui/search_options_dialog.ui:80
 msgid "Interregio/RegionalExpress"
 msgstr "快速/区間快速"
 
-#: data/resources/ui/search_options_window.ui:85
+#: data/resources/ui/search_options_dialog.ui:85
 msgid "Regio"
 msgstr "区間"
 
-#: data/resources/ui/search_options_window.ui:90
+#: data/resources/ui/search_options_dialog.ui:90
 msgid "S-Bahn"
 msgstr "市電"
 
-#: data/resources/ui/search_options_window.ui:95
+#: data/resources/ui/search_options_dialog.ui:95
 msgid "Bus"
 msgstr "バス"
 
-#: data/resources/ui/search_options_window.ui:100
+#: data/resources/ui/search_options_dialog.ui:100
 msgid "Ferry"
 msgstr "渡し船"
 
-#: data/resources/ui/search_options_window.ui:105
+#: data/resources/ui/search_options_dialog.ui:105
 msgid "Subway"
 msgstr "地下鉄"
 
-#: data/resources/ui/search_options_window.ui:110
+#: data/resources/ui/search_options_dialog.ui:110
 msgid "Tram"
 msgstr "市電"
 
-#: data/resources/ui/search_options_window.ui:115
+#: data/resources/ui/search_options_dialog.ui:115
 msgid "Taxi"
 msgstr "タクシー"
 
@@ -237,7 +294,7 @@ msgstr "設定を表示"
 msgid "Open Menu"
 msgstr "メニューを開く"
 
-#: data/resources/ui/station_entry.ui:16
+#: data/resources/ui/station_entry.ui:19
 msgid "Swap Start and Destination"
 msgstr "出発地と目的地を入れ替える"
 
@@ -372,7 +429,7 @@ msgstr "乗り換え"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:70 src/gui/search_options_window.rs:232
+#: src/gui/utility.rs:70 src/gui/search_options_dialog.rs:230
 msgid "{} min"
 msgstr "{}分"
 
@@ -435,80 +492,80 @@ msgstr "%a, %d. %B"
 msgid "%Y-%m-%d"
 msgstr "%Y年-%m月-%d日"
 
-#: src/gui/preferences_window.rs:62
+#: src/gui/preferences_dialog.rs:60
 msgid "{} h"
 msgid_plural "{} h"
 msgstr[0] "{} 時"
 
-#: src/gui/search_options_button.rs:74
+#: src/gui/search_options_button.rs:75
 msgid "None"
 msgstr "何もない"
 
-#: src/gui/search_options_button.rs:75
+#: src/gui/search_options_button.rs:76
 msgid "BahnCard 25, 1st class"
 msgstr "BahnCard 25, ファーストクラス"
 
-#: src/gui/search_options_button.rs:76
+#: src/gui/search_options_button.rs:77
 msgid "BahnCard 25, 2nd class"
 msgstr "BahnCard 25, 普通席"
 
-#: src/gui/search_options_button.rs:77
+#: src/gui/search_options_button.rs:78
 msgid "BahnCard 50, 1st class"
 msgstr "BahnCard 50, ファーストクラス"
 
-#: src/gui/search_options_button.rs:78
+#: src/gui/search_options_button.rs:79
 msgid "BahnCard 50, 2nd class"
 msgstr "BahnCard 50, 普通席"
 
-#: src/gui/search_options_button.rs:79
+#: src/gui/search_options_button.rs:80
 msgid "A – VORTEILScard (with RAILPLUS)"
 msgstr "オーストリア – VORTEILScard (RAILPLUS付き)"
 
-#: src/gui/search_options_button.rs:80
+#: src/gui/search_options_button.rs:81
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
 msgstr "チェコ – HalbtaxAbo (RAILPLUS付き)"
 
-#: src/gui/search_options_button.rs:81
+#: src/gui/search_options_button.rs:82
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
 msgstr "チェコ – HalbtaxAbo (RAILPLUSなし)"
 
-#: src/gui/search_options_button.rs:84
+#: src/gui/search_options_button.rs:85
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
 msgstr "オランダ - Voordeelurenabo (RAILPLUS付き)"
 
-#: src/gui/search_options_button.rs:88
+#: src/gui/search_options_button.rs:89
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
 msgstr "オランダ - Voordeelurenabo (RAILPLUSなし)"
 
-#: src/gui/search_options_button.rs:90
+#: src/gui/search_options_button.rs:91
 msgid "SH-Card"
 msgstr "SH-カード"
 
-#: src/gui/search_options_button.rs:91
+#: src/gui/search_options_button.rs:92
 msgid "CH – General-Abonnement"
 msgstr "チェコ - 一般購読"
 
-#: src/gui/search_options_button.rs:98
+#: src/gui/search_options_button.rs:99
 msgid "Unknown"
 msgstr "不明"
 
-#: src/gui/search_options_button.rs:136
+#: src/gui/search_options_button.rs:137
 msgid "1st class"
 msgstr "ファーストクラス"
 
-#: src/gui/search_options_button.rs:138
+#: src/gui/search_options_button.rs:139
 msgid "2nd class"
 msgstr "普通席"
 
-#: src/gui/search_options_button.rs:186
+#: src/gui/search_options_button.rs:187
 msgid "Regional Only"
 msgstr "区間のみ"
 
-#: src/gui/search_options_button.rs:189
+#: src/gui/search_options_button.rs:190
 msgid "Selected Modes of Transport"
 msgstr "選択された交通手段"
 
-#: src/gui/search_options_button.rs:201
+#: src/gui/search_options_button.rs:202
 msgid "Direct Connection"
 msgstr "直接接続"
 
@@ -532,11 +589,11 @@ msgstr "無効な応答を受け取りました。 フィードバックを共�
 msgid "An unknown issue occured. Please share feedback."
 msgstr "不明な問題が発生しました。 フィードバックを共有してください。"
 
-#: src/gui/error.rs:52
+#: src/gui/error.rs:45
 msgid "Error"
 msgstr "エラー"
 
-#: src/gui/error.rs:56
+#: src/gui/error.rs:49
 msgid "_Close"
 msgstr "_終了"
 
@@ -597,11 +654,11 @@ msgid "{stop} at {arrival}"
 msgstr "{stop}で{arrival}に"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-#: src/gui/window.rs:173
+#: src/gui/window.rs:174
 msgid "translator-credits"
 msgstr "翻訳者クレジット"
 
-#: src/gui/window.rs:175
+#: src/gui/window.rs:176
 msgid "Source Translation Supported by"
 msgstr "ソース翻訳のサポート者"
 
@@ -629,12 +686,12 @@ msgid "{currency} {amount}"
 msgstr "{currency} {amount}"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-#: src/backend/hafas_client.rs:58
+#: src/backend/hafas_client.rs:57
 msgid "North Rhine-Westphalia"
 msgstr "ノルトライン ヴェストファーレン州"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
-#: src/backend/hafas_client.rs:66
+#: src/backend/hafas_client.rs:65
 msgid "Schleswig-Holstein"
 msgstr "シュレースヴィヒ ホルシュタイン州"
 
@@ -651,3 +708,23 @@ msgstr "オーストリア"
 #: src/backend/leg.rs:129
 msgid "Walk"
 msgstr "歩く"
+
+#, fuzzy
+#~ msgid "Changed"
+#~ msgstr "{} 変更"
+
+#, fuzzy
+#~ msgid "Translation support using Weblate."
+#~ msgstr "ソース翻訳のサポート者"
+
+#, fuzzy
+#~ msgid "Keyboard shortcuts"
+#~ msgstr "キーボードショートカット"
+
+#, fuzzy
+#~ msgid "Many more settings"
+#~ msgstr "他のオプション"
+
+#, fuzzy
+#~ msgid "Bookmark journeys"
+#~ msgstr "旅行をブックマーク"

@@ -1,3 +1,6 @@
+data/de.schmidhuberj.DieBahn.desktop.in.in
+data/de.schmidhuberj.DieBahn.metainfo.xml.in.in
+
 data/resources/ui/alt_label.ui
 data/resources/ui/date_time_picker.ui
 data/resources/ui/journey_detail_page.ui
