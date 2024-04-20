@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-20 11:32+0200\n"
-"PO-Revision-Date: 2024-02-29 05:02+0000\n"
+"PO-Revision-Date: 2024-04-21 12:07+0000\n"
 "Last-Translator: Markus Göllnitz <camelcasenick@bewares.it>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,15 +30,17 @@ msgstr "Railway"
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
 msgstr ""
+"train;railway;journey;planner;timetables;Zug;Abfahrten;Reiseplaner;Navigation"
+";Anreise;Abreise;Bus;Fahrt;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr ""
+msgstr "Alle Reiseinformationen an einem Ort"
 
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
 msgid "Julian Schmidhuber"
-msgstr ""
+msgstr "Julian Schmidhuber"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -47,33 +49,40 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"Railway ermöglicht es Dir alle Reiseinformationen aus unterschiedlichen "
+"Verkehrsnetzen über Ländergrenzen hinweg herauszusuchen, ganz ohne das "
+"Aufrufen all derer Websites. Railway ist so designt, dass man damit am "
+"Rechner Reisen vorbereiten kann, genauso wie unterwegs am Handy:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
 msgstr ""
+"Sieh Dir die Details der Verbindungen an, wie Plattform und Verspätungen"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
 msgstr ""
+"Setze Lesezeichen für zukünftige Reisen und häufig gesuchte Verbindungen"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
-msgstr ""
+msgstr "Nutze erweiterte Suchoptionen, wie das Filtern nach Verkehrsmittel"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
 msgstr ""
+"Und all das für Verkehrsnetze aus der gesamten Welt, mit der besten "
+"Abdeckung in Europa!"
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:230
-#, fuzzy
 msgid "Application Overview"
-msgstr "Anwendung"
+msgstr "Anwendungsübersicht"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
