@@ -28,10 +28,14 @@ appdata_conf = configuration_data()
 appdata_conf.set('base-id', base_id)
 appdata_conf.set('app-id', application_id)
 appdata_conf.set('gettext-package', gettext_package)
-appdata = configure_file(
-  input: '@0@.metainfo.xml.in'.format(base_id),
+appdata = i18n.merge_file(
+  input: configure_file(
+    input: '@0@.metainfo.xml.in.in'.format(base_id),
+    output: '@0@.metainfo.xml.in'.format(application_id),
+    configuration: appdata_conf,
+  ),
   output: '@0@.metainfo.xml'.format(application_id),
-  configuration: appdata_conf,
+  po_dir: podir,
   install: true,
   install_dir: datadir / 'metainfo'
 )

@@ -5,4 +5,5 @@ Name=Railway
 StartupWMClass=Railway
 Exec=@bindir@/diebahn
 X-Purism-FormFactor=Workstation;Mobile;
+# Translators: The keywords from the desktop file.
 Keywords=train;railway;journey;planner;timetables;

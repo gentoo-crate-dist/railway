@@ -7,17 +7,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-11 17:02+0100\n"
+"POT-Creation-Date: 2024-04-20 11:32+0200\n"
 "PO-Revision-Date: 2024-03-29 00:01+0000\n"
 "Last-Translator: Tiago Lucas Flach <tiagolucas9830@gmail.com>\n"
-"Language-Team: Portuguese <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/pt/>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.5-dev\n"
+
+#. Translators: The name of the application.
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:5
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
+#: data/resources/ui/window.ui:8
+#, fuzzy
+msgid "Railway"
+msgstr "_Sobre o Railway"
+
+#. Translators: The keywords from the desktop file.
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:10
+msgid "train;railway;journey;planner;timetables;"
+msgstr ""
+
+#. Translators: The summary of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
+msgid "Find all your travel information"
+msgstr ""
+
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
+msgid "Julian Schmidhuber"
+msgstr ""
+
+#. Translators: Part of the description of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
+msgid ""
+"Railway lets you look up travel information across networks and borders "
+"without having to navigate through different websites. Due to the adaptive "
+"design, it is suitable to plan your trip in advance or mobile on the go:"
+msgstr ""
+
+#. Translators: Part of the description of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
+msgid "View your tripsʼ details including platforms and delays"
+msgstr ""
+
+#. Translators: Part of the description of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
+msgid "Bookmark current and future trips as well as frequent search"
+msgstr ""
+
+#. Translators: Part of the description of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
+msgid "Make use of advance search options like filtering by mode of transport"
+msgstr ""
+
+#. Translators: Part of the description of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
+msgid ""
+"And all that for networks from all around the world, but mostly from Europe."
+msgstr ""
+
+#. Translators: Subtitle of the screenshot in the metainfo
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:230
+#, fuzzy
+msgid "Application Overview"
+msgstr "Aplicativo"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -75,24 +132,24 @@ msgstr "Anúncios"
 msgid "Stopovers"
 msgstr "Escalas"
 
-#: data/resources/ui/preferences_window.ui:10 data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/preferences_dialog.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
 msgstr "Geral"
 
-#: data/resources/ui/preferences_window.ui:16
+#: data/resources/ui/preferences_dialog.ui:16
 msgid "Automatically Remove Old Bookmarks"
 msgstr "Remover Marcadores Antigos Automaticamente"
 
-#: data/resources/ui/preferences_window.ui:17
+#: data/resources/ui/preferences_dialog.ui:17
 msgid "Past trips are kept only for a period of time"
 msgstr "As viagens anteriores são mantidas apenas por um período de tempo"
 
-#: data/resources/ui/preferences_window.ui:23
+#: data/resources/ui/preferences_dialog.ui:23
 #, fuzzy
 msgid "Preservation Time For Trips"
 msgstr "Tempo de Preservação Para Viagens"
 
-#: data/resources/ui/preferences_window.ui:24
+#: data/resources/ui/preferences_dialog.ui:24
 msgid "For how long to retain trips after arrival"
 msgstr "Por quanto tempo manter as viagens após a chegada"
 
@@ -112,77 +169,77 @@ msgstr "Refinar Opções de Pesquisa Avançada"
 msgid "More Options"
 msgstr "Mais Opções"
 
-#: data/resources/ui/search_options_window.ui:14
+#: data/resources/ui/search_options_dialog.ui:14
 msgid "Discount Card"
 msgstr "Cartão de Desconto"
 
-#: data/resources/ui/search_options_window.ui:22
+#: data/resources/ui/search_options_dialog.ui:22
 msgid "Class"
 msgstr "Classe"
 
-#: data/resources/ui/search_options_window.ui:32
+#: data/resources/ui/search_options_dialog.ui:32
 msgid "First Class"
 msgstr "Primeira Classe"
 
-#: data/resources/ui/search_options_window.ui:38
+#: data/resources/ui/search_options_dialog.ui:38
 msgid "Second Class"
 msgstr "Segunda Classe"
 
-#: data/resources/ui/search_options_window.ui:48
-#: src/gui/search_options_button.rs:194
+#: data/resources/ui/search_options_dialog.ui:48
+#: src/gui/search_options_button.rs:195
 msgid "Bike Accessible"
 msgstr "Acessível para Bicicleta"
 
-#: data/resources/ui/search_options_window.ui:54
+#: data/resources/ui/search_options_dialog.ui:54
 msgid "Minimum Transfer Time"
 msgstr "Tempo Mínimo de Transferência"
 
-#: data/resources/ui/search_options_window.ui:60
+#: data/resources/ui/search_options_dialog.ui:60
 msgid "Direct Connections Only"
 msgstr "Somente Conexões Diretas"
 
-#: data/resources/ui/search_options_window.ui:67
+#: data/resources/ui/search_options_dialog.ui:67
 msgid "Modes of Transport"
 msgstr "Modos de Transporte"
 
-#: data/resources/ui/search_options_window.ui:70
+#: data/resources/ui/search_options_dialog.ui:70
 msgid "ICE"
 msgstr "ICE"
 
-#: data/resources/ui/search_options_window.ui:75
+#: data/resources/ui/search_options_dialog.ui:75
 msgid "IC/EC"
 msgstr "IC/EC"
 
-#: data/resources/ui/search_options_window.ui:80
+#: data/resources/ui/search_options_dialog.ui:80
 msgid "Interregio/RegionalExpress"
 msgstr "Interregio/RegionalExpress"
 
-#: data/resources/ui/search_options_window.ui:85
+#: data/resources/ui/search_options_dialog.ui:85
 msgid "Regio"
 msgstr "Regional"
 
-#: data/resources/ui/search_options_window.ui:90
+#: data/resources/ui/search_options_dialog.ui:90
 #, fuzzy
 msgid "S-Bahn"
 msgstr "Trem Urbano"
 
-#: data/resources/ui/search_options_window.ui:95
+#: data/resources/ui/search_options_dialog.ui:95
 msgid "Bus"
 msgstr "Ônibus"
 
-#: data/resources/ui/search_options_window.ui:100
+#: data/resources/ui/search_options_dialog.ui:100
 msgid "Ferry"
 msgstr "Balsa"
 
-#: data/resources/ui/search_options_window.ui:105
+#: data/resources/ui/search_options_dialog.ui:105
 msgid "Subway"
 msgstr "Metrô"
 
-#: data/resources/ui/search_options_window.ui:110
+#: data/resources/ui/search_options_dialog.ui:110
 msgid "Tram"
 msgstr "Bonde"
 
-#: data/resources/ui/search_options_window.ui:115
+#: data/resources/ui/search_options_dialog.ui:115
 msgid "Taxi"
 msgstr "Táxi"
 
@@ -240,7 +297,7 @@ msgstr "Mostrar Preferências"
 msgid "Open Menu"
 msgstr "Abrir Menu"
 
-#: data/resources/ui/station_entry.ui:16
+#: data/resources/ui/station_entry.ui:19
 #, fuzzy
 msgid "Swap Start and Destination"
 msgstr "Inverter Início e Destino"
@@ -380,7 +437,7 @@ msgstr "Transferência"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:70 src/gui/search_options_window.rs:232
+#: src/gui/utility.rs:70 src/gui/search_options_dialog.rs:230
 msgid "{} min"
 msgstr "{} min"
 
@@ -443,88 +500,88 @@ msgstr "%a, %d. %B"
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
-#: src/gui/preferences_window.rs:62
+#: src/gui/preferences_dialog.rs:60
 msgid "{} h"
 msgid_plural "{} h"
 msgstr[0] "{} h"
 msgstr[1] "{} h"
 
-#: src/gui/search_options_button.rs:74
+#: src/gui/search_options_button.rs:75
 msgid "None"
 msgstr "Nenhum"
 
-#: src/gui/search_options_button.rs:75
+#: src/gui/search_options_button.rs:76
 msgid "BahnCard 25, 1st class"
 msgstr "BahnCard 25, 1ª classe"
 
-#: src/gui/search_options_button.rs:76
+#: src/gui/search_options_button.rs:77
 msgid "BahnCard 25, 2nd class"
 msgstr "BahnCard 25, 2ª classe"
 
-#: src/gui/search_options_button.rs:77
+#: src/gui/search_options_button.rs:78
 msgid "BahnCard 50, 1st class"
 msgstr "BahnCard 50, 1ª classe"
 
-#: src/gui/search_options_button.rs:78
+#: src/gui/search_options_button.rs:79
 msgid "BahnCard 50, 2nd class"
 msgstr "BahnCard 50, 2ª classe"
 
-#: src/gui/search_options_button.rs:79
+#: src/gui/search_options_button.rs:80
 #, fuzzy
 msgid "A – VORTEILScard (with RAILPLUS)"
 msgstr "A – VORTEILScard (with RAILPLUS)"
 
-#: src/gui/search_options_button.rs:80
+#: src/gui/search_options_button.rs:81
 #, fuzzy
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
 msgstr "CH – HalbtaxAbo (with RAILPLUS)"
 
-#: src/gui/search_options_button.rs:81
+#: src/gui/search_options_button.rs:82
 #, fuzzy
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
 msgstr "CH – HalbtaxAbo (without RAILPLUS)"
 
-#: src/gui/search_options_button.rs:84
+#: src/gui/search_options_button.rs:85
 #, fuzzy
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
 msgstr "NL – Voordeelurenabo (with RAILPLUS)"
 
-#: src/gui/search_options_button.rs:88
+#: src/gui/search_options_button.rs:89
 #, fuzzy
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
 msgstr "NL – Voordeelurenabo (without RAILPLUS)"
 
-#: src/gui/search_options_button.rs:90
+#: src/gui/search_options_button.rs:91
 #, fuzzy
 msgid "SH-Card"
 msgstr "SH-Card"
 
-#: src/gui/search_options_button.rs:91
+#: src/gui/search_options_button.rs:92
 #, fuzzy
 msgid "CH – General-Abonnement"
 msgstr "CH – General-Abonnement"
 
-#: src/gui/search_options_button.rs:98
+#: src/gui/search_options_button.rs:99
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: src/gui/search_options_button.rs:136
+#: src/gui/search_options_button.rs:137
 msgid "1st class"
 msgstr "1ª classe"
 
-#: src/gui/search_options_button.rs:138
+#: src/gui/search_options_button.rs:139
 msgid "2nd class"
 msgstr "2ª classe"
 
-#: src/gui/search_options_button.rs:186
+#: src/gui/search_options_button.rs:187
 msgid "Regional Only"
 msgstr "Apenas Regionais"
 
-#: src/gui/search_options_button.rs:189
+#: src/gui/search_options_button.rs:190
 msgid "Selected Modes of Transport"
 msgstr "Meios de Transporte Selecionados"
 
-#: src/gui/search_options_button.rs:201
+#: src/gui/search_options_button.rs:202
 msgid "Direct Connection"
 msgstr "Conexão Direta"
 
@@ -548,11 +605,11 @@ msgstr "Recebeu uma resposta inválida. Por favor, compartilhe comentários."
 msgid "An unknown issue occured. Please share feedback."
 msgstr "Ocorreu um problema desconhecido. Por favor, compartilhe comentários."
 
-#: src/gui/error.rs:52
+#: src/gui/error.rs:45
 msgid "Error"
 msgstr "Erro"
 
-#: src/gui/error.rs:56
+#: src/gui/error.rs:49
 msgid "_Close"
 msgstr "_Fechar"
 
@@ -617,11 +674,11 @@ msgid "{stop} at {arrival}"
 msgstr "{stop} em {arrival}"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-#: src/gui/window.rs:173
+#: src/gui/window.rs:174
 msgid "translator-credits"
 msgstr "Tiago Lucas Flach <tiagolucas9830@gmail.com>"
 
-#: src/gui/window.rs:175
+#: src/gui/window.rs:176
 #, fuzzy
 msgid "Source Translation Supported by"
 msgstr "Tradução Fonte Apoiada por"
@@ -648,13 +705,13 @@ msgid "{currency} {amount}"
 msgstr "{currency} {amount}"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-#: src/backend/hafas_client.rs:58
+#: src/backend/hafas_client.rs:57
 #, fuzzy
 msgid "North Rhine-Westphalia"
 msgstr "North Rhine-Westphalia"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
-#: src/backend/hafas_client.rs:66
+#: src/backend/hafas_client.rs:65
 msgid "Schleswig-Holstein"
 msgstr "Schleswig-Holstein"
 
@@ -671,3 +728,23 @@ msgstr "Áustria"
 #: src/backend/leg.rs:129
 msgid "Walk"
 msgstr "Caminhar"
+
+#, fuzzy
+#~ msgid "Changed"
+#~ msgstr "{} mudança"
+
+#, fuzzy
+#~ msgid "Translation support using Weblate."
+#~ msgstr "Tradução Fonte Apoiada por"
+
+#, fuzzy
+#~ msgid "Keyboard shortcuts"
+#~ msgstr "Atalhos do Teclado"
+
+#, fuzzy
+#~ msgid "Many more settings"
+#~ msgstr "Mais Opções"
+
+#, fuzzy
+#~ msgid "Bookmark journeys"
+#~ msgstr "Favoritar Viagem"
