@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-20 11:32+0200\n"
-"PO-Revision-Date: 2024-02-29 05:02+0000\n"
-"Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/sv/>\n"
+"PO-Revision-Date: 2024-04-24 04:07+0000\n"
+"Last-Translator: Sjoerd Stendahl <sjoerd1993@gmail.com>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -435,13 +435,13 @@ msgstr "{} minut"
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:78
 msgid "%_H h %_M min"
-msgstr "%_T t %_M min"
+msgstr "%_H t %_M min"
 
 #: src/gui/utility.rs:89
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
-msgstr[0] " %_d dag %_T t %_M minut"
-msgstr[1] "%_d dagar %_T t %_M minuter"
+msgstr[0] " %_d dag %_H t %_M minut"
+msgstr[1] "%_d dagar %_H t %_M minuter"
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:100
