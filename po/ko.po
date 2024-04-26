@@ -8,35 +8,37 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-20 11:32+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-04-27 04:07+0000\n"
+"Last-Translator: Dong Heon Hee <hui1601@naver.com>\n"
+"Language-Team: Korean <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.5.1\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
 #: data/resources/ui/window.ui:8
 msgid "Railway"
-msgstr ""
+msgstr "Railway"
 
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
-msgstr ""
+msgstr "기차;철도;여행;계획;플래너;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr ""
+msgstr "모든 여행 정보를 찾으세요"
 
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
 msgid "Julian Schmidhuber"
-msgstr ""
+msgstr "Julian Schmidhuber"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -45,48 +47,52 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"Railway를 사용하면 여러 사이트를 뒤질 필요없이 여행정보를 네트워크와 국경을 "
+"넘어 검색할 수 있습니다. 적응형 디자인으로 모바일이나 이동중에 여행 계획을 "
+"세우기 적합합니다."
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
-msgstr ""
+msgstr "플랫폼과 지연을 포함하여 여행 세부 정보 확인"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
-msgstr ""
+msgstr "현재 및 향후 여행은 물론, 자주 검색하는 여행도 즐겨찾기에 추가하세요"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
-msgstr ""
+msgstr "운송 수단별 필터링과 같은 고급 검색 옵션을 활용하세요"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
-msgstr ""
+msgstr "그리고 이것은 전 세계의 네트워크를 위한 것이긴 하지만, 대부분은 유럽에서 "
+"작동합니다."
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:230
 msgid "Application Overview"
-msgstr ""
+msgstr "애플리케이션 개요"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
-msgstr ""
+msgstr "날짜 입력"
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
-msgstr ""
+msgstr "날짜"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
-msgstr ""
+msgstr "시간 입력"
 
 #: data/resources/ui/date_time_picker.ui:78
 msgid "Time"
-msgstr ""
+msgstr "시간"
 
 #: data/resources/ui/date_time_picker.ui:144 src/gui/date_time_picker.rs:113
 msgid "Now"
@@ -94,39 +100,39 @@ msgstr ""
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Total Travel Time"
-msgstr ""
+msgstr "총 여행 시간"
 
 #: data/resources/ui/journey_detail_page.ui:100
 msgid "Trip Segments"
-msgstr ""
+msgstr "여행 구간"
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
-msgstr ""
+msgstr "여행 선택"
 
 #: data/resources/ui/journeys_page.ui:128
 msgid "Search for Trips"
-msgstr ""
+msgstr "여행 검색"
 
 #: data/resources/ui/leg_item.ui:183
 msgid "Show Stopovers"
-msgstr ""
+msgstr "경유지 표시"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Stopovers in Between"
-msgstr ""
+msgstr "사이에 있는 경유지 표시"
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
 msgid "Show Announcements"
-msgstr ""
+msgstr "공지 표시"
 
 #: data/resources/ui/leg_item.ui:283
 msgid "Announcements"
-msgstr ""
+msgstr "공지"
 
 #: data/resources/ui/leg_item.ui:315
 msgid "Stopovers"
-msgstr ""
+msgstr "경유지"
 
 #: data/resources/ui/preferences_dialog.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
@@ -134,84 +140,84 @@ msgstr ""
 
 #: data/resources/ui/preferences_dialog.ui:16
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "자동으로 오래된 북마크 제거"
 
 #: data/resources/ui/preferences_dialog.ui:17
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "지난 여행은 일정 기간 동안만 보관됩니다"
 
 #: data/resources/ui/preferences_dialog.ui:23
 msgid "Preservation Time For Trips"
-msgstr ""
+msgstr "여행 보존 시간"
 
 #: data/resources/ui/preferences_dialog.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "도착 후 여행을 보존하는 기간"
 
 #: data/resources/ui/provider_popover.ui:20
 msgid "Search Networks…"
-msgstr ""
+msgstr "네트워크 검색…"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
-msgstr ""
+msgstr "더 많은 검색 설정"
 
 #: data/resources/ui/search_options_button.ui:20
 msgid "Refine Advanced Search Options"
-msgstr ""
+msgstr "고급 검색 설정 세분화"
 
 #: data/resources/ui/search_options_button.ui:35
 msgid "More Options"
-msgstr ""
+msgstr "더 많은 설정"
 
 #: data/resources/ui/search_options_dialog.ui:14
 msgid "Discount Card"
-msgstr ""
+msgstr "할인 카드"
 
 #: data/resources/ui/search_options_dialog.ui:22
 msgid "Class"
-msgstr ""
+msgstr "등급"
 
 #: data/resources/ui/search_options_dialog.ui:32
 msgid "First Class"
-msgstr ""
+msgstr "일등석"
 
 #: data/resources/ui/search_options_dialog.ui:38
 msgid "Second Class"
-msgstr ""
+msgstr "우등석"
 
 #: data/resources/ui/search_options_dialog.ui:48
 #: src/gui/search_options_button.rs:195
 msgid "Bike Accessible"
-msgstr ""
+msgstr "자전거 탑승 가능"
 
 #: data/resources/ui/search_options_dialog.ui:54
 msgid "Minimum Transfer Time"
-msgstr ""
+msgstr "최소 이동 시간"
 
 #: data/resources/ui/search_options_dialog.ui:60
 msgid "Direct Connections Only"
-msgstr ""
+msgstr "직통만"
 
 #: data/resources/ui/search_options_dialog.ui:67
 msgid "Modes of Transport"
-msgstr ""
+msgstr "운송 수단"
 
 #: data/resources/ui/search_options_dialog.ui:70
 msgid "ICE"
-msgstr ""
+msgstr "ICE"
 
 #: data/resources/ui/search_options_dialog.ui:75
 msgid "IC/EC"
-msgstr ""
+msgstr "IC/EC"
 
 #: data/resources/ui/search_options_dialog.ui:80
 msgid "Interregio/RegionalExpress"
-msgstr ""
+msgstr "지역간/지역 특급"
 
 #: data/resources/ui/search_options_dialog.ui:85
 msgid "Regio"
-msgstr ""
+msgstr "Regio"
 
 #: data/resources/ui/search_options_dialog.ui:90
 msgid "S-Bahn"
@@ -219,52 +225,52 @@ msgstr ""
 
 #: data/resources/ui/search_options_dialog.ui:95
 msgid "Bus"
-msgstr ""
+msgstr "버스"
 
 #: data/resources/ui/search_options_dialog.ui:100
 msgid "Ferry"
-msgstr ""
+msgstr "페리"
 
 #: data/resources/ui/search_options_dialog.ui:105
 msgid "Subway"
-msgstr ""
+msgstr "지하철"
 
 #: data/resources/ui/search_options_dialog.ui:110
 msgid "Tram"
-msgstr ""
+msgstr "트램"
 
 #: data/resources/ui/search_options_dialog.ui:115
 msgid "Taxi"
-msgstr ""
+msgstr "택시"
 
 #: data/resources/ui/search_page.ui:37
 msgid "From"
-msgstr ""
+msgstr "출발"
 
 #: data/resources/ui/search_page.ui:45
 msgid "To"
-msgstr ""
+msgstr "도착"
 
 #: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:95
 #: data/resources/ui/window.ui:37
 msgid "Search"
-msgstr ""
+msgstr "검색"
 
 #: data/resources/ui/search_page.ui:120
 msgid "Bookmarked Trips"
-msgstr ""
+msgstr "즐겨찾기한 여행"
 
 #: data/resources/ui/search_page.ui:134
 msgid "Bookmarked Searches"
-msgstr ""
+msgstr "즐겨찾기한 검색"
 
 #: data/resources/ui/shortcuts.ui:9
 msgid "Application"
-msgstr ""
+msgstr "애플리케이션"
 
 #: data/resources/ui/shortcuts.ui:13
 msgid "Bookmark Search"
-msgstr ""
+msgstr "즐겨찾기 검색"
 
 #: data/resources/ui/shortcuts.ui:19
 msgid "Bookmark Trip"
