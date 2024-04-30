@@ -58,6 +58,27 @@
   </description>
 
   <releases>
+    <release version="2.5.0" date="2024-04-30">
+      <description translate="no">
+        <p>Added</p>
+        <ul>
+          <li>PKP profile support.</li>
+        </ul>
+        <p>Removed</p>
+        <ul>
+          <li>INSA profile support.</li>
+        </ul>
+        <p>Changed</p>
+        <ul>
+          <li>Port to GNOME 46 widgets.</li>
+        </ul>
+        <p>Fixed</p>
+        <ul>
+          <li>Remarks possibly being queried in the incorrect language.</li>
+          <li>Crash on Swedish translation.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.4.0" date="2024-03-03">
       <description translate="no">
         <p>Added</p>

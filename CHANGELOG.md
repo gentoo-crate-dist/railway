@@ -6,9 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.0] - 2024-04-30
+
+### Added
+
+- PKP profile support.
+
+### Removed
+
+- INSA profile support.
+
+### Changed
+
+- Port to GNOME 46 widgets.
+
 ### Fixed
 
 - Remarks possibly being queried in the incorrect language.
+- Crash on Swedish translation.
 
 ## [2.4.0] - 2024-03-03
 
@@ -96,7 +111,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Complete UI overhaul
 
-[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.4.0...master
+[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.5.0...master
+[2.5.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.4.0...2.5.0
 [2.4.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.3.0...2.4.0
 [2.3.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.2.0...2.3.0
 [2.2.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.1.0...2.2.0

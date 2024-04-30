@@ -289,7 +289,7 @@ dependencies = [
 
 [[package]]
 name = "diebahn"
-version = "2.4.0"
+version = "2.5.0"
 dependencies = [
  "chrono",
  "env_logger",
@@ -724,9 +724,9 @@ dependencies = [
 
 [[package]]
 name = "hafas-rs"
-version = "0.2.2"
+version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d59033f945c91956a90f813198d812f2b2aa07c03ccce51df20a694ffde38d9b"
+checksum = "bbb0812ab30720aeb2148ee3ee4b0910927d818552d96bfb6e93bfe2fba89e6f"
 dependencies = [
  "async-trait",
  "chrono",
