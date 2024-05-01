@@ -131,6 +131,8 @@ pub mod imp {
         // Adapted from <https://gitlab.gnome.org/GNOME/epiphany/-/blob/b6203597637b4b7725372750983f6e38ca92c2ac/src/ephy-location-entry.c#L436-512>.
         #[template_callback]
         fn handle_key_pressed(&self, key: Key, _: u32, modifier: ModifierType) -> Propagation {
+            let obj = self.obj();
+
             if modifier.intersects(
                 gdk::ModifierType::SHIFT_MASK
                     .union(gdk::ModifierType::ALT_MASK)
@@ -178,6 +180,21 @@ pub mod imp {
                 }
             };
 
+            if let Some(new_selected_item_name) = new_selected
+                .and_then(|i| model.item(i))
+                .and_downcast_ref::<Place>()
+                .and_then(|p| p.name())
+            {
+                // Translators: Text that will be announced by the screen reader when a suggestion was selected.
+                let format = gettextrs::gettext("Suggestion {} selected")
+                    .replace("{}", &new_selected_item_name);
+                obj.announce(&format, gtk::AccessibleAnnouncementPriority::Low);
+            } else {
+                // Translators: Text that will be announced by the screen reader when no selection was selected.
+                let format = gettextrs::gettext("No suggestion selected");
+                obj.announce(&format, gtk::AccessibleAnnouncementPriority::Low);
+            }
+
             selection.set_selected(new_selected.unwrap_or(INVALID_LIST_POSITION));
             self.list_completions.scroll_to(
                 new_selected.unwrap_or_default(),
@@ -188,16 +205,16 @@ pub mod imp {
             Propagation::Stop
         }
 
-        fn try_fill_exact_match(&self, search: &str) {
-            self.obj().set_place(
-                self.completions
-                    .borrow()
-                    .into_iter()
-                    .flatten()
-                    .flat_map(|p| p.dynamic_cast::<Place>().ok())
-                    .find(|p| p.name() == Some(search.to_owned()))
-                    .as_ref(),
-            );
+        fn try_fill_exact_match(&self, search: &str) -> bool {
+            let exact = self
+                .completions
+                .borrow()
+                .into_iter()
+                .flatten()
+                .flat_map(|p| p.dynamic_cast::<Place>().ok())
+                .find(|p| p.name() == Some(search.to_owned()));
+            self.obj().set_place(exact.as_ref());
+            exact.is_some()
         }
 
         fn on_changed(&self) {
@@ -219,7 +236,10 @@ pub mod imp {
                     return;
                 }
 
-                obj.imp().try_fill_exact_match(&text);
+                // Try fill any exact match if available. If it could be filled, don't request.
+                if obj.imp().try_fill_exact_match(&text) {
+                    return;
+                }
 
                 let request = request_limiter.request(text).await;
 
@@ -228,11 +248,20 @@ pub mod imp {
 
                     // XXX: Handle error case.
                     if let Ok(places) = places {
+                        let places = places.into_iter().filter(|p| p.id().is_some()).collect::<Vec<_>>();
                         log::trace!("Got results back. Filling up completions.");
+                        let exact = places.iter()
+                            .find(|p| p.name().as_ref() == Some(&request));
+
                         let completions = completions.borrow();
-                        completions.splice(0, completions.n_items(), &places.into_iter().filter(|p| p.id().is_some()).collect::<Vec<_>>());
+
+                        if exact.is_some() {
+                            obj.set_place(exact);
+                            completions.remove_all();
+                        } else {
+                            completions.splice(0, completions.n_items(), &places);
+                        }
                         drop(completions);
-                        obj.imp().try_fill_exact_match(&request);
                     }
                 } else {
                     log::trace!("No request needed");
@@ -244,7 +273,6 @@ pub mod imp {
             self.obj()
                 .connect_changed(clone!(@strong obj => move |_entry| {
                     obj.imp().on_changed();
-                    obj.imp().selection.borrow().set_selected(INVALID_LIST_POSITION);
                 }));
             self.on_changed();
         }
@@ -346,8 +374,15 @@ pub mod imp {
 
             self.completions.borrow().connect_notify_local(
                 Some("n-items"),
-                clone!(@strong obj => move |_, _| {
+                clone!(@strong obj => move |list, _| {
                     obj.imp().update_popover_visible();
+
+                    let n = list.n_items();
+                    if n > 0 {
+                        // Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
+                        let format = gettextrs::ngettext("one suggestion, not selected", "{n} suggestions, none selected", n).replace("{n}", &n.to_string());
+                        obj.announce(&format, gtk::AccessibleAnnouncementPriority::Low);
+                    }
                 }),
             );
 
@@ -359,6 +394,7 @@ pub mod imp {
 
             obj.connect_notify_local(Some("place"), |obj, _| {
                 obj.notify("set");
+                obj.imp().update_popover_visible();
             });
         }
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-20 11:32+0200\n"
+"POT-Creation-Date: 2024-05-01 11:37+0200\n"
 "PO-Revision-Date: 2024-01-22 10:01+0000\n"
 "Last-Translator: Eryk Michalak <gnu.ewm@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/schmiddi-on-"
@@ -72,7 +72,7 @@ msgid ""
 msgstr ""
 
 #. Translators: Subtitle of the screenshot in the metainfo
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:230
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
 msgid "Application Overview"
 msgstr ""
 
@@ -672,6 +672,24 @@ msgstr ""
 #: src/gui/stopover_item.rs:65
 msgid "{stop} at {arrival}"
 msgstr ""
+
+#. Translators: Text that will be announced by the screen reader when a suggestion was selected.
+#: src/gui/station_entry.rs:189
+msgid "Suggestion {} selected"
+msgstr ""
+
+#. Translators: Text that will be announced by the screen reader when no selection was selected.
+#: src/gui/station_entry.rs:194
+msgid "No suggestion selected"
+msgstr ""
+
+#. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
+#: src/gui/station_entry.rs:383
+msgid "one suggestion, not selected"
+msgid_plural "{n} suggestions, none selected"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:174
