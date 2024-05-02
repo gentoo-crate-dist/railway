@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-01 11:37+0200\n"
-"PO-Revision-Date: 2024-03-07 18:01+0000\n"
+"PO-Revision-Date: 2024-05-03 14:07+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.3\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -30,15 +30,17 @@ msgstr "Trein"
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
 msgstr ""
+"train;railway;journey;planner;timetables;trein;spoorweg;reis;planner;dienstre"
+"gelingen;ov;openbaar;vervoer;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr ""
+msgstr "Vind al uw reis­informatie"
 
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
 msgid "Julian Schmidhuber"
-msgstr ""
+msgstr "Julian Schmidhuber"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -47,33 +49,42 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"Met Railway kunt u reis­informatie opzoeken over netwerken en grenzen heen, "
+"zonder dat u door verschillende websites hoeft te navigeren. Door het "
+"adaptieve ontwerp is de app geschikt om uw reis vooraf te plannen of mobiel "
+"onderweg:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
-msgstr ""
+msgstr "Bekijk de details van uw ritten, inclusief perrons en vertragingen"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
 msgstr ""
+"Maak een blad­wĳzer van huidige en toekomstige ritten, evenals frequente "
+"zoek­opdrachten"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr ""
+"Maak gebruik van geavanceerde zoek­mogelĳkheden, zoals filteren op "
+"vervoers­wĳze"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
 msgstr ""
+"En dat allemaal voor netwerken van over de hele wereld, maar vooral uit "
+"Europa."
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
-#, fuzzy
 msgid "Application Overview"
-msgstr "App"
+msgstr "App-overzicht"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -658,19 +669,19 @@ msgstr "{stop} om {arrival}"
 #. Translators: Text that will be announced by the screen reader when a suggestion was selected.
 #: src/gui/station_entry.rs:189
 msgid "Suggestion {} selected"
-msgstr ""
+msgstr "Suggestie {} geselecteerd"
 
 #. Translators: Text that will be announced by the screen reader when no selection was selected.
 #: src/gui/station_entry.rs:194
 msgid "No suggestion selected"
-msgstr ""
+msgstr "Geen suggestie geselecteerd"
 
 #. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
 #: src/gui/station_entry.rs:383
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "één suggestie, niet geselecteerd"
+msgstr[1] "{n} suggesties, geen geselecteerd"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:174
