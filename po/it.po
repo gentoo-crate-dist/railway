@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-01 11:37+0200\n"
-"PO-Revision-Date: 2024-04-04 11:01+0000\n"
-"Last-Translator: Andrea Andre <andrea.tsg19@slmail.me>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/it/>\n"
+"PO-Revision-Date: 2024-05-02 13:07+0000\n"
+"Last-Translator: boblaspugna4f1ee5d391024b4c <boblaspugna@null.net>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.3-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -29,16 +29,16 @@ msgstr "Ferrovia"
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
-msgstr ""
+msgstr "treno;ferrovia;viaggio;orari;pianificazione;mezzi;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr ""
+msgstr "Trova tutte le informazioni di viaggio"
 
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
 msgid "Julian Schmidhuber"
-msgstr ""
+msgstr "Julian Schmidhuber"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -47,33 +47,41 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"Railway permette di cercare informazioni di viaggio attraverso diversi "
+"servizi e stati senza dover navigare attraverso diversi siti web. Grazie al "
+"suo design adattativo, risulta perfetto per pianificare viaggi su "
+"dispositivi mobile:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
 msgstr ""
+"Visualizza i dettagli relativi ai tuoi percorsi, compresi binari e ritardi"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
-msgstr ""
+msgstr "Salva tra i preferiti percorsi futuri e le ricerche più frequenti"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr ""
+"Fai uso di opzioni avanzate di ricerca, ad esempio filtrando per tipologia "
+"di trasporto"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
 msgstr ""
+"E tutto questo attraverso servizi di trasporti in tutto il mondo, con una "
+"maggiore copertura per quelli in Europa."
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
-#, fuzzy
 msgid "Application Overview"
-msgstr "Applicazione"
+msgstr "Panoramica dell' Applicazione"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -658,19 +666,19 @@ msgstr "{stop} alle {arrival}"
 #. Translators: Text that will be announced by the screen reader when a suggestion was selected.
 #: src/gui/station_entry.rs:189
 msgid "Suggestion {} selected"
-msgstr ""
+msgstr "Proposta {} selezionata"
 
 #. Translators: Text that will be announced by the screen reader when no selection was selected.
 #: src/gui/station_entry.rs:194
 msgid "No suggestion selected"
-msgstr ""
+msgstr "Nessuna proposta selezionata"
 
 #. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
 #: src/gui/station_entry.rs:383
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "una proposta, non selezionata"
+msgstr[1] "{n} proposte, nessuna selezionata"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:174
