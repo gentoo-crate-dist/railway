@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-01 11:37+0200\n"
-"PO-Revision-Date: 2024-05-03 14:07+0000\n"
+"PO-Revision-Date: 2024-05-04 12:55+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/oc/>\n"
@@ -47,27 +47,33 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"Railway vos permet de cercar d’informacions de viatges a travèrs los rets e "
+"las frontièras sens deure navegar demest diferentas paginas web. Gràcias a "
+"sa concepcion adaptativa, es de bon utilizar per planificar vòstre viatge en "
+"avança o utilizar lo mobil en viatjant :"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
-msgstr ""
+msgstr "Veire los detalhs del viatge, coma lo cai e los retards"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
-msgstr ""
+msgstr "Marcar los viatges actuals e futurs e atanben las recèrcas frequentas"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr ""
+"Utilizar d’opcions de recèrcas avançadas coma lo filtratge per mòde de "
+"transpòrt"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
-msgstr ""
+msgstr "E tot çò pels rets de tot lo monde mas, principalament d’Euròpa."
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
