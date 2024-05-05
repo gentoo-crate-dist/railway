@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-01 11:37+0200\n"
-"PO-Revision-Date: 2024-05-05 08:17+0000\n"
+"PO-Revision-Date: 2024-05-06 09:07+0000\n"
 "Last-Translator: Tiago Lucas Flach <tiagolucas9830@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/pt_BR/>\n"
@@ -146,7 +146,7 @@ msgstr "Remover Automaticamente Favoritos Antigos"
 
 #: data/resources/ui/preferences_dialog.ui:17
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "As viagens anteriores são mantidas apenas por um período de tempo"
 
 #: data/resources/ui/preferences_dialog.ui:23
 #, fuzzy
@@ -155,7 +155,7 @@ msgstr "Tempo de Preservação Para Viagens"
 
 #: data/resources/ui/preferences_dialog.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "Por quanto tempo manter as viagens após a chegada"
 
 #: data/resources/ui/provider_popover.ui:20
 msgid "Search Networks…"
@@ -393,7 +393,7 @@ msgstr "Cancelado"
 
 #: src/gui/search_page.rs:116
 msgid "Start and destination are missing"
-msgstr ""
+msgstr "Falta origem e destino"
 
 #: src/gui/search_page.rs:117
 msgid "Start is missing"
@@ -447,8 +447,8 @@ msgstr "%_H h %_M min"
 #: src/gui/utility.rs:89
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%_d dia %_H h %_M min"
+msgstr[1] "%_d dias %_H h %_M min"
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:100
@@ -469,8 +469,8 @@ msgstr "%-H hrs. %-M min."
 #: src/gui/utility.rs:125
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%-d dia %-H hrs. %-M min."
+msgstr[1] "%-d dias %-H hrs. %-M min."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:135
@@ -527,23 +527,23 @@ msgstr "BahnCard 50, 2ª classe"
 
 #: src/gui/search_options_button.rs:80
 msgid "A – VORTEILScard (with RAILPLUS)"
-msgstr ""
+msgstr "A – VORTEILScard (com RAILPLUS)"
 
 #: src/gui/search_options_button.rs:81
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
-msgstr ""
+msgstr "CH – HalbtaxAbo (com RAILPLUS)"
 
 #: src/gui/search_options_button.rs:82
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
-msgstr ""
+msgstr "CH – HalbtaxAbo (sem RAILPLUS)"
 
 #: src/gui/search_options_button.rs:85
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
-msgstr ""
+msgstr "NL – Voordeelurenabo (sem RAILPLUS)"
 
 #: src/gui/search_options_button.rs:89
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
-msgstr ""
+msgstr "NL – Voordeelurenabo (sem RAILPLUS)"
 
 #: src/gui/search_options_button.rs:91
 #, fuzzy
@@ -581,11 +581,11 @@ msgstr "Conexão Direta"
 
 #: src/gui/error.rs:18
 msgid "Failed to fetch data. Are you connected to the internet?"
-msgstr ""
+msgstr "Falha ao buscar dados. Você está conectado à internet?"
 
 #: src/gui/error.rs:21
 msgid "Received an error. Please share feedback."
-msgstr ""
+msgstr "Recebeu um erro. Por favor, compartilhe comentários."
 
 #: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
 msgid "More Information"
@@ -593,11 +593,11 @@ msgstr "Mais Informações"
 
 #: src/gui/error.rs:25
 msgid "Received an invalid response. Please share feedback."
-msgstr ""
+msgstr "Recebeu uma resposta inválida. Por favor, compartilhe comentários."
 
 #: src/gui/error.rs:29
 msgid "An unknown issue occured. Please share feedback."
-msgstr ""
+msgstr "Ocorreu um problema desconhecido. Por favor, compartilhe comentários."
 
 #: src/gui/error.rs:45
 msgid "Error"
@@ -622,42 +622,42 @@ msgstr[1] "{} mudanças"
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
 msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr ""
+msgstr "De {departure} a {arrival} em {travel_time} com {changes_text}"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
 msgid "{train} in the direction of {destination}"
-msgstr ""
+msgstr "{train} na direção de {destination}"
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr ""
+msgstr "Partida {start} da plataforma {platform} às {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
 msgid "Depart {start} at {departure}."
-msgstr ""
+msgstr "Partida {start} às {departure}."
 
 #: src/gui/leg_item.rs:101
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr ""
+msgstr "Chegue em {destination} na plataforma {platform} em {arrival}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:106
 msgid "Arrive at {destination} at {arrival}."
-msgstr ""
+msgstr "Chegue em {destination} às {arrival}."
 
 #: src/gui/leg_item.rs:148
 msgid "{} Stopover"
 msgid_plural "{} Stopovers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} Escala"
+msgstr[1] "{} Escalas"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:62
 msgid "{stop} at {arrival} on platform {platform}"
-msgstr ""
+msgstr "{stop} em {arrival} na plataforma {platform}"
 
 #. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
 #: src/gui/stopover_item.rs:65
@@ -678,8 +678,8 @@ msgstr "Nenhuma sugestão selecionada"
 #: src/gui/station_entry.rs:383
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "uma sugestão, não selecionada"
+msgstr[1] "{n} sugestões, nenhuma selecionada"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:174
@@ -688,7 +688,7 @@ msgstr "Tiago Lucas Flach (https://github.com/tiagoFlach)"
 
 #: src/gui/window.rs:176
 msgid "Source Translation Supported by"
-msgstr ""
+msgstr "Tradução de Origem Apoiada por"
 
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
