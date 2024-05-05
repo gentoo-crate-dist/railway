@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-01 11:37+0200\n"
-"PO-Revision-Date: 2024-05-05 08:17+0000\n"
+"PO-Revision-Date: 2024-05-06 09:07+0000\n"
 "Last-Translator: snowfire <wstorm88@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/ru/>\n"
@@ -30,7 +30,7 @@ msgstr "Railway"
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
-msgstr "поезд;путь;путешествие;планировщик;расписания"
+msgstr "поезд;путь;путешествие;планировщик;расписания;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
@@ -139,7 +139,7 @@ msgstr "Остановки"
 
 #: data/resources/ui/preferences_dialog.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
-msgstr "Общий"
+msgstr "Общие"
 
 #: data/resources/ui/preferences_dialog.ui:16
 msgid "Automatically Remove Old Bookmarks"
@@ -172,7 +172,7 @@ msgstr "Уточнить дополнительные параметры пои�
 
 #: data/resources/ui/search_options_button.ui:35
 msgid "More Options"
-msgstr "Больше параметров"
+msgstr "Дополнительные параметры"
 
 #: data/resources/ui/search_options_dialog.ui:14
 msgid "Discount Card"
@@ -209,23 +209,23 @@ msgstr "Виды транспорта"
 
 #: data/resources/ui/search_options_dialog.ui:70
 msgid "ICE"
-msgstr "ICE"
+msgstr "Междугородний экспресс"
 
 #: data/resources/ui/search_options_dialog.ui:75
 msgid "IC/EC"
-msgstr "IC/EC"
+msgstr "Междугородный/EuroCity"
 
 #: data/resources/ui/search_options_dialog.ui:80
 msgid "Interregio/RegionalExpress"
-msgstr "Interregio/RegionalExpress"
+msgstr "Межрегиональный/Региональный(Экспресс)"
 
 #: data/resources/ui/search_options_dialog.ui:85
 msgid "Regio"
-msgstr "Regio"
+msgstr "Пригородный"
 
 #: data/resources/ui/search_options_dialog.ui:90
 msgid "S-Bahn"
-msgstr "S-Bahn"
+msgstr "Берлинская городская электричка (S-Bahn)"
 
 #: data/resources/ui/search_options_dialog.ui:95
 msgid "Bus"
@@ -282,7 +282,7 @@ msgstr "Запомнить маршрут"
 
 #: data/resources/ui/shortcuts.ui:25
 msgid "Reload Trip"
-msgstr "Загрузить маршрут"
+msgstr "Заново загрузить маршрут"
 
 #: data/resources/ui/shortcuts.ui:36
 msgid "Quit"
@@ -314,7 +314,7 @@ msgstr "Главное меню"
 
 #: data/resources/ui/window.ui:114
 msgid "Connections"
-msgstr "Стыковки"
+msgstr "Рейсы"
 
 #: data/resources/ui/window.ui:128
 msgid "Bookmark This Search"
@@ -454,24 +454,24 @@ msgstr[2] "%_d дней %_H ч %_M мин"
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:100
 msgid "{} min."
-msgstr "{} мин"
+msgstr "{} мин."
 
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:104
 msgid "{} hrs."
-msgstr "{} ч"
+msgstr "{} ч."
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:113
 msgid "%-H hrs. %-M min."
-msgstr "%-H ч %-M мин"
+msgstr "%-H ч. %-M мин."
 
 #: src/gui/utility.rs:125
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] "%-d день %-H ч %-M мин"
-msgstr[1] "%-d дня %-H ч %-M мин"
-msgstr[2] "%-d дней %-H ч %-M мин"
+msgstr[0] "%-d день %-H ч. %-M мин."
+msgstr[1] "%-d дня %-H ч. %-M мин."
+msgstr[2] "%-d дней %-H ч. %-M мин."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:135
@@ -569,7 +569,6 @@ msgid "CH – General-Abonnement"
 msgstr "CH – General-Abonnement"
 
 #: src/gui/search_options_button.rs:99
-#, fuzzy
 msgid "Unknown"
 msgstr "Неизвестный"
 
@@ -606,7 +605,6 @@ msgid "More Information"
 msgstr "Дополнительная информация"
 
 #: src/gui/error.rs:25
-#, fuzzy
 msgid "Received an invalid response. Please share feedback."
 msgstr "Получен неверный ответ. Пожалуйста, опишите проблему в обратной связи."
 
@@ -702,11 +700,8 @@ msgstr[2] "{n} вариантов, ни один не выбран"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:174
-#, fuzzy
 msgid "translator-credits"
-msgstr ""
-"Давид Лапшин <ddaudix@gmail.com>\n"
-"Сергей Антонов <wstorm88@gmail.com>"
+msgstr "Давид Лапшин <ddaudix@gmail.com>, Сергей Антонов <wstorm88@gmail.com>"
 
 #: src/gui/window.rs:176
 msgid "Source Translation Supported by"
