@@ -46,7 +46,7 @@ pub mod imp {
         gio::Settings,
         glib::subclass::Signal,
         prelude::{ObjectExt, SettingsExt, StaticType},
-        subclass::prelude::{ObjectImpl, ObjectSubclass, ObjectSubclassExt},
+        subclass::prelude::{ObjectImpl, ObjectImplExt, ObjectSubclass, ObjectSubclassExt},
     };
     use once_cell::sync::Lazy;
 
@@ -166,6 +166,15 @@ pub mod imp {
     }
 
     impl ObjectImpl for JourneysStore {
+        fn constructed(&self) {
+            self.parent_constructed();
+
+            let store = self.obj();
+            self.settings.connect_changed(Some("delete-old"), clone!(@weak store => move |_, _| {
+                store.reload();
+            }));
+        }
+
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| -> Vec<Signal> {
                 vec![
