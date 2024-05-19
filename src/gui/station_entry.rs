@@ -52,11 +52,11 @@ pub mod imp {
         INVALID_LIST_POSITION,
     };
     use gtk::{CompositeTemplate, Popover};
-    use hafas_rs::api::locations::LocationsOptions;
     use libadwaita::subclass::prelude::{EntryRowImpl, PreferencesRowImpl};
     use once_cell::sync::Lazy;
+    use rcore::LocationsOptions;
 
-    use crate::backend::{HafasClient, Place, RequestLimiter};
+    use crate::backend::{Client, Place, RequestLimiter};
     use crate::gui::place_list_item::PlaceListItem;
 
     const REQUEST_DURATION: Duration = Duration::from_secs(1);
@@ -74,7 +74,7 @@ pub mod imp {
         pub(super) completions: RefCell<ListStore>,
         selection: RefCell<SingleSelection>,
 
-        client: RefCell<Option<HafasClient>>,
+        client: RefCell<Option<Client>>,
 
         place: RefCell<Option<Place>>,
 
@@ -244,7 +244,7 @@ pub mod imp {
                 let request = request_limiter.request(text).await;
 
                 if let Some(request) = request {
-                    let places = obj.property::<HafasClient>("client").locations(LocationsOptions {query: request.clone(), ..Default::default()}).await;
+                    let places = obj.property::<Client>("client").locations(LocationsOptions {query: request.clone(), ..Default::default()}).await;
 
                     // XXX: Handle error case.
                     if let Ok(places) = places {
@@ -262,6 +262,8 @@ pub mod imp {
                             completions.splice(0, completions.n_items(), &places);
                         }
                         drop(completions);
+                    } else {
+                        log::error!("Error requesting places: {}", places.err().unwrap());
                     }
                 } else {
                     log::trace!("No request needed");
@@ -404,7 +406,7 @@ pub mod imp {
                 v.extend(vec![
                     ParamSpecObject::builder::<Place>("place").build(),
                     ParamSpecBoolean::builder("set").read_only().build(),
-                    ParamSpecObject::builder::<HafasClient>("client").build(),
+                    ParamSpecObject::builder::<Client>("client").build(),
                     ParamSpecObject::builder::<ListStore>("completions")
                         .read_only()
                         .build(),
@@ -425,9 +427,9 @@ pub mod imp {
                     );
                 }
                 "client" => {
-                    let obj = value.get::<Option<HafasClient>>().expect(
-                        "Property `client` of `StationEntry` has to be of type `HafasClient`",
-                    );
+                    let obj = value
+                        .get::<Option<Client>>()
+                        .expect("Property `client` of `StationEntry` has to be of type `Client`");
 
                     if let Some(obj) = &obj {
                         let s = self.obj();

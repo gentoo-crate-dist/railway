@@ -21,7 +21,8 @@
             "CARGO_HOME": "/run/build/diebahn/cargo",
             "RUST_BACKTRACE": "1"
         },
-        "build-args": [ "--share=network" ]
+        "build-args": [ "--share=network" ],
+        "test-args": [ "--share=network" ]
     },
     "modules": [
         {

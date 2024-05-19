@@ -1,6 +1,6 @@
 use std::cell::RefCell;
 
-use chrono::Datelike;
+use chrono::{Datelike, Local};
 use gdk::glib::Object;
 use gdk::prelude::ObjectExt;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
@@ -12,13 +12,13 @@ gtk::glib::wrapper! {
 }
 
 impl Journey {
-    pub fn new(journey: hafas_rs::Journey) -> Self {
+    pub fn new(journey: rcore::Journey) -> Self {
         let s: Self = Object::builder().build();
         s.imp().journey.swap(&RefCell::new(Some(journey)));
         s
     }
 
-    pub fn journey(&self) -> hafas_rs::Journey {
+    pub fn journey(&self) -> rcore::Journey {
         self.imp()
             .journey
             .borrow()
@@ -47,12 +47,12 @@ impl Journey {
         self.property::<super::Leg>("first-leg")
             .leg()
             .departure
-            .map(|d| Utility::format_date_human(d.date_naive()))
+            .map(|d| Utility::format_date_human(d.with_timezone(&Local).date_naive()))
             .unwrap_or_default()
     }
 
-    pub fn refresh_token(&self) -> Option<String> {
-        self.journey().refresh_token.clone()
+    pub fn id(&self) -> String {
+        self.journey().id.clone()
     }
 }
 
@@ -74,7 +74,7 @@ mod imp {
     use crate::backend::{LateFactor, Leg, LoadFactor, Price};
 
     pub struct Journey {
-        pub(super) journey: RefCell<Option<hafas_rs::Journey>>,
+        pub(super) journey: RefCell<Option<rcore::Journey>>,
     }
 
     #[glib::object_subclass]
@@ -169,9 +169,14 @@ mod imp {
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| (o.legs.iter().filter(|leg| {
-                        !leg.walking.unwrap_or(false)
-                    }).collect::<Vec<_>>().len() - 1) as u32)
+                    .map(|o| {
+                        (o.legs
+                            .iter()
+                            .filter(|leg| !leg.walking)
+                            .collect::<Vec<_>>()
+                            .len()
+                            - 1) as u32
+                    })
                     .unwrap_or_default()
                     .to_value(),
                 "types" => self
@@ -246,14 +251,14 @@ mod imp {
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| o.legs.iter().flat_map(|l| l.reachable).any(|b| !b))
+                    .map(|o| o.legs.iter().map(|l| l.reachable).any(|b| !b))
                     .unwrap_or_default()
                     .to_value(),
                 "is-cancelled" => self
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| o.legs.iter().flat_map(|l| l.cancelled).any(|b| b))
+                    .map(|o| o.legs.iter().map(|l| l.cancelled).any(|b| b))
                     .unwrap_or_default()
                     .to_value(),
                 _ => unimplemented!(),

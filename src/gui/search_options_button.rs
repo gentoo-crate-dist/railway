@@ -155,15 +155,13 @@ pub mod imp {
 
                     let include_national_express =
                         self.settings.boolean("include-national-express");
-                    let include_national = self.settings.boolean("include-national");
-                    let include_regional_express =
-                        self.settings.boolean("include-regional-express");
                     let include_regional = self.settings.boolean("include-regional");
                     let include_suburban = self.settings.boolean("include-suburban");
                     let include_bus = self.settings.boolean("include-bus");
                     let include_ferry = self.settings.boolean("include-ferry");
                     let include_subway = self.settings.boolean("include-subway");
                     let include_tram = self.settings.boolean("include-tram");
+                    let include_cablecar = self.settings.boolean("include-cablecar");
                     let include_taxi = self.settings.boolean("include-taxi");
 
                     let regional = [
@@ -173,13 +171,10 @@ pub mod imp {
                         include_ferry,
                         include_subway,
                         include_tram,
+                        include_cablecar,
                         include_taxi,
                     ];
-                    let ic = [
-                        include_national_express,
-                        include_national,
-                        include_regional_express,
-                    ];
+                    let ic = [include_national_express];
 
                     let types_string = if regional.iter().all(|b| *b) && ic.iter().all(|b| *b) {
                         None

@@ -1,3 +1,4 @@
+use std::str::FromStr;
 use std::time::Duration;
 
 use gdk::gio;
@@ -5,14 +6,12 @@ use gdk::glib::clone;
 use gdk::prelude::{ObjectExt, SettingsExt};
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 use gtk::glib::{self, Object};
-use hafas_rs::api::{
-    journeys::JourneysOptions, locations::LocationsOptions, refresh_journey::RefreshJourneyOptions,
-};
-use hafas_rs::profile::db::DbProfile;
-use hafas_rs::profile::profile_from_name;
+use rcore::{JourneysOptions, LocationsOptions, RefreshJourneyOptions};
 
 // Timeout in seconds.
 const TIMEOUT: u64 = 30;
+
+type ApiProvider = rapi::RailwayProvider<rcore::HyperRustlsRequester>;
 
 use crate::Error;
 
@@ -20,10 +19,11 @@ use super::{Journey, JourneysResult, Place, Provider, TimeType};
 
 fn providers() -> Vec<Provider> {
     vec![
-        // TODO: BVG, KVB, SNCB, SNCF, TPG
+        // Hafas
+
+        // TODO: BVG, SNCB, SNCF, TPG
         Provider::new("AVV", "AVV", Some("Aachener Verkehrsverbund"), true),
-        // Seems to use a custom certificate now.
-        // Provider::new("BART", "BART", Some("Bay Area Rapid Transit"), true),
+        Provider::new("BART", "BART", Some("Bay Area Rapid Transit"), true),
         Provider::new("BLS", "BLS", Some("BLS AG"), true),
         Provider::new(
             "CFL",
@@ -49,6 +49,8 @@ fn providers() -> Vec<Provider> {
             true,
         ),
         Provider::new("Irish-Rail", "Irish Rail", Some("Iarnród Éireann"), true),
+        Provider::new("IVB", "IVB", Some("Innsbrucker Verkehrsbetriebe"), false),
+        Provider::new("KVB", "KVB", Some("Kölner Verkehrs-Betriebe"), false),
         Provider::new("Mobiliteit-Lu", "Mobiliteit", Some("Luxembourg"), true),
         Provider::new(
             "mobil-nrw",
@@ -129,21 +131,24 @@ fn providers() -> Vec<Provider> {
         Provider::new("VVT", "VVT", Some("Verkehrsverbund Tirol"), true),
         Provider::new("VVV", "VVV", Some("Verkehrsverbund Vorarlberg"), true),
         // Provider::new("ZVV", "ZVV", Some("Zürich public transport"), true),
+
+        // Search.ch
+        Provider::new("search-ch", "SBB", Some("Switzerland"), true),
     ]
 }
 
 gtk::glib::wrapper! {
-    pub struct HafasClient(ObjectSubclass<imp::HafasClient>);
+    pub struct Client(ObjectSubclass<imp::Client>);
 }
 
-impl std::default::Default for HafasClient {
+impl std::default::Default for Client {
     fn default() -> Self {
         Self::new()
     }
 }
 
-impl HafasClient {
-    pub fn new() -> HafasClient {
+impl Client {
+    pub fn new() -> Client {
         let s: Self = Object::builder().build();
         let settings = &s.imp().settings;
         let profile_name = settings.string("search-provider");
@@ -167,14 +172,15 @@ impl HafasClient {
             .internal
             .write()
             .expect("Profile to be writeable");
-        *write = Some(hafas_rs::client::HafasClient::new(
-            profile_from_name(profile_name.as_ref()).unwrap_or(Box::new(DbProfile {})),
-            hafas_rs::requester::hyper::HyperRustlsRequester::new(),
+        *write = Some(rapi::RailwayProvider::new(
+            rapi::RailwayProviderType::from_str(profile_name.as_ref())
+                .unwrap_or(rapi::RailwayProviderType::Db),
+            rcore::HyperRustlsRequesterBuilder::default(),
         ));
         self.emit_by_name::<()>("provider-changed", &[]);
     }
 
-    fn internal(&self) -> hafas_rs::client::HafasClient {
+    fn internal(&self) -> ApiProvider {
         self.imp().internal()
     }
 
@@ -188,17 +194,18 @@ impl HafasClient {
     }
 }
 
-impl HafasClient {
+impl Client {
     pub async fn locations(
         &self,
         opts: LocationsOptions,
     ) -> Result<impl Iterator<Item = Place>, Error> {
+        use rcore::Provider;
         let client = self.internal();
 
         Ok(tspawn!(async move {
             tokio::time::timeout(Duration::from_secs(TIMEOUT), client.locations(opts))
                 .await
-                .map(|r| r.map_err(Error::Hafas))
+                .map(|r| r.map_err(Error::from))
                 .unwrap_or(Err(Error::Timeout))
         })
         .await
@@ -214,6 +221,7 @@ impl HafasClient {
         time_type: TimeType,
         opts: JourneysOptions,
     ) -> Result<JourneysResult, Error> {
+        use rcore::Provider;
         let client = self.internal();
         let from_place = from.place();
         let to_place = to.place();
@@ -224,7 +232,7 @@ impl HafasClient {
                     client.journeys(from_place, to_place, opts),
                 )
                 .await
-                .map(|r| r.map_err(Error::Hafas))
+                .map(|r| r.map_err(Error::from))
                 .unwrap_or(Err(Error::Timeout))
             })
             .await
@@ -235,26 +243,32 @@ impl HafasClient {
         ))
     }
 
-    pub async fn refresh_journey<S: AsRef<str>>(
+    pub async fn refresh_journey(
         &self,
-        refresh_token: S,
+        journey: &Journey,
         opts: RefreshJourneyOptions,
     ) -> Result<Journey, Error> {
+        use rcore::Provider;
         let client = self.internal();
-        let refresh_token = refresh_token.as_ref().to_owned();
+        let journey = journey.journey();
         Ok(Journey::new(
             tspawn!(async move {
                 tokio::time::timeout(
                     Duration::from_secs(TIMEOUT),
-                    client.refresh_journey(&refresh_token, opts),
+                    client.refresh_journey(&journey, opts),
                 )
                 .await
-                .map(|r| r.map_err(Error::Hafas))
+                .map(|r| r.map_err(Error::from))
                 .unwrap_or(Err(Error::Timeout))
             })
             .await
             .expect("Failed to join tokio")?,
         ))
+    }
+
+    pub fn timezone(&self) -> Option<chrono_tz::Tz> {
+        use rcore::Provider;
+        self.internal().timezone()
     }
 }
 
@@ -271,13 +285,13 @@ mod imp {
 
     use crate::config;
 
-    pub struct HafasClient {
-        pub(super) internal: RwLock<Option<hafas_rs::client::HafasClient>>,
+    pub struct Client {
+        pub(super) internal: RwLock<Option<super::ApiProvider>>,
 
         pub(super) settings: Settings,
     }
 
-    impl Default for HafasClient {
+    impl Default for Client {
         fn default() -> Self {
             Self {
                 internal: Default::default(),
@@ -286,24 +300,24 @@ mod imp {
         }
     }
 
-    impl HafasClient {
-        pub(super) fn internal(&self) -> hafas_rs::client::HafasClient {
+    impl Client {
+        pub(super) fn internal(&self) -> super::ApiProvider {
             self.internal
                 .read()
                 .expect("Failed to read internal client")
                 .as_ref()
-                .expect("HafasClient internal not yet set")
+                .expect("Client internal not yet set")
                 .clone()
         }
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for HafasClient {
-        const NAME: &'static str = "DBHafasClient";
-        type Type = super::HafasClient;
+    impl ObjectSubclass for Client {
+        const NAME: &'static str = "DBClient";
+        type Type = super::Client;
     }
 
-    impl ObjectImpl for HafasClient {
+    impl ObjectImpl for Client {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![ParamSpecObject::builder::<ListModel>("providers")
@@ -329,6 +343,33 @@ mod imp {
             static SIGNALS: Lazy<Vec<Signal>> =
                 Lazy::new(|| -> Vec<Signal> { vec![Signal::builder("provider-changed").build()] });
             SIGNALS.as_ref()
+        }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    #[test]
+    fn provider_list_complete() {
+        use std::collections::HashSet;
+
+        let supported: HashSet<_> = rapi::RailwayProviderType::variants()
+            .iter()
+            .map(|p| p.to_string().to_lowercase().replace(['-', '_'], ""))
+            .collect();
+
+        let used: HashSet<_> = super::providers()
+            .into_iter()
+            .map(|p| p.id().to_lowercase().replace(['-', '_'], ""))
+            .collect();
+
+        let extra: HashSet<_> = used.difference(&supported).collect();
+        let missing: HashSet<_> = supported.difference(&used).collect();
+
+        if !(extra.is_empty() && missing.is_empty()) {
+            println!("Extra Providers: {:#?}", extra);
+            println!("Missing Providers: {:#?}", missing);
+            panic!("Mismatched used and available providers");
         }
     }
 }

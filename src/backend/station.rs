@@ -4,13 +4,13 @@ use gdk::glib::Object;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
 gtk::glib::wrapper! {
-    pub struct Stop(ObjectSubclass<imp::Stop>);
+    pub struct Station(ObjectSubclass<imp::Stop>);
 }
 
-impl Stop {
-    pub fn new(stop: hafas_rs::Stop) -> Self {
+impl Station {
+    pub fn new(stop: rcore::Station) -> Self {
         let s: Self = Object::builder().build();
-        s.imp().stop.swap(&RefCell::new(Some(stop)));
+        s.imp().station.swap(&RefCell::new(Some(stop)));
         s
     }
 }
@@ -28,13 +28,13 @@ mod imp {
 
     #[derive(Default)]
     pub struct Stop {
-        pub(super) stop: RefCell<Option<hafas_rs::Stop>>,
+        pub(super) station: RefCell<Option<rcore::Station>>,
     }
 
     #[glib::object_subclass]
     impl ObjectSubclass for Stop {
-        const NAME: &'static str = "DBStop";
-        type Type = super::Stop;
+        const NAME: &'static str = "DBStation";
+        type Type = super::Station;
     }
 
     impl ObjectImpl for Stop {
@@ -49,7 +49,7 @@ mod imp {
         fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "name" => self
-                    .stop
+                    .station
                     .borrow()
                     .as_ref()
                     .and_then(|o| o.name.clone())

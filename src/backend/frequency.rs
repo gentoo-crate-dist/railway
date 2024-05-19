@@ -8,13 +8,13 @@ gtk::glib::wrapper! {
 }
 
 impl Frequency {
-    pub fn new(frequency: hafas_rs::Frequency) -> Self {
+    pub fn new(frequency: rcore::Frequency) -> Self {
         let s: Self = Object::builder().build();
         s.imp().frequency.swap(&RefCell::new(Some(frequency)));
         s
     }
 
-    pub fn frequency(&self) -> Option<hafas_rs::Frequency> {
+    pub fn frequency(&self) -> Option<rcore::Frequency> {
         self.imp().frequency.borrow().clone()
     }
 }
@@ -27,7 +27,7 @@ mod imp {
 
     #[derive(Default)]
     pub struct Frequency {
-        pub(super) frequency: RefCell<Option<hafas_rs::Frequency>>,
+        pub(super) frequency: RefCell<Option<rcore::Frequency>>,
     }
 
     #[glib::object_subclass]

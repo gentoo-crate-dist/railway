@@ -63,14 +63,6 @@
       <default>true</default>
       <summary>Include InterCityExpress (ICE)?</summary>
     </key>
-    <key name="include-national" type="b">
-      <default>true</default>
-      <summary>Include InterCity &amp; EuroCity (IC/EC)?</summary>
-    </key>
-    <key name="include-regional-express" type="b">
-      <default>true</default>
-      <summary>Include RegionalExpress &amp; InterRegio (RE/IR)?</summary>
-    </key>
     <key name="include-regional" type="b">
       <default>true</default>
       <summary>Include Regio (RB)?</summary>
@@ -94,6 +86,10 @@
     <key name="include-tram" type="b">
       <default>true</default>
       <summary>Include Tram (T)?</summary>
+    </key>
+    <key name="include-cablecar" type="b">
+      <default>true</default>
+      <summary>Include Cablecar?</summary>
     </key>
     <key name="include-taxi" type="b">
       <default>true</default>

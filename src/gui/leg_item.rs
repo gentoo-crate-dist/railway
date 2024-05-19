@@ -34,19 +34,19 @@ pub mod imp {
     use gtk::DirectionType;
     use once_cell::sync::Lazy;
 
+    use crate::backend::IntermediateLocation;
     use crate::backend::Leg;
     use crate::backend::Place;
     use crate::backend::Remark;
-    use crate::backend::Stopover;
+    use crate::gui::intermediate_location_item::IntermediateLocationItem;
     use crate::gui::remark_item::RemarkItem;
-    use crate::gui::stopover_item::StopoverItem;
     use crate::gui::utility::Utility;
 
     #[derive(CompositeTemplate, Default)]
     #[template(resource = "/ui/leg_item.ui")]
     pub struct LegItem {
         #[template_child]
-        box_stopovers: TemplateChild<gtk::Box>,
+        box_intermediate_locations: TemplateChild<gtk::Box>,
         #[template_child]
         box_remarks: TemplateChild<gtk::Box>,
         #[template_child]
@@ -128,21 +128,26 @@ pub mod imp {
         }
 
         fn setup_sync(&self) {
-            let (n_stopovers, remarks) = {
+            let (n_stopovers, n_intermediate_locations, remarks) = {
                 let obj = self.leg.borrow();
-                let n_stopovers = obj
+                let (n_stopovers, n_intermediate_locations) = obj
                     .as_ref()
-                    .and_then(|j| j.leg().stopovers)
-                    .map(|s| s.len() - 2)
+                    .map(|j| j.leg().intermediate_locations)
+                    .map(|s| {
+                        (
+                            s.iter()
+                                .filter(|l| matches!(l, rcore::IntermediateLocation::Stop(_)))
+                                .count()
+                                - 2,
+                            s.len() - 2,
+                        )
+                    })
                     .unwrap_or_default();
-                let remarks = obj
-                    .as_ref()
-                    .and_then(|j| j.leg().remarks)
-                    .unwrap_or_default();
-                (n_stopovers, remarks)
+                let remarks = obj.as_ref().map(|j| j.leg().remarks).unwrap_or_default();
+                (n_stopovers, n_intermediate_locations, remarks)
             };
 
-            if n_stopovers > 0 {
+            if n_intermediate_locations > 0 {
                 self.stopover_button.set_visible(true);
                 let num_stopovers_fmt = gettextrs::ngettext(
                     "{} Stopover",
@@ -173,7 +178,7 @@ pub mod imp {
                 let obj = self.leg.borrow();
                 let mut stopovers = obj
                     .as_ref()
-                    .and_then(|j| j.leg().stopovers)
+                    .map(|j| j.leg().intermediate_locations)
                     .unwrap_or_default();
                 // Remove start and end. These are already shown as origin and destination.
                 if !stopovers.is_empty() {
@@ -189,7 +194,7 @@ pub mod imp {
 
             let load_stopovers_async = !self.reveal_stopovers.is_child_revealed();
 
-            let mut current_child = self.box_stopovers.first_child();
+            let mut current_child = self.box_intermediate_locations.first_child();
             let mut i = 0;
             // Fill box_legs
             while i < stopovers.len() {
@@ -198,13 +203,13 @@ pub mod imp {
                     tokio::task::yield_now().await;
                 }
 
-                let stopover = Stopover::new(stopovers[i].clone());
+                let stopover = IntermediateLocation::new(stopovers[i].clone());
                 // Check if current child can be reused.
-                if let Some(child) = current_child.and_downcast_ref::<StopoverItem>() {
-                    child.set_property("stopover", stopover);
+                if let Some(child) = current_child.and_downcast_ref::<IntermediateLocationItem>() {
+                    child.set_property("intermediate-location", stopover);
                 } else {
-                    let widget = StopoverItem::new(&stopover);
-                    self.box_stopovers.append(&widget);
+                    let widget = IntermediateLocationItem::new(&stopover);
+                    self.box_intermediate_locations.append(&widget);
                     size_group.add_widget(&widget.arrival_label());
                 }
                 current_child = current_child.and_then(|c| c.next_sibling());
@@ -212,7 +217,7 @@ pub mod imp {
             }
             while let Some(c) = current_child {
                 current_child = c.next_sibling();
-                self.box_stopovers.remove(&c);
+                self.box_intermediate_locations.remove(&c);
             }
         }
     }

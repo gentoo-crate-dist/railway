@@ -20,3 +20,6 @@ license-files = [
 
 [bans]
 multiple-versions = "allow"
+
+[sources.allow-org]
+gitlab = [ "schmiddi-on-mobile" ]

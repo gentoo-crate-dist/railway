@@ -1,5 +1,7 @@
 use gdk::{prelude::ObjectExt, subclass::prelude::ObjectSubclassIsExt};
 
+use crate::backend::Journey;
+
 gtk::glib::wrapper! {
     pub struct JourneyDetailPage(ObjectSubclass<imp::JourneyDetailPage>)
         @extends gtk::Box, gtk::Widget,
@@ -14,6 +16,10 @@ impl JourneyDetailPage {
 
     fn set_refresh_in_progress(&self, b: bool) {
         self.set_property("refresh-in-progress", b)
+    }
+
+    fn journey(&self) -> Option<Journey> {
+        self.property("journey")
     }
 }
 
@@ -35,12 +41,12 @@ pub mod imp {
     use gtk::subclass::prelude::*;
     use gtk::template_callbacks;
     use gtk::CompositeTemplate;
-    use hafas_rs::api::refresh_journey::RefreshJourneyOptions;
     use once_cell::sync::Lazy;
+    use rcore::RefreshJourneyOptions;
 
     use chrono::Duration;
 
-    use crate::backend::HafasClient;
+    use crate::backend::Client;
     use crate::backend::Journey;
     use crate::backend::Leg;
     use crate::backend::Place;
@@ -63,7 +69,7 @@ pub mod imp {
 
         load_handle: RefCell<Option<JoinHandle<()>>>,
 
-        client: RefCell<Option<HafasClient>>,
+        client: RefCell<Option<Client>>,
     }
 
     impl JourneyDetailPage {
@@ -76,13 +82,13 @@ pub mod imp {
                        @strong obj,
                        @strong window,
                        @strong self.journey as journey => async move {
-                let token = journey.borrow().as_ref().and_then(|j| j.journey().refresh_token);
+                    let journey = obj.journey();
 
-                if let Some(token) = token {
+                if let Some(journey) = journey {
                     obj.set_refresh_in_progress(true);
-                    let result_journey = obj.property::<HafasClient>("client")
-                        .refresh_journey(token, RefreshJourneyOptions {
-                            stopovers: Some(true),
+                    let result_journey = obj.property::<Client>("client")
+                        .refresh_journey(&journey, RefreshJourneyOptions {
+                            stopovers: true,
                             language: Some(Utility::language_code()),
                             ..Default::default()
                         }).await;
@@ -147,7 +153,7 @@ pub mod imp {
                 let i_start = i;
                 let mut to = &legs[i];
 
-                while to.walking.unwrap_or(false) {
+                while to.walking {
                     walking_time = Some(
                         walking_time.unwrap_or(Duration::zero())
                             + to.arrival.map_or(Duration::zero(), |arrival| {
@@ -305,7 +311,7 @@ pub mod imp {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
                     ParamSpecObject::builder::<Journey>("journey").build(),
-                    ParamSpecObject::builder::<HafasClient>("client").build(),
+                    ParamSpecObject::builder::<Client>("client").build(),
                     ParamSpecBoolean::builder("refresh-in-progress").build(),
                 ]
             });
@@ -320,12 +326,8 @@ pub mod imp {
                     );
 
                     // Different journeys can be identified by different refresh tokens.
-                    let redo = obj.as_ref().and_then(|j| j.refresh_token())
-                        != self
-                            .journey
-                            .borrow()
-                            .as_ref()
-                            .and_then(|j| j.refresh_token());
+                    let redo = obj.as_ref().map(|j| j.id())
+                        != self.journey.borrow().as_ref().map(|j| j.id());
 
                     self.journey.replace(obj);
 
@@ -350,8 +352,8 @@ pub mod imp {
                     self.refresh_in_progress.replace(obj);
                 }
                 "client" => {
-                    let obj = value.get::<Option<HafasClient>>().expect(
-                        "Property `client` of `JourneyDetailPage` has to be of type `HafasClient`",
+                    let obj = value.get::<Option<Client>>().expect(
+                        "Property `client` of `JourneyDetailPage` has to be of type `Client`",
                     );
 
                     self.client.replace(obj);

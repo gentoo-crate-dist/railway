@@ -5,6 +5,7 @@ stages:
 
 variables:
   UPLOAD_URL_BASE: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${CI_PROJECT_NAME}/${CI_COMMIT_TAG}"
+  BUILD: "build"
   BUILD_RELEASE: "build-release"
   MESON_DIST: "${BUILD_RELEASE}/meson-dist"
   PROJ_NAME_VERSION: "diebahn-${CI_COMMIT_TAG}"
@@ -76,7 +77,8 @@ build_release:
     - pacman -Syu rustup meson gtk4 git cmake libadwaita --noconfirm
     - rustup default stable
     - meson setup $BUILD_RELEASE
-    - meson dist -C $BUILD_RELEASE
+    # Don't test, as Flatpak already builds it.
+    - meson dist --no-tests -C $BUILD_RELEASE
   artifacts:
     paths:
       - ${MESON_DIST}/${PROJ_NAME_VERSION}.tar.xz

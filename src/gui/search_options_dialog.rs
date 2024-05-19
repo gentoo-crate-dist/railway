@@ -49,10 +49,6 @@ pub mod imp {
         #[template_child]
         switch_national_express: TemplateChild<libadwaita::SwitchRow>,
         #[template_child]
-        switch_national: TemplateChild<libadwaita::SwitchRow>,
-        #[template_child]
-        switch_regional_express: TemplateChild<libadwaita::SwitchRow>,
-        #[template_child]
         switch_regional: TemplateChild<libadwaita::SwitchRow>,
         #[template_child]
         switch_suburban: TemplateChild<libadwaita::SwitchRow>,
@@ -64,6 +60,8 @@ pub mod imp {
         switch_subway: TemplateChild<libadwaita::SwitchRow>,
         #[template_child]
         switch_tram: TemplateChild<libadwaita::SwitchRow>,
+        #[template_child]
+        switch_cablecar: TemplateChild<libadwaita::SwitchRow>,
         #[template_child]
         switch_taxi: TemplateChild<libadwaita::SwitchRow>,
 
@@ -167,18 +165,6 @@ pub mod imp {
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-national", &self.switch_national.get(), "active")
-                .flags(SettingsBindFlags::DEFAULT)
-                .build();
-            self.settings
-                .bind(
-                    "include-regional-express",
-                    &self.switch_regional_express.get(),
-                    "active",
-                )
-                .flags(SettingsBindFlags::DEFAULT)
-                .build();
-            self.settings
                 .bind("include-regional", &self.switch_regional.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
@@ -208,6 +194,10 @@ pub mod imp {
                 .build();
             self.settings
                 .bind("include-tram", &self.switch_tram.get(), "active")
+                .flags(SettingsBindFlags::DEFAULT)
+                .build();
+            self.settings
+                .bind("include-cablecar", &self.switch_cablecar.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
@@ -248,14 +238,13 @@ pub mod imp {
                 toggle_first_class: TemplateChild::default(),
                 toggle_second_class: TemplateChild::default(),
                 switch_national_express: TemplateChild::default(),
-                switch_national: TemplateChild::default(),
-                switch_regional_express: TemplateChild::default(),
                 switch_regional: TemplateChild::default(),
                 switch_suburban: TemplateChild::default(),
                 switch_bus: TemplateChild::default(),
                 switch_ferry: TemplateChild::default(),
                 switch_subway: TemplateChild::default(),
                 switch_tram: TemplateChild::default(),
+                switch_cablecar: TemplateChild::default(),
                 switch_taxi: TemplateChild::default(),
             }
         }

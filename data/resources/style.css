@@ -24,24 +24,24 @@
   font-weight: bold;
 }
 
-.stopover-item .main-label-on-time {
+.intermediate-location-item .main-label-on-time {
   font-size: small;
 }
 
-.stopover-item .main-label-late {
+.intermediate-location-item .main-label-late {
   font-size: small;
 }
 
-.stopover-item .alt-label-on-time {
+.intermediate-location-item .alt-label-on-time {
   font-size: small;
 }
 
-.stopover-item .alt-label-late {
+.intermediate-location-item .alt-label-late {
   font-size: small;
 }
 
 TransferItem:focus image,
-StopoverItem:focus image,
+IntermediateLocationItem:focus image,
 AnnouncementItem:focus image {
   color: @accent_color;
 }

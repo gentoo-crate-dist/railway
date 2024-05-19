@@ -1,6 +1,6 @@
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
-use crate::backend::Journey;
+use crate::backend::{Journey};
 
 gtk::glib::wrapper! {
     pub struct SearchPage(ObjectSubclass<imp::SearchPage>)
@@ -28,6 +28,7 @@ impl SearchPage {
 }
 
 pub mod imp {
+    use chrono::Duration;
     use gdk::gio::Settings;
     use gdk::glib::Properties;
     use gdk::glib::clone;
@@ -39,16 +40,16 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
-    use hafas_rs::LoyaltyCard;
-    use hafas_rs::ProductsSelection;
-    use hafas_rs::TariffClass;
-    use hafas_rs::api::journeys::JourneysOptions;
+    use rcore::LoyaltyCard;
+    use rcore::TariffClass;
+    use rcore::JourneysOptions;
+    use rcore::TransferOptions;
     use once_cell::sync::Lazy;
 
     use std::cell::Cell;
     use std::cell::RefCell;
 
-    use crate::backend::HafasClient;
+    use crate::backend::Client;
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
     use crate::backend::Place;
@@ -85,7 +86,7 @@ pub mod imp {
 
         settings: Settings,
         #[property(get, set)]
-        client: RefCell<Option<HafasClient>>,
+        client: RefCell<Option<Client>>,
         #[property(get, set)]
         search_when_ready: Cell<bool>,
         #[property(get, set)]
@@ -200,7 +201,7 @@ pub mod imp {
             let from = self.in_from.property::<Place>("place");
             let to = self.in_to.property::<Place>("place");
 
-            let time = Some(self.pick_date_time.get().get().naive_utc());
+            let time = self.pick_date_time.get().get().with_timezone(&chrono_tz::UTC);
             let time_type = self.pick_date_time.time_type();
 
             let main_context = MainContext::default();
@@ -212,33 +213,22 @@ pub mod imp {
                                             @strong self.settings as settings,
                                             @strong window => async move {
                 obj.set_searching(true);
-                let journeys = obj.property::<HafasClient>("client").journeys(from, to, time_type, JourneysOptions {
-                    departure: if time_type == TimeType::Departure { time } else { None },
-                    arrival: if time_type == TimeType::Arrival { time } else { None },
+                let journeys = obj.property::<Client>("client").journeys(from, to, time_type, JourneysOptions {
+                    departure: if time_type == TimeType::Departure { Some(time) } else { None },
+                    arrival: if time_type == TimeType::Arrival { Some(time) } else { None },
                     language: Some(Utility::language_code()),
-                    stopovers: Some(true),
+                    stopovers: true,
                     loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
-                    bike_friendly: Some(settings.boolean("bike-accessible")),
-                    start_with_walking: Some(false),
-                    transfers: if settings.boolean("direct-only") {Some(0)} else {None},
-                    transfer_time: Some(settings.int("transfer-time").try_into().unwrap_or_default()),
-                    tariff_class: Some(if settings.boolean("first-class") {
+                    bike_friendly: settings.boolean("bike-accessible"),
+                    transfers: if settings.boolean("direct-only") { TransferOptions::Limited(0) } else { TransferOptions::Unlimited },
+                    // Value clamped in the settings; default should never happen.
+                    transfer_time: Duration::try_minutes(settings.int("transfer-time").into()).unwrap_or_default(),
+                    tariff_class: if settings.boolean("first-class") {
                         TariffClass::First
                     } else {
                         TariffClass::Second
-                    }),
-                    products: ProductsSelection {
-                        national_express: Some(settings.boolean("include-national-express")),
-                        national: Some(settings.boolean("include-national")),
-                        regional_exp: Some(settings.boolean("include-regional-express")),
-                        regional: Some(settings.boolean("include-regional")),
-                        suburban: Some(settings.boolean("include-suburban")),
-                        bus: Some(settings.boolean("include-bus")),
-                        ferry: Some(settings.boolean("include-ferry")),
-                        subway: Some(settings.boolean("include-subway")),
-                        tram: Some(settings.boolean("include-tram")),
-                        taxi: Some(settings.boolean("include-taxi")),
                     },
+                    products: Utility::products_selection_from_setting(&settings),
                     ..Default::default()
                 }).await;
                 obj.set_searching(false);

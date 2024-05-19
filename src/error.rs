@@ -1,6 +1,6 @@
 #[derive(Debug)]
 pub enum Error {
-    Hafas(hafas_rs::Error),
+    Hafas(rcore::Error<Box<dyn std::error::Error + Send>, Box<dyn std::error::Error + Send>>),
     Timeout,
 }
 
@@ -15,8 +15,17 @@ impl std::fmt::Display for Error {
     }
 }
 
-impl From<hafas_rs::Error> for Error {
-    fn from(e: hafas_rs::Error) -> Self {
-        Self::Hafas(e)
+impl<R: std::error::Error + Send + 'static, P: std::error::Error + Send + 'static>
+    From<rcore::Error<R, P>> for Error
+{
+    fn from(e: rcore::Error<R, P>) -> Self {
+        match e {
+            rcore::Error::Request(r) => Self::Hafas(rcore::Error::Request(
+                Box::new(r) as Box<dyn std::error::Error + Send>
+            )),
+            rcore::Error::Provider(r) => Self::Hafas(rcore::Error::Provider(
+                Box::new(r) as Box<dyn std::error::Error + Send>
+            )),
+        }
     }
 }

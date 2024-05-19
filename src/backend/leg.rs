@@ -8,13 +8,13 @@ gtk::glib::wrapper! {
 }
 
 impl Leg {
-    pub fn new(leg: hafas_rs::Leg) -> Self {
+    pub fn new(leg: rcore::Leg) -> Self {
         let s: Self = Object::builder::<Self>().build();
         s.imp().leg.swap(&RefCell::new(Some(leg)));
         s
     }
 
-    pub fn leg(&self) -> hafas_rs::Leg {
+    pub fn leg(&self) -> rcore::Leg {
         self.imp()
             .leg
             .borrow()
@@ -24,6 +24,7 @@ impl Leg {
 }
 
 mod imp {
+    use chrono::Local;
     use gtk::glib;
     use std::cell::RefCell;
 
@@ -40,7 +41,7 @@ mod imp {
 
     #[derive(Default)]
     pub struct Leg {
-        pub(super) leg: RefCell<Option<hafas_rs::Leg>>,
+        pub(super) leg: RefCell<Option<rcore::Leg>>,
     }
 
     #[glib::object_subclass]
@@ -133,28 +134,28 @@ mod imp {
                     .borrow()
                     .as_ref()
                     .and_then(|o| o.departure)
-                    .map(|d| d.format("%H:%M").to_string())
+                    .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
                     .to_value(),
                 "arrival" => self
                     .leg
                     .borrow()
                     .as_ref()
                     .and_then(|o| o.arrival)
-                    .map(|d| d.format("%H:%M").to_string())
+                    .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
                     .to_value(),
                 "planned-departure" => self
                     .leg
                     .borrow()
                     .as_ref()
                     .and_then(|o| o.planned_departure)
-                    .map(|d| d.format("%H:%M").to_string())
+                    .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
                     .to_value(),
                 "planned-arrival" => self
                     .leg
                     .borrow()
                     .as_ref()
                     .and_then(|o| o.planned_arrival)
-                    .map(|d| d.format("%H:%M").to_string())
+                    .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
                     .to_value(),
                 "departure-platform" => self
                     .leg
@@ -238,14 +239,14 @@ mod imp {
                     .leg
                     .borrow()
                     .as_ref()
-                    .and_then(|o| o.reachable.map(|b| !b))
+                    .map(|o| !o.reachable)
                     .unwrap_or_default()
                     .to_value(),
                 "is-cancelled" => self
                     .leg
                     .borrow()
                     .as_ref()
-                    .and_then(|o| o.cancelled)
+                    .map(|o| o.cancelled)
                     .unwrap_or_default()
                     .to_value(),
                 _ => unimplemented!(),

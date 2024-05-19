@@ -5,24 +5,19 @@ use gdk::{
     prelude::{ActionMapExt, Cast},
 };
 use gettextrs::gettext;
-use gtk::{
-    prelude::WidgetExt,
-    Window,
+use gtk::{prelude::WidgetExt, Window};
+use libadwaita::{
+    prelude::AdwDialogExt, prelude::AlertDialogExt, AlertDialog, Toast, ToastOverlay,
 };
-use libadwaita::{Toast, ToastOverlay, AlertDialog, prelude::AlertDialogExt, prelude::AdwDialogExt};
 
 pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
     log::error!("Displaying error: {}", err);
     let toast = match &err {
-        Error::Hafas(hafas_rs::Error::Http { .. }) => Toast::new(&gettext(
+        Error::Hafas(rcore::Error::Request(_)) => Toast::new(&gettext(
             "Failed to fetch data. Are you connected to the internet?",
         )),
-        Error::Hafas(hafas_rs::Error::Hafas { .. }) => Toast::builder()
+        Error::Hafas(rcore::Error::Provider(_)) => Toast::builder()
             .title(gettext("Received an error. Please share feedback."))
-            .button_label(gettext("More Information"))
-            .build(),
-        Error::Hafas(hafas_rs::Error::Json { .. }) => Toast::builder()
-            .title(gettext("Received an invalid response. Please share feedback."))
             .button_label(gettext("More Information"))
             .build(),
         _ => Toast::builder()
@@ -32,9 +27,8 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
     };
 
     let msg = match err {
-        Error::Hafas(hafas_rs::Error::Http { .. }) => None,
-        Error::Hafas(hafas_rs::Error::Hafas { text, .. }) => Some(text),
-        Error::Hafas(hafas_rs::Error::Json { source, .. }) => Some(format!("{}", source)),
+        Error::Hafas(rcore::Error::Request(_)) => None,
+        Error::Hafas(e) => Some(format!("{}", e)),
         _ => Some(format!("{}", err)),
     };
 

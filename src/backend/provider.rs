@@ -14,7 +14,7 @@ impl Provider {
         let icon_name = if has_icon {
             id.to_lowercase()
         } else {
-            "icon".to_string()
+            crate::config::APP_ID.to_string()
         };
         Object::builder::<Self>()
             .property("id", id)

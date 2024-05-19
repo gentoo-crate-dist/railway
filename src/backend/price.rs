@@ -8,13 +8,13 @@ gtk::glib::wrapper! {
 }
 
 impl Price {
-    pub fn new(price: hafas_rs::Price) -> Self {
+    pub fn new(price: rcore::Price) -> Self {
         let s: Self = Object::builder().build();
         s.imp().price.swap(&RefCell::new(Some(price)));
         s
     }
 
-    pub fn price(&self) -> hafas_rs::Price {
+    pub fn price(&self) -> rcore::Price {
         self.imp()
             .price
             .borrow()
@@ -36,7 +36,7 @@ mod imp {
 
     #[derive(Default)]
     pub struct Price {
-        pub(super) price: RefCell<Option<hafas_rs::Price>>,
+        pub(super) price: RefCell<Option<rcore::Price>>,
     }
 
     #[glib::object_subclass]
@@ -59,7 +59,7 @@ mod imp {
                 "formatted" => {
                     let price = self.price.borrow();
                     let Some(price) = price.as_ref() else {
-                        return None::<String>.to_value()
+                        return None::<String>.to_value();
                     };
 
                     match price.currency.as_str() {
