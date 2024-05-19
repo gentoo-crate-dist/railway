@@ -2,13 +2,20 @@ use gdk::subclass::prelude::ObjectSubclassIsExt;
 
 use crate::backend::Journey;
 
+#[derive(PartialEq)]
+enum StoreMode {
+    Toggle,
+    Add,
+    Remove,
+}
+
 gtk::glib::wrapper! {
     pub struct JourneysStore(ObjectSubclass<imp::JourneysStore>);
 }
 
 impl JourneysStore {
     pub fn store(&self, journey: Journey) {
-        self.imp().store(journey);
+        self.imp().store(journey, StoreMode::Toggle);
     }
 
     pub fn contains(&self, journey: &Journey) -> bool {
@@ -45,6 +52,7 @@ pub mod imp {
 
     use crate::config;
     use crate::{backend::Journey, gui::stores::migrate_journey_store::import_old_store};
+    use crate::gui::stores::journey_store::StoreMode;
 
     pub struct JourneysStore {
         path: PathBuf,
@@ -79,13 +87,15 @@ pub mod imp {
                         let deletion =
                             arrival + Duration::try_hours(deletion_time.into()).unwrap_or_default();
                         if deletion < Local::now() {
+                            self.store(Journey::new(journey), StoreMode::Remove);
                             continue;
                         }
                     } else {
+                        self.store(Journey::new(journey), StoreMode::Remove);
                         continue;
                     }
                 }
-                self.store(Journey::new(journey));
+                self.store(Journey::new(journey), StoreMode::Add);
             }
         }
     }
@@ -132,16 +142,20 @@ pub mod imp {
             serde_json::to_writer(file, &journeys).expect("Failed to write to file");
         }
 
-        pub(super) fn store(&self, journey: Journey) {
+        pub(super) fn store(&self, journey: Journey, store_mode: StoreMode) {
             let mut stored = self.stored.borrow_mut();
             if let Some(idx) = stored.iter().position(|j| j.id() == journey.id()) {
-                log::trace!("Removing Journey {:?}", journey.journey());
-                let s = stored.remove(idx);
-                self.obj().emit_by_name::<()>("remove", &[&s]);
+                if store_mode != StoreMode::Add {
+                    log::trace!("Removing Journey {:?}", journey.journey());
+                    let s = stored.remove(idx);
+                    self.obj().emit_by_name::<()>("remove", &[&s]);
+                }
             } else {
-                log::trace!("Storing Journey {:?}", journey.journey());
-                self.obj().emit_by_name::<()>("add", &[&journey]);
-                stored.insert(0, journey);
+                if store_mode != StoreMode::Remove {
+                    log::trace!("Storing Journey {:?}", journey.journey());
+                    self.obj().emit_by_name::<()>("add", &[&journey]);
+                    stored.insert(0, journey);
+                }
             }
         }
 
