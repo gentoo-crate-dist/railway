@@ -1244,20 +1244,22 @@ dependencies = [
 [[package]]
 name = "railway-api"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=18f4cdd463ba6379307991afac6a8c227e0d3af7#18f4cdd463ba6379307991afac6a8c227e0d3af7"
+source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
 dependencies = [
  "async-trait",
  "chrono-tz",
  "railway-api-derive",
  "railway-core",
  "railway-provider-hafas",
+ "railway-provider-motis",
  "railway-provider-search-ch",
+ "url",
 ]
 
 [[package]]
 name = "railway-api-derive"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=18f4cdd463ba6379307991afac6a8c227e0d3af7#18f4cdd463ba6379307991afac6a8c227e0d3af7"
+source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
 dependencies = [
  "convert_case",
  "proc-macro2",
@@ -1268,7 +1270,7 @@ dependencies = [
 [[package]]
 name = "railway-core"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=18f4cdd463ba6379307991afac6a8c227e0d3af7#18f4cdd463ba6379307991afac6a8c227e0d3af7"
+source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
 dependencies = [
  "async-trait",
  "chrono",
@@ -1285,7 +1287,7 @@ dependencies = [
 [[package]]
 name = "railway-provider-hafas"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=18f4cdd463ba6379307991afac6a8c227e0d3af7#18f4cdd463ba6379307991afac6a8c227e0d3af7"
+source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
 dependencies = [
  "async-trait",
  "chrono",
@@ -1301,9 +1303,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "railway-provider-motis"
+version = "0.1.0"
+source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
+dependencies = [
+ "async-trait",
+ "chrono",
+ "chrono-tz",
+ "railway-core",
+ "serde",
+ "serde_json",
+ "url",
+]
+
+[[package]]
 name = "railway-provider-search-ch"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=18f4cdd463ba6379307991afac6a8c227e0d3af7#18f4cdd463ba6379307991afac6a8c227e0d3af7"
+source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
 dependencies = [
  "async-trait",
  "chrono",

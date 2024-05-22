@@ -5,12 +5,7 @@ gtk::glib::wrapper! {
 }
 
 impl Provider {
-    pub fn new(
-        id: &'static str,
-        short_name: &'static str,
-        name: Option<&str>,
-        has_icon: bool,
-    ) -> Provider {
+    pub fn new(id: &'static str, short_name: &str, name: Option<&str>, has_icon: bool) -> Provider {
         let icon_name = if has_icon {
             id.to_lowercase()
         } else {

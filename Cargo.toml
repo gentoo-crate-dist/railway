@@ -24,8 +24,8 @@ chrono-tz = "0.8"
 log = "0.4.20"
 env_logger = "0.11.1"
 
-rcore = { git = "https://gitlab.com/schmiddi-on-mobile/railway-backend", rev = "18f4cdd463ba6379307991afac6a8c227e0d3af7", package = "railway-core", features = ["hyper-requester", "rt-multi-thread", "serde"] }
-rapi = { git = "https://gitlab.com/schmiddi-on-mobile/railway-backend", rev = "18f4cdd463ba6379307991afac6a8c227e0d3af7", package = "railway-api", features = ["rt-multi-thread"] }
+rcore = { git = "https://gitlab.com/schmiddi-on-mobile/railway-backend", rev = "93c1307dbb075561ff661c2336dcb41033e77878", package = "railway-core", features = ["hyper-requester", "rt-multi-thread", "serde"] }
+rapi = { git = "https://gitlab.com/schmiddi-on-mobile/railway-backend", rev = "93c1307dbb075561ff661c2336dcb41033e77878", package = "railway-api", features = ["rt-multi-thread"] }
 
 serde = { version = "1.0.196", features = ["derive"] }
 serde_json = "1.0.113"

@@ -52,13 +52,14 @@ fn providers() -> Vec<Provider> {
         Provider::new("IVB", "IVB", Some("Innsbrucker Verkehrsbetriebe"), true),
         Provider::new("KVB", "KVB", Some("Kölner Verkehrs-Betriebe"), true),
         Provider::new("Mobiliteit-Lu", "Mobiliteit", Some("Luxembourg"), true),
-        Provider::new(
-            "mobil-nrw",
-            "mobil.nrw",
-            // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-            Some(&gettextrs::gettext("North Rhine-Westphalia")),
-            true,
-        ),
+        // Migrated endpoint to EFA
+        // Provider::new(
+        //     "mobil-nrw",
+        //     "mobil.nrw",
+        //     // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
+        //     Some(&gettextrs::gettext("North Rhine-Westphalia")),
+        //     true,
+        // ),
         Provider::new("NVV", "NVV", Some("Nordhessischer Verkehrsverbund"), true),
         Provider::new(
             "NahSH",
@@ -134,6 +135,14 @@ fn providers() -> Vec<Provider> {
 
         // Search.ch
         Provider::new("search-ch", "SBB", Some("Switzerland"), true),
+        // Transitous
+        Provider::new(
+            "transitous",
+            &gettextrs::gettext("Worlwide (beta)"),
+            // Translators: Transitous is a service (transitous.org) which should not be translated.
+            Some(&gettextrs::gettext("Using Transitous")),
+            true,
+        ),
     ]
 }
 
@@ -269,11 +278,6 @@ impl Client {
             .await
             .expect("Failed to join tokio")?,
         ))
-    }
-
-    pub fn timezone(&self) -> Option<chrono_tz::Tz> {
-        use rcore::Provider;
-        self.internal().timezone()
     }
 }
 
