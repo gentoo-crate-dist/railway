@@ -58,6 +58,10 @@
       <default>2</default>
       <summary>Hours past arrival after which to remove them</summary>
     </key>
+    <key name="bookmark-purge-suggested" type="b">
+      <default>false</default>
+      <summary>Whether it was already suggested to delete old bookmarks</summary>
+    </key>
 
     <key name="include-national-express" type="b">
       <default>true</default>
