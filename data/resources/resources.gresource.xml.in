@@ -70,6 +70,8 @@
     <!-- <file alias="hvv.svg">../icons/providers/hvv.svg</file> -->
     <file alias="vgi.svg">../icons/providers/vgi.svg</file>
     <file alias="irish-rail.svg">../icons/providers/irish-rail.svg</file>
+    <file alias="ivb.svg">../icons/providers/ivb.svg</file>
+    <file alias="kvb.svg">../icons/providers/kvb.svg</file>
     <file alias="mobiliteit-lu.svg">../icons/providers/mobiliteit-lu.svg</file>
     <file alias="mobil-nrw.svg">../icons/providers/mobil-nrw.svg</file>
     <file alias="nahsh.svg">../icons/providers/nahsh.svg</file>
