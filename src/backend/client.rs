@@ -49,8 +49,8 @@ fn providers() -> Vec<Provider> {
             true,
         ),
         Provider::new("Irish-Rail", "Irish Rail", Some("Iarnród Éireann"), true),
-        Provider::new("IVB", "IVB", Some("Innsbrucker Verkehrsbetriebe"), false),
-        Provider::new("KVB", "KVB", Some("Kölner Verkehrs-Betriebe"), false),
+        Provider::new("IVB", "IVB", Some("Innsbrucker Verkehrsbetriebe"), true),
+        Provider::new("KVB", "KVB", Some("Kölner Verkehrs-Betriebe"), true),
         Provider::new("Mobiliteit-Lu", "Mobiliteit", Some("Luxembourg"), true),
         Provider::new(
             "mobil-nrw",
