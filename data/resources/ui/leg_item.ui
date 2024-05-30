@@ -180,9 +180,9 @@
                     <child>
                       <object class="GtkToggleButton" id="stopover_button">
                         <accessibility>
-                          <property name="label" translatable="yes">Show Stopovers</property>
+                          <property name="label" translatable="yes">Show Stops</property>
                         </accessibility>
-                        <property name="tooltip-text" translatable="yes">Show Stopovers in Between</property>
+                        <property name="tooltip-text" translatable="yes">Show Intermediate Stops</property>
 
                         <property name="hexpand">True</property>
                         <property name="halign">start</property>
@@ -312,7 +312,7 @@
                   <object class="GtkBox" id="box_intermediate_locations">
                     <property name="accessible-role">list</property>
                     <accessibility>
-                      <property name="label" translatable="yes">Stopovers</property>
+                      <property name="label" translatable="yes">Stops</property>
                     </accessibility>
 
                     <property name="orientation">vertical</property>
