@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 11:37+0200\n"
+"POT-Creation-Date: 2024-05-30 19:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,11 +110,11 @@ msgid "Search for Trips"
 msgstr ""
 
 #: data/resources/ui/leg_item.ui:183
-msgid "Show Stopovers"
+msgid "Show Stops"
 msgstr ""
 
 #: data/resources/ui/leg_item.ui:185
-msgid "Show Stopovers in Between"
+msgid "Show Intermediate Stops"
 msgstr ""
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
@@ -126,7 +126,7 @@ msgid "Announcements"
 msgstr ""
 
 #: data/resources/ui/leg_item.ui:315
-msgid "Stopovers"
+msgid "Stops"
 msgstr ""
 
 #: data/resources/ui/preferences_dialog.ui:10 data/resources/ui/shortcuts.ui:32
@@ -182,7 +182,7 @@ msgid "Second Class"
 msgstr ""
 
 #: data/resources/ui/search_options_dialog.ui:48
-#: src/gui/search_options_button.rs:195
+#: src/gui/search_options_button.rs:190
 msgid "Bike Accessible"
 msgstr ""
 
@@ -199,42 +199,38 @@ msgid "Modes of Transport"
 msgstr ""
 
 #: data/resources/ui/search_options_dialog.ui:70
-msgid "ICE"
+msgid "High Speed Train"
 msgstr ""
 
 #: data/resources/ui/search_options_dialog.ui:75
-msgid "IC/EC"
+msgid "Regional Train"
 msgstr ""
 
 #: data/resources/ui/search_options_dialog.ui:80
-msgid "Interregio/RegionalExpress"
+msgid "Suburban Trains"
 msgstr ""
 
 #: data/resources/ui/search_options_dialog.ui:85
-msgid "Regio"
-msgstr ""
-
-#: data/resources/ui/search_options_dialog.ui:90
-msgid "S-Bahn"
-msgstr ""
-
-#: data/resources/ui/search_options_dialog.ui:95
 msgid "Bus"
 msgstr ""
 
-#: data/resources/ui/search_options_dialog.ui:100
+#: data/resources/ui/search_options_dialog.ui:90
 msgid "Ferry"
 msgstr ""
 
-#: data/resources/ui/search_options_dialog.ui:105
+#: data/resources/ui/search_options_dialog.ui:95
 msgid "Subway"
 msgstr ""
 
-#: data/resources/ui/search_options_dialog.ui:110
+#: data/resources/ui/search_options_dialog.ui:100
 msgid "Tram"
 msgstr ""
 
-#: data/resources/ui/search_options_dialog.ui:115
+#: data/resources/ui/search_options_dialog.ui:105
+msgid "Cablecar"
+msgstr ""
+
+#: data/resources/ui/search_options_dialog.ui:110
 msgid "Taxi"
 msgstr ""
 
@@ -383,23 +379,31 @@ msgstr ""
 msgid "Cancelled"
 msgstr ""
 
-#: src/gui/search_page.rs:116
-msgid "Start and destination are missing"
+#: src/gui/stores/journey_store.rs:122
+msgid "A bookmarked trip ended recently."
+msgstr ""
+
+#: src/gui/stores/journey_store.rs:134
+msgid "Always _Delete"
 msgstr ""
 
 #: src/gui/search_page.rs:117
-msgid "Start is missing"
+msgid "Start and destination are missing"
 msgstr ""
 
 #: src/gui/search_page.rs:118
-msgid "Destination is missing"
+msgid "Start is missing"
 msgstr ""
 
 #: src/gui/search_page.rs:119
+msgid "Destination is missing"
+msgstr ""
+
+#: src/gui/search_page.rs:120
 msgid "Search ongoing"
 msgstr ""
 
-#: src/gui/journey_detail_page.rs:102
+#: src/gui/journey_detail_page.rs:108
 msgid "Last refreshed {}"
 msgstr ""
 
@@ -426,66 +430,66 @@ msgstr ""
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:70 src/gui/search_options_dialog.rs:230
+#: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:220
 msgid "{} min"
 msgstr ""
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:78
+#: src/gui/utility.rs:84
 msgid "%_H h %_M min"
 msgstr ""
 
-#: src/gui/utility.rs:89
+#: src/gui/utility.rs:95
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
 msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:100
+#: src/gui/utility.rs:106
 msgid "{} min."
 msgstr ""
 
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:104
+#: src/gui/utility.rs:110
 msgid "{} hrs."
 msgstr ""
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:113
+#: src/gui/utility.rs:119
 msgid "%-H hrs. %-M min."
 msgstr ""
 
-#: src/gui/utility.rs:125
+#: src/gui/utility.rs:131
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
 msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:135
+#: src/gui/utility.rs:141
 msgid "%H:%M"
 msgstr ""
 
-#: src/gui/utility.rs:141 src/gui/date_time_picker.rs:101
+#: src/gui/utility.rs:147 src/gui/date_time_picker.rs:101
 msgid "Today"
 msgstr ""
 
-#: src/gui/utility.rs:143
+#: src/gui/utility.rs:149
 msgid "Tomorrow"
 msgstr ""
 
-#: src/gui/utility.rs:145
+#: src/gui/utility.rs:151
 msgid "Yesterday"
 msgstr ""
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:148
+#: src/gui/utility.rs:154
 msgid "%a, %d. %B"
 msgstr ""
 
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:151
+#: src/gui/utility.rs:157
 msgid "%Y-%m-%d"
 msgstr ""
 
@@ -555,49 +559,46 @@ msgstr ""
 msgid "2nd class"
 msgstr ""
 
-#: src/gui/search_options_button.rs:187
+#: src/gui/search_options_button.rs:182
 msgid "Regional Only"
 msgstr ""
 
-#: src/gui/search_options_button.rs:190
+#: src/gui/search_options_button.rs:185
 msgid "Selected Modes of Transport"
 msgstr ""
 
-#: src/gui/search_options_button.rs:202
+#: src/gui/search_options_button.rs:197
 msgid "Direct Connection"
 msgstr ""
 
-#: src/gui/error.rs:18
+#: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
 msgstr ""
 
-#: src/gui/error.rs:21
+#: src/gui/error.rs:20
 msgid "Received an error. Please share feedback."
 msgstr ""
 
-#: src/gui/error.rs:22 src/gui/error.rs:26 src/gui/error.rs:30
+#: src/gui/error.rs:21 src/gui/error.rs:25
 msgid "More Information"
 msgstr ""
 
-#: src/gui/error.rs:25
-msgid "Received an invalid response. Please share feedback."
-msgstr ""
-
-#: src/gui/error.rs:29
+#: src/gui/error.rs:24
 msgid "An unknown issue occured. Please share feedback."
 msgstr ""
 
-#: src/gui/error.rs:45
+#: src/gui/error.rs:39
 msgid "Error"
 msgstr ""
 
-#: src/gui/error.rs:49
+#: src/gui/error.rs:43
 msgid "_Close"
 msgstr ""
 
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:105
+#, c-format
 msgid "%a %b %d"
 msgstr ""
 
@@ -636,19 +637,19 @@ msgstr ""
 msgid "Arrive at {destination} at {arrival}."
 msgstr ""
 
-#: src/gui/leg_item.rs:148
-msgid "{} Stopover"
-msgid_plural "{} Stopovers"
+#: src/gui/leg_item.rs:153
+msgid "{} Stop"
+msgid_plural "{} Stops"
 msgstr[0] ""
 msgstr[1] ""
 
-#. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
-#: src/gui/stopover_item.rs:62
+#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
+#: src/gui/intermediate_location_item.rs:67
 msgid "{stop} at {arrival} on platform {platform}"
 msgstr ""
 
-#. Translators: The formatting of the stopovers's description for screen readers. Do not translate the strings in {}.
-#: src/gui/stopover_item.rs:65
+#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
+#: src/gui/intermediate_location_item.rs:70
 msgid "{stop} at {arrival}"
 msgstr ""
 
@@ -663,18 +664,18 @@ msgid "No suggestion selected"
 msgstr ""
 
 #. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
-#: src/gui/station_entry.rs:383
+#: src/gui/station_entry.rs:385
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-#: src/gui/window.rs:174
+#: src/gui/window.rs:179
 msgid "translator-credits"
 msgstr ""
 
-#: src/gui/window.rs:176
+#: src/gui/window.rs:181
 msgid "Source Translation Supported by"
 msgstr ""
 
@@ -699,25 +700,25 @@ msgid "{currency} {amount}"
 msgstr ""
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-#: src/backend/hafas_client.rs:57
+#: src/backend/client.rs:59
 msgid "North Rhine-Westphalia"
 msgstr ""
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
-#: src/backend/hafas_client.rs:65
+#: src/backend/client.rs:67
 msgid "Schleswig-Holstein"
 msgstr ""
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
-#: src/backend/hafas_client.rs:83
+#: src/backend/client.rs:85
 msgid "Germany"
 msgstr ""
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
-#: src/backend/hafas_client.rs:98
+#: src/backend/client.rs:100
 msgid "Austria"
 msgstr ""
 
-#: src/backend/leg.rs:129
+#: src/backend/leg.rs:130
 msgid "Walk"
 msgstr ""

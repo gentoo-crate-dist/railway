@@ -59,8 +59,7 @@ src/backend/discount_card.rs
 src/backend/journeys_result.rs
 src/backend/place.rs
 src/backend/price.rs
-src/backend/stop.rs
-src/backend/intermediate_locations.rs
+src/backend/intermediate_location.rs
 src/backend/remark.rs
 src/backend/client.rs
 src/backend/provider.rs
