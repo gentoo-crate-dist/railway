@@ -225,6 +225,10 @@ impl Client {
         let client = self.internal();
         let from_place = from.place();
         let to_place = to.place();
+        let requested_time = match time_type {
+            TimeType::Departure => opts.departure,
+            TimeType::Arrival => opts.arrival,
+        };
         Ok(JourneysResult::new(
             tspawn!(async move {
                 tokio::time::timeout(
@@ -239,6 +243,7 @@ impl Client {
             .expect("Failed to join tokio")?,
             from,
             to,
+            requested_time,
             time_type,
         ))
     }
