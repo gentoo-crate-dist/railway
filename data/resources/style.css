@@ -90,21 +90,27 @@ AnnouncementItem:focus {
   background-color: alpha(@view_fg_color, 0.07);
 }
 
-/* Highlighting selected item for station entry */
+/* Highlighting selected item in popovers */
 /* Similar to https://gitlab.gnome.org/GNOME/epiphany/-/blob/b6203597637b4b7725372750983f6e38ca92c2ac/src/resources/style.css#L137-155 */
-.station-entry popover listview > row:hover {
+popover listview.navigation-sidebar > header {
+  padding: 0px 6px;
+}
+popover listview.navigation-sidebar > :not(:last-child) {
+  margin-bottom: 2px;
+}
+popover listview.navigation-sidebar > row:hover {
   background-color: alpha(currentColor, .04);
 }
-.station-entry popover listview > row:active {
+popover listview.navigation-sidebar > row:active {
   background-color: alpha(currentColor, .08);
 }
-.station-entry popover listview > row:selected {
+popover listview.navigation-sidebar > row:selected {
   background-color: alpha(currentColor, .1);
 }
-.station-entry popover listview > row:selected:hover {
+popover listview.navigation-sidebar > row:selected:hover {
   background-color: alpha(currentColor, .13);
 }
-.station-entry popover listview > row:selected:active {
+popover listview.navigation-sidebar > row:selected:active {
   background-color: alpha(currentColor, .19);
 }
 

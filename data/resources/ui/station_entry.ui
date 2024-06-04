@@ -4,9 +4,6 @@
   <requires lib="libadwaita" version="1.0"/>
 
   <template class="DBStationEntry" parent="AdwEntryRow">
-    <style>
-      <class name="station-entry"/>
-    </style>
 
     <property name="input-purpose">free-form</property>
     <property name="input-hints">spellcheck | word-completion | no-emoji</property>
