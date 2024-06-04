@@ -138,7 +138,7 @@ fn providers() -> Vec<Provider> {
         // Transitous
         Provider::new(
             "transitous",
-            &gettextrs::gettext("Worlwide (beta)"),
+            &gettextrs::gettext("Worldwide (beta)"),
             // Translators: Transitous is a service (transitous.org) which should not be translated.
             Some(&gettextrs::gettext("Using Transitous")),
             true,
