@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2024-06-04 07:48+0000\n"
-"Last-Translator: Pedro De la Iglesia <pedro.yt.99@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/es/>\n"
+"PO-Revision-Date: 2024-06-05 21:09+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,13 +117,12 @@ msgid "Search for Trips"
 msgstr "Buscar viajes"
 
 #: data/resources/ui/leg_item.ui:183
-#, fuzzy
 msgid "Show Stops"
-msgstr "Mostrar escalas"
+msgstr "Mostrar paradas"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Intermediate Stops"
-msgstr ""
+msgstr "Mostrar paradas intermedias"
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
 msgid "Show Announcements"
@@ -134,9 +133,8 @@ msgid "Announcements"
 msgstr "Anuncios"
 
 #: data/resources/ui/leg_item.ui:315
-#, fuzzy
 msgid "Stops"
-msgstr "Escalas"
+msgstr "Paradas"
 
 #: data/resources/ui/preferences_dialog.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
@@ -209,17 +207,15 @@ msgstr "Medios de transporte"
 
 #: data/resources/ui/search_options_dialog.ui:70
 msgid "High Speed Train"
-msgstr ""
+msgstr "Tren de alta velocidad"
 
 #: data/resources/ui/search_options_dialog.ui:75
-#, fuzzy
 msgid "Regional Train"
-msgstr "Sólo regionales"
+msgstr "Tren Regional"
 
 #: data/resources/ui/search_options_dialog.ui:80
-#, fuzzy
 msgid "Suburban Trains"
-msgstr "En las afueras"
+msgstr "Trenes de cercanías"
 
 #: data/resources/ui/search_options_dialog.ui:85
 msgid "Bus"
@@ -239,7 +235,7 @@ msgstr "Tranvía"
 
 #: data/resources/ui/search_options_dialog.ui:105
 msgid "Cablecar"
-msgstr ""
+msgstr "Teleférico"
 
 #: data/resources/ui/search_options_dialog.ui:110
 msgid "Taxi"
@@ -392,11 +388,11 @@ msgstr "Cancelado"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
-msgstr ""
+msgstr "Un viaje marcado como favorito terminó recientemente."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr ""
+msgstr "Siempre _eliminar"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
@@ -649,11 +645,10 @@ msgid "Arrive at {destination} at {arrival}."
 msgstr "Llegada a {destination} a las {arrival}."
 
 #: src/gui/leg_item.rs:153
-#, fuzzy
 msgid "{} Stop"
 msgid_plural "{} Stops"
-msgstr[0] "{} escala"
-msgstr[1] "{} escalas"
+msgstr[0] "{} parada"
+msgstr[1] "{} paradas"
 
 #. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
 #: src/gui/intermediate_location_item.rs:67
@@ -728,13 +723,12 @@ msgstr "Austria"
 
 #: src/backend/client.rs:141
 msgid "Worldwide (beta)"
-msgstr ""
+msgstr "Mundial (beta)"
 
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
 #: src/backend/client.rs:143
-#, fuzzy
 msgid "Using Transitous"
-msgstr "Transición"
+msgstr "Utilizar Transitous"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
