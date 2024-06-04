@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Screen reader support for the station entry.
+- Notify users about automatic bookmark deletion with a toast.
+- Transitous provider support.
+- SBB provider support.
+- IVB provider support.
+- KVB provider support.
+- BART provider support.
+
+### Removed
+
+- TPG provider support.
+
+### Changed
+
+- Rename stopover to stop.
+
+### Fixed
+
+- Display first day header when initial day deviates from request 
 
 ## [2.5.0] - 2024-04-30
 
