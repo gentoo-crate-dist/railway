@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2024-06-07 11:18+0000\n"
+"PO-Revision-Date: 2024-06-07 21:22+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -128,7 +128,7 @@ msgstr "Haltes tonen"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Intermediate Stops"
-msgstr ""
+msgstr "Tussen­liggende haltes tonen"
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
 msgid "Show Announcements"
@@ -139,7 +139,6 @@ msgid "Announcements"
 msgstr "Aan­kondigingen"
 
 #: data/resources/ui/leg_item.ui:315
-#, fuzzy
 msgid "Stops"
 msgstr "Haltes"
 
@@ -214,17 +213,15 @@ msgstr "Vervoers­methoden"
 
 #: data/resources/ui/search_options_dialog.ui:70
 msgid "High Speed Train"
-msgstr ""
+msgstr "Hoge­snelheids­trein"
 
 #: data/resources/ui/search_options_dialog.ui:75
-#, fuzzy
 msgid "Regional Train"
-msgstr "Alleen regionaal vervoer"
+msgstr "Regionale trein"
 
 #: data/resources/ui/search_options_dialog.ui:80
-#, fuzzy
 msgid "Suburban Trains"
-msgstr "Stadsvervoer"
+msgstr "Voor­stedelijke treinen"
 
 #: data/resources/ui/search_options_dialog.ui:85
 msgid "Bus"
@@ -244,7 +241,7 @@ msgstr "Tram"
 
 #: data/resources/ui/search_options_dialog.ui:105
 msgid "Cablecar"
-msgstr ""
+msgstr "Kabel­baan"
 
 #: data/resources/ui/search_options_dialog.ui:110
 msgid "Taxi"
