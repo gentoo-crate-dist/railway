@@ -58,6 +58,32 @@
   </description>
 
   <releases>
+    <release version="2.6.0" date="2024-06-12">
+      <description translate="no">
+        <p>Added</p>
+        <ul>
+          <li>Screen reader support for the station entry.</li>
+          <li>Notify users about automatic bookmark deletion with a toast.</li>
+          <li>Transitous provider support.</li>
+          <li>SBB provider support.</li>
+          <li>IVB provider support.</li>
+          <li>KVB provider support.</li>
+          <li>BART provider support.</li>
+        </ul>
+        <p>Removed</p>
+        <ul>
+          <li>TPG provider support.</li>
+        </ul>
+        <p>Changed</p>
+        <ul>
+          <li>Rename stopover to stop.</li>
+        </ul>
+        <p>Fixed</p>
+        <ul>
+          <li>Display first day header when initial day deviates from request</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.5.0" date="2024-04-30">
       <description translate="no">
         <p>Added</p>

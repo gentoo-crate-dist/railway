@@ -4,7 +4,7 @@ description = "Find all your travel information" # keep in sync with metainfo
 authors = ["Julian Schmidhuber <mobile@schmidhuberj.de>", "Markus Göllnitz <camelcasenick@bewares.it>"]
 homepage = "https://mobile.schmidhuberj.de/railway"
 repository = "https://gitlab.com/schmiddi-on-mobile/railway"
-version = "2.6.0-beta.3"
+version = "2.6.0"
 license = "GPL-3.0-or-later"
 edition = "2021"
 
@@ -24,8 +24,8 @@ chrono-tz = "0.8"
 log = "0.4.20"
 env_logger = "0.11.1"
 
-rcore = { git = "https://gitlab.com/schmiddi-on-mobile/railway-backend", rev = "93c1307dbb075561ff661c2336dcb41033e77878", package = "railway-core", features = ["hyper-requester", "rt-multi-thread", "serde"] }
-rapi = { git = "https://gitlab.com/schmiddi-on-mobile/railway-backend", rev = "93c1307dbb075561ff661c2336dcb41033e77878", package = "railway-api", features = ["rt-multi-thread"] }
+rcore = { version = "0.1.0", package = "railway-core", features = ["hyper-requester", "rt-multi-thread", "serde"] }
+rapi = { version = "0.1.0", package = "railway-api", features = ["rt-multi-thread"] }
 
 serde = { version = "1.0.196", features = ["derive"] }
 serde_json = "1.0.113"

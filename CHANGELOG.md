@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.0] - 2024-06-12
+
 ### Added
 
 - Screen reader support for the station entry.
@@ -27,6 +29,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Display first day header when initial day deviates from request 
+
+### Packaging
+
+Railway does now not depend upon `hafas-rs` any more.
+Instead, there are a set of crates `railway-core`, `railway-provider-*`, `railway-api-derive` and `railway-api` replacing it.
+Those are packaged on <crates.io>.
 
 ## [2.5.0] - 2024-04-30
 

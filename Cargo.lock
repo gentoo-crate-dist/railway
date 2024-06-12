@@ -304,7 +304,7 @@ dependencies = [
 
 [[package]]
 name = "diebahn"
-version = "2.6.0-beta.3"
+version = "2.6.0"
 dependencies = [
  "chrono",
  "chrono-tz",
@@ -1244,7 +1244,8 @@ dependencies = [
 [[package]]
 name = "railway-api"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ec7572a414e3774b31fbe5271b056fdd288429ecbe432b854d7add498bf5592e"
 dependencies = [
  "async-trait",
  "chrono-tz",
@@ -1259,7 +1260,8 @@ dependencies = [
 [[package]]
 name = "railway-api-derive"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0b0963f0e3187d069337e71ec9797fb574d8e113b43cc7a072cc9c1ff880f1de"
 dependencies = [
  "convert_case",
  "proc-macro2",
@@ -1270,7 +1272,8 @@ dependencies = [
 [[package]]
 name = "railway-core"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a3f5f936278d79c0d0d79a2e1dfd3431bcfd9f3b3de0bab881da7e5194d494cb"
 dependencies = [
  "async-trait",
  "chrono",
@@ -1287,7 +1290,8 @@ dependencies = [
 [[package]]
 name = "railway-provider-hafas"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c53544cbeb605bbb3f2328a6714e8366253daf80f1e5a973cba28d0282d871ba"
 dependencies = [
  "async-trait",
  "chrono",
@@ -1305,7 +1309,8 @@ dependencies = [
 [[package]]
 name = "railway-provider-motis"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7e717155e2c7b7250f9869a0bb762b769210e49aedabd371b0e48b86fe330d7a"
 dependencies = [
  "async-trait",
  "chrono",
@@ -1319,7 +1324,8 @@ dependencies = [
 [[package]]
 name = "railway-provider-search-ch"
 version = "0.1.0"
-source = "git+https://gitlab.com/schmiddi-on-mobile/railway-backend?rev=93c1307dbb075561ff661c2336dcb41033e77878#93c1307dbb075561ff661c2336dcb41033e77878"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4dd1f7727ab8c6abf06edc171d503f52884d95e361f4a11a69f13b0fa9ffce2a"
 dependencies = [
  "async-trait",
  "chrono",
