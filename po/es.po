@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2024-06-05 21:09+0000\n"
-"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"PO-Revision-Date: 2024-06-14 10:09+0000\n"
+"Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/es/>\n"
 "Language: es\n"
@@ -29,12 +29,14 @@ msgstr "Ferrocarril"
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
-msgstr "tren;ferrocarril;viaje;planificador;horarios;"
+msgstr ""
+"train;railway;journey;planner;timetables;tren;ferrocarril;viaje;planificador;"
+"horarios;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr "Encuentra toda la información de tu viaje"
+msgstr "Encuentre toda la información de su viaje"
 
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
 msgid "Julian Schmidhuber"
@@ -47,27 +49,26 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
-"Railway le permite buscar información de viajes a través de redes y "
+"Ferrocarril le permite buscar información sobre viajes a través de redes y "
 "fronteras sin tener que navegar por diferentes páginas web. Gracias al "
-"diseño adaptativo, es adecuado planificar su viaje con antelación o utilizar "
-"el móvil mientras viaja:"
+"diseño adaptativo, es adecuado para planificar el viaje con antelación o con "
+"el móvil sobre la marcha:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
-msgstr ""
-"Vea los detalles de sus viajes, incluidas las plataformas y los retrasos"
+msgstr "Vea los detalles de sus viajes, incluidos los andenes y las demoras"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
-msgstr "Marcar viajes actuales y futuros, así como búsquedas frecuentes"
+msgstr "Destacar viajes actuales y futuros, así como búsquedas frecuentes"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr ""
-"Utilizar opciones de búsqueda avanzada como filtrar por modo de transporte"
+"Usar las opciones de búsqueda avanzada, como filtrar por medio de transporte"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
@@ -78,7 +79,7 @@ msgstr "Y todo eso para redes de todo el mundo, pero sobre todo de Europa."
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
 msgid "Application Overview"
-msgstr "Descripción general de la aplicación"
+msgstr "Vista general de la aplicación"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -110,7 +111,7 @@ msgstr "Tramos del viaje"
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
-msgstr "Elige un viaje"
+msgstr "Elija un viaje"
 
 #: data/resources/ui/journeys_page.ui:128
 msgid "Search for Trips"
@@ -142,7 +143,7 @@ msgstr "General"
 
 #: data/resources/ui/preferences_dialog.ui:16
 msgid "Automatically Remove Old Bookmarks"
-msgstr "Eliminar automáticamente marcadores antiguos"
+msgstr "Eliminar automáticamente los destacados antiguos"
 
 #: data/resources/ui/preferences_dialog.ui:17
 msgid "Past trips are kept only for a period of time"
@@ -154,7 +155,7 @@ msgstr "Tiempo de conservación para los viajes"
 
 #: data/resources/ui/preferences_dialog.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr "¿Por cuánto tiempo conservar los viajes después de la llegada?"
+msgstr "Durante cuánto tiempo conservar los viajes tras la llegada"
 
 #: data/resources/ui/provider_popover.ui:20
 msgid "Search Networks…"
@@ -162,11 +163,11 @@ msgstr "Buscar redes…"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
-msgstr "Más posibilidades de búsqueda"
+msgstr "Más opciones de búsqueda"
 
 #: data/resources/ui/search_options_button.ui:20
 msgid "Refine Advanced Search Options"
-msgstr "Refinar las opciones de búsquedas avanzadas"
+msgstr "Refinar las opciones de búsqueda avanzada"
 
 #: data/resources/ui/search_options_button.ui:35
 msgid "More Options"
@@ -195,11 +196,11 @@ msgstr "Apto para bicicletas"
 
 #: data/resources/ui/search_options_dialog.ui:54
 msgid "Minimum Transfer Time"
-msgstr "Tiempo de transferencia mínimo"
+msgstr "Tiempo de trasbordo mínimo"
 
 #: data/resources/ui/search_options_dialog.ui:60
 msgid "Direct Connections Only"
-msgstr "Sólo conexiones directas"
+msgstr "Solo conexiones directas"
 
 #: data/resources/ui/search_options_dialog.ui:67
 msgid "Modes of Transport"
@@ -211,7 +212,7 @@ msgstr "Tren de alta velocidad"
 
 #: data/resources/ui/search_options_dialog.ui:75
 msgid "Regional Train"
-msgstr "Tren Regional"
+msgstr "Tren regional"
 
 #: data/resources/ui/search_options_dialog.ui:80
 msgid "Suburban Trains"
@@ -243,11 +244,11 @@ msgstr "Taxi"
 
 #: data/resources/ui/search_page.ui:37
 msgid "From"
-msgstr "De"
+msgstr "Origen"
 
 #: data/resources/ui/search_page.ui:45
 msgid "To"
-msgstr "A"
+msgstr "Destino"
 
 #: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:95
 #: data/resources/ui/window.ui:37
@@ -272,11 +273,11 @@ msgstr "Buscar en destacados"
 
 #: data/resources/ui/shortcuts.ui:19
 msgid "Bookmark Trip"
-msgstr "Viaje a destacados"
+msgstr "Destacar viaje"
 
 #: data/resources/ui/shortcuts.ui:25
 msgid "Reload Trip"
-msgstr "Volver a cargar el viaje"
+msgstr "Recargar viaje"
 
 #: data/resources/ui/shortcuts.ui:36
 msgid "Quit"
@@ -288,15 +289,15 @@ msgstr "Mostrar atajos del teclado"
 
 #: data/resources/ui/shortcuts.ui:48
 msgid "Show Preferences"
-msgstr "Mostrar los ajustes"
+msgstr "Mostrar preferencias"
 
 #: data/resources/ui/shortcuts.ui:54
 msgid "Open Menu"
-msgstr "Abrir el menú"
+msgstr "Abrir menú"
 
 #: data/resources/ui/station_entry.ui:19
 msgid "Swap Start and Destination"
-msgstr "Intercambiar inicio y destino"
+msgstr "Intercambiar origen y destino"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
 msgid "Select Network"
@@ -308,15 +309,15 @@ msgstr "Menú principal"
 
 #: data/resources/ui/window.ui:114
 msgid "Connections"
-msgstr "Enlaces"
+msgstr "Conexiones"
 
 #: data/resources/ui/window.ui:128
 msgid "Bookmark This Search"
-msgstr "Marcar esta búsqueda"
+msgstr "Destacar esta búsqueda"
 
 #: data/resources/ui/window.ui:166
 msgid "Trip Details"
-msgstr "Información del viaje"
+msgstr "Detalles del viaje"
 
 #: data/resources/ui/window.ui:175
 msgid "Refresh This Trip"
@@ -324,11 +325,11 @@ msgstr "Actualizar este viaje"
 
 #: data/resources/ui/window.ui:199
 msgid "Bookmark This Trip"
-msgstr "Marcar este viaje como favorito"
+msgstr "Destacar este viaje"
 
 #: data/resources/ui/window.ui:248
 msgid "Preferences"
-msgstr "Ajustes"
+msgstr "Preferencias"
 
 #: data/resources/ui/window.ui:252
 msgid "Keyboard Shortcuts"
@@ -336,11 +337,11 @@ msgstr "Atajos del teclado"
 
 #: data/resources/ui/window.ui:256
 msgid "_About Railway"
-msgstr "_Acerca de Railway"
+msgstr "_Acerca de Ferrocarril"
 
 #: data/resources/ui/refresh_button.ui:24
 msgid "Refresh Trip"
-msgstr "Volver a actualizar viaje"
+msgstr "Actualizar viaje"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
@@ -352,7 +353,7 @@ msgstr "Carga muy elevada"
 
 #: src/gui/indicator_icons.rs:149
 msgid "Exceptionally High Load"
-msgstr "Carga excepcionalmente alta"
+msgstr "Carga excepcionalmente elevada"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On Time"
@@ -360,7 +361,7 @@ msgstr "Puntual"
 
 #: src/gui/indicator_icons.rs:172
 msgid "Minor Delays"
-msgstr "Retrasos menores"
+msgstr "Demoras menores"
 
 #: src/gui/indicator_icons.rs:179
 msgid "Delayed"
@@ -368,15 +369,15 @@ msgstr "Demorado"
 
 #: src/gui/indicator_icons.rs:186
 msgid "Very Delayed"
-msgstr "Muy retrasado"
+msgstr "Muy demorado"
 
 #: src/gui/indicator_icons.rs:193
 msgid "Extremely Delayed"
-msgstr "Extremadamente retrasado"
+msgstr "Extremadamente demorado"
 
 #: src/gui/indicator_icons.rs:209
 msgid "Platform Changes"
-msgstr "Cambio de anden"
+msgstr "Cambios de andén"
 
 #: src/gui/indicator_icons.rs:228
 msgid "Connection Not Possible"
@@ -388,23 +389,23 @@ msgstr "Cancelado"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
-msgstr "Un viaje marcado como favorito terminó recientemente."
+msgstr "Un viaje destacado terminó recientemente."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr "Siempre _eliminar"
+msgstr "_Eliminar siempre"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
-msgstr "Falta el inicio y el destino"
+msgstr "Falta el origen y el destino"
 
 #: src/gui/search_page.rs:118
 msgid "Start is missing"
-msgstr "Falta el inicio"
+msgstr "Falta el origen"
 
 #: src/gui/search_page.rs:119
 msgid "Destination is missing"
-msgstr "Falta destino"
+msgstr "Falta el destino"
 
 #: src/gui/search_page.rs:120
 msgid "Search ongoing"
@@ -417,7 +418,7 @@ msgstr "Última actualización {}"
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:90
 msgid "Arrive at {destination}."
-msgstr "Llegó a {destination}."
+msgstr "Llegada a {destination}."
 
 #: src/gui/transition.rs:212
 msgid "Walk {walk} Wait {wait}"
@@ -425,7 +426,7 @@ msgstr "Andar {walk} y esperar {wait}"
 
 #: src/gui/transition.rs:217
 msgid "Transfer Time {}"
-msgstr "Duración de la transferencia {}"
+msgstr "Tiempo de trasbordo {}"
 
 #: src/gui/transition.rs:221
 msgid "Walk {}"
@@ -433,7 +434,7 @@ msgstr "Andar {}"
 
 #: src/gui/transition.rs:224
 msgid "Transfer"
-msgstr "Transferir"
+msgstr "Transbordar"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
@@ -444,18 +445,18 @@ msgstr "{} min"
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:84
 msgid "%_H h %_M min"
-msgstr "%_H hrs %_M min"
+msgstr "%_H h %_M min"
 
 #: src/gui/utility.rs:95
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
-msgstr[0] " %_d día %_H hora %_M minuto"
-msgstr[1] "%_d días %_H horas %_M minutos"
+msgstr[0] " %_d día %_H h %_M min"
+msgstr[1] "%_d días %_H h %_M min"
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:106
 msgid "{} min."
-msgstr "{} min."
+msgstr "{} min."
 
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:110
@@ -465,13 +466,13 @@ msgstr "{} hrs."
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:119
 msgid "%-H hrs. %-M min."
-msgstr "%-H hrs %-M min"
+msgstr "%-H hrs. %-M min."
 
 #: src/gui/utility.rs:131
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] "%-d día %-H hora %-M minuto"
-msgstr[1] "%-d días %-H horas %-M minutos"
+msgstr[0] "%-d día %-H hrs. %-M min."
+msgstr[1] "%-d días %-H hrs. %-M min."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:141
@@ -503,8 +504,8 @@ msgstr "%d %m %Y"
 #: src/gui/preferences_dialog.rs:60
 msgid "{} h"
 msgid_plural "{} h"
-msgstr[0] "{} hora"
-msgstr[1] "{} horas"
+msgstr[0] "{} h"
+msgstr[1] "{} h"
 
 #: src/gui/search_options_button.rs:75
 msgid "None"
@@ -568,11 +569,11 @@ msgstr "2ª clase"
 
 #: src/gui/search_options_button.rs:182
 msgid "Regional Only"
-msgstr "Sólo regionales"
+msgstr "Solo regionales"
 
 #: src/gui/search_options_button.rs:185
 msgid "Selected Modes of Transport"
-msgstr "Modos de transporte seleccionados"
+msgstr "Medios de transporte seleccionados"
 
 #: src/gui/search_options_button.rs:197
 msgid "Direct Connection"
@@ -584,7 +585,7 @@ msgstr "No se han podido recuperar los datos. ¿Está conectado a Internet?"
 
 #: src/gui/error.rs:20
 msgid "Received an error. Please share feedback."
-msgstr "Se ha producido un error. Por favor, no dudes en informar esto."
+msgstr "Se ha producido un error. Por favor, comparta sus comentarios."
 
 #: src/gui/error.rs:21 src/gui/error.rs:25
 msgid "More Information"
@@ -592,7 +593,8 @@ msgstr "Más información"
 
 #: src/gui/error.rs:24
 msgid "An unknown issue occured. Please share feedback."
-msgstr "Ocurrió un problema desconocido. Por favor comparta sus comentarios."
+msgstr ""
+"Se ha producido un problema desconocido. Por favor, comparta sus comentarios."
 
 #: src/gui/error.rs:39
 msgid "Error"
@@ -623,21 +625,21 @@ msgstr "De {departure} a {arrival} en {travel_time} con {changes_text}"
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
 msgid "{train} in the direction of {destination}"
-msgstr "{train} hacia {destination}"
+msgstr "{train} en dirección a {destination}"
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr "Salga de {start} desde la plataforma {platform} hacia {departure}."
+msgstr "Salida {start} del andén {platform} a las {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
 msgid "Depart {start} at {departure}."
-msgstr "Salida de {start} a las {departure}."
+msgstr "Salida {start} a las {departure}."
 
 #: src/gui/leg_item.rs:101
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr "Llegue a {destination} en la plataforma {platform} a {arrival}."
+msgstr "Llegada a {destination} en el andén {platform} a las {arrival}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:106
@@ -653,7 +655,7 @@ msgstr[1] "{} paradas"
 #. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
 #: src/gui/intermediate_location_item.rs:67
 msgid "{stop} at {arrival} on platform {platform}"
-msgstr "{stop} en {arrival} en la plataforma {platform}"
+msgstr "{stop} en {arrival} en el andén {platform}"
 
 #. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
 #: src/gui/intermediate_location_item.rs:70
@@ -668,7 +670,7 @@ msgstr "Sugerencia {} seleccionada"
 #. Translators: Text that will be announced by the screen reader when no selection was selected.
 #: src/gui/station_entry.rs:194
 msgid "No suggestion selected"
-msgstr "Ninguna sugerencia seleccionada"
+msgstr "No hay sugerencias seleccionadas"
 
 #. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
 #: src/gui/station_entry.rs:385
@@ -680,7 +682,7 @@ msgstr[1] "{n} sugerencias, sin seleccionar"
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:179
 msgid "translator-credits"
-msgstr ""
+msgstr "Óscar Fernández Díaz <oscfdezdz@tuta.io>"
 
 #: src/gui/window.rs:181
 msgid "Source Translation Supported by"
@@ -694,17 +696,17 @@ msgstr "cada ~{}"
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
 msgid "€{amount}"
-msgstr "€{amount}"
+msgstr "{amount}€"
 
 #. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
 #: src/backend/price.rs:74
 msgid "${amount}"
-msgstr "${amount}"
+msgstr "{amount}$"
 
 #. Translators: How to format unknown currency "currency". Do not translate in {}.
 #: src/backend/price.rs:81
 msgid "{currency} {amount}"
-msgstr "{currency} {amount}"
+msgstr "{amount} {currency}"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/client.rs:68
@@ -728,7 +730,7 @@ msgstr "Mundial (beta)"
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
 #: src/backend/client.rs:143
 msgid "Using Transitous"
-msgstr "Utilizar Transitous"
+msgstr "Usando Transitous"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
