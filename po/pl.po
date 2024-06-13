@@ -8,39 +8,38 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2024-01-22 10:01+0000\n"
-"Last-Translator: Eryk Michalak <gnu.ewm@protonmail.com>\n"
-"Language-Team: Polish <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/pl/>\n"
+"PO-Revision-Date: 2024-06-14 10:09+0000\n"
+"Last-Translator: Stanisław łajszczak <stanislaw.lajszczak@gmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
 #: data/resources/ui/window.ui:8
-#, fuzzy
 msgid "Railway"
-msgstr "_O Railway"
+msgstr "Koleje"
 
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
-msgstr ""
+msgstr "pociąg;kolej;podróż;planner;rozkłady;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr ""
+msgstr "Znajdź wszystkie informacje dotyczącej twojej podrózy"
 
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
 msgid "Julian Schmidhuber"
-msgstr ""
+msgstr "Julian Schmidhuber"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -49,32 +48,38 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"Koleje pozwala na wyszukiwanie połączeń kolejowych pomiędzy krajami i "
+"firmami.Dzięki nowoczesnej aranżacji możesz łatwo wyszukać podróże na "
+"przyszłość i po drodze:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
 msgstr ""
+"Zobacz informacje dotyczące twojej podróży takie jak perony i opóźnienia"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
-msgstr ""
+msgstr "Zapisz te lub przyszłe podróże tak jak twoje częste wyszukiwania"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr ""
+"Skorzystaj z zaawansowanego wyszukiwania takiego jak filtrowanie poprzez "
+"formę transportu"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
-msgstr ""
+msgstr "I to wszystko dla kolei dookoła świata lecz większości z Europy."
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
 msgid "Application Overview"
-msgstr ""
+msgstr "Aplikacja"
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
@@ -107,33 +112,31 @@ msgstr "Szczegóły podróży"
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
-msgstr ""
+msgstr "Wybierz Podróż"
 
 #: data/resources/ui/journeys_page.ui:128
 msgid "Search for Trips"
-msgstr ""
+msgstr "Wyszukaj podróż"
 
 #: data/resources/ui/leg_item.ui:183
-#, fuzzy
 msgid "Show Stops"
-msgstr "Skróty klawiszowe"
+msgstr "Pokaż Stacje"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Intermediate Stops"
-msgstr ""
+msgstr "Pokaż Stacje po drodze"
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
 msgid "Show Announcements"
 msgstr "Pokaż ogłoszenia"
 
 #: data/resources/ui/leg_item.ui:283
-#, fuzzy
 msgid "Announcements"
-msgstr "Pokaż ogłoszenia"
+msgstr "Ogłoszenia"
 
 #: data/resources/ui/leg_item.ui:315
 msgid "Stops"
-msgstr ""
+msgstr "Stacje"
 
 #: data/resources/ui/preferences_dialog.ui:10 data/resources/ui/shortcuts.ui:32
 msgid "General"
@@ -141,26 +144,26 @@ msgstr "Ogólne"
 
 #: data/resources/ui/preferences_dialog.ui:16
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "Automatycznie Usuń Stare Zakładki."
 
 #: data/resources/ui/preferences_dialog.ui:17
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "Przeszłe podróże są zapisane tylko na jakiś czas"
 
 #: data/resources/ui/preferences_dialog.ui:23
 msgid "Preservation Time For Trips"
-msgstr ""
+msgstr "Okres zapisu dla podrózy"
 
 #: data/resources/ui/preferences_dialog.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "Na jak długo powinny być podróże przechowane"
 
 #: data/resources/ui/provider_popover.ui:20
-#, fuzzy
 msgid "Search Networks…"
-msgstr "Wybierz sieć"
+msgstr "Wybierz Sieć…"
 
 #: data/resources/ui/search_options_button.ui:8
+#, fuzzy
 msgid "More search options"
 msgstr "Więcej opcji wyszukiwania"
 
