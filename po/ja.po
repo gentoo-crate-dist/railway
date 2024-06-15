@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2024-06-14 10:09+0000\n"
+"PO-Revision-Date: 2024-06-15 20:09+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/ja/>\n"
@@ -543,7 +543,7 @@ msgstr "SH-カード"
 
 #: src/gui/search_options_button.rs:92
 msgid "CH – General-Abonnement"
-msgstr "チェコ - 一般購読"
+msgstr "チェコ – 一般購読"
 
 #: src/gui/search_options_button.rs:99
 msgid "Unknown"
