@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2024-05-25 07:09+0000\n"
-"Last-Translator: Matee001 <azigazikovacs@gmail.com>\n"
-"Language-Team: Hungarian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/hu/>\n"
+"PO-Revision-Date: 2024-06-15 20:09+0000\n"
+"Last-Translator: rdbende <rdbende@proton.me>\n"
+"Language-Team: Hungarian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,11 +34,11 @@ msgstr "vonat;vasút;utazás;tervező;menetrendek;"
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr "Az összes utazási információ megtalálása"
+msgstr "Utazások részletes tervezése"
 
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
 msgid "Julian Schmidhuber"
-msgstr "Schmidhuber Julián"
+msgstr "Julian Schmidhuber"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -48,7 +48,7 @@ msgid ""
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
 "A Vasút segítségével hálózatokon és határokon átívelő utazási információkat "
-"kereshet anélkül, hogy különböző webhelyeken kellene navigálnia. Az adaptív "
+"kereshet anélkül, hogy különböző webhelyeken kellene keresgélnie. Az adaptív "
 "kialakításnak köszönhetően alkalmas az utazás előre megtervezésére vagy "
 "mobilra útközben:"
 
@@ -62,7 +62,7 @@ msgstr ""
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
 msgstr ""
-"Jelenlegi és jövőbeli utazások, valamint gyakori keresések megjelölése a "
+"Jelenlegi és jövőbeli utazások, valamint gyakori keresések mentése a "
 "könyvjelzők közé"
 
 #. Translators: Part of the description of the application in the metainfo.
@@ -120,13 +120,12 @@ msgid "Search for Trips"
 msgstr "Utazások keresése"
 
 #: data/resources/ui/leg_item.ui:183
-#, fuzzy
 msgid "Show Stops"
 msgstr "Megállóhelyek megjelenítése"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Intermediate Stops"
-msgstr ""
+msgstr "Közbenső megállók megjelenítése"
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
 msgid "Show Announcements"
@@ -137,7 +136,6 @@ msgid "Announcements"
 msgstr "Közlemények"
 
 #: data/resources/ui/leg_item.ui:315
-#, fuzzy
 msgid "Stops"
 msgstr "Megállóhelyek"
 
@@ -200,7 +198,7 @@ msgstr "Kerékpár szállítható"
 
 #: data/resources/ui/search_options_dialog.ui:54
 msgid "Minimum Transfer Time"
-msgstr "Legkevesebb átszállás ideje"
+msgstr "Legkisebb átszállási idő"
 
 #: data/resources/ui/search_options_dialog.ui:60
 msgid "Direct Connections Only"
@@ -212,16 +210,15 @@ msgstr "Közlekedési eszközök"
 
 #: data/resources/ui/search_options_dialog.ui:70
 msgid "High Speed Train"
-msgstr ""
+msgstr "Nagysebességű vasút"
 
 #: data/resources/ui/search_options_dialog.ui:75
-#, fuzzy
 msgid "Regional Train"
-msgstr "Csak regionális"
+msgstr "Regionális vonatok"
 
 #: data/resources/ui/search_options_dialog.ui:80
 msgid "Suburban Trains"
-msgstr ""
+msgstr "Elővárosi vonatok"
 
 #: data/resources/ui/search_options_dialog.ui:85
 msgid "Bus"
@@ -241,7 +238,7 @@ msgstr "Villamos"
 
 #: data/resources/ui/search_options_dialog.ui:105
 msgid "Cablecar"
-msgstr ""
+msgstr "Felvonó"
 
 #: data/resources/ui/search_options_dialog.ui:110
 msgid "Taxi"
@@ -278,7 +275,7 @@ msgstr "Könyvjelző keresés mentése"
 
 #: data/resources/ui/shortcuts.ui:19
 msgid "Bookmark Trip"
-msgstr "Könyvjelző utazás mentése"
+msgstr "Utazás könyvjelzőzése"
 
 #: data/resources/ui/shortcuts.ui:25
 msgid "Reload Trip"
@@ -290,7 +287,7 @@ msgstr "Kilépés"
 
 #: data/resources/ui/shortcuts.ui:42
 msgid "Show Shortcuts"
-msgstr "Parancsikonok megjelenítése"
+msgstr "Gyorsbillentyűk"
 
 #: data/resources/ui/shortcuts.ui:48
 msgid "Show Preferences"
@@ -338,7 +335,7 @@ msgstr "Beállítások"
 
 #: data/resources/ui/window.ui:252
 msgid "Keyboard Shortcuts"
-msgstr "Billentyűparancsok"
+msgstr "Gyorsbillentyűk"
 
 #: data/resources/ui/window.ui:256
 msgid "_About Railway"
@@ -394,11 +391,11 @@ msgstr "Törölve"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
-msgstr ""
+msgstr "Egy könyvjelzőzött utazás nemrég véget ért."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr ""
+msgstr "_Törlés mindig"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
@@ -427,7 +424,7 @@ msgstr "Érkezés ide: {destination}."
 
 #: src/gui/transition.rs:212
 msgid "Walk {walk} Wait {wait}"
-msgstr "Séta {walk} Várj {wait}"
+msgstr "{walk} séta, {wait} várakozás"
 
 #: src/gui/transition.rs:217
 msgid "Transfer Time {}"
@@ -613,7 +610,7 @@ msgstr "_Bezárás"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:105
-#, fuzzy, c-format
+#, c-format
 msgid "%a %b %d"
 msgstr "%b. %d., %a"
 
@@ -659,7 +656,6 @@ msgid "Arrive at {destination} at {arrival}."
 msgstr "Érkezés ide: {destination}, a következő időpontban: {arrival}."
 
 #: src/gui/leg_item.rs:153
-#, fuzzy
 msgid "{} Stop"
 msgid_plural "{} Stops"
 msgstr[0] "{} megállóhely"
@@ -695,7 +691,9 @@ msgstr[1] "{n} javaslat, nincs kiválasztva"
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:179
 msgid "translator-credits"
-msgstr "Ad majórem Dei glóriam"
+msgstr ""
+"Ad majórem Dei glóriam\n"
+"Dévényi Benedek <rdbende@proton.me>"
 
 #: src/gui/window.rs:181
 msgid "Source Translation Supported by"
@@ -738,12 +736,12 @@ msgstr "Ausztria"
 
 #: src/backend/client.rs:141
 msgid "Worldwide (beta)"
-msgstr ""
+msgstr "Világszintű (béta)"
 
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
 #: src/backend/client.rs:143
 msgid "Using Transitous"
-msgstr ""
+msgstr "A Transitous használatával"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
