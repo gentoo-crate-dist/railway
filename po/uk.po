@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2024-06-16 18:28+0000\n"
+"PO-Revision-Date: 2024-06-16 21:05+0000\n"
 "Last-Translator: Roma <r.sg@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/uk/>\n"
@@ -434,8 +434,9 @@ msgid "Walk {}"
 msgstr "Пішки {}"
 
 #: src/gui/transition.rs:224
+#, fuzzy
 msgid "Transfer"
-msgstr ""
+msgstr "Трансфер"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
@@ -553,11 +554,11 @@ msgstr "NL - Voordeelurenabo (без RAILPLUS)"
 
 #: src/gui/search_options_button.rs:91
 msgid "SH-Card"
-msgstr "SH-Card"
+msgstr "SH - Card"
 
 #: src/gui/search_options_button.rs:92
 msgid "CH – General-Abonnement"
-msgstr "CH – General-Abonnement"
+msgstr "CH - General-Abonnement"
 
 #: src/gui/search_options_button.rs:99
 msgid "Unknown"
@@ -617,9 +618,9 @@ msgstr "%a %b %d"
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
 msgid_plural "{} changes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{} зміна"
+msgstr[1] "{} зміни"
+msgstr[2] "{} змін"
 
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
