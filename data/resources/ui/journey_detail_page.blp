@@ -13,6 +13,11 @@ template $DBJourneyDetailPage: Box {
   hexpand: true;
   halign: fill;
 
+  Adw.Banner {
+    revealed: bind template.show-live-box;
+    title: bind $live_banner_title(template.journey as <$DBJourney>.current-event) as <string>;
+  }
+
   ScrolledWindow {
     hscrollbar-policy: never;
     overflow: visible;
@@ -53,6 +58,7 @@ template $DBJourneyDetailPage: Box {
             }
 
             Label label_last_refreshed {
+              label: bind $format_last_refreshed(template.journey as <$DBJourney>.last-refreshed) as <string>;
               xalign: 0;
             }
           }

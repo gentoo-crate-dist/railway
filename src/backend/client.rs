@@ -463,7 +463,7 @@ impl Client {
             cached
         } else {
             let id = journey.id.clone();
-            let object = Journey::new(journey);
+            let object = Journey::new(journey, self);
             cache.insert(id, object.downgrade());
             object
         }
