@@ -37,6 +37,14 @@ impl JourneysStore {
     pub fn reload(&self) {
         self.imp().load();
     }
+
+    fn on_minutely(&self) {
+        for journey in &*self.imp().stored.borrow() {
+            // TODO: Store watched journeys.
+            // TODO: Store notification status for journey?
+            journey.background_tasts();
+        }
+    }
 }
 
 pub mod imp {
@@ -61,17 +69,20 @@ pub mod imp {
     };
     use once_cell::sync::Lazy;
 
-    use crate::gui::stores::journey_store::StoreMode;
     use crate::gui::window::Window;
-    use crate::{backend::Client, config};
-    use crate::{backend::Journey, gui::stores::migrate_journey_store::import_old_store};
+    use crate::{
+        backend::{Client, Journey, Timer},
+        config,
+        gui::stores::{journey_store::StoreMode, migrate_journey_store::import_old_store},
+    };
 
     pub struct JourneysStore {
         path: PathBuf,
-        stored: RefCell<Vec<Journey>>,
+        pub(super) stored: RefCell<Vec<Journey>>,
         pub(super) window: RefCell<Option<Window>>,
         pub(super) client: RefCell<Option<Client>>,
 
+        pub(super) timer: RefCell<Timer>,
         settings: Settings,
     }
 
@@ -189,6 +200,7 @@ pub mod imp {
                 stored: RefCell::new(vec![]),
                 window: RefCell::new(None),
                 client: RefCell::new(None),
+                timer: Default::default(),
                 settings: Settings::new(config::BASE_ID),
             }
         }
@@ -229,6 +241,7 @@ pub mod imp {
             } else if store_mode != StoreMode::Remove {
                 log::trace!("Storing Journey {:?}", journey.journey());
                 self.obj().emit_by_name::<()>("add", &[&journey]);
+                journey.background_tasts();
                 stored.insert(0, journey);
             }
         }
@@ -251,6 +264,21 @@ pub mod imp {
                     store,
                     move |_, _| {
                         store.reload();
+                    }
+                ),
+            );
+
+            let obj = self.obj();
+            self.timer.borrow().connect_local(
+                "minutely",
+                false,
+                clone!(
+                    #[weak]
+                    obj,
+                    #[upgrade_or_default]
+                    move |_| {
+                        obj.on_minutely();
+                        None
                     }
                 ),
             );

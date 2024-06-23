@@ -51,6 +51,7 @@ pub mod imp {
     use crate::backend::Leg;
     use crate::backend::Place;
     use crate::gui::leg_item::LegItem;
+    use crate::gui::live_update_box::LiveUpdateBox;
     use crate::gui::transition::Transition;
     use crate::gui::utility::Utility;
     use crate::gui::window::Window;
@@ -61,9 +62,12 @@ pub mod imp {
         #[template_child]
         box_legs: TemplateChild<gtk::Box>,
         #[template_child]
+        pub(super) update_box: TemplateChild<LiveUpdateBox>,
+        #[template_child]
         label_last_refreshed: TemplateChild<gtk::Label>,
 
         refresh_in_progress: Cell<bool>,
+        show_live_box: Cell<bool>,
 
         journey: RefCell<Option<Journey>>,
 
@@ -322,6 +326,7 @@ pub mod imp {
                     ParamSpecObject::builder::<Journey>("journey").build(),
                     ParamSpecObject::builder::<Client>("client").build(),
                     ParamSpecBoolean::builder("refresh-in-progress").build(),
+                    ParamSpecBoolean::builder("show-live-box").build(),
                 ]
             });
             PROPERTIES.as_ref()
@@ -360,6 +365,13 @@ pub mod imp {
 
                     self.refresh_in_progress.replace(obj);
                 }
+                "show-live-box" => {
+                    let obj = value.get::<bool>().expect(
+                        "Property `show-live-box` of `JourneyDetailPage` has to be of type `bool`",
+                    );
+
+                    self.show_live_box.replace(obj);
+                }
                 "client" => {
                     let obj = value.get::<Option<Client>>().expect(
                         "Property `client` of `JourneyDetailPage` has to be of type `Client`",
@@ -375,6 +387,7 @@ pub mod imp {
             match pspec.name() {
                 "journey" => self.journey.borrow().to_value(),
                 "refresh-in-progress" => self.refresh_in_progress.get().to_value(),
+                "show-live-box" => self.show_live_box.get().to_value(),
                 "client" => self.client.borrow().to_value(),
                 _ => unimplemented!(),
             }

@@ -13,11 +13,13 @@ mod provider;
 mod remark;
 mod request_limiter;
 mod station;
+mod timer;
 
 pub use client::Client;
 pub use discount_card::DiscountCard;
 pub use frequency::Frequency;
 pub use intermediate_location::IntermediateLocation;
+pub use journey::Event;
 pub use journey::Journey;
 pub use journeys_result::JourneysResult;
 pub use journeys_result::TimeType;
@@ -29,3 +31,4 @@ pub use price::Price;
 pub use provider::Provider;
 pub use remark::Remark;
 pub use request_limiter::RequestLimiter;
+pub use timer::Timer;

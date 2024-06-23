@@ -1,0 +1,67 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBLiveUpdateBox: Adw.Bin {
+  styles [
+    "card",
+  ]
+
+  child: Stack stack {
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    StackPage {
+      name: "before-journey";
+
+      child: Label {
+        wrap: true;
+        label: bind template.before-journey-label;
+      };
+    }
+
+    StackPage {
+      name: "in-leg";
+
+      child: Label {
+        wrap: true;
+        label: bind template.in-leg-label;
+      };
+    }
+
+    StackPage {
+      name: "transition-to";
+
+      child: Label {
+        wrap: true;
+        label: bind template.transition-to-label;
+      };
+    }
+
+    StackPage {
+      name: "after-journey";
+
+      child: Label {
+        label: _("The journey arrived at its destination");
+      };
+    }
+
+    StackPage {
+      name: "unreachable";
+
+      child: Label {
+        label: _("A connection is unreachable");
+      };
+    }
+
+    StackPage {
+      name: "cancelled";
+
+      child: Label {
+        label: _("The journey was cancelled");
+      };
+    }
+  };
+}
+

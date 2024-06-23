@@ -42,6 +42,11 @@ template $DBJourneyDetailPage: Box {
             label: bind $format_source_destination(template.journey as <$DBJourney>.first-leg as <$DBLeg>.origin as <$DBPlace>.name, template.journey as <$DBJourney>.last-leg as <$DBLeg>.destination as <$DBPlace>.name) as <string>;
           }
 
+          $DBLiveUpdateBox update_box {
+            visible: bind template.show-live-box;
+            event: bind template.journey as <$DBJourney>.current-event;
+          }
+
           Box {
             orientation: horizontal;
 

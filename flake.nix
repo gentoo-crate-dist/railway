@@ -71,7 +71,7 @@
             pkgs.mkShell {
               src = ./.;
               buildInputs = [];
-              nativeBuildInputs = [ pkgs-gnome.wrapGAppsHook4 pkgs-gnome.meson pkgs-gnome.gettext pkgs-gnome.glib pkgs-gnome.gtk4 pkgs-gnome.libadwaita pkgs-gnome.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.clippy pkgs.cargo-deny pkgs-gnome.sysprof pkgs-gnome.blueprint-compiler run check prof ];
+              nativeBuildInputs = [ pkgs-gnome.wrapGAppsHook4 pkgs-gnome.meson pkgs-gnome.gettext pkgs-gnome.glib pkgs-gnome.gtk4 pkgs-gnome.libadwaita pkgs-gnome.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.clippy pkgs.cargo-deny pkgs-gnome.sysprof pkgs-gnome.blueprint-compiler pkgs.libfaketime run check prof ];
               shellHook = ''
                 export GSETTINGS_SCHEMA_DIR=${pkgs-gnome.gtk4}/share/gsettings-schemas/${pkgs-gnome.gtk4.name}/glib-2.0/schemas/:${pkgs-gnome.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs-gnome.gsettings-desktop-schemas.name}/glib-2.0/schemas/:./build/data/
                 meson setup -Dprofile=development build
