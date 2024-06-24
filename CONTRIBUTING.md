@@ -84,7 +84,7 @@ You can now follow the compilation phase for GNU/Linux
 The following documentation might help:
 
 - [GTK Book](https://gtk-rs.org/gtk4-rs/stable/latest/book/): General GTK-development.
-- [hafas-rs](https://gitlab.com/schmiddi-on-mobile/hafas-rs): The backend library for getting information about the journeys.
+- [railway-backend](https://gitlab.com/schmiddi-on-mobile/railway-backend): The backend library for getting information about the journeys. Specifically, take a look at ["Writing a Provider"](https://gitlab.com/schmiddi-on-mobile/railway-backend/-/blob/main/docs/writing-a-provider.md?ref_type=heads) if you plan to work on a provider that is not yet implemented.
 
 ### Things to keep in mind
 
