@@ -114,6 +114,9 @@ popover listview.navigation-sidebar > row:selected:active {
   background-color: alpha(currentColor, .19);
 }
 
+.provider-region {
+  padding: 12px 12px 6px;
+}
 
 /* Currently disabled. Styling for the indicator icons */
 /*

@@ -92,9 +92,20 @@ pub mod imp {
 
             let filter_model = FilterListModel::new(Some(model), Some(filter));
 
+            let section_model = gtk::SortListModel::builder()
+                .model(&filter_model)
+                .incremental(true)
+                .section_sorter(&gtk::StringSorter::new(Some(
+                    gtk::PropertyExpression::new(Provider::static_type(), None::<gtk::Expression>, "regional-group")
+                )))
+                .sorter(&gtk::StringSorter::new(Some(
+                    gtk::PropertyExpression::new(Provider::static_type(), None::<gtk::Expression>, "name")
+                )))
+                .build();
+
             let selection_model = gtk::SingleSelection::builder()
                 .autoselect(false)
-                .model(&filter_model)
+                .model(&section_model)
                 .build();
             self.list_providers.get().set_model(Some(&selection_model));
 
@@ -113,6 +124,27 @@ pub mod imp {
                 );
             });
             self.list_providers.set_factory(Some(&factory));
+
+            let header_factory = SignalListItemFactory::new();
+            header_factory.connect_bind(move |_, list_item| {
+                if let Some(list_item) = list_item.downcast_ref::<gtk::ListHeader>() {
+                    let label = list_item.item()
+                        .and_then(|object| object.downcast::<Provider>().ok())
+                        .map(|provider| provider.property::<String>("regional-group"))
+                        .filter(|string| string != "")
+                        .as_deref()
+                        .map(|label| {
+                            gtk::Label::builder()
+                                .label(label)
+                                .xalign(0.0)
+                                .css_classes(["provider-region", "dim-label"])
+                                .build()
+                        });
+
+                    list_item.set_child(label.as_ref());
+                }
+            });
+            self.list_providers.set_header_factory(Some(&header_factory));
 
             selection_model.bind_property("selected-item", self.obj().as_ref(), "current-selection")
                 .sync_create()
