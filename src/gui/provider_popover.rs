@@ -92,7 +92,21 @@ pub mod imp {
 
             let filter_model = FilterListModel::new(Some(model), Some(filter));
 
-            let selection_model = gtk::NoSelection::new(Some(filter_model));
+            let section_model = gtk::SortListModel::builder()
+                .model(&filter_model)
+                .incremental(true)
+                .section_sorter(&gtk::StringSorter::new(Some(
+                    gtk::PropertyExpression::new(Provider::static_type(), None::<gtk::Expression>, "regional-group")
+                )))
+                .sorter(&gtk::StringSorter::new(Some(
+                    gtk::PropertyExpression::new(Provider::static_type(), None::<gtk::Expression>, "name")
+                )))
+                .build();
+
+            let selection_model = gtk::SingleSelection::builder()
+                .autoselect(false)
+                .model(&section_model)
+                .build();
             self.list_providers.get().set_model(Some(&selection_model));
 
             let factory = SignalListItemFactory::new();
@@ -110,20 +124,34 @@ pub mod imp {
                 );
             });
             self.list_providers.set_factory(Some(&factory));
-            self.list_providers.set_single_click_activate(true);
 
-            self.list_providers.connect_activate(
-                clone!(@strong obj, @weak self.settings as settings => move |list_view, position| {
-                    let model = list_view.model().expect("The model has to exist.");
-                    let provider_object = model
-                        .item(position)
-                        .expect("The item has to exist.")
-                        .downcast::<Provider>()
-                        .expect("The item has to be an `Provider`.");
+            let header_factory = SignalListItemFactory::new();
+            header_factory.connect_bind(move |_, list_item| {
+                if let Some(list_item) = list_item.downcast_ref::<gtk::ListHeader>() {
+                    let label = list_item.item()
+                        .and_then(|object| object.downcast::<Provider>().ok())
+                        .map(|provider| provider.property::<String>("regional-group"))
+                        .filter(|string| string != "")
+                        .as_deref()
+                        .map(|label| {
+                            gtk::Label::builder()
+                                .label(label)
+                                .xalign(0.0)
+                                .css_classes(["provider-region", "dim-label"])
+                                .build()
+                        });
 
-                    settings.set_string("search-provider", &provider_object.id()).expect("Failed to set setting `search-provider`");
+                    list_item.set_child(label.as_ref());
+                }
+            });
+            self.list_providers.set_header_factory(Some(&header_factory));
+
+            selection_model.bind_property("selected-item", self.obj().as_ref(), "current-selection")
+                .sync_create()
+                .build();
+            selection_model.connect_selected_item_notify(
+                clone!(@strong obj => move |_| {
                     obj.popdown();
-                    obj.set_property("current-selection", provider_object);
                 }),
             );
         }
@@ -190,6 +218,33 @@ pub mod imp {
                         "Property `current-selection` of `ProviderPopover` has to be of type `Provider`",
                     );
 
+                    if let Some(selection_model) = self.list_providers.model() {
+                        let selection_model = selection_model.downcast_ref::<gtk::SingleSelection>()
+                            .expect("selection model of the provider selection has to be a single selection");
+
+                        let position = selection_model
+                            .iter::<glib::Object>()
+                            .position(|entry| {
+                                let entry_provider = entry.ok().and_then(|object| {
+                                    object.downcast::<Provider>().ok()
+                                });
+                                match (entry_provider, obj.clone()) {
+                                    (Some(a), Some(b)) => a.id() == b.id(),
+                                    (_, _) => false,
+                                }
+                            })
+                            .map(|position| position as u32)
+                            .unwrap_or(gtk::INVALID_LIST_POSITION);
+                            selection_model.set_selected(position);
+
+                        if let Some(item) = selection_model.selected_item() {
+                            let provider = item.downcast_ref::<Provider>()
+                                .expect("selection has to be for a provider");
+                            self.settings.set_string("search-provider", &provider.id())
+                                .expect("Failed to set setting `search-provider`");
+                        }
+                    }
+
                     self.current_selection.replace(obj);
                 }
                 "client" => {
@@ -197,17 +252,13 @@ pub mod imp {
                         "Property `client` of `ProviderPopover` has to be of type `Client`",
                     );
 
-                    let set = obj.is_some();
+                    self.client.replace(obj.clone());
 
                     if let Some(obj) = &obj {
+                        self.setup_model(&self.obj());
+
                         self.obj()
                             .set_property("current-selection", obj.current_provider());
-                    }
-
-                    self.client.replace(obj);
-
-                    if set {
-                        self.setup_model(&self.obj());
                     }
                 }
                 _ => unimplemented!(),
