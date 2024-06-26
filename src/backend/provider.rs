@@ -5,7 +5,7 @@ gtk::glib::wrapper! {
 }
 
 impl Provider {
-    pub fn new(id: &'static str, short_name: &str, name: Option<&str>, has_icon: bool) -> Provider {
+    pub fn new(id: &'static str, short_name: &str, name: Option<&str>, regional_group: &str, has_icon: bool) -> Provider {
         let icon_name = if has_icon {
             id.to_lowercase()
         } else {
@@ -16,6 +16,7 @@ impl Provider {
             .property("short-name", short_name)
             .property("name", name)
             .property("icon-name", &icon_name)
+            .property("regional-group", regional_group)
             .build()
     }
 
@@ -41,6 +42,7 @@ mod imp {
         short_name: RefCell<String>,
         name: RefCell<Option<String>>,
         icon_name: RefCell<String>,
+        regional_group: RefCell<String>
     }
 
     #[glib::object_subclass]
@@ -59,6 +61,9 @@ mod imp {
                         .construct_only()
                         .build(),
                     ParamSpecString::builder("icon-name")
+                        .construct_only()
+                        .build(),
+                    ParamSpecString::builder("regional-group")
                         .construct_only()
                         .build(),
                 ]
@@ -92,6 +97,12 @@ mod imp {
                         .expect("Property `icon-name` of `Provider` has to be of type `String`");
                     self.icon_name.replace(obj);
                 }
+                "regional-group" => {
+                    let obj = value
+                        .get::<String>()
+                        .expect("Property `regional-group` of `Provider` has to be of type `Option<String>`");
+                    self.regional_group.replace(obj);
+                }
                 _ => unimplemented!(),
             }
         }
@@ -102,6 +113,7 @@ mod imp {
                 "short-name" => self.short_name.borrow().to_value(),
                 "name" => self.name.borrow().to_value(),
                 "icon-name" => self.icon_name.borrow().to_value(),
+                "regional-group" => self.regional_group.borrow().to_value(),
                 _ => unimplemented!(),
             }
         }
