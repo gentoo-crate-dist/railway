@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2023-12-31 16:09+0000\n"
-"Last-Translator: Krešo Kunjas <kkunjas@gmail.com>\n"
-"Language-Team: Croatian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/hr/>\n"
+"PO-Revision-Date: 2024-07-01 12:09+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -30,7 +30,7 @@ msgstr "Željeznica"
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
-msgstr ""
+msgstr "vlak;željeznica;putovanje;planiranje;vremenske tablice;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
@@ -39,7 +39,7 @@ msgstr ""
 
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
 msgid "Julian Schmidhuber"
-msgstr ""
+msgstr "Julian Schmidhuber"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -48,6 +48,10 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"Aplikacija „Željeznica” omogućuje traženje putnih informacija o željezničkim "
+"mrežama i granicama bez potrebe za pretraživanje raznih web stranica. "
+"Prilagodljiv dizajn omogućuje planiranje putovanja unaprijed ili koristeći "
+"mobitel tijekom putovanja:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
@@ -57,7 +61,7 @@ msgstr ""
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
-msgstr ""
+msgstr "Zabilježi trenutačna i buduća putovanja kao i česte pretrage"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
@@ -68,7 +72,7 @@ msgstr ""
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
-msgstr ""
+msgstr "I sve to za željezničke mreže cijelog svijeta, ali uglavnom za Europu."
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
@@ -124,11 +128,11 @@ msgstr ""
 
 #: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
 msgid "Show Announcements"
-msgstr ""
+msgstr "Prikaži najave"
 
 #: data/resources/ui/leg_item.ui:283
 msgid "Announcements"
-msgstr ""
+msgstr "Najave"
 
 #: data/resources/ui/leg_item.ui:315
 #, fuzzy
@@ -141,7 +145,7 @@ msgstr "Općenito"
 
 #: data/resources/ui/preferences_dialog.ui:16
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "Automatski ukloni stare zabilješke"
 
 #: data/resources/ui/preferences_dialog.ui:17
 msgid "Past trips are kept only for a period of time"
@@ -153,12 +157,11 @@ msgstr ""
 
 #: data/resources/ui/preferences_dialog.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "Vrijeme zadržavanja putovanja nakon dolaska"
 
 #: data/resources/ui/provider_popover.ui:20
-#, fuzzy
 msgid "Search Networks…"
-msgstr "Izaberi pružatelja usluge"
+msgstr "Pretraži željezničke mreže …"
 
 #: data/resources/ui/search_options_button.ui:8
 msgid "More search options"
@@ -178,15 +181,15 @@ msgstr "Kartica s popustom"
 
 #: data/resources/ui/search_options_dialog.ui:22
 msgid "Class"
-msgstr "Klasa"
+msgstr "Razred"
 
 #: data/resources/ui/search_options_dialog.ui:32
 msgid "First Class"
-msgstr "Prva klasa"
+msgstr "Prvi razred"
 
 #: data/resources/ui/search_options_dialog.ui:38
 msgid "Second Class"
-msgstr "Druga klasa"
+msgstr "Drugi razred"
 
 #: data/resources/ui/search_options_dialog.ui:48
 #: src/gui/search_options_button.rs:190
@@ -257,37 +260,35 @@ msgstr "Pretraga"
 
 #: data/resources/ui/search_page.ui:120
 msgid "Bookmarked Trips"
-msgstr ""
+msgstr "Zabilježena putovanja"
 
 #: data/resources/ui/search_page.ui:134
 msgid "Bookmarked Searches"
-msgstr ""
+msgstr "Zabilježene pretrage"
 
 #: data/resources/ui/shortcuts.ui:9
 msgid "Application"
-msgstr ""
+msgstr "Aplikacija"
 
 #: data/resources/ui/shortcuts.ui:13
 msgid "Bookmark Search"
-msgstr ""
+msgstr "Zabilježi pretragu"
 
 #: data/resources/ui/shortcuts.ui:19
-#, fuzzy
 msgid "Bookmark Trip"
-msgstr "Izaberi putovanje"
+msgstr "Zabilježi putovanje"
 
 #: data/resources/ui/shortcuts.ui:25
 msgid "Reload Trip"
-msgstr ""
+msgstr "Ponovo učitaj putovanje"
 
 #: data/resources/ui/shortcuts.ui:36
 msgid "Quit"
 msgstr ""
 
 #: data/resources/ui/shortcuts.ui:42
-#, fuzzy
 msgid "Show Shortcuts"
-msgstr "Tipkovničke kratice"
+msgstr "Prikaži prečace"
 
 #: data/resources/ui/shortcuts.ui:48
 #, fuzzy
@@ -296,16 +297,15 @@ msgstr "Postavke"
 
 #: data/resources/ui/shortcuts.ui:54
 msgid "Open Menu"
-msgstr ""
+msgstr "Otvori izbornik"
 
 #: data/resources/ui/station_entry.ui:19
 msgid "Swap Start and Destination"
 msgstr ""
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
-#, fuzzy
 msgid "Select Network"
-msgstr "Izaberi pružatelja usluge"
+msgstr "Odaberi željezničku mrežu"
 
 #: data/resources/ui/window.ui:88
 msgid "Main Menu"
@@ -317,7 +317,7 @@ msgstr "Konekcije"
 
 #: data/resources/ui/window.ui:128
 msgid "Bookmark This Search"
-msgstr ""
+msgstr "Zabilježi ovu pretragu"
 
 #: data/resources/ui/window.ui:166
 msgid "Trip Details"
@@ -329,7 +329,7 @@ msgstr ""
 
 #: data/resources/ui/window.ui:199
 msgid "Bookmark This Trip"
-msgstr ""
+msgstr "Zabilježi ovo putovanje"
 
 #: data/resources/ui/window.ui:248
 msgid "Preferences"
@@ -364,14 +364,12 @@ msgid "Exceptionally High Load"
 msgstr "Posebno veliko opterećenje"
 
 #: src/gui/indicator_icons.rs:165
-#, fuzzy
 msgid "On Time"
-msgstr "Vrijeme"
+msgstr "Na vrijeme"
 
 #: src/gui/indicator_icons.rs:172
-#, fuzzy
 msgid "Minor Delays"
-msgstr "Manje kašnjenje"
+msgstr "Manja kašnjenja"
 
 #: src/gui/indicator_icons.rs:179
 msgid "Delayed"
@@ -388,9 +386,8 @@ msgid "Extremely Delayed"
 msgstr "Kasni jako puno"
 
 #: src/gui/indicator_icons.rs:209
-#, fuzzy
 msgid "Platform Changes"
-msgstr "Promjena platforme"
+msgstr "Promjene perona"
 
 #: src/gui/indicator_icons.rs:228
 #, fuzzy
@@ -403,7 +400,7 @@ msgstr "Otkazano"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
-msgstr ""
+msgstr "Jedno zabilježeno putovanje je nedavno završeno."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
@@ -456,51 +453,46 @@ msgstr ""
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:220
 msgid "{} min"
-msgstr ""
+msgstr "{} min"
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:84
-#, fuzzy
 msgid "%_H h %_M min"
-msgstr "%_H sati, %_M minuta"
+msgstr "%_H h %_M min"
 
 #: src/gui/utility.rs:95
-#, fuzzy
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
-msgstr[0] "%_d dan %_H sati, %_M minuta"
-msgstr[1] "%_d dana %_H sati, %_M minuta"
-msgstr[2] "%_d dana %_H sati, %_M minuta"
+msgstr[0] "%_d dan %_H h, %_M min"
+msgstr[1] "%_d dana %_H h, %_M min"
+msgstr[2] "%_d dana %_H h, %_M min"
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:106
-#, fuzzy
 msgid "{} min."
-msgstr "{} minuta"
+msgstr "{} min"
 
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:110
 msgid "{} hrs."
-msgstr ""
+msgstr "{} h"
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:119
-#, fuzzy
 msgid "%-H hrs. %-M min."
-msgstr "%_H sati, %_M minuta"
+msgstr "%-H h %-M min"
 
 #: src/gui/utility.rs:131
-#, fuzzy
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] "%_d dan %_H sati, %_M minuta"
-msgstr[1] "%_d dana %_H sati, %_M minuta"
-msgstr[2] "%_d dana %_H sati, %_M minuta"
+msgstr[0] "%_d dan %_H h, %_M min"
+msgstr[1] "%_d dana %_H h, %_M min"
+msgstr[2] "%_d dana %_H h, %_M min"
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:141
 msgid "%H:%M"
-msgstr ""
+msgstr "%H:%M"
 
 #: src/gui/utility.rs:147 src/gui/date_time_picker.rs:101
 msgid "Today"
@@ -517,19 +509,19 @@ msgstr "Jučer"
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:154
 msgid "%a, %d. %B"
-msgstr "%a, %d.%B"
+msgstr "%a, %d. %B"
 
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:157
 msgid "%Y-%m-%d"
-msgstr "%d.%m.%Y"
+msgstr "%d. %m. %Y."
 
 #: src/gui/preferences_dialog.rs:60
 msgid "{} h"
 msgid_plural "{} h"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{} h"
+msgstr[1] "{} h"
+msgstr[2] "{} h"
 
 #: src/gui/search_options_button.rs:75
 msgid "None"
