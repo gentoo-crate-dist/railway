@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2024-07-01 12:09+0000\n"
+"PO-Revision-Date: 2024-07-03 11:09+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/hr/>\n"
@@ -194,7 +194,7 @@ msgstr "Drugi razred"
 #: data/resources/ui/search_options_dialog.ui:48
 #: src/gui/search_options_button.rs:190
 msgid "Bike Accessible"
-msgstr "Dozvoljen bicikl"
+msgstr "Pristupačno za bicikle"
 
 #: data/resources/ui/search_options_dialog.ui:54
 msgid "Minimum Transfer Time"
@@ -210,16 +210,15 @@ msgstr "Vrste transporta"
 
 #: data/resources/ui/search_options_dialog.ui:70
 msgid "High Speed Train"
-msgstr ""
+msgstr "Brzi vlak"
 
 #: data/resources/ui/search_options_dialog.ui:75
 msgid "Regional Train"
-msgstr ""
+msgstr "Regionalni vlak"
 
 #: data/resources/ui/search_options_dialog.ui:80
-#, fuzzy
 msgid "Suburban Trains"
-msgstr "Prigradski"
+msgstr "Prigradski vlak"
 
 #: data/resources/ui/search_options_dialog.ui:85
 msgid "Bus"
@@ -239,7 +238,7 @@ msgstr "Tramvaj"
 
 #: data/resources/ui/search_options_dialog.ui:105
 msgid "Cablecar"
-msgstr ""
+msgstr "Žičara"
 
 #: data/resources/ui/search_options_dialog.ui:110
 msgid "Taxi"
@@ -284,16 +283,15 @@ msgstr "Ponovo učitaj putovanje"
 
 #: data/resources/ui/shortcuts.ui:36
 msgid "Quit"
-msgstr ""
+msgstr "Zatvori aplikaciju"
 
 #: data/resources/ui/shortcuts.ui:42
 msgid "Show Shortcuts"
 msgstr "Prikaži prečace"
 
 #: data/resources/ui/shortcuts.ui:48
-#, fuzzy
 msgid "Show Preferences"
-msgstr "Postavke"
+msgstr "Prikaži postavke"
 
 #: data/resources/ui/shortcuts.ui:54
 msgid "Open Menu"
@@ -301,7 +299,7 @@ msgstr "Otvori izbornik"
 
 #: data/resources/ui/station_entry.ui:19
 msgid "Swap Start and Destination"
-msgstr ""
+msgstr "Zamijeni polazište i odredište"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
 msgid "Select Network"
@@ -309,11 +307,11 @@ msgstr "Odaberi željezničku mrežu"
 
 #: data/resources/ui/window.ui:88
 msgid "Main Menu"
-msgstr ""
+msgstr "Glavni izbornik"
 
 #: data/resources/ui/window.ui:114
 msgid "Connections"
-msgstr "Konekcije"
+msgstr "Veze"
 
 #: data/resources/ui/window.ui:128
 msgid "Bookmark This Search"
@@ -325,7 +323,7 @@ msgstr "Detalji putovanja"
 
 #: data/resources/ui/window.ui:175
 msgid "Refresh This Trip"
-msgstr ""
+msgstr "Aktualiziraj ovo putovanje"
 
 #: data/resources/ui/window.ui:199
 msgid "Bookmark This Trip"
@@ -340,13 +338,12 @@ msgid "Keyboard Shortcuts"
 msgstr "Tipkovničke kratice"
 
 #: data/resources/ui/window.ui:256
-#, fuzzy
 msgid "_About Railway"
-msgstr "o Željeznicama"
+msgstr "_O aplikaciji Željeznica"
 
 #: data/resources/ui/refresh_button.ui:24
 msgid "Refresh Trip"
-msgstr ""
+msgstr "Aktualiziraj putovanje"
 
 #: src/gui/indicator_icons.rs:135
 #, fuzzy
@@ -376,23 +373,20 @@ msgid "Delayed"
 msgstr "Kasni"
 
 #: src/gui/indicator_icons.rs:186
-#, fuzzy
 msgid "Very Delayed"
-msgstr "Dosta kasni"
+msgstr "Podosta kasni"
 
 #: src/gui/indicator_icons.rs:193
-#, fuzzy
 msgid "Extremely Delayed"
-msgstr "Kasni jako puno"
+msgstr "Kasni izuzetno dugo"
 
 #: src/gui/indicator_icons.rs:209
 msgid "Platform Changes"
 msgstr "Promjene perona"
 
 #: src/gui/indicator_icons.rs:228
-#, fuzzy
 msgid "Connection Not Possible"
-msgstr "Konekcije"
+msgstr "Veza nije moguća"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
@@ -404,33 +398,32 @@ msgstr "Jedno zabilježeno putovanje je nedavno završeno."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr ""
+msgstr "Uvijek _Izbriši"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
-msgstr ""
+msgstr "Polazište i odredište nedostaju"
 
 #: src/gui/search_page.rs:118
 msgid "Start is missing"
-msgstr ""
+msgstr "Nedostaje polazište"
 
 #: src/gui/search_page.rs:119
 msgid "Destination is missing"
-msgstr ""
+msgstr "Nedostaje odredište"
 
 #: src/gui/search_page.rs:120
-#, fuzzy
 msgid "Search ongoing"
-msgstr "Pretraži putovanja"
+msgstr "Pretraga u tijeku"
 
 #: src/gui/journey_detail_page.rs:108
 msgid "Last refreshed {}"
-msgstr ""
+msgstr "Zadnji put aktualizirano {}"
 
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:90
 msgid "Arrive at {destination}."
-msgstr ""
+msgstr "Dolazak u {destination}."
 
 #: src/gui/transition.rs:212
 msgid "Walk {walk} Wait {wait}"
@@ -573,68 +566,65 @@ msgstr ""
 
 #: src/gui/search_options_button.rs:99
 msgid "Unknown"
-msgstr ""
+msgstr "Nepoznato"
 
 #: src/gui/search_options_button.rs:137
 msgid "1st class"
-msgstr ""
+msgstr "Prvi razred"
 
 #: src/gui/search_options_button.rs:139
 msgid "2nd class"
-msgstr ""
+msgstr "Drugi razred"
 
 #: src/gui/search_options_button.rs:182
 msgid "Regional Only"
-msgstr ""
+msgstr "Samo regionalni"
 
 #: src/gui/search_options_button.rs:185
-#, fuzzy
 msgid "Selected Modes of Transport"
-msgstr "Vrste transporta"
+msgstr "Odabrani načini transporta"
 
 #: src/gui/search_options_button.rs:197
-#, fuzzy
 msgid "Direct Connection"
-msgstr "Samo direktne veze"
+msgstr "Direktna veza"
 
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
-msgstr ""
+msgstr "Neuspjelo dohvaćanje podataka. Je li postoji internetska veza?"
 
 #: src/gui/error.rs:20
 msgid "Received an error. Please share feedback."
-msgstr ""
+msgstr "Primljena je greška. Pošalji povratne informacije."
 
 #: src/gui/error.rs:21 src/gui/error.rs:25
-#, fuzzy
 msgid "More Information"
-msgstr "Više opcija"
+msgstr "Više informacija"
 
 #: src/gui/error.rs:24
 msgid "An unknown issue occured. Please share feedback."
-msgstr ""
+msgstr "Dogodio se nepoznat problem. Pošalji povratne informacije."
 
 #: src/gui/error.rs:39
 msgid "Error"
-msgstr ""
+msgstr "Greška"
 
 #: src/gui/error.rs:43
 msgid "_Close"
-msgstr ""
+msgstr "_Zatvori"
 
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:105
 #, c-format
 msgid "%a %b %d"
-msgstr ""
+msgstr "%a, %d. %b"
 
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
 msgid_plural "{} changes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{} promjena"
+msgstr[1] "{} promjene"
+msgstr[2] "{} promjena"
 
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
@@ -644,7 +634,7 @@ msgstr ""
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
 msgid "{train} in the direction of {destination}"
-msgstr ""
+msgstr "{train} u smjeru za {destination}"
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
@@ -686,25 +676,25 @@ msgstr ""
 #. Translators: Text that will be announced by the screen reader when a suggestion was selected.
 #: src/gui/station_entry.rs:189
 msgid "Suggestion {} selected"
-msgstr ""
+msgstr "Odabran je prijedlog {}"
 
 #. Translators: Text that will be announced by the screen reader when no selection was selected.
 #: src/gui/station_entry.rs:194
 msgid "No suggestion selected"
-msgstr ""
+msgstr "Nijedan pridlog nije odabran"
 
 #. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
 #: src/gui/station_entry.rs:385
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "jedan prijedlog, nije odabran"
+msgstr[1] "{n} prijedloga, nijedan nije odabran"
+msgstr[2] "{n} prijedloga, nijedan nije odabran"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:179
 msgid "translator-credits"
-msgstr ""
+msgstr "Milo Ivir <mail@milotype.de>"
 
 #: src/gui/window.rs:181
 msgid "Source Translation Supported by"
