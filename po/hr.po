@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2024-07-04 18:09+0000\n"
+"PO-Revision-Date: 2024-07-06 12:09+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/hr/>\n"
@@ -74,7 +74,8 @@ msgstr ""
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
-msgstr "I sve to za željezničke mreže cijelog svijeta, ali uglavnom za Europu."
+msgstr ""
+"I sve to za željezničke mreže iz cijelog svijeta, ali uglavnom za Europu."
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
@@ -393,7 +394,7 @@ msgstr "Jedno zabilježeno putovanje je nedavno završeno."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr "Uvijek _Izbriši"
+msgstr "Uvijek _izbriši"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
@@ -628,26 +629,26 @@ msgstr ""
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
 msgid "{train} in the direction of {destination}"
-msgstr "{train} u smjeru za {destination}"
+msgstr "{train} u smjeru {destination}"
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr ""
+msgstr "Odlazak iz polazišta {start} s perona {platform} u {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
 msgid "Depart {start} at {departure}."
-msgstr ""
+msgstr "Odlazak iz polazišta {start} u {departure}."
 
 #: src/gui/leg_item.rs:101
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr ""
+msgstr "Dolazak u {destination} na peronu {platform} u {arrival}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:106
 msgid "Arrive at {destination} at {arrival}."
-msgstr ""
+msgstr "Dolazak u {destination} u {arrival}."
 
 #: src/gui/leg_item.rs:153
 msgid "{} Stop"
@@ -659,12 +660,12 @@ msgstr[2] "{} stanica"
 #. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
 #: src/gui/intermediate_location_item.rs:67
 msgid "{stop} at {arrival} on platform {platform}"
-msgstr ""
+msgstr "{stop} u {arrival} na peronu {platform}"
 
 #. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
 #: src/gui/intermediate_location_item.rs:70
 msgid "{stop} at {arrival}"
-msgstr ""
+msgstr "{stop} u {arrival}"
 
 #. Translators: Text that will be announced by the screen reader when a suggestion was selected.
 #: src/gui/station_entry.rs:189
