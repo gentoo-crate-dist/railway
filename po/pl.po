@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: 2024-06-14 10:09+0000\n"
-"Last-Translator: Stanisław łajszczak <stanislaw.lajszczak@gmail.com>\n"
+"PO-Revision-Date: 2024-07-10 17:09+0000\n"
+"Last-Translator: Jakub Załuska <jak.zaluska@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/pl/>\n"
 "Language: pl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -48,20 +48,22 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
-"Koleje pozwala na wyszukiwanie połączeń kolejowych pomiędzy krajami i "
-"firmami.Dzięki nowoczesnej aranżacji możesz łatwo wyszukać podróże na "
-"przyszłość i po drodze:"
+"Railway pozwala na wyszukiwanie połączeń kolejowych pomiędzy krajami i "
+"firmami. Dzięki nowoczesnej aranżacji możesz łatwo wyszukać podróże z "
+"wyprzedzeniem lub w trakcie drogi:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
 msgstr ""
-"Zobacz informacje dotyczące twojej podróży takie jak perony i opóźnienia"
+"Zobacz informacje dotyczące twojej podróży takie jak numer peronu i "
+"opóźnienia"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
-msgstr "Zapisz te lub przyszłe podróże tak jak twoje częste wyszukiwania"
+msgstr ""
+"Zapisz obecne lub przyszłe podróże, zarówno jak twoje częste wyszukiwania"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
@@ -74,7 +76,7 @@ msgstr ""
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
-msgstr "I to wszystko dla kolei dookoła świata lecz większości z Europy."
+msgstr "I to wszystko dla kolei dookoła świata, lecz w większości z Europy."
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
@@ -91,7 +93,7 @@ msgstr "Data"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
-msgstr "Wprowadź godzinę"
+msgstr "Wprowadź czas"
 
 #: data/resources/ui/date_time_picker.ui:78
 msgid "Time"
@@ -144,7 +146,7 @@ msgstr "Ogólne"
 
 #: data/resources/ui/preferences_dialog.ui:16
 msgid "Automatically Remove Old Bookmarks"
-msgstr "Automatycznie Usuń Stare Zakładki."
+msgstr "Automatycznie Usuń Stare Zakładki"
 
 #: data/resources/ui/preferences_dialog.ui:17
 msgid "Past trips are kept only for a period of time"
@@ -156,11 +158,11 @@ msgstr "Okres zapisu dla podrózy"
 
 #: data/resources/ui/preferences_dialog.ui:24
 msgid "For how long to retain trips after arrival"
-msgstr "Na jak długo powinny być podróże przechowane"
+msgstr "Na jak długo powinny być przechowane podróże"
 
 #: data/resources/ui/provider_popover.ui:20
 msgid "Search Networks…"
-msgstr "Wybierz Sieć…"
+msgstr "Wyszukaj sieć…"
 
 #: data/resources/ui/search_options_button.ui:8
 #, fuzzy
@@ -169,7 +171,7 @@ msgstr "Więcej opcji wyszukiwania"
 
 #: data/resources/ui/search_options_button.ui:20
 msgid "Refine Advanced Search Options"
-msgstr ""
+msgstr "Dostrój Zaawansowane Opcje Wyszukiwania"
 
 #: data/resources/ui/search_options_button.ui:35
 msgid "More Options"
@@ -198,7 +200,7 @@ msgstr "Dostępne dla rowerów"
 
 #: data/resources/ui/search_options_dialog.ui:54
 msgid "Minimum Transfer Time"
-msgstr ""
+msgstr "Najkrótszy czas podróży"
 
 #: data/resources/ui/search_options_dialog.ui:60
 msgid "Direct Connections Only"
@@ -206,19 +208,19 @@ msgstr "Tylko połączenia bezpośrednie"
 
 #: data/resources/ui/search_options_dialog.ui:67
 msgid "Modes of Transport"
-msgstr ""
+msgstr "Rodzaje transportu"
 
 #: data/resources/ui/search_options_dialog.ui:70
 msgid "High Speed Train"
-msgstr ""
+msgstr "Szybka kolej"
 
 #: data/resources/ui/search_options_dialog.ui:75
 msgid "Regional Train"
-msgstr ""
+msgstr "Kolej regionalna"
 
 #: data/resources/ui/search_options_dialog.ui:80
 msgid "Suburban Trains"
-msgstr ""
+msgstr "Kolej podmiejska"
 
 #: data/resources/ui/search_options_dialog.ui:85
 msgid "Bus"
@@ -226,11 +228,11 @@ msgstr "Bus"
 
 #: data/resources/ui/search_options_dialog.ui:90
 msgid "Ferry"
-msgstr ""
+msgstr "Prom"
 
 #: data/resources/ui/search_options_dialog.ui:95
 msgid "Subway"
-msgstr ""
+msgstr "Metro"
 
 #: data/resources/ui/search_options_dialog.ui:100
 msgid "Tram"
@@ -238,15 +240,15 @@ msgstr "Tramwaj"
 
 #: data/resources/ui/search_options_dialog.ui:105
 msgid "Cablecar"
-msgstr ""
+msgstr "Kolejka linowa"
 
 #: data/resources/ui/search_options_dialog.ui:110
 msgid "Taxi"
-msgstr "Taksi"
+msgstr "Taxi"
 
 #: data/resources/ui/search_page.ui:37
 msgid "From"
-msgstr "Z"
+msgstr "Od"
 
 #: data/resources/ui/search_page.ui:45
 msgid "To"
@@ -258,18 +260,16 @@ msgid "Search"
 msgstr "Szukaj"
 
 #: data/resources/ui/search_page.ui:120
-#, fuzzy
 msgid "Bookmarked Trips"
-msgstr "Dodaj tą podróż do zakładek"
+msgstr "Zapisane podróże"
 
 #: data/resources/ui/search_page.ui:134
-#, fuzzy
 msgid "Bookmarked Searches"
-msgstr "Dodaj to wyszukiwanie do zakładek"
+msgstr "Zapisane wyszukiwania"
 
 #: data/resources/ui/shortcuts.ui:9
 msgid "Application"
-msgstr ""
+msgstr "Aplikacja"
 
 #: data/resources/ui/shortcuts.ui:13
 #, fuzzy
@@ -277,20 +277,18 @@ msgid "Bookmark Search"
 msgstr "Dodaj to wyszukiwanie do zakładek"
 
 #: data/resources/ui/shortcuts.ui:19
-#, fuzzy
 msgid "Bookmark Trip"
-msgstr "Dodaj tą podróż do zakładek"
+msgstr "Dodaj tę podróż do zakładek"
 
 #: data/resources/ui/shortcuts.ui:25
 msgid "Reload Trip"
-msgstr ""
+msgstr "Odśwież podróż"
 
 #: data/resources/ui/shortcuts.ui:36
 msgid "Quit"
-msgstr ""
+msgstr "Wyjście"
 
 #: data/resources/ui/shortcuts.ui:42
-#, fuzzy
 msgid "Show Shortcuts"
 msgstr "Skróty klawiszowe"
 
@@ -306,7 +304,7 @@ msgstr "Menu główne"
 
 #: data/resources/ui/station_entry.ui:19
 msgid "Swap Start and Destination"
-msgstr ""
+msgstr "Zamień start i miejsce docelowe"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
 msgid "Select Network"
@@ -330,11 +328,11 @@ msgstr "Szczegóły podróży"
 
 #: data/resources/ui/window.ui:175
 msgid "Refresh This Trip"
-msgstr "Odśwież tą podróż"
+msgstr "Odśwież tę podróż"
 
 #: data/resources/ui/window.ui:199
 msgid "Bookmark This Trip"
-msgstr "Dodaj tą podróż do zakładek"
+msgstr "Dodaj tę podróż do zakładek"
 
 #: data/resources/ui/window.ui:248
 msgid "Preferences"
@@ -349,78 +347,76 @@ msgid "_About Railway"
 msgstr "_O Railway"
 
 #: data/resources/ui/refresh_button.ui:24
-#, fuzzy
 msgid "Refresh Trip"
-msgstr "Odśwież tą podróż"
+msgstr "Odśwież tę podróż"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
-msgstr ""
+msgstr "Wysokie Obciążenie"
 
 #: src/gui/indicator_icons.rs:142
 msgid "Very High Load"
-msgstr ""
+msgstr "Bardzo Wysokie Obciążenie"
 
 #: src/gui/indicator_icons.rs:149
 msgid "Exceptionally High Load"
-msgstr ""
+msgstr "Wyjątkowo Wysokie Obciążenie"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On Time"
-msgstr ""
+msgstr "Na Czas"
 
 #: src/gui/indicator_icons.rs:172
 msgid "Minor Delays"
-msgstr ""
+msgstr "Małe Opóźnienia"
 
 #: src/gui/indicator_icons.rs:179
 msgid "Delayed"
-msgstr ""
+msgstr "Opóźniony"
 
 #: src/gui/indicator_icons.rs:186
 msgid "Very Delayed"
-msgstr ""
+msgstr "Bardzo opóźniony"
 
 #: src/gui/indicator_icons.rs:193
 msgid "Extremely Delayed"
-msgstr ""
+msgstr "Nadzwyczaj Opóźniony"
 
 #: src/gui/indicator_icons.rs:209
 msgid "Platform Changes"
-msgstr ""
+msgstr "Zmiana Peronu"
 
 #: src/gui/indicator_icons.rs:228
 msgid "Connection Not Possible"
-msgstr ""
+msgstr "Połączenie Niemożliwe"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
-msgstr ""
+msgstr "Anulowane"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
-msgstr ""
+msgstr "Zapisana podróż zakończyła się niedawno."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr ""
+msgstr "Zawsze _Usuń"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
-msgstr ""
+msgstr "Start i miejsce docelowe niepodane"
 
 #: src/gui/search_page.rs:118
 msgid "Start is missing"
-msgstr ""
+msgstr "Miejsce startowe niepodane"
 
 #: src/gui/search_page.rs:119
 msgid "Destination is missing"
-msgstr ""
+msgstr "Miejsce docelowe niepodane"
 
 #: src/gui/search_page.rs:120
-#, fuzzy
 msgid "Search ongoing"
-msgstr "Szukaj"
+msgstr "Szukaj trwające"
 
 #: src/gui/journey_detail_page.rs:108
 msgid "Last refreshed {}"
@@ -433,15 +429,15 @@ msgstr ""
 
 #: src/gui/transition.rs:212
 msgid "Walk {walk} Wait {wait}"
-msgstr ""
+msgstr "Idź {walk} Czekaj {wait}"
 
 #: src/gui/transition.rs:217
 msgid "Transfer Time {}"
-msgstr ""
+msgstr "Czas na przesiadkę {}"
 
 #: src/gui/transition.rs:221
 msgid "Walk {}"
-msgstr ""
+msgstr "Idź {}"
 
 #: src/gui/transition.rs:224
 msgid "Transfer"
