@@ -15,7 +15,7 @@ Railway lets you look up travel information for many different railways, all wit
   <tr>
     <td>Flatpak</td>
     <td>
-      <a href='https://flathub.org/apps/details/de.schmidhuberj.DieBahn'><img width='130' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
+      <a href='https://flathub.org/apps/details/de.schmidhuberj.DieBahn'><img width='130' alt='Download on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/></a>
     </td>
   </tr>
   <tr>
