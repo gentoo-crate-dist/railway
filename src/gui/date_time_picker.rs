@@ -1,6 +1,7 @@
 use chrono::DateTime;
 use chrono::Local;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
+use gtk::prelude::ToggleButtonExt;
 
 use crate::backend::TimeType;
 
@@ -17,8 +18,11 @@ impl DateTimePicker {
     }
 
     pub fn time_type(&self) -> TimeType {
-        // Note: Currently always departure due to the lack of good UI for switching departure and arrival.
-        TimeType::Departure
+        if self.imp().toggle_departure.is_active() {
+            TimeType::Departure
+        } else {
+            TimeType::Arrival
+        }
     }
 }
 
@@ -66,6 +70,11 @@ pub mod imp {
         popover_time: TemplateChild<gtk::Popover>,
         #[template_child]
         popover_date: TemplateChild<gtk::Popover>,
+
+        #[template_child]
+        toggle_arrival: TemplateChild<gtk::ToggleButton>,
+        #[template_child]
+        pub(super) toggle_departure: TemplateChild<gtk::ToggleButton>,
 
         #[property(get, set)]
         now: Cell<bool>,
@@ -245,6 +254,9 @@ pub mod imp {
                 .connect_activated(clone!(@weak popover_time => move |_| {
                     popover_time.popup();
                 }));
+
+            self.toggle_arrival.set_active(false);
+            self.toggle_departure.set_active(true);
         }
     }
 
