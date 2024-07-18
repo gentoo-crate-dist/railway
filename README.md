@@ -55,7 +55,7 @@ Railway can easily be translated for other languages, as it uses gettext. Please
 
 ## Code of Conduct
 
-This project follows [GNOME's Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct).
+This project follows [GNOME's Code of Conduct](https://conduct.gnome.org/t).
 
 ## Donate
 
