@@ -8,43 +8,49 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:15+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-07-20 08:44+0000\n"
+"Last-Translator: Owen Higgins <owen@higgins.id>\n"
+"Language-Team: Danish <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
 #: data/resources/ui/window.ui:8
 msgid "Railway"
-msgstr ""
+msgstr "Railway"
 
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
-msgstr ""
+msgstr "tog;bane;rejse;rejseplan;køreplaner;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr ""
+msgstr "Find alle dine rejseinformation"
 
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
 msgid "Julian Schmidhuber"
-msgstr ""
+msgstr "Julian Schmidhuber"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
+#, fuzzy
 msgid ""
 "Railway lets you look up travel information across networks and borders "
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"Med Railway kan du søg rejseinformation på tværs af net og grænser uden for "
+"at navigere forskellige hjemmesider. På grund af det adaptiv design, er det "
+"velegnet til at planlægge din tur på forhånd eller mobil på farten:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
@@ -54,7 +60,7 @@ msgstr ""
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
-msgstr ""
+msgstr "Gem nuværende og fremtidens rejser samt hyppige søgninger"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
@@ -74,27 +80,27 @@ msgstr ""
 
 #: data/resources/ui/date_time_picker.ui:20
 msgid "Input date"
-msgstr ""
+msgstr "Indtast tid"
 
 #: data/resources/ui/date_time_picker.ui:28
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #: data/resources/ui/date_time_picker.ui:69
 msgid "Input time"
-msgstr ""
+msgstr "Indtast tid"
 
 #: data/resources/ui/date_time_picker.ui:78
 msgid "Time"
-msgstr ""
+msgstr "Tid"
 
 #: data/resources/ui/date_time_picker.ui:144 src/gui/date_time_picker.rs:113
 msgid "Now"
-msgstr ""
+msgstr "Nu"
 
 #: data/resources/ui/journey_detail_page.ui:80
 msgid "Total Travel Time"
-msgstr ""
+msgstr "Samlede rejsetid"
 
 #: data/resources/ui/journey_detail_page.ui:100
 msgid "Trip Segments"
@@ -102,15 +108,15 @@ msgstr ""
 
 #: data/resources/ui/journey_detail_page.ui:123
 msgid "Choose a Trip"
-msgstr ""
+msgstr "Vælg en rejse"
 
 #: data/resources/ui/journeys_page.ui:128
 msgid "Search for Trips"
-msgstr ""
+msgstr "Søg efter rejser"
 
 #: data/resources/ui/leg_item.ui:183
 msgid "Show Stops"
-msgstr ""
+msgstr "Vis stop"
 
 #: data/resources/ui/leg_item.ui:185
 msgid "Show Intermediate Stops"
@@ -138,7 +144,7 @@ msgstr ""
 
 #: data/resources/ui/preferences_dialog.ui:17
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "Tidligere rejse gemmes kun i begrænset tid"
 
 #: data/resources/ui/preferences_dialog.ui:23
 msgid "Preservation Time For Trips"
@@ -191,19 +197,19 @@ msgstr ""
 
 #: data/resources/ui/search_options_dialog.ui:60
 msgid "Direct Connections Only"
-msgstr ""
+msgstr "Kun direkte forbindelser"
 
 #: data/resources/ui/search_options_dialog.ui:67
 msgid "Modes of Transport"
-msgstr ""
+msgstr "Transportmidler"
 
 #: data/resources/ui/search_options_dialog.ui:70
 msgid "High Speed Train"
-msgstr ""
+msgstr "Lyntog"
 
 #: data/resources/ui/search_options_dialog.ui:75
 msgid "Regional Train"
-msgstr ""
+msgstr "Regionaltog"
 
 #: data/resources/ui/search_options_dialog.ui:80
 msgid "Suburban Trains"
@@ -211,40 +217,40 @@ msgstr ""
 
 #: data/resources/ui/search_options_dialog.ui:85
 msgid "Bus"
-msgstr ""
+msgstr "Bus"
 
 #: data/resources/ui/search_options_dialog.ui:90
 msgid "Ferry"
-msgstr ""
+msgstr "Færge"
 
 #: data/resources/ui/search_options_dialog.ui:95
 msgid "Subway"
-msgstr ""
+msgstr "Metro"
 
 #: data/resources/ui/search_options_dialog.ui:100
 msgid "Tram"
-msgstr ""
+msgstr "Letbane"
 
 #: data/resources/ui/search_options_dialog.ui:105
 msgid "Cablecar"
-msgstr ""
+msgstr "Kabelsporvogn"
 
 #: data/resources/ui/search_options_dialog.ui:110
 msgid "Taxi"
-msgstr ""
+msgstr "Taxa"
 
 #: data/resources/ui/search_page.ui:37
 msgid "From"
-msgstr ""
+msgstr "Fra"
 
 #: data/resources/ui/search_page.ui:45
 msgid "To"
-msgstr ""
+msgstr "Til"
 
 #: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:95
 #: data/resources/ui/window.ui:37
 msgid "Search"
-msgstr ""
+msgstr "Søg"
 
 #: data/resources/ui/search_page.ui:120
 msgid "Bookmarked Trips"
@@ -276,19 +282,19 @@ msgstr ""
 
 #: data/resources/ui/shortcuts.ui:42
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "Vis genvejer"
 
 #: data/resources/ui/shortcuts.ui:48
 msgid "Show Preferences"
-msgstr ""
+msgstr "Vis præferencer"
 
 #: data/resources/ui/shortcuts.ui:54
 msgid "Open Menu"
-msgstr ""
+msgstr "Åben menu"
 
 #: data/resources/ui/station_entry.ui:19
 msgid "Swap Start and Destination"
-msgstr ""
+msgstr "Skift adgang og destination"
 
 #: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
 msgid "Select Network"
@@ -296,11 +302,11 @@ msgstr ""
 
 #: data/resources/ui/window.ui:88
 msgid "Main Menu"
-msgstr ""
+msgstr "Hovedmenu"
 
 #: data/resources/ui/window.ui:114
 msgid "Connections"
-msgstr ""
+msgstr "Forbindelser"
 
 #: data/resources/ui/window.ui:128
 msgid "Bookmark This Search"
@@ -308,7 +314,7 @@ msgstr ""
 
 #: data/resources/ui/window.ui:166
 msgid "Trip Details"
-msgstr ""
+msgstr "Rejsedetaljer"
 
 #: data/resources/ui/window.ui:175
 msgid "Refresh This Trip"
@@ -316,11 +322,11 @@ msgstr ""
 
 #: data/resources/ui/window.ui:199
 msgid "Bookmark This Trip"
-msgstr ""
+msgstr "Gem denne rejse"
 
 #: data/resources/ui/window.ui:248
 msgid "Preferences"
-msgstr ""
+msgstr "Præferencer"
 
 #: data/resources/ui/window.ui:252
 msgid "Keyboard Shortcuts"
@@ -328,7 +334,7 @@ msgstr ""
 
 #: data/resources/ui/window.ui:256
 msgid "_About Railway"
-msgstr ""
+msgstr "_Om Railway"
 
 #: data/resources/ui/refresh_button.ui:24
 msgid "Refresh Trip"
@@ -348,19 +354,19 @@ msgstr ""
 
 #: src/gui/indicator_icons.rs:165
 msgid "On Time"
-msgstr ""
+msgstr "Til tiden"
 
 #: src/gui/indicator_icons.rs:172
 msgid "Minor Delays"
-msgstr ""
+msgstr "Mindre forsinkelser"
 
 #: src/gui/indicator_icons.rs:179
 msgid "Delayed"
-msgstr ""
+msgstr "Forsinket"
 
 #: src/gui/indicator_icons.rs:186
 msgid "Very Delayed"
-msgstr ""
+msgstr "Store forsinkelser"
 
 #: src/gui/indicator_icons.rs:193
 msgid "Extremely Delayed"
@@ -368,7 +374,7 @@ msgstr ""
 
 #: src/gui/indicator_icons.rs:209
 msgid "Platform Changes"
-msgstr ""
+msgstr "Ændrede spor"
 
 #: src/gui/indicator_icons.rs:228
 msgid "Connection Not Possible"
@@ -376,7 +382,7 @@ msgstr ""
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
-msgstr ""
+msgstr "Aflyst"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
@@ -472,15 +478,15 @@ msgstr ""
 
 #: src/gui/utility.rs:147 src/gui/date_time_picker.rs:101
 msgid "Today"
-msgstr ""
+msgstr "I dag"
 
 #: src/gui/utility.rs:149
 msgid "Tomorrow"
-msgstr ""
+msgstr "I morgen"
 
 #: src/gui/utility.rs:151
 msgid "Yesterday"
-msgstr ""
+msgstr "I går"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:154
@@ -500,43 +506,43 @@ msgstr[1] ""
 
 #: src/gui/search_options_button.rs:75
 msgid "None"
-msgstr ""
+msgstr "Intet"
 
 #: src/gui/search_options_button.rs:76
 msgid "BahnCard 25, 1st class"
-msgstr ""
+msgstr "BahnCard 25, 1. klasse"
 
 #: src/gui/search_options_button.rs:77
 msgid "BahnCard 25, 2nd class"
-msgstr ""
+msgstr "BahnCard 25, 2. klasse"
 
 #: src/gui/search_options_button.rs:78
 msgid "BahnCard 50, 1st class"
-msgstr ""
+msgstr "BahnCard 50, 1. klasse"
 
 #: src/gui/search_options_button.rs:79
 msgid "BahnCard 50, 2nd class"
-msgstr ""
+msgstr "BahnCard 50, 2. klasse"
 
 #: src/gui/search_options_button.rs:80
 msgid "A – VORTEILScard (with RAILPLUS)"
-msgstr ""
+msgstr "A – VORTEILScard (med RAILPLUS)"
 
 #: src/gui/search_options_button.rs:81
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
-msgstr ""
+msgstr "CH – HalbtaxAbo (med RAILPLUS)"
 
 #: src/gui/search_options_button.rs:82
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
-msgstr ""
+msgstr "CH – HalbtaxAbo (uden RAILPLUS)"
 
 #: src/gui/search_options_button.rs:85
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
-msgstr ""
+msgstr "NL – Voordeelurenabo (med RAILPLUS)"
 
 #: src/gui/search_options_button.rs:89
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
-msgstr ""
+msgstr "NL – Voordeelurenabo (uden RAILPLUS)"
 
 #: src/gui/search_options_button.rs:91
 msgid "SH-Card"
@@ -552,15 +558,15 @@ msgstr ""
 
 #: src/gui/search_options_button.rs:137
 msgid "1st class"
-msgstr ""
+msgstr "1. klasse"
 
 #: src/gui/search_options_button.rs:139
 msgid "2nd class"
-msgstr ""
+msgstr "2. klasse"
 
 #: src/gui/search_options_button.rs:182
 msgid "Regional Only"
-msgstr ""
+msgstr "Kun regional"
 
 #: src/gui/search_options_button.rs:185
 msgid "Selected Modes of Transport"
@@ -568,7 +574,7 @@ msgstr ""
 
 #: src/gui/search_options_button.rs:197
 msgid "Direct Connection"
-msgstr ""
+msgstr "Direkte forbindelse"
 
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
@@ -604,18 +610,18 @@ msgstr ""
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
 msgid_plural "{} changes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} skift"
+msgstr[1] "{} skifter"
 
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
 msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr ""
+msgstr "Fra {departure} til {arrival} i {travel_time} med {changes_text}"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
 msgid "{train} in the direction of {destination}"
-msgstr ""
+msgstr "{train} mod {destination}"
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
@@ -701,17 +707,17 @@ msgstr ""
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/client.rs:68
 msgid "Schleswig-Holstein"
-msgstr ""
+msgstr "Slesvig-Holsten"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
 #: src/backend/client.rs:86
 msgid "Germany"
-msgstr ""
+msgstr "Tyskland"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
 #: src/backend/client.rs:101
 msgid "Austria"
-msgstr ""
+msgstr "Østrig"
 
 #: src/backend/client.rs:141
 msgid "Worldwide (beta)"
@@ -724,4 +730,4 @@ msgstr ""
 
 #: src/backend/leg.rs:130
 msgid "Walk"
-msgstr ""
+msgstr "Gå"
