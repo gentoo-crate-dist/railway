@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-04 19:15+0200\n"
+"POT-Creation-Date: 2024-07-20 10:42+0200\n"
 "PO-Revision-Date: 2024-06-17 14:42+0000\n"
 "Last-Translator: boblaspugna4f1ee5d391024b4c <boblaspugna@null.net>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/it/>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,10 +35,6 @@ msgstr "treno;ferrovia;viaggio;orari;pianificazione;mezzi;"
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
 msgstr "Trova tutte le informazioni di viaggio"
-
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:15
-msgid "Julian Schmidhuber"
-msgstr "Julian Schmidhuber"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -79,27 +75,35 @@ msgstr ""
 "maggiore copertura per quelli in Europa."
 
 #. Translators: Subtitle of the screenshot in the metainfo
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:251
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:277
 msgid "Application Overview"
 msgstr "Panoramica dell' Applicazione"
 
-#: data/resources/ui/date_time_picker.ui:20
+#: data/resources/ui/date_time_picker.ui:23
+msgid "Departure"
+msgstr ""
+
+#: data/resources/ui/date_time_picker.ui:37
+msgid "Arrival"
+msgstr ""
+
+#: data/resources/ui/date_time_picker.ui:60
 msgid "Input date"
 msgstr "Inserire la data"
 
-#: data/resources/ui/date_time_picker.ui:28
+#: data/resources/ui/date_time_picker.ui:68
 msgid "Date"
 msgstr "Data"
 
-#: data/resources/ui/date_time_picker.ui:69
+#: data/resources/ui/date_time_picker.ui:109
 msgid "Input time"
 msgstr "Inserire l'ora"
 
-#: data/resources/ui/date_time_picker.ui:78
+#: data/resources/ui/date_time_picker.ui:118
 msgid "Time"
 msgstr "Ora"
 
-#: data/resources/ui/date_time_picker.ui:144 src/gui/date_time_picker.rs:113
+#: data/resources/ui/date_time_picker.ui:185 src/gui/date_time_picker.rs:122
 msgid "Now"
 msgstr "Adesso"
 
@@ -298,7 +302,7 @@ msgstr "Mostra le preferenze"
 msgid "Open Menu"
 msgstr "Apre il menù"
 
-#: data/resources/ui/station_entry.ui:19
+#: data/resources/ui/station_entry.ui:16
 msgid "Swap Start and Destination"
 msgstr "Scambia partenza e destinazione"
 
@@ -482,7 +486,7 @@ msgstr[1] "%-d giorni %-H ore %-M min."
 msgid "%H:%M"
 msgstr "%H:%M"
 
-#: src/gui/utility.rs:147 src/gui/date_time_picker.rs:101
+#: src/gui/utility.rs:147 src/gui/date_time_picker.rs:110
 msgid "Today"
 msgstr "Oggi"
 
@@ -608,8 +612,7 @@ msgstr "_Chiudi"
 
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
-#: src/gui/date_time_picker.rs:105
-#, c-format
+#: src/gui/date_time_picker.rs:114
 msgid "%a %b %d"
 msgstr "%a %b %d"
 
@@ -712,33 +715,78 @@ msgstr "{amount} $"
 msgid "{currency} {amount}"
 msgstr "{amount} {currency}"
 
-#. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
-#: src/backend/client.rs:68
-msgid "Schleswig-Holstein"
-msgstr "Schleswig-Holstein"
-
+#. Hafas
+#. TODO: BVG, SNCB, SNCF, TPG
+#. Always shows "no provider"
+#. Provider::new(
+#. "DB-Busradar-Nrw",
+#. "DB Busradar NRW",
+#. // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
+#. Some(&gettextrs::gettext("North Rhine-Westphalia")),
+#. &gettextrs::gettext("Germany"),
+#. true,
+#. ),
+#. Migrated endpoint to EFA
+#. Provider::new(
+#. "mobil-nrw",
+#. "mobil.nrw",
+#. // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
+#. Some(&gettextrs::gettext("North Rhine-Westphalia")),
+#. &gettextrs::gettext("Germany"),
+#. true,
+#. ),
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
-#: src/backend/client.rs:86
+#: src/backend/client.rs:25 src/backend/client.rs:27 src/backend/client.rs:32
+#: src/backend/client.rs:46 src/backend/client.rs:51 src/backend/client.rs:55
+#: src/backend/client.rs:56 src/backend/client.rs:67 src/backend/client.rs:73
+#: src/backend/client.rs:85 src/backend/client.rs:86 src/backend/client.rs:92
+#: src/backend/client.rs:93 src/backend/client.rs:104 src/backend/client.rs:117
+#: src/backend/client.rs:124 src/backend/client.rs:134
+#: src/backend/client.rs:135 src/backend/client.rs:136
+#: src/backend/client.rs:137 src/backend/client.rs:142
 msgid "Germany"
 msgstr "Germania"
 
+#: src/backend/client.rs:26 src/backend/client.rs:35 src/backend/client.rs:36
+msgid "North America"
+msgstr ""
+
+#. Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
+#. Search.ch
+#: src/backend/client.rs:54 src/backend/client.rs:57 src/backend/client.rs:80
+#: src/backend/client.rs:83 src/backend/client.rs:84 src/backend/client.rs:87
+#: src/backend/client.rs:100 src/backend/client.rs:103
+#: src/backend/client.rs:110 src/backend/client.rs:131
+#: src/backend/client.rs:145 src/backend/client.rs:146
+#: src/backend/client.rs:150
+msgid "Europe"
+msgstr ""
+
+#. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
+#: src/backend/client.rs:72
+msgid "Schleswig-Holstein"
+msgstr "Schleswig-Holstein"
+
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
-#: src/backend/client.rs:101
+#: src/backend/client.rs:109
 msgid "Austria"
 msgstr "Austria"
 
-#: src/backend/client.rs:141
+#: src/backend/client.rs:154
 msgid "Worldwide (beta)"
 msgstr "In Tutto Il Mondo (beta)"
 
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
-#: src/backend/client.rs:143
+#: src/backend/client.rs:156
 msgid "Using Transitous"
 msgstr "Utilizzare Transitous"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
 msgstr "Cammina"
+
+#~ msgid "Julian Schmidhuber"
+#~ msgstr "Julian Schmidhuber"
 
 #~ msgid "Show Stopovers in Between"
 #~ msgstr "Mostra fermate intermedie"
