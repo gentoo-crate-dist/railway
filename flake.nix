@@ -2,7 +2,7 @@
   # keep in sync with metainfo
   description = "Find all your travel information";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/gnome-46";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = { self, nixpkgs, flake-utils, ... }@inputs:
@@ -85,8 +85,8 @@
                       services.xserver.enable = true;
                       services.xserver.displayManager.gdm.enable = true;
                       services.xserver.desktopManager.gnome.enable = true;
-                      services.xserver.displayManager.autoLogin.enable = true;
-                      services.xserver.displayManager.autoLogin.user = "alice";
+                      services.displayManager.autoLogin.enable = true;
+                      services.displayManager.autoLogin.user = "alice";
 
                       users.users.alice = {
                         isNormalUser = true;
@@ -133,10 +133,10 @@
                         (key "tab")
                         (type "PARIS")
                         (sleep 2)
-                        (l.replicate 5 (key "tab"))
+                        (l.replicate 7 (key "tab"))
                         (key "ret")
                         (sleep 5)
-                        (l.replicate 11 (key "tab"))
+                        (l.replicate 13 (key "tab"))
                         (key "ret")
                         (l.replicate 4 (key "tab"))
                         (key "ret")
