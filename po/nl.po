@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-20 10:42+0200\n"
-"PO-Revision-Date: 2024-06-15 20:09+0000\n"
+"PO-Revision-Date: 2024-07-21 12:09+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -86,7 +86,7 @@ msgstr "Vertrekdatum/-tijd"
 
 #: data/resources/ui/date_time_picker.ui:37
 msgid "Arrival"
-msgstr ""
+msgstr "Aankomst"
 
 #: data/resources/ui/date_time_picker.ui:60
 msgid "Input date"
@@ -750,7 +750,7 @@ msgstr "Duitsland"
 
 #: src/backend/client.rs:26 src/backend/client.rs:35 src/backend/client.rs:36
 msgid "North America"
-msgstr ""
+msgstr "Noord-Amerika"
 
 #. Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
 #. Search.ch
@@ -761,7 +761,7 @@ msgstr ""
 #: src/backend/client.rs:145 src/backend/client.rs:146
 #: src/backend/client.rs:150
 msgid "Europe"
-msgstr ""
+msgstr "Europa"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/client.rs:72
