@@ -1,0 +1,103 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBJourneysPage: Box {
+  styles [
+    "journeys-page",
+  ]
+
+  orientation: vertical;
+  vexpand: true;
+  valign: fill;
+  hexpand: true;
+  halign: fill;
+
+  Overlay {
+    vexpand: true;
+    hexpand: true;
+    visible: bind $is_some(template.journeys-result) as <bool>;
+
+    [overlay]
+    Revealer {
+      halign: center;
+      valign: start;
+      transition-type: slide_down;
+      reveal-child: bind template.is-loading-earlier;
+
+      child: Adw.Bin {
+        styles [
+          "overlay-spinner",
+          "osd",
+        ]
+
+        margin-top: 12;
+
+        child: Spinner {
+          spinning: true;
+        };
+      };
+    }
+
+    child: Adw.BreakpointBin {
+      width-request: 300;
+      height-request: 300; // Note: Same height request as window
+
+      Adw.Breakpoint {
+        condition ("max-width: 372sp")
+        setters {
+          template.compact: true;
+        }
+      }
+
+      child: ScrolledWindow scrolled_window {
+        hscrollbar-policy: never;
+        vexpand: true;
+        edge-overshot => $handle_edge_reached() swapped;
+
+        child: Adw.ClampScrollable {
+          // follows width of search pane, adjusted for margins
+          tightening-threshold: 400;
+          maximum-size: 540;
+
+          child: ListView list_journeys {
+            styles [
+              "navigation-sidebar",
+            ]
+
+            tab-behavior: item;
+            valign: start;
+            model: bind template.journeys-result;
+          };
+        };
+      };
+    };
+
+    [overlay]
+    Revealer {
+      halign: center;
+      valign: end;
+      transition-type: slide_up;
+      reveal-child: bind template.is-loading-later;
+
+      child: Adw.Bin {
+        styles [
+          "overlay-spinner",
+          "osd",
+        ]
+
+        margin-bottom: 12;
+
+        child: Spinner {
+          spinning: true;
+        };
+      };
+    }
+  }
+
+  Adw.StatusPage {
+    vexpand: true;
+    title: _("Search for Trips");
+    icon-name: 'system-search-symbolic';
+    visible: bind $is_none(template.journeys-result) as <bool>;
+  }
+}

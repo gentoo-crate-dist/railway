@@ -303,6 +303,7 @@ pub mod imp {
             Self::bind_template(klass);
             Self::bind_template_callbacks(klass);
             Utility::bind_template_callbacks(klass);
+            crate::backend::Leg::ensure_type();
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {

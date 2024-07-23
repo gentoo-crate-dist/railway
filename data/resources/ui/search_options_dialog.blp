@@ -1,0 +1,97 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBSearchOptionsDialog: Adw.PreferencesDialog {
+  search-enabled: false;
+
+  Adw.PreferencesPage {
+    Adw.PreferencesGroup {
+      Adw.ComboRow dropdown_bahncard {
+        title: _("Discount Card");
+      }
+
+      Adw.ActionRow {
+        title: _("Class");
+
+        Box {
+          styles [
+            "linked",
+          ]
+
+          halign: center;
+          valign: center;
+
+          ToggleButton toggle_first_class {
+            label: _("First Class");
+            toggled => $handle_first_class() swapped;
+          }
+
+          ToggleButton toggle_second_class {
+            label: _("Second Class");
+            group: toggle_first_class;
+          }
+        }
+      }
+
+      Adw.SwitchRow switch_bike_accessible {
+        title: _("Bike Accessible");
+      }
+
+      Adw.SpinRow spin_transfer_time {
+        output => $handle_transfer_time_output() swapped;
+        title: _("Minimum Transfer Time");
+        adjustment: adj_transfer_time;
+      }
+
+      Adw.SwitchRow switch_direct_only {
+        title: _("Direct Connections Only");
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Modes of Transport");
+
+      Adw.SwitchRow switch_national_express {
+        title: _("Mainline Train"); // TODO: check term, alternatives: Higher-speed Train, Long-distance Train
+      }
+
+      Adw.SwitchRow switch_regional {
+        title: _("Regional Train"); // TODO: check term
+      }
+
+      Adw.SwitchRow switch_suburban {
+        title: _("S-Bahn Train"); // TODO: more generic term, incl. Overground and S-Bahn?
+      }
+
+      Adw.SwitchRow switch_bus {
+        title: _("Bus");
+      }
+
+      Adw.SwitchRow switch_ferry {
+        title: _("Ferry");
+      }
+
+      Adw.SwitchRow switch_subway {
+        title: _("Subway");
+      }
+
+      Adw.SwitchRow switch_tram {
+        title: _("Tram");
+      }
+
+      Adw.SwitchRow switch_cablecar {
+        title: _("Cablecar");
+      }
+
+      Adw.SwitchRow switch_taxi {
+        title: _("Taxi");
+      }
+    }
+  }
+}
+
+Adjustment adj_transfer_time {
+  lower: 0;
+  upper: 60;
+  step-increment: 5;
+}

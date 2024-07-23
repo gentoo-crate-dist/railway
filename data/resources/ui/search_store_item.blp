@@ -1,0 +1,43 @@
+using Gtk 4.0;
+
+template $DBSearchStoreItem: Box {
+  orientation: horizontal;
+  hexpand: true;
+  halign: fill;
+
+  Box {
+    orientation: vertical;
+    margin-start: 12;
+    margin-end: 12;
+    margin-top: 12;
+    margin-bottom: 12;
+
+    Box {
+      spacing: 8;
+
+      Label {
+        ellipsize: end;
+        label: bind template.origin;
+      }
+    }
+
+    Box {
+      spacing: 8;
+
+      Label {
+        ellipsize: end;
+        label: bind template.destination;
+      }
+    }
+  }
+
+  Image {
+    icon-name: 'system-search-symbolic';
+    hexpand: true;
+    halign: end;
+    margin-top: 12;
+    margin-bottom: 12;
+    margin-start: 12;
+    margin-end: 12;
+  }
+}

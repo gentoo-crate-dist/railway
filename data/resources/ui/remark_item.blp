@@ -1,0 +1,30 @@
+using Gtk 4.0;
+
+template $DBRemarkItem: Box {
+  styles [
+    "dim-label",
+  ]
+
+  accessible-role: list_item;
+
+  accessibility {
+    labelled-by: announcement_label;
+  }
+
+  orientation: horizontal;
+  focusable: true;
+  hexpand: true;
+  spacing: 6;
+
+  Image {
+    valign: start;
+    margin-top: 1;
+    icon-name: bind template.remark as <$DBRemark>.icon-name;
+  }
+
+  Label announcement_label {
+    wrap: true;
+    wrap-mode: word;
+    label: bind template.remark as <$DBRemark>.text;
+  }
+}

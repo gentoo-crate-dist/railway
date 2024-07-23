@@ -1,0 +1,22 @@
+using Gtk 4.0;
+
+template $DBPlaceListItem: Box {
+  orientation: horizontal;
+  halign: fill;
+  hexpand: true;
+  spacing: 9;
+
+  GestureClick {
+    button: 1;
+    exclusive: true;
+    pressed => $handle_pressed() swapped;
+  }
+
+  Label {
+    halign: start;
+    hexpand: true;
+    justify: left;
+    ellipsize: end;
+    label: bind template.place as <$DBPlace>.name;
+  }
+}

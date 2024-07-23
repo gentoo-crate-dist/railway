@@ -1,0 +1,184 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBWindow: Adw.ApplicationWindow {
+  can-focus: true;
+  title: _("Railway");
+  width-request: 360;
+  height-request: 300;
+
+  Adw.Breakpoint {
+    condition("max-width: 960sp")
+    setters {
+      result_view.collapsed: true;
+    }
+  }
+  Adw.Breakpoint {
+    condition("max-width: 720sp")
+    setters {
+      search_view.collapsed: true;
+      result_view.collapsed: true;
+    }
+  }
+
+  Adw.ToastOverlay toast_overlay {
+    Adw.NavigationSplitView search_view {
+      min-sidebar-width: 300;
+      max-sidebar-width: 400;
+      sidebar-width-fraction: 0.25;
+
+      sidebar: Adw.NavigationPage {
+        title: _("Search");
+
+        Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar {
+            title-widget: Adw.WindowTitle {
+              title: 'Railway'; // not translated
+            };
+
+            MenuButton {
+              accessibility {
+                label: _("Select Network");
+              }
+
+              styles [
+                "window-menu-button-provider",
+              ]
+
+              tooltip-text: _("Select Network");
+              always-show-arrow: true;
+
+              popover: $DBProviderPopover provider_popover {
+                client: bind template.client;
+              };
+
+              Image {
+                styles [
+                  "icon-dropshadow",
+                ]
+
+                pixel-size: 28;
+                height-request: 0; // Required as otherwise the header bar would be 1px too large
+                icon-name: bind provider_popover.current_selection as <$DBProvider>.icon-name;
+              }
+            }
+
+            [end]
+            MenuButton {
+              primary: true;
+              icon-name: 'open-menu-symbolic';
+              menu-model: menubar;
+              tooltip-text: _("Main Menu");
+            }
+          }
+
+          content: $DBSearchPage search_page {
+            client: bind template.client;
+            details => $handle_details() swapped;
+            search => $handle_search_page() swapped;
+          };
+        }
+      };
+
+      content: Adw.NavigationPage {
+        Adw.NavigationSplitView result_view {
+          min-sidebar-width: 300;
+          max-sidebar-width: 450;
+          sidebar-width-fraction: 0.4;
+
+          sidebar: Adw.NavigationPage {
+            title: _("Connections");
+
+            Adw.ToolbarView {
+              [top]
+              Adw.HeaderBar {
+                ToggleButton btn_bookmark_search {
+                  styles [
+                    "bookmark-button",
+                  ]
+
+                  clicked => $handle_searches_store() swapped;
+                  notify::active => $handle_bookmark_button_icon() swapped;
+                  icon-name: 'bookmark-untoggled-symbolic';
+                  tooltip-text: _("Bookmark This Search");
+                  active: bind $has_search_stored(journeys_page.journeys-result as <$DBJourneysResult>.source, journeys_page.journeys-result as <$DBJourneysResult>.destination) as <bool>;
+                  visible: bind $is_some(journeys_page.journeys-result) as <bool>;
+                }
+              }
+
+              content: $DBJourneysPage journeys_page {
+                client: bind template.client;
+                select => $handle_journeys_page() swapped;
+              };
+            }
+          };
+
+          content: Adw.NavigationPage {
+            title: _("Trip Details");
+
+            Adw.ToolbarView {
+              width-request: 200;
+
+              [top]
+              Adw.HeaderBar {
+                $DBRefreshButton btn_reload_detail {
+                  clicked => $handle_journey_reload() swapped;
+                  tooltip-text: _("Refresh This Trip");
+                  refreshing: bind journey_detail_page.refresh-in-progress;
+                  visible: bind $is_some(journey_detail_page.journey) as <bool>;
+                }
+
+                ToggleButton btn_bookmark_journey {
+                  styles [
+                    "bookmark-button",
+                  ]
+
+                  clicked => $handle_journey_store() swapped;
+                  icon-name: 'bookmark-untoggled-symbolic';
+                  notify::active => $handle_bookmark_button_icon() swapped;
+                  tooltip-text: _("Bookmark This Trip");
+                  active: bind $has_journey_stored(journey_detail_page.journey) as <bool>;
+                  visible: bind $is_some(journey_detail_page.journey) as <bool>;
+                }
+              }
+
+              content: $DBJourneyDetailPage journey_detail_page {
+                client: bind template.client;
+              };
+            }
+          };
+        }
+      };
+    }
+  }
+}
+
+$DBJourneysStore store_journeys {
+  add => $handle_journey_store_add() swapped;
+  remove => $handle_journey_store_remove() swapped;
+}
+
+$DBSearchesStore store_searches {
+  add => $handle_searches_store_add() swapped;
+  remove => $handle_searches_store_remove() swapped;
+}
+
+menu menubar {
+  section {
+    item {
+      label: _("Preferences");
+      action: 'win.settings';
+    }
+
+    item {
+      label: _("Keyboard Shortcuts");
+      action: 'win.show-help-overlay';
+    }
+
+    item {
+      label: _("_About Railway");
+      action: 'win.about';
+    }
+  }
+}

@@ -1,0 +1,313 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBLegItem: Box {
+  styles [
+    "card",
+  ]
+
+  accessible-role: list_item;
+
+  accessibility {
+    labelled-by: segment_label;
+    details: [indicators, box_remarks];
+  }
+
+  focusable: true;
+
+  Box {
+    orientation: vertical;
+    hexpand: true;
+    vexpand: false;
+    margin-top: 12;
+    margin-bottom: 12;
+    margin-start: 12;
+    margin-end: 12;
+
+    // TODO: make stopover-like and keyboard navigable for a11y
+    Box {
+      orientation: horizontal;
+
+      $DBAltLabel start_departure_label {
+        valign: center;
+        halign: start;
+        main: bind template.leg as <$DBLeg>.planned-departure;
+        alt: bind template.leg as <$DBLeg>.departure;
+      }
+
+      Box {
+        orientation: vertical;
+
+        Separator {
+          orientation: vertical;
+          vexpand: true;
+          halign: center;
+          margin-start: 18;
+          margin-end: 18;
+        }
+
+        Image {
+          icon-name: 'circle-outline-thick-symbolic';
+          pixel-size: 13;
+          hexpand: false;
+        }
+
+        Separator {
+          orientation: vertical;
+          vexpand: true;
+          halign: center;
+          margin-start: 18;
+          margin-end: 18;
+        }
+      }
+
+      Label {
+        styles [
+          "route-segment-station-start-end",
+        ]
+
+        halign: start;
+        ellipsize: end;
+        label: bind template.leg as <$DBLeg>.origin as <$DBPlace>.name;
+      }
+
+      $DBAltLabel {
+        valign: center;
+        halign: end;
+        hexpand: true;
+        main: bind template.leg as <$DBLeg>.planned-departure-platform;
+        alt: bind template.leg as <$DBLeg>.departure-platform;
+      }
+    }
+
+    Box {
+      orientation: horizontal;
+
+      Adw.Bin spacing_1 {}
+
+      Separator {
+        orientation: vertical;
+        margin-start: 18;
+        margin-end: 18;
+      }
+
+      Box {
+        orientation: vertical;
+        margin-top: 6;
+        margin-bottom: 6;
+        spacing: 6;
+
+        // TODO: annoying ellipses in frequency label. Replace with AdwWrapBox when it comes out. https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/219.
+        Box {
+          orientation: horizontal;
+          margin-bottom: 6;
+          spacing: 12;
+
+          Label segment_label {
+            wrap: true;
+            hexpand: false;
+            xalign: 0;
+            label: bind $format_train_direction(template.leg as <$DBLeg>.name, template.leg as <$DBLeg>.direction) as <string>;
+          }
+
+          $DBFrequencyLabel {
+            frequency: bind template.leg as <$DBLeg>.frequency;
+          }
+        }
+
+        Box {
+          orientation: horizontal;
+          halign: fill;
+          spacing: 6;
+
+          ToggleButton stopover_button {
+            accessibility {
+              label: _("Show Stops");
+            }
+
+            tooltip-text: _("Show Intermediate Stops");
+            hexpand: true;
+            halign: start;
+
+            styles [
+              "small-pill",
+            ]
+
+            child: Box {
+              margin-start: 6;
+              spacing: 6;
+
+              Label label_num_stopovers {
+                halign: start;
+              }
+
+              Image {
+                icon-name: 'go-next-symbolic';
+                visible: bind stopover_button.active inverted;
+              }
+
+              Image {
+                icon-name: 'go-down-symbolic';
+                visible: bind stopover_button.active;
+              }
+            };
+          }
+
+          Box {
+            halign: end;
+            hexpand: true;
+            spacing: 6;
+
+            $DBIndicatorIcons indicators {
+              hexpand: true;
+              halign: end;
+              load-factor: bind template.leg as <$DBLeg>.load-factor;
+              late-factor: bind template.leg as <$DBLeg>.late-factor;
+              change-platform: bind template.leg as <$DBLeg>.change-platform;
+              is-unreachable: bind template.leg as <$DBLeg>.is-unreachable;
+              is-cancelled: bind template.leg as <$DBLeg>.is-cancelled;
+            }
+
+            ToggleButton remarks_button {
+              accessibility {
+                label: _("Show Announcements");
+                controls: box_remarks;
+              }
+
+              styles [
+                "circular",
+              ]
+
+              tooltip-text: _("Show Announcements");
+              valign: center;
+              halign: end;
+              icon-name: 'dialog-information-symbolic';
+            }
+          }
+        }
+
+        Revealer {
+          vexpand: false;
+
+          child: Box box_remarks {
+            accessible-role: list;
+
+            accessibility {
+              label: _("Announcements");
+            }
+
+            spacing: 12;
+            margin-start: 0;
+            margin-end: 18;
+            margin-top: 12;
+            margin-bottom: 12;
+            orientation: vertical;
+          };
+
+          reveal-child: bind remarks_button.active;
+          transition-type: slide_up;
+        }
+      }
+    }
+
+    Revealer reveal_stopovers {
+      vexpand: false;
+
+      child: Box {
+        orientation: vertical;
+
+        Box box_intermediate_locations {
+          accessible-role: list;
+
+          accessibility {
+            label: _("Stops");
+          }
+
+          orientation: vertical;
+        }
+
+        Box {
+          orientation: horizontal;
+          height-request: 12;
+
+          Adw.Bin spacing_2 {}
+
+          Separator {
+            orientation: vertical;
+            margin-start: 18;
+            margin-end: 18;
+          }
+        }
+      };
+
+      reveal-child: bind stopover_button.active;
+      transition-type: slide_up;
+    }
+
+    // TODO: make stopover-like and keyboard navigable for a11y
+    Box {
+      orientation: horizontal;
+
+      $DBAltLabel destination_arrival_label {
+        valign: center;
+        halign: start;
+        main: bind template.leg as <$DBLeg>.planned-arrival;
+        alt: bind template.leg as <$DBLeg>.arrival;
+      }
+
+      Box {
+        orientation: vertical;
+
+        Separator {
+          orientation: vertical;
+          vexpand: true;
+          halign: center;
+          margin-start: 18;
+          margin-end: 18;
+        }
+
+        Image {
+          icon-name: 'circle-outline-thick-symbolic';
+          pixel-size: 13;
+          hexpand: false;
+        }
+
+        Separator {
+          orientation: vertical;
+          vexpand: true;
+          halign: center;
+          margin-start: 18;
+          margin-end: 18;
+        }
+      }
+
+      Label {
+        styles [
+          "route-segment-station-start-end",
+        ]
+
+        halign: start;
+        ellipsize: end;
+        label: bind template.leg as <$DBLeg>.destination as <$DBPlace>.name;
+      }
+
+      $DBAltLabel {
+        valign: center;
+        halign: end;
+        hexpand: true;
+        main: bind template.leg as <$DBLeg>.planned-arrival-platform;
+        alt: bind template.leg as <$DBLeg>.arrival-platform;
+      }
+    }
+  }
+}
+
+SizeGroup size_group {
+  mode: horizontal;
+  widgets [
+    start_departure_label,
+    destination_arrival_label,
+    spacing_1,
+    spacing_2,
+  ]
+}

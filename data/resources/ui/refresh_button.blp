@@ -1,0 +1,35 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBRefreshButton: Adw.Bin {
+  Stack stack {
+    transition-type: crossfade;
+
+    StackPage page_button {
+      name: 'button';
+
+      child: Button {
+        styles [
+          "flat",
+        ]
+
+        clicked => $handle_refresh_clicked() swapped;
+
+        Image {
+          icon-name: 'view-refresh-symbolic';
+          tooltip-text: _("Refresh Trip");
+        }
+      };
+    }
+
+    StackPage page_spinner {
+      name: 'spinner';
+
+      child: Spinner {
+        spinning: true;
+        halign: center;
+        valign: center;
+      };
+    }
+  }
+}

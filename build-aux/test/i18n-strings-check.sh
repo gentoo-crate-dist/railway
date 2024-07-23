@@ -6,10 +6,12 @@ uidirs="data/resources/ui"
 # find source files that contain gettext keywords
 rust_files="$(grep -lR --include='*.rs' 'gettext\b' $srcdirs)"
 
-# find ui files that contain translatable string
-ui_files="$(grep -lRi --include='*.ui' 'translatable="[ty1]' $uidirs)"
+# find ui
+blp_files="$(grep -lRi --include='*.blp' '_("' $uidirs)"
 
-files="$rust_files $ui_files"
+files="$rust_files $blp_files"
+
+exitval=0
 
 # Test 1: find all files that are missing from POTFILES
 missing="$(for f in $files; do ! grep -q "^$f$" po/POTFILES && echo "$f"; done)"
@@ -19,19 +21,18 @@ if [ ${#missing} -ne 0 ]; then
     echo "  $f" >&2
   done
   echo >&2
-  exit 1
+  exitval=1
 fi
 
-# Test 2: find potentially translatable properties with the translatable attribute
-translatable_properties="$(grep -Roh --include='*.ui' 'name=\".*\" translatable=\".*\">' $uidirs | sed 's/^name=\"\([^\"]*\)\".*/\1/' | sort | uniq)"
-missed_properties=0
+# Test 2: find potentially translatable properties without _("…") that are not marked as // not translated
+translatable_properties="$(grep -Roh --include='*.blp' '[a-zA-Z][a-zA-Z0-9_-]*\s*:\s*_(' $uidirs | sed 's/^\([a-zA-Z][a-zA-Z0-9_-]*\).*/\1/' | sort | uniq)"
 
 for p in ${translatable_properties}; do
-  missed_translatable="$(grep -lRP --include='*.ui' "<property name=\"$p\"(?! translatable=\"(no|yes)\")")"
+  missed_translatable="$(grep -lRP --include='*.blp' "$p\s*:\s*(\".*\"|'.*')\s*;(?! // not translated)" $uidirs)"
   if [ ${#missed_translatable} -ne 0 ]; then
-    missed_properties=$(expr $missed_properties + 1)
+    exitval=1
 
-    echo >&2 "The following files contain a <property name=\"$p\"> without translatable=\"[yes|no]\":"
+    echo >&2 "The following files use the property $p without \`_("…")\` or a \`// not translated\` comment:"
     for f in ${missed_translatable}; do
       echo "  $f" >&2
     done
@@ -39,6 +40,16 @@ for p in ${translatable_properties}; do
   fi
 done
 
-if [ ${missed_properties} -ne 0 ]; then
-  exit 1
+# Test 3: find all blueprint files which use a gettext qualifier that will not be picked up by gettext by default.
+# The gettext qualifier _('.*') is not picked up by gettext, one should use _("") instead (double quotes instead of single quotes).
+blp_files_with_wrong_gettext="$(grep -lRi --include='*.blp' "_('.*')" $uidirs)"
+if [ ${#blp_files_with_wrong_gettext} -ne 0 ]; then
+  echo >&2 "The following blueprint files use the wrong gettext quantifier (\`_('…')\` instead of \`_("…")\`):"
+  for f in ${blp_files_with_wrong_gettext}; do
+    echo "  $f" >&2
+  done
+  echo >&2
+  exitval=1
 fi
+
+exit $exitval

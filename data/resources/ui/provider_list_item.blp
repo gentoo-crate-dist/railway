@@ -1,0 +1,51 @@
+using Gtk 4.0;
+
+template $DBProviderListItem: Box {
+  accessibility {
+    labelled-by: label_short_name;
+    described-by: label_name;
+  }
+
+  orientation: horizontal;
+  halign: start;
+  spacing: 6;
+
+  Image {
+    styles [
+      "icon-dropshadow",
+      "provider-icon",
+    ]
+
+    halign: start;
+    valign: center;
+    icon-size: large;
+    icon-name: bind template.provider as <$DBProvider>.icon-name;
+  }
+
+  Box {
+    orientation: vertical;
+
+    Label label_short_name {
+      styles [
+        "heading",
+      ]
+
+      halign: start;
+      hexpand: true;
+      justify: left;
+      label: bind template.provider as <$DBProvider>.short-name;
+    }
+
+    Label label_name {
+      styles [
+        "caption",
+      ]
+
+      halign: start;
+      hexpand: true;
+      justify: left;
+      ellipsize: end;
+      label: bind template.provider as <$DBProvider>.name;
+    }
+  }
+}

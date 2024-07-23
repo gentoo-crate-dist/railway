@@ -1,0 +1,81 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBJourneyDetailPage: Box {
+  styles [
+    "journey-detail-page",
+  ]
+
+  orientation: vertical;
+  spacing: 12;
+  vexpand: true;
+  valign: fill;
+  hexpand: true;
+  halign: fill;
+
+  ScrolledWindow {
+    hscrollbar-policy: never;
+    overflow: visible;
+    visible: bind $is_some(template.journey) as <bool>;
+
+    Viewport {
+      Adw.Clamp {
+        child: Box {
+          orientation: vertical;
+          spacing: 18;
+          vexpand: true;
+          valign: fill;
+          hexpand: true;
+          halign: fill;
+          margin-top: 12;
+          margin-bottom: 12;
+          margin-start: 12;
+          margin-end: 12;
+
+          Label {
+            styles [
+              "title-1",
+            ]
+
+            wrap: true;
+            xalign: 0;
+            label: bind $format_source_destination(template.journey as <$DBJourney>.first-leg as <$DBLeg>.origin as <$DBPlace>.name, template.journey as <$DBJourney>.last-leg as <$DBLeg>.destination as <$DBPlace>.name) as <string>;
+          }
+
+          Box {
+            orientation: horizontal;
+
+            Label {
+              xalign: 0;
+              hexpand: true;
+              tooltip-text: _("Total Travel Time");
+              label: bind template.journey as <$DBJourney>.total-time;
+            }
+
+            Label label_last_refreshed {
+              xalign: 0;
+            }
+          }
+
+          Box box_legs {
+            accessible-role: list;
+
+            accessibility {
+              label: _("Trip Segments");
+            }
+
+            orientation: vertical;
+            spacing: 12;
+          }
+        };
+      }
+    }
+  }
+
+  Adw.StatusPage {
+    visible: bind $is_none(template.journey) as <bool>;
+    vexpand: true;
+    title: _("Choose a Trip");
+    icon-name: 'train-symbolic';
+  }
+}

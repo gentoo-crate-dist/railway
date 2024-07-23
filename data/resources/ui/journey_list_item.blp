@@ -1,0 +1,139 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBJourneyListItem: Box {
+  orientation: vertical;
+  spacing: 6;
+  margin-top: 12;
+  margin-bottom: 12;
+  margin-start: 12;
+  margin-end: 12;
+
+  Box {
+    orientation: horizontal;
+
+    Box {
+      orientation: vertical;
+      hexpand: true;
+
+      Box from_time_box {
+        orientation: horizontal;
+
+        $DBAltLabel from_time {
+          orientation: horizontal;
+          spacing: 6;
+          halign: start;
+          valign: start;
+
+          main: bind template.journey as <$DBJourney>.first-leg as <$DBLeg>.planned-departure;
+          alt: bind template.journey as <$DBJourney>.first-leg as <$DBLeg>.departure;
+        }
+
+        Box {
+          valign: start;
+          height-request: 22; // Height of the top label in the alt-label; ensures this box is centered.
+
+          Separator {
+            hexpand: true;
+            valign: center;
+            margin-start: 12;
+            margin-end: 6;
+          }
+
+          Label {
+            styles [
+              "caption",
+            ]
+            label: bind template.journey as <$DBJourney>.total-time;
+          }
+
+          Separator {
+            hexpand: true;
+            valign: center;
+            margin-start: 6;
+            margin-end: 12;
+          }
+        }
+      }
+
+      Label {
+        styles [
+          "caption",
+        ]
+
+        halign: start;
+        hexpand: true;
+        margin-end: 12;
+        ellipsize: end;
+        label: bind template.journey as <$DBJourney>.first-leg as <$DBLeg>.origin as <$DBPlace>.name;
+      }
+    }
+
+    Box destination_box {
+      orientation: vertical;
+      halign: end;
+      hexpand: false;
+
+      Adw.Bin to_time_box {
+        valign: start;
+
+        $DBAltLabel to_time {
+          orientation: horizontal;
+          spacing: 6;
+          halign: start;
+          valign: start;
+          main: bind template.journey as <$DBJourney>.last-leg as <$DBLeg>.planned-arrival;
+          alt: bind template.journey as <$DBJourney>.last-leg as <$DBLeg>.arrival;
+        }
+      }
+
+      Label {
+        styles [
+          "caption",
+        ]
+
+        halign: start;
+        ellipsize: end;
+        label: bind template.journey as <$DBJourney>.last-leg as <$DBLeg>.destination as <$DBPlace>.name;
+      }
+    }
+  }
+
+  Box {
+    orientation: horizontal;
+    spacing: 6;
+
+    $DBIndicatorIcons indicators {
+      load-factor: bind template.journey as <$DBJourney>.load-factor;
+      late-factor: bind template.journey as <$DBJourney>.late-factor;
+      change-platform: bind template.journey as <$DBJourney>.change-platform;
+      is-unreachable: bind template.journey as <$DBJourney>.is-unreachable;
+      is-cancelled: bind template.journey as <$DBJourney>.is-cancelled;
+    }
+
+    Label {
+      styles [
+        "dim-label",
+        "caption",
+      ]
+
+      ellipsize: end;
+      halign: start;
+      hexpand: true;
+      label: bind template.journey as <$DBJourney>.types;
+    }
+
+    Label {
+      halign: end;
+      label: bind template.journey as <$DBJourney>.price as <$DBPrice>.formatted;
+    }
+  }
+}
+
+SizeGroup {
+  mode: vertical;
+  widgets [
+    from_time_box,
+    to_time_box,
+  ]
+}

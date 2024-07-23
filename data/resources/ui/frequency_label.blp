@@ -1,0 +1,14 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBFrequencyLabel: Adw.Bin {
+  Label {
+    styles [
+      "dim-label",
+    ]
+
+    ellipsize: start;
+    xalign: 0;
+    label: bind template.label;
+  }
+}

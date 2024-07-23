@@ -7,3 +7,5 @@ src/config.rs
 result
 .nixos-test-history
 *.syscap
+
+/subprojects/blueprint-compiler
