@@ -58,6 +58,20 @@
   </description>
 
   <releases>
+    <release version="2.7.0" date="2024-07-24">
+      <description translate="no">
+        <p>Added</p>
+        <ul>
+          <li>Ability to use arrival time instead of departure time.</li>
+          <li>Region divider in provider popover.</li>
+          <li>Highlight currently selected region in the provider popover.</li>
+        </ul>
+        <p>Fixed</p>
+        <ul>
+          <li>Some providers displaying 0 minute walks in transitions (upstream fix).</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.6.0" date="2024-06-12">
       <description translate="no">
         <p>Added</p>
