@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Ability to use arrival time instead of departure time.
+- Region divider in provider popover.
+- Highlight currently selected region in the provider popover.
+
+### Fixed
+
+- Some providers displaying "0 minute walks" in transitions (upstream fix).
+
 ## [2.6.0] - 2024-06-12
 
 ### Added
@@ -141,7 +151,8 @@ Those are packaged on <crates.io>.
 
 - Complete UI overhaul
 
-[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.5.0...master
+[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.6.0...master
+[2.6.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.5.0...2.6.0
 [2.5.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.4.0...2.5.0
 [2.4.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.3.0...2.4.0
 [2.3.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.2.0...2.3.0
