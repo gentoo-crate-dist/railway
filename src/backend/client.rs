@@ -24,12 +24,12 @@ fn providers() -> Vec<Provider> {
         // TODO: BVG, SNCB, SNCF, TPG
         Provider::new("AVV", "AVV", Some("Aachener Verkehrsverbund"), &gettextrs::gettext("Germany"), true),
         Provider::new("BART", "BART", Some("Bay Area Rapid Transit"), &gettextrs::gettext("North America"), true),
-        Provider::new("BLS", "BLS", Some("BLS AG"), &gettextrs::gettext("Germany"), true),
+        Provider::new("BLS", "BLS", Some("BLS AG"), &gettextrs::gettext("Europe"), true),
         Provider::new(
             "CFL",
             "CFL",
             Some("Société Nationale des Chemins de Fer Luxembourgeois"),
-            &gettextrs::gettext("Germany"),
+            &gettextrs::gettext("Europe"),
             true,
         ),
         Provider::new("CMTA", "CapMetro", Some("Austin, Texas"), &gettextrs::gettext("North America"), true),
@@ -52,7 +52,7 @@ fn providers() -> Vec<Provider> {
             true,
         ),
         Provider::new("Irish-Rail", "Irish Rail", Some("Iarnród Éireann"), &gettextrs::gettext("Europe"), true),
-        Provider::new("IVB", "IVB", Some("Innsbrucker Verkehrsbetriebe"), &gettextrs::gettext("Germany"), true),
+        Provider::new("IVB", "IVB", Some("Innsbrucker Verkehrsbetriebe"), &gettextrs::gettext("Europe"), true),
         Provider::new("KVB", "KVB", Some("Kölner Verkehrs-Betriebe"), &gettextrs::gettext("Germany"), true),
         Provider::new("Mobiliteit-Lu", "Mobiliteit", Some("Luxembourg"), &gettextrs::gettext("Europe"), true),
         // Migrated endpoint to EFA
@@ -132,7 +132,7 @@ fn providers() -> Vec<Provider> {
             true,
         ),
         Provider::new("VMT", "VMT", Some("Verkehrsverbund Mittelthüringen"), &gettextrs::gettext("Germany"), true),
-        Provider::new("VOR", "VOR", Some("Verkehrsverbund Ost-Region"), &gettextrs::gettext("Germany"), true),
+        Provider::new("VOR", "VOR", Some("Verkehrsverbund Ost-Region"), &gettextrs::gettext("Europe"), true),
         Provider::new("VOS", "VOS", Some("Verkehrsgemeinschaft Osnabrück"), &gettextrs::gettext("Germany"), true),
         Provider::new("VRN", "VRN", Some("Verkehrsverbund Rhein-Neckar"), &gettextrs::gettext("Germany"), true),
         Provider::new(
