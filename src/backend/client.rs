@@ -113,7 +113,7 @@ fn providers() -> Vec<Provider> {
         Provider::new(
             "VBB",
             "VBB",
-            Some("Berlin &amp; Brandenburg public transport"),
+            Some("Berlin & Brandenburg public transport"),
             &gettextrs::gettext("Germany"),
             true,
         ),
