@@ -7,9 +7,7 @@ gtk::glib::wrapper! {
 
 impl DiscountCard {
     pub fn new(id: &str) -> DiscountCard {
-        Object::builder::<Self>()
-            .property("id", id)
-            .build()
+        Object::builder::<Self>().property("id", id).build()
     }
 
     pub fn id(&self) -> String {
@@ -23,9 +21,7 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{
-            ParamSpec, ParamSpecString, Value,
-        },
+        glib::{ParamSpec, ParamSpecString, Value},
         prelude::{ParamSpecBuilderExt, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass},
     };
@@ -56,7 +52,8 @@ mod imp {
             match pspec.name() {
                 "id" => {
                     let obj = value
-                        .get::<String>().expect("Property `id` of `DiscountCard` has to be of type `String`");
+                        .get::<String>()
+                        .expect("Property `id` of `DiscountCard` has to be of type `String`");
                     self.id.replace(obj);
                 }
                 _ => unimplemented!(),

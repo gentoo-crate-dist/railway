@@ -5,7 +5,13 @@ gtk::glib::wrapper! {
 }
 
 impl Provider {
-    pub fn new(id: &'static str, short_name: &str, name: Option<&str>, regional_group: &str, has_icon: bool) -> Provider {
+    pub fn new(
+        id: &'static str,
+        short_name: &str,
+        name: Option<&str>,
+        regional_group: &str,
+        has_icon: bool,
+    ) -> Provider {
         let icon_name = if has_icon {
             id.to_lowercase()
         } else {
@@ -42,7 +48,7 @@ mod imp {
         short_name: RefCell<String>,
         name: RefCell<Option<String>>,
         icon_name: RefCell<String>,
-        regional_group: RefCell<String>
+        regional_group: RefCell<String>,
     }
 
     #[glib::object_subclass]

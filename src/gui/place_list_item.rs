@@ -1,5 +1,5 @@
-use gdk::glib::Object;
 use gdk::glib::prelude::ObjectExt;
+use gdk::glib::Object;
 
 use crate::backend::Place;
 
@@ -29,8 +29,8 @@ impl Default for PlaceListItem {
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::subclass::Signal;
     use gdk::glib::prelude::ObjectExt;
+    use gdk::glib::subclass::Signal;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;

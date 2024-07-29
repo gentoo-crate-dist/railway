@@ -41,10 +41,14 @@ mod imp {
 
     impl TimeDivider {
         fn update_visibility(&self) {
-            let is_requested_day = self.label_date.text() == self.journeys_result.borrow().as_ref()
-                .and_then(|r| r.requested_time())
-                .map(|d| Utility::format_date_human(d.with_timezone(&Local).date_naive()))
-                .unwrap_or_default();
+            let is_requested_day = self.label_date.text()
+                == self
+                    .journeys_result
+                    .borrow()
+                    .as_ref()
+                    .and_then(|r| r.requested_time())
+                    .map(|d| Utility::format_date_human(d.with_timezone(&Local).date_naive()))
+                    .unwrap_or_default();
 
             let hide = self.is_start.get() && (!self.is_initial.get() || is_requested_day);
             self.obj().set_visible(!hide);
@@ -69,18 +73,18 @@ mod imp {
     impl ObjectImpl for TimeDivider {
         fn properties() -> &'static [glib::ParamSpec] {
             static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-                vec![glib::ParamSpecObject::builder::<JourneysResult>("journeys-result")
-                    .write_only()
-                    .build(),
+                vec![
+                    glib::ParamSpecObject::builder::<JourneysResult>("journeys-result")
+                        .write_only()
+                        .build(),
                     glib::ParamSpecObject::builder::<Journey>("item")
-                    .write_only()
-                    .build(),
-                    glib::ParamSpecUInt::builder("start")
-                    .write_only()
-                    .build(),
+                        .write_only()
+                        .build(),
+                    glib::ParamSpecUInt::builder("start").write_only().build(),
                     glib::ParamSpecBoolean::builder("initial")
-                    .write_only()
-                    .build()]
+                        .write_only()
+                        .build(),
+                ]
             });
 
             PROPERTIES.as_ref()
@@ -101,7 +105,8 @@ mod imp {
                         .expect("TimeDivider to only get Journey");
 
                     let formatted = v.map(|v| v.departure_day());
-                    self.label_date.set_text(&formatted.clone().unwrap_or_default());
+                    self.label_date
+                        .set_text(&formatted.clone().unwrap_or_default());
                     self.update_visibility();
                 }
                 "start" => {
