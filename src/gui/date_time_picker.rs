@@ -133,28 +133,34 @@ pub mod imp {
         fn connect_btn_input_time_label(&self) {
             let obj = self.obj();
             self.pick_hour.connect_value_changed(clone!(
-                @weak obj
-                => move |_| {
+                #[weak]
+                obj,
+                move |_| {
                     obj.set_now(false);
                     obj.imp().update_time_label();
-            }));
+                }
+            ));
 
             self.pick_minute.connect_value_changed(clone!(
-                @weak obj
-                => move |_| {
+                #[weak]
+                obj,
+                move |_| {
                     obj.set_now(false);
                     obj.imp().update_time_label();
-            }));
+                }
+            ));
         }
 
         fn connect_expander_date_subtitle(&self) {
             let obj = self.obj();
             self.pick_cal.connect_day_selected(clone!(
-                @weak obj
-                => move |_| {
+                #[weak]
+                obj,
+                move |_| {
                     obj.set_now(false);
                     obj.imp().update_date_label();
-            }));
+                }
+            ));
         }
 
         #[template_callback]
@@ -230,10 +236,14 @@ pub mod imp {
             self.connect_expander_date_subtitle();
             self.connect_btn_input_time_label();
 
-            obj.connect_now_notify(clone!(@weak self as s => move |_| {
-                s.update_date_label();
-                s.update_time_label();
-            }));
+            obj.connect_now_notify(clone!(
+                #[weak(rename_to = s)]
+                self,
+                move |_| {
+                    s.update_date_label();
+                    s.update_time_label();
+                }
+            ));
 
             obj.set_now(true);
             self.handle_date_popover_open();
@@ -244,16 +254,22 @@ pub mod imp {
             obj.set_now(true);
 
             let popover_date = self.popover_date.get();
-            self.btn_input_date
-                .connect_activated(clone!(@weak popover_date => move |_| {
+            self.btn_input_date.connect_activated(clone!(
+                #[weak]
+                popover_date,
+                move |_| {
                     popover_date.popup();
-                }));
+                }
+            ));
 
             let popover_time = self.popover_time.get();
-            self.btn_input_time
-                .connect_activated(clone!(@weak popover_time => move |_| {
+            self.btn_input_time.connect_activated(clone!(
+                #[weak]
+                popover_time,
+                move |_| {
                     popover_time.popup();
-                }));
+                }
+            ));
 
             self.toggle_arrival.set_active(false);
             self.toggle_departure.set_active(true);

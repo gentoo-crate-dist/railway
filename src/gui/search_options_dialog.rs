@@ -102,40 +102,53 @@ pub mod imp {
                 .set_model(Some(&model_bahncard));
             self.settings
                 .bind("bahncard", &self.dropdown_bahncard.get(), "selected")
-                .mapping(
-                    clone!(@weak model_bahncard => @default-panic, move |variant, value_type| {
+                .mapping(clone!(
+                    #[weak]
+                    model_bahncard,
+                    #[upgrade_or_panic]
+                    move |variant, value_type| {
                         assert_eq!(value_type, glib::types::Type::U32);
 
                         variant.str().map(|card_id| {
-                            let position = model_bahncard.iter::<glib::Object>().position(|entry| {
-                                card_id == entry.expect("our model to only contain GObjects")
-                                    .downcast::<DiscountCard>()
-                                    .expect("our model to only contain DiscountCards")
-                                    .id()
-                            });
+                            let position =
+                                model_bahncard.iter::<glib::Object>().position(|entry| {
+                                    card_id
+                                        == entry
+                                            .expect("our model to only contain GObjects")
+                                            .downcast::<DiscountCard>()
+                                            .expect("our model to only contain DiscountCards")
+                                            .id()
+                                });
 
                             assert!(position.is_some());
 
                             (position.unwrap() as u32).to_value()
                         })
-                    }),
-                )
-                .set_mapping(
-                    clone!(@weak model_bahncard => @default-panic, move |value, variant_type| {
+                    }
+                ))
+                .set_mapping(clone!(
+                    #[weak]
+                    model_bahncard,
+                    #[upgrade_or_panic]
+                    move |value, variant_type| {
                         assert_eq!(variant_type.as_str(), "s");
 
                         match value.get::<u32>() {
-                            Ok(position) => {
-                                glib::variant::Variant::parse(
-                                    Some(&variant_type),
-                                    &format!("'{}'", model_bahncard.item(position)
-                                        .and_downcast::<DiscountCard>()?.id())
-                                ).ok()
-                            },
-                            _ => None
+                            Ok(position) => glib::variant::Variant::parse(
+                                Some(&variant_type),
+                                &format!(
+                                    "'{}'",
+                                    model_bahncard
+                                        .item(position)
+                                        .and_downcast::<DiscountCard>()?
+                                        .id()
+                                ),
+                            )
+                            .ok(),
+                            _ => None,
                         }
-                    }),
-                )
+                    }
+                ))
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
 

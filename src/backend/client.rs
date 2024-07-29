@@ -22,9 +22,27 @@ fn providers() -> Vec<Provider> {
         // Hafas
 
         // TODO: BVG, SNCB, SNCF, TPG
-        Provider::new("AVV", "AVV", Some("Aachener Verkehrsverbund"), &gettextrs::gettext("Germany"), true),
-        Provider::new("BART", "BART", Some("Bay Area Rapid Transit"), &gettextrs::gettext("North America"), true),
-        Provider::new("BLS", "BLS", Some("BLS AG"), &gettextrs::gettext("Europe"), true),
+        Provider::new(
+            "AVV",
+            "AVV",
+            Some("Aachener Verkehrsverbund"),
+            &gettextrs::gettext("Germany"),
+            true,
+        ),
+        Provider::new(
+            "BART",
+            "BART",
+            Some("Bay Area Rapid Transit"),
+            &gettextrs::gettext("North America"),
+            true,
+        ),
+        Provider::new(
+            "BLS",
+            "BLS",
+            Some("BLS AG"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
         Provider::new(
             "CFL",
             "CFL",
@@ -32,8 +50,20 @@ fn providers() -> Vec<Provider> {
             &gettextrs::gettext("Europe"),
             true,
         ),
-        Provider::new("CMTA", "CapMetro", Some("Austin, Texas"), &gettextrs::gettext("North America"), true),
-        Provider::new("DART", "DART", Some("Des Moines Area Rapid Transit"), &gettextrs::gettext("North America"), true),
+        Provider::new(
+            "CMTA",
+            "CapMetro",
+            Some("Austin, Texas"),
+            &gettextrs::gettext("North America"),
+            true,
+        ),
+        Provider::new(
+            "DART",
+            "DART",
+            Some("Des Moines Area Rapid Transit"),
+            &gettextrs::gettext("North America"),
+            true,
+        ),
         // Always shows "no provider"
         // Provider::new(
         //     "DB-Busradar-Nrw",
@@ -43,7 +73,13 @@ fn providers() -> Vec<Provider> {
         //     &gettextrs::gettext("Germany"),
         //     true,
         // ),
-        Provider::new("DB", "DB", Some("Deutsche Bahn"), &gettextrs::gettext("Germany"), true),
+        Provider::new(
+            "DB",
+            "DB",
+            Some("Deutsche Bahn"),
+            &gettextrs::gettext("Germany"),
+            true,
+        ),
         Provider::new(
             "VGI",
             "VGI",
@@ -51,10 +87,34 @@ fn providers() -> Vec<Provider> {
             &gettextrs::gettext("Germany"),
             true,
         ),
-        Provider::new("Irish-Rail", "Irish Rail", Some("Iarnród Éireann"), &gettextrs::gettext("Europe"), true),
-        Provider::new("IVB", "IVB", Some("Innsbrucker Verkehrsbetriebe"), &gettextrs::gettext("Europe"), true),
-        Provider::new("KVB", "KVB", Some("Kölner Verkehrs-Betriebe"), &gettextrs::gettext("Germany"), true),
-        Provider::new("Mobiliteit-Lu", "Mobiliteit", Some("Luxembourg"), &gettextrs::gettext("Europe"), true),
+        Provider::new(
+            "Irish-Rail",
+            "Irish Rail",
+            Some("Iarnród Éireann"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
+        Provider::new(
+            "IVB",
+            "IVB",
+            Some("Innsbrucker Verkehrsbetriebe"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
+        Provider::new(
+            "KVB",
+            "KVB",
+            Some("Kölner Verkehrs-Betriebe"),
+            &gettextrs::gettext("Germany"),
+            true,
+        ),
+        Provider::new(
+            "Mobiliteit-Lu",
+            "Mobiliteit",
+            Some("Luxembourg"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
         // Migrated endpoint to EFA
         // Provider::new(
         //     "mobil-nrw",
@@ -64,7 +124,13 @@ fn providers() -> Vec<Provider> {
         //     &gettextrs::gettext("Germany"),
         //     true,
         // ),
-        Provider::new("NVV", "NVV", Some("Nordhessischer Verkehrsverbund"), &gettextrs::gettext("Germany"), true),
+        Provider::new(
+            "NVV",
+            "NVV",
+            Some("Nordhessischer Verkehrsverbund"),
+            &gettextrs::gettext("Germany"),
+            true,
+        ),
         Provider::new(
             "NahSH",
             "Nah.SH",
@@ -80,11 +146,41 @@ fn providers() -> Vec<Provider> {
             &gettextrs::gettext("Europe"),
             true,
         ),
-        Provider::new("OEBB", "ÖBB", Some("Österreichische Bundesbahnen"), &gettextrs::gettext("Europe"), true),
-        Provider::new("PKP", "PKP", Some("Polskie Koleje Państwowe"), &gettextrs::gettext("Europe"), true),
-        Provider::new("RMV", "RMV", Some("Rhein-Main-Verkehrsverbund"), &gettextrs::gettext("Germany"), true),
-        Provider::new("RSAG", "RSAG", Some("Rostocker Straßenbahn AG"), &gettextrs::gettext("Germany"), true),
-        Provider::new("Rejseplanen", "Rejseplanen", Some("Denmark"), &gettextrs::gettext("Europe"), true),
+        Provider::new(
+            "OEBB",
+            "ÖBB",
+            Some("Österreichische Bundesbahnen"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
+        Provider::new(
+            "PKP",
+            "PKP",
+            Some("Polskie Koleje Państwowe"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
+        Provider::new(
+            "RMV",
+            "RMV",
+            Some("Rhein-Main-Verkehrsverbund"),
+            &gettextrs::gettext("Germany"),
+            true,
+        ),
+        Provider::new(
+            "RSAG",
+            "RSAG",
+            Some("Rostocker Straßenbahn AG"),
+            &gettextrs::gettext("Germany"),
+            true,
+        ),
+        Provider::new(
+            "Rejseplanen",
+            "Rejseplanen",
+            Some("Denmark"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
         Provider::new(
             "SBahn-Muenchen",
             "S-Bahn München",
@@ -100,8 +196,20 @@ fn providers() -> Vec<Provider> {
             &gettextrs::gettext("Europe"),
             true,
         ),
-        Provider::new("SVV", "SVV", Some("Salzburger Verkehrsverbund"), &gettextrs::gettext("Europe"), true),
-        Provider::new("saarvv", "saarVV", Some("Saarfahrplan/VGS Saarland"), &gettextrs::gettext("Germany"), true),
+        Provider::new(
+            "SVV",
+            "SVV",
+            Some("Salzburger Verkehrsverbund"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
+        Provider::new(
+            "saarvv",
+            "saarVV",
+            Some("Saarfahrplan/VGS Saarland"),
+            &gettextrs::gettext("Germany"),
+            true,
+        ),
         Provider::new(
             "Salzburg",
             "Salzburg",
@@ -131,10 +239,34 @@ fn providers() -> Vec<Provider> {
             &gettextrs::gettext("Europe"),
             true,
         ),
-        Provider::new("VMT", "VMT", Some("Verkehrsverbund Mittelthüringen"), &gettextrs::gettext("Germany"), true),
-        Provider::new("VOR", "VOR", Some("Verkehrsverbund Ost-Region"), &gettextrs::gettext("Europe"), true),
-        Provider::new("VOS", "VOS", Some("Verkehrsgemeinschaft Osnabrück"), &gettextrs::gettext("Germany"), true),
-        Provider::new("VRN", "VRN", Some("Verkehrsverbund Rhein-Neckar"), &gettextrs::gettext("Germany"), true),
+        Provider::new(
+            "VMT",
+            "VMT",
+            Some("Verkehrsverbund Mittelthüringen"),
+            &gettextrs::gettext("Germany"),
+            true,
+        ),
+        Provider::new(
+            "VOR",
+            "VOR",
+            Some("Verkehrsverbund Ost-Region"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
+        Provider::new(
+            "VOS",
+            "VOS",
+            Some("Verkehrsgemeinschaft Osnabrück"),
+            &gettextrs::gettext("Germany"),
+            true,
+        ),
+        Provider::new(
+            "VRN",
+            "VRN",
+            Some("Verkehrsverbund Rhein-Neckar"),
+            &gettextrs::gettext("Germany"),
+            true,
+        ),
         Provider::new(
             "VSN",
             "VSN",
@@ -142,12 +274,30 @@ fn providers() -> Vec<Provider> {
             &gettextrs::gettext("Germany"),
             true,
         ),
-        Provider::new("VVT", "VVT", Some("Verkehrsverbund Tirol"), &gettextrs::gettext("Europe"), true),
-        Provider::new("VVV", "VVV", Some("Verkehrsverbund Vorarlberg"), &gettextrs::gettext("Europe"), true),
+        Provider::new(
+            "VVT",
+            "VVT",
+            Some("Verkehrsverbund Tirol"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
+        Provider::new(
+            "VVV",
+            "VVV",
+            Some("Verkehrsverbund Vorarlberg"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
         // Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
 
         // Search.ch
-        Provider::new("search-ch", "SBB", Some("Switzerland"), &gettextrs::gettext("Europe"), true),
+        Provider::new(
+            "search-ch",
+            "SBB",
+            Some("Switzerland"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
         // Transitous
         Provider::new(
             "transitous",
@@ -177,9 +327,13 @@ impl Client {
         let profile_name = settings.string("search-provider");
         settings.connect_changed(
             Some("search-provider"),
-            clone!(@weak s => move |settings, _| {
-                s.set_profile(settings.string("search-provider"));
-            }),
+            clone!(
+                #[weak]
+                s,
+                move |settings, _| {
+                    s.set_profile(settings.string("search-provider"));
+                }
+            ),
         );
         s.set_profile(profile_name);
         s

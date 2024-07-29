@@ -34,19 +34,25 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
 
     if let Some(msg) = msg {
         let action_more_info = SimpleAction::new("more-info", None);
-        action_more_info.connect_activate(clone!(@strong overlay => move |_, _| {
-            let dialog = AlertDialog::builder()
-                .heading(gettext("Error"))
-                .body(&msg)
-                .default_response("close")
-                .build();
-            dialog.add_response("close", &gettextrs::gettext("_Close"));
-            dialog.present(&overlay
-                            .root()
-                            .expect("Overlay to have a root.")
-                            .downcast::<Window>()
-                            .expect("Root of overlay to be a Window."));
-        }));
+        action_more_info.connect_activate(clone!(
+            #[strong]
+            overlay,
+            move |_, _| {
+                let dialog = AlertDialog::builder()
+                    .heading(gettext("Error"))
+                    .body(&msg)
+                    .default_response("close")
+                    .build();
+                dialog.add_response("close", &gettextrs::gettext("_Close"));
+                dialog.present(Some(
+                    &overlay
+                        .root()
+                        .expect("Overlay to have a root.")
+                        .downcast::<Window>()
+                        .expect("Root of overlay to be a Window."),
+                ));
+            }
+        ));
         toast.set_action_name(Some("toast.more-info"));
 
         let actions = SimpleActionGroup::new();

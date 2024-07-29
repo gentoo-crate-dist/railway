@@ -67,7 +67,7 @@ pub mod imp {
         #[template_callback]
         fn handle_clicked(&self, _: gtk::Button) {
             let settings = SearchOptionsDialog::new();
-            settings.present(&self.window());
+            settings.present(Some(&self.window()));
         }
 
         fn bahncards() -> HashMap<usize, String> {
@@ -110,9 +110,13 @@ pub mod imp {
             // XXX: Maybe only listen for interesting things?
             self.settings.connect_changed(
                 None,
-                clone!(@weak obj => move |_, _| {
-                    obj.notify("extra-label");
-                }),
+                clone!(
+                    #[weak]
+                    obj,
+                    move |_, _| {
+                        obj.notify("extra-label");
+                    }
+                ),
             );
         }
 

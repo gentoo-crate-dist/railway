@@ -1,7 +1,7 @@
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
-use crate::gui::window::Window;
 use crate::backend::Journey;
+use crate::gui::window::Window;
 
 #[derive(PartialEq)]
 enum StoreMode {
@@ -60,9 +60,9 @@ pub mod imp {
     use once_cell::sync::Lazy;
 
     use crate::config;
-    use crate::{backend::Journey, gui::stores::migrate_journey_store::import_old_store};
-    use crate::gui::window::Window;
     use crate::gui::stores::journey_store::StoreMode;
+    use crate::gui::window::Window;
+    use crate::{backend::Journey, gui::stores::migrate_journey_store::import_old_store};
 
     pub struct JourneysStore {
         path: PathBuf,
@@ -94,16 +94,19 @@ pub mod imp {
                 .unwrap_or_default();
             for journey in journeys.into_iter().rev() {
                 // Note: We limit the deletion time in the settings; the conversion to Duration should never fail.
-                let deletion_time = Duration::try_hours(self.settings.int("deletion-time").into()).unwrap_or_default();
-                let could_be_deleted = journey.legs.last().and_then(|l| {
-                    l.arrival.or(l.planned_arrival)
-                }).map(|arrival| {
-                     arrival + deletion_time < Local::now()
-                }).unwrap_or(true);
+                let deletion_time = Duration::try_hours(self.settings.int("deletion-time").into())
+                    .unwrap_or_default();
+                let could_be_deleted = journey
+                    .legs
+                    .last()
+                    .and_then(|l| l.arrival.or(l.planned_arrival))
+                    .map(|arrival| arrival + deletion_time < Local::now())
+                    .unwrap_or(true);
 
                 if could_be_deleted {
                     if self.settings.boolean("delete-old") {
-                        self.settings.set_boolean("bookmark-purge-suggested", true)
+                        self.settings
+                            .set_boolean("bookmark-purge-suggested", true)
                             .expect("setting bookmark-purge-suggested must exist as a boolean");
                         self.store(Journey::new(journey), StoreMode::Remove);
                         continue;
@@ -129,24 +132,35 @@ pub mod imp {
                             .ellipsize(pango::EllipsizeMode::End)
                             .xalign(0.0)
                             .css_classes(vec!["heading"])
-                            .build()
+                            .build(),
                     )
                     .button_label(&gettextrs::gettext("Always _Delete"))
                     .timeout(0)
                     .build();
 
-                let store = self.obj();
-                toast.connect_button_clicked(clone!(@strong self.settings as settings, @strong store => move |_| {
-                    settings.set_boolean("delete-old", true)
+                toast.connect_button_clicked(clone!(
+                    #[strong(rename_to = settings)]
+                    self.settings,
+                    move |_| {
+                        settings
+                            .set_boolean("delete-old", true)
                             .expect("setting delete-old must exist as a boolean");
-                }));
+                    }
+                ));
 
-                toast.connect_dismissed(clone!(@strong self.settings as settings => move |_| {
-                    settings.set_boolean("bookmark-purge-suggested", true)
+                toast.connect_dismissed(clone!(
+                    #[strong(rename_to = settings)]
+                    self.settings,
+                    move |_| {
+                        settings
+                            .set_boolean("bookmark-purge-suggested", true)
                             .expect("setting bookmark-purge-suggested must exist as a boolean");
-                }));
+                    }
+                ));
 
-                self.window.borrow().as_ref()
+                self.window
+                    .borrow()
+                    .as_ref()
                     .expect("JourneyStore needs an associated window")
                     .display_custom_toast(toast);
             }
@@ -224,9 +238,16 @@ pub mod imp {
             self.parent_constructed();
 
             let store = self.obj();
-            self.settings.connect_changed(Some("delete-old"), clone!(@weak store => move |_, _| {
-                store.reload();
-            }));
+            self.settings.connect_changed(
+                Some("delete-old"),
+                clone!(
+                    #[weak]
+                    store,
+                    move |_, _| {
+                        store.reload();
+                    }
+                ),
+            );
         }
 
         fn signals() -> &'static [Signal] {
