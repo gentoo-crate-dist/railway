@@ -79,6 +79,7 @@ pub mod imp {
                 .write(true)
                 .read(true)
                 .create(true)
+                .truncate(false)
                 .open(&self.path)
                 .expect("Failed to open journey_store.json file");
 
@@ -134,7 +135,7 @@ pub mod imp {
                             .css_classes(vec!["heading"])
                             .build(),
                     )
-                    .button_label(&gettextrs::gettext("Always _Delete"))
+                    .button_label(gettextrs::gettext("Always _Delete"))
                     .timeout(0)
                     .build();
 
@@ -218,12 +219,10 @@ pub mod imp {
                     let s = stored.remove(idx);
                     self.obj().emit_by_name::<()>("remove", &[&s]);
                 }
-            } else {
-                if store_mode != StoreMode::Remove {
-                    log::trace!("Storing Journey {:?}", journey.journey());
-                    self.obj().emit_by_name::<()>("add", &[&journey]);
-                    stored.insert(0, journey);
-                }
+            } else if store_mode != StoreMode::Remove {
+                log::trace!("Storing Journey {:?}", journey.journey());
+                self.obj().emit_by_name::<()>("add", &[&journey]);
+                stored.insert(0, journey);
             }
         }
 

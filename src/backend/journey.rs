@@ -140,7 +140,7 @@ mod imp {
                     .journey
                     .borrow()
                     .as_ref()
-                    .and_then(|o| o.legs.get(0))
+                    .and_then(|o| o.legs.first())
                     .map(|o| Leg::new(o.clone()))
                     .to_value(),
                 "last-leg" => self

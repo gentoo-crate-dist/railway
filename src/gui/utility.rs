@@ -34,7 +34,6 @@ impl Utility {
         // Per documentation, the returned value always contains at least one element (`C`). This is therefore save.
         // APIs also don't seem to like language modifiers (e.g. `_US`) or `.UTF-8` at the end, strip this.
         gtk::glib::language_names()[0]
-            .to_string()
             .split(['_', '.'])
             .next()
             .unwrap()

@@ -7,6 +7,12 @@ gtk::glib::wrapper! {
             gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
 
+impl Default for SearchOptionsDialog {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl SearchOptionsDialog {
     pub fn new() -> Self {
         Object::builder().build()

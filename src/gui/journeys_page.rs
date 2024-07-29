@@ -203,7 +203,7 @@ pub mod imp {
             obj.set_loading_earlier(true);
 
             if self.auto_scroll.get() && !self.scrolled_up.get() {
-                obj.set_property("scrolled-up", &true.to_value());
+                obj.set_property("scrolled-up", true.to_value());
             }
 
             let main_context = MainContext::default();
@@ -375,7 +375,7 @@ pub mod imp {
                     journey_item.connect_parent_notify(|journey_item| {
                         if let Some(parent) = journey_item.property::<Option<Widget>>("parent") {
                             parent.update_relation(&[gtk::accessible::Relation::DescribedBy(&[
-                                &journey_item.get_indicators().upcast_ref(),
+                                journey_item.get_indicators().upcast_ref(),
                             ])]);
                         }
                     });

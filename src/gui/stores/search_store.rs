@@ -48,6 +48,7 @@ pub mod imp {
                 .write(true)
                 .read(true)
                 .create(true)
+                .truncate(false)
                 .open(&self.path)
                 .expect("Failed to open searches_store.json file");
 

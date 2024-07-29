@@ -7,6 +7,12 @@ gtk::glib::wrapper! {
             gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
 
+impl Default for PreferencesDialog {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl PreferencesDialog {
     pub fn new() -> Self {
         Object::builder().build()

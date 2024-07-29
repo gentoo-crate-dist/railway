@@ -114,7 +114,7 @@ pub mod imp {
                     // uses fact that None format does not include "{platform}"
                     .replace(
                         "{platform}",
-                        &platform_start.as_ref().unwrap_or(&"".to_string())
+                        platform_start.as_ref().unwrap_or(&"".to_string())
                     ),
                 format_arrival
                     .replace("{destination}", destination)
@@ -122,7 +122,7 @@ pub mod imp {
                     // uses fact that None format does not include "{platform}"
                     .replace(
                         "{platform}",
-                        &platform_destination.as_ref().unwrap_or(&"".to_string())
+                        platform_destination.as_ref().unwrap_or(&"".to_string())
                     )
             )
         }

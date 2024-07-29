@@ -136,7 +136,7 @@ pub mod imp {
                         .item()
                         .and_then(|object| object.downcast::<Provider>().ok())
                         .map(|provider| provider.property::<String>("regional-group"))
-                        .filter(|string| string != "")
+                        .filter(|string| !string.is_empty())
                         .as_deref()
                         .map(|label| {
                             gtk::Label::builder()
@@ -198,11 +198,8 @@ pub mod imp {
                 #[upgrade_or]
                 glib::Propagation::Proceed,
                 move |_, key, _, _| {
-                    match key {
-                        gdk::Key::Escape => {
-                            popover.popdown();
-                        }
-                        _ => (),
+                    if key == gdk::Key::Escape {
+                        popover.popdown();
                     }
                     glib::Propagation::Proceed
                 }
