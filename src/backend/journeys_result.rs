@@ -93,7 +93,7 @@ impl JourneysResult {
     }
 
     pub fn requested_time(&self) -> Option<DateTime<Tz>> {
-        self.imp().requested_time.borrow().clone()
+        *self.imp().requested_time.borrow()
     }
 
     fn current_ids(&self) -> HashSet<String> {

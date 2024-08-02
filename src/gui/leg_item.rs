@@ -114,7 +114,7 @@ pub mod imp {
                     // uses fact that None format does not include "{platform}"
                     .replace(
                         "{platform}",
-                        &platform_start.as_ref().unwrap_or(&"".to_string())
+                        platform_start.as_ref().unwrap_or(&"".to_string())
                     ),
                 format_arrival
                     .replace("{destination}", destination)
@@ -122,7 +122,7 @@ pub mod imp {
                     // uses fact that None format does not include "{platform}"
                     .replace(
                         "{platform}",
-                        &platform_destination.as_ref().unwrap_or(&"".to_string())
+                        platform_destination.as_ref().unwrap_or(&"".to_string())
                     )
             )
         }
@@ -149,11 +149,8 @@ pub mod imp {
 
             if n_intermediate_locations > 0 {
                 self.stopover_button.set_visible(true);
-                let num_stopovers_fmt = gettextrs::ngettext(
-                    "{} Stop",
-                    "{} Stops",
-                    n_stopovers.try_into().unwrap(),
-                );
+                let num_stopovers_fmt =
+                    gettextrs::ngettext("{} Stop", "{} Stops", n_stopovers.try_into().unwrap());
                 let num_stopovers_str = num_stopovers_fmt.replace("{}", &n_stopovers.to_string());
                 self.label_num_stopovers.set_label(&num_stopovers_str);
             } else {

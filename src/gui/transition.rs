@@ -85,11 +85,18 @@ pub mod imp {
     }
 
     impl Transition {
-        fn format_transfer_description(transfer_description: &str, destination: &Option<&String>) -> String {
+        fn format_transfer_description(
+            transfer_description: &str,
+            destination: &Option<&String>,
+        ) -> String {
             // Translators: Do not translate the strings in {}.
             let format = gettextrs::gettext("Arrive at {destination}.");
             match destination {
-                Some(destination) => format!("{} {}", transfer_description, format.replace("{destination}", destination)),
+                Some(destination) => format!(
+                    "{} {}",
+                    transfer_description,
+                    format.replace("{destination}", destination)
+                ),
                 None => transfer_description.to_string(),
             }
         }
@@ -116,14 +123,21 @@ pub mod imp {
         fn constructed(&self) {
             self.parent_constructed();
 
-            self.obj().connect_notify_local(None, clone!(@weak self as transition => move |obj, _| {
-                obj.update_property(&[
-                    gtk::accessible::Property::Label(&Transition::format_transfer_description(
-                        &obj.property::<String>("label"),
-                        &transition.final_destination.borrow().as_ref(),
-                    ))
-                ]);
-            }));
+            self.obj().connect_notify_local(
+                None,
+                clone!(
+                    #[weak(rename_to = transition)]
+                    self,
+                    move |obj, _| {
+                        obj.update_property(&[gtk::accessible::Property::Label(
+                            &Transition::format_transfer_description(
+                                &obj.property::<String>("label"),
+                                &transition.final_destination.borrow().as_ref(),
+                            ),
+                        )]);
+                    }
+                ),
+            );
         }
 
         fn properties() -> &'static [ParamSpec] {
@@ -208,19 +222,13 @@ pub mod imp {
                     self.walking_time.borrow().clone(),
                     self.waiting_time.borrow().clone(),
                 ) {
-                    (Some(walking), Some(waiting)) => {
-                        gettextrs::gettext("Walk {walk} Wait {wait}")
-                            .replace("{walk}", &walking)
-                            .replace("{wait}", &waiting)
-                    }
+                    (Some(walking), Some(waiting)) => gettextrs::gettext("Walk {walk} Wait {wait}")
+                        .replace("{walk}", &walking)
+                        .replace("{wait}", &waiting),
                     (None, Some(waiting)) => {
-                        gettextrs::gettext("Transfer Time {}")
-                            .replace("{}", &waiting)
+                        gettextrs::gettext("Transfer Time {}").replace("{}", &waiting)
                     }
-                    (Some(walking), None) => {
-                        gettextrs::gettext("Walk {}")
-                            .replace("{}", &walking)
-                    }
+                    (Some(walking), None) => gettextrs::gettext("Walk {}").replace("{}", &walking),
                     (None, None) => gettextrs::gettext("Transfer"),
                 })
                 .to_value(),

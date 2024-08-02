@@ -72,11 +72,11 @@ pub mod imp {
             match (arrival, platform) {
                 (Some(arrival), Some(platform)) => format_full
                     .replace("{stop}", stop)
-                    .replace("{arrival}", &arrival)
-                    .replace("{platform}", &platform),
+                    .replace("{arrival}", arrival)
+                    .replace("{platform}", platform),
                 (Some(arrival), None) => format_no_platform
                     .replace("{stop}", stop)
-                    .replace("{arrival}", &arrival),
+                    .replace("{arrival}", arrival),
                 (_, _) => stop.to_string(),
             }
         }

@@ -1,10 +1,10 @@
+use crate::backend::Journey;
+use crate::backend::Leg;
+use crate::gui::indicator_icons::IndicatorIcons;
 use gdk::glib::subclass::prelude::ObjectSubclassIsExt;
 use gdk::glib::Object;
 use gtk::prelude::ObjectExt;
 use std::borrow::Borrow;
-use crate::backend::Leg;
-use crate::backend::Journey;
-use crate::gui::indicator_icons::IndicatorIcons;
 
 gtk::glib::wrapper! {
     pub struct JourneyListItem(ObjectSubclass<imp::JourneyListItem>)
@@ -27,17 +27,24 @@ impl JourneyListItem {
     }
 
     pub fn format_trip_description(&self) -> String {
-        let journey: Journey = self.imp().journey.borrow().as_ref()
-            .expect("trip description formatting only works for an already set trip").clone();
+        let journey: Journey = self
+            .imp()
+            .journey
+            .borrow()
+            .as_ref()
+            .expect("trip description formatting only works for an already set trip")
+            .clone();
 
         let first_leg = journey.property::<Leg>("first-leg");
         let last_leg = journey.property::<Leg>("last-leg");
 
         let changes = journey.property::<u32>("transitions");
-        let departure = first_leg.property::<Option<String>>("departure")
+        let departure = first_leg
+            .property::<Option<String>>("departure")
             .or(first_leg.property::<Option<String>>("planned-departure"))
             .unwrap_or("".to_string());
-        let arrival = last_leg.property::<Option<String>>("arrival")
+        let arrival = last_leg
+            .property::<Option<String>>("arrival")
             .or(last_leg.property::<Option<String>>("planned-arrival"))
             .unwrap_or("".to_string());
         let travel_time = journey.property::<String>("total-time");

@@ -8,11 +8,11 @@ gtk::glib::wrapper! {
 pub mod imp {
     use std::cell::RefCell;
 
+    use gdk::glib::clone;
     use gdk::glib::ParamSpec;
     use gdk::glib::ParamSpecBoolean;
     use gdk::glib::ParamSpecString;
     use gdk::glib::Value;
-    use gdk::glib::clone;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::prelude::*;
@@ -36,42 +36,56 @@ pub mod imp {
 
     impl AltLabel {
         fn connect_equal(&self, obj: &super::AltLabel) {
-            obj.connect_notify_local(Some("main"), 
-                                     clone!(@strong self.label_main as label_main, 
-                                            @strong self.label_alt as label_alt => move |obj, _| {
-                let main = obj.property::<Option<String>>("main");
-                let alt = obj.property::<Option<String>>("alt");
-                if main == alt {
-                    label_main.add_css_class("main-label-on-time");
-                    label_alt.add_css_class("alt-label-on-time");
-                    label_main.remove_css_class("main-label-late");
-                    label_alt.remove_css_class("alt-label-late");
-                } else {
-                    label_main.add_css_class("main-label-late");
-                    label_alt.add_css_class("alt-label-late");
-                    label_main.remove_css_class("main-label-on-time");
-                    label_alt.remove_css_class("alt-label-on-time");
-                }
-                obj.notify("is-different");
-            }));
-            obj.connect_notify_local(Some("alt"), 
-                                     clone!(@strong self.label_main as label_main, 
-                                            @strong self.label_alt as label_alt => move |obj, _| {
-                let main = obj.property::<Option<String>>("main");
-                let alt = obj.property::<Option<String>>("alt");
-                if main == alt {
-                    label_main.add_css_class("main-label-on-time");
-                    label_alt.add_css_class("alt-label-on-time");
-                    label_main.remove_css_class("main-label-late");
-                    label_alt.remove_css_class("alt-label-late");
-                } else {
-                    label_main.add_css_class("main-label-late");
-                    label_alt.add_css_class("alt-label-late");
-                    label_main.remove_css_class("main-label-on-time");
-                    label_alt.remove_css_class("alt-label-on-time");
-                }
-                obj.notify("is-different");
-            }));
+            obj.connect_notify_local(
+                Some("main"),
+                clone!(
+                    #[strong(rename_to = label_main)]
+                    self.label_main,
+                    #[strong(rename_to = label_alt)]
+                    self.label_alt,
+                    move |obj, _| {
+                        let main = obj.property::<Option<String>>("main");
+                        let alt = obj.property::<Option<String>>("alt");
+                        if main == alt {
+                            label_main.add_css_class("main-label-on-time");
+                            label_alt.add_css_class("alt-label-on-time");
+                            label_main.remove_css_class("main-label-late");
+                            label_alt.remove_css_class("alt-label-late");
+                        } else {
+                            label_main.add_css_class("main-label-late");
+                            label_alt.add_css_class("alt-label-late");
+                            label_main.remove_css_class("main-label-on-time");
+                            label_alt.remove_css_class("alt-label-on-time");
+                        }
+                        obj.notify("is-different");
+                    }
+                ),
+            );
+            obj.connect_notify_local(
+                Some("alt"),
+                clone!(
+                    #[strong(rename_to = label_main)]
+                    self.label_main,
+                    #[strong(rename_to = label_alt)]
+                    self.label_alt,
+                    move |obj, _| {
+                        let main = obj.property::<Option<String>>("main");
+                        let alt = obj.property::<Option<String>>("alt");
+                        if main == alt {
+                            label_main.add_css_class("main-label-on-time");
+                            label_alt.add_css_class("alt-label-on-time");
+                            label_main.remove_css_class("main-label-late");
+                            label_alt.remove_css_class("alt-label-late");
+                        } else {
+                            label_main.add_css_class("main-label-late");
+                            label_alt.add_css_class("alt-label-late");
+                            label_main.remove_css_class("main-label-on-time");
+                            label_alt.remove_css_class("alt-label-on-time");
+                        }
+                        obj.notify("is-different");
+                    }
+                ),
+            );
         }
     }
 
@@ -102,7 +116,9 @@ pub mod imp {
                 vec![
                     ParamSpecString::builder("main").build(),
                     ParamSpecString::builder("alt").build(),
-                    ParamSpecBoolean::builder("is-different").read_only().build(),
+                    ParamSpecBoolean::builder("is-different")
+                        .read_only()
+                        .build(),
                 ]
             });
             PROPERTIES.as_ref()

@@ -43,25 +43,33 @@ impl JourneysPage {
 
     fn scroll_down(&self) {
         if self.is_auto_scroll() {
-            gspawn!(clone!(@weak self as obj => async move  {
-                // Need to sleep a little to make sure the scrolled window saw the changed
-                // child.
-                glib::timeout_future(Duration::from_millis(50)).await;
-                let adjustment = obj.imp().scrolled_window.vadjustment();
-                adjustment.set_value(adjustment.upper());
-            }));
+            gspawn!(clone!(
+                #[weak(rename_to = s)]
+                self,
+                async move {
+                    // Need to sleep a little to make sure the scrolled window saw the changed
+                    // child.
+                    glib::timeout_future(Duration::from_millis(50)).await;
+                    let adjustment = s.imp().scrolled_window.vadjustment();
+                    adjustment.set_value(adjustment.upper());
+                }
+            ));
         }
     }
 
     fn scroll_up(&self) {
         if self.is_auto_scroll() {
-            gspawn!(clone!(@weak self as obj => async move  {
-                // Need to sleep a little to make sure the scrolled window saw the changed
-                // child.
-                glib::timeout_future(Duration::from_millis(50)).await;
-                let adjustment = obj.imp().scrolled_window.vadjustment();
-                adjustment.set_value(adjustment.lower());
-            }));
+            gspawn!(clone!(
+                #[weak(rename_to = s)]
+                self,
+                async move {
+                    // Need to sleep a little to make sure the scrolled window saw the changed
+                    // child.
+                    glib::timeout_future(Duration::from_millis(50)).await;
+                    let adjustment = s.imp().scrolled_window.vadjustment();
+                    adjustment.set_value(adjustment.lower());
+                }
+            ));
         }
     }
 
@@ -154,9 +162,10 @@ pub mod imp {
         /// Every time when the page is not yet filled with the journeys, load more.
         fn connect_initial_loading(&self) {
             let obj = self.obj();
-            self.scrolled_window
-                .vadjustment()
-                .connect_changed(clone!(@weak obj => move |adj| {
+            self.scrolled_window.vadjustment().connect_changed(clone!(
+                #[weak]
+                obj,
+                move |adj| {
                     // This means the page is not yet filled.
                     if adj.upper() <= adj.page_size() {
                         // Do not scroll for the initial loading.
@@ -170,7 +179,8 @@ pub mod imp {
                         // Scroll if the page is already filled and more is manually requested.
                         obj.set_auto_scroll(true);
                     }
-                }));
+                }
+            ));
         }
 
         #[template_callback]
@@ -193,47 +203,73 @@ pub mod imp {
             obj.set_loading_earlier(true);
 
             if self.auto_scroll.get() && !self.scrolled_up.get() {
-                obj.set_property("scrolled-up", &true.to_value());
+                obj.set_property("scrolled-up", true.to_value());
             }
 
             let main_context = MainContext::default();
             let window = self.obj().root().and_downcast::<Window>().expect(
                 "search page must be mapped and realised when a template callback is called",
             );
-            main_context.spawn_local(
-                clone!(
-                       @strong obj,
-                       @strong self.settings as settings,
-                       @strong window => async move {
+            main_context.spawn_local(clone!(
+                #[strong]
+                obj,
+                #[strong(rename_to = settings)]
+                self.settings,
+                #[strong]
+                window,
+                async move {
                     let journeys_result = obj.property::<JourneysResult>("journeys-result");
 
-                    let result_journeys_result = obj.property::<Client>("client")
-                        .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), journeys_result.time_type(), JourneysOptions {
-                            earlier_than: journeys_result.earlier_ref(),
-                            language: Some(Utility::language_code()),
-                            stopovers: true,
-                            loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
-                            bike_friendly: settings.boolean("bike-accessible"),
-                            transfers: if settings.boolean("direct-only") { TransferOptions::Limited(0) } else { TransferOptions::Unlimited },
-                            // Value clamped in the settings; default should never happen.
-                            transfer_time: Duration::try_minutes(settings.int("transfer-time").into()).unwrap_or_default(),
-                            tariff_class: if settings.boolean("first-class") {
-                                TariffClass::First
-                            } else {
-                                TariffClass::Second
+                    let result_journeys_result = obj
+                        .property::<Client>("client")
+                        .journeys(
+                            journeys_result.source().expect("Journey to have a source"),
+                            journeys_result
+                                .destination()
+                                .expect("Journey to have a destination"),
+                            journeys_result.time_type(),
+                            JourneysOptions {
+                                earlier_than: journeys_result.earlier_ref(),
+                                language: Some(Utility::language_code()),
+                                stopovers: true,
+                                loyalty_card: LoyaltyCard::from_id(
+                                    settings
+                                        .enum_("bahncard")
+                                        .try_into()
+                                        .expect("Failed to convert setting `bahncard` to u8"),
+                                ),
+                                bike_friendly: settings.boolean("bike-accessible"),
+                                transfers: if settings.boolean("direct-only") {
+                                    TransferOptions::Limited(0)
+                                } else {
+                                    TransferOptions::Unlimited
+                                },
+                                // Value clamped in the settings; default should never happen.
+                                transfer_time: Duration::try_minutes(
+                                    settings.int("transfer-time").into(),
+                                )
+                                .unwrap_or_default(),
+                                tariff_class: if settings.boolean("first-class") {
+                                    TariffClass::First
+                                } else {
+                                    TariffClass::Second
+                                },
+                                products: Utility::products_selection_from_setting(&settings),
+                                ..Default::default()
                             },
-                            products: Utility::products_selection_from_setting(&settings), 
-                            ..Default::default()
-                        })
+                        )
                         .await;
                     if let Ok(result_journeys_result) = result_journeys_result {
                         journeys_result.merge_prepend(&result_journeys_result)
                     } else {
-                        window.display_error_toast(result_journeys_result.expect_err("Error to be present"));
+                        window.display_error_toast(
+                            result_journeys_result.expect_err("Error to be present"),
+                        );
                     }
                     obj.set_loading_earlier(false);
                     obj.scroll_up();
-            }));
+                }
+            ));
         }
 
         #[template_callback]
@@ -250,70 +286,101 @@ pub mod imp {
             let window = self.obj().root().and_downcast::<Window>().expect(
                 "search page must be mapped and realised when a template callback is called",
             );
-            main_context.spawn_local(
-                clone!(
-                       @strong obj,
-                       @strong self.settings as settings,
-                       @strong window => async move {
+            main_context.spawn_local(clone!(
+                #[strong]
+                obj,
+                #[strong(rename_to = settings)]
+                self.settings,
+                #[strong]
+                window,
+                async move {
                     let journeys_result = obj.property::<JourneysResult>("journeys-result");
 
-                    let result_journeys_result = obj.property::<Client>("client")
-                        .journeys(journeys_result.source().expect("Journey to have a source"), journeys_result.destination().expect("Journey to have a destination"), journeys_result.time_type(), JourneysOptions {
-                            later_than: journeys_result.later_ref(),
-                            language: Some(Utility::language_code()),
-                            stopovers: true,
-                            loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
-                            bike_friendly: settings.boolean("bike-accessible"),
-                            transfers: if settings.boolean("direct-only") { TransferOptions::Limited(0) } else { TransferOptions::Unlimited },
-                            // Value clamped in the settings; default should never happen.
-                            transfer_time: Duration::try_minutes(settings.int("transfer-time").into()).unwrap_or_default(),
-                            tariff_class: if settings.boolean("first-class") {
-                                TariffClass::First
-                            } else {
-                                TariffClass::Second
+                    let result_journeys_result = obj
+                        .property::<Client>("client")
+                        .journeys(
+                            journeys_result.source().expect("Journey to have a source"),
+                            journeys_result
+                                .destination()
+                                .expect("Journey to have a destination"),
+                            journeys_result.time_type(),
+                            JourneysOptions {
+                                later_than: journeys_result.later_ref(),
+                                language: Some(Utility::language_code()),
+                                stopovers: true,
+                                loyalty_card: LoyaltyCard::from_id(
+                                    settings
+                                        .enum_("bahncard")
+                                        .try_into()
+                                        .expect("Failed to convert setting `bahncard` to u8"),
+                                ),
+                                bike_friendly: settings.boolean("bike-accessible"),
+                                transfers: if settings.boolean("direct-only") {
+                                    TransferOptions::Limited(0)
+                                } else {
+                                    TransferOptions::Unlimited
+                                },
+                                // Value clamped in the settings; default should never happen.
+                                transfer_time: Duration::try_minutes(
+                                    settings.int("transfer-time").into(),
+                                )
+                                .unwrap_or_default(),
+                                tariff_class: if settings.boolean("first-class") {
+                                    TariffClass::First
+                                } else {
+                                    TariffClass::Second
+                                },
+                                products: Utility::products_selection_from_setting(&settings),
+                                ..Default::default()
                             },
-                            products: Utility::products_selection_from_setting(&settings),
-                            ..Default::default()
-                        })
+                        )
                         .await;
                     if let Ok(result_journeys_result) = result_journeys_result {
                         journeys_result.merge_append(&result_journeys_result);
                     } else {
-                        window.display_error_toast(result_journeys_result.expect_err("Error to be present"));
+                        window.display_error_toast(
+                            result_journeys_result.expect_err("Error to be present"),
+                        );
                     }
                     obj.set_loading_later(false);
                     obj.scroll_down();
-            }));
+                }
+            ));
         }
 
         fn setup_model(&self, obj: &super::JourneysPage) {
             let factory = SignalListItemFactory::new();
-            factory.connect_setup(
-                clone!(@weak obj, @weak self.destination_alignment_group as size_group => move |_, list_item| {
+            factory.connect_setup(clone!(
+                #[weak]
+                obj,
+                #[weak(rename_to = size_group)]
+                self.destination_alignment_group,
+                move |_, list_item| {
                     let journey_item = JourneyListItem::new();
                     let list_item = list_item
                         .downcast_ref::<ListItem>()
                         .expect("The factory item to be a `ListItem`");
 
                     list_item.set_child(Some(&journey_item));
-                    list_item
-                        .property_expression("item")
-                        .bind(&journey_item, "journey", Widget::NONE);
-                    obj.property_expression("compact").bind(&journey_item, "compact", Widget::NONE);
+                    list_item.property_expression("item").bind(
+                        &journey_item,
+                        "journey",
+                        Widget::NONE,
+                    );
+                    obj.property_expression("compact")
+                        .bind(&journey_item, "compact", Widget::NONE);
 
                     size_group.add_widget(&journey_item.get_destination_box());
 
                     journey_item.connect_parent_notify(|journey_item| {
                         if let Some(parent) = journey_item.property::<Option<Widget>>("parent") {
-                            parent.update_relation(&[
-                                gtk::accessible::Relation::DescribedBy(&[
-                                    &journey_item.get_indicators().upcast_ref()
-                                ])
-                            ]);
+                            parent.update_relation(&[gtk::accessible::Relation::DescribedBy(&[
+                                journey_item.get_indicators().upcast_ref(),
+                            ])]);
                         }
                     });
-                }),
-            );
+                }
+            ));
             factory.connect_bind(|_, list_item| {
                 let list_item = list_item
                     .downcast_ref::<ListItem>()
@@ -329,25 +396,33 @@ pub mod imp {
             });
 
             let header_factory = SignalListItemFactory::new();
-            header_factory.connect_setup(clone!(@weak obj => move |_, object| {
-                let widget = TimeDivider::default();
-                let header_item = object.downcast_ref::<gtk::ListHeader>().unwrap();
-                header_item.set_child(Some(&widget));
-                header_item.bind_property("item", &widget, "item").build();
-                header_item.bind_property("start", &widget, "start").build();
-                obj.bind_property("scrolled-up", &widget, "initial")
-                    .invert_boolean()
-                    .sync_create()
-                    .build();
-                obj.bind_property("journeys-result", &widget, "journeys-result").sync_create().build();
-            }));
+            header_factory.connect_setup(clone!(
+                #[weak]
+                obj,
+                move |_, object| {
+                    let widget = TimeDivider::default();
+                    let header_item = object.downcast_ref::<gtk::ListHeader>().unwrap();
+                    header_item.set_child(Some(&widget));
+                    header_item.bind_property("item", &widget, "item").build();
+                    header_item.bind_property("start", &widget, "start").build();
+                    obj.bind_property("scrolled-up", &widget, "initial")
+                        .invert_boolean()
+                        .sync_create()
+                        .build();
+                    obj.bind_property("journeys-result", &widget, "journeys-result")
+                        .sync_create()
+                        .build();
+                }
+            ));
 
             self.list_journeys.set_factory(Some(&factory));
             self.list_journeys.set_header_factory(Some(&header_factory));
             self.list_journeys.set_single_click_activate(true);
 
-            self.list_journeys
-                .connect_activate(clone!(@strong obj => move |list_view, position| {
+            self.list_journeys.connect_activate(clone!(
+                #[strong]
+                obj,
+                move |list_view, position| {
                     let model = list_view.model().expect("The model has to exist.");
                     let journey_object = model
                         .item(position)
@@ -356,7 +431,8 @@ pub mod imp {
                         .expect("The item has to be an `Journey`.");
 
                     obj.emit_by_name::<()>("select", &[&journey_object]);
-                }));
+                }
+            ));
         }
     }
 
@@ -408,9 +484,9 @@ pub mod imp {
                     self.journeys_result.replace(obj.clone());
                 }
                 "client" => {
-                    let obj = value.get::<Option<Client>>().expect(
-                        "Property `client` of `JourneysPage` has to be of type `Client`",
-                    );
+                    let obj = value
+                        .get::<Option<Client>>()
+                        .expect("Property `client` of `JourneysPage` has to be of type `Client`");
 
                     self.client.replace(obj);
                 }

@@ -79,28 +79,36 @@ pub mod imp {
                 "search page must be mapped and realised when a template callback is called",
             );
             main_context.spawn_local(clone!(
-                       @strong obj,
-                       @strong window,
-                       @strong self.journey as journey => async move {
+                #[strong]
+                obj,
+                #[strong]
+                window,
+                async move {
                     let journey = obj.journey();
 
-                if let Some(journey) = journey {
-                    obj.set_refresh_in_progress(true);
-                    let result_journey = obj.property::<Client>("client")
-                        .refresh_journey(&journey, RefreshJourneyOptions {
-                            stopovers: true,
-                            language: Some(Utility::language_code()),
-                            ..Default::default()
-                        }).await;
-                    if let Ok(result_journey) = result_journey {
-                        obj.set_property("journey", result_journey);
-                        obj.imp().update_last_refreshed();
-                    } else {
-                        window.display_error_toast(result_journey.expect_err("A error"));
+                    if let Some(journey) = journey {
+                        obj.set_refresh_in_progress(true);
+                        let result_journey = obj
+                            .property::<Client>("client")
+                            .refresh_journey(
+                                &journey,
+                                RefreshJourneyOptions {
+                                    stopovers: true,
+                                    language: Some(Utility::language_code()),
+                                    ..Default::default()
+                                },
+                            )
+                            .await;
+                        if let Ok(result_journey) = result_journey {
+                            obj.set_property("journey", result_journey);
+                            obj.imp().update_last_refreshed();
+                        } else {
+                            window.display_error_toast(result_journey.expect_err("A error"));
+                        }
+                        obj.set_refresh_in_progress(false);
                     }
-                    obj.set_refresh_in_progress(false);
                 }
-            }));
+            ));
         }
 
         fn update_last_refreshed(&self) {

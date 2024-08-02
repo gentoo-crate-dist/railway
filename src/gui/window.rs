@@ -160,39 +160,55 @@ pub mod imp {
 
         fn setup_actions(&self, obj: &super::Window) {
             let action_settings = SimpleAction::new("settings", None);
-            action_settings.connect_activate(clone!(@weak obj as window => move |_, _| {
-                let settings = PreferencesDialog::new();
-                settings.present(&window);
-            }));
+            action_settings.connect_activate(clone!(
+                #[weak(rename_to = window)]
+                obj,
+                move |_, _| {
+                    let settings = PreferencesDialog::new();
+                    settings.present(Some(&window));
+                }
+            ));
             let action_about = SimpleAction::new("about", None);
-            action_about.connect_activate(clone!(@weak obj as window => move |_, _| {
-                let about_dialog = libadwaita::AboutDialog::from_appdata(&(config::RESOURCES_PATH.to_owned() + config::APP_ID + ".metainfo.xml"),
-                    Some(env!("CARGO_PKG_VERSION")));
+            action_about.connect_activate(clone!(
+                #[weak(rename_to = window)]
+                obj,
+                move |_, _| {
+                    let about_dialog = libadwaita::AboutDialog::from_appdata(
+                        &(config::RESOURCES_PATH.to_owned() + config::APP_ID + ".metainfo.xml"),
+                        Some(env!("CARGO_PKG_VERSION")),
+                    );
 
-                about_dialog.set_comments(env!("CARGO_PKG_DESCRIPTION"));
-                about_dialog.set_developers(
-                    &(env!("CARGO_PKG_AUTHORS")
-                        .split(':')
-                        .collect::<Vec<&str>>())
-                );
-                // translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-                about_dialog.set_translator_credits(&gettextrs::gettext("translator-credits"));
-                about_dialog.set_designers(&[ "Tobias Bernard" ]);
-                about_dialog.add_credit_section(Some(&gettextrs::gettext("Source Translation Supported by")), &[ "Sydney Sharpe" ]);
-                about_dialog.add_link("GitLab", "https://gitlab.com/schmiddi-on-mobile/railway");
+                    about_dialog.set_comments(env!("CARGO_PKG_DESCRIPTION"));
+                    about_dialog.set_developers(
+                        &(env!("CARGO_PKG_AUTHORS").split(':').collect::<Vec<&str>>()),
+                    );
+                    // translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
+                    about_dialog.set_translator_credits(&gettextrs::gettext("translator-credits"));
+                    about_dialog.set_designers(&["Tobias Bernard"]);
+                    about_dialog.add_credit_section(
+                        Some(&gettextrs::gettext("Source Translation Supported by")),
+                        &["Sydney Sharpe"],
+                    );
+                    about_dialog
+                        .add_link("GitLab", "https://gitlab.com/schmiddi-on-mobile/railway");
 
-                about_dialog.present(&window);
-            }));
+                    about_dialog.present(Some(&window));
+                }
+            ));
 
             let action_show_help_overlay = SimpleAction::new("show-help-overlay", None);
-            action_show_help_overlay.connect_activate(clone!(@weak obj as window => move |_, _| {
-                let builder = Builder::from_resource("/ui/shortcuts.ui");
-                let shortcuts_window: ShortcutsWindow = builder
-                    .object("help_overlay")
-                    .expect("shortcuts.ui to have at least one object help_overlay");
-                shortcuts_window.set_transient_for(Some(&window));
-                shortcuts_window.present();
-            }));
+            action_show_help_overlay.connect_activate(clone!(
+                #[weak(rename_to = window)]
+                obj,
+                move |_, _| {
+                    let builder = Builder::from_resource("/ui/shortcuts.ui");
+                    let shortcuts_window: ShortcutsWindow = builder
+                        .object("help_overlay")
+                        .expect("shortcuts.ui to have at least one object help_overlay");
+                    shortcuts_window.set_transient_for(Some(&window));
+                    shortcuts_window.present();
+                }
+            ));
 
             let actions = SimpleActionGroup::new();
             obj.insert_action_group("win", Some(&actions));
@@ -201,24 +217,34 @@ pub mod imp {
             actions.add_action(&action_show_help_overlay);
 
             let action_journey_list_bookmark = SimpleAction::new("bookmark", None);
-            action_journey_list_bookmark.connect_activate(clone!(@weak self as s => move |_, _| {
-                s.handle_searches_store();
-            }));
+            action_journey_list_bookmark.connect_activate(clone!(
+                #[weak(rename_to = s)]
+                self,
+                move |_, _| {
+                    s.handle_searches_store();
+                }
+            ));
 
             let actions_journey_list = SimpleActionGroup::new();
             obj.insert_action_group("journey-list", Some(&actions_journey_list));
             actions_journey_list.add_action(&action_journey_list_bookmark);
 
             let action_journey_details_bookmark = SimpleAction::new("bookmark", None);
-            action_journey_details_bookmark.connect_activate(
-                clone!(@weak self as s => move |_, _| {
+            action_journey_details_bookmark.connect_activate(clone!(
+                #[weak(rename_to = s)]
+                self,
+                move |_, _| {
                     s.handle_journey_store();
-                }),
-            );
+                }
+            ));
             let action_journey_details_reload = SimpleAction::new("reload", None);
-            action_journey_details_reload.connect_activate(clone!(@weak self as s => move |_, _| {
-                s.handle_journey_reload();
-            }));
+            action_journey_details_reload.connect_activate(clone!(
+                #[weak(rename_to = s)]
+                self,
+                move |_, _| {
+                    s.handle_journey_reload();
+                }
+            ));
 
             let actions_journey_details = SimpleActionGroup::new();
             obj.insert_action_group("journey-details", Some(&actions_journey_details));

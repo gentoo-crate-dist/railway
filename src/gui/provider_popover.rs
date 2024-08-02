@@ -95,12 +95,16 @@ pub mod imp {
             let section_model = gtk::SortListModel::builder()
                 .model(&filter_model)
                 .incremental(true)
-                .section_sorter(&gtk::StringSorter::new(Some(
-                    gtk::PropertyExpression::new(Provider::static_type(), None::<gtk::Expression>, "regional-group")
-                )))
-                .sorter(&gtk::StringSorter::new(Some(
-                    gtk::PropertyExpression::new(Provider::static_type(), None::<gtk::Expression>, "name")
-                )))
+                .section_sorter(&gtk::StringSorter::new(Some(gtk::PropertyExpression::new(
+                    Provider::static_type(),
+                    None::<gtk::Expression>,
+                    "regional-group",
+                ))))
+                .sorter(&gtk::StringSorter::new(Some(gtk::PropertyExpression::new(
+                    Provider::static_type(),
+                    None::<gtk::Expression>,
+                    "name",
+                ))))
                 .build();
 
             let selection_model = gtk::SingleSelection::builder()
@@ -128,10 +132,11 @@ pub mod imp {
             let header_factory = SignalListItemFactory::new();
             header_factory.connect_bind(move |_, list_item| {
                 if let Some(list_item) = list_item.downcast_ref::<gtk::ListHeader>() {
-                    let label = list_item.item()
+                    let label = list_item
+                        .item()
                         .and_then(|object| object.downcast::<Provider>().ok())
                         .map(|provider| provider.property::<String>("regional-group"))
-                        .filter(|string| string != "")
+                        .filter(|string| !string.is_empty())
                         .as_deref()
                         .map(|label| {
                             gtk::Label::builder()
@@ -144,16 +149,20 @@ pub mod imp {
                     list_item.set_child(label.as_ref());
                 }
             });
-            self.list_providers.set_header_factory(Some(&header_factory));
+            self.list_providers
+                .set_header_factory(Some(&header_factory));
 
-            selection_model.bind_property("selected-item", self.obj().as_ref(), "current-selection")
+            selection_model
+                .bind_property("selected-item", self.obj().as_ref(), "current-selection")
                 .sync_create()
                 .build();
-            selection_model.connect_selected_item_notify(
-                clone!(@strong obj => move |_| {
+            selection_model.connect_selected_item_notify(clone!(
+                #[strong]
+                obj,
+                move |_| {
                     obj.popdown();
-                }),
-            );
+                }
+            ));
         }
     }
 
@@ -183,22 +192,29 @@ pub mod imp {
 
             let escape_controller = gtk::EventControllerKey::new();
 
-            escape_controller.connect_key_pressed(clone!(@weak obj as popover => @default-return glib::Propagation::Proceed, move |_, key, _, _| {
-                match key {
-                    gdk::Key::Escape => {
-                         popover.popdown();
+            escape_controller.connect_key_pressed(clone!(
+                #[weak(rename_to = popover)]
+                obj,
+                #[upgrade_or]
+                glib::Propagation::Proceed,
+                move |_, key, _, _| {
+                    if key == gdk::Key::Escape {
+                        popover.popdown();
                     }
-                    _ => (),
+                    glib::Propagation::Proceed
                 }
-                glib::Propagation::Proceed
-            }));
+            ));
 
             self.entry_search.add_controller(escape_controller);
 
             let entry_search = self.entry_search.get();
-            obj.connect_closed(clone!(@weak entry_search => move |_| {
-                entry_search.set_text("");
-            }));
+            obj.connect_closed(clone!(
+                #[weak]
+                entry_search,
+                move |_| {
+                    entry_search.set_text("");
+                }
+            ));
         }
 
         fn properties() -> &'static [ParamSpec] {
@@ -225,9 +241,9 @@ pub mod imp {
                         let position = selection_model
                             .iter::<glib::Object>()
                             .position(|entry| {
-                                let entry_provider = entry.ok().and_then(|object| {
-                                    object.downcast::<Provider>().ok()
-                                });
+                                let entry_provider = entry
+                                    .ok()
+                                    .and_then(|object| object.downcast::<Provider>().ok());
                                 match (entry_provider, obj.clone()) {
                                     (Some(a), Some(b)) => a.id() == b.id(),
                                     (_, _) => false,
@@ -235,12 +251,14 @@ pub mod imp {
                             })
                             .map(|position| position as u32)
                             .unwrap_or(gtk::INVALID_LIST_POSITION);
-                            selection_model.set_selected(position);
+                        selection_model.set_selected(position);
 
                         if let Some(item) = selection_model.selected_item() {
-                            let provider = item.downcast_ref::<Provider>()
+                            let provider = item
+                                .downcast_ref::<Provider>()
                                 .expect("selection has to be for a provider");
-                            self.settings.set_string("search-provider", &provider.id())
+                            self.settings
+                                .set_string("search-provider", &provider.id())
                                 .expect("Failed to set setting `search-provider`");
                         }
                     }

@@ -1,6 +1,6 @@
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
-use crate::backend::{Journey};
+use crate::backend::Journey;
 
 gtk::glib::wrapper! {
     pub struct SearchPage(ObjectSubclass<imp::SearchPage>)
@@ -30,21 +30,21 @@ impl SearchPage {
 pub mod imp {
     use chrono::Duration;
     use gdk::gio::Settings;
-    use gdk::glib::Properties;
     use gdk::glib::clone;
-    use gdk::glib::MainContext;
     use gdk::glib::subclass::Signal;
+    use gdk::glib::MainContext;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
-    use gtk::ListBoxRow;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use gtk::ListBoxRow;
+    use once_cell::sync::Lazy;
+    use rcore::JourneysOptions;
     use rcore::LoyaltyCard;
     use rcore::TariffClass;
-    use rcore::JourneysOptions;
     use rcore::TransferOptions;
-    use once_cell::sync::Lazy;
 
     use std::cell::Cell;
     use std::cell::RefCell;
@@ -53,14 +53,14 @@ pub mod imp {
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
     use crate::backend::Place;
-    use crate::gui::date_time_picker::DateTimePicker;
     use crate::backend::TimeType;
+    use crate::config;
+    use crate::gui::date_time_picker::DateTimePicker;
     use crate::gui::journey_store_item::JourneyStoreItem;
     use crate::gui::search_store_item::SearchStoreItem;
     use crate::gui::station_entry::StationEntry;
     use crate::gui::utility::Utility;
     use crate::gui::window::Window;
-    use crate::config;
 
     #[derive(CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::SearchPage)]
@@ -97,14 +97,21 @@ pub mod imp {
     impl SearchPage {
         #[template_callback]
         fn handle_journeys_row_activated(&self, row: ListBoxRow) {
-            self.obj().emit_by_name::<()>("details", &[&row.first_child().expect("Activated row to have a child").property::<Journey>("journey")]);
+            self.obj().emit_by_name::<()>(
+                "details",
+                &[&row
+                    .first_child()
+                    .expect("Activated row to have a child")
+                    .property::<Journey>("journey")],
+            );
         }
 
         #[template_callback]
         fn handle_searches_row_activated(&self, row: ListBoxRow) {
             let search = &row.first_child().expect("Activated row to have a child");
             self.in_from.set_input(search.property::<String>("origin"));
-            self.in_to.set_input(search.property::<String>("destination"));
+            self.in_to
+                .set_input(search.property::<String>("destination"));
             self.obj().set_search_when_ready(true);
         }
 
@@ -132,14 +139,18 @@ pub mod imp {
 
         fn setup_search_when_ready(&self) {
             let obj = self.obj();
-            self.btn_search.connect_sensitive_notify(clone!(@weak obj => move |_| {
-                let s = obj.imp();
-                if s.btn_search.is_sensitive() && obj.search_when_ready() {
-                    s.handle_search();
+            self.btn_search.connect_sensitive_notify(clone!(
+                #[weak]
+                obj,
+                move |_| {
+                    let s = obj.imp();
+                    if s.btn_search.is_sensitive() && obj.search_when_ready() {
+                        s.handle_search();
+                    }
+                    // XXX: Not the best place to unset search when ready. It would be better to do that when the station entry changed manually, but that will not work as it also changes when directly set.
+                    obj.set_search_when_ready(false);
                 }
-                // XXX: Not the best place to unset search when ready. It would be better to do that when the station entry changed manually, but that will not work as it also changes when directly set.
-                obj.set_search_when_ready(false);
-            }));
+            ));
         }
 
         pub(super) fn add_journey_store(&self, journey: Journey) {
@@ -152,9 +163,14 @@ pub mod imp {
             let mut child = self.box_journeys.first_child();
 
             while let Some(c) = child {
-                if c.first_child().expect("ListBoxRow to have a JourneyStoreItem child").property::<Journey>("journey").journey() == journey.journey() {
+                if c.first_child()
+                    .expect("ListBoxRow to have a JourneyStoreItem child")
+                    .property::<Journey>("journey")
+                    .journey()
+                    == journey.journey()
+                {
                     self.box_journeys.remove(&c);
-                } 
+                }
 
                 child = c.next_sibling();
             }
@@ -175,10 +191,11 @@ pub mod imp {
 
             while let Some(c) = child {
                 let s = c.first_child().expect("ListBoxRow to have a child");
-                if s.property::<Option<String>>("origin") == Some(origin.clone()) 
-                    && s.property::<Option<String>>("destination") == Some(destination.clone()) {
+                if s.property::<Option<String>>("origin") == Some(origin.clone())
+                    && s.property::<Option<String>>("destination") == Some(destination.clone())
+                {
                     self.box_searches.remove(&c);
-                } 
+                }
 
                 child = c.next_sibling();
             }
@@ -201,44 +218,85 @@ pub mod imp {
             let from = self.in_from.property::<Place>("place");
             let to = self.in_to.property::<Place>("place");
 
-            let time = self.pick_date_time.get().get().with_timezone(&chrono_tz::UTC);
+            let time = self
+                .pick_date_time
+                .get()
+                .get()
+                .with_timezone(&chrono_tz::UTC);
             let time_type = self.pick_date_time.time_type();
 
             let main_context = MainContext::default();
-            let window = self.obj().root().and_downcast::<Window>()
-                .expect("search page must be mapped and realised when a template callback is called");
-            main_context.spawn_local(clone!(@strong from,
-                                            @strong to,
-                                            @strong obj, 
-                                            @strong self.settings as settings,
-                                            @strong window => async move {
-                obj.set_searching(true);
-                let journeys = obj.property::<Client>("client").journeys(from, to, time_type, JourneysOptions {
-                    departure: if time_type == TimeType::Departure { Some(time) } else { None },
-                    arrival: if time_type == TimeType::Arrival { Some(time) } else { None },
-                    language: Some(Utility::language_code()),
-                    stopovers: true,
-                    loyalty_card: LoyaltyCard::from_id(settings.enum_("bahncard").try_into().expect("Failed to convert setting `bahncard` to u8")),
-                    bike_friendly: settings.boolean("bike-accessible"),
-                    transfers: if settings.boolean("direct-only") { TransferOptions::Limited(0) } else { TransferOptions::Unlimited },
-                    // Value clamped in the settings; default should never happen.
-                    transfer_time: Duration::try_minutes(settings.int("transfer-time").into()).unwrap_or_default(),
-                    tariff_class: if settings.boolean("first-class") {
-                        TariffClass::First
-                    } else {
-                        TariffClass::Second
-                    },
-                    products: Utility::products_selection_from_setting(&settings),
-                    ..Default::default()
-                }).await;
-                obj.set_searching(false);
-                if journeys.is_err() {
-                    window.display_error_toast(journeys.err().unwrap());
-                    return;
-                }
+            let window = self.obj().root().and_downcast::<Window>().expect(
+                "search page must be mapped and realised when a template callback is called",
+            );
+            main_context.spawn_local(clone!(
+                #[strong]
+                from,
+                #[strong]
+                to,
+                #[strong]
+                obj,
+                #[strong(rename_to = settings)]
+                self.settings,
+                #[strong]
+                window,
+                async move {
+                    obj.set_searching(true);
+                    let journeys = obj
+                        .property::<Client>("client")
+                        .journeys(
+                            from,
+                            to,
+                            time_type,
+                            JourneysOptions {
+                                departure: if time_type == TimeType::Departure {
+                                    Some(time)
+                                } else {
+                                    None
+                                },
+                                arrival: if time_type == TimeType::Arrival {
+                                    Some(time)
+                                } else {
+                                    None
+                                },
+                                language: Some(Utility::language_code()),
+                                stopovers: true,
+                                loyalty_card: LoyaltyCard::from_id(
+                                    settings
+                                        .enum_("bahncard")
+                                        .try_into()
+                                        .expect("Failed to convert setting `bahncard` to u8"),
+                                ),
+                                bike_friendly: settings.boolean("bike-accessible"),
+                                transfers: if settings.boolean("direct-only") {
+                                    TransferOptions::Limited(0)
+                                } else {
+                                    TransferOptions::Unlimited
+                                },
+                                // Value clamped in the settings; default should never happen.
+                                transfer_time: Duration::try_minutes(
+                                    settings.int("transfer-time").into(),
+                                )
+                                .unwrap_or_default(),
+                                tariff_class: if settings.boolean("first-class") {
+                                    TariffClass::First
+                                } else {
+                                    TariffClass::Second
+                                },
+                                products: Utility::products_selection_from_setting(&settings),
+                                ..Default::default()
+                            },
+                        )
+                        .await;
+                    obj.set_searching(false);
+                    if journeys.is_err() {
+                        window.display_error_toast(journeys.err().unwrap());
+                        return;
+                    }
 
-                obj.emit_by_name::<()>("search", &[&journeys.expect("Failed to get journeys")]);
-            }));
+                    obj.emit_by_name::<()>("search", &[&journeys.expect("Failed to get journeys")]);
+                }
+            ));
         }
     }
 
@@ -260,7 +318,7 @@ pub mod imp {
                 box_searches: Default::default(),
                 client: Default::default(),
                 search_when_ready: Default::default(),
-                searching: Default::default()
+                searching: Default::default(),
             }
         }
 
@@ -280,19 +338,42 @@ pub mod imp {
         fn constructed(&self) {
             self.parent_constructed();
             self.setup_search_when_ready();
-            self.in_from.set_input(self.settings.string("search-from").to_string());
-            self.in_to.set_input(self.settings.string("search-to").to_string());
+            self.in_from
+                .set_input(self.settings.string("search-from").to_string());
+            self.in_to
+                .set_input(self.settings.string("search-to").to_string());
 
             self.update_search_button();
-            self.in_from.connect_notify_local(Some("set"), clone!(@weak self as search_page => move |_, _| {
-                search_page.update_search_button();
-            }));
-            self.in_to.connect_notify_local(Some("set"), clone!(@weak self as search_page => move |_, _| {
-                search_page.update_search_button();
-            }));
-            self.obj().connect_notify_local(Some("searching"), clone!(@weak self as search_page => move |_, _| {
-                search_page.update_search_button();
-            }));
+            self.in_from.connect_notify_local(
+                Some("set"),
+                clone!(
+                    #[weak(rename_to = search_page)]
+                    self,
+                    move |_, _| {
+                        search_page.update_search_button();
+                    }
+                ),
+            );
+            self.in_to.connect_notify_local(
+                Some("set"),
+                clone!(
+                    #[weak(rename_to = search_page)]
+                    self,
+                    move |_, _| {
+                        search_page.update_search_button();
+                    }
+                ),
+            );
+            self.obj().connect_notify_local(
+                Some("searching"),
+                clone!(
+                    #[weak(rename_to = search_page)]
+                    self,
+                    move |_, _| {
+                        search_page.update_search_button();
+                    }
+                ),
+            );
         }
 
         fn signals() -> &'static [Signal] {
@@ -303,7 +384,7 @@ pub mod imp {
                         .build(),
                     Signal::builder("details")
                         .param_types([Journey::static_type()])
-                        .build()
+                        .build(),
                 ]
             });
             SIGNALS.as_ref()
@@ -313,10 +394,13 @@ pub mod imp {
     impl WidgetImpl for SearchPage {
         fn unmap(&self) {
             self.parent_unmap();
-            self.settings.set_string("search-from", &self.in_from.input()).expect("Failed to save search-from");
-            self.settings.set_string("search-to", &self.in_to.input()).expect("Failed to save search-to");
+            self.settings
+                .set_string("search-from", &self.in_from.input())
+                .expect("Failed to save search-from");
+            self.settings
+                .set_string("search-to", &self.in_to.input())
+                .expect("Failed to save search-to");
         }
     }
     impl BoxImpl for SearchPage {}
 }
-

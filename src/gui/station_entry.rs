@@ -224,58 +224,74 @@ pub mod imp {
             let request_limiter = &self.request_limiter;
 
             let main_context = MainContext::default();
-            main_context.spawn_local(clone!(@strong obj,
-                                            @strong completions,
-                                            @strong request_limiter
-                                            => async move {
-                let entry = &obj;
-                let text = entry.text().to_string();
+            main_context.spawn_local(clone!(
+                #[strong]
+                obj,
+                #[strong]
+                completions,
+                #[strong]
+                request_limiter,
+                async move {
+                    let entry = &obj;
+                    let text = entry.text().to_string();
 
-                if text.len() < MIN_REQUEST_LEN {
-                    obj.set_place(None);
-                    return;
-                }
-
-                // Try fill any exact match if available. If it could be filled, don't request.
-                if obj.imp().try_fill_exact_match(&text) {
-                    return;
-                }
-
-                let request = request_limiter.request(text).await;
-
-                if let Some(request) = request {
-                    let places = obj.property::<Client>("client").locations(LocationsOptions {query: request.clone(), ..Default::default()}).await;
-
-                    // XXX: Handle error case.
-                    if let Ok(places) = places {
-                        let places = places.into_iter().filter(|p| p.id().is_some()).collect::<Vec<_>>();
-                        log::trace!("Got results back. Filling up completions.");
-                        let exact = places.iter()
-                            .find(|p| p.name().as_ref() == Some(&request));
-
-                        let completions = completions.borrow();
-
-                        if exact.is_some() {
-                            obj.set_place(exact);
-                            completions.remove_all();
-                        } else {
-                            completions.splice(0, completions.n_items(), &places);
-                        }
-                        drop(completions);
-                    } else {
-                        log::error!("Error requesting places: {}", places.err().unwrap());
+                    if text.len() < MIN_REQUEST_LEN {
+                        obj.set_place(None);
+                        return;
                     }
-                } else {
-                    log::trace!("No request needed");
+
+                    // Try fill any exact match if available. If it could be filled, don't request.
+                    if obj.imp().try_fill_exact_match(&text) {
+                        return;
+                    }
+
+                    let request = request_limiter.request(text).await;
+
+                    if let Some(request) = request {
+                        let places = obj
+                            .property::<Client>("client")
+                            .locations(LocationsOptions {
+                                query: request.clone(),
+                                ..Default::default()
+                            })
+                            .await;
+
+                        // XXX: Handle error case.
+                        if let Ok(places) = places {
+                            let places = places
+                                .into_iter()
+                                .filter(|p| p.id().is_some())
+                                .collect::<Vec<_>>();
+                            log::trace!("Got results back. Filling up completions.");
+                            let exact = places.iter().find(|p| p.name().as_ref() == Some(&request));
+
+                            let completions = completions.borrow();
+
+                            if exact.is_some() {
+                                obj.set_place(exact);
+                                completions.remove_all();
+                            } else {
+                                completions.splice(0, completions.n_items(), &places);
+                            }
+                            drop(completions);
+                        } else {
+                            log::error!("Error requesting places: {}", places.err().unwrap());
+                        }
+                    } else {
+                        log::trace!("No request needed");
+                    }
                 }
-            }));
+            ));
         }
 
         fn connect_changed(&self, obj: &super::StationEntry) {
-            self.obj()
-                .connect_changed(clone!(@strong obj => move |_entry| {
+            self.obj().connect_changed(clone!(
+                #[strong]
+                obj,
+                move |_entry| {
                     obj.imp().on_changed();
-                }));
+                }
+            ));
             self.on_changed();
         }
 
@@ -310,22 +326,37 @@ pub mod imp {
                 .set_model(Some(&selection.clone()));
 
             let factory = SignalListItemFactory::new();
-            factory.connect_setup(clone!(@weak obj => move |_, list_item| {
-                let place_item = PlaceListItem::new();
-                let list_item = list_item
-                    .downcast_ref::<ListItem>()
-                    .expect("The factory item to be a `ListItem`");
+            factory.connect_setup(clone!(
+                #[weak]
+                obj,
+                move |_, list_item| {
+                    let place_item = PlaceListItem::new();
+                    let list_item = list_item
+                        .downcast_ref::<ListItem>()
+                        .expect("The factory item to be a `ListItem`");
 
-                list_item.set_child(Some(&place_item));
-                list_item
-                    .property_expression("item")
-                    .bind(&place_item, "place", Widget::NONE);
+                    list_item.set_child(Some(&place_item));
+                    list_item
+                        .property_expression("item")
+                        .bind(&place_item, "place", Widget::NONE);
 
-                place_item.connect_local("pressed", false, clone!(@weak obj, @weak place_item => @default-return None, move |_| {
-                    obj.set_place(place_item.place().as_ref());
-                    None
-                }));
-            }));
+                    place_item.connect_local(
+                        "pressed",
+                        false,
+                        clone!(
+                            #[weak]
+                            obj,
+                            #[weak]
+                            place_item,
+                            #[upgrade_or_default]
+                            move |_| {
+                                obj.set_place(place_item.place().as_ref());
+                                None
+                            }
+                        ),
+                    );
+                }
+            ));
             self.list_completions.set_factory(Some(&factory));
         }
 
@@ -376,23 +407,35 @@ pub mod imp {
 
             self.completions.borrow().connect_notify_local(
                 Some("n-items"),
-                clone!(@strong obj => move |list, _| {
-                    obj.imp().update_popover_visible();
+                clone!(
+                    #[strong]
+                    obj,
+                    move |list, _| {
+                        obj.imp().update_popover_visible();
 
-                    let n = list.n_items();
-                    if n > 0 {
-                        // Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
-                        let format = gettextrs::ngettext("one suggestion, not selected", "{n} suggestions, none selected", n).replace("{n}", &n.to_string());
-                        obj.announce(&format, gtk::AccessibleAnnouncementPriority::Low);
+                        let n = list.n_items();
+                        if n > 0 {
+                            // Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
+                            let format = gettextrs::ngettext(
+                                "one suggestion, not selected",
+                                "{n} suggestions, none selected",
+                                n,
+                            )
+                            .replace("{n}", &n.to_string());
+                            obj.announce(&format, gtk::AccessibleAnnouncementPriority::Low);
+                        }
                     }
-                }),
+                ),
             );
 
-            self.obj()
-                .connect_css_classes_notify(clone!(@strong obj => move |_| {
+            self.obj().connect_css_classes_notify(clone!(
+                #[strong]
+                obj,
+                move |_| {
                     // Update when e.g. focus changed.
                     obj.imp().update_popover_visible();
-                }));
+                }
+            ));
 
             obj.connect_notify_local(Some("place"), |obj, _| {
                 obj.notify("set");
@@ -433,7 +476,7 @@ pub mod imp {
 
                     if let Some(obj) = &obj {
                         let s = self.obj();
-                        obj.connect_local("provider-changed", true, clone!(@weak s => @default-return None, move |_| {
+                        obj.connect_local("provider-changed", true, clone!(#[weak] s, #[upgrade_or_default] move |_| {
                             log::trace!("Station-entry got provider change from hafas_client. Resetting");
                             s.set_place(None);
                             s.imp().on_changed();
