@@ -182,6 +182,13 @@ fn providers() -> Vec<Provider> {
             true,
         ),
         Provider::new(
+            "Resrobot",
+            "Resrobot",
+            Some("Sweden"),
+            &gettextrs::gettext("Europe"),
+            true,
+        ),
+        Provider::new(
             "SBahn-Muenchen",
             "S-Bahn München",
             // Translators: The country, see https://en.wikipedia.org/wiki/Germany
