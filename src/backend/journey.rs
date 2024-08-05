@@ -170,12 +170,12 @@ mod imp {
                     .borrow()
                     .as_ref()
                     .map(|o| {
-                        (o.legs
+                        o.legs
                             .iter()
                             .filter(|leg| !leg.walking)
                             .collect::<Vec<_>>()
                             .len()
-                            - 1) as u32
+                            .saturating_sub(1) as u32
                     })
                     .unwrap_or_default()
                     .to_value(),
