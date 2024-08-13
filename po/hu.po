@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-20 10:42+0200\n"
-"PO-Revision-Date: 2024-06-15 20:09+0000\n"
+"PO-Revision-Date: 2024-08-14 18:09+0000\n"
 "Last-Translator: rdbende <rdbende@proton.me>\n"
-"Language-Team: Hungarian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/hu/>\n"
+"Language-Team: Hungarian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -81,11 +81,11 @@ msgstr "Alkalmazás áttekintése"
 
 #: data/resources/ui/date_time_picker.ui:23
 msgid "Departure"
-msgstr ""
+msgstr "Indulás"
 
 #: data/resources/ui/date_time_picker.ui:37
 msgid "Arrival"
-msgstr ""
+msgstr "Érkezés"
 
 #: data/resources/ui/date_time_picker.ui:60
 msgid "Input date"
@@ -756,7 +756,7 @@ msgstr "Németország"
 
 #: src/backend/client.rs:26 src/backend/client.rs:35 src/backend/client.rs:36
 msgid "North America"
-msgstr ""
+msgstr "Észak-Amerika"
 
 #. Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
 #. Search.ch
@@ -767,7 +767,7 @@ msgstr ""
 #: src/backend/client.rs:145 src/backend/client.rs:146
 #: src/backend/client.rs:150
 msgid "Europe"
-msgstr ""
+msgstr "Európa"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/client.rs:72
