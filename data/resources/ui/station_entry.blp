@@ -1,0 +1,53 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBStationEntry: Adw.EntryRow {
+  input-purpose: free_form;
+  input-hints: spellcheck | word_completion | no_emoji;
+
+  Button {
+    styles [
+      "flat",
+    ]
+
+    tooltip-text: _("Swap Start and Destination");
+    valign: center;
+    icon-name: 'route-reverse-symbolic';
+    visible: bind template.show-swap-button;
+    clicked => $handle_swapped_clicked() swapped;
+  }
+
+  EventControllerKey {
+    key-pressed => $handle_key_pressed() swapped;
+  }
+
+  entry-activated => $handle_activated() swapped;
+}
+
+Popover popover {
+  styles [
+    "menu",
+  ]
+
+  width-request: 250;
+  has-arrow: false;
+  autohide: false;
+  can-focus: false;
+  hexpand: true;
+
+  ScrolledWindow scrolled_window {
+    hscrollbar-policy: never;
+    propagate-natural-height: true;
+    vexpand: true;
+    hexpand: true;
+    max-content-height: 300;
+
+    ListView list_completions {
+      styles [
+        "navigation-sidebar",
+      ]
+
+      activate => $handle_completion_activate() swapped;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+using Gtk 4.0;
+
+template $DBSearchOptionsButton: Button {
+  accessibility {
+    label: _("More search options");
+    labelled-by: label_more_options;
+    described-by: label_extra_options;
+  }
+
+  styles [
+    "card",
+    "button-card",
+  ]
+
+  clicked => $handle_clicked() swapped;
+  tooltip-text: _("Refine Advanced Search Options");
+
+  Box {
+    Box {
+      orientation: vertical;
+      spacing: 3;
+      hexpand: true;
+
+      Label label_more_options {
+        styles [
+          "body",
+          "heading",
+        ]
+
+        label: _("More Options");
+        halign: start;
+        margin-top: 9;
+        margin-start: 12;
+      }
+
+      Label label_extra_options {
+        styles [
+          "caption",
+          "dim-label",
+        ]
+
+        halign: start;
+        margin-bottom: 9;
+        margin-start: 12;
+        lines: 2;
+        ellipsize: end;
+        wrap: true;
+        label: bind template.extra-label;
+      }
+    }
+
+    Image {
+      icon-name: 'go-next-symbolic';
+      margin-end: 12;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+using Gtk 4.0;
+
+template $DBAltLabel: Box {
+  orientation: vertical;
+  hexpand: false;
+  vexpand: false;
+
+  Label label_alt {
+    styles [
+      "numeric",
+    ]
+
+    hexpand: false;
+    halign: center;
+    vexpand: true;
+    valign: center;
+    visible: bind template.is-different;
+    label: bind template.alt;
+  }
+
+  Label label_main {
+    styles [
+      "numeric",
+    ]
+
+    hexpand: false;
+    halign: center;
+    vexpand: true;
+    valign: center;
+    label: bind template.main;
+  }
+}

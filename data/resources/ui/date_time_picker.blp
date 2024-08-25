@@ -1,0 +1,183 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBDateTimePicker: Box {
+  orientation: vertical;
+  spacing: 12;
+
+  Box {
+    styles [
+      "toggle-group",
+    ]
+
+    orientation: horizontal;
+
+    ToggleButton toggle_departure {
+      styles [
+        "flat",
+      ]
+
+      label: _("Departure");
+      hexpand: true;
+    }
+
+    Separator {
+      orientation: vertical;
+    }
+
+    ToggleButton toggle_arrival {
+      styles [
+        "flat",
+      ]
+
+      label: _("Arrival");
+      hexpand: true;
+      group: toggle_departure;
+    }
+  }
+
+  Box {
+    orientation: horizontal;
+    spacing: 12;
+    homogeneous: true;
+
+    ListBox {
+      selection-mode: none;
+
+      styles [
+        "boxed-list",
+      ]
+
+      Adw.ActionRow btn_input_date {
+        accessibility {
+          label: _("Input date");
+          has-popup: true;
+        }
+
+        styles [
+          "property",
+        ]
+
+        title: _("Date");
+        activatable: true;
+
+        [suffix]
+        Box {
+          valign: center;
+          visible: bind btn_input_date.sensitive;
+
+          Image {
+            icon-name: 'down-small-symbolic';
+            valign: center;
+            halign: center;
+          }
+
+          Popover popover_date {
+            notify::visible => $handle_date_popover_open() swapped;
+
+            Calendar pick_cal {
+              styles [
+                "background",
+              ]
+            }
+          }
+        }
+      }
+    }
+
+    ListBox {
+      selection-mode: none;
+
+      styles [
+        "boxed-list",
+      ]
+
+      Adw.ActionRow btn_input_time {
+        accessibility {
+          label: _("Input time");
+          has-popup: true;
+        }
+
+        styles [
+          "property",
+        ]
+
+        activatable: true;
+        title: _("Time");
+
+        [suffix]
+        Box {
+          valign: center;
+          visible: bind btn_input_time.sensitive;
+
+          Image {
+            icon-name: 'down-small-symbolic';
+            valign: center;
+            halign: center;
+          }
+
+          Popover popover_time {
+            notify::visible => $handle_time_popover_open() swapped;
+
+            Box {
+              orientation: vertical;
+              spacing: 6;
+
+              Box {
+                halign: center;
+
+                SpinButton pick_hour {
+                  styles [
+                    "vertical",
+                  ]
+
+                  orientation: vertical;
+                  valign: center;
+                  numeric: true;
+                  wrap: true;
+                  adjustment: adj_hour;
+                  output => $handle_spinner_output_two_digit() swapped;
+                }
+
+                Label {
+                  label: ' ∶ '; // not translated
+                }
+
+                SpinButton pick_minute {
+                  styles [
+                    "vertical",
+                  ]
+
+                  orientation: vertical;
+                  valign: center;
+                  numeric: true;
+                  wrap: true;
+                  adjustment: adj_minute;
+                  output => $handle_spinner_output_two_digit() swapped;
+                }
+              }
+
+              ToggleButton {
+                label: _("Now");
+                active: bind template.now;
+                toggled => $handle_toggle_now() swapped;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+Adjustment adj_hour {
+  lower: 0;
+  upper: 23;
+  step-increment: 1;
+}
+
+Adjustment adj_minute {
+  lower: 0;
+  upper: 59;
+  step-increment: 5;
+}

@@ -1,0 +1,30 @@
+using Gtk 4.0;
+
+template $DBIndicatorIcons: Box {
+  accessibility {
+    described-by: [img_load_factor, img_late_factor, img_change_platform, img_unreachable, img_cancelled];
+  }
+  accessible-role: group;
+  orientation: horizontal;
+  spacing: 2;
+
+  Image img_load_factor {
+    visible: false;
+  }
+
+  Image img_late_factor {
+    visible: false;
+  }
+
+  Image img_change_platform {
+    visible: false;
+  }
+
+  Image img_unreachable {
+    visible: false;
+  }
+
+  Image img_cancelled {
+    visible: false;
+  }
+}

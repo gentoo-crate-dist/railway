@@ -30,6 +30,8 @@ pub mod imp {
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
+    use gtk::Expression;
+    use gtk::PropertyExpression;
     use libadwaita::prelude::ComboRowExt;
     use libadwaita::subclass::prelude::AdwDialogImpl;
     use libadwaita::subclass::prelude::PreferencesDialogImpl;
@@ -106,6 +108,12 @@ pub mod imp {
             self.dropdown_bahncard
                 .get()
                 .set_model(Some(&model_bahncard));
+            self.dropdown_bahncard
+                .set_expression(Some(PropertyExpression::new(
+                    DiscountCard::static_type(),
+                    None::<Expression>,
+                    "name",
+                )));
             self.settings
                 .bind("bahncard", &self.dropdown_bahncard.get(), "selected")
                 .mapping(clone!(

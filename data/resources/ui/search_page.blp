@@ -1,0 +1,120 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBSearchPage: Box {
+  orientation: horizontal;
+  hexpand: true;
+
+  ScrolledWindow {
+    hscrollbar-policy: never;
+
+    child: Adw.Clamp {
+      tightening-threshold: 376; // 376 = 400 - 2 * 12 = maximum with as sidebar - margin.
+      maximum-size: 516;
+
+      child: Box {
+        orientation: vertical;
+        hexpand: true;
+        vexpand: true;
+        spacing: 12;
+        margin-top: 12;
+        margin-bottom: 12;
+        margin-start: 12;
+        margin-end: 12;
+
+        ListBox {
+          styles [
+            "boxed-list",
+          ]
+
+          $DBStationEntry in_from {
+            title: _("From");
+            client: bind template.client;
+            show-swap-button: false;
+          }
+
+          $DBStationEntry in_to {
+            hexpand: true;
+            title: _("To");
+            client: bind template.client;
+            show-swap-button: true;
+            swap => $handle_swap() swapped;
+          }
+        }
+
+        $DBDateTimePicker pick_date_time {}
+
+        $DBSearchOptionsButton {}
+
+        Button btn_search {
+          accessibility {
+            label: _("Search");
+          }
+
+          styles [
+            "suggested-action",
+            "list-button",
+          ]
+
+          clicked => $handle_search() swapped;
+          margin-top: 12;
+          margin-bottom: 12;
+          height-request: 48;
+          sensitive: bind $and(in_from.set, in_to.set, $not(template.searching) as <bool>) as <bool>;
+
+          Stack stack_search_btn {
+            transition-type: crossfade;
+
+            StackPage {
+              name: 'label';
+
+              child: Label {
+                label: _("Search");
+              };
+            }
+
+            StackPage {
+              name: 'spinner';
+
+              child: Spinner {
+                spinning: true;
+                halign: center;
+                valign: center;
+              };
+            }
+          }
+        }
+
+        ListBox box_journeys {
+          accessibility {
+            label: _("Bookmarked Trips");
+          }
+
+          styles [
+            "boxed-list",
+          ]
+
+          visible: false;
+          activate-on-single-click: true;
+          selection-mode: none;
+          row-activated => $handle_journeys_row_activated() swapped;
+        }
+
+        ListBox box_searches {
+          accessibility {
+            label: _("Bookmarked Searches");
+          }
+
+          styles [
+            "boxed-list",
+          ]
+
+          visible: false;
+          activate-on-single-click: true;
+          selection-mode: none;
+          row-activated => $handle_searches_row_activated() swapped;
+        }
+      };
+    };
+  }
+}

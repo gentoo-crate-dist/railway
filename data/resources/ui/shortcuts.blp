@@ -1,0 +1,50 @@
+using Gtk 4.0;
+
+ShortcutsWindow help_overlay {
+  modal: true;
+
+  ShortcutsSection {
+    ShortcutsGroup {
+      title: _("Application");
+
+      ShortcutsShortcut {
+        accelerator: '<Control>s';
+        title: _("Bookmark Search");
+      }
+
+      ShortcutsShortcut {
+        accelerator: '<Control>d';
+        title: _("Bookmark Trip");
+      }
+
+      ShortcutsShortcut {
+        accelerator: '<Control>r';
+        title: _("Reload Trip");
+      }
+    }
+
+    ShortcutsGroup {
+      title: _("General");
+
+      ShortcutsShortcut {
+        accelerator: '<Control>q <Control>w';
+        title: _("Quit");
+      }
+
+      ShortcutsShortcut {
+        accelerator: '<Control>question';
+        title: _("Show Shortcuts");
+      }
+
+      ShortcutsShortcut {
+        accelerator: '<Control>comma';
+        title: _("Show Preferences");
+      }
+
+      ShortcutsShortcut {
+        accelerator: 'F10';
+        title: _("Open Menu");
+      }
+    }
+  }
+}

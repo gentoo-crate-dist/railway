@@ -1,0 +1,31 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DBPreferencesDialog: Adw.PreferencesDialog {
+  search-enabled: false;
+
+  Adw.PreferencesPage {
+    title: _("General");
+    icon-name: 'preferences-system-symbolic';
+
+    Adw.PreferencesGroup {
+      Adw.SwitchRow switch_delete_old {
+        title: _("Automatically Remove Old Bookmarks");
+        subtitle: _("Past trips are kept only for a period of time");
+      }
+
+      Adw.SpinRow spin_deletion_time {
+        output => $handle_deletion_time_output() swapped;
+        title: _("Preservation Time For Trips");
+        subtitle: _("For how long to retain trips after arrival");
+        adjustment: adj_deletion_time;
+      }
+    }
+  }
+}
+
+Adjustment adj_deletion_time {
+  lower: 0;
+  upper: 48;
+  step-increment: 1;
+}

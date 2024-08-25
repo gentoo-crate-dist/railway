@@ -1,0 +1,60 @@
+using Gtk 4.0;
+
+template $DBJourneyStoreItem: Box {
+  orientation: horizontal;
+  hexpand: true;
+  halign: fill;
+
+  Box {
+    orientation: vertical;
+    margin-start: 12;
+    margin-end: 12;
+    margin-top: 12;
+    margin-bottom: 12;
+
+    Box {
+      spacing: 8;
+
+      Label {
+        styles [
+          "numeric",
+          "heading",
+        ]
+
+        label: bind template.journey as <$DBJourney>.first-leg as <$DBLeg>.planned-departure;
+      }
+
+      Label {
+        ellipsize: end;
+        label: bind template.journey as <$DBJourney>.first-leg as <$DBLeg>.origin as <$DBPlace>.name;
+      }
+    }
+
+    Box {
+      spacing: 8;
+
+      Label {
+        styles [
+          "numeric",
+          "heading",
+        ]
+        label: bind template.journey as <$DBJourney>.last-leg as <$DBLeg>.planned-arrival;
+      }
+
+      Label {
+        ellipsize: end;
+        label: bind template.journey as <$DBJourney>.last-leg as <$DBLeg>.destination as <$DBPlace>.name;
+      }
+    }
+  }
+
+  Image {
+    icon-name: 'train-symbolic';
+    hexpand: true;
+    halign: end;
+    margin-top: 12;
+    margin-bottom: 12;
+    margin-start: 12;
+    margin-end: 12;
+  }
+}

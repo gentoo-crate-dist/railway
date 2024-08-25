@@ -1,0 +1,36 @@
+using Gtk 4.0;
+
+template $DBProviderPopover: Popover {
+  styles [
+    "menu",
+  ]
+
+  width-request: 300;
+
+  Box {
+    orientation: vertical;
+
+    SearchEntry entry_search {
+      margin-start: 6;
+      margin-end: 6;
+      margin-top: 6;
+      margin-bottom: 6;
+      placeholder-text: _("Search Networks…");
+      input-purpose: free_form;
+      input-hints: no_spellcheck | no_emoji;
+    }
+
+    ScrolledWindow scrolled_window {
+      hscrollbar-policy: never;
+      propagate-natural-height: true;
+      vexpand: true;
+      max-content-height: 500;
+
+      ListView list_providers {
+        styles [
+          "navigation-sidebar",
+        ]
+      }
+    }
+  }
+}

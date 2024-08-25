@@ -1,0 +1,39 @@
+using Gtk 4.0;
+
+template $DBTransition: Box {
+  accessible-role: list_item;
+  orientation: vertical;
+  focusable: true;
+  spacing: 6;
+
+  Box {
+    orientation: horizontal;
+
+    Image {
+      icon-name: bind template.icon;
+      margin-start: 63;
+      margin-end: 12;
+    }
+
+    Label transfer_label {
+      wrap: true;
+      label: bind template.label;
+    }
+  }
+
+  Box destination_box {
+    orientation: horizontal;
+    visible: false;
+
+    Image {
+      icon-name: 'circle-outline-thick-symbolic';
+      pixel-size: 13;
+      margin-start: 64;
+      margin-end: 12;
+    }
+
+    Label destination_label {
+      wrap: true;
+    }
+  }
+}
