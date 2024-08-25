@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-20 10:42+0200\n"
+"POT-Creation-Date: 2024-07-26 12:03+0200\n"
 "PO-Revision-Date: 2024-07-22 16:09+0000\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
@@ -22,7 +22,7 @@ msgstr ""
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
-#: data/resources/ui/window.ui:8
+#: data/resources/ui/window.blp:6
 msgid "Railway"
 msgstr "रेलवे"
 
@@ -43,8 +43,9 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
-"रेलवे आपको विभिन्न वेबसाइटों पर जाये बिना नेटवर्क और सीमाओं पर यात्रा की जानकारी देखने की सुविधा देता है। अनुकूली "
-"डिज़ाइन के कारण, अपनी यात्रा की योजना पहले से बनाना या चलते-फिरते मोबाइल से बनाना उपयुक्त है:"
+"रेलवे आपको विभिन्न वेबसाइटों पर जाये बिना नेटवर्क और सीमाओं पर यात्रा की जानकारी देखने "
+"की सुविधा देता है। अनुकूली डिज़ाइन के कारण, अपनी यात्रा की योजना पहले से बनाना या चलते-"
+"फिरते मोबाइल से बनाना उपयुक्त है:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
@@ -72,275 +73,276 @@ msgstr "और यह सब दुनिया भर के नेटवर्
 msgid "Application Overview"
 msgstr "अनुप्रयोग अवलोकन"
 
-#: data/resources/ui/date_time_picker.ui:23
+#: data/resources/ui/date_time_picker.blp:20
 msgid "Departure"
 msgstr "प्रस्थान"
 
-#: data/resources/ui/date_time_picker.ui:37
+#: data/resources/ui/date_time_picker.blp:33
 msgid "Arrival"
 msgstr "आगमन"
 
-#: data/resources/ui/date_time_picker.ui:60
+#: data/resources/ui/date_time_picker.blp:53
 msgid "Input date"
 msgstr "आगत तारीख"
 
-#: data/resources/ui/date_time_picker.ui:68
+#: data/resources/ui/date_time_picker.blp:60
 msgid "Date"
 msgstr "तारीख"
 
-#: data/resources/ui/date_time_picker.ui:109
+#: data/resources/ui/date_time_picker.blp:96
 msgid "Input time"
 msgstr "आगत समय"
 
-#: data/resources/ui/date_time_picker.ui:118
+#: data/resources/ui/date_time_picker.blp:104
 msgid "Time"
 msgstr "समय"
 
-#: data/resources/ui/date_time_picker.ui:185 src/gui/date_time_picker.rs:122
+#: data/resources/ui/date_time_picker.blp:159 src/gui/date_time_picker.rs:122
 msgid "Now"
 msgstr "अभी"
 
-#: data/resources/ui/journey_detail_page.ui:80
+#: data/resources/ui/journey_detail_page.blp:51
 msgid "Total Travel Time"
 msgstr "कुल यात्रा समय"
 
-#: data/resources/ui/journey_detail_page.ui:100
+#: data/resources/ui/journey_detail_page.blp:64
 msgid "Trip Segments"
 msgstr "यात्रा खंड"
 
-#: data/resources/ui/journey_detail_page.ui:123
+#: data/resources/ui/journey_detail_page.blp:78
 msgid "Choose a Trip"
 msgstr "एक यात्रा चुनें"
 
-#: data/resources/ui/journeys_page.ui:128
+#: data/resources/ui/journeys_page.blp:98
 msgid "Search for Trips"
 msgstr "यात्राएं खोजें"
 
-#: data/resources/ui/leg_item.ui:183
+#: data/resources/ui/leg_item.blp:124
 msgid "Show Stops"
 msgstr "ठहराव दिखाएं"
 
-#: data/resources/ui/leg_item.ui:185
+#: data/resources/ui/leg_item.blp:127
 msgid "Show Intermediate Stops"
 msgstr "मध्यवर्ती ठहराव दिखाएं"
 
-#: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
+#: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
 msgid "Show Announcements"
 msgstr "घोषणाएं दिखाएं"
 
-#: data/resources/ui/leg_item.ui:283
+#: data/resources/ui/leg_item.blp:195
 msgid "Announcements"
 msgstr "घोषणाएं"
 
-#: data/resources/ui/leg_item.ui:315
+#: data/resources/ui/leg_item.blp:222
 msgid "Stops"
 msgstr "ठहराव"
 
-#: data/resources/ui/preferences_dialog.ui:10 data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/preferences_dialog.blp:8
+#: data/resources/ui/shortcuts.blp:27
 msgid "General"
 msgstr "सामान्य"
 
-#: data/resources/ui/preferences_dialog.ui:16
+#: data/resources/ui/preferences_dialog.blp:13
 msgid "Automatically Remove Old Bookmarks"
 msgstr "पुराने बुकमार्क स्वचालित रूप से हटाएं"
 
-#: data/resources/ui/preferences_dialog.ui:17
+#: data/resources/ui/preferences_dialog.blp:14
 msgid "Past trips are kept only for a period of time"
 msgstr "पिछली यात्राओं को केवल कुछ समय के लिए रखा जाता है"
 
-#: data/resources/ui/preferences_dialog.ui:23
+#: data/resources/ui/preferences_dialog.blp:19
 msgid "Preservation Time For Trips"
 msgstr "यात्राओं के लिए संरक्षण समय"
 
-#: data/resources/ui/preferences_dialog.ui:24
+#: data/resources/ui/preferences_dialog.blp:20
 msgid "For how long to retain trips after arrival"
 msgstr "आगमन के बाद यात्राओं को कितने समय तक बनाए रखना है"
 
-#: data/resources/ui/provider_popover.ui:20
+#: data/resources/ui/provider_popover.blp:18
 msgid "Search Networks…"
 msgstr "नेटवर्क खोजें…"
 
-#: data/resources/ui/search_options_button.ui:8
+#: data/resources/ui/refresh_button.blp:20
+msgid "Refresh Trip"
+msgstr "यात्रा ताजा करें"
+
+#: data/resources/ui/search_options_button.blp:5
 msgid "More search options"
 msgstr "अधिक खोज विकल्प"
 
-#: data/resources/ui/search_options_button.ui:20
+#: data/resources/ui/search_options_button.blp:16
 msgid "Refine Advanced Search Options"
 msgstr "उन्नत खोज विकल्प परिष्कृत करें"
 
-#: data/resources/ui/search_options_button.ui:35
+#: data/resources/ui/search_options_button.blp:30
 msgid "More Options"
 msgstr "अधिक विकल्प"
 
-#: data/resources/ui/search_options_dialog.ui:14
+#: data/resources/ui/search_options_dialog.blp:10
 msgid "Discount Card"
 msgstr "डिस्काउंट कार्ड"
 
-#: data/resources/ui/search_options_dialog.ui:22
+#: data/resources/ui/search_options_dialog.blp:14
 msgid "Class"
 msgstr "श्रेणी"
 
-#: data/resources/ui/search_options_dialog.ui:32
+#: data/resources/ui/search_options_dialog.blp:25
 msgid "First Class"
 msgstr "प्रथम श्रेणी"
 
-#: data/resources/ui/search_options_dialog.ui:38
+#: data/resources/ui/search_options_dialog.blp:30
 msgid "Second Class"
 msgstr "द्रितीय श्रेणी"
 
-#: data/resources/ui/search_options_dialog.ui:48
+#: data/resources/ui/search_options_dialog.blp:37
 #: src/gui/search_options_button.rs:190
 msgid "Bike Accessible"
 msgstr "साइकिल सुलभ"
 
-#: data/resources/ui/search_options_dialog.ui:54
+#: data/resources/ui/search_options_dialog.blp:42
 msgid "Minimum Transfer Time"
 msgstr "न्यूनतम स्थानांतरण समय"
 
-#: data/resources/ui/search_options_dialog.ui:60
+#: data/resources/ui/search_options_dialog.blp:47
 msgid "Direct Connections Only"
 msgstr "केवल सीधे कनेक्शन"
 
-#: data/resources/ui/search_options_dialog.ui:67
+#: data/resources/ui/search_options_dialog.blp:52
 msgid "Modes of Transport"
 msgstr "परिवहन के तरीके"
 
-#: data/resources/ui/search_options_dialog.ui:70
+#: data/resources/ui/search_options_dialog.blp:55
 msgid "High Speed Train"
 msgstr "उच्च गति रेल"
 
-#: data/resources/ui/search_options_dialog.ui:75
+#: data/resources/ui/search_options_dialog.blp:59
 msgid "Regional Train"
 msgstr "क्षेत्रीय रेल"
 
-#: data/resources/ui/search_options_dialog.ui:80
+#: data/resources/ui/search_options_dialog.blp:63
 msgid "Suburban Trains"
 msgstr "उपनगरीय रेल"
 
-#: data/resources/ui/search_options_dialog.ui:85
+#: data/resources/ui/search_options_dialog.blp:67
 msgid "Bus"
 msgstr "बस"
 
-#: data/resources/ui/search_options_dialog.ui:90
+#: data/resources/ui/search_options_dialog.blp:71
 msgid "Ferry"
 msgstr "फेरी"
 
-#: data/resources/ui/search_options_dialog.ui:95
+#: data/resources/ui/search_options_dialog.blp:75
 msgid "Subway"
 msgstr "सबवे"
 
-#: data/resources/ui/search_options_dialog.ui:100
+#: data/resources/ui/search_options_dialog.blp:79
 msgid "Tram"
 msgstr "ट्राम"
 
-#: data/resources/ui/search_options_dialog.ui:105
+#: data/resources/ui/search_options_dialog.blp:83
 msgid "Cablecar"
 msgstr "केबलकार"
 
-#: data/resources/ui/search_options_dialog.ui:110
+#: data/resources/ui/search_options_dialog.blp:87
 msgid "Taxi"
 msgstr "टैक्सी"
 
-#: data/resources/ui/search_page.ui:37
+#: data/resources/ui/search_page.blp:31
 msgid "From"
 msgstr "यहां से"
 
-#: data/resources/ui/search_page.ui:45
+#: data/resources/ui/search_page.blp:38
 msgid "To"
 msgstr "यहां तक"
 
-#: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:95
-#: data/resources/ui/window.ui:37
+#: data/resources/ui/search_page.blp:51 data/resources/ui/search_page.blp:72
+#: data/resources/ui/window.blp:31
 msgid "Search"
 msgstr "खोजें"
 
-#: data/resources/ui/search_page.ui:120
+#: data/resources/ui/search_page.blp:90
 msgid "Bookmarked Trips"
 msgstr "बुकमार्क की गई यात्राएं"
 
-#: data/resources/ui/search_page.ui:134
+#: data/resources/ui/search_page.blp:105
 msgid "Bookmarked Searches"
 msgstr "बुकमार्क की गई खोजें"
 
-#: data/resources/ui/shortcuts.ui:9
+#: data/resources/ui/shortcuts.blp:8
 msgid "Application"
 msgstr "अनुप्रयोग"
 
-#: data/resources/ui/shortcuts.ui:13
+#: data/resources/ui/shortcuts.blp:12
 msgid "Bookmark Search"
 msgstr "बुकमार्क खोजें"
 
-#: data/resources/ui/shortcuts.ui:19
+#: data/resources/ui/shortcuts.blp:17
 msgid "Bookmark Trip"
 msgstr "यात्रा को बुकमार्क करें"
 
-#: data/resources/ui/shortcuts.ui:25
+#: data/resources/ui/shortcuts.blp:22
 msgid "Reload Trip"
 msgstr "यात्रा पुनः लोड करें"
 
-#: data/resources/ui/shortcuts.ui:36
+#: data/resources/ui/shortcuts.blp:31
 msgid "Quit"
 msgstr "छोड़ें"
 
-#: data/resources/ui/shortcuts.ui:42
+#: data/resources/ui/shortcuts.blp:36
 msgid "Show Shortcuts"
 msgstr "शॉर्टकट दिखाएं"
 
-#: data/resources/ui/shortcuts.ui:48
+#: data/resources/ui/shortcuts.blp:41
 msgid "Show Preferences"
 msgstr "प्राथमिकताएं दिखाएं"
 
-#: data/resources/ui/shortcuts.ui:54
+#: data/resources/ui/shortcuts.blp:46
 msgid "Open Menu"
 msgstr "मेनू खोलें"
 
-#: data/resources/ui/station_entry.ui:16
+#: data/resources/ui/station_entry.blp:13
 msgid "Swap Start and Destination"
 msgstr "प्रस्थान और गंतव्य बदलें"
 
-#: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
+#: data/resources/ui/window.blp:42 data/resources/ui/window.blp:49
 msgid "Select Network"
 msgstr "नेटवर्क चुनें"
 
-#: data/resources/ui/window.ui:88
+#: data/resources/ui/window.blp:72
 msgid "Main Menu"
 msgstr "मुख्य मेनू"
 
-#: data/resources/ui/window.ui:114
+#: data/resources/ui/window.blp:91
 msgid "Connections"
 msgstr "कनेक्शन"
 
-#: data/resources/ui/window.ui:128
+#: data/resources/ui/window.blp:104
 msgid "Bookmark This Search"
 msgstr "इस खोज को बुकमार्क करें"
 
-#: data/resources/ui/window.ui:166
+#: data/resources/ui/window.blp:116
 msgid "Trip Details"
 msgstr "यात्रा विवरण"
 
-#: data/resources/ui/window.ui:175
+#: data/resources/ui/window.blp:125
 msgid "Refresh This Trip"
 msgstr "इस यात्रा को ताजा करें"
 
-#: data/resources/ui/window.ui:199
+#: data/resources/ui/window.blp:136
 msgid "Bookmark This Trip"
 msgstr "इस यात्रा को बुकमार्क करें"
 
-#: data/resources/ui/window.ui:248
+#: data/resources/ui/window.blp:164
 msgid "Preferences"
 msgstr "प्राथमिकताएं"
 
-#: data/resources/ui/window.ui:252
+#: data/resources/ui/window.blp:169
 msgid "Keyboard Shortcuts"
 msgstr "कीबोर्ड शॉर्टकट"
 
-#: data/resources/ui/window.ui:256
+#: data/resources/ui/window.blp:174
 msgid "_About Railway"
 msgstr "रेलवे के बारे में (_A)"
-
-#: data/resources/ui/refresh_button.ui:24
-msgid "Refresh Trip"
-msgstr "यात्रा ताजा करें"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
@@ -437,7 +439,7 @@ msgstr "स्थानांतरण"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:220
+#: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:228
 msgid "{} min"
 msgstr "{} मिन"
 

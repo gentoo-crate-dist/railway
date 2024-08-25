@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-20 10:42+0200\n"
+"POT-Creation-Date: 2024-07-26 12:03+0200\n"
 "PO-Revision-Date: 2024-05-06 09:07+0000\n"
 "Last-Translator: snowfire <wstorm88@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/schmiddi-on-"
@@ -23,7 +23,7 @@ msgstr ""
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
-#: data/resources/ui/window.ui:8
+#: data/resources/ui/window.blp:6
 msgid "Railway"
 msgstr "Railway"
 
@@ -77,279 +77,280 @@ msgstr "И всё это для путей всего мира, но в осно
 msgid "Application Overview"
 msgstr "Обзор приложения"
 
-#: data/resources/ui/date_time_picker.ui:23
+#: data/resources/ui/date_time_picker.blp:20
 msgid "Departure"
 msgstr ""
 
-#: data/resources/ui/date_time_picker.ui:37
+#: data/resources/ui/date_time_picker.blp:33
 msgid "Arrival"
 msgstr ""
 
-#: data/resources/ui/date_time_picker.ui:60
+#: data/resources/ui/date_time_picker.blp:53
 msgid "Input date"
 msgstr "Введите дату"
 
-#: data/resources/ui/date_time_picker.ui:68
+#: data/resources/ui/date_time_picker.blp:60
 msgid "Date"
 msgstr "Дата"
 
-#: data/resources/ui/date_time_picker.ui:109
+#: data/resources/ui/date_time_picker.blp:96
 msgid "Input time"
 msgstr "Время ввода"
 
-#: data/resources/ui/date_time_picker.ui:118
+#: data/resources/ui/date_time_picker.blp:104
 msgid "Time"
 msgstr "Время"
 
-#: data/resources/ui/date_time_picker.ui:185 src/gui/date_time_picker.rs:122
+#: data/resources/ui/date_time_picker.blp:159 src/gui/date_time_picker.rs:122
 msgid "Now"
 msgstr "Сейчас"
 
-#: data/resources/ui/journey_detail_page.ui:80
+#: data/resources/ui/journey_detail_page.blp:51
 msgid "Total Travel Time"
 msgstr "Всего времени в пути"
 
-#: data/resources/ui/journey_detail_page.ui:100
+#: data/resources/ui/journey_detail_page.blp:64
 msgid "Trip Segments"
 msgstr "Сегменты поездки"
 
-#: data/resources/ui/journey_detail_page.ui:123
+#: data/resources/ui/journey_detail_page.blp:78
 msgid "Choose a Trip"
 msgstr "Выберите поездку"
 
-#: data/resources/ui/journeys_page.ui:128
+#: data/resources/ui/journeys_page.blp:98
 msgid "Search for Trips"
 msgstr "Поиск поездок"
 
-#: data/resources/ui/leg_item.ui:183
+#: data/resources/ui/leg_item.blp:124
 #, fuzzy
 msgid "Show Stops"
 msgstr "Показать остановки"
 
-#: data/resources/ui/leg_item.ui:185
+#: data/resources/ui/leg_item.blp:127
 msgid "Show Intermediate Stops"
 msgstr ""
 
-#: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
+#: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
 msgid "Show Announcements"
 msgstr "Показать объявления"
 
-#: data/resources/ui/leg_item.ui:283
+#: data/resources/ui/leg_item.blp:195
 msgid "Announcements"
 msgstr "Объявления"
 
-#: data/resources/ui/leg_item.ui:315
+#: data/resources/ui/leg_item.blp:222
 #, fuzzy
 msgid "Stops"
 msgstr "Остановки"
 
-#: data/resources/ui/preferences_dialog.ui:10 data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/preferences_dialog.blp:8
+#: data/resources/ui/shortcuts.blp:27
 msgid "General"
 msgstr "Общие"
 
-#: data/resources/ui/preferences_dialog.ui:16
+#: data/resources/ui/preferences_dialog.blp:13
 msgid "Automatically Remove Old Bookmarks"
 msgstr "Автоматически удалять старые закладки"
 
-#: data/resources/ui/preferences_dialog.ui:17
+#: data/resources/ui/preferences_dialog.blp:14
 msgid "Past trips are kept only for a period of time"
 msgstr ""
 "Прошлые поездки хранятся только в течение определенного периода времени"
 
-#: data/resources/ui/preferences_dialog.ui:23
+#: data/resources/ui/preferences_dialog.blp:19
 msgid "Preservation Time For Trips"
 msgstr "Время сохранения для поездок"
 
-#: data/resources/ui/preferences_dialog.ui:24
+#: data/resources/ui/preferences_dialog.blp:20
 msgid "For how long to retain trips after arrival"
 msgstr "Как долго сохранить поездки после прибытия"
 
-#: data/resources/ui/provider_popover.ui:20
+#: data/resources/ui/provider_popover.blp:18
 msgid "Search Networks…"
 msgstr "Поисковые сети …"
 
-#: data/resources/ui/search_options_button.ui:8
+#: data/resources/ui/refresh_button.blp:20
+msgid "Refresh Trip"
+msgstr "Обновить поездку"
+
+#: data/resources/ui/search_options_button.blp:5
 msgid "More search options"
 msgstr "Больше параметров поиска"
 
-#: data/resources/ui/search_options_button.ui:20
+#: data/resources/ui/search_options_button.blp:16
 msgid "Refine Advanced Search Options"
 msgstr "Уточнить дополнительные параметры поиска"
 
-#: data/resources/ui/search_options_button.ui:35
+#: data/resources/ui/search_options_button.blp:30
 msgid "More Options"
 msgstr "Дополнительные параметры"
 
-#: data/resources/ui/search_options_dialog.ui:14
+#: data/resources/ui/search_options_dialog.blp:10
 msgid "Discount Card"
 msgstr "Скидочная карта"
 
-#: data/resources/ui/search_options_dialog.ui:22
+#: data/resources/ui/search_options_dialog.blp:14
 msgid "Class"
 msgstr "Класс"
 
-#: data/resources/ui/search_options_dialog.ui:32
+#: data/resources/ui/search_options_dialog.blp:25
 msgid "First Class"
 msgstr "Первый класс"
 
-#: data/resources/ui/search_options_dialog.ui:38
+#: data/resources/ui/search_options_dialog.blp:30
 msgid "Second Class"
 msgstr "Второй класс"
 
-#: data/resources/ui/search_options_dialog.ui:48
+#: data/resources/ui/search_options_dialog.blp:37
 #: src/gui/search_options_button.rs:190
 msgid "Bike Accessible"
 msgstr "Можно с велосипедом"
 
-#: data/resources/ui/search_options_dialog.ui:54
+#: data/resources/ui/search_options_dialog.blp:42
 msgid "Minimum Transfer Time"
 msgstr "Минимальное время в пути"
 
-#: data/resources/ui/search_options_dialog.ui:60
+#: data/resources/ui/search_options_dialog.blp:47
 msgid "Direct Connections Only"
 msgstr "Только прямые рейсы"
 
-#: data/resources/ui/search_options_dialog.ui:67
+#: data/resources/ui/search_options_dialog.blp:52
 msgid "Modes of Transport"
 msgstr "Виды транспорта"
 
-#: data/resources/ui/search_options_dialog.ui:70
+#: data/resources/ui/search_options_dialog.blp:55
 msgid "High Speed Train"
 msgstr ""
 
-#: data/resources/ui/search_options_dialog.ui:75
+#: data/resources/ui/search_options_dialog.blp:59
 #, fuzzy
 msgid "Regional Train"
 msgstr "Только пригород"
 
-#: data/resources/ui/search_options_dialog.ui:80
+#: data/resources/ui/search_options_dialog.blp:63
 msgid "Suburban Trains"
 msgstr ""
 
-#: data/resources/ui/search_options_dialog.ui:85
+#: data/resources/ui/search_options_dialog.blp:67
 msgid "Bus"
 msgstr "Автобус"
 
-#: data/resources/ui/search_options_dialog.ui:90
+#: data/resources/ui/search_options_dialog.blp:71
 msgid "Ferry"
 msgstr "Паром"
 
-#: data/resources/ui/search_options_dialog.ui:95
+#: data/resources/ui/search_options_dialog.blp:75
 msgid "Subway"
 msgstr "Метро"
 
-#: data/resources/ui/search_options_dialog.ui:100
+#: data/resources/ui/search_options_dialog.blp:79
 msgid "Tram"
 msgstr "Трамвай"
 
-#: data/resources/ui/search_options_dialog.ui:105
+#: data/resources/ui/search_options_dialog.blp:83
 msgid "Cablecar"
 msgstr ""
 
-#: data/resources/ui/search_options_dialog.ui:110
+#: data/resources/ui/search_options_dialog.blp:87
 msgid "Taxi"
 msgstr "Такси"
 
-#: data/resources/ui/search_page.ui:37
+#: data/resources/ui/search_page.blp:31
 msgid "From"
 msgstr "Из"
 
-#: data/resources/ui/search_page.ui:45
+#: data/resources/ui/search_page.blp:38
 msgid "To"
 msgstr "В"
 
-#: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:95
-#: data/resources/ui/window.ui:37
+#: data/resources/ui/search_page.blp:51 data/resources/ui/search_page.blp:72
+#: data/resources/ui/window.blp:31
 msgid "Search"
 msgstr "Поиск"
 
-#: data/resources/ui/search_page.ui:120
+#: data/resources/ui/search_page.blp:90
 msgid "Bookmarked Trips"
 msgstr "Маршруты в закладках"
 
-#: data/resources/ui/search_page.ui:134
+#: data/resources/ui/search_page.blp:105
 msgid "Bookmarked Searches"
 msgstr "Поиски в закладках"
 
-#: data/resources/ui/shortcuts.ui:9
+#: data/resources/ui/shortcuts.blp:8
 msgid "Application"
 msgstr "Приложение"
 
-#: data/resources/ui/shortcuts.ui:13
+#: data/resources/ui/shortcuts.blp:12
 msgid "Bookmark Search"
 msgstr "Запомнить поиск"
 
-#: data/resources/ui/shortcuts.ui:19
+#: data/resources/ui/shortcuts.blp:17
 msgid "Bookmark Trip"
 msgstr "Запомнить маршрут"
 
-#: data/resources/ui/shortcuts.ui:25
+#: data/resources/ui/shortcuts.blp:22
 msgid "Reload Trip"
 msgstr "Заново загрузить маршрут"
 
-#: data/resources/ui/shortcuts.ui:36
+#: data/resources/ui/shortcuts.blp:31
 msgid "Quit"
 msgstr "Выйти"
 
-#: data/resources/ui/shortcuts.ui:42
+#: data/resources/ui/shortcuts.blp:36
 msgid "Show Shortcuts"
 msgstr "Ярлыки"
 
-#: data/resources/ui/shortcuts.ui:48
+#: data/resources/ui/shortcuts.blp:41
 msgid "Show Preferences"
 msgstr "Предпочтения"
 
-#: data/resources/ui/shortcuts.ui:54
+#: data/resources/ui/shortcuts.blp:46
 msgid "Open Menu"
 msgstr "Открыть меню"
 
-#: data/resources/ui/station_entry.ui:16
+#: data/resources/ui/station_entry.blp:13
 msgid "Swap Start and Destination"
 msgstr "Следовать из пункта назначения"
 
-#: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
+#: data/resources/ui/window.blp:42 data/resources/ui/window.blp:49
 msgid "Select Network"
 msgstr "Выбрать сеть"
 
-#: data/resources/ui/window.ui:88
+#: data/resources/ui/window.blp:72
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: data/resources/ui/window.ui:114
+#: data/resources/ui/window.blp:91
 msgid "Connections"
 msgstr "Рейсы"
 
-#: data/resources/ui/window.ui:128
+#: data/resources/ui/window.blp:104
 msgid "Bookmark This Search"
 msgstr "Запомнить этот поиск"
 
-#: data/resources/ui/window.ui:166
+#: data/resources/ui/window.blp:116
 msgid "Trip Details"
 msgstr "Детали маршрута"
 
-#: data/resources/ui/window.ui:175
+#: data/resources/ui/window.blp:125
 msgid "Refresh This Trip"
 msgstr "Обновить маршрут"
 
-#: data/resources/ui/window.ui:199
+#: data/resources/ui/window.blp:136
 msgid "Bookmark This Trip"
 msgstr "Запомнить этот маршрут"
 
-#: data/resources/ui/window.ui:248
+#: data/resources/ui/window.blp:164
 msgid "Preferences"
 msgstr "Предпочтения"
 
-#: data/resources/ui/window.ui:252
+#: data/resources/ui/window.blp:169
 msgid "Keyboard Shortcuts"
 msgstr "Клавиши клавиатуры"
 
-#: data/resources/ui/window.ui:256
+#: data/resources/ui/window.blp:174
 msgid "_About Railway"
 msgstr "_О Railway"
-
-#: data/resources/ui/refresh_button.ui:24
-msgid "Refresh Trip"
-msgstr "Обновить поездку"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
@@ -446,7 +447,7 @@ msgstr "Трансфер"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:220
+#: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:228
 msgid "{} min"
 msgstr "{} мин"
 

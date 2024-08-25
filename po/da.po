@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-20 10:42+0200\n"
+"POT-Creation-Date: 2024-07-26 12:03+0200\n"
 "PO-Revision-Date: 2024-07-21 12:09+0000\n"
 "Last-Translator: Owen Higgins <owen@higgins.id>\n"
-"Language-Team: Danish <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/da/>\n"
+"Language-Team: Danish <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
-#: data/resources/ui/window.ui:8
+#: data/resources/ui/window.blp:6
 msgid "Railway"
 msgstr "Railway"
 
@@ -61,7 +61,8 @@ msgstr "Gem nuværende og fremtidens rejser samt hyppige søgninger"
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
-msgstr "Gør brug af avanceret søgemuligheder som filtrering ved transportmiddel"
+msgstr ""
+"Gør brug af avanceret søgemuligheder som filtrering ved transportmiddel"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
@@ -74,275 +75,276 @@ msgstr "Og det hele for transportnet verden rundt, men mest fra Europa."
 msgid "Application Overview"
 msgstr "Overblik"
 
-#: data/resources/ui/date_time_picker.ui:23
+#: data/resources/ui/date_time_picker.blp:20
 msgid "Departure"
 msgstr "Afgang"
 
-#: data/resources/ui/date_time_picker.ui:37
+#: data/resources/ui/date_time_picker.blp:33
 msgid "Arrival"
 msgstr "Ankomst"
 
-#: data/resources/ui/date_time_picker.ui:60
+#: data/resources/ui/date_time_picker.blp:53
 msgid "Input date"
 msgstr "Indtast tid"
 
-#: data/resources/ui/date_time_picker.ui:68
+#: data/resources/ui/date_time_picker.blp:60
 msgid "Date"
 msgstr "Dato"
 
-#: data/resources/ui/date_time_picker.ui:109
+#: data/resources/ui/date_time_picker.blp:96
 msgid "Input time"
 msgstr "Indtast tid"
 
-#: data/resources/ui/date_time_picker.ui:118
+#: data/resources/ui/date_time_picker.blp:104
 msgid "Time"
 msgstr "Tid"
 
-#: data/resources/ui/date_time_picker.ui:185 src/gui/date_time_picker.rs:122
+#: data/resources/ui/date_time_picker.blp:159 src/gui/date_time_picker.rs:122
 msgid "Now"
 msgstr "Nu"
 
-#: data/resources/ui/journey_detail_page.ui:80
+#: data/resources/ui/journey_detail_page.blp:51
 msgid "Total Travel Time"
 msgstr "Samlede rejsetid"
 
-#: data/resources/ui/journey_detail_page.ui:100
+#: data/resources/ui/journey_detail_page.blp:64
 msgid "Trip Segments"
 msgstr "Rejsedele"
 
-#: data/resources/ui/journey_detail_page.ui:123
+#: data/resources/ui/journey_detail_page.blp:78
 msgid "Choose a Trip"
 msgstr "Vælg en rejse"
 
-#: data/resources/ui/journeys_page.ui:128
+#: data/resources/ui/journeys_page.blp:98
 msgid "Search for Trips"
 msgstr "Søg efter rejser"
 
-#: data/resources/ui/leg_item.ui:183
+#: data/resources/ui/leg_item.blp:124
 msgid "Show Stops"
 msgstr "Vis stop"
 
-#: data/resources/ui/leg_item.ui:185
+#: data/resources/ui/leg_item.blp:127
 msgid "Show Intermediate Stops"
 msgstr "Vis mellemstationer"
 
-#: data/resources/ui/leg_item.ui:258 data/resources/ui/leg_item.ui:261
+#: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
 msgid "Show Announcements"
 msgstr "Vis meddelelser"
 
-#: data/resources/ui/leg_item.ui:283
+#: data/resources/ui/leg_item.blp:195
 msgid "Announcements"
 msgstr "Meddelelser"
 
-#: data/resources/ui/leg_item.ui:315
+#: data/resources/ui/leg_item.blp:222
 msgid "Stops"
 msgstr "Stop"
 
-#: data/resources/ui/preferences_dialog.ui:10 data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/preferences_dialog.blp:8
+#: data/resources/ui/shortcuts.blp:27
 msgid "General"
 msgstr "Almindelig"
 
-#: data/resources/ui/preferences_dialog.ui:16
+#: data/resources/ui/preferences_dialog.blp:13
 msgid "Automatically Remove Old Bookmarks"
 msgstr "Fjern automatisk gamle gemte rejser"
 
-#: data/resources/ui/preferences_dialog.ui:17
+#: data/resources/ui/preferences_dialog.blp:14
 msgid "Past trips are kept only for a period of time"
 msgstr "Tidligere rejse gemmes kun i begrænset tid"
 
-#: data/resources/ui/preferences_dialog.ui:23
+#: data/resources/ui/preferences_dialog.blp:19
 msgid "Preservation Time For Trips"
 msgstr "Beholdestid for rejser"
 
-#: data/resources/ui/preferences_dialog.ui:24
+#: data/resources/ui/preferences_dialog.blp:20
 msgid "For how long to retain trips after arrival"
 msgstr "Hvor meget tid at beholde rejser efter ankomst"
 
-#: data/resources/ui/provider_popover.ui:20
+#: data/resources/ui/provider_popover.blp:18
 msgid "Search Networks…"
 msgstr "Søg transportnet…"
 
-#: data/resources/ui/search_options_button.ui:8
+#: data/resources/ui/refresh_button.blp:20
+msgid "Refresh Trip"
+msgstr "Genindlæs rejse"
+
+#: data/resources/ui/search_options_button.blp:5
 msgid "More search options"
 msgstr "Mere søgmuligheder"
 
-#: data/resources/ui/search_options_button.ui:20
+#: data/resources/ui/search_options_button.blp:16
 msgid "Refine Advanced Search Options"
 msgstr "Tilpas avanceret søgmuligheder"
 
-#: data/resources/ui/search_options_button.ui:35
+#: data/resources/ui/search_options_button.blp:30
 msgid "More Options"
 msgstr "Mere indstillinger"
 
-#: data/resources/ui/search_options_dialog.ui:14
+#: data/resources/ui/search_options_dialog.blp:10
 msgid "Discount Card"
 msgstr "Rabatkort"
 
-#: data/resources/ui/search_options_dialog.ui:22
+#: data/resources/ui/search_options_dialog.blp:14
 msgid "Class"
 msgstr "Klasse"
 
-#: data/resources/ui/search_options_dialog.ui:32
+#: data/resources/ui/search_options_dialog.blp:25
 msgid "First Class"
 msgstr "1. klasse"
 
-#: data/resources/ui/search_options_dialog.ui:38
+#: data/resources/ui/search_options_dialog.blp:30
 msgid "Second Class"
 msgstr "2. klasse"
 
-#: data/resources/ui/search_options_dialog.ui:48
+#: data/resources/ui/search_options_dialog.blp:37
 #: src/gui/search_options_button.rs:190
 msgid "Bike Accessible"
 msgstr "Passer til cykler"
 
-#: data/resources/ui/search_options_dialog.ui:54
+#: data/resources/ui/search_options_dialog.blp:42
 msgid "Minimum Transfer Time"
 msgstr "Vent ved skift"
 
-#: data/resources/ui/search_options_dialog.ui:60
+#: data/resources/ui/search_options_dialog.blp:47
 msgid "Direct Connections Only"
 msgstr "Kun direkte forbindelser"
 
-#: data/resources/ui/search_options_dialog.ui:67
+#: data/resources/ui/search_options_dialog.blp:52
 msgid "Modes of Transport"
 msgstr "Transportmidler"
 
-#: data/resources/ui/search_options_dialog.ui:70
+#: data/resources/ui/search_options_dialog.blp:55
 msgid "High Speed Train"
 msgstr "Lyntog"
 
-#: data/resources/ui/search_options_dialog.ui:75
+#: data/resources/ui/search_options_dialog.blp:59
 msgid "Regional Train"
 msgstr "Regionaltog"
 
-#: data/resources/ui/search_options_dialog.ui:80
+#: data/resources/ui/search_options_dialog.blp:63
 msgid "Suburban Trains"
 msgstr "S-tog"
 
-#: data/resources/ui/search_options_dialog.ui:85
+#: data/resources/ui/search_options_dialog.blp:67
 msgid "Bus"
 msgstr "Bus"
 
-#: data/resources/ui/search_options_dialog.ui:90
+#: data/resources/ui/search_options_dialog.blp:71
 msgid "Ferry"
 msgstr "Færge"
 
-#: data/resources/ui/search_options_dialog.ui:95
+#: data/resources/ui/search_options_dialog.blp:75
 msgid "Subway"
 msgstr "Metro"
 
-#: data/resources/ui/search_options_dialog.ui:100
+#: data/resources/ui/search_options_dialog.blp:79
 msgid "Tram"
 msgstr "Letbane"
 
-#: data/resources/ui/search_options_dialog.ui:105
+#: data/resources/ui/search_options_dialog.blp:83
 msgid "Cablecar"
 msgstr "Kabelsporvogn"
 
-#: data/resources/ui/search_options_dialog.ui:110
+#: data/resources/ui/search_options_dialog.blp:87
 msgid "Taxi"
 msgstr "Taxa"
 
-#: data/resources/ui/search_page.ui:37
+#: data/resources/ui/search_page.blp:31
 msgid "From"
 msgstr "Fra"
 
-#: data/resources/ui/search_page.ui:45
+#: data/resources/ui/search_page.blp:38
 msgid "To"
 msgstr "Til"
 
-#: data/resources/ui/search_page.ui:64 data/resources/ui/search_page.ui:95
-#: data/resources/ui/window.ui:37
+#: data/resources/ui/search_page.blp:51 data/resources/ui/search_page.blp:72
+#: data/resources/ui/window.blp:31
 msgid "Search"
 msgstr "Søg"
 
-#: data/resources/ui/search_page.ui:120
+#: data/resources/ui/search_page.blp:90
 msgid "Bookmarked Trips"
 msgstr "Gemte rejser"
 
-#: data/resources/ui/search_page.ui:134
+#: data/resources/ui/search_page.blp:105
 msgid "Bookmarked Searches"
 msgstr "Gemte søgninger"
 
-#: data/resources/ui/shortcuts.ui:9
+#: data/resources/ui/shortcuts.blp:8
 msgid "Application"
 msgstr "App"
 
-#: data/resources/ui/shortcuts.ui:13
+#: data/resources/ui/shortcuts.blp:12
 msgid "Bookmark Search"
 msgstr "Søg over gemte rejser"
 
-#: data/resources/ui/shortcuts.ui:19
+#: data/resources/ui/shortcuts.blp:17
 msgid "Bookmark Trip"
 msgstr "Gem rejse"
 
-#: data/resources/ui/shortcuts.ui:25
+#: data/resources/ui/shortcuts.blp:22
 msgid "Reload Trip"
 msgstr "Genindlæs rejse"
 
-#: data/resources/ui/shortcuts.ui:36
+#: data/resources/ui/shortcuts.blp:31
 msgid "Quit"
 msgstr "Afslut"
 
-#: data/resources/ui/shortcuts.ui:42
+#: data/resources/ui/shortcuts.blp:36
 msgid "Show Shortcuts"
 msgstr "Vis genvejer"
 
-#: data/resources/ui/shortcuts.ui:48
+#: data/resources/ui/shortcuts.blp:41
 msgid "Show Preferences"
 msgstr "Vis præferencer"
 
-#: data/resources/ui/shortcuts.ui:54
+#: data/resources/ui/shortcuts.blp:46
 msgid "Open Menu"
 msgstr "Åben menu"
 
-#: data/resources/ui/station_entry.ui:16
+#: data/resources/ui/station_entry.blp:13
 msgid "Swap Start and Destination"
 msgstr "Skift adgang og destination"
 
-#: data/resources/ui/window.ui:50 data/resources/ui/window.ui:57
+#: data/resources/ui/window.blp:42 data/resources/ui/window.blp:49
 msgid "Select Network"
 msgstr "Vælg transportnet"
 
-#: data/resources/ui/window.ui:88
+#: data/resources/ui/window.blp:72
 msgid "Main Menu"
 msgstr "Hovedmenu"
 
-#: data/resources/ui/window.ui:114
+#: data/resources/ui/window.blp:91
 msgid "Connections"
 msgstr "Forbindelser"
 
-#: data/resources/ui/window.ui:128
+#: data/resources/ui/window.blp:104
 msgid "Bookmark This Search"
 msgstr "Gem denne søgning"
 
-#: data/resources/ui/window.ui:166
+#: data/resources/ui/window.blp:116
 msgid "Trip Details"
 msgstr "Rejsedetaljer"
 
-#: data/resources/ui/window.ui:175
+#: data/resources/ui/window.blp:125
 msgid "Refresh This Trip"
 msgstr "Genindlæs denne rejse"
 
-#: data/resources/ui/window.ui:199
+#: data/resources/ui/window.blp:136
 msgid "Bookmark This Trip"
 msgstr "Gem denne rejse"
 
-#: data/resources/ui/window.ui:248
+#: data/resources/ui/window.blp:164
 msgid "Preferences"
 msgstr "Præferencer"
 
-#: data/resources/ui/window.ui:252
+#: data/resources/ui/window.blp:169
 msgid "Keyboard Shortcuts"
 msgstr "Tastaturgenveje"
 
-#: data/resources/ui/window.ui:256
+#: data/resources/ui/window.blp:174
 msgid "_About Railway"
 msgstr "_Om Railway"
-
-#: data/resources/ui/refresh_button.ui:24
-msgid "Refresh Trip"
-msgstr "Genindlæs rejse"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
@@ -439,7 +441,7 @@ msgstr "Skift"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:220
+#: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:228
 msgid "{} min"
 msgstr "{} min"
 
