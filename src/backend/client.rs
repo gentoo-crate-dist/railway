@@ -307,6 +307,14 @@ fn providers() -> Vec<Provider> {
             "",
             true,
         ),
+        Provider::new(
+            "Transport NSW",
+            "Transport NSW",
+            Some("New South Wales, Australia"),
+            &gettextrs::gettext("Australia"),
+            true,
+        ),
+
     ]
 }
 
