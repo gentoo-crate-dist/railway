@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: 2024-07-31 17:09+0000\n"
+"PO-Revision-Date: 2024-08-31 13:09+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
-"Language-Team: Croatian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/hr/>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -343,7 +343,7 @@ msgstr "Postavke"
 
 #: data/resources/ui/window.blp:169
 msgid "Keyboard Shortcuts"
-msgstr "Tipkovničke kratice"
+msgstr "Tipkovni prečaci"
 
 #: data/resources/ui/window.blp:174
 msgid "_About Railway"
@@ -351,15 +351,15 @@ msgstr "_O aplikaciji Željeznica"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
-msgstr "Gužva"
+msgstr "Veliki tovar"
 
 #: src/gui/indicator_icons.rs:142
 msgid "Very High Load"
-msgstr "Velika gužva"
+msgstr "Vrlo veliki tovar"
 
 #: src/gui/indicator_icons.rs:149
 msgid "Exceptionally High Load"
-msgstr "Izuzetno velika gužva"
+msgstr "Izuzetno veliki tovar"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On Time"
