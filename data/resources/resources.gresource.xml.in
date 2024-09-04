@@ -45,6 +45,8 @@
     <file alias="down-small-symbolic.svg">../icons/search/down-small-symbolic.svg</file>
     <file alias="bookmark-toggled-symbolic.svg">../icons/general/bookmark-toggled-symbolic.svg</file>
     <file alias="bookmark-untoggled-symbolic.svg">../icons/general/bookmark-untoggled-symbolic.svg</file>
+    <file alias="bell-outline-symbolic.svg">../icons/general/bell-outline-symbolic.svg</file>
+    <file alias="bell-outline-none-symbolic.svg">../icons/general/bell-outline-none-symbolic.svg</file>
     <file alias="delay-small-symbolic.svg">../icons/indicators/delay-small-symbolic.svg</file>
     <file alias="delay-long-small-symbolic.svg">../icons/indicators/delay-long-small-symbolic.svg</file>
     <file alias="delay-extreme-small-symbolic.svg">../icons/indicators/delay-extreme-small-symbolic.svg</file>

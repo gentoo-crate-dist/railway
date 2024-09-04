@@ -144,11 +144,24 @@ template $DBWindow: Adw.ApplicationWindow {
                   active: bind $has_journey_stored(journey_detail_page.journey) as <bool>;
                   visible: bind $is_some(journey_detail_page.journey) as <bool>;
                 }
+
+                ToggleButton btn_watch_journey {
+                  styles [
+                    "bookmark-button",
+                  ]
+
+                  clicked => $handle_watch_journey_store() swapped;
+                  icon-name: 'bell-outline-none-symbolic';
+                  notify::active => $handle_watch_button_icon() swapped;
+                  tooltip-text: _("Watch this Trip");
+                  active: bind $and(btn_watch_journey.visible, $has_journey_watched(journey_detail_page.journey) as <bool>) as <bool>;
+                  visible: bind $and($is_some(journey_detail_page.journey) as <bool>, btn_bookmark_journey.active) as <bool>;
+                }
               }
 
               content: $DBJourneyDetailPage journey_detail_page {
                 client: bind template.client;
-                show-live-box: bind btn_bookmark_journey.active;
+                show-live-box: bind btn_watch_journey.active;
               };
             }
           };

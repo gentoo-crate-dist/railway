@@ -133,6 +133,8 @@ pub mod imp {
         btn_bookmark_search: TemplateChild<gtk::ToggleButton>,
         #[template_child]
         btn_bookmark_journey: TemplateChild<gtk::ToggleButton>,
+        #[template_child]
+        btn_watch_journey: TemplateChild<gtk::ToggleButton>,
 
         #[template_child]
         store_journeys: TemplateChild<JourneysStore>,
@@ -313,6 +315,19 @@ pub mod imp {
         }
 
         #[template_callback]
+        fn handle_watch_journey_store(&self) {
+            if let Some(journey_id) = self
+                .journey_detail_page
+                .property::<Option<Journey>>("journey")
+                .map(|j| j.id())
+            {
+                self.store_journeys.toggle_watch(journey_id.clone());
+                self.btn_watch_journey
+                    .set_active(self.store_journeys.is_watched(&journey_id));
+            }
+        }
+
+        #[template_callback]
         fn handle_journey_store_add(&self, journey: Journey) {
             self.search_page.add_journey_store(journey);
         }
@@ -329,6 +344,11 @@ pub mod imp {
             } else {
                 false
             }
+        }
+
+        #[template_callback]
+        fn has_journey_watched(&self, journey: Option<Journey>) -> bool {
+            journey.is_some_and(|j| self.store_journeys.is_watched(j.id()))
         }
 
         #[template_callback]
@@ -380,6 +400,15 @@ pub mod imp {
                 button.set_icon_name("bookmark-toggled-symbolic");
             } else {
                 button.set_icon_name("bookmark-untoggled-symbolic");
+            }
+        }
+
+        #[template_callback]
+        fn handle_watch_button_icon(&self, _param: ParamSpec, button: ToggleButton) {
+            if button.is_active() {
+                button.set_icon_name("bell-outline-symbolic");
+            } else {
+                button.set_icon_name("bell-outline-none-symbolic");
             }
         }
     }

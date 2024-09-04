@@ -1,5 +1,6 @@
 use gdk::prelude::ObjectExt;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
+use serde::{Deserialize, Serialize};
 
 use crate::backend::Journey;
 use crate::gui::window::Window;
@@ -9,6 +10,12 @@ enum StoreMode {
     Toggle,
     Add,
     Remove,
+}
+
+#[derive(Serialize, Deserialize, Debug, Default)]
+struct StorageData {
+    journeys: Vec<rcore::Journey>,
+    watched: Vec<String>,
 }
 
 gtk::glib::wrapper! {
@@ -22,6 +29,14 @@ impl JourneysStore {
 
     pub fn contains(&self, journey: &Journey) -> bool {
         self.imp().contains(journey)
+    }
+
+    pub fn toggle_watch(&self, journey_id: String) {
+        self.imp().toggle_watch(journey_id);
+    }
+
+    pub fn is_watched<S: AsRef<str>>(&self, journey_id: S) -> bool {
+        self.imp().is_watched(journey_id)
     }
 
     pub fn flush(&self) {
@@ -39,10 +54,12 @@ impl JourneysStore {
     }
 
     fn on_minutely(&self) {
+        let watched = self.imp().watched.borrow();
         for journey in &*self.imp().stored.borrow() {
-            // TODO: Store watched journeys.
-            // TODO: Store notification status for journey?
-            journey.background_tasts();
+            if watched.contains(&journey.id()) {
+                // TODO: Store notification status for journey?
+                journey.background_tasts();
+            }
         }
     }
 }
@@ -50,6 +67,7 @@ impl JourneysStore {
 pub mod imp {
     use std::{
         cell::RefCell,
+        collections::HashSet,
         fs::OpenOptions,
         io::{Seek, SeekFrom},
         path::PathBuf,
@@ -76,8 +94,11 @@ pub mod imp {
         gui::stores::{journey_store::StoreMode, migrate_journey_store::import_old_store},
     };
 
+    use super::StorageData;
+
     pub struct JourneysStore {
         path: PathBuf,
+        pub(super) watched: RefCell<HashSet<String>>,
         pub(super) stored: RefCell<Vec<Journey>>,
         pub(super) window: RefCell<Option<Window>>,
         pub(super) client: RefCell<Option<Client>>,
@@ -102,15 +123,26 @@ pub mod imp {
 
             let mut some_deletable = false;
 
-            let journeys: Vec<rcore::Journey> = serde_json::from_reader(&file)
+            let data: StorageData = serde_json::from_reader(&file)
+                .or_else(|_| {
+                    let _ = file.seek(SeekFrom::Start(0));
+                    let journeys: Vec<rcore::Journey> = serde_json::from_reader(&file)?;
+                    Ok::<_, serde_json::Error>(StorageData {
+                        journeys,
+                        watched: vec![],
+                    })
+                })
                 // Note: The migration will be removed once it is decided it will not be needed anymore.
                 .or_else(|_| {
                     // Seek back file such that the same will be read again.
                     let _ = file.seek(SeekFrom::Start(0));
-                    import_old_store(file)
+                    Ok::<_, serde_json::Error>(StorageData {
+                        journeys: import_old_store(file)?,
+                        watched: vec![],
+                    })
                 })
                 .unwrap_or_default();
-            for journey in journeys.into_iter().rev() {
+            for journey in data.journeys.into_iter().rev() {
                 // Note: We limit the deletion time in the settings; the conversion to Duration should never fail.
                 let deletion_time = Duration::try_hours(self.settings.int("deletion-time").into())
                     .unwrap_or_default();
@@ -134,6 +166,10 @@ pub mod imp {
                 }
 
                 self.store(client.get_journey(journey), StoreMode::Add);
+            }
+
+            for journey in data.watched.into_iter() {
+                self.toggle_watch(journey);
             }
 
             if some_deletable {
@@ -198,6 +234,7 @@ pub mod imp {
             Self {
                 path,
                 stored: RefCell::new(vec![]),
+                watched: Default::default(),
                 window: RefCell::new(None),
                 client: RefCell::new(None),
                 timer: Default::default(),
@@ -218,6 +255,13 @@ pub mod imp {
             let journeys: Vec<rcore::Journey> =
                 self.stored.borrow().iter().map(|j| j.journey()).collect();
 
+            let watched = self.watched.borrow().clone();
+
+            let data = StorageData {
+                journeys,
+                watched: watched.into_iter().collect(),
+            };
+
             let file = OpenOptions::new()
                 .write(true)
                 .read(false)
@@ -227,7 +271,7 @@ pub mod imp {
                 .open(&self.path)
                 .expect("Failed to open journey_store.json file");
 
-            serde_json::to_writer(file, &journeys).expect("Failed to write to file");
+            serde_json::to_writer(file, &data).expect("Failed to write to file");
         }
 
         pub(super) fn store(&self, journey: Journey, store_mode: StoreMode) {
@@ -237,6 +281,11 @@ pub mod imp {
                     log::trace!("Removing Journey {:?}", journey.journey());
                     let s = stored.remove(idx);
                     self.obj().emit_by_name::<()>("remove", &[&s]);
+
+                    let journey_id = s.id();
+                    if self.is_watched(&journey_id) {
+                        self.toggle_watch(journey_id);
+                    }
                 }
             } else if store_mode != StoreMode::Remove {
                 log::trace!("Storing Journey {:?}", journey.journey());
@@ -246,9 +295,25 @@ pub mod imp {
             }
         }
 
+        pub(super) fn toggle_watch(&self, journey_id: String) {
+            let mut stored = self.watched.borrow_mut();
+            if stored.contains(&journey_id) {
+                log::trace!("Removing Watch {:?}", journey_id);
+                stored.remove(&journey_id);
+            } else {
+                log::trace!("Adding Watch {:?}", journey_id);
+                stored.insert(journey_id);
+            }
+        }
+
         pub(super) fn contains(&self, journey: &Journey) -> bool {
             let stored = self.stored.borrow();
             stored.iter().any(|j| j.id() == journey.id())
+        }
+
+        pub(super) fn is_watched<S: AsRef<str>>(&self, journey_id: S) -> bool {
+            let stored = self.watched.borrow();
+            stored.iter().any(|j| j == journey_id.as_ref())
         }
     }
 
