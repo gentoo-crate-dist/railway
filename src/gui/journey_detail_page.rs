@@ -29,6 +29,7 @@ pub mod imp {
 
     use chrono::Local;
     use gdk::glib::clone;
+    use gdk::glib::BoxedAnyObject;
     use gdk::glib::JoinHandle;
     use gdk::glib::MainContext;
     use gdk::glib::ParamSpec;
@@ -47,11 +48,11 @@ pub mod imp {
     use chrono::Duration;
 
     use crate::backend::Client;
+    use crate::backend::Event;
     use crate::backend::Journey;
     use crate::backend::Leg;
     use crate::backend::Place;
     use crate::gui::leg_item::LegItem;
-    use crate::gui::live_update_box::LiveUpdateBox;
     use crate::gui::transition::Transition;
     use crate::gui::utility::Utility;
     use crate::gui::window::Window;
@@ -61,8 +62,6 @@ pub mod imp {
     pub struct JourneyDetailPage {
         #[template_child]
         box_legs: TemplateChild<gtk::Box>,
-        #[template_child]
-        pub(super) update_box: TemplateChild<LiveUpdateBox>,
         #[template_child]
         label_last_refreshed: TemplateChild<gtk::Label>,
 
@@ -128,6 +127,13 @@ pub mod imp {
         #[template_callback(function)]
         fn format_source_destination(source: &str, destination: &str) -> String {
             format!("{source} → {destination}")
+        }
+
+        #[template_callback(function)]
+        fn live_banner_title(event: Option<BoxedAnyObject>) -> Option<String> {
+            let binding = event.as_ref().map(|e| e.borrow());
+            let event: Option<&Event> = binding.as_deref();
+            event.map(|e| e.format_at_time(Local::now()))
         }
 
         async fn setup(&self, redo: bool) {

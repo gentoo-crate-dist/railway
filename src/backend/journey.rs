@@ -260,6 +260,67 @@ impl Event {
             _ => None,
         }
     }
+
+    pub fn format_at_time(&self, time: DateTime<Local>) -> String {
+        let current_leg = self.current_leg();
+        let next_leg = self.next_leg();
+        let time_of_next_action = self.time_of_next_action();
+        let duration = time_of_next_action
+            .map(|t| t.with_timezone(&Local) - time)
+            .map(Utility::format_duration_tabular);
+
+        let next_leg_name = next_leg.map(|l| l.property::<String>("name"));
+        let next_platform =
+            next_leg.and_then(|l| l.property::<Option<String>>("departure-platform"));
+        let next_origin =
+            next_leg.map(|l| l.property::<Place>("origin").property::<String>("name"));
+        let current_destination = current_leg.map(|l| {
+            l.property::<Place>("destination")
+                .property::<String>("name")
+        });
+
+        match (
+            self,
+            &duration,
+            &next_leg_name,
+            &next_platform,
+            &next_origin,
+            &current_destination,
+        ) {
+            (Event::BeforeJourney(_), Some(_), _, Some(_), Some(_), _) => gettextrs::gettext(
+                "Start at {next-origin} in {duration} on platform {next-platform}",
+            ),
+            (Event::BeforeJourney(_), Some(_), _, None, Some(_), _) => {
+                gettextrs::gettext("Start at {next-origin} in {duration}")
+            }
+            (Event::InLeg(_, _), Some(_), _, _, _, Some(_)) => {
+                gettextrs::gettext("Arriving at {current-destination} in {duration}")
+            }
+            (Event::TransitionTo(_), Some(_), Some(_), Some(_), _, _) => gettextrs::gettext(
+                "Transition to {next-leg-name} on platform {next-platform} in {duration}",
+            ),
+            (Event::TransitionTo(_), Some(_), Some(_), None, _, _) => {
+                gettextrs::gettext("Transition to {next-leg-name} in {duration}")
+            }
+            (Event::AfterJourney, _, _, _, _, _) => {
+                gettextrs::gettext("The journey arrived at its destination")
+            }
+            (Event::Cancelled, _, _, _, _, _) => gettextrs::gettext("The journey was cancelled"),
+            (Event::Unreachable, _, _, _, _, _) => {
+                gettextrs::gettext("A connection is unreachable")
+            }
+            // The remaining cases should never happen
+            _ => "".to_string(),
+        }
+        .replace("{duration}", &duration.unwrap_or_default())
+        .replace("{next-leg-name}", &next_leg_name.unwrap_or_default())
+        .replace("{next-platform}", &next_platform.unwrap_or_default())
+        .replace("{next-origin}", &next_origin.unwrap_or_default())
+        .replace(
+            "{current-destination}",
+            &current_destination.unwrap_or_default(),
+        )
+    }
 }
 
 #[derive(Default, Debug)]
