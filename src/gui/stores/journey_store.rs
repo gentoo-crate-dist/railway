@@ -58,7 +58,7 @@ impl JourneysStore {
         for journey in &*self.imp().stored.borrow() {
             if watched.contains(&journey.id()) {
                 // TODO: Store notification status for journey?
-                journey.background_tasts();
+                journey.background_tasks();
             }
         }
     }
@@ -290,7 +290,7 @@ pub mod imp {
             } else if store_mode != StoreMode::Remove {
                 log::trace!("Storing Journey {:?}", journey.journey());
                 self.obj().emit_by_name::<()>("add", &[&journey]);
-                journey.background_tasts();
+                journey.background_tasks();
                 stored.insert(0, journey);
             }
         }

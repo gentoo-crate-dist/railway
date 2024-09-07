@@ -67,7 +67,7 @@ impl Journey {
         self.journey().id.clone()
     }
 
-    pub fn background_tasts(&self) {
+    pub fn background_tasks(&self) {
         log::debug!("Running background task on journey {}", self.id());
         // TODO: Potentially reload
         *self.imp().current_event.borrow_mut() = Some(self.event_at_time(&Local::now()));
