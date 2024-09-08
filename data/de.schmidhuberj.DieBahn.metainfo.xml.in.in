@@ -297,10 +297,8 @@
     <binary>diebahn</binary>
   </provides>
 
-  <supports>
-    <control>keyboard</control>
-  </supports>
   <recommends>
+    <control>keyboard</control>
     <control>pointing</control>
     <control>touch</control>
     <internet>always</internet>
