@@ -422,6 +422,7 @@ impl Client {
             to,
             requested_time,
             time_type,
+            self.clone(),
         ))
     }
 
@@ -433,7 +434,7 @@ impl Client {
         use rcore::Provider;
         let client = self.internal();
         let journey = journey.journey();
-        Ok(Journey::new(
+        Ok(self.get_journey(
             tspawn!(async move {
                 tokio::time::timeout(
                     Duration::from_secs(TIMEOUT),
@@ -447,23 +448,41 @@ impl Client {
             .expect("Failed to join tokio")?,
         ))
     }
+
+    pub fn get_journey(&self, journey: rcore::Journey) -> Journey {
+        let mut cache = self.imp().journey_cache.borrow_mut();
+        if let Some(cached) = cache.get(&journey.id).and_then(|r| r.upgrade()) {
+            cached.update(journey);
+            cached
+        } else {
+            let id = journey.id.clone();
+            let object = Journey::new(journey);
+            cache.insert(id, object.downgrade());
+            object
+        }
+    }
 }
 
 mod imp {
     use gdk::gio::{ListModel, ListStore};
     use gdk::glib::subclass::Signal;
-    use gdk::glib::{ParamSpec, ParamSpecObject, Value};
+    use gdk::glib::{ParamSpec, ParamSpecObject, Value, WeakRef};
     use gdk::prelude::{ParamSpecBuilderExt, ToValue};
     use gdk::subclass::prelude::{ObjectImpl, ObjectSubclass};
     use gtk::gio::Settings;
     use gtk::glib;
     use once_cell::sync::Lazy;
+    use std::cell::RefCell;
+    use std::collections::HashMap;
     use std::sync::RwLock;
 
+    use crate::backend::Journey;
     use crate::config;
 
     pub struct Client {
         pub(super) internal: RwLock<Option<super::ApiProvider>>,
+
+        pub(super) journey_cache: RefCell<HashMap<String, WeakRef<Journey>>>,
 
         pub(super) settings: Settings,
     }
@@ -472,6 +491,7 @@ mod imp {
         fn default() -> Self {
             Self {
                 internal: Default::default(),
+                journey_cache: Default::default(),
                 settings: Settings::new(config::BASE_ID),
             }
         }
