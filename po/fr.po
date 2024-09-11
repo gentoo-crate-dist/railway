@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: 2024-07-21 12:09+0000\n"
-"Last-Translator: Owen Higgins <owen@higgins.id>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/fr/>\n"
+"PO-Revision-Date: 2024-09-12 17:09+0000\n"
+"Last-Translator: rene-coty <irenee.thirion@e.email>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -39,7 +39,6 @@ msgstr "Trouvez toutes vos informations de voyage"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
-#, fuzzy
 msgid ""
 "Railway lets you look up travel information across networks and borders "
 "without having to navigate through different websites. Due to the adaptive "
@@ -47,8 +46,8 @@ msgid ""
 msgstr ""
 "Railway vous permet de rechercher des trajets en train nationaux et "
 "internationaux sans avoir à naviguer sur plusieurs sites différents. Grâce à "
-"son design adaptatif, Railway est aussi pratique pour planifier à l'avance "
-"que pour accéder à ses information de trajet sur mobile :"
+"son design adaptatif, Railway est aussi pratique pour planifier votre voyage "
+"à l’avance que pour accéder à vos informations de trajet sur mobile :"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
@@ -71,11 +70,10 @@ msgstr ""
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
-#, fuzzy
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
 msgstr ""
-"Et tout cela pour de nombreux réseaux de chemins de fer autour du monde, "
+"Et tout cela pour de nombreux réseaux de chemins de fer à travers le monde, "
 "mais principalement en Europe."
 
 #. Translators: Subtitle of the screenshot in the metainfo
@@ -230,7 +228,6 @@ msgid "Regional Train"
 msgstr "Train régional"
 
 #: data/resources/ui/search_options_dialog.blp:63
-#, fuzzy
 msgid "Suburban Trains"
 msgstr "Trains périurbains"
 
@@ -251,7 +248,6 @@ msgid "Tram"
 msgstr "Tramway"
 
 #: data/resources/ui/search_options_dialog.blp:83
-#, fuzzy
 msgid "Cablecar"
 msgstr "Téléphérique"
 
@@ -401,9 +397,8 @@ msgid "Cancelled"
 msgstr "Annulé"
 
 #: src/gui/stores/journey_store.rs:122
-#, fuzzy
 msgid "A bookmarked trip ended recently."
-msgstr "Un voyage mis en favori s'est terminé récemment."
+msgstr "Un voyage mis en favori s’est terminé récemment."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
@@ -620,7 +615,6 @@ msgstr "_Fermer"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:114
-#, fuzzy
 msgid "%a %b %d"
 msgstr "%a %d %b"
 
