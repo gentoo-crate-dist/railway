@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: 2024-05-25 07:09+0000\n"
-"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/tr/>\n"
+"PO-Revision-Date: 2024-09-15 12:09+0000\n"
+"Last-Translator: Yasin Karaaslan <yasinkaraaslan@proton.me>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -45,21 +45,28 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"Railway, farklı ağlar ve sınırlar arasında seyahat bilgilerini, farklı web "
+"sitelerinde gezinmek zorunda kalmadan bakmanızı sağlar. Uyum sağlayabilen "
+"tasarımı sayesinde, yolculuğunuzu önceden planlamak veya mobil olarak yolda "
+"kullanmak için uygundur:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
-msgstr "Platform ve gecikmeler dahil yolculuğunuza ait tüm ayrıntıları görün"
+msgstr "Peronlar ve gecikmeler dahil yolculuğunuza ait tüm ayrıntıları görün"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
 msgstr ""
+"Şu anki ve gelecekteki yolculuklarınızı ve sık yapılan aramaları yer "
+"işaretlerine ekleyin"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr ""
+"Ulaşım türüne göre filtreleme gibi gelişmiş arama seçeneklerinden yararlanın"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
@@ -69,17 +76,16 @@ msgstr ""
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:277
-#, fuzzy
 msgid "Application Overview"
-msgstr "Uygulama"
+msgstr "Uygulama Önizlemesi"
 
 #: data/resources/ui/date_time_picker.blp:20
 msgid "Departure"
-msgstr ""
+msgstr "Kalkış"
 
 #: data/resources/ui/date_time_picker.blp:33
 msgid "Arrival"
-msgstr ""
+msgstr "Varış"
 
 #: data/resources/ui/date_time_picker.blp:53
 msgid "Input date"
@@ -118,13 +124,12 @@ msgid "Search for Trips"
 msgstr "Gezi Ara"
 
 #: data/resources/ui/leg_item.blp:124
-#, fuzzy
 msgid "Show Stops"
-msgstr "Mola Yerlerini Göster"
+msgstr "Durakları Göster"
 
 #: data/resources/ui/leg_item.blp:127
 msgid "Show Intermediate Stops"
-msgstr ""
+msgstr "Ara Durakları Göster"
 
 #: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
 msgid "Show Announcements"
@@ -215,7 +220,7 @@ msgstr "Ulaşım Kipleri"
 
 #: data/resources/ui/search_options_dialog.blp:55
 msgid "High Speed Train"
-msgstr ""
+msgstr "Yüksek Hızlı Tren"
 
 #: data/resources/ui/search_options_dialog.blp:59
 #, fuzzy
@@ -244,7 +249,7 @@ msgstr "Tramvay"
 
 #: data/resources/ui/search_options_dialog.blp:83
 msgid "Cablecar"
-msgstr ""
+msgstr "Teleferik"
 
 #: data/resources/ui/search_options_dialog.blp:87
 msgid "Taxi"
@@ -393,7 +398,7 @@ msgstr "İptal Edildi"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
-msgstr ""
+msgstr "Yakın zamanda imlenmiş bir sefer tamamlandı."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
@@ -449,13 +454,13 @@ msgstr "{} dk"
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:84
 msgid "%_H h %_M min"
-msgstr "%_H h %_M dk"
+msgstr "%_H sa %_M dk"
 
 #: src/gui/utility.rs:95
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
-msgstr[0] " %_d gün %_H h %_M dk"
-msgstr[1] "%_d days %_H h %_M min"
+msgstr[0] " %_d gün %_H sa %_M dk"
+msgstr[1] "%_d gün %_H sa %_M dk"
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:106
@@ -476,7 +481,7 @@ msgstr "%-H sa. %-M dk."
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
 msgstr[0] "%-d gün %-H sa. %-M dk."
-msgstr[1] "%-d days %-H hrs. %-M min."
+msgstr[1] "%-d gün %-H sa. %-M dk."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:141
@@ -503,13 +508,13 @@ msgstr "%d %b %a"
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:157
 msgid "%Y-%m-%d"
-msgstr "%Y-%m-%d"
+msgstr "%d/%m/%Y"
 
 #: src/gui/preferences_dialog.rs:60
 msgid "{} h"
 msgid_plural "{} h"
 msgstr[0] "{} sa"
-msgstr[1] "{} h"
+msgstr[1] "{} sa"
 
 #: src/gui/search_options_button.rs:75
 msgid "None"
@@ -617,13 +622,15 @@ msgstr "%b %d %a"
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
 msgid_plural "{} changes"
-msgstr[0] "{} değişim"
-msgstr[1] "{} changes"
+msgstr[0] "{} değişimi"
+msgstr[1] "{} değişimleri"
 
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
 msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
 msgstr ""
+"{changes_text} ile {travel_time} içinde {departure} noktasından {arrival} "
+"noktasına"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
@@ -650,10 +657,9 @@ msgid "Arrive at {destination} at {arrival}."
 msgstr ""
 
 #: src/gui/leg_item.rs:153
-#, fuzzy
 msgid "{} Stop"
 msgid_plural "{} Stops"
-msgstr[0] "{} Mola"
+msgstr[0] "{} Durak"
 msgstr[1] "{} Duraklar"
 
 #. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
@@ -669,24 +675,26 @@ msgstr ""
 #. Translators: Text that will be announced by the screen reader when a suggestion was selected.
 #: src/gui/station_entry.rs:189
 msgid "Suggestion {} selected"
-msgstr ""
+msgstr "{} önerisi seçildi"
 
 #. Translators: Text that will be announced by the screen reader when no selection was selected.
 #: src/gui/station_entry.rs:194
 msgid "No suggestion selected"
-msgstr ""
+msgstr "Öneri seçilmedi"
 
 #. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
 #: src/gui/station_entry.rs:385
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "bir öneri, seçilmedi"
+msgstr[1] "{n} öneri, hiçbiri seçilmedi"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:179
 msgid "translator-credits"
-msgstr "Sabri Ünal <yakushabb@gmail.com>"
+msgstr ""
+"Sabri Ünal <yakushabb@gmail.com>\n"
+"Yasin Karaaslan <yasin@yasinkaraaslan.com>"
 
 #: src/gui/window.rs:181
 msgid "Source Translation Supported by"
@@ -746,7 +754,7 @@ msgstr "Almanya"
 
 #: src/backend/client.rs:26 src/backend/client.rs:35 src/backend/client.rs:36
 msgid "North America"
-msgstr ""
+msgstr "Kuzey Amerika"
 
 #. Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
 #. Search.ch
@@ -757,7 +765,7 @@ msgstr ""
 #: src/backend/client.rs:145 src/backend/client.rs:146
 #: src/backend/client.rs:150
 msgid "Europe"
-msgstr ""
+msgstr "Avrupa"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/client.rs:72
@@ -771,12 +779,12 @@ msgstr "Avusturya"
 
 #: src/backend/client.rs:154
 msgid "Worldwide (beta)"
-msgstr ""
+msgstr "Dünya Çapında (beta)"
 
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
 #: src/backend/client.rs:156
 msgid "Using Transitous"
-msgstr ""
+msgstr "Transitous ile"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
