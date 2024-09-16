@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: 2024-09-15 12:09+0000\n"
+"PO-Revision-Date: 2024-09-17 13:09+0000\n"
 "Last-Translator: Yasin Karaaslan <yasinkaraaslan@proton.me>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/tr/>\n"
@@ -402,7 +402,7 @@ msgstr "Yakın zamanda imlenmiş bir sefer tamamlandı."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr ""
+msgstr "Her zaman _Sil"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
@@ -650,11 +650,12 @@ msgstr ""
 #: src/gui/leg_item.rs:101
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
 msgstr ""
+"{platform} platformunda {arrival} saatinde {destination noktasına ulaşın."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:106
 msgid "Arrive at {destination} at {arrival}."
-msgstr ""
+msgstr "{destination} noktasına {arrival} saatinde ulaşın."
 
 #: src/gui/leg_item.rs:153
 msgid "{} Stop"
