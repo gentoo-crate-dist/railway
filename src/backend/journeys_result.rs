@@ -8,7 +8,7 @@ use gdk::subclass::prelude::ObjectSubclassIsExt;
 use gdk::{gio, glib::Object};
 use gtk::glib;
 
-use super::{Journey, Place};
+use super::{Client, Journey, Place};
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, glib::Enum)]
 #[enum_type(name = "DBTimeType")]
@@ -35,6 +35,7 @@ impl JourneysResult {
         destination: Place,
         requested_time: Option<DateTime<Tz>>,
         time_type: TimeType,
+        client: Client,
     ) -> Self {
         let s: Self = Object::builder()
             .property("source", source)
@@ -46,7 +47,7 @@ impl JourneysResult {
         let mut to_insert: Vec<_> = journeys_response
             .journeys
             .into_iter()
-            .map(Journey::new)
+            .map(|j| client.get_journey(j))
             .collect();
         let insert_len = to_insert.len();
         s.imp().journeys.borrow_mut().append(&mut to_insert);

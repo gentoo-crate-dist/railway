@@ -1,3 +1,4 @@
+use gdk::prelude::ObjectExt;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
 use crate::backend::Journey;
@@ -28,6 +29,7 @@ impl JourneysStore {
     }
 
     pub fn setup(&self, window: Window) {
+        self.imp().client.replace(Some(window.property("client")));
         self.imp().window.replace(Some(window));
         self.imp().load();
     }
@@ -59,15 +61,16 @@ pub mod imp {
     };
     use once_cell::sync::Lazy;
 
-    use crate::config;
     use crate::gui::stores::journey_store::StoreMode;
     use crate::gui::window::Window;
+    use crate::{backend::Client, config};
     use crate::{backend::Journey, gui::stores::migrate_journey_store::import_old_store};
 
     pub struct JourneysStore {
         path: PathBuf,
         stored: RefCell<Vec<Journey>>,
         pub(super) window: RefCell<Option<Window>>,
+        pub(super) client: RefCell<Option<Client>>,
 
         settings: Settings,
     }
@@ -75,6 +78,9 @@ pub mod imp {
     impl JourneysStore {
         pub(super) fn load(&self) {
             log::debug!("Loading JourneyStore");
+            let binding = self.client.borrow();
+            let client = binding.as_ref().expect("Client to be set up");
+
             let mut file = OpenOptions::new()
                 .write(true)
                 .read(true)
@@ -109,14 +115,14 @@ pub mod imp {
                         self.settings
                             .set_boolean("bookmark-purge-suggested", true)
                             .expect("setting bookmark-purge-suggested must exist as a boolean");
-                        self.store(Journey::new(journey), StoreMode::Remove);
+                        self.store(client.get_journey(journey), StoreMode::Remove);
                         continue;
                     } else if !self.settings.boolean("bookmark-purge-suggested") {
                         some_deletable = true;
                     }
                 }
 
-                self.store(Journey::new(journey), StoreMode::Add);
+                self.store(client.get_journey(journey), StoreMode::Add);
             }
 
             if some_deletable {
@@ -182,6 +188,7 @@ pub mod imp {
                 path,
                 stored: RefCell::new(vec![]),
                 window: RefCell::new(None),
+                client: RefCell::new(None),
                 settings: Settings::new(config::BASE_ID),
             }
         }

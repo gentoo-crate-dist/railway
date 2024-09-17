@@ -3,7 +3,7 @@ use std::cell::RefCell;
 use chrono::{Datelike, Local};
 use gdk::glib::Object;
 use gdk::prelude::ObjectExt;
-use gdk::subclass::prelude::ObjectSubclassIsExt;
+use gdk::subclass::prelude::{ObjectImpl, ObjectSubclassIsExt};
 
 use crate::gui::utility::Utility;
 
@@ -25,6 +25,14 @@ impl Journey {
             .as_ref()
             .expect("Journey has not yet been set up")
             .clone()
+    }
+
+    pub fn update(&self, journey: rcore::Journey) {
+        *self.imp().journey.borrow_mut() = Some(journey);
+
+        for prop in imp::Journey::properties() {
+            self.notify_by_pspec(prop);
+        }
     }
 
     pub fn is_unreachable(&self) -> bool {
