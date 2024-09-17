@@ -43,7 +43,7 @@
 TransferItem:focus image,
 IntermediateLocationItem:focus image,
 AnnouncementItem:focus image {
-  color: @accent_color;
+  color: var(--accent-color);
 }
 
 AnnouncementItem:focus {
@@ -87,7 +87,7 @@ AnnouncementItem:focus {
 }
 
 .bookmark-button:checked:hover {
-  background-color: alpha(@view_fg_color, 0.07);
+  background-color: color-mix(in srgb, currentColor 7%, transparent);
 }
 
 /* Highlighting selected item in popovers */
@@ -99,78 +99,30 @@ popover listview.navigation-sidebar > :not(:last-child) {
   margin-bottom: 2px;
 }
 popover listview.navigation-sidebar > row:hover {
-  background-color: alpha(currentColor, .04);
+  background-color: color-mix(in srgb, currentColor 4%, transparent);
 }
 popover listview.navigation-sidebar > row:active {
-  background-color: alpha(currentColor, .08);
+  background-color: color-mix(in srgb, currentColor 8%, transparent);
 }
 popover listview.navigation-sidebar > row:selected {
-  background-color: alpha(currentColor, .1);
+  background-color: color-mix(in srgb, currentColor 10%, transparent);
 }
 popover listview.navigation-sidebar > row:selected:hover {
-  background-color: alpha(currentColor, .13);
+  background-color: color-mix(in srgb, currentColor 13%, transparent);
 }
 popover listview.navigation-sidebar > row:selected:active {
-  background-color: alpha(currentColor, .19);
+  background-color: color-mix(in srgb, currentColor 19%, transparent);
 }
 
 .provider-region {
   padding: 12px 12px 6px;
 }
 
-/* Currently disabled. Styling for the indicator icons */
-/*
-.load-unknown {
-  color: @green_1;
-}
-
-.load-low-to-medium {
-  color: @yellow_1;
-}
-
-.load-high {
-  color: @orange_1;
-}
-
-.load-very-high {
-  color: @red_1;
-}
-
-.load-exceptionally-high {
-  color: @red_5;
-}
-
-.late-on-time {
-  color: @blue_1;
-}
-
-.late-little-late {
-  color: @blue_2;
-}
-
-.late-late {
-  color: @blue_4;
-}
-
-.late-very-late {
-  color: @purple_4;
-}
-
-.late-extremely-late {
-  color: @purple_5;
-}
-
-.change-platform {
-  color: @orange_5;
-}
-*/
-
-
 /* Mostly copied from Elastic https://gitlab.gnome.org/World/elastic/-/blob/476c2a1dc7aac30fa25ec105a9e9fa5b3d069d52/src/style.css#L17 */
 .toggle-group {
   border-radius: 9px;
   padding: 3px;
-  background: alpha(currentColor, .1);
+  background: color-mix(in srgb, currentColor 10%, transparent);
 }
 
 .toggle-group .toggle {
@@ -183,8 +135,8 @@ popover listview.navigation-sidebar > row:selected:active {
 .toggle-group .toggle:checked {
   border-radius: 6px;
   padding: 2px 15px;
-  background: alpha(@card_bg_color, 2); 
-  color: @card_fg_color;
+  background: rgb(from var(--card-bg-color) r g b / calc(alpha * 2));
+  color: var(--card-fg-color);
   box-shadow: 0 1px 3px 1px #00000011,
               0 2px 6px 2px #00000008;
 }

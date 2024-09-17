@@ -369,7 +369,7 @@ pub mod imp {
                     c.set_visible(false);
                     c.unparent();
                     break;
-                } else if c.has_css_class("header") {
+                } else if c.has_css_class("header") || c.has_css_class("editable-area") {
                     child = c.first_child();
                 } else {
                     child = c.next_sibling();
