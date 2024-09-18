@@ -3,13 +3,17 @@
   description = "Find all your travel information";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgs-gnome.url = "github:NixOS/nixpkgs/gnome";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  outputs = { self, nixpkgs, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-gnome, flake-utils, ... }@inputs:
     (flake-utils.lib.eachDefaultSystem
       (system:
         let
           pkgs = import nixpkgs {
+            inherit system;
+          };
+          pkgs-gnome = import nixpkgs-gnome {
             inherit system;
             overlays = [ (final: prev: {
               # Not yet released patches required, otherwise it would panic for certain usage regarding breakpoints.
@@ -45,8 +49,8 @@
                       ./flake.lock
                     ]);
               };
-              buildInputs = [ pkgs.libadwaita pkgs.gtk4 ];
-              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson pkgs.gettext pkgs.glib pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.blueprint-compiler ];
+              buildInputs = [ pkgs-gnome.libadwaita pkgs-gnome.gtk4 ];
+              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson pkgs.gettext pkgs-gnome.glib pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs-gnome.blueprint-compiler ];
 
               inherit name;
             };
@@ -67,9 +71,9 @@
             pkgs.mkShell {
               src = ./.;
               buildInputs = [];
-              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.meson pkgs.gettext pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.clippy pkgs.cargo-deny pkgs.sysprof pkgs.blueprint-compiler run check prof ];
+              nativeBuildInputs = [ pkgs-gnome.wrapGAppsHook4 pkgs-gnome.meson pkgs-gnome.gettext pkgs-gnome.glib pkgs-gnome.gtk4 pkgs-gnome.libadwaita pkgs-gnome.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.clippy pkgs.cargo-deny pkgs-gnome.sysprof pkgs-gnome.blueprint-compiler run check prof ];
               shellHook = ''
-                export GSETTINGS_SCHEMA_DIR=${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}/glib-2.0/schemas/:${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas/:./build/data/
+                export GSETTINGS_SCHEMA_DIR=${pkgs-gnome.gtk4}/share/gsettings-schemas/${pkgs-gnome.gtk4.name}/glib-2.0/schemas/:${pkgs-gnome.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs-gnome.gsettings-desktop-schemas.name}/glib-2.0/schemas/:./build/data/
                 meson setup -Dprofile=development build
               '';
             };
