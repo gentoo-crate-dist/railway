@@ -87,25 +87,9 @@ pub mod imp {
                         if let Err(e) = journey.refresh().await {
                             window.display_error_toast(e);
                         }
-                        obj.imp().update_last_refreshed_label();
                     }
                 }
             ));
-        }
-
-        fn update_last_refreshed_label(&self) {
-            self.label_last_refreshed.set_label(
-                &gettextrs::gettext("Last refreshed {}").replace(
-                    "{}",
-                    &Utility::format_time_human(
-                        &self
-                            .obj()
-                            .property::<Journey>("journey")
-                            .last_refreshed()
-                            .time(),
-                    ),
-                ),
-            )
         }
     }
 
@@ -114,6 +98,11 @@ pub mod imp {
         #[template_callback(function)]
         fn format_source_destination(source: &str, destination: &str) -> String {
             format!("{source} → {destination}")
+        }
+
+        #[template_callback(function)]
+        fn format_last_refreshed(last_refreshed: Option<&str>) -> Option<String> {
+            last_refreshed.map(|s| format!("Last refreshed {}", s))
         }
 
         #[template_callback(function)]
@@ -347,7 +336,6 @@ pub mod imp {
                         async move { o.imp().setup(redo).await },
                         glib::Priority::LOW
                     );
-                    self.update_last_refreshed_label();
 
                     self.load_handle.replace(Some(handle));
                 }

@@ -58,6 +58,7 @@ template $DBJourneyDetailPage: Box {
             }
 
             Label label_last_refreshed {
+              label: bind $format_last_refreshed(template.journey as <$DBJourney>.last-refreshed) as <string>;
               xalign: 0;
             }
           }

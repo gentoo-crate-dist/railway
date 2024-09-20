@@ -3,7 +3,7 @@ use std::cell::{Ref, RefCell};
 use chrono::{DateTime, Datelike, Duration, Local};
 use chrono_tz::Tz;
 use gdk::gio::{Application, Notification};
-use gdk::glib::{BoxedAnyObject, Object};
+use gdk::glib::{clone, BoxedAnyObject, Object};
 use gdk::prelude::{ApplicationExt, ObjectExt};
 use gdk::subclass::prelude::{ObjectImpl, ObjectSubclassIsExt};
 use rcore::RefreshJourneyOptions;
@@ -70,8 +70,10 @@ impl Journey {
     }
 
     pub async fn refresh(&self) -> Result<(), Error> {
+        log::debug!("Refreshing journey {}", self.id());
         self.set_refresh_in_progress(true);
-        self.property::<Client>("client")
+        let result = self
+            .property::<Client>("client")
             .refresh_journey(
                 self,
                 RefreshJourneyOptions {
@@ -80,9 +82,13 @@ impl Journey {
                     ..Default::default()
                 },
             )
-            .await?;
+            .await;
         self.set_refresh_in_progress(false);
-        self.update_last_refreshed();
+
+        if result.is_ok() {
+            self.update_last_refreshed();
+        }
+
         Ok(())
     }
 
@@ -91,19 +97,57 @@ impl Journey {
     }
 
     fn update_last_refreshed(&self) {
-        *self.imp().last_refreshed.borrow_mut() = Local::now();
+        *self.imp().last_refreshed.borrow_mut() = Some(Local::now());
+        self.notify("last-refreshed");
     }
 
-    pub fn last_refreshed(&self) -> DateTime<Local> {
+    pub fn last_refreshed(&self) -> Option<DateTime<Local>> {
         *self.imp().last_refreshed.borrow()
+    }
+
+    fn should_refresh(&self) -> bool {
+        let current_event = self.property::<BoxedAnyObject>("current-event");
+        let current_event: Ref<Event> = current_event.borrow();
+
+        let Some(duration_next_event) = current_event
+            .time_of_next_action()
+            .map(|t| t.with_timezone(&Local) - Local::now())
+        else {
+            return false;
+        };
+
+        let Some(time_since_last_refreshed) = self
+            .last_refreshed()
+            .map(|r| Local::now().signed_duration_since(r))
+        else {
+            return true;
+        };
+
+        (duration_next_event < Duration::days(1) && time_since_last_refreshed > Duration::hours(1))
+            || (duration_next_event < Duration::hours(1)
+                && time_since_last_refreshed > Duration::minutes(15))
+            || (duration_next_event < Duration::minutes(15)
+                && time_since_last_refreshed > Duration::minutes(5))
+            || (duration_next_event < Duration::minutes(5)
+                && time_since_last_refreshed > Duration::minutes(1))
     }
 
     pub fn background_tasks(&self) {
         log::debug!("Running background task on journey {}", self.id());
-        // TODO: Potentially reload
-        *self.imp().current_event.borrow_mut() = Some(self.event_at_time(&Local::now()));
-        self.notify("current-event");
-        self.potentially_notify();
+        gspawn!(clone!(
+            #[strong(rename_to = s)]
+            self,
+            async move {
+                if s.should_refresh() {
+                    // Ignore errors refreshing.
+                    // XXX: Show them maybe?
+                    let _ = s.refresh().await;
+                }
+                *s.imp().current_event.borrow_mut() = Some(s.event_at_time(&Local::now()));
+                s.notify("current-event");
+                s.potentially_notify();
+            }
+        ));
     }
 
     pub fn event_at_time(&self, time: &DateTime<Local>) -> Event {
@@ -389,7 +433,7 @@ mod imp {
         pub(super) current_event: RefCell<Option<Event>>,
         pub(super) notify_status: RefCell<NotifyStatus>,
 
-        pub(super) last_refreshed: RefCell<DateTime<Local>>,
+        pub(super) last_refreshed: RefCell<Option<DateTime<Local>>>,
         refresh_in_progress: Cell<bool>,
 
         pub(super) client: RefCell<Option<Client>>,
@@ -406,7 +450,7 @@ mod imp {
                 current_event: Default::default(),
                 notify_status: Default::default(),
                 refresh_in_progress: Default::default(),
-                last_refreshed: RefCell::new(Local::now()),
+                last_refreshed: Default::default(),
                 client: Default::default(),
             }
         }
@@ -444,6 +488,9 @@ mod imp {
                         .read_only()
                         .build(),
                     ParamSpecObject::builder::<BoxedAnyObject>("current-event")
+                        .read_only()
+                        .build(),
+                    ParamSpecString::builder("last-refreshed")
                         .read_only()
                         .build(),
                     ParamSpecBoolean::builder("refresh-in-progress").build(),
@@ -617,6 +664,12 @@ mod imp {
                     BoxedAnyObject::new(event).into()
                 }
                 "refresh-in-progress" => self.refresh_in_progress.get().to_value(),
+                "last-refreshed" => self
+                    .last_refreshed
+                    .borrow()
+                    .as_ref()
+                    .map(|t| Utility::format_time_human(&t.time()))
+                    .to_value(),
                 "client" => self.client.borrow().as_ref().to_value(),
                 _ => unimplemented!(),
             }
