@@ -6,18 +6,20 @@ use gdk::gio::{Application, Notification};
 use gdk::glib::{BoxedAnyObject, Object};
 use gdk::prelude::{ApplicationExt, ObjectExt};
 use gdk::subclass::prelude::{ObjectImpl, ObjectSubclassIsExt};
+use rcore::RefreshJourneyOptions;
 
 use crate::gui::utility::Utility;
+use crate::Error;
 
-use super::{Leg, Place};
+use super::{Client, Leg, Place};
 
 gtk::glib::wrapper! {
     pub struct Journey(ObjectSubclass<imp::Journey>);
 }
 
 impl Journey {
-    pub fn new(journey: rcore::Journey) -> Self {
-        let s: Self = Object::builder().build();
+    pub fn new(journey: rcore::Journey, client: &Client) -> Self {
+        let s: Self = Object::builder().property("client", client).build();
         s.imp().journey.swap(&RefCell::new(Some(journey)));
         s
     }
@@ -65,6 +67,35 @@ impl Journey {
 
     pub fn id(&self) -> String {
         self.journey().id.clone()
+    }
+
+    pub async fn refresh(&self) -> Result<(), Error> {
+        self.set_refresh_in_progress(true);
+        self.property::<Client>("client")
+            .refresh_journey(
+                self,
+                RefreshJourneyOptions {
+                    stopovers: true,
+                    language: Some(Utility::language_code()),
+                    ..Default::default()
+                },
+            )
+            .await?;
+        self.set_refresh_in_progress(false);
+        self.update_last_refreshed();
+        Ok(())
+    }
+
+    fn set_refresh_in_progress(&self, b: bool) {
+        self.set_property("refresh-in-progress", b)
+    }
+
+    fn update_last_refreshed(&self) {
+        *self.imp().last_refreshed.borrow_mut() = Local::now();
+    }
+
+    pub fn last_refreshed(&self) -> DateTime<Local> {
+        *self.imp().last_refreshed.borrow()
     }
 
     pub fn background_tasks(&self) {
@@ -332,12 +363,12 @@ struct NotifyStatus {
 }
 
 mod imp {
-    use chrono::Local;
+    use chrono::{DateTime, Local};
     use gtk::glib;
     use once_cell::sync::Lazy;
-    use std::cell::RefCell;
+    use std::cell::{Cell, RefCell};
 
-    use crate::gui::utility::Utility;
+    use crate::{backend::Client, gui::utility::Utility};
 
     use gdk::{
         glib::{
@@ -357,6 +388,11 @@ mod imp {
 
         pub(super) current_event: RefCell<Option<Event>>,
         pub(super) notify_status: RefCell<NotifyStatus>,
+
+        pub(super) last_refreshed: RefCell<DateTime<Local>>,
+        refresh_in_progress: Cell<bool>,
+
+        pub(super) client: RefCell<Option<Client>>,
     }
 
     #[glib::object_subclass]
@@ -369,6 +405,9 @@ mod imp {
                 journey: RefCell::default(),
                 current_event: Default::default(),
                 notify_status: Default::default(),
+                refresh_in_progress: Default::default(),
+                last_refreshed: RefCell::new(Local::now()),
+                client: Default::default(),
             }
         }
     }
@@ -407,12 +446,32 @@ mod imp {
                     ParamSpecObject::builder::<BoxedAnyObject>("current-event")
                         .read_only()
                         .build(),
+                    ParamSpecBoolean::builder("refresh-in-progress").build(),
+                    ParamSpecObject::builder::<Client>("client").build(),
                 ]
             });
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
+            match pspec.name() {
+                "refresh-in-progress" => {
+                    let obj = value.get::<bool>().expect(
+                        "Property `refresh-in-progress` of `JourneyDetailPage` has to be of type `bool`",
+                    );
+
+                    self.refresh_in_progress.replace(obj);
+                }
+                "client" => {
+                    let obj = value
+                        .get::<Option<Client>>()
+                        .expect("Property `client` of `JourneysPage` has to be of type `Client`");
+
+                    self.client.replace(obj);
+                }
+                _ => unimplemented!(),
+            }
+        }
 
         fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
@@ -557,6 +616,8 @@ mod imp {
 
                     BoxedAnyObject::new(event).into()
                 }
+                "refresh-in-progress" => self.refresh_in_progress.get().to_value(),
+                "client" => self.client.borrow().as_ref().to_value(),
                 _ => unimplemented!(),
             }
         }

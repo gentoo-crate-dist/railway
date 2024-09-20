@@ -128,7 +128,7 @@ template $DBWindow: Adw.ApplicationWindow {
                 $DBRefreshButton btn_reload_detail {
                   clicked => $handle_journey_reload() swapped;
                   tooltip-text: _("Refresh This Trip");
-                  refreshing: bind journey_detail_page.refresh-in-progress;
+                  refreshing: bind journey_detail_page.journey as <$DBJourney>.refresh-in-progress;
                   visible: bind $is_some(journey_detail_page.journey) as <bool>;
                 }
 

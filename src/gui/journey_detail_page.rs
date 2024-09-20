@@ -14,10 +14,6 @@ impl JourneyDetailPage {
         self.imp().reload(self);
     }
 
-    fn set_refresh_in_progress(&self, b: bool) {
-        self.set_property("refresh-in-progress", b)
-    }
-
     fn journey(&self) -> Option<Journey> {
         self.property("journey")
     }
@@ -43,7 +39,6 @@ pub mod imp {
     use gtk::template_callbacks;
     use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
-    use rcore::RefreshJourneyOptions;
 
     use chrono::Duration;
 
@@ -65,7 +60,6 @@ pub mod imp {
         #[template_child]
         label_last_refreshed: TemplateChild<gtk::Label>,
 
-        refresh_in_progress: Cell<bool>,
         show_live_box: Cell<bool>,
 
         journey: RefCell<Option<Journey>>,
@@ -90,34 +84,27 @@ pub mod imp {
                     let journey = obj.journey();
 
                     if let Some(journey) = journey {
-                        obj.set_refresh_in_progress(true);
-                        let result_journey = obj
-                            .property::<Client>("client")
-                            .refresh_journey(
-                                &journey,
-                                RefreshJourneyOptions {
-                                    stopovers: true,
-                                    language: Some(Utility::language_code()),
-                                    ..Default::default()
-                                },
-                            )
-                            .await;
-                        if let Ok(result_journey) = result_journey {
-                            obj.set_property("journey", result_journey);
-                            obj.imp().update_last_refreshed();
-                        } else {
-                            window.display_error_toast(result_journey.expect_err("A error"));
+                        if let Err(e) = journey.refresh().await {
+                            window.display_error_toast(e);
                         }
-                        obj.set_refresh_in_progress(false);
+                        obj.imp().update_last_refreshed_label();
                     }
                 }
             ));
         }
 
-        fn update_last_refreshed(&self) {
+        fn update_last_refreshed_label(&self) {
             self.label_last_refreshed.set_label(
-                &gettextrs::gettext("Last refreshed {}")
-                    .replace("{}", &Utility::format_time_human(&Local::now().time())),
+                &gettextrs::gettext("Last refreshed {}").replace(
+                    "{}",
+                    &Utility::format_time_human(
+                        &self
+                            .obj()
+                            .property::<Journey>("journey")
+                            .last_refreshed()
+                            .time(),
+                    ),
+                ),
             )
         }
     }
@@ -331,7 +318,6 @@ pub mod imp {
                 vec![
                     ParamSpecObject::builder::<Journey>("journey").build(),
                     ParamSpecObject::builder::<Client>("client").build(),
-                    ParamSpecBoolean::builder("refresh-in-progress").build(),
                     ParamSpecBoolean::builder("show-live-box").build(),
                 ]
             });
@@ -361,15 +347,9 @@ pub mod imp {
                         async move { o.imp().setup(redo).await },
                         glib::Priority::LOW
                     );
+                    self.update_last_refreshed_label();
 
                     self.load_handle.replace(Some(handle));
-                }
-                "refresh-in-progress" => {
-                    let obj = value.get::<bool>().expect(
-                        "Property `refresh-in-progress` of `JourneyDetailPage` has to be of type `bool`",
-                    );
-
-                    self.refresh_in_progress.replace(obj);
                 }
                 "show-live-box" => {
                     let obj = value.get::<bool>().expect(
@@ -392,7 +372,6 @@ pub mod imp {
         fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "journey" => self.journey.borrow().to_value(),
-                "refresh-in-progress" => self.refresh_in_progress.get().to_value(),
                 "show-live-box" => self.show_live_box.get().to_value(),
                 "client" => self.client.borrow().to_value(),
                 _ => unimplemented!(),
