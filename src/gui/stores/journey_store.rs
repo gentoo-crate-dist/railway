@@ -290,19 +290,20 @@ pub mod imp {
             } else if store_mode != StoreMode::Remove {
                 log::trace!("Storing Journey {:?}", journey.journey());
                 self.obj().emit_by_name::<()>("add", &[&journey]);
-                journey.background_tasks();
                 stored.insert(0, journey);
             }
         }
 
         pub(super) fn toggle_watch(&self, journey_id: String) {
-            let mut stored = self.watched.borrow_mut();
-            if stored.contains(&journey_id) {
+            let mut watched = self.watched.borrow_mut();
+            if watched.contains(&journey_id) {
                 log::trace!("Removing Watch {:?}", journey_id);
-                stored.remove(&journey_id);
+                watched.remove(&journey_id);
             } else {
                 log::trace!("Adding Watch {:?}", journey_id);
-                stored.insert(journey_id);
+                watched.insert(journey_id);
+                drop(watched);
+                self.obj().on_minutely();
             }
         }
 
