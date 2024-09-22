@@ -23,6 +23,14 @@ template $DBWindow: Adw.ApplicationWindow {
       result_view.collapsed: true;
     }
   }
+  Adw.Breakpoint {
+    condition("max-width: 420sp")
+    setters {
+      search_view.collapsed: true;
+      result_view.collapsed: true;
+      header_bar_details.show-title: false;
+    }
+  }
 
   Adw.ToastOverlay toast_overlay {
     Adw.NavigationSplitView search_view {
@@ -124,7 +132,7 @@ template $DBWindow: Adw.ApplicationWindow {
               width-request: 200;
 
               [top]
-              Adw.HeaderBar {
+              Adw.HeaderBar header_bar_details {
                 $DBRefreshButton btn_reload_detail {
                   clicked => $handle_journey_reload() swapped;
                   tooltip-text: _("Refresh This Trip");
