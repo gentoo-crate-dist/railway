@@ -1,4 +1,5 @@
 use std::cell::{Ref, RefCell};
+use std::collections::HashMap;
 
 use chrono::{DateTime, Datelike, Duration, Local};
 use chrono_tz::Tz;
@@ -143,8 +144,11 @@ impl Journey {
                     // XXX: Show them maybe?
                     let _ = s.refresh().await;
                 }
-                *s.imp().current_event.borrow_mut() = Some(s.event_at_time(&Local::now()));
+                let now = Local::now();
+                *s.imp().current_event.borrow_mut() = Some(s.event_at_time(&now));
+                *s.imp().alerts.borrow_mut() = s.alerts(&now);
                 s.notify("current-event");
+                s.notify("alerts");
                 s.potentially_notify();
             }
         ));
@@ -178,8 +182,35 @@ impl Journey {
         }
     }
 
+    pub fn alerts(&self, time: &DateTime<Local>) -> Vec<Alert> {
+        let mut alerts = vec![];
+
+        let journey = self.imp().journey.borrow();
+        let legs = &journey.as_ref().expect("Journey to be set").legs;
+        for leg in legs {
+            // Only add an alert for future legs
+            if leg.departure.is_some_and(|d| time < &d) {
+                if leg.departure != leg.planned_departure {
+                    alerts.push(Alert::DepartureDelayed(Leg::new(leg.clone())))
+                }
+                if leg.departure_platform != leg.planned_departure_platform {
+                    alerts.push(Alert::DeparturePlatformChange(Leg::new(leg.clone())))
+                }
+                if leg.arrival != leg.planned_arrival {
+                    alerts.push(Alert::ArrivalDelayed(Leg::new(leg.clone())))
+                }
+            }
+            if leg.arrival.is_some_and(|a| time < &a) && leg.arrival != leg.planned_arrival {
+                alerts.push(Alert::ArrivalDelayed(Leg::new(leg.clone())))
+            }
+        }
+
+        alerts
+    }
+
     pub fn potentially_notify(&self) {
         let mut notify_status = self.imp().notify_status.borrow_mut();
+        let app = Application::default().expect("Application to be active");
 
         let current_event = self.property::<BoxedAnyObject>("current-event");
         let current_event: Ref<Event> = current_event.borrow();
@@ -189,9 +220,6 @@ impl Journey {
             .map(|t| t.with_timezone(&Local) - Local::now());
 
         let notification = match &*current_event {
-            // TODO: Notify on significant delay.
-            // TODO: Notify on platform change.
-            // TODO: Update notification if already exists, e.g. if delayed or platform changed.
             // TODO: Settings for durations
             Event::BeforeJourney(l)
                 if duration_next_event.is_some_and(|d| d < Duration::hours(1))
@@ -291,11 +319,94 @@ impl Journey {
         };
 
         if let Some(notification) = notification {
-            let app = Application::default().expect("Application to be active");
             app.send_notification(
-                Some(&format!("railway-journey-{}", self.id())),
+                Some(&format!("railway-journey-current-event-{}", self.id())),
                 &notification,
             );
+        }
+
+        let alerts = self.property::<BoxedAnyObject>("alerts");
+        let alerts: Ref<Vec<Alert>> = alerts.borrow();
+
+        for alert in &*alerts {
+            match alert {
+                Alert::DepartureDelayed(leg_obj) => {
+                    let leg = leg_obj.leg();
+                    let Some(delay) = leg
+                        .departure
+                        .and_then(|d| leg.planned_departure.map(|p| d - p))
+                    else {
+                        log::warn!("Departure delayed, but cannot compute the delay. Ignoring");
+                        continue;
+                    };
+                    let notified_delay = notify_status
+                        .departure_delays
+                        .get(&leg.id())
+                        .copied()
+                        .unwrap_or_default();
+
+                    if delay - notified_delay >= Duration::minutes(5) {
+                        notify_status.departure_delays.insert(leg.id(), delay);
+                        app.send_notification(
+                            Some(&format!("railway-leg-departure-delayed-{}", leg.id())),
+                            &Notification::new(
+                                &gettextrs::gettext("{train} departure is delayed by {time}")
+                                    .replace("{train}", &leg_obj.property::<String>("name"))
+                                    .replace("{time}", &Utility::format_duration_inline(delay)),
+                            ),
+                        );
+                    }
+                }
+                Alert::ArrivalDelayed(leg_obj) => {
+                    let leg = leg_obj.leg();
+                    let Some(delay) = leg.arrival.and_then(|d| leg.planned_arrival.map(|p| d - p))
+                    else {
+                        log::warn!("Arrival delayed, but cannot compute the delay. Ignoring");
+                        continue;
+                    };
+                    let notified_delay = notify_status
+                        .arrival_delays
+                        .get(&leg.id())
+                        .copied()
+                        .unwrap_or_default();
+
+                    if delay - notified_delay >= Duration::minutes(5) {
+                        notify_status.arrival_delays.insert(leg.id(), delay);
+                        app.send_notification(
+                            Some(&format!("railway-leg-arrival-delayed-{}", leg.id())),
+                            &Notification::new(
+                                &gettextrs::gettext("{train} arrival is delayed by {time}")
+                                    .replace("{train}", &leg_obj.property::<String>("name"))
+                                    .replace("{time}", &Utility::format_duration_inline(delay)),
+                            ),
+                        );
+                    }
+                }
+                Alert::DeparturePlatformChange(leg_obj) => {
+                    let leg = leg_obj.leg();
+                    let notified_platform = notify_status.departure_platform_changes.get(&leg.id());
+                    let platform: String = leg_obj.property("departure-platform");
+
+                    if !notified_platform.is_some_and(|p| *p == platform) {
+                        notify_status
+                            .departure_platform_changes
+                            .insert(leg.id(), platform.clone());
+                        app.send_notification(
+                            Some(&format!(
+                                "railway-leg-departure-platform-changed-{}",
+                                leg.id()
+                            )),
+                            &Notification::new(
+                                &gettextrs::gettext(
+                                    "{train} arrival is departuring on platform {platform} today",
+                                )
+                                .replace("{train}", &leg_obj.property::<String>("name"))
+                                .replace("{platform}", &platform),
+                            ),
+                        );
+                    }
+                }
+            }
         }
     }
 }
@@ -308,6 +419,13 @@ pub enum Event {
     AfterJourney,
     Unreachable,
     Cancelled,
+}
+
+#[derive(Debug, PartialEq, Eq, Clone)]
+pub enum Alert {
+    DepartureDelayed(Leg),
+    ArrivalDelayed(Leg),
+    DeparturePlatformChange(Leg),
 }
 
 impl Event {
@@ -404,6 +522,9 @@ struct NotifyStatus {
     in_leg_soon_transition: Option<Leg>,
     unreachable: bool,
     cancelled: bool,
+    departure_delays: HashMap<String, Duration>,
+    arrival_delays: HashMap<String, Duration>,
+    departure_platform_changes: HashMap<String, String>,
 }
 
 mod imp {
@@ -425,12 +546,13 @@ mod imp {
 
     use crate::backend::{LateFactor, Leg, LoadFactor, Price};
 
-    use super::{Event, NotifyStatus};
+    use super::{Alert, Event, NotifyStatus};
 
     pub struct Journey {
         pub(super) journey: RefCell<Option<rcore::Journey>>,
 
         pub(super) current_event: RefCell<Option<Event>>,
+        pub(super) alerts: RefCell<Vec<Alert>>,
         pub(super) notify_status: RefCell<NotifyStatus>,
 
         pub(super) last_refreshed: RefCell<Option<DateTime<Local>>>,
@@ -448,6 +570,7 @@ mod imp {
             Self {
                 journey: RefCell::default(),
                 current_event: Default::default(),
+                alerts: Default::default(),
                 notify_status: Default::default(),
                 refresh_in_progress: Default::default(),
                 last_refreshed: Default::default(),
@@ -488,6 +611,9 @@ mod imp {
                         .read_only()
                         .build(),
                     ParamSpecObject::builder::<BoxedAnyObject>("current-event")
+                        .read_only()
+                        .build(),
+                    ParamSpecObject::builder::<BoxedAnyObject>("alerts")
                         .read_only()
                         .build(),
                     ParamSpecString::builder("last-refreshed")
@@ -662,6 +788,10 @@ mod imp {
                     let event = event.clone().unwrap();
 
                     BoxedAnyObject::new(event).into()
+                }
+                "alerts" => {
+                    let alerts = self.alerts.borrow();
+                    BoxedAnyObject::new(alerts.clone()).into()
                 }
                 "refresh-in-progress" => self.refresh_in_progress.get().to_value(),
                 "last-refreshed" => self
