@@ -1,8 +1,10 @@
+use std::collections::HashMap;
+
 use gdk::prelude::ObjectExt;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 use serde::{Deserialize, Serialize};
 
-use crate::backend::Journey;
+use crate::backend::{Journey, NotifyStatus};
 use crate::gui::window::Window;
 
 #[derive(PartialEq)]
@@ -15,7 +17,7 @@ enum StoreMode {
 #[derive(Serialize, Deserialize, Debug, Default)]
 struct StorageData {
     journeys: Vec<rcore::Journey>,
-    watched: Vec<String>,
+    watched: HashMap<String, NotifyStatus>,
 }
 
 gtk::glib::wrapper! {
@@ -57,7 +59,6 @@ impl JourneysStore {
         let watched = self.imp().watched.borrow();
         for journey in &*self.imp().stored.borrow() {
             if watched.contains(&journey.id()) {
-                // TODO: Store notification status for journey?
                 journey.background_tasks();
             }
         }
@@ -67,7 +68,7 @@ impl JourneysStore {
 pub mod imp {
     use std::{
         cell::RefCell,
-        collections::HashSet,
+        collections::{HashMap, HashSet},
         fs::OpenOptions,
         io::{Seek, SeekFrom},
         path::PathBuf,
@@ -129,7 +130,7 @@ pub mod imp {
                     let journeys: Vec<rcore::Journey> = serde_json::from_reader(&file)?;
                     Ok::<_, serde_json::Error>(StorageData {
                         journeys,
-                        watched: vec![],
+                        watched: HashMap::new(),
                     })
                 })
                 // Note: The migration will be removed once it is decided it will not be needed anymore.
@@ -138,7 +139,7 @@ pub mod imp {
                     let _ = file.seek(SeekFrom::Start(0));
                     Ok::<_, serde_json::Error>(StorageData {
                         journeys: import_old_store(file)?,
-                        watched: vec![],
+                        watched: HashMap::new(),
                     })
                 })
                 .unwrap_or_default();
@@ -165,11 +166,13 @@ pub mod imp {
                     }
                 }
 
-                self.store(client.get_journey(journey), StoreMode::Add);
-            }
+                let journey = client.get_journey(journey);
+                self.store(journey.clone(), StoreMode::Add);
 
-            for journey in data.watched.into_iter() {
-                self.toggle_watch(journey);
+                if let Some(notify_status) = data.watched.get(&journey.id()) {
+                    journey.set_notify_status(notify_status.clone());
+                    self.toggle_watch(journey.id());
+                }
             }
 
             if some_deletable {
@@ -252,15 +255,17 @@ pub mod imp {
     impl JourneysStore {
         pub(super) fn flush(&self) {
             log::debug!("Flushing JourneyStore");
+
+            let mut watched = HashMap::new();
+            for journey in &*self.stored.borrow() {
+                if self.is_watched(journey.id()) {
+                    watched.insert(journey.id(), journey.notify_status());
+                }
+            }
             let journeys: Vec<rcore::Journey> =
                 self.stored.borrow().iter().map(|j| j.journey()).collect();
 
-            let watched = self.watched.borrow().clone();
-
-            let data = StorageData {
-                journeys,
-                watched: watched.into_iter().collect(),
-            };
+            let data = StorageData { journeys, watched };
 
             let file = OpenOptions::new()
                 .write(true)
@@ -314,7 +319,7 @@ pub mod imp {
 
         pub(super) fn is_watched<S: AsRef<str>>(&self, journey_id: S) -> bool {
             let stored = self.watched.borrow();
-            stored.iter().any(|j| j == journey_id.as_ref())
+            stored.contains(journey_id.as_ref())
         }
     }
 

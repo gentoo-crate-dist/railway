@@ -1,5 +1,5 @@
 use std::cell::{Ref, RefCell};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 use chrono::{DateTime, Datelike, Duration, Local};
 use chrono_tz::Tz;
@@ -8,6 +8,7 @@ use gdk::glib::{clone, BoxedAnyObject, Object};
 use gdk::prelude::{ApplicationExt, ObjectExt};
 use gdk::subclass::prelude::{ObjectImpl, ObjectSubclassIsExt};
 use rcore::RefreshJourneyOptions;
+use serde::{Deserialize, Serialize};
 
 use crate::gui::utility::Utility;
 use crate::Error;
@@ -170,10 +171,13 @@ impl Journey {
                     } else {
                         return Event::TransitionTo(Leg::new(leg.clone()));
                     }
-                } else if leg.arrival.is_some_and(|a| time < &a) {
+                } else if leg.arrival.is_some_and(|a| time < &a) && !leg.walking {
                     return Event::InLeg(
                         Leg::new(leg.clone()),
-                        legs.get(i + 1).map(|l| Leg::new(l.clone())),
+                        legs.iter()
+                            .skip(i + 1)
+                            .find(|l| !l.walking)
+                            .map(|l| Leg::new(l.clone())),
                     );
                 }
             }
@@ -255,13 +259,14 @@ impl Journey {
                 if duration_next_event.is_some_and(|d| d < Duration::minutes(5))
                     && !notify_status
                         .in_leg_soon_transition
-                        .as_ref()
-                        .is_some_and(|l| l.leg() == l_current.leg()) =>
+                        .contains(&l_current.leg().id()) =>
             {
-                notify_status.in_leg_soon_transition = Some(l_current.clone());
+                notify_status
+                    .in_leg_soon_transition
+                    .insert(l_current.leg().id());
                 if let Some(l_next) = l_next {
                     let station = l_current
-                        .property::<Place>("origin")
+                        .property::<Place>("destination")
                         .property::<String>("name");
                     let platform = l_next.property::<Option<String>>("departure-platform");
                     let duration = l_next
@@ -345,8 +350,10 @@ impl Journey {
                         .copied()
                         .unwrap_or_default();
 
-                    if delay - notified_delay >= Duration::minutes(5) {
-                        notify_status.departure_delays.insert(leg.id(), delay);
+                    if delay - Duration::minutes(notified_delay) >= Duration::minutes(5) {
+                        notify_status
+                            .departure_delays
+                            .insert(leg.id(), delay.num_minutes());
                         app.send_notification(
                             Some(&format!("railway-leg-departure-delayed-{}", leg.id())),
                             &Notification::new(
@@ -370,8 +377,10 @@ impl Journey {
                         .copied()
                         .unwrap_or_default();
 
-                    if delay - notified_delay >= Duration::minutes(5) {
-                        notify_status.arrival_delays.insert(leg.id(), delay);
+                    if delay - Duration::minutes(notified_delay) >= Duration::minutes(5) {
+                        notify_status
+                            .arrival_delays
+                            .insert(leg.id(), delay.num_minutes());
                         app.send_notification(
                             Some(&format!("railway-leg-arrival-delayed-{}", leg.id())),
                             &Notification::new(
@@ -408,6 +417,14 @@ impl Journey {
                 }
             }
         }
+    }
+
+    pub fn set_notify_status(&self, status: NotifyStatus) {
+        *self.imp().notify_status.borrow_mut() = status;
+    }
+
+    pub fn notify_status(&self) -> NotifyStatus {
+        (*self.imp().notify_status.borrow()).clone()
     }
 }
 
@@ -516,14 +533,14 @@ impl Event {
     }
 }
 
-#[derive(Default, Debug)]
-struct NotifyStatus {
+#[derive(Serialize, Deserialize, Default, Debug, Clone)]
+pub struct NotifyStatus {
     beginning_of_journey: bool,
-    in_leg_soon_transition: Option<Leg>,
+    in_leg_soon_transition: HashSet<String>,
     unreachable: bool,
     cancelled: bool,
-    departure_delays: HashMap<String, Duration>,
-    arrival_delays: HashMap<String, Duration>,
+    departure_delays: HashMap<String, i64>,
+    arrival_delays: HashMap<String, i64>,
     departure_platform_changes: HashMap<String, String>,
 }
 

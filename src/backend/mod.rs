@@ -21,6 +21,7 @@ pub use frequency::Frequency;
 pub use intermediate_location::IntermediateLocation;
 pub use journey::Event;
 pub use journey::Journey;
+pub use journey::NotifyStatus;
 pub use journeys_result::JourneysResult;
 pub use journeys_result::TimeType;
 pub use late_factor::LateFactor;
