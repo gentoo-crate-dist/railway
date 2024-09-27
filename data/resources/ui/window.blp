@@ -169,6 +169,7 @@ template $DBWindow: Adw.ApplicationWindow {
 
               content: $DBJourneyDetailPage journey_detail_page {
                 client: bind template.client;
+                timer: bind template.timer;
                 show-live-box: bind btn_watch_journey.active;
               };
             }
@@ -180,6 +181,7 @@ template $DBWindow: Adw.ApplicationWindow {
 }
 
 $DBJourneysStore store_journeys {
+  timer: bind template.timer;
   add => $handle_journey_store_add() swapped;
   remove => $handle_journey_store_remove() swapped;
 }

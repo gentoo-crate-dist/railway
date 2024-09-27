@@ -33,8 +33,8 @@ impl JourneysStore {
         self.imp().contains(journey)
     }
 
-    pub fn toggle_watch(&self, journey_id: String) {
-        self.imp().toggle_watch(journey_id);
+    pub fn toggle_watch(&self, journey: &Journey) {
+        self.imp().toggle_watch(journey);
     }
 
     pub fn is_watched<S: AsRef<str>>(&self, journey_id: S) -> bool {
@@ -53,15 +53,6 @@ impl JourneysStore {
 
     pub fn reload(&self) {
         self.imp().load();
-    }
-
-    fn on_minutely(&self) {
-        let watched = self.imp().watched.borrow();
-        for journey in &*self.imp().stored.borrow() {
-            if watched.contains(&journey.id()) {
-                journey.background_tasks();
-            }
-        }
     }
 }
 
@@ -82,8 +73,8 @@ pub mod imp {
 
     use gdk::{
         gio::Settings,
-        glib::subclass::Signal,
-        prelude::{ObjectExt, SettingsExt, StaticType},
+        glib::{subclass::Signal, ParamSpec, ParamSpecObject, Value},
+        prelude::{ObjectExt, SettingsExt, StaticType, ToValue},
         subclass::prelude::{ObjectImpl, ObjectImplExt, ObjectSubclass, ObjectSubclassExt},
     };
     use once_cell::sync::Lazy;
@@ -171,7 +162,7 @@ pub mod imp {
 
                 if let Some(notify_status) = data.watched.get(&journey.id()) {
                     journey.set_notify_status(notify_status.clone());
-                    self.toggle_watch(journey.id());
+                    self.toggle_watch(&journey);
                 }
             }
 
@@ -289,7 +280,7 @@ pub mod imp {
 
                     let journey_id = s.id();
                     if self.is_watched(&journey_id) {
-                        self.toggle_watch(journey_id);
+                        self.toggle_watch(&s);
                     }
                 }
             } else if store_mode != StoreMode::Remove {
@@ -299,16 +290,20 @@ pub mod imp {
             }
         }
 
-        pub(super) fn toggle_watch(&self, journey_id: String) {
+        pub(super) fn toggle_watch(&self, journey: &Journey) {
+            let journey_id = journey.id();
+
             let mut watched = self.watched.borrow_mut();
+            let timer = self.timer.borrow();
             if watched.contains(&journey_id) {
                 log::trace!("Removing Watch {:?}", journey_id);
                 watched.remove(&journey_id);
+                timer.unregister_background(journey.clone());
             } else {
                 log::trace!("Adding Watch {:?}", journey_id);
                 watched.insert(journey_id);
                 drop(watched);
-                self.obj().on_minutely();
+                timer.register_background(journey.clone());
             }
         }
 
@@ -338,21 +333,6 @@ pub mod imp {
                     }
                 ),
             );
-
-            let obj = self.obj();
-            self.timer.borrow().connect_local(
-                "minutely",
-                false,
-                clone!(
-                    #[weak]
-                    obj,
-                    #[upgrade_or_default]
-                    move |_| {
-                        obj.on_minutely();
-                        None
-                    }
-                ),
-            );
         }
 
         fn signals() -> &'static [Signal] {
@@ -367,6 +347,32 @@ pub mod imp {
                 ]
             });
             SIGNALS.as_ref()
+        }
+
+        fn properties() -> &'static [ParamSpec] {
+            static PROPERTIES: Lazy<Vec<ParamSpec>> =
+                Lazy::new(|| vec![ParamSpecObject::builder::<Timer>("timer").build()]);
+            PROPERTIES.as_ref()
+        }
+
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
+            match pspec.name() {
+                "timer" => {
+                    let obj = value
+                        .get::<Timer>()
+                        .expect("Property `timer` of `JourneyStore` has to be of type `timer`");
+
+                    self.timer.replace(obj);
+                }
+                _ => unimplemented!(),
+            }
+        }
+
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
+            match pspec.name() {
+                "timer" => self.timer.borrow().to_value(),
+                _ => unimplemented!(),
+            }
         }
     }
 }

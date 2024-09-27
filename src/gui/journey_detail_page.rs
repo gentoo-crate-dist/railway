@@ -47,6 +47,7 @@ pub mod imp {
     use crate::backend::Journey;
     use crate::backend::Leg;
     use crate::backend::Place;
+    use crate::backend::Timer;
     use crate::gui::leg_item::LegItem;
     use crate::gui::transition::Transition;
     use crate::gui::utility::Utility;
@@ -66,6 +67,7 @@ pub mod imp {
 
         load_handle: RefCell<Option<JoinHandle<()>>>,
 
+        pub(super) timer: RefCell<Timer>,
         client: RefCell<Option<Client>>,
     }
 
@@ -306,8 +308,9 @@ pub mod imp {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
                     ParamSpecObject::builder::<Journey>("journey").build(),
-                    ParamSpecObject::builder::<Client>("client").build(),
                     ParamSpecBoolean::builder("show-live-box").build(),
+                    ParamSpecObject::builder::<Client>("client").build(),
+                    ParamSpecObject::builder::<Timer>("timer").build(),
                 ]
             });
             PROPERTIES.as_ref()
@@ -316,6 +319,10 @@ pub mod imp {
         fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "journey" => {
+                    if let Some(old) = self.journey.borrow().as_ref() {
+                        self.timer.borrow().unregister_minutely(old.clone());
+                    }
+
                     let obj = value.get::<Option<Journey>>().expect(
                         "Property `journey` of `JourneyDetailPage` has to be of type `Journey`",
                     );
@@ -324,7 +331,7 @@ pub mod imp {
                     let redo = obj.as_ref().map(|j| j.id())
                         != self.journey.borrow().as_ref().map(|j| j.id());
 
-                    self.journey.replace(obj);
+                    self.journey.replace(obj.clone());
 
                     // Ensure the load is not called twice at the same time by aborting the old one if needed.
                     if let Some(handle) = self.load_handle.replace(None) {
@@ -337,12 +344,26 @@ pub mod imp {
                         glib::Priority::LOW
                     );
 
+                    if let Some(obj) = obj {
+                        if self.obj().property("show-live-box") {
+                            self.timer.borrow().register_minutely(obj);
+                        }
+                    }
+
                     self.load_handle.replace(Some(handle));
                 }
                 "show-live-box" => {
                     let obj = value.get::<bool>().expect(
                         "Property `show-live-box` of `JourneyDetailPage` has to be of type `bool`",
                     );
+
+                    if let Some(journey) = self.obj().property("journey") {
+                        if obj {
+                            self.timer.borrow().register_minutely(journey)
+                        } else {
+                            self.timer.borrow().unregister_minutely(journey)
+                        }
+                    }
 
                     self.show_live_box.replace(obj);
                 }
@@ -353,6 +374,13 @@ pub mod imp {
 
                     self.client.replace(obj);
                 }
+                "timer" => {
+                    let obj = value.get::<Timer>().expect(
+                        "Property `timer` of `JourneyDetailPage` has to be of type `timer`",
+                    );
+
+                    self.timer.replace(obj);
+                }
                 _ => unimplemented!(),
             }
         }
@@ -362,6 +390,7 @@ pub mod imp {
                 "journey" => self.journey.borrow().to_value(),
                 "show-live-box" => self.show_live_box.get().to_value(),
                 "client" => self.client.borrow().to_value(),
+                "timer" => self.timer.borrow().to_value(),
                 _ => unimplemented!(),
             }
         }

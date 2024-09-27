@@ -97,6 +97,7 @@ pub mod imp {
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
     use crate::backend::Place;
+    use crate::backend::Timer;
     use crate::config;
     use crate::gui::alt_label::AltLabel;
     use crate::gui::date_time_picker::DateTimePicker;
@@ -145,6 +146,7 @@ pub mod imp {
         pub toast_overlay: TemplateChild<libadwaita::ToastOverlay>,
 
         client: RefCell<Client>,
+        timer: RefCell<Timer>,
     }
 
     #[gtk::template_callbacks]
@@ -316,14 +318,13 @@ pub mod imp {
 
         #[template_callback]
         fn handle_watch_journey_store(&self) {
-            if let Some(journey_id) = self
+            if let Some(journey) = self
                 .journey_detail_page
                 .property::<Option<Journey>>("journey")
-                .map(|j| j.id())
             {
-                self.store_journeys.toggle_watch(journey_id.clone());
+                self.store_journeys.toggle_watch(&journey);
                 self.btn_watch_journey
-                    .set_active(self.store_journeys.is_watched(&journey_id));
+                    .set_active(self.store_journeys.is_watched(journey.id()));
             }
         }
 
@@ -451,9 +452,14 @@ pub mod imp {
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::builder::<Client>("client")
-                    .read_only()
-                    .build()]
+                vec![
+                    ParamSpecObject::builder::<Client>("client")
+                        .read_only()
+                        .build(),
+                    ParamSpecObject::builder::<Timer>("timer")
+                        .read_only()
+                        .build(),
+                ]
             });
             PROPERTIES.as_ref()
         }
@@ -463,6 +469,7 @@ pub mod imp {
         fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "client" => self.client.borrow().to_value(),
+                "timer" => self.timer.borrow().to_value(),
                 _ => unimplemented!(),
             }
         }

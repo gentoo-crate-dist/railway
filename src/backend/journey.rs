@@ -91,7 +91,7 @@ impl Journey {
             self.update_last_refreshed();
         }
 
-        Ok(())
+        result.map(|_| ())
     }
 
     fn set_refresh_in_progress(&self, b: bool) {
@@ -132,6 +132,30 @@ impl Journey {
                 && time_since_last_refreshed > Duration::minutes(5))
             || (duration_next_event < Duration::minutes(5)
                 && time_since_last_refreshed > Duration::minutes(1))
+    }
+
+    pub fn next_background_tasks_in(&self) -> Duration {
+        let current_event = self.property::<BoxedAnyObject>("current-event");
+        let current_event: Ref<Event> = current_event.borrow();
+
+        let Some(duration_next_event) = current_event
+            .time_of_next_action()
+            .map(|t| t.with_timezone(&Local) - Local::now())
+        else {
+            return Duration::zero();
+        };
+
+        if duration_next_event < Duration::minutes(5) {
+            Duration::minutes(1)
+        } else if duration_next_event < Duration::minutes(15) {
+            Duration::minutes(5)
+        } else if duration_next_event < Duration::hours(1) {
+            Duration::minutes(15)
+        } else if duration_next_event < Duration::days(1) {
+            Duration::hours(1)
+        } else {
+            Duration::days(1)
+        }
     }
 
     pub fn background_tasks(&self) {
