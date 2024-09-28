@@ -39,8 +39,6 @@ resources = gnome.compile_resources(
     input: 'resources.gresource.xml.in',
     output: '@BASENAME@',
     configuration: resources_conf,
-    install: true,
-    install_dir: datadir / 'metainfo'
   ),
   gresource_bundle: true,
   install: true,
