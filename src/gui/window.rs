@@ -151,6 +151,8 @@ pub mod imp {
             self.store_journeys.setup(self.obj().clone());
             self.store_searches.setup();
 
+            gtk::Window::set_default_icon_name(config::APP_ID);
+
             if config::PROFILE == "Devel" {
                 self.obj().add_css_class("devel");
             }
