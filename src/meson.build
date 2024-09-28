@@ -53,4 +53,4 @@ cargo_build = custom_target(
   ]
 )
 
-test('cargo-test', find_program('env', required: true), args: [ cargo_env, 'cargo', 'test'], timeout: 0)
+test('cargo-test', find_program('env', required: true), args: [ cargo_env, 'cargo', 'test', cargo_options], timeout: 0)
