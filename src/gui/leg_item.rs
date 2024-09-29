@@ -138,8 +138,8 @@ pub mod imp {
                             s.iter()
                                 .filter(|l| matches!(l, rcore::IntermediateLocation::Stop(_)))
                                 .count()
-                                - 2,
-                            s.len() - 2,
+                                .saturating_sub(2),
+                            s.len().saturating_sub(2),
                         )
                     })
                     .unwrap_or_default();
