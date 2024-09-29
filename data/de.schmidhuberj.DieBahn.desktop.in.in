@@ -2,8 +2,10 @@
 Type=Application
 Icon=@app-id@
 Name=Railway
+Comment=Find all your travel information
 StartupWMClass=Railway
 Exec=@bindir@/diebahn
 X-Purism-FormFactor=Workstation;Mobile;
+Categories=GTK;GNOME;Utility;Maps;
 # Translators: The keywords from the desktop file.
 Keywords=train;railway;journey;planner;timetables;
