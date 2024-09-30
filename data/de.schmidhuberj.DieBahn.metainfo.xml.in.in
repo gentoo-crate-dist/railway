@@ -20,6 +20,8 @@
   <categories>
     <category>Maps</category>
     <category>Utility</category>
+    <category>GNOME</category>
+    <category>GTK</category>
   </categories>
 
   <url type="homepage">https://mobile.schmidhuberj.de/railway</url>
