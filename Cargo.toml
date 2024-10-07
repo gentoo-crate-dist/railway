@@ -13,7 +13,7 @@ edition = "2021"
 [dependencies]
 gtk = { version = "0.9.6", package = "gtk4", features = ["v4_14"] }
 gdk = { version = "0.9.6", package = "gdk4" }
-libadwaita = { version = "0.7.2", features = ["v1_5"] }
+libadwaita = { version = "0.7.2", features = ["v1_7"] }
 gettext-rs = { version = "0.7.2", features = ["gettext-system"] }
 
 once_cell = "1.21.3"
