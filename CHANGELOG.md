@@ -6,9 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Categories and comment in the desktop file.
+
 ### Fixed
 
 - Don't panic when a journey is walk-only.
+- Display name of VBB incorrect.
+- Geographic information for a few providers being wrong.
+
+### Chores
+
+- Update to GNOME 47.
+- Port to blueprint-compiler.
 
 ## [2.7.0] - 2024-07-24
 
