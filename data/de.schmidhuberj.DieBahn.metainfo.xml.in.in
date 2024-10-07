@@ -59,6 +59,25 @@
   </description>
 
   <releases>
+    <release version="2.7.1" date="2024-10-07">
+      <description translate="no">
+        <p>Added</p>
+        <ul>
+          <li>Categories and comment in the desktop file.</li>
+        </ul>
+        <p>Fixed</p>
+        <ul>
+          <li>Don't panic when a journey is walk-only.</li>
+          <li>Display name of VBB incorrect.</li>
+          <li>Geographic information for a few providers being wrong.</li>
+        </ul>
+        <p>Chores</p>
+        <ul>
+          <li>Update to GNOME 47.</li>
+          <li>Port to blueprint-compiler.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.7.0" date="2024-07-24">
       <description translate="no">
         <p>Added</p>
