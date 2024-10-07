@@ -13,22 +13,18 @@ template $DBSearchOptionsDialog: Adw.PreferencesDialog {
       Adw.ActionRow {
         title: _("Class");
 
-        Box {
-          styles [
-            "linked",
-          ]
-
-          halign: center;
+        Adw.ToggleGroup toggle_group_class {
+          notify::active => $handle_first_class() swapped;
           valign: center;
 
-          ToggleButton toggle_first_class {
+          Adw.Toggle {
+            name: "first";
             label: _("First Class");
-            toggled => $handle_first_class() swapped;
           }
 
-          ToggleButton toggle_second_class {
+          Adw.Toggle {
+            name: "second";
             label: _("Second Class");
-            group: toggle_first_class;
           }
         }
       }

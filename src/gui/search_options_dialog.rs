@@ -43,9 +43,7 @@ pub mod imp {
         dropdown_bahncard: TemplateChild<libadwaita::ComboRow>,
 
         #[template_child]
-        toggle_first_class: TemplateChild<gtk::ToggleButton>,
-        #[template_child]
-        toggle_second_class: TemplateChild<gtk::ToggleButton>,
+        toggle_group_class: TemplateChild<libadwaita::ToggleGroup>,
 
         #[template_child]
         switch_bike_accessible: TemplateChild<libadwaita::SwitchRow>,
@@ -80,9 +78,9 @@ pub mod imp {
     impl SearchOptionsDialog {
         fn init_settings(&self) {
             if self.settings.boolean("first-class") {
-                self.toggle_first_class.set_active(true);
+                self.toggle_group_class.set_active_name(Some("first"));
             } else {
-                self.toggle_second_class.set_active(true);
+                self.toggle_group_class.set_active_name(Some("second"));
             }
 
             let model_bahncard = gdk::gio::ListStore::new::<DiscountCard>();
@@ -234,10 +232,10 @@ pub mod imp {
         }
 
         #[template_callback]
-        fn handle_first_class(&self, toggle: gtk::ToggleButton) {
-            let active = toggle.is_active();
+        fn handle_first_class(&self) {
+            let first = self.toggle_group_class.active_name().unwrap() == "first";
             self.settings
-                .set_boolean("first-class", active)
+                .set_boolean("first-class", first)
                 .expect("Failed to set first-class value");
         }
 
@@ -262,8 +260,7 @@ pub mod imp {
                 switch_bike_accessible: TemplateChild::default(),
                 spin_transfer_time: TemplateChild::default(),
                 switch_direct_only: TemplateChild::default(),
-                toggle_first_class: TemplateChild::default(),
-                toggle_second_class: TemplateChild::default(),
+                toggle_group_class: TemplateChild::default(),
                 toggle_national_express: TemplateChild::default(),
                 toggle_regional: TemplateChild::default(),
                 toggle_suburban: TemplateChild::default(),
