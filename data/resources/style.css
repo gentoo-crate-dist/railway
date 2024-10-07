@@ -145,3 +145,24 @@ popover listview.navigation-sidebar > row:selected:active {
   opacity: 0;
   margin: 3px 1px;
 }
+
+.modes-of-transport button {
+  border-radius: 99px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.modes-of-transport button:checked {
+  background-color: var(--accent-bg-color);
+  color: var(--accent-fg-color);
+  box-shadow: none;
+  outline-offset: 5px;
+}
+
+.modes-of-transport button:checked:focus:focus-visible {
+  outline-offset: 1px;
+}
+
+.modes-of-transport button:checked:hover {
+  background-image: image(color-mix(in srgb, currentColor 10%, transparent));
+}

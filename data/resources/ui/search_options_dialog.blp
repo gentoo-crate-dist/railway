@@ -51,40 +51,59 @@ template $DBSearchOptionsDialog: Adw.PreferencesDialog {
     Adw.PreferencesGroup {
       title: _("Modes of Transport");
 
-      Adw.SwitchRow switch_national_express {
-        title: _("Mainline Train"); // TODO: check term, alternatives: Higher-speed Train, Long-distance Train
-      }
+      Adw.WrapBox {
+        line-spacing: 6;
+        child-spacing: 6;
+        justify: fill;
 
-      Adw.SwitchRow switch_regional {
-        title: _("Regional Train"); // TODO: check term
-      }
+        styles [
+          "modes-of-transport",
+        ]
 
-      Adw.SwitchRow switch_suburban {
-        title: _("S-Bahn Train"); // TODO: more generic term, incl. Overground and S-Bahn?
-      }
+        Gtk.ToggleButton toggle_national_express {
+          label: _("Mainline Train"); // TODO: check term, alternatives: Higher-speed Train, Long-distance Train
+          can-shrink: true;
+        }
 
-      Adw.SwitchRow switch_bus {
-        title: _("Bus");
-      }
+        Gtk.ToggleButton toggle_regional {
+          label: _("Regional Train"); // TODO: check term
+          can-shrink: true;
+        }
 
-      Adw.SwitchRow switch_ferry {
-        title: _("Ferry");
-      }
+        Gtk.ToggleButton toggle_suburban {
+          label: _("S-Bahn Train"); // TODO: more generic term, incl. Overground and S-Bahn?
+          can-shrink: true;
+        }
 
-      Adw.SwitchRow switch_subway {
-        title: _("Subway");
-      }
+        Gtk.ToggleButton toggle_bus {
+          label: _("Bus");
+          can-shrink: true;
+        }
 
-      Adw.SwitchRow switch_tram {
-        title: _("Tram");
-      }
+        Gtk.ToggleButton toggle_ferry {
+          label: _("Ferry");
+          can-shrink: true;
+        }
 
-      Adw.SwitchRow switch_cablecar {
-        title: _("Cablecar");
-      }
+        Gtk.ToggleButton toggle_subway {
+          label: _("Subway");
+          can-shrink: true;
+        }
 
-      Adw.SwitchRow switch_taxi {
-        title: _("Taxi");
+        Gtk.ToggleButton toggle_tram {
+          label: _("Tram");
+          can-shrink: true;
+        }
+
+        Gtk.ToggleButton toggle_cablecar {
+          label: _("Cablecar");
+          can-shrink: true;
+        }
+
+        Gtk.ToggleButton toggle_taxi {
+          label: _("Taxi");
+          can-shrink: true;
+        }
       }
     }
   }
