@@ -19,8 +19,8 @@ Railway lets you look up travel information for many different railways, all wit
     </td>
   </tr>
   <tr>
-    <td>Arch Linux (AUR)</td>
-    <td>[railway](https://aur.archlinux.org/packages/railway)</td>
+    <td>Arch Linux</td>
+    <td>[railway](https://archlinux.org/packages/extra/x86_64/railway)</td>
   </tr>
   <tr>
     <td>Debian (testing)</td>
