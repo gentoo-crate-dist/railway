@@ -2,37 +2,39 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the diebahn package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-10-16 17:08+0200\n"
+"Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
+"Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 46.1\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
 #: data/resources/ui/window.blp:6
 msgid "Railway"
-msgstr ""
+msgstr "Железница"
 
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
-msgstr ""
+msgstr "влак;железница;пътуване;планиране;разписания;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr ""
+msgstr "Намерете информация за вашето пътуване"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -41,666 +43,676 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"„Железница“ ви позволява да търсите информация за пътуване в различни мрежи "
+"и граници, без да се налага да навигирате из различни уеб сайтове. "
+"Благодарение на адаптивния дизайн програмата е подходяща за предварително "
+"планиране на пътуването ви в движение:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
 msgstr ""
+"Преглеждайте подробностите за вашите пътувания, включително пероните и "
+"закъсненията"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
 msgstr ""
+"Създавайте отметки за текущи и бъдещи пътувания, както и за тези, които "
+"често търсите"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr ""
+"Използвайте опциите за допълнително търсене като филтриране по вид транспорт"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
-msgstr ""
+msgstr "И всичко това за мрежи от цял свят, но най-вече от Европа."
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:277
 msgid "Application Overview"
-msgstr ""
+msgstr "Изглед на програмата"
 
 #: data/resources/ui/date_time_picker.blp:20
 msgid "Departure"
-msgstr ""
+msgstr "Заминава"
 
 #: data/resources/ui/date_time_picker.blp:33
 msgid "Arrival"
-msgstr ""
+msgstr "Пристига"
 
 #: data/resources/ui/date_time_picker.blp:53
 msgid "Input date"
-msgstr ""
+msgstr "Въведете дата"
 
 #: data/resources/ui/date_time_picker.blp:60
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: data/resources/ui/date_time_picker.blp:96
 msgid "Input time"
-msgstr ""
+msgstr "Въведете време"
 
 #: data/resources/ui/date_time_picker.blp:104
 msgid "Time"
-msgstr ""
+msgstr "Време"
 
 #: data/resources/ui/date_time_picker.blp:159 src/gui/date_time_picker.rs:122
 msgid "Now"
-msgstr ""
+msgstr "Сега"
 
 #: data/resources/ui/journey_detail_page.blp:51
 msgid "Total Travel Time"
-msgstr ""
+msgstr "Общо време за пътуване"
 
 #: data/resources/ui/journey_detail_page.blp:64
 msgid "Trip Segments"
-msgstr ""
+msgstr "Части от пътуването"
 
 #: data/resources/ui/journey_detail_page.blp:78
 msgid "Choose a Trip"
-msgstr ""
+msgstr "Изберете пътуване"
 
 #: data/resources/ui/journeys_page.blp:98
 msgid "Search for Trips"
-msgstr ""
+msgstr "Търсете пътувания"
 
 #: data/resources/ui/leg_item.blp:124
 msgid "Show Stops"
-msgstr ""
+msgstr "Показване на спирките"
 
 #: data/resources/ui/leg_item.blp:127
 msgid "Show Intermediate Stops"
-msgstr ""
+msgstr "Показване на междинните спирки"
 
 #: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
 msgid "Show Announcements"
-msgstr ""
+msgstr "Показване на обявите"
 
 #: data/resources/ui/leg_item.blp:195
 msgid "Announcements"
-msgstr ""
+msgstr "Обяви"
 
 #: data/resources/ui/leg_item.blp:222
 msgid "Stops"
-msgstr ""
+msgstr "Спирки"
 
 #: data/resources/ui/preferences_dialog.blp:8
 #: data/resources/ui/shortcuts.blp:27
 msgid "General"
-msgstr ""
+msgstr "Общи"
 
 #: data/resources/ui/preferences_dialog.blp:13
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "Автоматично премахване на стари отметки"
 
 #: data/resources/ui/preferences_dialog.blp:14
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "Миналите пътувания се съхраняват само за определен период от време"
 
 #: data/resources/ui/preferences_dialog.blp:19
 msgid "Preservation Time For Trips"
-msgstr ""
+msgstr "Време за запазване на пътувания"
 
 #: data/resources/ui/preferences_dialog.blp:20
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "За колко време да се запазят пътуванията след пристигането"
 
 #: data/resources/ui/provider_popover.blp:18
 msgid "Search Networks…"
-msgstr ""
+msgstr "Търсене на мрежи…"
 
 #: data/resources/ui/refresh_button.blp:20
 msgid "Refresh Trip"
-msgstr ""
+msgstr "Опресняване на пътуването"
 
 #: data/resources/ui/search_options_button.blp:5
 msgid "More search options"
-msgstr ""
+msgstr "Повече опции за търсене"
 
 #: data/resources/ui/search_options_button.blp:16
 msgid "Refine Advanced Search Options"
-msgstr ""
+msgstr "Уточняване на опциите за търсене"
 
 #: data/resources/ui/search_options_button.blp:30
 msgid "More Options"
-msgstr ""
+msgstr "Повече опции"
 
 #: data/resources/ui/search_options_dialog.blp:10
 msgid "Discount Card"
-msgstr ""
+msgstr "Карта за отстъпка"
 
 #: data/resources/ui/search_options_dialog.blp:14
 msgid "Class"
-msgstr ""
+msgstr "Класа"
 
 #: data/resources/ui/search_options_dialog.blp:25
 msgid "First Class"
-msgstr ""
+msgstr "Първа класа"
 
 #: data/resources/ui/search_options_dialog.blp:30
 msgid "Second Class"
-msgstr ""
+msgstr "Втора класа"
 
 #: data/resources/ui/search_options_dialog.blp:37
 #: src/gui/search_options_button.rs:190
 msgid "Bike Accessible"
-msgstr ""
+msgstr "Достъп за велосипеди"
 
 #: data/resources/ui/search_options_dialog.blp:42
 msgid "Minimum Transfer Time"
-msgstr ""
+msgstr "Минимално време за прекачване"
 
 #: data/resources/ui/search_options_dialog.blp:47
 msgid "Direct Connections Only"
-msgstr ""
+msgstr "Само директни връзки"
 
 #: data/resources/ui/search_options_dialog.blp:52
 msgid "Modes of Transport"
-msgstr ""
+msgstr "Видове транспорт"
 
 #: data/resources/ui/search_options_dialog.blp:55
 msgid "High Speed Train"
-msgstr ""
+msgstr "Високоскоростен влак"
 
 #: data/resources/ui/search_options_dialog.blp:59
 msgid "Regional Train"
-msgstr ""
+msgstr "Регионален влак"
 
 #: data/resources/ui/search_options_dialog.blp:63
 msgid "Suburban Trains"
-msgstr ""
+msgstr "Крайградски влакове"
 
 #: data/resources/ui/search_options_dialog.blp:67
 msgid "Bus"
-msgstr ""
+msgstr "Автобус"
 
 #: data/resources/ui/search_options_dialog.blp:71
 msgid "Ferry"
-msgstr ""
+msgstr "Ферибот"
 
 #: data/resources/ui/search_options_dialog.blp:75
 msgid "Subway"
-msgstr ""
+msgstr "Метро"
 
 #: data/resources/ui/search_options_dialog.blp:79
 msgid "Tram"
-msgstr ""
+msgstr "Трамвай"
 
 #: data/resources/ui/search_options_dialog.blp:83
 msgid "Cablecar"
-msgstr ""
+msgstr "Лифт"
 
 #: data/resources/ui/search_options_dialog.blp:87
 msgid "Taxi"
-msgstr ""
+msgstr "Такси"
 
 #: data/resources/ui/search_page.blp:31
 msgid "From"
-msgstr ""
+msgstr "От"
 
 #: data/resources/ui/search_page.blp:38
 msgid "To"
-msgstr ""
+msgstr "До"
 
 #: data/resources/ui/search_page.blp:51 data/resources/ui/search_page.blp:72
 #: data/resources/ui/window.blp:31
 msgid "Search"
-msgstr ""
+msgstr "Търсене"
 
 #: data/resources/ui/search_page.blp:90
 msgid "Bookmarked Trips"
-msgstr ""
+msgstr "Отметнати пътувания"
 
 #: data/resources/ui/search_page.blp:105
 msgid "Bookmarked Searches"
-msgstr ""
+msgstr "Отметнати търсения"
 
 #: data/resources/ui/shortcuts.blp:8
 msgid "Application"
-msgstr ""
+msgstr "Програма"
 
 #: data/resources/ui/shortcuts.blp:12
 msgid "Bookmark Search"
-msgstr ""
+msgstr "Търсене на отметки"
 
 #: data/resources/ui/shortcuts.blp:17
 msgid "Bookmark Trip"
-msgstr ""
+msgstr "Добавяне на пътуването в отметките"
 
 #: data/resources/ui/shortcuts.blp:22
 msgid "Reload Trip"
-msgstr ""
+msgstr "Презареждане на пътуването"
 
 #: data/resources/ui/shortcuts.blp:31
 msgid "Quit"
-msgstr ""
+msgstr "Спиране на програмата"
 
 #: data/resources/ui/shortcuts.blp:36
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "Показване на клавишните комбинации"
 
 #: data/resources/ui/shortcuts.blp:41
 msgid "Show Preferences"
-msgstr ""
+msgstr "Показване на настройките"
 
 #: data/resources/ui/shortcuts.blp:46
 msgid "Open Menu"
-msgstr ""
+msgstr "Отваряне на менюто"
 
 #: data/resources/ui/station_entry.blp:13
 msgid "Swap Start and Destination"
-msgstr ""
+msgstr "Разменяне на началната точка и дестинацията"
 
 #: data/resources/ui/window.blp:42 data/resources/ui/window.blp:49
 msgid "Select Network"
-msgstr ""
+msgstr "Избиране на мрежа"
 
 #: data/resources/ui/window.blp:72
 msgid "Main Menu"
-msgstr ""
+msgstr "Основно меню"
 
 #: data/resources/ui/window.blp:91
 msgid "Connections"
-msgstr ""
+msgstr "Връзки"
 
 #: data/resources/ui/window.blp:104
 msgid "Bookmark This Search"
-msgstr ""
+msgstr "Добавяне на търсенето в отметките"
 
 #: data/resources/ui/window.blp:116
 msgid "Trip Details"
-msgstr ""
+msgstr "Подробности за пътуването"
 
 #: data/resources/ui/window.blp:125
 msgid "Refresh This Trip"
-msgstr ""
+msgstr "Опресняване на това пътуване"
 
 #: data/resources/ui/window.blp:136
 msgid "Bookmark This Trip"
-msgstr ""
+msgstr "Добавяне на пътуването в отметките"
 
 #: data/resources/ui/window.blp:164
 msgid "Preferences"
-msgstr ""
+msgstr "Настройки"
 
 #: data/resources/ui/window.blp:169
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Клавишни комбинации"
 
 #: data/resources/ui/window.blp:174
 msgid "_About Railway"
-msgstr ""
+msgstr "_Относно „Железница“"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
-msgstr ""
+msgstr "Голямо натоварване"
 
 #: src/gui/indicator_icons.rs:142
 msgid "Very High Load"
-msgstr ""
+msgstr "Много голямо натоварване"
 
 #: src/gui/indicator_icons.rs:149
 msgid "Exceptionally High Load"
-msgstr ""
+msgstr "Изключително голямо натоварване"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On Time"
-msgstr ""
+msgstr "Навреме"
 
 #: src/gui/indicator_icons.rs:172
 msgid "Minor Delays"
-msgstr ""
+msgstr "Малки закъснения"
 
 #: src/gui/indicator_icons.rs:179
 msgid "Delayed"
-msgstr ""
+msgstr "Закъснение"
 
 #: src/gui/indicator_icons.rs:186
 msgid "Very Delayed"
-msgstr ""
+msgstr "Голямо закъснение"
 
 #: src/gui/indicator_icons.rs:193
 msgid "Extremely Delayed"
-msgstr ""
+msgstr "Много голямо закъснение"
 
 #: src/gui/indicator_icons.rs:209
 msgid "Platform Changes"
-msgstr ""
+msgstr "Промени в перона"
 
 #: src/gui/indicator_icons.rs:228
 msgid "Connection Not Possible"
-msgstr ""
+msgstr "Връзката не е възможна"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
-msgstr ""
+msgstr "Отменено"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
-msgstr ""
+msgstr "Отметнато пътуване наскоро завърши."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr ""
+msgstr "Винаги _изтриване"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
-msgstr ""
+msgstr "Началната точка и дестинацията липсват"
 
 #: src/gui/search_page.rs:118
 msgid "Start is missing"
-msgstr ""
+msgstr "Липсва начална точка"
 
 #: src/gui/search_page.rs:119
 msgid "Destination is missing"
-msgstr ""
+msgstr "Липсва дестинация"
 
 #: src/gui/search_page.rs:120
 msgid "Search ongoing"
-msgstr ""
+msgstr "Търсенето зарежда"
 
 #: src/gui/journey_detail_page.rs:108
 msgid "Last refreshed {}"
-msgstr ""
+msgstr "Последно опреснено на {}"
 
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:90
 msgid "Arrive at {destination}."
-msgstr ""
+msgstr "Пристигане в {destination}."
 
 #: src/gui/transition.rs:212
 msgid "Walk {walk} Wait {wait}"
-msgstr ""
+msgstr "Ходене {walk} Чакане {wait}"
 
 #: src/gui/transition.rs:217
 msgid "Transfer Time {}"
-msgstr ""
+msgstr "Време за прекачване {}"
 
 #: src/gui/transition.rs:221
 msgid "Walk {}"
-msgstr ""
+msgstr "Ходене {}"
 
 #: src/gui/transition.rs:224
 msgid "Transfer"
-msgstr ""
+msgstr "Прекачване"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:228
 msgid "{} min"
-msgstr ""
+msgstr "{} мин"
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:84
 msgid "%_H h %_M min"
-msgstr ""
+msgstr "%_H ч %_M мин"
 
 #: src/gui/utility.rs:95
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " %_d ден %_H ч %_M мин"
+msgstr[1] " %_d дена %_H ч %_M мин"
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:106
 msgid "{} min."
-msgstr ""
+msgstr "{} мин."
 
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:110
 msgid "{} hrs."
-msgstr ""
+msgstr "{} ч."
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:119
 msgid "%-H hrs. %-M min."
-msgstr ""
+msgstr "%-H ч. %-M мин."
 
 #: src/gui/utility.rs:131
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " %_d ден %_H ч. %_M мин."
+msgstr[1] " %_d дена %_H ч. %_M мин."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:141
 msgid "%H:%M"
-msgstr ""
+msgstr "%H:%M"
 
 #: src/gui/utility.rs:147 src/gui/date_time_picker.rs:110
 msgid "Today"
-msgstr ""
+msgstr "Днес"
 
 #: src/gui/utility.rs:149
 msgid "Tomorrow"
-msgstr ""
+msgstr "Утре"
 
 #: src/gui/utility.rs:151
 msgid "Yesterday"
-msgstr ""
+msgstr "Вчера"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:154
 msgid "%a, %d. %B"
-msgstr ""
+msgstr "%a, %d. %B"
 
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:157
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%d.%m.%Y"
 
 #: src/gui/preferences_dialog.rs:60
 msgid "{} h"
 msgid_plural "{} h"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} ч"
+msgstr[1] "{} ч"
 
 #: src/gui/search_options_button.rs:75
 msgid "None"
-msgstr ""
+msgstr "Без"
 
 #: src/gui/search_options_button.rs:76
 msgid "BahnCard 25, 1st class"
-msgstr ""
+msgstr "BahnCard 25, 1-ва класа"
 
 #: src/gui/search_options_button.rs:77
 msgid "BahnCard 25, 2nd class"
-msgstr ""
+msgstr "BahnCard 25, 2-ра класа"
 
 #: src/gui/search_options_button.rs:78
 msgid "BahnCard 50, 1st class"
-msgstr ""
+msgstr "BahnCard 50, 1-ва класа"
 
 #: src/gui/search_options_button.rs:79
 msgid "BahnCard 50, 2nd class"
-msgstr ""
+msgstr "BahnCard 50, 2-ра класа"
 
 #: src/gui/search_options_button.rs:80
 msgid "A – VORTEILScard (with RAILPLUS)"
-msgstr ""
+msgstr "A - VORTEILScard (с RAILPLUS)"
 
 #: src/gui/search_options_button.rs:81
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
-msgstr ""
+msgstr "CH - HalbtaxAbo (с RAILPLUS)"
 
 #: src/gui/search_options_button.rs:82
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
-msgstr ""
+msgstr "CH - HalbtaxAbo (без RAILPLUS)"
 
 #: src/gui/search_options_button.rs:85
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
-msgstr ""
+msgstr "NL - Voordeelurenabo (с RAILPLUS)"
 
 #: src/gui/search_options_button.rs:89
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
-msgstr ""
+msgstr "NL – Voordeelurenabo (без RAILPLUS)"
 
 #: src/gui/search_options_button.rs:91
 msgid "SH-Card"
-msgstr ""
+msgstr "SH-Card"
 
 #: src/gui/search_options_button.rs:92
 msgid "CH – General-Abonnement"
-msgstr ""
+msgstr "CH – General-Abonnement"
 
 #: src/gui/search_options_button.rs:99
 msgid "Unknown"
-msgstr ""
+msgstr "Неизвестно"
 
 #: src/gui/search_options_button.rs:137
 msgid "1st class"
-msgstr ""
+msgstr "1-ва класа"
 
 #: src/gui/search_options_button.rs:139
 msgid "2nd class"
-msgstr ""
+msgstr "2-ра класа"
 
 #: src/gui/search_options_button.rs:182
 msgid "Regional Only"
-msgstr ""
+msgstr "Само за региона"
 
 #: src/gui/search_options_button.rs:185
 msgid "Selected Modes of Transport"
-msgstr ""
+msgstr "Избрани видове транспорт"
 
 #: src/gui/search_options_button.rs:197
 msgid "Direct Connection"
-msgstr ""
+msgstr "Директна връзка"
 
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
 msgstr ""
+"Доставянето на данните е неуспешно. Свързани ли сте с Интернет мрежата?"
 
 #: src/gui/error.rs:20
 msgid "Received an error. Please share feedback."
-msgstr ""
+msgstr "Получихте грешка. Споделете вашия проблем с нас."
 
 #: src/gui/error.rs:21 src/gui/error.rs:25
 msgid "More Information"
-msgstr ""
+msgstr "Повече информация"
 
 #: src/gui/error.rs:24
 msgid "An unknown issue occured. Please share feedback."
-msgstr ""
+msgstr "Възникна неизвестен проблем. Споделете вашия проблем с нас."
 
 #: src/gui/error.rs:39
 msgid "Error"
-msgstr ""
+msgstr "Грешка"
 
 #: src/gui/error.rs:43
 msgid "_Close"
-msgstr ""
+msgstr "_Затваряне"
 
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:114
 msgid "%a %b %d"
-msgstr ""
+msgstr "%a %d. %b"
 
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
 msgid_plural "{} changes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} промяна"
+msgstr[1] "{} промени"
 
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
 msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr ""
+msgstr "От {departure} до {arrival} в {travel_time} с {changes_text}"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
 msgid "{train} in the direction of {destination}"
-msgstr ""
+msgstr "{train} в посока на {destination}"
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr ""
+msgstr "Заминаване от {start} от перон {platform} в {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
 msgid "Depart {start} at {departure}."
-msgstr ""
+msgstr "Заминаване от {start} в {departure}."
 
 #: src/gui/leg_item.rs:101
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr ""
+msgstr "Пристигане в {destination} на перон {platform} в {arrival}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:106
 msgid "Arrive at {destination} at {arrival}."
-msgstr ""
+msgstr "Пристигнете в {destination} в {arrival}."
 
 #: src/gui/leg_item.rs:153
 msgid "{} Stop"
 msgid_plural "{} Stops"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} Спирка"
+msgstr[1] "{} Спирки"
 
 #. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
 #: src/gui/intermediate_location_item.rs:67
 msgid "{stop} at {arrival} on platform {platform}"
-msgstr ""
+msgstr "{stop} в {arrival} на перон {platform}"
 
 #. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
 #: src/gui/intermediate_location_item.rs:70
 msgid "{stop} at {arrival}"
-msgstr ""
+msgstr "{stop} в {arrival}"
 
 #. Translators: Text that will be announced by the screen reader when a suggestion was selected.
 #: src/gui/station_entry.rs:189
 msgid "Suggestion {} selected"
-msgstr ""
+msgstr "Предложението {} е избрано"
 
 #. Translators: Text that will be announced by the screen reader when no selection was selected.
 #: src/gui/station_entry.rs:194
 msgid "No suggestion selected"
-msgstr ""
+msgstr "Няма избрано предложение"
 
 #. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
 #: src/gui/station_entry.rs:385
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "едно предложение, не е избрано"
+msgstr[1] "{n} предложения, нито едно не е избрано"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:179
 msgid "translator-credits"
-msgstr ""
+msgstr "twlvnn kraftwerk <kraft_werk@tutanota.com>"
 
 #: src/gui/window.rs:181
 msgid "Source Translation Supported by"
-msgstr ""
+msgstr "Оригиналният превод е направен с подкрепа от"
 
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
 msgid "every ~{}"
-msgstr ""
+msgstr "всеки ~{}"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
 msgid "€{amount}"
-msgstr ""
+msgstr "{amount} €"
 
 #. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
 #: src/backend/price.rs:74
 msgid "${amount}"
-msgstr ""
+msgstr "{amount} $"
 
 #. Translators: How to format unknown currency "currency". Do not translate in {}.
 #: src/backend/price.rs:81
 msgid "{currency} {amount}"
-msgstr ""
+msgstr "{currency} {amount}"
 
 #. Hafas
 #. TODO: BVG, SNCB, SNCF, TPG
@@ -732,11 +744,11 @@ msgstr ""
 #: src/backend/client.rs:135 src/backend/client.rs:136
 #: src/backend/client.rs:137 src/backend/client.rs:142
 msgid "Germany"
-msgstr ""
+msgstr "Германия"
 
 #: src/backend/client.rs:26 src/backend/client.rs:35 src/backend/client.rs:36
 msgid "North America"
-msgstr ""
+msgstr "Северна Америка"
 
 #. Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
 #. Search.ch
@@ -747,27 +759,27 @@ msgstr ""
 #: src/backend/client.rs:145 src/backend/client.rs:146
 #: src/backend/client.rs:150
 msgid "Europe"
-msgstr ""
+msgstr "Европа"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/client.rs:72
 msgid "Schleswig-Holstein"
-msgstr ""
+msgstr "Шлезвиг-Холщайн"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
 #: src/backend/client.rs:109
 msgid "Austria"
-msgstr ""
+msgstr "Австрия"
 
 #: src/backend/client.rs:154
 msgid "Worldwide (beta)"
-msgstr ""
+msgstr "В цял свят (бета)"
 
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
 #: src/backend/client.rs:156
 msgid "Using Transitous"
-msgstr ""
+msgstr "Използване на „Transitous“"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
-msgstr ""
+msgstr "Ходене"
