@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: 2024-11-06 14:17+0000\n"
+"PO-Revision-Date: 2024-11-07 15:00+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/et/>\n"
@@ -355,15 +355,15 @@ msgstr "R_akenduse teave"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
-msgstr "Suur liiklustihedus"
+msgstr "Suur täituvus"
 
 #: src/gui/indicator_icons.rs:142
 msgid "Very High Load"
-msgstr "Väga suur liiklustihedus"
+msgstr "Väga suur täituvus"
 
 #: src/gui/indicator_icons.rs:149
 msgid "Exceptionally High Load"
-msgstr "Ülisuur liiklustihedus"
+msgstr "Ülisuur täituvus"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On Time"
