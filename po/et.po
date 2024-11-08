@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: 2024-11-07 15:00+0000\n"
+"PO-Revision-Date: 2024-11-09 12:00+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/et/>\n"
@@ -509,7 +509,7 @@ msgstr "%a, %d. %B"
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:157
 msgid "%Y-%m-%d"
-msgstr "%Y.%m.%d"
+msgstr "%d.%m.%Y"
 
 #: src/gui/preferences_dialog.rs:60
 msgid "{} h"
