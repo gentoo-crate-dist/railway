@@ -6,9 +6,9 @@ allow = [
     "ISC",
     "Unicode-DFS-2016",
     "AGPL-3.0",
-    "OpenSSL",
     "GPL-3.0",
-    "EUPL-1.2"
+    "EUPL-1.2",
+    "BSD-3-Clause"
 ]
 
 [[licenses.clarify]]
