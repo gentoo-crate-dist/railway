@@ -43,9 +43,7 @@ pub mod imp {
         dropdown_bahncard: TemplateChild<libadwaita::ComboRow>,
 
         #[template_child]
-        toggle_first_class: TemplateChild<gtk::ToggleButton>,
-        #[template_child]
-        toggle_second_class: TemplateChild<gtk::ToggleButton>,
+        toggle_group_class: TemplateChild<libadwaita::ToggleGroup>,
 
         #[template_child]
         switch_bike_accessible: TemplateChild<libadwaita::SwitchRow>,
@@ -55,23 +53,23 @@ pub mod imp {
         switch_direct_only: TemplateChild<libadwaita::SwitchRow>,
 
         #[template_child]
-        switch_national_express: TemplateChild<libadwaita::SwitchRow>,
+        toggle_national_express: TemplateChild<gtk::ToggleButton>,
         #[template_child]
-        switch_regional: TemplateChild<libadwaita::SwitchRow>,
+        toggle_regional: TemplateChild<gtk::ToggleButton>,
         #[template_child]
-        switch_suburban: TemplateChild<libadwaita::SwitchRow>,
+        toggle_suburban: TemplateChild<gtk::ToggleButton>,
         #[template_child]
-        switch_bus: TemplateChild<libadwaita::SwitchRow>,
+        toggle_bus: TemplateChild<gtk::ToggleButton>,
         #[template_child]
-        switch_ferry: TemplateChild<libadwaita::SwitchRow>,
+        toggle_ferry: TemplateChild<gtk::ToggleButton>,
         #[template_child]
-        switch_subway: TemplateChild<libadwaita::SwitchRow>,
+        toggle_subway: TemplateChild<gtk::ToggleButton>,
         #[template_child]
-        switch_tram: TemplateChild<libadwaita::SwitchRow>,
+        toggle_tram: TemplateChild<gtk::ToggleButton>,
         #[template_child]
-        switch_cablecar: TemplateChild<libadwaita::SwitchRow>,
+        toggle_cablecar: TemplateChild<gtk::ToggleButton>,
         #[template_child]
-        switch_taxi: TemplateChild<libadwaita::SwitchRow>,
+        toggle_taxi: TemplateChild<gtk::ToggleButton>,
 
         settings: Settings,
     }
@@ -80,9 +78,9 @@ pub mod imp {
     impl SearchOptionsDialog {
         fn init_settings(&self) {
             if self.settings.boolean("first-class") {
-                self.toggle_first_class.set_active(true);
+                self.toggle_group_class.set_active_name(Some("first"));
             } else {
-                self.toggle_second_class.set_active(true);
+                self.toggle_group_class.set_active_name(Some("second"));
             }
 
             let model_bahncard = gdk::gio::ListStore::new::<DiscountCard>();
@@ -186,58 +184,58 @@ pub mod imp {
             self.settings
                 .bind(
                     "include-national-express",
-                    &self.switch_national_express.get(),
+                    &self.toggle_national_express.get(),
                     "active",
                 )
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-regional", &self.switch_regional.get(), "active")
+                .bind("include-regional", &self.toggle_regional.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-suburban", &self.switch_suburban.get(), "active")
+                .bind("include-suburban", &self.toggle_suburban.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-bus", &self.switch_bus.get(), "active")
+                .bind("include-bus", &self.toggle_bus.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-ferry", &self.switch_ferry.get(), "active")
+                .bind("include-ferry", &self.toggle_ferry.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-subway", &self.switch_subway.get(), "active")
+                .bind("include-subway", &self.toggle_subway.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-tram", &self.switch_tram.get(), "active")
+                .bind("include-tram", &self.toggle_tram.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-subway", &self.switch_subway.get(), "active")
+                .bind("include-subway", &self.toggle_subway.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-tram", &self.switch_tram.get(), "active")
+                .bind("include-tram", &self.toggle_tram.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-cablecar", &self.switch_cablecar.get(), "active")
+                .bind("include-cablecar", &self.toggle_cablecar.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
             self.settings
-                .bind("include-taxi", &self.switch_taxi.get(), "active")
+                .bind("include-taxi", &self.toggle_taxi.get(), "active")
                 .flags(SettingsBindFlags::DEFAULT)
                 .build();
         }
 
         #[template_callback]
-        fn handle_first_class(&self, toggle: gtk::ToggleButton) {
-            let active = toggle.is_active();
+        fn handle_first_class(&self) {
+            let first = self.toggle_group_class.active_name().unwrap() == "first";
             self.settings
-                .set_boolean("first-class", active)
+                .set_boolean("first-class", first)
                 .expect("Failed to set first-class value");
         }
 
@@ -262,17 +260,16 @@ pub mod imp {
                 switch_bike_accessible: TemplateChild::default(),
                 spin_transfer_time: TemplateChild::default(),
                 switch_direct_only: TemplateChild::default(),
-                toggle_first_class: TemplateChild::default(),
-                toggle_second_class: TemplateChild::default(),
-                switch_national_express: TemplateChild::default(),
-                switch_regional: TemplateChild::default(),
-                switch_suburban: TemplateChild::default(),
-                switch_bus: TemplateChild::default(),
-                switch_ferry: TemplateChild::default(),
-                switch_subway: TemplateChild::default(),
-                switch_tram: TemplateChild::default(),
-                switch_cablecar: TemplateChild::default(),
-                switch_taxi: TemplateChild::default(),
+                toggle_group_class: TemplateChild::default(),
+                toggle_national_express: TemplateChild::default(),
+                toggle_regional: TemplateChild::default(),
+                toggle_suburban: TemplateChild::default(),
+                toggle_bus: TemplateChild::default(),
+                toggle_ferry: TemplateChild::default(),
+                toggle_subway: TemplateChild::default(),
+                toggle_tram: TemplateChild::default(),
+                toggle_cablecar: TemplateChild::default(),
+                toggle_taxi: TemplateChild::default(),
             }
         }
 
