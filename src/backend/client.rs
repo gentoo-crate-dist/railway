@@ -11,7 +11,7 @@ use rcore::{JourneysOptions, LocationsOptions, RefreshJourneyOptions};
 // Timeout in seconds.
 const TIMEOUT: u64 = 30;
 
-type ApiProvider = rapi::RailwayProvider<rcore::HyperRustlsRequester>;
+type ApiProvider = rapi::RailwayProvider<rcore::ReqwestRequester>;
 
 use crate::Error;
 
@@ -359,7 +359,7 @@ impl Client {
         *write = Some(rapi::RailwayProvider::new(
             rapi::RailwayProviderType::from_str(profile_name.as_ref())
                 .unwrap_or(rapi::RailwayProviderType::Db),
-            rcore::HyperRustlsRequesterBuilder::default(),
+            rcore::ReqwestRequesterBuilder::default(),
         ));
         self.emit_by_name::<()>("provider-changed", &[]);
     }
