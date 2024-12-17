@@ -8,13 +8,16 @@ template $DBWindow: Adw.ApplicationWindow {
   height-request: 300;
 
   Adw.Breakpoint {
-    condition("max-width: 960sp")
+    condition ("max-width: 960sp")
+
     setters {
       result_view.collapsed: true;
     }
   }
+
   Adw.Breakpoint {
-    condition("max-width: 720sp")
+    condition ("max-width: 720sp")
+
     setters {
       search_view.collapsed: true;
       result_view.collapsed: true;

@@ -24,7 +24,6 @@ template $DBJourneyListItem: Box {
           spacing: 6;
           halign: start;
           valign: start;
-
           main: bind template.journey as <$DBJourney>.first-leg as <$DBLeg>.planned-departure;
           alt: bind template.journey as <$DBJourney>.first-leg as <$DBLeg>.departure;
         }
@@ -32,7 +31,6 @@ template $DBJourneyListItem: Box {
         Box {
           valign: start;
           height-request: 22; // Height of the top label in the alt-label; ensures this box is centered.
-
           Separator {
             hexpand: true;
             valign: center;
@@ -44,6 +42,7 @@ template $DBJourneyListItem: Box {
             styles [
               "caption",
             ]
+
             label: bind template.journey as <$DBJourney>.total-time;
           }
 
@@ -132,6 +131,7 @@ template $DBJourneyListItem: Box {
 
 SizeGroup {
   mode: vertical;
+
   widgets [
     from_time_box,
     to_time_box,

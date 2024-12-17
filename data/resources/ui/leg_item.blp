@@ -10,7 +10,11 @@ template $DBLegItem: Box {
 
   accessibility {
     labelled-by: segment_label;
-    details: [indicators, box_remarks];
+
+    details: [
+      indicators,
+      box_remarks
+    ];
   }
 
   focusable: true;
@@ -23,7 +27,6 @@ template $DBLegItem: Box {
     margin-bottom: 12;
     margin-start: 12;
     margin-end: 12;
-
     // TODO: make stopover-like and keyboard navigable for a11y
     Box {
       orientation: horizontal;
@@ -96,7 +99,6 @@ template $DBLegItem: Box {
         margin-top: 6;
         margin-bottom: 6;
         spacing: 6;
-
         // TODO: annoying ellipses in frequency label. Replace with AdwWrapBox when it comes out. https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/219.
         Box {
           orientation: horizontal;
@@ -304,6 +306,7 @@ template $DBLegItem: Box {
 
 SizeGroup size_group {
   mode: horizontal;
+
   widgets [
     start_departure_label,
     destination_arrival_label,
