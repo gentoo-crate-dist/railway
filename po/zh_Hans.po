@@ -8,31 +8,33 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-01-09 16:00+0000\n"
+"Last-Translator: benhaotang <benhaotang@outlook.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/schmiddi-on-mobile/railway/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
 #: data/resources/ui/window.blp:6
 msgid "Railway"
-msgstr ""
+msgstr "铁路"
 
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
-msgstr ""
+msgstr "火车;铁路;旅程;计划;时刻表;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr ""
+msgstr "找到你所有的旅程信息"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -40,667 +42,662 @@ msgid ""
 "Railway lets you look up travel information across networks and borders "
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
-msgstr ""
+msgstr "铁路App让你无需访问大量网站的同时在不同地区的运输网络中搜索旅程计划。因为我们"
+"自适应的设计，它非常适合用来在移动设备上计划旅程："
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
-msgstr ""
+msgstr "查看你的旅程信息，包括站台信息和延误信息"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
-msgstr ""
+msgstr "保存当前和未来的旅程，还有经常搜索的旅程"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
-msgstr ""
+msgstr "利用高级搜索，比如乘坐车辆的种类"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
-msgstr ""
+msgstr "还有来自世界各地的大量运输网络，当然主要是来自欧洲的。"
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:277
 msgid "Application Overview"
-msgstr ""
+msgstr "应用概览"
 
 #: data/resources/ui/date_time_picker.blp:20
 msgid "Departure"
-msgstr ""
+msgstr "出发"
 
 #: data/resources/ui/date_time_picker.blp:33
 msgid "Arrival"
-msgstr ""
+msgstr "到达"
 
 #: data/resources/ui/date_time_picker.blp:53
 msgid "Input date"
-msgstr ""
+msgstr "输入日期"
 
 #: data/resources/ui/date_time_picker.blp:60
 msgid "Date"
-msgstr ""
+msgstr "日期"
 
 #: data/resources/ui/date_time_picker.blp:96
 msgid "Input time"
-msgstr ""
+msgstr "输入时间"
 
 #: data/resources/ui/date_time_picker.blp:104
 msgid "Time"
-msgstr ""
+msgstr "时间"
 
 #: data/resources/ui/date_time_picker.blp:159 src/gui/date_time_picker.rs:122
 msgid "Now"
-msgstr ""
+msgstr "现在"
 
 #: data/resources/ui/journey_detail_page.blp:51
 msgid "Total Travel Time"
-msgstr ""
+msgstr "总旅程时长"
 
 #: data/resources/ui/journey_detail_page.blp:64
 msgid "Trip Segments"
-msgstr ""
+msgstr "旅程构成"
 
 #: data/resources/ui/journey_detail_page.blp:78
 msgid "Choose a Trip"
-msgstr ""
+msgstr "选择一个旅程"
 
 #: data/resources/ui/journeys_page.blp:98
 msgid "Search for Trips"
-msgstr ""
+msgstr "搜索旅程"
 
 #: data/resources/ui/leg_item.blp:124
 msgid "Show Stops"
-msgstr ""
+msgstr "显示停站"
 
 #: data/resources/ui/leg_item.blp:127
 msgid "Show Intermediate Stops"
-msgstr ""
+msgstr "显示中停站"
 
 #: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
 msgid "Show Announcements"
-msgstr ""
+msgstr "显示公告"
 
 #: data/resources/ui/leg_item.blp:195
 msgid "Announcements"
-msgstr ""
+msgstr "公告"
 
 #: data/resources/ui/leg_item.blp:222
 msgid "Stops"
-msgstr ""
+msgstr "停站"
 
 #: data/resources/ui/preferences_dialog.blp:8
 #: data/resources/ui/shortcuts.blp:27
 msgid "General"
-msgstr ""
+msgstr "总览"
 
 #: data/resources/ui/preferences_dialog.blp:13
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "自动移除旧的保存旅程"
 
 #: data/resources/ui/preferences_dialog.blp:14
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "过时的旅程只会被保存一段时间"
 
 #: data/resources/ui/preferences_dialog.blp:19
 msgid "Preservation Time For Trips"
-msgstr ""
+msgstr "为旅程预留的时间"
 
 #: data/resources/ui/preferences_dialog.blp:20
 msgid "For how long to retain trips after arrival"
-msgstr ""
+msgstr "到达后还需要保存旅程多久"
 
 #: data/resources/ui/provider_popover.blp:18
 msgid "Search Networks…"
-msgstr ""
+msgstr "搜寻网络…"
 
 #: data/resources/ui/refresh_button.blp:20
 msgid "Refresh Trip"
-msgstr ""
+msgstr "刷新旅程"
 
 #: data/resources/ui/search_options_button.blp:5
 msgid "More search options"
-msgstr ""
+msgstr "更多搜索选项"
 
 #: data/resources/ui/search_options_button.blp:16
 msgid "Refine Advanced Search Options"
-msgstr ""
+msgstr "优化高级搜索选项"
 
 #: data/resources/ui/search_options_button.blp:30
 msgid "More Options"
-msgstr ""
+msgstr "更多选项"
 
 #: data/resources/ui/search_options_dialog.blp:10
 msgid "Discount Card"
-msgstr ""
+msgstr "打折卡"
 
 #: data/resources/ui/search_options_dialog.blp:14
 msgid "Class"
-msgstr ""
+msgstr "等级"
 
 #: data/resources/ui/search_options_dialog.blp:25
 msgid "First Class"
-msgstr ""
+msgstr "一等座"
 
 #: data/resources/ui/search_options_dialog.blp:30
 msgid "Second Class"
-msgstr ""
+msgstr "二等座"
 
 #: data/resources/ui/search_options_dialog.blp:37
 #: src/gui/search_options_button.rs:190
 msgid "Bike Accessible"
-msgstr ""
+msgstr "可以携带自行车"
 
 #: data/resources/ui/search_options_dialog.blp:42
 msgid "Minimum Transfer Time"
-msgstr ""
+msgstr "最少的换乘时间"
 
 #: data/resources/ui/search_options_dialog.blp:47
 msgid "Direct Connections Only"
-msgstr ""
+msgstr "只选择直达"
 
 #: data/resources/ui/search_options_dialog.blp:52
 msgid "Modes of Transport"
-msgstr ""
+msgstr "车辆种类"
 
 #: data/resources/ui/search_options_dialog.blp:55
 msgid "High Speed Train"
-msgstr ""
+msgstr "高铁"
 
 #: data/resources/ui/search_options_dialog.blp:59
 msgid "Regional Train"
-msgstr ""
+msgstr "区域铁路"
 
 #: data/resources/ui/search_options_dialog.blp:63
 msgid "Suburban Trains"
-msgstr ""
+msgstr "城际"
 
 #: data/resources/ui/search_options_dialog.blp:67
 msgid "Bus"
-msgstr ""
+msgstr "公交车"
 
 #: data/resources/ui/search_options_dialog.blp:71
 msgid "Ferry"
-msgstr ""
+msgstr "轮渡"
 
 #: data/resources/ui/search_options_dialog.blp:75
 msgid "Subway"
-msgstr ""
+msgstr "地铁"
 
 #: data/resources/ui/search_options_dialog.blp:79
 msgid "Tram"
-msgstr ""
+msgstr "电车"
 
 #: data/resources/ui/search_options_dialog.blp:83
 msgid "Cablecar"
-msgstr ""
+msgstr "有轨电车"
 
 #: data/resources/ui/search_options_dialog.blp:87
 msgid "Taxi"
-msgstr ""
+msgstr "出租"
 
 #: data/resources/ui/search_page.blp:31
 msgid "From"
-msgstr ""
+msgstr "从"
 
 #: data/resources/ui/search_page.blp:38
 msgid "To"
-msgstr ""
+msgstr "到"
 
 #: data/resources/ui/search_page.blp:51 data/resources/ui/search_page.blp:72
 #: data/resources/ui/window.blp:31
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: data/resources/ui/search_page.blp:90
 msgid "Bookmarked Trips"
-msgstr ""
+msgstr "已保存的旅程"
 
 #: data/resources/ui/search_page.blp:105
 msgid "Bookmarked Searches"
-msgstr ""
+msgstr "已保存的搜索"
 
 #: data/resources/ui/shortcuts.blp:8
 msgid "Application"
-msgstr ""
+msgstr "应用"
 
 #: data/resources/ui/shortcuts.blp:12
 msgid "Bookmark Search"
-msgstr ""
+msgstr "搜索已保存内容"
 
 #: data/resources/ui/shortcuts.blp:17
 msgid "Bookmark Trip"
-msgstr ""
+msgstr "保存旅程"
 
 #: data/resources/ui/shortcuts.blp:22
 msgid "Reload Trip"
-msgstr ""
+msgstr "重载旅程"
 
 #: data/resources/ui/shortcuts.blp:31
 msgid "Quit"
-msgstr ""
+msgstr "退出"
 
 #: data/resources/ui/shortcuts.blp:36
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "显示快捷方式"
 
 #: data/resources/ui/shortcuts.blp:41
 msgid "Show Preferences"
-msgstr ""
+msgstr "显示偏好设置"
 
 #: data/resources/ui/shortcuts.blp:46
 msgid "Open Menu"
-msgstr ""
+msgstr "打开菜单"
 
 #: data/resources/ui/station_entry.blp:13
 msgid "Swap Start and Destination"
-msgstr ""
+msgstr "交换出发和到达"
 
 #: data/resources/ui/window.blp:42 data/resources/ui/window.blp:49
 msgid "Select Network"
-msgstr ""
+msgstr "选择交通网络"
 
 #: data/resources/ui/window.blp:72
 msgid "Main Menu"
-msgstr ""
+msgstr "主菜单"
 
 #: data/resources/ui/window.blp:91
 msgid "Connections"
-msgstr ""
+msgstr "路线"
 
 #: data/resources/ui/window.blp:104
 msgid "Bookmark This Search"
-msgstr ""
+msgstr "保存这个搜索"
 
 #: data/resources/ui/window.blp:116
 msgid "Trip Details"
-msgstr ""
+msgstr "旅程详情"
 
 #: data/resources/ui/window.blp:125
 msgid "Refresh This Trip"
-msgstr ""
+msgstr "刷新这个旅程"
 
 #: data/resources/ui/window.blp:136
 msgid "Bookmark This Trip"
-msgstr ""
+msgstr "保存这个旅程"
 
 #: data/resources/ui/window.blp:164
 msgid "Preferences"
-msgstr ""
+msgstr "偏好设置"
 
 #: data/resources/ui/window.blp:169
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "键盘快捷键"
 
 #: data/resources/ui/window.blp:174
 msgid "_About Railway"
-msgstr ""
+msgstr "_关于铁路"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
-msgstr ""
+msgstr "拥挤"
 
 #: src/gui/indicator_icons.rs:142
 msgid "Very High Load"
-msgstr ""
+msgstr "非常拥挤"
 
 #: src/gui/indicator_icons.rs:149
 msgid "Exceptionally High Load"
-msgstr ""
+msgstr "极其拥挤"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On Time"
-msgstr ""
+msgstr "正点"
 
 #: src/gui/indicator_icons.rs:172
 msgid "Minor Delays"
-msgstr ""
+msgstr "少量延误"
 
 #: src/gui/indicator_icons.rs:179
 msgid "Delayed"
-msgstr ""
+msgstr "延误"
 
 #: src/gui/indicator_icons.rs:186
 msgid "Very Delayed"
-msgstr ""
+msgstr "严重延误"
 
 #: src/gui/indicator_icons.rs:193
 msgid "Extremely Delayed"
-msgstr ""
+msgstr "极为严重延误"
 
 #: src/gui/indicator_icons.rs:209
 msgid "Platform Changes"
-msgstr ""
+msgstr "站台更换"
 
 #: src/gui/indicator_icons.rs:228
 msgid "Connection Not Possible"
-msgstr ""
+msgstr "此路线已不可能实现"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
-msgstr ""
+msgstr "取消"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
-msgstr ""
+msgstr "一个保存的旅程最近结束了。"
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr ""
+msgstr "总是 _删除"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
-msgstr ""
+msgstr "出发地和目的地缺失"
 
 #: src/gui/search_page.rs:118
 msgid "Start is missing"
-msgstr ""
+msgstr "出发地缺失"
 
 #: src/gui/search_page.rs:119
 msgid "Destination is missing"
-msgstr ""
+msgstr "目的地缺失"
 
 #: src/gui/search_page.rs:120
 msgid "Search ongoing"
-msgstr ""
+msgstr "正在搜索"
 
 #: src/gui/journey_detail_page.rs:108
 msgid "Last refreshed {}"
-msgstr ""
+msgstr "上次刷新 {}"
 
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:90
 msgid "Arrive at {destination}."
-msgstr ""
+msgstr "到达 {destination}。"
 
 #: src/gui/transition.rs:212
 msgid "Walk {walk} Wait {wait}"
-msgstr ""
+msgstr "走 {walk} 等 {wait}"
 
 #: src/gui/transition.rs:217
 msgid "Transfer Time {}"
-msgstr ""
+msgstr "换乘时间 {}"
 
 #: src/gui/transition.rs:221
 msgid "Walk {}"
-msgstr ""
+msgstr "走 {}"
 
 #: src/gui/transition.rs:224
 msgid "Transfer"
-msgstr ""
+msgstr "换乘"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:228
 msgid "{} min"
-msgstr ""
+msgstr "{} 分"
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:84
 msgid "%_H h %_M min"
-msgstr ""
+msgstr "%_H 小时 %_M 分"
 
 #: src/gui/utility.rs:95
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%_d 天 %_H 小时 %_M 分"
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:106
 msgid "{} min."
-msgstr ""
+msgstr "{} 分."
 
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:110
 msgid "{} hrs."
-msgstr ""
+msgstr "{} 小时."
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:119
 msgid "%-H hrs. %-M min."
-msgstr ""
+msgstr "%-H 小时. %-M 分."
 
 #: src/gui/utility.rs:131
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%-d 天 %-H 小时. %-M 分."
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:141
 msgid "%H:%M"
-msgstr ""
+msgstr "%H:%M"
 
 #: src/gui/utility.rs:147 src/gui/date_time_picker.rs:110
 msgid "Today"
-msgstr ""
+msgstr "今天"
 
 #: src/gui/utility.rs:149
 msgid "Tomorrow"
-msgstr ""
+msgstr "明天"
 
 #: src/gui/utility.rs:151
 msgid "Yesterday"
-msgstr ""
+msgstr "昨天"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:154
 msgid "%a, %d. %B"
-msgstr ""
+msgstr "%a, %d. %B"
 
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:157
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #: src/gui/preferences_dialog.rs:60
 msgid "{} h"
 msgid_plural "{} h"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} 小时"
 
 #: src/gui/search_options_button.rs:75
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: src/gui/search_options_button.rs:76
 msgid "BahnCard 25, 1st class"
-msgstr ""
+msgstr "德国 BahnCard 25, 一等"
 
 #: src/gui/search_options_button.rs:77
 msgid "BahnCard 25, 2nd class"
-msgstr ""
+msgstr "德国 BahnCard 25, 二等"
 
 #: src/gui/search_options_button.rs:78
 msgid "BahnCard 50, 1st class"
-msgstr ""
+msgstr "德国 BahnCard 50, 一等"
 
 #: src/gui/search_options_button.rs:79
 msgid "BahnCard 50, 2nd class"
-msgstr ""
+msgstr "德国 BahnCard 50, 二等"
 
 #: src/gui/search_options_button.rs:80
 msgid "A – VORTEILScard (with RAILPLUS)"
-msgstr ""
+msgstr "奥地利 – VORTEILScard (含有 RAILPLUS)"
 
 #: src/gui/search_options_button.rs:81
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
-msgstr ""
+msgstr "瑞士 – HalbtaxAbo (含有 RAILPLUS)"
 
 #: src/gui/search_options_button.rs:82
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
-msgstr ""
+msgstr "瑞士 – HalbtaxAbo (没有 RAILPLUS)"
 
 #: src/gui/search_options_button.rs:85
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
-msgstr ""
+msgstr "荷兰 – Voordeelurenabo (含有 RAILPLUS)"
 
 #: src/gui/search_options_button.rs:89
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
-msgstr ""
+msgstr "荷兰 – Voordeelurenabo (没有 RAILPLUS)"
 
 #: src/gui/search_options_button.rs:91
 msgid "SH-Card"
-msgstr ""
+msgstr "圣赫勒拿-Card"
 
 #: src/gui/search_options_button.rs:92
 msgid "CH – General-Abonnement"
-msgstr ""
+msgstr "瑞士 – General-Abonnement"
 
 #: src/gui/search_options_button.rs:99
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: src/gui/search_options_button.rs:137
 msgid "1st class"
-msgstr ""
+msgstr "一等座"
 
 #: src/gui/search_options_button.rs:139
 msgid "2nd class"
-msgstr ""
+msgstr "二等座"
 
 #: src/gui/search_options_button.rs:182
 msgid "Regional Only"
-msgstr ""
+msgstr "只选择区域车"
 
 #: src/gui/search_options_button.rs:185
 msgid "Selected Modes of Transport"
-msgstr ""
+msgstr "选择车辆类型"
 
 #: src/gui/search_options_button.rs:197
 msgid "Direct Connection"
-msgstr ""
+msgstr "直达"
 
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
-msgstr ""
+msgstr "无法获取信息。你已经连上网络了吗？"
 
 #: src/gui/error.rs:20
 msgid "Received an error. Please share feedback."
-msgstr ""
+msgstr "这里有一个错误。请反馈给我们。"
 
 #: src/gui/error.rs:21 src/gui/error.rs:25
 msgid "More Information"
-msgstr ""
+msgstr "更多详情"
 
 #: src/gui/error.rs:24
 msgid "An unknown issue occured. Please share feedback."
-msgstr ""
+msgstr "发生了一个未知的错误。请反馈给我们。"
 
 #: src/gui/error.rs:39
 msgid "Error"
-msgstr ""
+msgstr "错误"
 
 #: src/gui/error.rs:43
 msgid "_Close"
-msgstr ""
+msgstr "_关闭"
 
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:114
 msgid "%a %b %d"
-msgstr ""
+msgstr "%a %b %d"
 
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
 msgid_plural "{} changes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} 换乘"
 
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
 msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr ""
+msgstr "从 {departure} 到 {arrival} 需要 {travel_time} 并 {changes_text}"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
 msgid "{train} in the direction of {destination}"
-msgstr ""
+msgstr "{train} 是去往 {destination} 方向的"
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr ""
+msgstr "离开 {start} 于 {platform} 站台在 {departure}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
 msgid "Depart {start} at {departure}."
-msgstr ""
+msgstr "离开 {start} 在 {departure}."
 
 #: src/gui/leg_item.rs:101
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr ""
+msgstr "到达 {destination} 于 {platform} 站台在 {arrival}."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:106
 msgid "Arrive at {destination} at {arrival}."
-msgstr ""
+msgstr "到达 {destination} 在 {arrival}."
 
 #: src/gui/leg_item.rs:153
 msgid "{} Stop"
 msgid_plural "{} Stops"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} 站"
 
 #. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
 #: src/gui/intermediate_location_item.rs:67
 msgid "{stop} at {arrival} on platform {platform}"
-msgstr ""
+msgstr "{stop} 在 {arrival} 于 {platform} 站台"
 
 #. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
 #: src/gui/intermediate_location_item.rs:70
 msgid "{stop} at {arrival}"
-msgstr ""
+msgstr "{stop} 在 {arrival}"
 
 #. Translators: Text that will be announced by the screen reader when a suggestion was selected.
 #: src/gui/station_entry.rs:189
 msgid "Suggestion {} selected"
-msgstr ""
+msgstr "建议 {} 已选择"
 
 #. Translators: Text that will be announced by the screen reader when no selection was selected.
 #: src/gui/station_entry.rs:194
 msgid "No suggestion selected"
-msgstr ""
+msgstr "没有建议被选择"
 
 #. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
 #: src/gui/station_entry.rs:385
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n} 个建议, 没有任何一个被选中"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:179
 msgid "translator-credits"
-msgstr ""
+msgstr "benhaotang <railway-translation.expend562@passfwd.com>"
 
 #: src/gui/window.rs:181
 msgid "Source Translation Supported by"
-msgstr ""
+msgstr "源翻译语言来自"
 
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
 msgid "every ~{}"
-msgstr ""
+msgstr "每 ~{}"
 
 #. Translators: How to format the currency "Euro". Do not translate in {}.
 #: src/backend/price.rs:68
 msgid "€{amount}"
-msgstr ""
+msgstr "€{amount}"
 
 #. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
 #: src/backend/price.rs:74
 msgid "${amount}"
-msgstr ""
+msgstr "${amount}"
 
 #. Translators: How to format unknown currency "currency". Do not translate in {}.
 #: src/backend/price.rs:81
 msgid "{currency} {amount}"
-msgstr ""
+msgstr "{currency} {amount}"
 
 #. Hafas
 #. TODO: BVG, SNCB, SNCF, TPG
@@ -732,11 +729,11 @@ msgstr ""
 #: src/backend/client.rs:135 src/backend/client.rs:136
 #: src/backend/client.rs:137 src/backend/client.rs:142
 msgid "Germany"
-msgstr ""
+msgstr "德国"
 
 #: src/backend/client.rs:26 src/backend/client.rs:35 src/backend/client.rs:36
 msgid "North America"
-msgstr ""
+msgstr "北美"
 
 #. Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
 #. Search.ch
@@ -747,27 +744,27 @@ msgstr ""
 #: src/backend/client.rs:145 src/backend/client.rs:146
 #: src/backend/client.rs:150
 msgid "Europe"
-msgstr ""
+msgstr "欧洲"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/client.rs:72
 msgid "Schleswig-Holstein"
-msgstr ""
+msgstr "圣赫勒拿"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
 #: src/backend/client.rs:109
 msgid "Austria"
-msgstr ""
+msgstr "奥地利"
 
 #: src/backend/client.rs:154
 msgid "Worldwide (beta)"
-msgstr ""
+msgstr "世界(测试)"
 
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
 #: src/backend/client.rs:156
 msgid "Using Transitous"
-msgstr ""
+msgstr "使用Transitous服务"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
-msgstr ""
+msgstr "走"
