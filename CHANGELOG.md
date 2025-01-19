@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.2] - 2025-01-19
+
+### HOTFIX
+
+- Fixed DB provider being broken.
+
 ## [2.7.1] - 2024-10-07
 
 ### Added
@@ -170,7 +176,8 @@ Those are packaged on <crates.io>.
 
 - Complete UI overhaul
 
-[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.1...master
+[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.2...master
+[2.7.2]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.1...2.7.2
 [2.7.1]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.0...2.7.1
 [2.7.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.6.0...2.7.0
 [2.6.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.5.0...2.6.0

@@ -59,6 +59,14 @@
   </description>
 
   <releases>
+    <release version="2.7.2" date="2025-01-19">
+      <description translate="no">
+        <p>HOTFIX</p>
+        <ul>
+          <li>Fixed DB provider being broken.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.7.1" date="2024-10-07">
       <description translate="no">
         <p>Added</p>
