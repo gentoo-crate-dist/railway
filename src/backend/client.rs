@@ -11,7 +11,7 @@ use rcore::{JourneysOptions, LocationsOptions, RefreshJourneyOptions};
 // Timeout in seconds.
 const TIMEOUT: u64 = 30;
 
-type ApiProvider = rapi::RailwayProvider<rcore::ReqwestRequester>;
+type ApiProvider = rapi::RailwayProvider;
 
 use crate::Error;
 
