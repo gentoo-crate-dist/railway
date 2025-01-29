@@ -11,6 +11,7 @@ data/resources/ui/journey_list_item.blp
 data/resources/ui/journey_store_item.blp
 data/resources/ui/journeys_page.blp
 data/resources/ui/leg_item.blp
+data/resources/ui/live_update_box.blp
 data/resources/ui/place_list_item.blp
 data/resources/ui/preferences_dialog.blp
 data/resources/ui/provider_list_item.blp
@@ -50,6 +51,7 @@ src/gui/journey_list_item.rs
 src/gui/journeys_page.rs
 src/gui/journey_store_item.rs
 src/gui/leg_item.rs
+src/gui/live_update_box.rs
 src/gui/intermediate_location_item.rs
 src/gui/place_list_item.rs
 src/gui/station_entry.rs

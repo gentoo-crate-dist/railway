@@ -97,6 +97,7 @@ pub mod imp {
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
     use crate::backend::Place;
+    use crate::backend::Timer;
     use crate::config;
     use crate::gui::alt_label::AltLabel;
     use crate::gui::date_time_picker::DateTimePicker;
@@ -133,6 +134,8 @@ pub mod imp {
         btn_bookmark_search: TemplateChild<gtk::ToggleButton>,
         #[template_child]
         btn_bookmark_journey: TemplateChild<gtk::ToggleButton>,
+        #[template_child]
+        btn_watch_journey: TemplateChild<gtk::ToggleButton>,
 
         #[template_child]
         store_journeys: TemplateChild<JourneysStore>,
@@ -143,6 +146,7 @@ pub mod imp {
         pub toast_overlay: TemplateChild<libadwaita::ToastOverlay>,
 
         client: RefCell<Client>,
+        timer: RefCell<Timer>,
     }
 
     #[gtk::template_callbacks]
@@ -313,6 +317,18 @@ pub mod imp {
         }
 
         #[template_callback]
+        fn handle_watch_journey_store(&self) {
+            if let Some(journey) = self
+                .journey_detail_page
+                .property::<Option<Journey>>("journey")
+            {
+                self.store_journeys.toggle_watch(&journey);
+                self.btn_watch_journey
+                    .set_active(self.store_journeys.is_watched(journey.id()));
+            }
+        }
+
+        #[template_callback]
         fn handle_journey_store_add(&self, journey: Journey) {
             self.search_page.add_journey_store(journey);
         }
@@ -329,6 +345,11 @@ pub mod imp {
             } else {
                 false
             }
+        }
+
+        #[template_callback]
+        fn has_journey_watched(&self, journey: Option<Journey>) -> bool {
+            journey.is_some_and(|j| self.store_journeys.is_watched(j.id()))
         }
 
         #[template_callback]
@@ -382,6 +403,15 @@ pub mod imp {
                 button.set_icon_name("bookmark-untoggled-symbolic");
             }
         }
+
+        #[template_callback]
+        fn handle_watch_button_icon(&self, _param: ParamSpec, button: ToggleButton) {
+            if button.is_active() {
+                button.set_icon_name("bell-outline-symbolic");
+            } else {
+                button.set_icon_name("bell-outline-none-symbolic");
+            }
+        }
     }
 
     #[glib::object_subclass]
@@ -422,9 +452,14 @@ pub mod imp {
 
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::builder::<Client>("client")
-                    .read_only()
-                    .build()]
+                vec![
+                    ParamSpecObject::builder::<Client>("client")
+                        .read_only()
+                        .build(),
+                    ParamSpecObject::builder::<Timer>("timer")
+                        .read_only()
+                        .build(),
+                ]
             });
             PROPERTIES.as_ref()
         }
@@ -434,6 +469,7 @@ pub mod imp {
         fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "client" => self.client.borrow().to_value(),
+                "timer" => self.timer.borrow().to_value(),
                 _ => unimplemented!(),
             }
         }

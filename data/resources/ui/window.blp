@@ -23,6 +23,14 @@ template $DBWindow: Adw.ApplicationWindow {
       result_view.collapsed: true;
     }
   }
+  Adw.Breakpoint {
+    condition("max-width: 420sp")
+    setters {
+      search_view.collapsed: true;
+      result_view.collapsed: true;
+      header_bar_details.show-title: false;
+    }
+  }
 
   Adw.ToastOverlay toast_overlay {
     Adw.NavigationSplitView search_view {
@@ -124,11 +132,11 @@ template $DBWindow: Adw.ApplicationWindow {
               width-request: 200;
 
               [top]
-              Adw.HeaderBar {
+              Adw.HeaderBar header_bar_details {
                 $DBRefreshButton btn_reload_detail {
                   clicked => $handle_journey_reload() swapped;
                   tooltip-text: _("Refresh This Trip");
-                  refreshing: bind journey_detail_page.refresh-in-progress;
+                  refreshing: bind journey_detail_page.journey as <$DBJourney>.refresh-in-progress;
                   visible: bind $is_some(journey_detail_page.journey) as <bool>;
                 }
 
@@ -144,10 +152,25 @@ template $DBWindow: Adw.ApplicationWindow {
                   active: bind $has_journey_stored(journey_detail_page.journey) as <bool>;
                   visible: bind $is_some(journey_detail_page.journey) as <bool>;
                 }
+
+                ToggleButton btn_watch_journey {
+                  styles [
+                    "bookmark-button",
+                  ]
+
+                  clicked => $handle_watch_journey_store() swapped;
+                  icon-name: 'bell-outline-none-symbolic';
+                  notify::active => $handle_watch_button_icon() swapped;
+                  tooltip-text: _("Watch this Trip");
+                  active: bind $and(btn_watch_journey.visible, $has_journey_watched(journey_detail_page.journey) as <bool>) as <bool>;
+                  visible: bind $and($is_some(journey_detail_page.journey) as <bool>, btn_bookmark_journey.active) as <bool>;
+                }
               }
 
               content: $DBJourneyDetailPage journey_detail_page {
                 client: bind template.client;
+                timer: bind template.timer;
+                show-live-box: bind btn_watch_journey.active;
               };
             }
           };
@@ -158,6 +181,7 @@ template $DBWindow: Adw.ApplicationWindow {
 }
 
 $DBJourneysStore store_journeys {
+  timer: bind template.timer;
   add => $handle_journey_store_add() swapped;
   remove => $handle_journey_store_remove() swapped;
 }
