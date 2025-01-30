@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.3] - 2025-01-30
+
+### Changed
+
+- Transitioned to the new MOTIS 2 instance for Transitous.
+
+### Fixed
+
+- DB provider failing when some stops don't have a platform.
+
 ## [2.7.2] - 2025-01-19
 
 ### HOTFIX
@@ -176,7 +186,8 @@ Those are packaged on <crates.io>.
 
 - Complete UI overhaul
 
-[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.2...master
+[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.3...master
+[2.7.3]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.2...2.7.3
 [2.7.2]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.1...2.7.2
 [2.7.1]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.0...2.7.1
 [2.7.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.6.0...2.7.0

@@ -59,6 +59,18 @@
   </description>
 
   <releases>
+    <release version="2.7.3" date="2025-01-30">
+      <description translate="no">
+        <p>Changed</p>
+        <ul>
+          <li>Transitioned to the new MOTIS 2 instance for Transitous.</li>
+        </ul>
+        <p>Fixed</p>
+        <ul>
+          <li>DB provider failing when some stops don't have a platform.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.7.2" date="2025-01-19">
       <description translate="no">
         <p>HOTFIX</p>
