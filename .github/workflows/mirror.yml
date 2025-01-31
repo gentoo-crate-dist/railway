@@ -6,8 +6,6 @@ on:
 jobs:
   sync-mirror:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Update mirror
         uses: projg2/crate-dist-mirror-action@v2
