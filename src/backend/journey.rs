@@ -245,13 +245,10 @@ mod imp {
                     .borrow()
                     .as_ref()
                     .map(|o| {
-                        o.legs
-                            .iter()
-                            .map(|l| {
-                                l.departure_platform != l.planned_departure_platform
-                                    || l.arrival_platform != l.planned_arrival_platform
-                            })
-                            .any(|b| b)
+                        o.legs.iter().any(|l| {
+                            l.departure_platform != l.planned_departure_platform
+                                || l.arrival_platform != l.planned_arrival_platform
+                        })
                     })
                     .unwrap_or_default()
                     .to_value(),
@@ -259,14 +256,14 @@ mod imp {
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| o.legs.iter().map(|l| l.reachable).any(|b| !b))
+                    .map(|o| o.legs.iter().any(|l| !l.reachable))
                     .unwrap_or_default()
                     .to_value(),
                 "is-cancelled" => self
                     .journey
                     .borrow()
                     .as_ref()
-                    .map(|o| o.legs.iter().map(|l| l.cancelled).any(|b| b))
+                    .map(|o| o.legs.iter().any(|l| l.cancelled))
                     .unwrap_or_default()
                     .to_value(),
                 _ => unimplemented!(),

@@ -44,8 +44,7 @@ impl Utility {
     fn and(#[rest] values: &[Value]) -> bool {
         values
             .iter()
-            .map(|v| v.get::<bool>().expect("Bool for an argument"))
-            .all(|b| b)
+            .all(|v| v.get::<bool>().expect("Bool for an argument"))
     }
 
     #[template_callback]
