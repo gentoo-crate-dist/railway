@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: 2024-07-26 00:09+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/fi/>\n"
+"PO-Revision-Date: 2025-02-18 12:52+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
+"Language-Team: Finnish <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -168,7 +168,7 @@ msgstr "Etsi verkostoja…"
 
 #: data/resources/ui/refresh_button.blp:20
 msgid "Refresh Trip"
-msgstr "Päivitä matka"
+msgstr "Virkistä matka"
 
 #: data/resources/ui/search_options_button.blp:5
 msgid "More search options"
@@ -330,7 +330,7 @@ msgstr "Matkan yksityiskohdat"
 
 #: data/resources/ui/window.blp:125
 msgid "Refresh This Trip"
-msgstr "Päivitä matka"
+msgstr "Virkistä tämä matka"
 
 #: data/resources/ui/window.blp:136
 msgid "Bookmark This Trip"
@@ -418,7 +418,7 @@ msgstr "Haku on meneillään"
 
 #: src/gui/journey_detail_page.rs:108
 msgid "Last refreshed {}"
-msgstr "Viimeksi päivitetty {}"
+msgstr "Viimeksi virkistetty {}"
 
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:90
