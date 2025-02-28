@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: 2024-11-30 14:00+0000\n"
-"Last-Translator: Tymoteusz Jóźwiak <tymoteusz@jozwiak.top>\n"
+"PO-Revision-Date: 2025-03-01 03:18+0000\n"
+"Last-Translator: luk <lukasz.osadik@wp.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/"
 "schmiddi-on-mobile/railway/pl/>\n"
 "Language: pl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -503,7 +503,7 @@ msgstr "Wczoraj"
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:154
 msgid "%a, %d. %B"
-msgstr ""
+msgstr "%a, %d. %B"
 
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:157
@@ -563,11 +563,11 @@ msgstr "SH-Card"
 
 #: src/gui/search_options_button.rs:92
 msgid "CH – General-Abonnement"
-msgstr ""
+msgstr "CH – General-Abonnement"
 
 #: src/gui/search_options_button.rs:99
 msgid "Unknown"
-msgstr ""
+msgstr "Nieznany"
 
 #: src/gui/search_options_button.rs:137
 msgid "1st class"
@@ -603,7 +603,7 @@ msgstr "Więcej informacji"
 
 #: src/gui/error.rs:24
 msgid "An unknown issue occured. Please share feedback."
-msgstr ""
+msgstr "Wystąpił nie znany błąd. Proszę opisać swoje doświadczenie."
 
 #: src/gui/error.rs:39
 msgid "Error"
@@ -617,7 +617,7 @@ msgstr "_Zamknij"
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:114
 msgid "%a %b %d"
-msgstr ""
+msgstr "%a %d %b"
 
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
@@ -675,20 +675,20 @@ msgstr "{stop} o {arrival}"
 #. Translators: Text that will be announced by the screen reader when a suggestion was selected.
 #: src/gui/station_entry.rs:189
 msgid "Suggestion {} selected"
-msgstr ""
+msgstr "Sugestie {} zaznaczone"
 
 #. Translators: Text that will be announced by the screen reader when no selection was selected.
 #: src/gui/station_entry.rs:194
 msgid "No suggestion selected"
-msgstr ""
+msgstr "Brak zaznaczonych sugestii"
 
 #. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
 #: src/gui/station_entry.rs:385
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Jedna sugestia, nie zaznaczona"
+msgstr[1] "{n} sugestie, nie zaznaczone"
+msgstr[2] "{n} sugestii, nie zaznaczonych"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:179
@@ -783,11 +783,11 @@ msgstr "Cały świat (beta)"
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
 #: src/backend/client.rs:156
 msgid "Using Transitous"
-msgstr ""
+msgstr "Używanie Transitous"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
-msgstr ""
+msgstr "Spacer"
 
 #~ msgid "Julian Schmidhuber"
 #~ msgstr "Julian Schmidhuber"
