@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-03 01:30+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
+"railway/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -135,7 +137,7 @@ msgstr ""
 #: data/resources/ui/preferences_dialog.blp:8
 #: data/resources/ui/shortcuts.blp:27
 msgid "General"
-msgstr ""
+msgstr "பொது"
 
 #: data/resources/ui/preferences_dialog.blp:13
 msgid "Automatically Remove Old Bookmarks"
@@ -253,7 +255,7 @@ msgstr ""
 #: data/resources/ui/search_page.blp:51 data/resources/ui/search_page.blp:72
 #: data/resources/ui/window.blp:31
 msgid "Search"
-msgstr ""
+msgstr "தேடல்"
 
 #: data/resources/ui/search_page.blp:90
 msgid "Bookmarked Trips"
@@ -281,7 +283,7 @@ msgstr ""
 
 #: data/resources/ui/shortcuts.blp:31
 msgid "Quit"
-msgstr ""
+msgstr "வெளியேறு"
 
 #: data/resources/ui/shortcuts.blp:36
 msgid "Show Shortcuts"
@@ -473,11 +475,11 @@ msgstr[1] ""
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:141
 msgid "%H:%M"
-msgstr ""
+msgstr "%எச்:%மீ"
 
 #: src/gui/utility.rs:147 src/gui/date_time_picker.rs:110
 msgid "Today"
-msgstr ""
+msgstr "இன்று"
 
 #: src/gui/utility.rs:149
 msgid "Tomorrow"
@@ -485,7 +487,7 @@ msgstr ""
 
 #: src/gui/utility.rs:151
 msgid "Yesterday"
-msgstr ""
+msgstr "நேற்று"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:154
@@ -495,7 +497,7 @@ msgstr ""
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:157
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #: src/gui/preferences_dialog.rs:60
 msgid "{} h"
@@ -593,7 +595,7 @@ msgstr ""
 
 #: src/gui/error.rs:39
 msgid "Error"
-msgstr ""
+msgstr "பிழை"
 
 #: src/gui/error.rs:43
 msgid "_Close"
@@ -676,7 +678,7 @@ msgstr[1] ""
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
 #: src/gui/window.rs:179
 msgid "translator-credits"
-msgstr ""
+msgstr "மொழிபெயர்ப்பாளர்-வரவு"
 
 #: src/gui/window.rs:181
 msgid "Source Translation Supported by"
