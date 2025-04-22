@@ -1,6 +1,6 @@
-use gdk::prelude::{ApplicationExt, ApplicationExtManual};
+use gdk::prelude::{ApplicationExt, ApplicationExtManual, Cast};
 use gtk::prelude::IsA;
-use gtk::prelude::{GtkWindowExt, WidgetExt};
+use gtk::prelude::{GtkApplicationExt, GtkWindowExt, WidgetExt};
 use once_cell::sync::Lazy;
 
 #[macro_export]
@@ -69,7 +69,10 @@ fn main() {
 }
 
 fn build_ui(app: &libadwaita::Application) {
-    let window = crate::gui::window::Window::new(app);
-    init_icons(&window.display());
+    let window = app.active_window().unwrap_or_else(|| {
+        let window = crate::gui::window::Window::new(app);
+        init_icons(&window.display());
+        window.upcast()
+    });
     window.present();
 }
