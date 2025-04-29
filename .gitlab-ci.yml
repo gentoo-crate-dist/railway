@@ -2,6 +2,7 @@ stages:
   - lint
   - build
   - deploy
+  - release
 
 variables:
   UPLOAD_URL_BASE: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${CI_PROJECT_NAME}/${CI_COMMIT_TAG}"
@@ -128,3 +129,25 @@ upload:
     - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file ${MESON_DIST}/${PROJ_NAME_VERSION}.tar.xz "${UPLOAD_URL_BASE}/${PROJ_NAME_VERSION}.tar.xz"'
     - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file ${MESON_DIST}/${PROJ_NAME_VERSION}.tar.xz.sha256sum "${UPLOAD_URL_BASE}/${PROJ_NAME_VERSION}.tar.xz.sha256sum"'
 
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  dependencies:
+    - upload
+  script:
+    - echo "Creating GitLab Release for ${CI_COMMIT_TAG}"
+    - sh ./build-aux/extract-changelog-for-tag.sh ./CHANGELOG.md ${CI_COMMIT_TAG} > release_notes.md
+  release:
+    name: "Release ${CI_COMMIT_TAG}"
+    description: "$(cat release_notes.md)"
+    tag_name: "${CI_COMMIT_TAG}"
+    assets:
+      links:
+        - name: "${PROJ_NAME_VERSION}.tar.xz"
+          url: "${UPLOAD_URL_BASE}/${PROJ_NAME_VERSION}.tar.xz"
+          link_type: package
+        - name: "${PROJ_NAME_VERSION}.tar.xz.sha256sum"
+          url: "${UPLOAD_URL_BASE}/${PROJ_NAME_VERSION}.tar.xz.sha256sum"
+          link_type: other
