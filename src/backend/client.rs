@@ -98,7 +98,7 @@ fn providers() -> Vec<Provider> {
             "IVB",
             "IVB",
             Some("Innsbrucker Verkehrsbetriebe"),
-            &gettextrs::gettext("Europe"),
+            &gettextrs::gettext("Austria"),
             true,
         ),
         Provider::new(
@@ -143,14 +143,14 @@ fn providers() -> Vec<Provider> {
             "ooevv",
             "OÖVV",
             Some("Oberösterreichischer Verkehrsverbund"),
-            &gettextrs::gettext("Europe"),
+            &gettextrs::gettext("Austria"),
             true,
         ),
         Provider::new(
             "OEBB",
             "ÖBB",
             Some("Österreichische Bundesbahnen"),
-            &gettextrs::gettext("Europe"),
+            &gettextrs::gettext("Austria"),
             true,
         ),
         Provider::new(
@@ -200,14 +200,14 @@ fn providers() -> Vec<Provider> {
             "Verbundlinie",
             "Verbundlinie",
             Some("Steirischer Verkehrsverbund"),
-            &gettextrs::gettext("Europe"),
+            &gettextrs::gettext("Austria"),
             true,
         ),
         Provider::new(
             "SVV",
             "SVV",
             Some("Salzburger Verkehrsverbund"),
-            &gettextrs::gettext("Europe"),
+            &gettextrs::gettext("Austria"),
             true,
         ),
         Provider::new(
@@ -222,7 +222,7 @@ fn providers() -> Vec<Provider> {
             "Salzburg",
             // Translators: The country, see https://en.wikipedia.org/wiki/Austria
             Some(&gettextrs::gettext("Austria")),
-            &gettextrs::gettext("Europe"),
+            &gettextrs::gettext("Austria"),
             true,
         ),
         Provider::new(
@@ -243,7 +243,7 @@ fn providers() -> Vec<Provider> {
             "VKG",
             "VKG/VVK",
             Some("Kärntner Linien/Verkehrsverbund Kärnten"),
-            &gettextrs::gettext("Europe"),
+            &gettextrs::gettext("Austria"),
             true,
         ),
         Provider::new(
@@ -285,14 +285,14 @@ fn providers() -> Vec<Provider> {
             "VVT",
             "VVT",
             Some("Verkehrsverbund Tirol"),
-            &gettextrs::gettext("Europe"),
+            &gettextrs::gettext("Austria"),
             true,
         ),
         Provider::new(
             "VVV",
             "VVV",
             Some("Verkehrsverbund Vorarlberg"),
-            &gettextrs::gettext("Europe"),
+            &gettextrs::gettext("Austria"),
             true,
         ),
         // Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
