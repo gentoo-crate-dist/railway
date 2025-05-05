@@ -257,7 +257,7 @@ fn providers() -> Vec<Provider> {
             "VOR",
             "VOR",
             Some("Verkehrsverbund Ost-Region"),
-            &gettextrs::gettext("Europe"),
+            &gettextrs::gettext("Austria"),
             true,
         ),
         Provider::new(
