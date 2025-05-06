@@ -34,10 +34,27 @@
         "type": "github"
       }
     },
+    "nixpkgs-gnome": {
+      "locked": {
+        "lastModified": 1745882247,
+        "narHash": "sha256-ARBwOSz04kQYlJPCgeuDdS0AGzJqjrUkpuChTZwD8Sg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9ff3e416a085b968248dd4bcaa20ffab45dc1be1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "gnome",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-gnome": "nixpkgs-gnome"
       }
     },
     "systems": {

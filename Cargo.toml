@@ -11,22 +11,22 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-gtk = { version = "0.9.5", package = "gtk4", features = ["v4_14"] }
-gdk = { version = "0.9.5", package = "gdk4" }
-libadwaita = { version = "0.7.1", features = ["v1_5"] }
+gtk = { version = "0.9.6", package = "gtk4", features = ["v4_14"] }
+gdk = { version = "0.9.6", package = "gdk4" }
+libadwaita = { version = "0.7.2", features = ["v1_5"] }
 gettext-rs = { version = "0.7.2", features = ["gettext-system"] }
 
-once_cell = "1.20.3"
-tokio = { version = "1.43.0", features = ["rt", "macros", "rt-multi-thread", "time"] }
-chrono = "0.4.39"
+once_cell = "1.21.3"
+tokio = { version = "1.44.2", features = ["rt", "macros", "rt-multi-thread", "time"] }
+chrono = "0.4.41"
 # A newer version is available, but that requires backend updates.
 chrono-tz = "0.8"
 
-log = "0.4.25"
-env_logger = "0.11.6"
+log = "0.4.27"
+env_logger = "0.11.8"
 
 rcore = { version = "0.1", package = "railway-core", features = ["reqwest-requester", "rt-multi-thread", "serde"] }
 rapi = { version = "0.1", package = "railway-api", features = ["rt-multi-thread"] }
 
-serde = { version = "1.0.217", features = ["derive"] }
-serde_json = "1.0.138"
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
