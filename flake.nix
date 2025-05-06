@@ -38,7 +38,7 @@
                     ]);
               };
               buildInputs = [ pkgs-gnome.libadwaita pkgs-gnome.gtk4 ];
-              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson pkgs.gettext pkgs-gnome.glib pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.blueprint-compiler ];
+              nativeBuildInputs = [ pkgs-gnome.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson pkgs.gettext pkgs-gnome.glib pkgs-gnome.gtk4 pkgs-gnome.libadwaita pkgs-gnome.pkg-config pkgs-gnome.desktop-file-utils pkgs-gnome.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs-gnome.blueprint-compiler ];
 
               inherit name;
             };
@@ -111,7 +111,7 @@
                           serviceConfig = {
                             ExecStart = [
                               ""
-                              "${pkgs.gnome.gnome-shell}/bin/gnome-shell"
+                              "${pkgs.gnome-shell}/bin/gnome-shell"
                             ];
                           };
                         };
@@ -137,10 +137,10 @@
                         (key "tab")
                         (type "PARIS")
                         (sleep 2)
-                        (l.replicate 7 (key "tab"))
+                        (l.replicate 6 (key "tab"))
                         (key "ret")
                         (sleep 5)
-                        (l.replicate 13 (key "tab"))
+                        (l.replicate 12 (key "tab"))
                         (key "ret")
                         (l.replicate 4 (key "tab"))
                         (key "ret")
