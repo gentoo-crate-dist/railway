@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated to GNOME 48 widgets, in particular in the search options window.
+- Add a separate section for Austrian railway providers in the popover.
+- Make the application D-Bus activatable.
+
+### Fixed
+
+- Raise window if application is started again.
+
 ## [2.7.3] - 2025-01-30
 
 ### Changed
