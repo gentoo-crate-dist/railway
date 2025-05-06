@@ -5,34 +5,15 @@ template $DBDateTimePicker: Box {
   orientation: vertical;
   spacing: 12;
 
-  Box {
-    styles [
-      "toggle-group",
-    ]
-
-    orientation: horizontal;
-
-    ToggleButton toggle_departure {
-      styles [
-        "flat",
-      ]
-
+  Adw.ToggleGroup toggle_group_time_type {
+    Adw.Toggle {
+      name: "departure";
       label: _("Departure");
-      hexpand: true;
     }
 
-    Separator {
-      orientation: vertical;
-    }
-
-    ToggleButton toggle_arrival {
-      styles [
-        "flat",
-      ]
-
+    Adw.Toggle {
+      name: "arrival";
       label: _("Arrival");
-      hexpand: true;
-      group: toggle_departure;
     }
   }
 

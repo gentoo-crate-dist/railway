@@ -118,30 +118,23 @@ popover listview.navigation-sidebar > row:selected:active {
   padding: 12px 12px 6px;
 }
 
-/* Mostly copied from Elastic https://gitlab.gnome.org/World/elastic/-/blob/476c2a1dc7aac30fa25ec105a9e9fa5b3d069d52/src/style.css#L17 */
-.toggle-group {
-  border-radius: 9px;
-  padding: 3px;
-  background: color-mix(in srgb, currentColor 10%, transparent);
+.modes-of-transport button {
+  border-radius: 99px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
-.toggle-group .toggle {
-  padding: 2px 15px;
-  transition: 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transition-property: outline-color, outline-width, outline-offset, background, box-shadow;
-  min-width: 100px;
+.modes-of-transport button:checked {
+  background-color: var(--accent-bg-color);
+  color: var(--accent-fg-color);
+  box-shadow: none;
+  outline-offset: 5px;
 }
 
-.toggle-group .toggle:checked {
-  border-radius: 6px;
-  padding: 2px 15px;
-  background: rgb(from var(--card-bg-color) r g b / calc(alpha * 2));
-  color: var(--card-fg-color);
-  box-shadow: 0 1px 3px 1px #00000011,
-              0 2px 6px 2px #00000008;
+.modes-of-transport button:checked:focus:focus-visible {
+  outline-offset: 1px;
 }
 
-.toggle-group separator {
-  opacity: 0;
-  margin: 3px 1px;
+.modes-of-transport button:checked:hover {
+  background-image: image(color-mix(in srgb, currentColor 10%, transparent));
 }
