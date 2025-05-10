@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Trip details too wide for narrow window width for some journeys.
+
 ## [2.8.0] - 2025-05-06
 
 ### Changed

@@ -107,6 +107,7 @@ template $DBLegItem: Box {
           line-spacing: 6;
 
           Label segment_label {
+            wrap: true;
             hexpand: false;
             xalign: 0;
             label: bind $format_train_direction(template.leg as <$DBLeg>.name, template.leg as <$DBLeg>.direction) as <string>;
