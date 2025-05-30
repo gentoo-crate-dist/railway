@@ -2,6 +2,7 @@ name: Sync with upstream
 on:
   schedule:
     - cron: "16 * * * *"
+  push:
 
 jobs:
   sync-mirror:
