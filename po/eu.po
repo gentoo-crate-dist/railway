@@ -8,31 +8,33 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-06-13 10:01+0000\n"
+"Last-Translator: Ibai Oihanguren Sala <ibaios@disroot.org>\n"
+"Language-Team: Basque <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/eu/>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
 #: data/resources/ui/window.blp:6
 msgid "Railway"
-msgstr ""
+msgstr "Railway"
 
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:10
 msgid "train;railway;journey;planner;timetables;"
-msgstr ""
+msgstr "trena;railway;bidaia;ibilbidea;planifikatu;ordutegiak;"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr ""
+msgstr "Bilatu zure bidaietarako informazio guztia"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -66,104 +68,105 @@ msgstr ""
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:277
 msgid "Application Overview"
-msgstr ""
+msgstr "Aplikazioaren ikuspegi orokorra"
 
 #: data/resources/ui/date_time_picker.blp:20
 msgid "Departure"
-msgstr ""
+msgstr "Irteera"
 
 #: data/resources/ui/date_time_picker.blp:33
 msgid "Arrival"
-msgstr ""
+msgstr "Iritsiera"
 
 #: data/resources/ui/date_time_picker.blp:53
 msgid "Input date"
-msgstr ""
+msgstr "Sartu data"
 
 #: data/resources/ui/date_time_picker.blp:60
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: data/resources/ui/date_time_picker.blp:96
 msgid "Input time"
-msgstr ""
+msgstr "Sartu ordua"
 
 #: data/resources/ui/date_time_picker.blp:104
 msgid "Time"
-msgstr ""
+msgstr "Ordua"
 
 #: data/resources/ui/date_time_picker.blp:159 src/gui/date_time_picker.rs:122
 msgid "Now"
-msgstr ""
+msgstr "Orain"
 
 #: data/resources/ui/journey_detail_page.blp:51
 msgid "Total Travel Time"
-msgstr ""
+msgstr "Bidaiaren iraupena guztira"
 
 #: data/resources/ui/journey_detail_page.blp:64
 msgid "Trip Segments"
-msgstr ""
+msgstr "Bidaiaren zatiak"
 
 #: data/resources/ui/journey_detail_page.blp:78
 msgid "Choose a Trip"
-msgstr ""
+msgstr "Aukeratu bidaia bat"
 
 #: data/resources/ui/journeys_page.blp:98
 msgid "Search for Trips"
-msgstr ""
+msgstr "Bilatu bidaiak"
 
 #: data/resources/ui/leg_item.blp:124
 msgid "Show Stops"
-msgstr ""
+msgstr "Erakutsi geltokiak"
 
 #: data/resources/ui/leg_item.blp:127
 msgid "Show Intermediate Stops"
-msgstr ""
+msgstr "Erakutsi tarteko geltokiak"
 
 #: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
 msgid "Show Announcements"
-msgstr ""
+msgstr "Erakutsi oharrak"
 
 #: data/resources/ui/leg_item.blp:195
 msgid "Announcements"
-msgstr ""
+msgstr "Oharrak"
 
 #: data/resources/ui/leg_item.blp:222
 msgid "Stops"
-msgstr ""
+msgstr "Geltokiak"
 
 #: data/resources/ui/preferences_dialog.blp:8
 #: data/resources/ui/shortcuts.blp:27
 msgid "General"
-msgstr ""
+msgstr "Orokorra"
 
 #: data/resources/ui/preferences_dialog.blp:13
 msgid "Automatically Remove Old Bookmarks"
-msgstr ""
+msgstr "Ezabatu automatikoki gordetako bidaia/bilaketa zaharrak"
 
 #: data/resources/ui/preferences_dialog.blp:14
 msgid "Past trips are kept only for a period of time"
-msgstr ""
+msgstr "Pasatako bidaiak denbora-tarte baterako soilik gordeko dira"
 
 #: data/resources/ui/preferences_dialog.blp:19
 msgid "Preservation Time For Trips"
-msgstr ""
+msgstr "Bidaiak gordetzeko denbora-tartea"
 
 #: data/resources/ui/preferences_dialog.blp:20
 msgid "For how long to retain trips after arrival"
 msgstr ""
+"Bidaia helmugara iritsi ondoren zenbat denboraz gorde behar den informazioa"
 
 #: data/resources/ui/provider_popover.blp:18
 msgid "Search Networks…"
-msgstr ""
+msgstr "Bilatu sareetan…"
 
 #: data/resources/ui/refresh_button.blp:20
 msgid "Refresh Trip"
-msgstr ""
+msgstr "Eguneratu bidaia"
 
 #: data/resources/ui/search_options_button.blp:5
 msgid "More search options"
-msgstr ""
+msgstr "Bilaketa aukera gehiago"
 
 #: data/resources/ui/search_options_button.blp:16
 msgid "Refine Advanced Search Options"
@@ -171,413 +174,413 @@ msgstr ""
 
 #: data/resources/ui/search_options_button.blp:30
 msgid "More Options"
-msgstr ""
+msgstr "Aukera gehiago"
 
 #: data/resources/ui/search_options_dialog.blp:10
 msgid "Discount Card"
-msgstr ""
+msgstr "Deskontu txartela"
 
 #: data/resources/ui/search_options_dialog.blp:14
 msgid "Class"
-msgstr ""
+msgstr "Maila"
 
 #: data/resources/ui/search_options_dialog.blp:25
 msgid "First Class"
-msgstr ""
+msgstr "Lehen maila"
 
 #: data/resources/ui/search_options_dialog.blp:30
 msgid "Second Class"
-msgstr ""
+msgstr "Bigarren maila"
 
 #: data/resources/ui/search_options_dialog.blp:37
 #: src/gui/search_options_button.rs:190
 msgid "Bike Accessible"
-msgstr ""
+msgstr "Bizikletak onartzen dira"
 
 #: data/resources/ui/search_options_dialog.blp:42
 msgid "Minimum Transfer Time"
-msgstr ""
+msgstr "Tren-aldaketarako gutxieneko denbora"
 
 #: data/resources/ui/search_options_dialog.blp:47
 msgid "Direct Connections Only"
-msgstr ""
+msgstr "Lotura zuzenak soilik"
 
 #: data/resources/ui/search_options_dialog.blp:52
 msgid "Modes of Transport"
-msgstr ""
+msgstr "Garraiobideak"
 
 #: data/resources/ui/search_options_dialog.blp:55
 msgid "High Speed Train"
-msgstr ""
+msgstr "Abiadura handiko trena"
 
 #: data/resources/ui/search_options_dialog.blp:59
 msgid "Regional Train"
-msgstr ""
+msgstr "Eskualdeko trena"
 
 #: data/resources/ui/search_options_dialog.blp:63
 msgid "Suburban Trains"
-msgstr ""
+msgstr "Aldiriko trena"
 
 #: data/resources/ui/search_options_dialog.blp:67
 msgid "Bus"
-msgstr ""
+msgstr "Autobusa"
 
 #: data/resources/ui/search_options_dialog.blp:71
 msgid "Ferry"
-msgstr ""
+msgstr "Ferrya"
 
 #: data/resources/ui/search_options_dialog.blp:75
 msgid "Subway"
-msgstr ""
+msgstr "Metroa"
 
 #: data/resources/ui/search_options_dialog.blp:79
 msgid "Tram"
-msgstr ""
+msgstr "Tranbia"
 
 #: data/resources/ui/search_options_dialog.blp:83
 msgid "Cablecar"
-msgstr ""
+msgstr "Teleferikoa"
 
 #: data/resources/ui/search_options_dialog.blp:87
 msgid "Taxi"
-msgstr ""
+msgstr "Taxia"
 
 #: data/resources/ui/search_page.blp:31
 msgid "From"
-msgstr ""
+msgstr "Jatorria"
 
 #: data/resources/ui/search_page.blp:38
 msgid "To"
-msgstr ""
+msgstr "Helmuga"
 
 #: data/resources/ui/search_page.blp:51 data/resources/ui/search_page.blp:72
 #: data/resources/ui/window.blp:31
 msgid "Search"
-msgstr ""
+msgstr "Bilatu"
 
 #: data/resources/ui/search_page.blp:90
 msgid "Bookmarked Trips"
-msgstr ""
+msgstr "Gordetako bidaiak"
 
 #: data/resources/ui/search_page.blp:105
 msgid "Bookmarked Searches"
-msgstr ""
+msgstr "Gordetako bilaketak"
 
 #: data/resources/ui/shortcuts.blp:8
 msgid "Application"
-msgstr ""
+msgstr "Aplikazioa"
 
 #: data/resources/ui/shortcuts.blp:12
 msgid "Bookmark Search"
-msgstr ""
+msgstr "Gorde bilaketa"
 
 #: data/resources/ui/shortcuts.blp:17
 msgid "Bookmark Trip"
-msgstr ""
+msgstr "Gorde bidaia"
 
 #: data/resources/ui/shortcuts.blp:22
 msgid "Reload Trip"
-msgstr ""
+msgstr "Birkargatu bidaia"
 
 #: data/resources/ui/shortcuts.blp:31
 msgid "Quit"
-msgstr ""
+msgstr "Irten"
 
 #: data/resources/ui/shortcuts.blp:36
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "Erakutsi laster-teklak"
 
 #: data/resources/ui/shortcuts.blp:41
 msgid "Show Preferences"
-msgstr ""
+msgstr "Erakutsi hobespenak"
 
 #: data/resources/ui/shortcuts.blp:46
 msgid "Open Menu"
-msgstr ""
+msgstr "Ireki menua"
 
 #: data/resources/ui/station_entry.blp:13
 msgid "Swap Start and Destination"
-msgstr ""
+msgstr "Trukatu jatorria eta helmuga"
 
 #: data/resources/ui/window.blp:42 data/resources/ui/window.blp:49
 msgid "Select Network"
-msgstr ""
+msgstr "Hautatu sarea"
 
 #: data/resources/ui/window.blp:72
 msgid "Main Menu"
-msgstr ""
+msgstr "Menu nagusia"
 
 #: data/resources/ui/window.blp:91
 msgid "Connections"
-msgstr ""
+msgstr "Loturak"
 
 #: data/resources/ui/window.blp:104
 msgid "Bookmark This Search"
-msgstr ""
+msgstr "Gorde bilaketa hau"
 
 #: data/resources/ui/window.blp:116
 msgid "Trip Details"
-msgstr ""
+msgstr "Bidaiaren xehetasunak"
 
 #: data/resources/ui/window.blp:125
 msgid "Refresh This Trip"
-msgstr ""
+msgstr "Eguneratu bidaia hau"
 
 #: data/resources/ui/window.blp:136
 msgid "Bookmark This Trip"
-msgstr ""
+msgstr "Gorde bidaia hau"
 
 #: data/resources/ui/window.blp:164
 msgid "Preferences"
-msgstr ""
+msgstr "Hobespenak"
 
 #: data/resources/ui/window.blp:169
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Lasterbideak"
 
 #: data/resources/ui/window.blp:174
 msgid "_About Railway"
-msgstr ""
+msgstr "Railwayri _buruz"
 
 #: src/gui/indicator_icons.rs:135
 msgid "High Load"
-msgstr ""
+msgstr "Karga altua"
 
 #: src/gui/indicator_icons.rs:142
 msgid "Very High Load"
-msgstr ""
+msgstr "Oso karga altua"
 
 #: src/gui/indicator_icons.rs:149
 msgid "Exceptionally High Load"
-msgstr ""
+msgstr "Karga bereziki altua"
 
 #: src/gui/indicator_icons.rs:165
 msgid "On Time"
-msgstr ""
+msgstr "Garaiz dator"
 
 #: src/gui/indicator_icons.rs:172
 msgid "Minor Delays"
-msgstr ""
+msgstr "Atzerapen txikia"
 
 #: src/gui/indicator_icons.rs:179
 msgid "Delayed"
-msgstr ""
+msgstr "Berandu dator"
 
 #: src/gui/indicator_icons.rs:186
 msgid "Very Delayed"
-msgstr ""
+msgstr "Oso berandu dator"
 
 #: src/gui/indicator_icons.rs:193
 msgid "Extremely Delayed"
-msgstr ""
+msgstr "Izugarri berandu dator"
 
 #: src/gui/indicator_icons.rs:209
 msgid "Platform Changes"
-msgstr ""
+msgstr "Nasa aldaketak"
 
 #: src/gui/indicator_icons.rs:228
 msgid "Connection Not Possible"
-msgstr ""
+msgstr "Ez dago lotura posiblerik"
 
 #: src/gui/indicator_icons.rs:246
 msgid "Cancelled"
-msgstr ""
+msgstr "Bertan behera utzia"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
-msgstr ""
+msgstr "Gordetako bidaia bat orain gutxi amaitu da."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr ""
+msgstr "_Ezabatu beti"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
-msgstr ""
+msgstr "Jatorria eta helmuga falta dira"
 
 #: src/gui/search_page.rs:118
 msgid "Start is missing"
-msgstr ""
+msgstr "Jatorria falta da"
 
 #: src/gui/search_page.rs:119
 msgid "Destination is missing"
-msgstr ""
+msgstr "Helmuga falta da"
 
 #: src/gui/search_page.rs:120
 msgid "Search ongoing"
-msgstr ""
+msgstr "Bilaketa martxan dago"
 
 #: src/gui/journey_detail_page.rs:108
 msgid "Last refreshed {}"
-msgstr ""
+msgstr "Azken eguneratzea {}"
 
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:90
 msgid "Arrive at {destination}."
-msgstr ""
+msgstr "{destination}(e)ra iritsiera."
 
 #: src/gui/transition.rs:212
 msgid "Walk {walk} Wait {wait}"
-msgstr ""
+msgstr "Oinez {walk} eta itxaron {wait}"
 
 #: src/gui/transition.rs:217
 msgid "Transfer Time {}"
-msgstr ""
+msgstr "Tren-aldaketarako denbora {}"
 
 #: src/gui/transition.rs:221
 msgid "Walk {}"
-msgstr ""
+msgstr "Oinez {}"
 
 #: src/gui/transition.rs:224
 msgid "Transfer"
-msgstr ""
+msgstr "Tren-aldaketa"
 
 #. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:228
 msgid "{} min"
-msgstr ""
+msgstr "{} min"
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:84
 msgid "%_H h %_M min"
-msgstr ""
+msgstr "%_H h %_M min"
 
 #: src/gui/utility.rs:95
 msgid " %_d day %_H h %_M min"
 msgid_plural "%_d days %_H h %_M min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " egun %_d, %_H h %_M min"
+msgstr[1] "%_d egun %_H h %_M min"
 
 #. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:106
 msgid "{} min."
-msgstr ""
+msgstr "{} minutu"
 
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:110
 msgid "{} hrs."
-msgstr ""
+msgstr "{} ordu"
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:119
 msgid "%-H hrs. %-M min."
-msgstr ""
+msgstr "%-H ordu %-M minutu"
 
 #: src/gui/utility.rs:131
 msgid "%-d day %-H hrs. %-M min."
 msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "egun %-d, %-H ordu %-M minutu"
+msgstr[1] "%-d egun %-H ordu %-M minutu"
 
 #. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:141
 msgid "%H:%M"
-msgstr ""
+msgstr "%H:%M"
 
 #: src/gui/utility.rs:147 src/gui/date_time_picker.rs:110
 msgid "Today"
-msgstr ""
+msgstr "Gaur"
 
 #: src/gui/utility.rs:149
 msgid "Tomorrow"
-msgstr ""
+msgstr "Bihar"
 
 #: src/gui/utility.rs:151
 msgid "Yesterday"
-msgstr ""
+msgstr "Atzo"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:154
 msgid "%a, %d. %B"
-msgstr ""
+msgstr "%a, %Bk %e"
 
 #. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:157
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #: src/gui/preferences_dialog.rs:60
 msgid "{} h"
 msgid_plural "{} h"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{} h"
+msgstr[1] "{} h"
 
 #: src/gui/search_options_button.rs:75
 msgid "None"
-msgstr ""
+msgstr "Bat ere ez"
 
 #: src/gui/search_options_button.rs:76
 msgid "BahnCard 25, 1st class"
-msgstr ""
+msgstr "BahnCard 25, 1. maila"
 
 #: src/gui/search_options_button.rs:77
 msgid "BahnCard 25, 2nd class"
-msgstr ""
+msgstr "BahnCard 25, 2. maila"
 
 #: src/gui/search_options_button.rs:78
 msgid "BahnCard 50, 1st class"
-msgstr ""
+msgstr "BahnCard 50, 1. maila"
 
 #: src/gui/search_options_button.rs:79
 msgid "BahnCard 50, 2nd class"
-msgstr ""
+msgstr "BahnCard 50, 2. maila"
 
 #: src/gui/search_options_button.rs:80
 msgid "A – VORTEILScard (with RAILPLUS)"
-msgstr ""
+msgstr "A – VORTEILScard (RAILPLUSekin)"
 
 #: src/gui/search_options_button.rs:81
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
-msgstr ""
+msgstr "CH – HalbtaxAbo (RAILPLUSekin)"
 
 #: src/gui/search_options_button.rs:82
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
-msgstr ""
+msgstr "CH – HalbtaxAbo (RAILPLUS gabe)"
 
 #: src/gui/search_options_button.rs:85
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
-msgstr ""
+msgstr "NL – Voordeelurenabo (RAILPLUSekin)"
 
 #: src/gui/search_options_button.rs:89
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
-msgstr ""
+msgstr "NL – Voordeelurenabo (RAILPLUS gabe)"
 
 #: src/gui/search_options_button.rs:91
 msgid "SH-Card"
-msgstr ""
+msgstr "SH-Card"
 
 #: src/gui/search_options_button.rs:92
 msgid "CH – General-Abonnement"
-msgstr ""
+msgstr "CH – Abonamendu orokorra"
 
 #: src/gui/search_options_button.rs:99
 msgid "Unknown"
-msgstr ""
+msgstr "Ezezaguna"
 
 #: src/gui/search_options_button.rs:137
 msgid "1st class"
-msgstr ""
+msgstr "1. maila"
 
 #: src/gui/search_options_button.rs:139
 msgid "2nd class"
-msgstr ""
+msgstr "2. maila"
 
 #: src/gui/search_options_button.rs:182
 msgid "Regional Only"
-msgstr ""
+msgstr "Eskualdekoak soilik"
 
 #: src/gui/search_options_button.rs:185
 msgid "Selected Modes of Transport"
-msgstr ""
+msgstr "Hautatutako garraiobideak"
 
 #: src/gui/search_options_button.rs:197
 msgid "Direct Connection"
-msgstr ""
+msgstr "Lotura zuzena"
 
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
-msgstr ""
+msgstr "Huts egin du datuak eskuratzean. Internetera konektatua zaude?"
 
 #: src/gui/error.rs:20
 msgid "Received an error. Please share feedback."
@@ -585,51 +588,51 @@ msgstr ""
 
 #: src/gui/error.rs:21 src/gui/error.rs:25
 msgid "More Information"
-msgstr ""
+msgstr "Informazio gehiago"
 
 #: src/gui/error.rs:24
 msgid "An unknown issue occured. Please share feedback."
-msgstr ""
+msgstr "Arazo ezezaguna gertatu da. Mesedez, partekatu gurekin informazioa."
 
 #: src/gui/error.rs:39
 msgid "Error"
-msgstr ""
+msgstr "Errorea"
 
 #: src/gui/error.rs:43
 msgid "_Close"
-msgstr ""
+msgstr "_Itxi"
 
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:114
 msgid "%a %b %d"
-msgstr ""
+msgstr "%a %b %e"
 
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
 msgid_plural "{} changes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "aldaketa {}"
+msgstr[1] "{} aldaketa"
 
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:49
 msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr ""
+msgstr "{departure}(e)tik {arrival}(e)ra {travel_time}an, {changes_text}rekin"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
 msgid "{train} in the direction of {destination}"
-msgstr ""
+msgstr "{train} trena, {destination} norabidean"
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:90
 msgid "Depart {start} from platform {platform} at {departure}."
-msgstr ""
+msgstr "{start} irteera {platform} nasatik, {departure}(e)n."
 
 #. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
 #: src/gui/leg_item.rs:94
 msgid "Depart {start} at {departure}."
-msgstr ""
+msgstr "{start} irteera {departure}(e)n."
 
 #: src/gui/leg_item.rs:101
 msgid "Arrive at {destination} on platform {platform} at {arrival}."
