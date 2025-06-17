@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-26 12:03+0200\n"
-"PO-Revision-Date: 2024-05-06 09:07+0000\n"
-"Last-Translator: snowfire <wstorm88@gmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/ru/>\n"
+"PO-Revision-Date: 2025-06-19 00:01+0000\n"
+"Last-Translator: WENEMOUS TURNIP <novus.lordo.seclorum@gmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5.3\n"
+"X-Generator: Weblate 5.12.1\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
@@ -35,7 +35,7 @@ msgstr "поезд;путь;путешествие;планировщик;рас
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
-msgstr "Найти всю информацию о путешествиях"
+msgstr "Найти всю информацию о ваших путешествиях"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
@@ -45,25 +45,25 @@ msgid ""
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
 "Railway позволяет Вам просматривать информацию о путешествиях по маршрутам и "
-"через границы, не копаясь в веб-сайтах. Благодаря адаптивному дизайну, это "
+"через границы, не копаясь в веб-сайтах. Благодаря адаптивному дизайну, оно "
 "подходит для предварительного планирования маршрута и его корректировки на "
 "ходу:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
 msgid "View your tripsʼ details including platforms and delays"
-msgstr "Просматривая детали маршрута, включая платформы и задержки"
+msgstr "Просматривайте детали маршрута, включая платформы и задержки"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
 msgid "Bookmark current and future trips as well as frequent search"
-msgstr "Запоминая текущие и будущие поездки, а также частые запросы"
+msgstr "Сохранять текущие и будущие поездки, а также частые запросы"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr ""
-"Используя дополнительные параметры поиска, например, фильтрацию по видам "
+"Использовать дополнительные параметры поиска, например, фильтры по видам "
 "транспорта"
 
 #. Translators: Part of the description of the application in the metainfo.
@@ -79,11 +79,11 @@ msgstr "Обзор приложения"
 
 #: data/resources/ui/date_time_picker.blp:20
 msgid "Departure"
-msgstr ""
+msgstr "Отправление"
 
 #: data/resources/ui/date_time_picker.blp:33
 msgid "Arrival"
-msgstr ""
+msgstr "Прибытие"
 
 #: data/resources/ui/date_time_picker.blp:53
 msgid "Input date"
@@ -95,7 +95,7 @@ msgstr "Дата"
 
 #: data/resources/ui/date_time_picker.blp:96
 msgid "Input time"
-msgstr "Время ввода"
+msgstr "Введите время"
 
 #: data/resources/ui/date_time_picker.blp:104
 msgid "Time"
@@ -107,7 +107,7 @@ msgstr "Сейчас"
 
 #: data/resources/ui/journey_detail_page.blp:51
 msgid "Total Travel Time"
-msgstr "Всего времени в пути"
+msgstr "Общее время в пути"
 
 #: data/resources/ui/journey_detail_page.blp:64
 msgid "Trip Segments"
@@ -122,13 +122,12 @@ msgid "Search for Trips"
 msgstr "Поиск поездок"
 
 #: data/resources/ui/leg_item.blp:124
-#, fuzzy
 msgid "Show Stops"
 msgstr "Показать остановки"
 
 #: data/resources/ui/leg_item.blp:127
 msgid "Show Intermediate Stops"
-msgstr ""
+msgstr "Показать промежуточные остановки"
 
 #: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
 msgid "Show Announcements"
@@ -139,7 +138,6 @@ msgid "Announcements"
 msgstr "Объявления"
 
 #: data/resources/ui/leg_item.blp:222
-#, fuzzy
 msgid "Stops"
 msgstr "Остановки"
 
@@ -167,7 +165,7 @@ msgstr "Как долго сохранить поездки после приб�
 
 #: data/resources/ui/provider_popover.blp:18
 msgid "Search Networks…"
-msgstr "Поисковые сети …"
+msgstr "Поисковые сети…"
 
 #: data/resources/ui/refresh_button.blp:20
 msgid "Refresh Trip"
@@ -220,16 +218,15 @@ msgstr "Виды транспорта"
 
 #: data/resources/ui/search_options_dialog.blp:55
 msgid "High Speed Train"
-msgstr ""
+msgstr "Высокоскоростной поезд"
 
 #: data/resources/ui/search_options_dialog.blp:59
-#, fuzzy
 msgid "Regional Train"
-msgstr "Только пригород"
+msgstr "Местный поезд"
 
 #: data/resources/ui/search_options_dialog.blp:63
 msgid "Suburban Trains"
-msgstr ""
+msgstr "Пригородные поезда"
 
 #: data/resources/ui/search_options_dialog.blp:67
 msgid "Bus"
@@ -249,7 +246,7 @@ msgstr "Трамвай"
 
 #: data/resources/ui/search_options_dialog.blp:83
 msgid "Cablecar"
-msgstr ""
+msgstr "Канатная дорога"
 
 #: data/resources/ui/search_options_dialog.blp:87
 msgid "Taxi"
@@ -398,11 +395,11 @@ msgstr "Отменён"
 
 #: src/gui/stores/journey_store.rs:122
 msgid "A bookmarked trip ended recently."
-msgstr ""
+msgstr "Недавно завершилась поездка, добавленная в закладки."
 
 #: src/gui/stores/journey_store.rs:134
 msgid "Always _Delete"
-msgstr ""
+msgstr "Всегда_Удалять"
 
 #: src/gui/search_page.rs:117
 msgid "Start and destination are missing"
@@ -504,7 +501,6 @@ msgstr "Вчера"
 
 #. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
 #: src/gui/utility.rs:154
-#, fuzzy
 msgid "%a, %d. %B"
 msgstr "%a, %d. %B"
 
@@ -521,62 +517,50 @@ msgstr[1] "{} ч"
 msgstr[2] "{} ч"
 
 #: src/gui/search_options_button.rs:75
-#, fuzzy
 msgid "None"
-msgstr "Нет"
+msgstr "Ничего"
 
 #: src/gui/search_options_button.rs:76
-#, fuzzy
 msgid "BahnCard 25, 1st class"
-msgstr "BahnCard 25, первый класс"
+msgstr "BahnCard 25, 1-й класс"
 
 #: src/gui/search_options_button.rs:77
-#, fuzzy
 msgid "BahnCard 25, 2nd class"
-msgstr "BahnCard 25, второй класс"
+msgstr "BahnCard 25, 2-й класс"
 
 #: src/gui/search_options_button.rs:78
-#, fuzzy
 msgid "BahnCard 50, 1st class"
-msgstr "BahnCard 50, первый класс"
+msgstr "BahnCard 50, 1-й класс"
 
 #: src/gui/search_options_button.rs:79
-#, fuzzy
 msgid "BahnCard 50, 2nd class"
-msgstr "BahnCard 50, второй класс"
+msgstr "BahnCard 50, 2-й класс"
 
 #: src/gui/search_options_button.rs:80
-#, fuzzy
 msgid "A – VORTEILScard (with RAILPLUS)"
 msgstr "A – VORTEILScard (с RAILPLUS)"
 
 #: src/gui/search_options_button.rs:81
-#, fuzzy
 msgid "CH – HalbtaxAbo (with RAILPLUS)"
 msgstr "CH – HalbtaxAbo (с RAILPLUS)"
 
 #: src/gui/search_options_button.rs:82
-#, fuzzy
 msgid "CH – HalbtaxAbo (without RAILPLUS)"
 msgstr "CH – HalbtaxAbo (без RAILPLUS)"
 
 #: src/gui/search_options_button.rs:85
-#, fuzzy
 msgid "NL – Voordeelurenabo (with RAILPLUS)"
 msgstr "NL – Voordeelurenabo (с RAILPLUS)"
 
 #: src/gui/search_options_button.rs:89
-#, fuzzy
 msgid "NL – Voordeelurenabo (without RAILPLUS)"
 msgstr "NL – Voordeelurenabo (без RAILPLUS)"
 
 #: src/gui/search_options_button.rs:91
-#, fuzzy
 msgid "SH-Card"
 msgstr "SH-Card"
 
 #: src/gui/search_options_button.rs:92
-#, fuzzy
 msgid "CH – General-Abonnement"
 msgstr "CH – General-Abonnement"
 
@@ -632,9 +616,8 @@ msgstr "_Закрыть"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:114
-#, fuzzy
 msgid "%a %b %d"
-msgstr "%a %b %d"
+msgstr "%a %d %b"
 
 #: src/gui/journey_list_item.rs:45
 msgid "{} change"
@@ -673,7 +656,6 @@ msgid "Arrive at {destination} at {arrival}."
 msgstr "Прибытие в {destination} в {arrival}."
 
 #: src/gui/leg_item.rs:153
-#, fuzzy
 msgid "{} Stop"
 msgid_plural "{} Stops"
 msgstr[0] "{} остановка"
@@ -715,7 +697,7 @@ msgstr "Давид Лапшин <ddaudix@gmail.com>, Сергей Антонов
 
 #: src/gui/window.rs:181
 msgid "Source Translation Supported by"
-msgstr ""
+msgstr "Перевод источника осуществлён при поддержке"
 
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
@@ -771,7 +753,7 @@ msgstr "Германия"
 
 #: src/backend/client.rs:26 src/backend/client.rs:35 src/backend/client.rs:36
 msgid "North America"
-msgstr ""
+msgstr "Северная Америка"
 
 #. Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
 #. Search.ch
@@ -782,7 +764,7 @@ msgstr ""
 #: src/backend/client.rs:145 src/backend/client.rs:146
 #: src/backend/client.rs:150
 msgid "Europe"
-msgstr ""
+msgstr "Европа"
 
 #. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
 #: src/backend/client.rs:72
@@ -796,12 +778,12 @@ msgstr "Австрия"
 
 #: src/backend/client.rs:154
 msgid "Worldwide (beta)"
-msgstr ""
+msgstr "По всему миру (beta)"
 
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
 #: src/backend/client.rs:156
 msgid "Using Transitous"
-msgstr ""
+msgstr "С использованием Transitous"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
