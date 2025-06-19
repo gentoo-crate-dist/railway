@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- SBB provider not displaying line numbers.
+
 ## [2.8.1] - 2025-05-10
 
 ### Fixed

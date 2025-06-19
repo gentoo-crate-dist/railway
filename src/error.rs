@@ -2,6 +2,7 @@
 pub enum Error {
     Hafas(rcore::Error<Box<dyn std::error::Error + Send>, Box<dyn std::error::Error + Send>>),
     Timeout,
+    NotImplemented,
 }
 
 impl std::error::Error for Error {}
@@ -11,6 +12,7 @@ impl std::fmt::Display for Error {
         match self {
             Error::Hafas(e) => write!(f, "Backend error: {}", e),
             Error::Timeout => write!(f, "Timed Out"),
+            Error::NotImplemented => write!(f, "Not implemented by this provider"),
         }
     }
 }
@@ -26,6 +28,7 @@ impl<R: std::error::Error + Send + 'static, P: std::error::Error + Send + 'stati
             rcore::Error::Provider(r) => Self::Hafas(rcore::Error::Provider(
                 Box::new(r) as Box<dyn std::error::Error + Send>
             )),
+            rcore::Error::NotImplemented => Self::NotImplemented,
         }
     }
 }

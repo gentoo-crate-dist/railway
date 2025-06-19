@@ -1597,9 +1597,9 @@ checksum = "74765f6d916ee2faa39bc8e68e4f3ed8949b48cccdac59983d287a7cb71ce9c5"
 
 [[package]]
 name = "railway-api"
-version = "0.1.2"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2cae9c98ab3677ce2064641a3a6d017cafe1b2b8bd2976c8e36fa716911bc196"
+checksum = "ab83c601b4dc99ac02b6bc79bae63a6048fa5fd33e4cee8de3ca07c02baf725b"
 dependencies = [
  "async-trait",
  "chrono-tz",
@@ -1614,9 +1614,9 @@ dependencies = [
 
 [[package]]
 name = "railway-api-derive"
-version = "0.1.2"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4dfde07d077d7e4499cf168f2a6c345094002d808e8fc1d3bb619242a748ff9e"
+checksum = "0f8003fe8366763e2d7cc9c39fb6b030dd365657b71bd91e7fde613e5f93f991"
 dependencies = [
  "convert_case",
  "proc-macro2",
@@ -1626,9 +1626,9 @@ dependencies = [
 
 [[package]]
 name = "railway-core"
-version = "0.1.2"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1d7deb97a8ba891afa87df371e3ff33cc541d914d36690f271d28117bc199a12"
+checksum = "5225e8c1c72e6ab4268688fda9ff45446e60dbbcb8756ad05146f6db77903791"
 dependencies = [
  "async-trait",
  "chrono",
@@ -1641,9 +1641,9 @@ dependencies = [
 
 [[package]]
 name = "railway-provider-db-movas"
-version = "0.1.1"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "945f99d36c06cc2e710fdd03bdf44b7e31d421d28698930b59ee6bfdb56b7412"
+checksum = "0d2a9910710b8cbacf83ad939a9b5e2e31566510f13a9ffaf733d0d703b115f9"
 dependencies = [
  "async-trait",
  "chrono",
@@ -1657,9 +1657,9 @@ dependencies = [
 
 [[package]]
 name = "railway-provider-hafas"
-version = "0.1.3"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0b867bb74b3fbb6dd4ec1c22641146907438ee408218e1959f896cdd7ff324ae"
+checksum = "4a0a56c9d3bc16e37d0dc8d98ed345b7e7f60bbbcf9cb283c441e8848ecb6801"
 dependencies = [
  "async-trait",
  "chrono",
@@ -1676,9 +1676,9 @@ dependencies = [
 
 [[package]]
 name = "railway-provider-motis"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "07e96801f886a73c19fbbe3553dc8f9b1bcbfe0c1e80e4264b48a1410eeabda2"
+checksum = "d2320408d1eb45c972b74d1d2e5d7c977c4a00443171a331d875034ffc85864d"
 dependencies = [
  "async-trait",
  "chrono",
@@ -1692,9 +1692,9 @@ dependencies = [
 
 [[package]]
 name = "railway-provider-search-ch"
-version = "0.1.1"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e3510f4d8afb29abf762f08516441efcc2a1fa69dfb961ce9a41ad04d386c0fe"
+checksum = "e709c84e0685190ebcfe76ccf6900efb9cb01c01a3d8fbdff834535e2fd7a133"
 dependencies = [
  "async-trait",
  "chrono",
