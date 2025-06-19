@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.2] - 2025-06-19
+
 ### Fixed
 
 - SBB provider not displaying line numbers.
@@ -208,7 +210,8 @@ Those are packaged on <crates.io>.
 
 - Complete UI overhaul
 
-[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.8.1...master
+[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.8.2...master
+[2.8.2]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.8.1...2.8.2
 [2.8.1]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.8.0...2.8.1
 [2.8.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.3...2.8.0
 [2.7.3]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.7.2...2.7.3
