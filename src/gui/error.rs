@@ -11,7 +11,7 @@ use libadwaita::{
 };
 
 pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
-    log::error!("Displaying error: {}", err);
+    log::error!("Displaying error: {err}");
     let toast = match &err {
         Error::Hafas(rcore::Error::Request(_)) => Toast::new(&gettext(
             "Failed to fetch data. Are you connected to the internet?",
@@ -28,8 +28,8 @@ pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {
 
     let msg = match err {
         Error::Hafas(rcore::Error::Request(_)) => None,
-        Error::Hafas(e) => Some(format!("{}", e)),
-        _ => Some(format!("{}", err)),
+        Error::Hafas(e) => Some(format!("{e}")),
+        _ => Some(format!("{err}")),
     };
 
     if let Some(msg) = msg {

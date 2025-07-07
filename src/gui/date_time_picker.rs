@@ -123,7 +123,7 @@ pub mod imp {
 
                 // TODO: Internationalization
                 self.btn_input_time
-                    .set_subtitle(&format!("{:02}:{:02}", hour, minute))
+                    .set_subtitle(&format!("{hour:02}:{minute:02}"))
             }
         }
 
