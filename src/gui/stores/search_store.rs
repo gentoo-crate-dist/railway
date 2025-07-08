@@ -117,12 +117,12 @@ pub mod imp {
 
             let mut stored = self.stored.borrow_mut();
             if let Some(idx) = stored.iter().position(|j| j == &search) {
-                log::trace!("Removing Search {:?}", search);
+                log::trace!("Removing Search {search:?}");
                 let s = stored.remove(idx);
                 self.obj()
                     .emit_by_name::<()>("remove", &[&s.origin, &s.destination]);
             } else {
-                log::trace!("Storing Journey {:?}", search);
+                log::trace!("Storing Search {search:?}");
                 self.obj()
                     .emit_by_name::<()>("add", &[&search.origin, &search.destination]);
                 stored.insert(0, search);
