@@ -4,6 +4,8 @@ Contributions to Railway are always welcome. There are many different ways you c
 
 We are interested in getting to know our contributors and are often around to discuss the state and the future of Railway, be it something minor, or larger visions. Feel free to join our [Matrix channel](https://matrix.to/#/#railwayapp:matrix.org) and talk with us! This is also a good place to ask some questions or report smaller issues.
 
+In general, we appreciate any help. That said, before doing any larger work including thorough design reviews, mass filing of issues, or substantial code refactoring, we kindly ask you to reach out to us maintainers. This is to ensure we do not to render your work useless, and you are not increasing workload for us if this could have been avoided with a simple talk over [Matrix](https://matrix.to/#/#railwayapp:matrix.org).
+
 Note that the [GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct) applies to this project, therefore, be nice to each other.
 
 ## Translation
@@ -15,7 +17,7 @@ This is probably the easiest way to contribute to Railway. Just head over to [We
 Issues are a good way to tell me problems you are having with the applications or things that you feel are missing or might be improved. There are a few things to keep in mind with issues.
 
 - If you think it could in any way be relevant, add your current version, and how you installed it.
-- Add the logs if you think they are relevant, this is mostly usefull for errors that occurred.
+- Add the logs if you think they are relevant, this is mostly useful for errors that occurred.
 - Check for duplicated issues: Try to use the search-feature if you can find similar issues like you are having. If there is already such an issue, consider giving it a thumbs-up or commenting more details on that issue, but don't create a new issue.
 - Know how to write a good issue: Read e.g. <https://wiredcraft.com/blog/how-we-write-our-github-issues/> (also applies pretty much got GitLab)
 
