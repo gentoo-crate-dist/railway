@@ -4,7 +4,8 @@ use libadwaita::subclass::prelude::*;
 
 glib::wrapper! {
     pub struct TimeDivider(ObjectSubclass<imp::TimeDivider>)
-        @extends gtk::Box, gtk::Widget, @implements gtk::Accessible;
+        @extends gtk::Box, gtk::Widget,
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl Default for TimeDivider {

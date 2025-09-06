@@ -2,7 +2,7 @@ gtk::glib::wrapper! {
     pub struct SearchOptionsButton(ObjectSubclass<imp::SearchOptionsButton>)
         @extends gtk::Button, gtk::Widget,
         @implements gtk::gio::ActionGroup, gtk::gio::ActionMap, gtk::Accessible, gtk::Buildable,
-            gtk::ConstraintTarget;
+            gtk::ConstraintTarget, gtk::Actionable;
 }
 
 pub mod imp {
