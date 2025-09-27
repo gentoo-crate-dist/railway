@@ -19,7 +19,6 @@ gtk::glib::wrapper! {
 impl Window {
     pub fn new(app: &libadwaita::Application) -> Self {
         app.set_accels_for_action("win.settings", &["<Control>comma"]);
-        app.set_accels_for_action("win.show-help-overlay", &["<Control>question"]);
         app.set_accels_for_action("window.close", &["<Control>w", "<Control>q"]);
 
         app.set_accels_for_action("journey-list.bookmark", &["<Control>s"]);
@@ -83,9 +82,7 @@ pub mod imp {
     use gtk::glib::clone;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::Builder;
     use gtk::CompositeTemplate;
-    use gtk::ShortcutsWindow;
     use gtk::ToggleButton;
     use libadwaita::prelude::AdwDialogExt;
     use libadwaita::subclass::prelude::AdwApplicationWindowImpl;
@@ -198,25 +195,10 @@ pub mod imp {
                 }
             ));
 
-            let action_show_help_overlay = SimpleAction::new("show-help-overlay", None);
-            action_show_help_overlay.connect_activate(clone!(
-                #[weak(rename_to = window)]
-                obj,
-                move |_, _| {
-                    let builder = Builder::from_resource("/ui/shortcuts.ui");
-                    let shortcuts_window: ShortcutsWindow = builder
-                        .object("help_overlay")
-                        .expect("shortcuts.ui to have at least one object help_overlay");
-                    shortcuts_window.set_transient_for(Some(&window));
-                    shortcuts_window.present();
-                }
-            ));
-
             let actions = SimpleActionGroup::new();
             obj.insert_action_group("win", Some(&actions));
             actions.add_action(&action_settings);
             actions.add_action(&action_about);
-            actions.add_action(&action_show_help_overlay);
 
             let action_journey_list_bookmark = SimpleAction::new("bookmark", None);
             action_journey_list_bookmark.connect_activate(clone!(

@@ -20,8 +20,6 @@
     <file preprocess="xml-stripblanks">ui/indicator_icons.ui</file>
     <file preprocess="xml-stripblanks">ui/frequency_label.ui</file>
 
-    <file preprocess="xml-stripblanks">ui/shortcuts.ui</file>
-
     <file preprocess="xml-stripblanks">ui/alt_label.ui</file>
     <file preprocess="xml-stripblanks">ui/date_time_picker.ui</file>
     <file preprocess="xml-stripblanks">ui/station_entry.ui</file>
@@ -33,6 +31,8 @@
     <file compressed="true">style.css</file>
     <file compressed="true">style-hc.css</file>
     <file preprocess="xml-stripblanks">@app-id@.metainfo.xml</file>
+
+    <file preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts_dialog.ui</file>
   </gresource>
   <gresource prefix="/de/schmidhuberj/DieBahn/icons/scalable/apps/">
     <file alias="circle-outline-thick-symbolic.svg">../icons/timeline/circle-outline-thick-symbolic.svg</file>

@@ -1,0 +1,47 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ShortcutsDialog shortcuts_dialog {
+  Adw.ShortcutsSection {
+    title: _("Application");
+
+    Adw.ShortcutsItem {
+      accelerator: '<Control>s';
+      title: _("Bookmark Search");
+    }
+
+    Adw.ShortcutsItem {
+      accelerator: '<Control>d';
+      title: _("Bookmark Trip");
+    }
+
+    Adw.ShortcutsItem {
+      accelerator: '<Control>r';
+      title: _("Reload Trip");
+    }
+  }
+
+  Adw.ShortcutsSection {
+    title: _("General");
+
+    Adw.ShortcutsItem {
+      action-name: 'window.close';
+      title: _("Quit");
+    }
+
+    Adw.ShortcutsItem {
+      action-name: 'app.shortcuts';
+      title: _("Show Shortcuts");
+    }
+
+    Adw.ShortcutsItem {
+      action-name: 'win.settings';
+      title: _("Show Preferences");
+    }
+
+    Adw.ShortcutsItem {
+      accelerator: 'F10';
+      title: _("Open Menu");
+    }
+  }
+}
