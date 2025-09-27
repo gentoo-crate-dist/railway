@@ -71,6 +71,7 @@ impl Window {
 pub mod imp {
     use std::cell::RefCell;
 
+    use gdk::gio::ActionEntryBuilder;
     use gdk::gio::SimpleAction;
     use gdk::gio::SimpleActionGroup;
     use gdk::glib::ParamSpec;
@@ -157,48 +158,49 @@ pub mod imp {
             self.obj().load_window_size();
         }
 
-        fn setup_actions(&self, obj: &super::Window) {
-            let action_settings = SimpleAction::new("settings", None);
-            action_settings.connect_activate(clone!(
-                #[weak(rename_to = window)]
-                obj,
-                move |_, _| {
-                    let settings = PreferencesDialog::new();
-                    settings.present(Some(&window));
-                }
-            ));
-            let action_about = SimpleAction::new("about", None);
-            action_about.connect_activate(clone!(
-                #[weak(rename_to = window)]
-                obj,
-                move |_, _| {
-                    let about_dialog = libadwaita::AboutDialog::from_appdata(
-                        &(config::RESOURCES_PATH.to_owned() + config::APP_ID + ".metainfo.xml"),
-                        Some(env!("CARGO_PKG_VERSION")),
-                    );
+        fn setup_actions(&self) {
+            let obj = self.obj();
+            let action_settings = ActionEntryBuilder::new("settings")
+                .activate(clone!(
+                    #[weak(rename_to = window)]
+                    obj,
+                    move |_, _, _| {
+                        let settings = PreferencesDialog::new();
+                        settings.present(Some(&window));
+                    }
+                ))
+                .build();
+            let action_about = ActionEntryBuilder::new("about")
+                .activate(clone!(
+                    #[weak(rename_to = window)]
+                    obj,
+                    move |_, _, _| {
+                        let about_dialog = libadwaita::AboutDialog::from_appdata(
+                            &(config::RESOURCES_PATH.to_owned() + config::APP_ID + ".metainfo.xml"),
+                            Some(env!("CARGO_PKG_VERSION")),
+                        );
 
-                    about_dialog.set_comments(env!("CARGO_PKG_DESCRIPTION"));
-                    about_dialog.set_developers(
-                        &(env!("CARGO_PKG_AUTHORS").split(':').collect::<Vec<&str>>()),
-                    );
-                    // translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-                    about_dialog.set_translator_credits(&gettextrs::gettext("translator-credits"));
-                    about_dialog.set_designers(&["Tobias Bernard"]);
-                    about_dialog.add_credit_section(
-                        Some(&gettextrs::gettext("Source Translation Supported by")),
-                        &["Sydney Sharpe"],
-                    );
-                    about_dialog
-                        .add_link("GitLab", "https://gitlab.com/schmiddi-on-mobile/railway");
+                        about_dialog.set_comments(env!("CARGO_PKG_DESCRIPTION"));
+                        about_dialog.set_developers(
+                            &(env!("CARGO_PKG_AUTHORS").split(':').collect::<Vec<&str>>()),
+                        );
+                        about_dialog
+                            // translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
+                            .set_translator_credits(&gettextrs::gettext("translator-credits"));
+                        about_dialog.set_designers(&["Tobias Bernard"]);
+                        about_dialog.add_credit_section(
+                            Some(&gettextrs::gettext("Source Translation Supported by")),
+                            &["Sydney Sharpe"],
+                        );
+                        about_dialog
+                            .add_link("GitLab", "https://gitlab.com/schmiddi-on-mobile/railway");
 
-                    about_dialog.present(Some(&window));
-                }
-            ));
+                        about_dialog.present(Some(&window));
+                    }
+                ))
+                .build();
 
-            let actions = SimpleActionGroup::new();
-            obj.insert_action_group("win", Some(&actions));
-            actions.add_action(&action_settings);
-            actions.add_action(&action_about);
+            obj.add_action_entries([action_settings, action_about]);
 
             let action_journey_list_bookmark = SimpleAction::new("bookmark", None);
             action_journey_list_bookmark.connect_activate(clone!(
@@ -396,9 +398,8 @@ pub mod imp {
 
     impl ObjectImpl for Window {
         fn constructed(&self) {
-            let obj = self.obj();
             self.parent_constructed();
-            self.setup_actions(&obj);
+            self.setup_actions();
             self.setup();
         }
 
