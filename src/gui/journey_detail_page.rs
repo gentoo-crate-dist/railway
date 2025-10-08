@@ -14,10 +14,6 @@ impl JourneyDetailPage {
         self.imp().reload(self);
     }
 
-    fn set_refresh_in_progress(&self, b: bool) {
-        self.set_property("refresh-in-progress", b)
-    }
-
     fn journey(&self) -> Option<Journey> {
         self.property("journey")
     }
@@ -29,6 +25,7 @@ pub mod imp {
 
     use chrono::Local;
     use gdk::glib::clone;
+    use gdk::glib::BoxedAnyObject;
     use gdk::glib::JoinHandle;
     use gdk::glib::MainContext;
     use gdk::glib::ParamSpec;
@@ -42,14 +39,15 @@ pub mod imp {
     use gtk::template_callbacks;
     use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
-    use rcore::RefreshJourneyOptions;
 
     use chrono::Duration;
 
     use crate::backend::Client;
+    use crate::backend::Event;
     use crate::backend::Journey;
     use crate::backend::Leg;
     use crate::backend::Place;
+    use crate::backend::Timer;
     use crate::gui::leg_item::LegItem;
     use crate::gui::transition::Transition;
     use crate::gui::utility::Utility;
@@ -63,12 +61,13 @@ pub mod imp {
         #[template_child]
         label_last_refreshed: TemplateChild<gtk::Label>,
 
-        refresh_in_progress: Cell<bool>,
+        show_live_box: Cell<bool>,
 
         journey: RefCell<Option<Journey>>,
 
         load_handle: RefCell<Option<JoinHandle<()>>>,
 
+        pub(super) timer: RefCell<Timer>,
         client: RefCell<Option<Client>>,
     }
 
@@ -87,35 +86,12 @@ pub mod imp {
                     let journey = obj.journey();
 
                     if let Some(journey) = journey {
-                        obj.set_refresh_in_progress(true);
-                        let result_journey = obj
-                            .property::<Client>("client")
-                            .refresh_journey(
-                                &journey,
-                                RefreshJourneyOptions {
-                                    stopovers: true,
-                                    language: Some(Utility::language_code()),
-                                    ..Default::default()
-                                },
-                            )
-                            .await;
-                        if let Ok(result_journey) = result_journey {
-                            obj.set_property("journey", result_journey);
-                            obj.imp().update_last_refreshed();
-                        } else {
-                            window.display_error_toast(result_journey.expect_err("A error"));
+                        if let Err(e) = journey.refresh().await {
+                            window.display_error_toast(e);
                         }
-                        obj.set_refresh_in_progress(false);
                     }
                 }
             ));
-        }
-
-        fn update_last_refreshed(&self) {
-            self.label_last_refreshed.set_label(
-                &gettextrs::gettext("Last refreshed {}")
-                    .replace("{}", &Utility::format_time_human(&Local::now().time())),
-            )
         }
     }
 
@@ -124,6 +100,18 @@ pub mod imp {
         #[template_callback(function)]
         fn format_source_destination(source: &str, destination: &str) -> String {
             format!("{source} → {destination}")
+        }
+
+        #[template_callback(function)]
+        fn format_last_refreshed(last_refreshed: Option<&str>) -> Option<String> {
+            last_refreshed.map(|s| format!("Last refreshed {}", s))
+        }
+
+        #[template_callback(function)]
+        fn live_banner_title(event: Option<BoxedAnyObject>) -> Option<String> {
+            let binding = event.as_ref().map(|e| e.borrow());
+            let event: Option<&Event> = binding.as_deref();
+            event.map(|e| e.format_at_time(Local::now()))
         }
 
         async fn setup(&self, redo: bool) {
@@ -320,8 +308,9 @@ pub mod imp {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
                     ParamSpecObject::builder::<Journey>("journey").build(),
+                    ParamSpecBoolean::builder("show-live-box").build(),
                     ParamSpecObject::builder::<Client>("client").build(),
-                    ParamSpecBoolean::builder("refresh-in-progress").build(),
+                    ParamSpecObject::builder::<Timer>("timer").build(),
                 ]
             });
             PROPERTIES.as_ref()
@@ -330,6 +319,10 @@ pub mod imp {
         fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "journey" => {
+                    if let Some(old) = self.journey.borrow().as_ref() {
+                        self.timer.borrow().unregister_minutely(old.clone());
+                    }
+
                     let obj = value.get::<Option<Journey>>().expect(
                         "Property `journey` of `JourneyDetailPage` has to be of type `Journey`",
                     );
@@ -338,7 +331,7 @@ pub mod imp {
                     let redo = obj.as_ref().map(|j| j.id())
                         != self.journey.borrow().as_ref().map(|j| j.id());
 
-                    self.journey.replace(obj);
+                    self.journey.replace(obj.clone());
 
                     // Ensure the load is not called twice at the same time by aborting the old one if needed.
                     if let Some(handle) = self.load_handle.replace(None) {
@@ -351,14 +344,28 @@ pub mod imp {
                         glib::Priority::LOW
                     );
 
+                    if let Some(obj) = obj {
+                        if self.obj().property("show-live-box") {
+                            self.timer.borrow().register_minutely(obj);
+                        }
+                    }
+
                     self.load_handle.replace(Some(handle));
                 }
-                "refresh-in-progress" => {
+                "show-live-box" => {
                     let obj = value.get::<bool>().expect(
-                        "Property `refresh-in-progress` of `JourneyDetailPage` has to be of type `bool`",
+                        "Property `show-live-box` of `JourneyDetailPage` has to be of type `bool`",
                     );
 
-                    self.refresh_in_progress.replace(obj);
+                    if let Some(journey) = self.obj().property("journey") {
+                        if obj {
+                            self.timer.borrow().register_minutely(journey)
+                        } else {
+                            self.timer.borrow().unregister_minutely(journey)
+                        }
+                    }
+
+                    self.show_live_box.replace(obj);
                 }
                 "client" => {
                     let obj = value.get::<Option<Client>>().expect(
@@ -367,6 +374,13 @@ pub mod imp {
 
                     self.client.replace(obj);
                 }
+                "timer" => {
+                    let obj = value.get::<Timer>().expect(
+                        "Property `timer` of `JourneyDetailPage` has to be of type `timer`",
+                    );
+
+                    self.timer.replace(obj);
+                }
                 _ => unimplemented!(),
             }
         }
@@ -374,8 +388,9 @@ pub mod imp {
         fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "journey" => self.journey.borrow().to_value(),
-                "refresh-in-progress" => self.refresh_in_progress.get().to_value(),
+                "show-live-box" => self.show_live_box.get().to_value(),
                 "client" => self.client.borrow().to_value(),
+                "timer" => self.timer.borrow().to_value(),
                 _ => unimplemented!(),
             }
         }
