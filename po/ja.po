@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-26 12:03+0200\n"
+"POT-Creation-Date: 2025-09-28 01:28+0200\n"
 "PO-Revision-Date: 2024-07-28 16:29+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/schmiddi-on-"
@@ -20,24 +20,25 @@ msgstr ""
 "X-Generator: Weblate 5.7-dev\n"
 
 #. Translators: The name of the application.
-#: data/de.schmidhuberj.DieBahn.desktop.in.in:5
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:4
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
-#: data/resources/ui/window.blp:6
+#: data/resources/ui/window.blp:6 data/resources/ui/window.blp:50
 msgid "Railway"
 msgstr "Railway"
 
-#. Translators: The keywords from the desktop file.
-#: data/de.schmidhuberj.DieBahn.desktop.in.in:10
-msgid "train;railway;journey;planner;timetables;"
-msgstr "train;railway;journey;planner;timetables;電車;鉄道;列車;旅;時刻表;"
-
 #. Translators: The summary of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
 msgstr "あらゆる旅行情報を検索"
 
+#. Translators: The keywords from the desktop file.
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:12
+msgid "train;railway;journey;planner;timetables;"
+msgstr "train;railway;journey;planner;timetables;電車;鉄道;列車;旅;時刻表;"
+
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:35
 msgid ""
 "Railway lets you look up travel information across networks and borders "
 "without having to navigate through different websites. Due to the adaptive "
@@ -48,93 +49,93 @@ msgstr ""
 "画や、外出先でのモバイル利用にも適しています。"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:43
 msgid "View your tripsʼ details including platforms and delays"
 msgstr "プラットフォームや遅延など、乗車の詳細を表示する"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:47
 msgid "Bookmark current and future trips as well as frequent search"
 msgstr "現在および将来の旅行をブックマークし、頻繁に検索する"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:51
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr "交通手段によるフィルタリングなど、高度な検索オプションを利用する"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:56
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
 msgstr ""
 "世界中のネットワークのためのものですが、ほとんどがヨーロッパのものです。"
 
 #. Translators: Subtitle of the screenshot in the metainfo
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:277
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:346
 msgid "Application Overview"
 msgstr "アプリケーションの外観"
 
-#: data/resources/ui/date_time_picker.blp:20
+#: data/resources/ui/date_time_picker.blp:11
 msgid "Departure"
 msgstr "出発"
 
-#: data/resources/ui/date_time_picker.blp:33
+#: data/resources/ui/date_time_picker.blp:16
 msgid "Arrival"
 msgstr "到着"
 
-#: data/resources/ui/date_time_picker.blp:53
+#: data/resources/ui/date_time_picker.blp:34
 msgid "Input date"
 msgstr "日付を入力"
 
-#: data/resources/ui/date_time_picker.blp:60
+#: data/resources/ui/date_time_picker.blp:42
 msgid "Date"
 msgstr "日付"
 
-#: data/resources/ui/date_time_picker.blp:96
+#: data/resources/ui/date_time_picker.blp:78
 msgid "Input time"
 msgstr "時間を入力"
 
-#: data/resources/ui/date_time_picker.blp:104
+#: data/resources/ui/date_time_picker.blp:87
 msgid "Time"
 msgstr "時間"
 
-#: data/resources/ui/date_time_picker.blp:159 src/gui/date_time_picker.rs:122
+#: data/resources/ui/date_time_picker.blp:142
 msgid "Now"
 msgstr "現在"
 
-#: data/resources/ui/journey_detail_page.blp:51
+#: data/resources/ui/journey_detail_page.blp:56
 msgid "Total Travel Time"
 msgstr "移動時間合計"
 
-#: data/resources/ui/journey_detail_page.blp:64
+#: data/resources/ui/journey_detail_page.blp:70
 msgid "Trip Segments"
 msgstr "旅行区間"
 
-#: data/resources/ui/journey_detail_page.blp:78
+#: data/resources/ui/journey_detail_page.blp:84
 msgid "Choose a Trip"
 msgstr "旅行を選択"
 
-#: data/resources/ui/journeys_page.blp:98
+#: data/resources/ui/journeys_page.blp:95
 msgid "Search for Trips"
 msgstr "旅行を検索"
 
-#: data/resources/ui/leg_item.blp:124
+#: data/resources/ui/leg_item.blp:128
 msgid "Show Stops"
 msgstr "停車駅を表示"
 
-#: data/resources/ui/leg_item.blp:127
+#: data/resources/ui/leg_item.blp:131
 msgid "Show Intermediate Stops"
 msgstr "途中停車駅を表示"
 
-#: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
+#: data/resources/ui/leg_item.blp:180 data/resources/ui/leg_item.blp:188
 msgid "Show Announcements"
 msgstr "お知らせを表示"
 
-#: data/resources/ui/leg_item.blp:195
+#: data/resources/ui/leg_item.blp:203
 msgid "Announcements"
 msgstr "お知らせ"
 
-#: data/resources/ui/leg_item.blp:222
+#: data/resources/ui/leg_item.blp:230
 msgid "Stops"
 msgstr "停車駅"
 
@@ -187,64 +188,67 @@ msgstr "割引カード"
 msgid "Class"
 msgstr "クラス"
 
-#: data/resources/ui/search_options_dialog.blp:25
+#: data/resources/ui/search_options_dialog.blp:22
 msgid "First Class"
 msgstr "ファーストクラス"
 
-#: data/resources/ui/search_options_dialog.blp:30
+#: data/resources/ui/search_options_dialog.blp:27
 msgid "Second Class"
 msgstr "普通クラス"
 
-#: data/resources/ui/search_options_dialog.blp:37
-#: src/gui/search_options_button.rs:190
+#: data/resources/ui/search_options_dialog.blp:33
 msgid "Bike Accessible"
 msgstr "自転車利用可"
 
-#: data/resources/ui/search_options_dialog.blp:42
+#: data/resources/ui/search_options_dialog.blp:38
 msgid "Minimum Transfer Time"
 msgstr "最低乗り換え時間"
 
-#: data/resources/ui/search_options_dialog.blp:47
+#: data/resources/ui/search_options_dialog.blp:43
 msgid "Direct Connections Only"
 msgstr "直接接続のみ"
 
-#: data/resources/ui/search_options_dialog.blp:52
+#: data/resources/ui/search_options_dialog.blp:48
 msgid "Modes of Transport"
 msgstr "交通手段"
 
-#: data/resources/ui/search_options_dialog.blp:55
-msgid "High Speed Train"
-msgstr "高速鉄道"
+#: data/resources/ui/search_options_dialog.blp:60
+#, fuzzy
+#| msgid "Regional Train"
+msgid "Mainline Train"
+msgstr "中距離列車"
 
-#: data/resources/ui/search_options_dialog.blp:59
+#: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "中距離列車"
 
-#: data/resources/ui/search_options_dialog.blp:63
-msgid "Suburban Trains"
+#: data/resources/ui/search_options_dialog.blp:70
+#, fuzzy
+#| msgid "Suburban Trains"
+msgid "S-Bahn Train"
 msgstr "郊外電車"
 
-#: data/resources/ui/search_options_dialog.blp:67
+#: data/resources/ui/search_options_dialog.blp:75
 msgid "Bus"
 msgstr "バス"
 
-#: data/resources/ui/search_options_dialog.blp:71
+#: data/resources/ui/search_options_dialog.blp:80
 msgid "Ferry"
 msgstr "フェリー"
 
-#: data/resources/ui/search_options_dialog.blp:75
+#: data/resources/ui/search_options_dialog.blp:85
 msgid "Subway"
 msgstr "地下鉄"
 
-#: data/resources/ui/search_options_dialog.blp:79
+#: data/resources/ui/search_options_dialog.blp:90
 msgid "Tram"
 msgstr "市電"
 
-#: data/resources/ui/search_options_dialog.blp:83
+#: data/resources/ui/search_options_dialog.blp:95
 msgid "Cablecar"
 msgstr "ケーブルカー"
 
-#: data/resources/ui/search_options_dialog.blp:87
+#: data/resources/ui/search_options_dialog.blp:100
 msgid "Taxi"
 msgstr "タクシー"
 
@@ -257,15 +261,15 @@ msgid "To"
 msgstr "到着"
 
 #: data/resources/ui/search_page.blp:51 data/resources/ui/search_page.blp:72
-#: data/resources/ui/window.blp:31
+#: data/resources/ui/window.blp:44
 msgid "Search"
 msgstr "検索"
 
-#: data/resources/ui/search_page.blp:90
+#: data/resources/ui/search_page.blp:89
 msgid "Bookmarked Trips"
 msgstr "ブックマークされた旅行"
 
-#: data/resources/ui/search_page.blp:105
+#: data/resources/ui/search_page.blp:104
 msgid "Bookmarked Searches"
 msgstr "ブックマークされた検索"
 
@@ -305,278 +309,51 @@ msgstr "メニューを開く"
 msgid "Swap Start and Destination"
 msgstr "出発地と目的地を入れ替え"
 
-#: data/resources/ui/window.blp:42 data/resources/ui/window.blp:49
+#: data/resources/ui/window.blp:55 data/resources/ui/window.blp:62
 msgid "Select Network"
 msgstr "ネットワークを選択"
 
-#: data/resources/ui/window.blp:72
+#: data/resources/ui/window.blp:85
 msgid "Main Menu"
 msgstr "メインメニュー"
 
-#: data/resources/ui/window.blp:91
+#: data/resources/ui/window.blp:104
 msgid "Connections"
 msgstr "接続"
 
-#: data/resources/ui/window.blp:104
+#: data/resources/ui/window.blp:117
 msgid "Bookmark This Search"
 msgstr "この検索をブックマークする"
 
-#: data/resources/ui/window.blp:116
+#: data/resources/ui/window.blp:131
 msgid "Trip Details"
 msgstr "旅行の詳細"
 
-#: data/resources/ui/window.blp:125
+#: data/resources/ui/window.blp:140
 msgid "Refresh This Trip"
 msgstr "この旅行を更新"
 
-#: data/resources/ui/window.blp:136
+#: data/resources/ui/window.blp:153
 msgid "Bookmark This Trip"
 msgstr "この旅行をブックマークする"
 
-#: data/resources/ui/window.blp:164
+#: data/resources/ui/window.blp:166
+#, fuzzy
+#| msgid "Refresh This Trip"
+msgid "Watch this Trip"
+msgstr "この旅行を更新"
+
+#: data/resources/ui/window.blp:199
 msgid "Preferences"
 msgstr "設定"
 
-#: data/resources/ui/window.blp:169
+#: data/resources/ui/window.blp:204
 msgid "Keyboard Shortcuts"
 msgstr "キーボードショートカット"
 
-#: data/resources/ui/window.blp:174
+#: data/resources/ui/window.blp:209
 msgid "_About Railway"
 msgstr "Railway について(_A)"
-
-#: src/gui/indicator_icons.rs:135
-msgid "High Load"
-msgstr "混雑"
-
-#: src/gui/indicator_icons.rs:142
-msgid "Very High Load"
-msgstr "かなりの混雑"
-
-#: src/gui/indicator_icons.rs:149
-msgid "Exceptionally High Load"
-msgstr "非常に混雑"
-
-#: src/gui/indicator_icons.rs:165
-msgid "On Time"
-msgstr "時間通り"
-
-#: src/gui/indicator_icons.rs:172
-msgid "Minor Delays"
-msgstr "わずかな遅れ"
-
-#: src/gui/indicator_icons.rs:179
-msgid "Delayed"
-msgstr "遅れ"
-
-#: src/gui/indicator_icons.rs:186
-msgid "Very Delayed"
-msgstr "かなりの遅れ"
-
-#: src/gui/indicator_icons.rs:193
-msgid "Extremely Delayed"
-msgstr "大幅な遅れ"
-
-#: src/gui/indicator_icons.rs:209
-msgid "Platform Changes"
-msgstr "番線変更"
-
-#: src/gui/indicator_icons.rs:228
-msgid "Connection Not Possible"
-msgstr "接続不可能"
-
-#: src/gui/indicator_icons.rs:246
-msgid "Cancelled"
-msgstr "運休"
-
-#: src/gui/stores/journey_store.rs:122
-msgid "A bookmarked trip ended recently."
-msgstr "ブックマークしていた旅行が最近終わった。"
-
-#: src/gui/stores/journey_store.rs:134
-msgid "Always _Delete"
-msgstr "常に削除(_D)"
-
-#: src/gui/search_page.rs:117
-msgid "Start and destination are missing"
-msgstr "出発地と目的地が未指定"
-
-#: src/gui/search_page.rs:118
-msgid "Start is missing"
-msgstr "出発地が未指定"
-
-#: src/gui/search_page.rs:119
-msgid "Destination is missing"
-msgstr "目的地が未指定"
-
-#: src/gui/search_page.rs:120
-msgid "Search ongoing"
-msgstr "検索中"
-
-#: src/gui/journey_detail_page.rs:108
-msgid "Last refreshed {}"
-msgstr "最後の更新 {}"
-
-#. Translators: Do not translate the strings in {}.
-#: src/gui/transition.rs:90
-msgid "Arrive at {destination}."
-msgstr "{destination}に到着する。"
-
-#: src/gui/transition.rs:212
-msgid "Walk {walk} Wait {wait}"
-msgstr "徒歩 {walk} 待ち {wait}"
-
-#: src/gui/transition.rs:217
-msgid "Transfer Time {}"
-msgstr "乗り換え時間 {}"
-
-#: src/gui/transition.rs:221
-msgid "Walk {}"
-msgstr "徒歩 {}"
-
-#: src/gui/transition.rs:224
-msgid "Transfer"
-msgstr "乗り換え"
-
-#. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:228
-msgid "{} min"
-msgstr "{} 分"
-
-#. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:84
-msgid "%_H h %_M min"
-msgstr "%_H 時間 %_M 分"
-
-#: src/gui/utility.rs:95
-msgid " %_d day %_H h %_M min"
-msgid_plural "%_d days %_H h %_M min"
-msgstr[0] "%_d 日 %_H 時間 %_M 分"
-
-#. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:106
-msgid "{} min."
-msgstr "{} 分"
-
-#. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:110
-msgid "{} hrs."
-msgstr "{} 時間"
-
-#. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:119
-msgid "%-H hrs. %-M min."
-msgstr "%-H 時間 %-M 分"
-
-#: src/gui/utility.rs:131
-msgid "%-d day %-H hrs. %-M min."
-msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] "%-d 日 %-H 時間 %-M 分"
-
-#. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:141
-msgid "%H:%M"
-msgstr "%H:%M"
-
-#: src/gui/utility.rs:147 src/gui/date_time_picker.rs:110
-msgid "Today"
-msgstr "今日"
-
-#: src/gui/utility.rs:149
-msgid "Tomorrow"
-msgstr "明日"
-
-#: src/gui/utility.rs:151
-msgid "Yesterday"
-msgstr "昨日"
-
-#. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:154
-msgid "%a, %d. %B"
-msgstr "%B%d日 (%a)"
-
-#. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:157
-msgid "%Y-%m-%d"
-msgstr "%Y-%m-%d"
-
-#: src/gui/preferences_dialog.rs:60
-msgid "{} h"
-msgid_plural "{} h"
-msgstr[0] "{} 時間"
-
-#: src/gui/search_options_button.rs:75
-msgid "None"
-msgstr "なし"
-
-#: src/gui/search_options_button.rs:76
-msgid "BahnCard 25, 1st class"
-msgstr "BahnCard 25, ファーストクラス"
-
-#: src/gui/search_options_button.rs:77
-msgid "BahnCard 25, 2nd class"
-msgstr "BahnCard 25, 普通席"
-
-#: src/gui/search_options_button.rs:78
-msgid "BahnCard 50, 1st class"
-msgstr "BahnCard 50, ファーストクラス"
-
-#: src/gui/search_options_button.rs:79
-msgid "BahnCard 50, 2nd class"
-msgstr "BahnCard 50, 普通席"
-
-#: src/gui/search_options_button.rs:80
-msgid "A – VORTEILScard (with RAILPLUS)"
-msgstr "オーストリア – VORTEILScard (RAILPLUS 付き)"
-
-#: src/gui/search_options_button.rs:81
-msgid "CH – HalbtaxAbo (with RAILPLUS)"
-msgstr "チェコ – HalbtaxAbo (RAILPLUS 付き)"
-
-#: src/gui/search_options_button.rs:82
-msgid "CH – HalbtaxAbo (without RAILPLUS)"
-msgstr "チェコ – HalbtaxAbo (RAILPLUS なし)"
-
-#: src/gui/search_options_button.rs:85
-msgid "NL – Voordeelurenabo (with RAILPLUS)"
-msgstr "オランダ – Voordeelurenabo (RAILPLUS 付き)"
-
-#: src/gui/search_options_button.rs:89
-msgid "NL – Voordeelurenabo (without RAILPLUS)"
-msgstr "オランダ – Voordeelurenabo (RAILPLUS なし)"
-
-#: src/gui/search_options_button.rs:91
-msgid "SH-Card"
-msgstr "SH-カード"
-
-#: src/gui/search_options_button.rs:92
-msgid "CH – General-Abonnement"
-msgstr "チェコ – 一般購読"
-
-#: src/gui/search_options_button.rs:99
-msgid "Unknown"
-msgstr "不明"
-
-#: src/gui/search_options_button.rs:137
-msgid "1st class"
-msgstr "ファーストクラス"
-
-#: src/gui/search_options_button.rs:139
-msgid "2nd class"
-msgstr "普通席"
-
-#: src/gui/search_options_button.rs:182
-msgid "Regional Only"
-msgstr "区間のみ"
-
-#: src/gui/search_options_button.rs:185
-msgid "Selected Modes of Transport"
-msgstr "選択された交通手段"
-
-#: src/gui/search_options_button.rs:197
-msgid "Direct Connection"
-msgstr "直接接続"
 
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
@@ -594,185 +371,303 @@ msgstr "追加情報"
 msgid "An unknown issue occured. Please share feedback."
 msgstr "不明な問題が発生しました。フィードバックを共有してください。"
 
-#: src/gui/error.rs:39
+#: src/gui/error.rs:42
 msgid "Error"
 msgstr "エラー"
 
-#: src/gui/error.rs:43
+#: src/gui/error.rs:46
 msgid "_Close"
 msgstr "閉じる(_C)"
 
-#. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
-#. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
-#: src/gui/date_time_picker.rs:114
-msgid "%a %b %d"
-msgstr "%b%d日 (%a)"
-
-#: src/gui/journey_list_item.rs:45
-msgid "{} change"
-msgid_plural "{} changes"
-msgstr[0] "{} 変更"
-
-#. Translators: changes_text is the plural-aware string "{} change" already
-#: src/gui/journey_list_item.rs:49
-msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr "{changes_text}で{travel_time}に{departure}から{arrival}まで"
-
-#. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
-#: src/gui/leg_item.rs:73
-msgid "{train} in the direction of {destination}"
-msgstr "{destination}方向の{train}"
-
-#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:90
-msgid "Depart {start} from platform {platform} at {departure}."
-msgstr "{start}に{platform}番線で{departure}に出発してください."
-
-#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:94
-msgid "Depart {start} at {departure}."
-msgstr "{departure}に{start}から出発して。"
-
-#: src/gui/leg_item.rs:101
-msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr "{destination}の{platform}番線で{arrival}に到着します。"
-
-#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:106
-msgid "Arrive at {destination} at {arrival}."
-msgstr "{destination}で{arrival}に到着します。"
-
-#: src/gui/leg_item.rs:153
-msgid "{} Stop"
-msgid_plural "{} Stops"
-msgstr[0] "{} 停車駅"
-
-#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
-#: src/gui/intermediate_location_item.rs:67
-msgid "{stop} at {arrival} on platform {platform}"
-msgstr "{stop}の{platform}番線で{arrival}に"
-
-#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
-#: src/gui/intermediate_location_item.rs:70
-msgid "{stop} at {arrival}"
-msgstr "{stop}で{arrival}に"
-
-#. Translators: Text that will be announced by the screen reader when a suggestion was selected.
-#: src/gui/station_entry.rs:189
-msgid "Suggestion {} selected"
-msgstr "提案 {} を選択中"
-
-#. Translators: Text that will be announced by the screen reader when no selection was selected.
-#: src/gui/station_entry.rs:194
-msgid "No suggestion selected"
-msgstr "提案未選択"
-
-#. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
-#: src/gui/station_entry.rs:385
+#: src/gui/station_entry.rs:420
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
 msgstr[0] "{n} 件の提案、選択中の提案なし"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-#: src/gui/window.rs:179
+#: src/gui/window.rs:192
 msgid "translator-credits"
 msgstr ""
 "Niek Nooijens\n"
 "Ryo Nakano"
 
-#: src/gui/window.rs:181
+#: src/gui/window.rs:195
 msgid "Source Translation Supported by"
 msgstr "ソース翻訳のサポート"
 
-#. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
-#: src/gui/frequency_label.rs:91
-msgid "every ~{}"
-msgstr "{} 間隔"
-
-#. Translators: How to format the currency "Euro". Do not translate in {}.
-#: src/backend/price.rs:68
-msgid "€{amount}"
-msgstr "€{amount}"
-
-#. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
-#: src/backend/price.rs:74
-msgid "${amount}"
-msgstr "${amount}"
-
-#. Translators: How to format unknown currency "currency". Do not translate in {}.
-#: src/backend/price.rs:81
-msgid "{currency} {amount}"
-msgstr "{currency} {amount}"
-
-#. Hafas
-#. TODO: BVG, SNCB, SNCF, TPG
-#. Always shows "no provider"
-#. Provider::new(
-#. "DB-Busradar-Nrw",
-#. "DB Busradar NRW",
-#. // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-#. Some(&gettextrs::gettext("North Rhine-Westphalia")),
-#. &gettextrs::gettext("Germany"),
-#. true,
-#. ),
-#. Migrated endpoint to EFA
-#. Provider::new(
-#. "mobil-nrw",
-#. "mobil.nrw",
-#. // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-#. Some(&gettextrs::gettext("North Rhine-Westphalia")),
-#. &gettextrs::gettext("Germany"),
-#. true,
-#. ),
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
-#: src/backend/client.rs:25 src/backend/client.rs:27 src/backend/client.rs:32
-#: src/backend/client.rs:46 src/backend/client.rs:51 src/backend/client.rs:55
-#: src/backend/client.rs:56 src/backend/client.rs:67 src/backend/client.rs:73
-#: src/backend/client.rs:85 src/backend/client.rs:86 src/backend/client.rs:92
-#: src/backend/client.rs:93 src/backend/client.rs:104 src/backend/client.rs:117
-#: src/backend/client.rs:124 src/backend/client.rs:134
-#: src/backend/client.rs:135 src/backend/client.rs:136
-#: src/backend/client.rs:137 src/backend/client.rs:142
+#: src/backend/client.rs:29 src/backend/client.rs:80 src/backend/client.rs:87
+#: src/backend/client.rs:108 src/backend/client.rs:131
+#: src/backend/client.rs:139 src/backend/client.rs:167
+#: src/backend/client.rs:174 src/backend/client.rs:195
+#: src/backend/client.rs:196 src/backend/client.rs:217
+#: src/backend/client.rs:232 src/backend/client.rs:239
+#: src/backend/client.rs:253 src/backend/client.rs:267
+#: src/backend/client.rs:274 src/backend/client.rs:281
 msgid "Germany"
 msgstr "ドイツ"
 
-#: src/backend/client.rs:26 src/backend/client.rs:35 src/backend/client.rs:36
+#: src/backend/client.rs:36 src/backend/client.rs:57 src/backend/client.rs:64
 msgid "North America"
 msgstr "北米"
 
-#. Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
-#. Search.ch
-#: src/backend/client.rs:54 src/backend/client.rs:57 src/backend/client.rs:80
-#: src/backend/client.rs:83 src/backend/client.rs:84 src/backend/client.rs:87
-#: src/backend/client.rs:100 src/backend/client.rs:103
-#: src/backend/client.rs:110 src/backend/client.rs:131
-#: src/backend/client.rs:145 src/backend/client.rs:146
-#: src/backend/client.rs:150
+#: src/backend/client.rs:43 src/backend/client.rs:50 src/backend/client.rs:94
+#: src/backend/client.rs:115 src/backend/client.rs:160
+#: src/backend/client.rs:181 src/backend/client.rs:188
+#: src/backend/client.rs:305
 msgid "Europe"
 msgstr "ヨーロッパ"
 
-#. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
-#: src/backend/client.rs:72
-msgid "Schleswig-Holstein"
-msgstr "シュレースヴィヒ ホルシュタイン州"
-
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
-#: src/backend/client.rs:109
+#: src/backend/client.rs:101 src/backend/client.rs:146
+#: src/backend/client.rs:153 src/backend/client.rs:203
+#: src/backend/client.rs:210 src/backend/client.rs:224
+#: src/backend/client.rs:225 src/backend/client.rs:246
+#: src/backend/client.rs:260 src/backend/client.rs:288
+#: src/backend/client.rs:295
 msgid "Austria"
 msgstr "オーストリア"
 
-#: src/backend/client.rs:154
+#. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
+#: src/backend/client.rs:138
+msgid "Schleswig-Holstein"
+msgstr "シュレースヴィヒ ホルシュタイン州"
+
+#: src/backend/client.rs:311
 msgid "Worldwide (beta)"
 msgstr "全世界 (ベータ機能)"
 
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
-#: src/backend/client.rs:156
+#: src/backend/client.rs:313
 msgid "Using Transitous"
 msgstr "Transitous を使用"
 
-#: src/backend/leg.rs:130
-msgid "Walk"
-msgstr "徒歩"
+#~ msgid "High Speed Train"
+#~ msgstr "高速鉄道"
+
+#~ msgid "High Load"
+#~ msgstr "混雑"
+
+#~ msgid "Very High Load"
+#~ msgstr "かなりの混雑"
+
+#~ msgid "Exceptionally High Load"
+#~ msgstr "非常に混雑"
+
+#~ msgid "On Time"
+#~ msgstr "時間通り"
+
+#~ msgid "Minor Delays"
+#~ msgstr "わずかな遅れ"
+
+#~ msgid "Delayed"
+#~ msgstr "遅れ"
+
+#~ msgid "Very Delayed"
+#~ msgstr "かなりの遅れ"
+
+#~ msgid "Extremely Delayed"
+#~ msgstr "大幅な遅れ"
+
+#~ msgid "Platform Changes"
+#~ msgstr "番線変更"
+
+#~ msgid "Connection Not Possible"
+#~ msgstr "接続不可能"
+
+#~ msgid "Cancelled"
+#~ msgstr "運休"
+
+#~ msgid "A bookmarked trip ended recently."
+#~ msgstr "ブックマークしていた旅行が最近終わった。"
+
+#~ msgid "Always _Delete"
+#~ msgstr "常に削除(_D)"
+
+#~ msgid "Start and destination are missing"
+#~ msgstr "出発地と目的地が未指定"
+
+#~ msgid "Start is missing"
+#~ msgstr "出発地が未指定"
+
+#~ msgid "Destination is missing"
+#~ msgstr "目的地が未指定"
+
+#~ msgid "Search ongoing"
+#~ msgstr "検索中"
+
+#~ msgid "Last refreshed {}"
+#~ msgstr "最後の更新 {}"
+
+#~ msgid "Arrive at {destination}."
+#~ msgstr "{destination}に到着する。"
+
+#~ msgid "Walk {walk} Wait {wait}"
+#~ msgstr "徒歩 {walk} 待ち {wait}"
+
+#~ msgid "Transfer Time {}"
+#~ msgstr "乗り換え時間 {}"
+
+#~ msgid "Walk {}"
+#~ msgstr "徒歩 {}"
+
+#~ msgid "Transfer"
+#~ msgstr "乗り換え"
+
+#~ msgid "{} min"
+#~ msgstr "{} 分"
+
+#~ msgid "%_H h %_M min"
+#~ msgstr "%_H 時間 %_M 分"
+
+#~ msgid " %_d day %_H h %_M min"
+#~ msgid_plural "%_d days %_H h %_M min"
+#~ msgstr[0] "%_d 日 %_H 時間 %_M 分"
+
+#~ msgid "{} min."
+#~ msgstr "{} 分"
+
+#~ msgid "{} hrs."
+#~ msgstr "{} 時間"
+
+#~ msgid "%-H hrs. %-M min."
+#~ msgstr "%-H 時間 %-M 分"
+
+#~ msgid "%-d day %-H hrs. %-M min."
+#~ msgid_plural "%-d days %-H hrs. %-M min."
+#~ msgstr[0] "%-d 日 %-H 時間 %-M 分"
+
+#~ msgid "%H:%M"
+#~ msgstr "%H:%M"
+
+#~ msgid "Today"
+#~ msgstr "今日"
+
+#~ msgid "Tomorrow"
+#~ msgstr "明日"
+
+#~ msgid "Yesterday"
+#~ msgstr "昨日"
+
+#~ msgid "%a, %d. %B"
+#~ msgstr "%B%d日 (%a)"
+
+#~ msgid "%Y-%m-%d"
+#~ msgstr "%Y-%m-%d"
+
+#~ msgid "{} h"
+#~ msgid_plural "{} h"
+#~ msgstr[0] "{} 時間"
+
+#~ msgid "None"
+#~ msgstr "なし"
+
+#~ msgid "BahnCard 25, 1st class"
+#~ msgstr "BahnCard 25, ファーストクラス"
+
+#~ msgid "BahnCard 25, 2nd class"
+#~ msgstr "BahnCard 25, 普通席"
+
+#~ msgid "BahnCard 50, 1st class"
+#~ msgstr "BahnCard 50, ファーストクラス"
+
+#~ msgid "BahnCard 50, 2nd class"
+#~ msgstr "BahnCard 50, 普通席"
+
+#~ msgid "A – VORTEILScard (with RAILPLUS)"
+#~ msgstr "オーストリア – VORTEILScard (RAILPLUS 付き)"
+
+#~ msgid "CH – HalbtaxAbo (with RAILPLUS)"
+#~ msgstr "チェコ – HalbtaxAbo (RAILPLUS 付き)"
+
+#~ msgid "CH – HalbtaxAbo (without RAILPLUS)"
+#~ msgstr "チェコ – HalbtaxAbo (RAILPLUS なし)"
+
+#~ msgid "NL – Voordeelurenabo (with RAILPLUS)"
+#~ msgstr "オランダ – Voordeelurenabo (RAILPLUS 付き)"
+
+#~ msgid "NL – Voordeelurenabo (without RAILPLUS)"
+#~ msgstr "オランダ – Voordeelurenabo (RAILPLUS なし)"
+
+#~ msgid "SH-Card"
+#~ msgstr "SH-カード"
+
+#~ msgid "CH – General-Abonnement"
+#~ msgstr "チェコ – 一般購読"
+
+#~ msgid "Unknown"
+#~ msgstr "不明"
+
+#~ msgid "1st class"
+#~ msgstr "ファーストクラス"
+
+#~ msgid "2nd class"
+#~ msgstr "普通席"
+
+#~ msgid "Regional Only"
+#~ msgstr "区間のみ"
+
+#~ msgid "Selected Modes of Transport"
+#~ msgstr "選択された交通手段"
+
+#~ msgid "Direct Connection"
+#~ msgstr "直接接続"
+
+#~ msgid "%a %b %d"
+#~ msgstr "%b%d日 (%a)"
+
+#~ msgid "{} change"
+#~ msgid_plural "{} changes"
+#~ msgstr[0] "{} 変更"
+
+#~ msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
+#~ msgstr "{changes_text}で{travel_time}に{departure}から{arrival}まで"
+
+#~ msgid "{train} in the direction of {destination}"
+#~ msgstr "{destination}方向の{train}"
+
+#~ msgid "Depart {start} from platform {platform} at {departure}."
+#~ msgstr "{start}に{platform}番線で{departure}に出発してください."
+
+#~ msgid "Depart {start} at {departure}."
+#~ msgstr "{departure}に{start}から出発して。"
+
+#~ msgid "Arrive at {destination} on platform {platform} at {arrival}."
+#~ msgstr "{destination}の{platform}番線で{arrival}に到着します。"
+
+#~ msgid "Arrive at {destination} at {arrival}."
+#~ msgstr "{destination}で{arrival}に到着します。"
+
+#~ msgid "{} Stop"
+#~ msgid_plural "{} Stops"
+#~ msgstr[0] "{} 停車駅"
+
+#~ msgid "{stop} at {arrival} on platform {platform}"
+#~ msgstr "{stop}の{platform}番線で{arrival}に"
+
+#~ msgid "{stop} at {arrival}"
+#~ msgstr "{stop}で{arrival}に"
+
+#~ msgid "Suggestion {} selected"
+#~ msgstr "提案 {} を選択中"
+
+#~ msgid "No suggestion selected"
+#~ msgstr "提案未選択"
+
+#~ msgid "every ~{}"
+#~ msgstr "{} 間隔"
+
+#~ msgid "€{amount}"
+#~ msgstr "€{amount}"
+
+#~ msgid "${amount}"
+#~ msgstr "${amount}"
+
+#~ msgid "{currency} {amount}"
+#~ msgstr "{currency} {amount}"
+
+#~ msgid "Walk"
+#~ msgstr "徒歩"
 
 #~ msgid "Julian Schmidhuber"
 #~ msgstr "Julian Schmidhuber"

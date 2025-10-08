@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-26 12:03+0200\n"
+"POT-Creation-Date: 2025-09-28 01:28+0200\n"
 "PO-Revision-Date: 2025-04-20 15:57+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
@@ -20,24 +20,25 @@ msgstr ""
 "X-Generator: Weblate 5.11.1-dev\n"
 
 #. Translators: The name of the application.
-#: data/de.schmidhuberj.DieBahn.desktop.in.in:5
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:4
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
-#: data/resources/ui/window.blp:6
+#: data/resources/ui/window.blp:6 data/resources/ui/window.blp:50
 msgid "Railway"
 msgstr "ரயில்வே"
 
-#. Translators: The keywords from the desktop file.
-#: data/de.schmidhuberj.DieBahn.desktop.in.in:10
-msgid "train;railway;journey;planner;timetables;"
-msgstr "ரயில்; ரயில்வே; பயணம்; திட்டமிடுபவர்; கால அட்டவணைகள்;"
-
 #. Translators: The summary of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
 msgstr "உங்கள் பயணத் தகவல்களைக் கண்டறியவும்"
 
+#. Translators: The keywords from the desktop file.
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:12
+msgid "train;railway;journey;planner;timetables;"
+msgstr "ரயில்; ரயில்வே; பயணம்; திட்டமிடுபவர்; கால அட்டவணைகள்;"
+
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:35
 msgid ""
 "Railway lets you look up travel information across networks and borders "
 "without having to navigate through different websites. Due to the adaptive "
@@ -48,94 +49,93 @@ msgstr ""
 "பயணத்தின்போது உங்கள் பயணத்தை முன்கூட்டியே அல்லது மொபைலில் திட்டமிடுவது பொருத்தமானது:"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:43
 msgid "View your tripsʼ details including platforms and delays"
 msgstr "தளங்கள் மற்றும் தாமதங்கள் உள்ளிட்ட உங்கள் பயணங்களை காண்க"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:47
 msgid "Bookmark current and future trips as well as frequent search"
 msgstr "தற்போதைய மற்றும் எதிர்கால பயணங்கள் மற்றும் அடிக்கடி தேடல் புக்மார்க்கு"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:51
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr ""
 "போக்குவரத்து முறை மூலம் வடிகட்டுதல் போன்ற முன்கூட்டியே தேடல் விருப்பங்களைப் பயன்படுத்துங்கள்"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:56
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
-msgstr ""
-"உலகெங்கிலும் உள்ள நெட்வொர்க்குகளுக்காக, ஆனால் பெரும்பாலும் ஐரோப்பாவிலிருந்து."
+msgstr "உலகெங்கிலும் உள்ள நெட்வொர்க்குகளுக்காக, ஆனால் பெரும்பாலும் ஐரோப்பாவிலிருந்து."
 
 #. Translators: Subtitle of the screenshot in the metainfo
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:277
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:346
 msgid "Application Overview"
 msgstr "பயன்பாட்டு கண்ணோட்டம்"
 
-#: data/resources/ui/date_time_picker.blp:20
+#: data/resources/ui/date_time_picker.blp:11
 msgid "Departure"
 msgstr "புறப்படுதல்"
 
-#: data/resources/ui/date_time_picker.blp:33
+#: data/resources/ui/date_time_picker.blp:16
 msgid "Arrival"
 msgstr "வருகை"
 
-#: data/resources/ui/date_time_picker.blp:53
+#: data/resources/ui/date_time_picker.blp:34
 msgid "Input date"
 msgstr "உள்ளீட்டு தேதி"
 
-#: data/resources/ui/date_time_picker.blp:60
+#: data/resources/ui/date_time_picker.blp:42
 msgid "Date"
 msgstr "திகதி"
 
-#: data/resources/ui/date_time_picker.blp:96
+#: data/resources/ui/date_time_picker.blp:78
 msgid "Input time"
 msgstr "உள்ளீட்டு நேரம்"
 
-#: data/resources/ui/date_time_picker.blp:104
+#: data/resources/ui/date_time_picker.blp:87
 msgid "Time"
 msgstr "நேரம்"
 
-#: data/resources/ui/date_time_picker.blp:159 src/gui/date_time_picker.rs:122
+#: data/resources/ui/date_time_picker.blp:142
 msgid "Now"
 msgstr "இப்போது"
 
-#: data/resources/ui/journey_detail_page.blp:51
+#: data/resources/ui/journey_detail_page.blp:56
 msgid "Total Travel Time"
 msgstr "மொத்த பயண நேரம்"
 
-#: data/resources/ui/journey_detail_page.blp:64
+#: data/resources/ui/journey_detail_page.blp:70
 msgid "Trip Segments"
 msgstr "பயணப் பிரிவுகள்"
 
-#: data/resources/ui/journey_detail_page.blp:78
+#: data/resources/ui/journey_detail_page.blp:84
 msgid "Choose a Trip"
 msgstr "ஒரு பயணத்தைத் தேர்வுசெய்க"
 
-#: data/resources/ui/journeys_page.blp:98
+#: data/resources/ui/journeys_page.blp:95
 msgid "Search for Trips"
 msgstr "பயணங்களைத் தேடுங்கள்"
 
-#: data/resources/ui/leg_item.blp:124
+#: data/resources/ui/leg_item.blp:128
 msgid "Show Stops"
 msgstr "நிறுத்தங்களைக் காட்டு"
 
-#: data/resources/ui/leg_item.blp:127
+#: data/resources/ui/leg_item.blp:131
 msgid "Show Intermediate Stops"
 msgstr "இடைநிலை நிறுத்தங்களைக் காட்டு"
 
-#: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
+#: data/resources/ui/leg_item.blp:180 data/resources/ui/leg_item.blp:188
 msgid "Show Announcements"
 msgstr "அறிவிப்புகளைக் காட்டு"
 
-#: data/resources/ui/leg_item.blp:195
+#: data/resources/ui/leg_item.blp:203
 msgid "Announcements"
 msgstr "அறிவிப்புகள்"
 
-#: data/resources/ui/leg_item.blp:222
+#: data/resources/ui/leg_item.blp:230
 msgid "Stops"
 msgstr "நிறுத்தங்கள்"
 
@@ -188,64 +188,67 @@ msgstr "தள்ளுபடி அட்டை"
 msgid "Class"
 msgstr "வகுப்பு"
 
-#: data/resources/ui/search_options_dialog.blp:25
+#: data/resources/ui/search_options_dialog.blp:22
 msgid "First Class"
 msgstr "முதல் வகுப்பு"
 
-#: data/resources/ui/search_options_dialog.blp:30
+#: data/resources/ui/search_options_dialog.blp:27
 msgid "Second Class"
 msgstr "இரண்டாம் வகுப்பு"
 
-#: data/resources/ui/search_options_dialog.blp:37
-#: src/gui/search_options_button.rs:190
+#: data/resources/ui/search_options_dialog.blp:33
 msgid "Bike Accessible"
 msgstr "பைக் அணுகக்கூடியது"
 
-#: data/resources/ui/search_options_dialog.blp:42
+#: data/resources/ui/search_options_dialog.blp:38
 msgid "Minimum Transfer Time"
 msgstr "குறைந்தபட்ச பரிமாற்ற நேரம்"
 
-#: data/resources/ui/search_options_dialog.blp:47
+#: data/resources/ui/search_options_dialog.blp:43
 msgid "Direct Connections Only"
 msgstr "நேரடி இணைப்புகள் மட்டுமே"
 
-#: data/resources/ui/search_options_dialog.blp:52
+#: data/resources/ui/search_options_dialog.blp:48
 msgid "Modes of Transport"
 msgstr "போக்குவரத்து முறைகள்"
 
-#: data/resources/ui/search_options_dialog.blp:55
-msgid "High Speed Train"
-msgstr "அதிவேக ரயில்"
+#: data/resources/ui/search_options_dialog.blp:60
+#, fuzzy
+#| msgid "Regional Train"
+msgid "Mainline Train"
+msgstr "பிராந்திய ரயில்"
 
-#: data/resources/ui/search_options_dialog.blp:59
+#: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "பிராந்திய ரயில்"
 
-#: data/resources/ui/search_options_dialog.blp:63
-msgid "Suburban Trains"
+#: data/resources/ui/search_options_dialog.blp:70
+#, fuzzy
+#| msgid "Suburban Trains"
+msgid "S-Bahn Train"
 msgstr "புறநகர் ரயில்கள்"
 
-#: data/resources/ui/search_options_dialog.blp:67
+#: data/resources/ui/search_options_dialog.blp:75
 msgid "Bus"
 msgstr "பச்"
 
-#: data/resources/ui/search_options_dialog.blp:71
+#: data/resources/ui/search_options_dialog.blp:80
 msgid "Ferry"
 msgstr "படகு"
 
-#: data/resources/ui/search_options_dialog.blp:75
+#: data/resources/ui/search_options_dialog.blp:85
 msgid "Subway"
 msgstr "சுரங்கப்பாதை"
 
-#: data/resources/ui/search_options_dialog.blp:79
+#: data/resources/ui/search_options_dialog.blp:90
 msgid "Tram"
 msgstr "டிராம்"
 
-#: data/resources/ui/search_options_dialog.blp:83
+#: data/resources/ui/search_options_dialog.blp:95
 msgid "Cablecar"
 msgstr "கேபிள்கார்"
 
-#: data/resources/ui/search_options_dialog.blp:87
+#: data/resources/ui/search_options_dialog.blp:100
 msgid "Taxi"
 msgstr "டாக்சி"
 
@@ -258,15 +261,15 @@ msgid "To"
 msgstr "பெறுநர்"
 
 #: data/resources/ui/search_page.blp:51 data/resources/ui/search_page.blp:72
-#: data/resources/ui/window.blp:31
+#: data/resources/ui/window.blp:44
 msgid "Search"
 msgstr "தேடல்"
 
-#: data/resources/ui/search_page.blp:90
+#: data/resources/ui/search_page.blp:89
 msgid "Bookmarked Trips"
 msgstr "புக்மார்க்கு செய்யப்பட்ட பயணங்கள்"
 
-#: data/resources/ui/search_page.blp:105
+#: data/resources/ui/search_page.blp:104
 msgid "Bookmarked Searches"
 msgstr "புக்மார்க்கு தேடல்கள்"
 
@@ -306,281 +309,51 @@ msgstr "திறந்த பட்டியல்"
 msgid "Swap Start and Destination"
 msgstr "இடமாற்று தொடக்க மற்றும் இலக்கு"
 
-#: data/resources/ui/window.blp:42 data/resources/ui/window.blp:49
+#: data/resources/ui/window.blp:55 data/resources/ui/window.blp:62
 msgid "Select Network"
 msgstr "பிணையத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: data/resources/ui/window.blp:72
+#: data/resources/ui/window.blp:85
 msgid "Main Menu"
 msgstr "பட்டியல் விளையாடுங்கள்"
 
-#: data/resources/ui/window.blp:91
+#: data/resources/ui/window.blp:104
 msgid "Connections"
 msgstr "இணைப்புகள்"
 
-#: data/resources/ui/window.blp:104
+#: data/resources/ui/window.blp:117
 msgid "Bookmark This Search"
 msgstr "இந்த தேடலை புக்மார்க்கு செய்யுங்கள்"
 
-#: data/resources/ui/window.blp:116
+#: data/resources/ui/window.blp:131
 msgid "Trip Details"
 msgstr "பயண விவரங்கள்"
 
-#: data/resources/ui/window.blp:125
+#: data/resources/ui/window.blp:140
 msgid "Refresh This Trip"
 msgstr "இந்த பயணத்தை புதுப்பிக்கவும்"
 
-#: data/resources/ui/window.blp:136
+#: data/resources/ui/window.blp:153
 msgid "Bookmark This Trip"
 msgstr "இந்த பயணத்தை புக்மார்க்கு செய்யுங்கள்"
 
-#: data/resources/ui/window.blp:164
+#: data/resources/ui/window.blp:166
+#, fuzzy
+#| msgid "Refresh This Trip"
+msgid "Watch this Trip"
+msgstr "இந்த பயணத்தை புதுப்பிக்கவும்"
+
+#: data/resources/ui/window.blp:199
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
 
-#: data/resources/ui/window.blp:169
+#: data/resources/ui/window.blp:204
 msgid "Keyboard Shortcuts"
 msgstr "விசைப்பலகை குறுக்குவழிகள்"
 
-#: data/resources/ui/window.blp:174
+#: data/resources/ui/window.blp:209
 msgid "_About Railway"
 msgstr "ரயில்வே"
-
-#: src/gui/indicator_icons.rs:135
-msgid "High Load"
-msgstr "அதிக சுமை"
-
-#: src/gui/indicator_icons.rs:142
-msgid "Very High Load"
-msgstr "மிக அதிக சுமை"
-
-#: src/gui/indicator_icons.rs:149
-msgid "Exceptionally High Load"
-msgstr "விதிவிலக்காக அதிக சுமை"
-
-#: src/gui/indicator_icons.rs:165
-msgid "On Time"
-msgstr "சரியான நேரத்தில்"
-
-#: src/gui/indicator_icons.rs:172
-msgid "Minor Delays"
-msgstr "சிறிய தாமதங்கள்"
-
-#: src/gui/indicator_icons.rs:179
-msgid "Delayed"
-msgstr "தாமதமானது"
-
-#: src/gui/indicator_icons.rs:186
-msgid "Very Delayed"
-msgstr "மிகவும் தாமதமானது"
-
-#: src/gui/indicator_icons.rs:193
-msgid "Extremely Delayed"
-msgstr "மிகவும் தாமதமானது"
-
-#: src/gui/indicator_icons.rs:209
-msgid "Platform Changes"
-msgstr "இயங்குதள மாற்றங்கள்"
-
-#: src/gui/indicator_icons.rs:228
-msgid "Connection Not Possible"
-msgstr "இணைப்பு சாத்தியமில்லை"
-
-#: src/gui/indicator_icons.rs:246
-msgid "Cancelled"
-msgstr "ரத்து செய்யப்பட்டது"
-
-#: src/gui/stores/journey_store.rs:122
-msgid "A bookmarked trip ended recently."
-msgstr "ஒரு புக்மார்க்கு பயணம் அண்மைக் காலத்தில் முடிந்தது."
-
-#: src/gui/stores/journey_store.rs:134
-msgid "Always _Delete"
-msgstr "எப்போதும் _delete"
-
-#: src/gui/search_page.rs:117
-msgid "Start and destination are missing"
-msgstr "தொடக்க மற்றும் இலக்கு காணவில்லை"
-
-#: src/gui/search_page.rs:118
-msgid "Start is missing"
-msgstr "தொடக்கமில்லை"
-
-#: src/gui/search_page.rs:119
-msgid "Destination is missing"
-msgstr "இலக்கு இல்லை"
-
-#: src/gui/search_page.rs:120
-msgid "Search ongoing"
-msgstr "தொடர்ந்து தேடுங்கள்"
-
-#: src/gui/journey_detail_page.rs:108
-msgid "Last refreshed {}"
-msgstr "கடைசியாக புதுப்பிக்கப்பட்ட {}"
-
-#. Translators: Do not translate the strings in {}.
-#: src/gui/transition.rs:90
-msgid "Arrive at {destination}."
-msgstr "{destination}க்கு வந்து சேருங்கள்."
-
-#: src/gui/transition.rs:212
-msgid "Walk {walk} Wait {wait}"
-msgstr "நடை {walk} காத்திருங்கள் {wait}"
-
-#: src/gui/transition.rs:217
-msgid "Transfer Time {}"
-msgstr "நேரத்தை மாற்றவும் {}"
-
-#: src/gui/transition.rs:221
-msgid "Walk {}"
-msgstr "நடைபயிற்சி {}"
-
-#: src/gui/transition.rs:224
-msgid "Transfer"
-msgstr "இடமாற்றம்"
-
-#. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:228
-msgid "{} min"
-msgstr "{} மணித்துளி"
-
-#. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:84
-msgid "%_H h %_M min"
-msgstr "%_Hh %_mmin"
-
-#: src/gui/utility.rs:95
-msgid " %_d day %_H h %_M min"
-msgid_plural "%_d days %_H h %_M min"
-msgstr[0] " %_d நாள் %_hh %_mmin"
-msgstr[1] "%_d நாட்கள் %_hh %_mmin"
-
-#. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:106
-msgid "{} min."
-msgstr "{} மணித்துளி."
-
-#. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:110
-msgid "{} hrs."
-msgstr "{} மணி."
-
-#. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:119
-msgid "%-H hrs. %-M min."
-msgstr "%-Hhhrs. %-மின்."
-
-#: src/gui/utility.rs:131
-msgid "%-d day %-H hrs. %-M min."
-msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] "%-d நாள் %-hhhrs. %-மின்."
-msgstr[1] "%-d நாட்கள் %-hhrs. %-மின்."
-
-#. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:141
-msgid "%H:%M"
-msgstr "%எச்:%மீ"
-
-#: src/gui/utility.rs:147 src/gui/date_time_picker.rs:110
-msgid "Today"
-msgstr "இன்று"
-
-#: src/gui/utility.rs:149
-msgid "Tomorrow"
-msgstr "நாளை"
-
-#: src/gui/utility.rs:151
-msgid "Yesterday"
-msgstr "நேற்று"
-
-#. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:154
-msgid "%a, %d. %B"
-msgstr "%a, %d. %B"
-
-#. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:157
-msgid "%Y-%m-%d"
-msgstr "%Y-%m-%d"
-
-#: src/gui/preferences_dialog.rs:60
-msgid "{} h"
-msgid_plural "{} h"
-msgstr[0] "{} ம"
-msgstr[1] "{} ம"
-
-#: src/gui/search_options_button.rs:75
-msgid "None"
-msgstr "எதுவுமில்லை"
-
-#: src/gui/search_options_button.rs:76
-msgid "BahnCard 25, 1st class"
-msgstr "பஅன்கார்ட் 25, 1 ஆம் வகுப்பு"
-
-#: src/gui/search_options_button.rs:77
-msgid "BahnCard 25, 2nd class"
-msgstr "பஅன்கார்ட் 25, 2 ஆம் வகுப்பு"
-
-#: src/gui/search_options_button.rs:78
-msgid "BahnCard 50, 1st class"
-msgstr "பஅன்கார்ட் 50, 1 ஆம் வகுப்பு"
-
-#: src/gui/search_options_button.rs:79
-msgid "BahnCard 50, 2nd class"
-msgstr "பஅன்கார்ட் 50, 2 ஆம் வகுப்பு"
-
-#: src/gui/search_options_button.rs:80
-msgid "A – VORTEILScard (with RAILPLUS)"
-msgstr "A - அட்வாண்டேச் அட்டை (ரெயிலுடன்)"
-
-#: src/gui/search_options_button.rs:81
-msgid "CH – HalbtaxAbo (with RAILPLUS)"
-msgstr "CH - Halbtaxabo (ரெயிலுடன்)"
-
-#: src/gui/search_options_button.rs:82
-msgid "CH – HalbtaxAbo (without RAILPLUS)"
-msgstr "சி - அரை -ஃபாக்சாபோ (ரெயிலச் இல்லாமல்)"
-
-#: src/gui/search_options_button.rs:85
-msgid "NL – Voordeelurenabo (with RAILPLUS)"
-msgstr "என்.எல் - வூயோர்ட்வெரெனாபோ (ரெயிலுடன்)"
-
-#: src/gui/search_options_button.rs:89
-msgid "NL – Voordeelurenabo (without RAILPLUS)"
-msgstr "என்.எல் - வொய்ட்வெரெனாபோ (ரெயில்கள் இல்லாமல்)"
-
-#: src/gui/search_options_button.rs:91
-msgid "SH-Card"
-msgstr "Sh- கார்ட்"
-
-#: src/gui/search_options_button.rs:92
-msgid "CH – General-Abonnement"
-msgstr "சி - பொது சந்தா"
-
-#: src/gui/search_options_button.rs:99
-msgid "Unknown"
-msgstr "தெரியவில்லை"
-
-#: src/gui/search_options_button.rs:137
-msgid "1st class"
-msgstr "1 ஆம் வகுப்பு"
-
-#: src/gui/search_options_button.rs:139
-msgid "2nd class"
-msgstr "2 ஆம் வகுப்பு"
-
-#: src/gui/search_options_button.rs:182
-msgid "Regional Only"
-msgstr "பிராந்திய மட்டும்"
-
-#: src/gui/search_options_button.rs:185
-msgid "Selected Modes of Transport"
-msgstr "தேர்ந்தெடுக்கப்பட்ட போக்குவரத்து முறைகள்"
-
-#: src/gui/search_options_button.rs:197
-msgid "Direct Connection"
-msgstr "நேரடி இணைப்பு"
 
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
@@ -598,183 +371,304 @@ msgstr "மேலும் செய்தி"
 msgid "An unknown issue occured. Please share feedback."
 msgstr "அறியப்படாத சிக்கல் ஏற்பட்டது. கருத்துக்களைப் பகிரவும்."
 
-#: src/gui/error.rs:39
+#: src/gui/error.rs:42
 msgid "Error"
 msgstr "பிழை"
 
-#: src/gui/error.rs:43
+#: src/gui/error.rs:46
 msgid "_Close"
 msgstr "மூடு (_C)"
 
-#. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
-#. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
-#: src/gui/date_time_picker.rs:114
-msgid "%a %b %d"
-msgstr "%a %b %d"
-
-#: src/gui/journey_list_item.rs:45
-msgid "{} change"
-msgid_plural "{} changes"
-msgstr[0] "}} மாற்றம்"
-msgstr[1] "}} மாற்றங்கள்"
-
-#. Translators: changes_text is the plural-aware string "{} change" already
-#: src/gui/journey_list_item.rs:49
-msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr "{departure} முதல் {arrival} வரை {travel_time}"
-
-#. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
-#: src/gui/leg_item.rs:73
-msgid "{train} in the direction of {destination}"
-msgstr "{இலக்கு of இன் திசையில் {train}"
-
-#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:90
-msgid "Depart {start} from platform {platform} at {departure}."
-msgstr "{start} இல் தளத்திலிருந்து {platform} புறப்படுங்கள்."
-
-#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:94
-msgid "Depart {start} at {departure}."
-msgstr "{புறப்பாடு {start}."
-
-#: src/gui/leg_item.rs:101
-msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr "{destination} இல் இயங்குதளத்தில் {platform} க்கு வந்து சேருங்கள்."
-
-#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:106
-msgid "Arrive at {destination} at {arrival}."
-msgstr "{destination} இல் {arrival} க்கு வந்து சேருங்கள்."
-
-#: src/gui/leg_item.rs:153
-msgid "{} Stop"
-msgid_plural "{} Stops"
-msgstr[0] "{} நிறுத்து"
-msgstr[1] "{} நிறுத்தப்படும்"
-
-#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
-#: src/gui/intermediate_location_item.rs:67
-msgid "{stop} at {arrival} on platform {platform}"
-msgstr "{stop} இல் {arrival} மேடையில் {platform}"
-
-#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
-#: src/gui/intermediate_location_item.rs:70
-msgid "{stop} at {arrival}"
-msgstr "{stop} இல் நிறுத்துங்கள்}"
-
-#. Translators: Text that will be announced by the screen reader when a suggestion was selected.
-#: src/gui/station_entry.rs:189
-msgid "Suggestion {} selected"
-msgstr "பரிந்துரை {} தேர்ந்தெடுக்கப்பட்டது"
-
-#. Translators: Text that will be announced by the screen reader when no selection was selected.
-#: src/gui/station_entry.rs:194
-msgid "No suggestion selected"
-msgstr "எந்த ஆலோசனையும் தேர்ந்தெடுக்கப்படவில்லை"
-
-#. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
-#: src/gui/station_entry.rs:385
+#: src/gui/station_entry.rs:420
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
 msgstr[0] "ஒரு பரிந்துரை, தேர்ந்தெடுக்கப்படவில்லை"
 msgstr[1] "{n} பரிந்துரைகள், எதுவும் தேர்ந்தெடுக்கப்படவில்லை"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-#: src/gui/window.rs:179
+#: src/gui/window.rs:192
 msgid "translator-credits"
 msgstr "மொழிபெயர்ப்பாளர்-வரவு"
 
-#: src/gui/window.rs:181
+#: src/gui/window.rs:195
 msgid "Source Translation Supported by"
 msgstr "ஆதரிக்கப்படும் மூல மொழிபெயர்ப்பு"
 
-#. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
-#: src/gui/frequency_label.rs:91
-msgid "every ~{}"
-msgstr "ஒவ்வொரு ~ {}"
-
-#. Translators: How to format the currency "Euro". Do not translate in {}.
-#: src/backend/price.rs:68
-msgid "€{amount}"
-msgstr "€ {amount}"
-
-#. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
-#: src/backend/price.rs:74
-msgid "${amount}"
-msgstr "$ {amount}"
-
-#. Translators: How to format unknown currency "currency". Do not translate in {}.
-#: src/backend/price.rs:81
-msgid "{currency} {amount}"
-msgstr "{currency} {amount}"
-
-#. Hafas
-#. TODO: BVG, SNCB, SNCF, TPG
-#. Always shows "no provider"
-#. Provider::new(
-#. "DB-Busradar-Nrw",
-#. "DB Busradar NRW",
-#. // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-#. Some(&gettextrs::gettext("North Rhine-Westphalia")),
-#. &gettextrs::gettext("Germany"),
-#. true,
-#. ),
-#. Migrated endpoint to EFA
-#. Provider::new(
-#. "mobil-nrw",
-#. "mobil.nrw",
-#. // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-#. Some(&gettextrs::gettext("North Rhine-Westphalia")),
-#. &gettextrs::gettext("Germany"),
-#. true,
-#. ),
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
-#: src/backend/client.rs:25 src/backend/client.rs:27 src/backend/client.rs:32
-#: src/backend/client.rs:46 src/backend/client.rs:51 src/backend/client.rs:55
-#: src/backend/client.rs:56 src/backend/client.rs:67 src/backend/client.rs:73
-#: src/backend/client.rs:85 src/backend/client.rs:86 src/backend/client.rs:92
-#: src/backend/client.rs:93 src/backend/client.rs:104 src/backend/client.rs:117
-#: src/backend/client.rs:124 src/backend/client.rs:134
-#: src/backend/client.rs:135 src/backend/client.rs:136
-#: src/backend/client.rs:137 src/backend/client.rs:142
+#: src/backend/client.rs:29 src/backend/client.rs:80 src/backend/client.rs:87
+#: src/backend/client.rs:108 src/backend/client.rs:131
+#: src/backend/client.rs:139 src/backend/client.rs:167
+#: src/backend/client.rs:174 src/backend/client.rs:195
+#: src/backend/client.rs:196 src/backend/client.rs:217
+#: src/backend/client.rs:232 src/backend/client.rs:239
+#: src/backend/client.rs:253 src/backend/client.rs:267
+#: src/backend/client.rs:274 src/backend/client.rs:281
 msgid "Germany"
 msgstr "செர்மனி"
 
-#: src/backend/client.rs:26 src/backend/client.rs:35 src/backend/client.rs:36
+#: src/backend/client.rs:36 src/backend/client.rs:57 src/backend/client.rs:64
 msgid "North America"
 msgstr "வட அமெரிக்கா"
 
-#. Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
-#. Search.ch
-#: src/backend/client.rs:54 src/backend/client.rs:57 src/backend/client.rs:80
-#: src/backend/client.rs:83 src/backend/client.rs:84 src/backend/client.rs:87
-#: src/backend/client.rs:100 src/backend/client.rs:103
-#: src/backend/client.rs:110 src/backend/client.rs:131
-#: src/backend/client.rs:145 src/backend/client.rs:146
-#: src/backend/client.rs:150
+#: src/backend/client.rs:43 src/backend/client.rs:50 src/backend/client.rs:94
+#: src/backend/client.rs:115 src/backend/client.rs:160
+#: src/backend/client.rs:181 src/backend/client.rs:188
+#: src/backend/client.rs:305
 msgid "Europe"
 msgstr "ஐரோப்பா"
 
-#. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
-#: src/backend/client.rs:72
-msgid "Schleswig-Holstein"
-msgstr "செல்ச்விக்-ஓல்ச்டீன்"
-
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
-#: src/backend/client.rs:109
+#: src/backend/client.rs:101 src/backend/client.rs:146
+#: src/backend/client.rs:153 src/backend/client.rs:203
+#: src/backend/client.rs:210 src/backend/client.rs:224
+#: src/backend/client.rs:225 src/backend/client.rs:246
+#: src/backend/client.rs:260 src/backend/client.rs:288
+#: src/backend/client.rs:295
 msgid "Austria"
 msgstr "ஆச்திரியா"
 
-#: src/backend/client.rs:154
+#. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
+#: src/backend/client.rs:138
+msgid "Schleswig-Holstein"
+msgstr "செல்ச்விக்-ஓல்ச்டீன்"
+
+#: src/backend/client.rs:311
 msgid "Worldwide (beta)"
 msgstr "உலகளவில் (பீட்டா)"
 
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
-#: src/backend/client.rs:156
+#: src/backend/client.rs:313
 msgid "Using Transitous"
 msgstr "டிரான்சிடெசைப் பயன்படுத்துதல்"
 
-#: src/backend/leg.rs:130
-msgid "Walk"
-msgstr "நடை"
+#~ msgid "High Speed Train"
+#~ msgstr "அதிவேக ரயில்"
+
+#~ msgid "High Load"
+#~ msgstr "அதிக சுமை"
+
+#~ msgid "Very High Load"
+#~ msgstr "மிக அதிக சுமை"
+
+#~ msgid "Exceptionally High Load"
+#~ msgstr "விதிவிலக்காக அதிக சுமை"
+
+#~ msgid "On Time"
+#~ msgstr "சரியான நேரத்தில்"
+
+#~ msgid "Minor Delays"
+#~ msgstr "சிறிய தாமதங்கள்"
+
+#~ msgid "Delayed"
+#~ msgstr "தாமதமானது"
+
+#~ msgid "Very Delayed"
+#~ msgstr "மிகவும் தாமதமானது"
+
+#~ msgid "Extremely Delayed"
+#~ msgstr "மிகவும் தாமதமானது"
+
+#~ msgid "Platform Changes"
+#~ msgstr "இயங்குதள மாற்றங்கள்"
+
+#~ msgid "Connection Not Possible"
+#~ msgstr "இணைப்பு சாத்தியமில்லை"
+
+#~ msgid "Cancelled"
+#~ msgstr "ரத்து செய்யப்பட்டது"
+
+#~ msgid "A bookmarked trip ended recently."
+#~ msgstr "ஒரு புக்மார்க்கு பயணம் அண்மைக் காலத்தில் முடிந்தது."
+
+#~ msgid "Always _Delete"
+#~ msgstr "எப்போதும் _delete"
+
+#~ msgid "Start and destination are missing"
+#~ msgstr "தொடக்க மற்றும் இலக்கு காணவில்லை"
+
+#~ msgid "Start is missing"
+#~ msgstr "தொடக்கமில்லை"
+
+#~ msgid "Destination is missing"
+#~ msgstr "இலக்கு இல்லை"
+
+#~ msgid "Search ongoing"
+#~ msgstr "தொடர்ந்து தேடுங்கள்"
+
+#~ msgid "Last refreshed {}"
+#~ msgstr "கடைசியாக புதுப்பிக்கப்பட்ட {}"
+
+#~ msgid "Arrive at {destination}."
+#~ msgstr "{destination}க்கு வந்து சேருங்கள்."
+
+#~ msgid "Walk {walk} Wait {wait}"
+#~ msgstr "நடை {walk} காத்திருங்கள் {wait}"
+
+#~ msgid "Transfer Time {}"
+#~ msgstr "நேரத்தை மாற்றவும் {}"
+
+#~ msgid "Walk {}"
+#~ msgstr "நடைபயிற்சி {}"
+
+#~ msgid "Transfer"
+#~ msgstr "இடமாற்றம்"
+
+#~ msgid "{} min"
+#~ msgstr "{} மணித்துளி"
+
+#~ msgid "%_H h %_M min"
+#~ msgstr "%_Hh %_mmin"
+
+#~ msgid " %_d day %_H h %_M min"
+#~ msgid_plural "%_d days %_H h %_M min"
+#~ msgstr[0] " %_d நாள் %_hh %_mmin"
+#~ msgstr[1] "%_d நாட்கள் %_hh %_mmin"
+
+#~ msgid "{} min."
+#~ msgstr "{} மணித்துளி."
+
+#~ msgid "{} hrs."
+#~ msgstr "{} மணி."
+
+#~ msgid "%-H hrs. %-M min."
+#~ msgstr "%-Hhhrs. %-மின்."
+
+#~ msgid "%-d day %-H hrs. %-M min."
+#~ msgid_plural "%-d days %-H hrs. %-M min."
+#~ msgstr[0] "%-d நாள் %-hhhrs. %-மின்."
+#~ msgstr[1] "%-d நாட்கள் %-hhrs. %-மின்."
+
+#~ msgid "%H:%M"
+#~ msgstr "%எச்:%மீ"
+
+#~ msgid "Today"
+#~ msgstr "இன்று"
+
+#~ msgid "Tomorrow"
+#~ msgstr "நாளை"
+
+#~ msgid "Yesterday"
+#~ msgstr "நேற்று"
+
+#~ msgid "%a, %d. %B"
+#~ msgstr "%a, %d. %B"
+
+#~ msgid "%Y-%m-%d"
+#~ msgstr "%Y-%m-%d"
+
+#~ msgid "{} h"
+#~ msgid_plural "{} h"
+#~ msgstr[0] "{} ம"
+#~ msgstr[1] "{} ம"
+
+#~ msgid "None"
+#~ msgstr "எதுவுமில்லை"
+
+#~ msgid "BahnCard 25, 1st class"
+#~ msgstr "பஅன்கார்ட் 25, 1 ஆம் வகுப்பு"
+
+#~ msgid "BahnCard 25, 2nd class"
+#~ msgstr "பஅன்கார்ட் 25, 2 ஆம் வகுப்பு"
+
+#~ msgid "BahnCard 50, 1st class"
+#~ msgstr "பஅன்கார்ட் 50, 1 ஆம் வகுப்பு"
+
+#~ msgid "BahnCard 50, 2nd class"
+#~ msgstr "பஅன்கார்ட் 50, 2 ஆம் வகுப்பு"
+
+#~ msgid "A – VORTEILScard (with RAILPLUS)"
+#~ msgstr "A - அட்வாண்டேச் அட்டை (ரெயிலுடன்)"
+
+#~ msgid "CH – HalbtaxAbo (with RAILPLUS)"
+#~ msgstr "CH - Halbtaxabo (ரெயிலுடன்)"
+
+#~ msgid "CH – HalbtaxAbo (without RAILPLUS)"
+#~ msgstr "சி - அரை -ஃபாக்சாபோ (ரெயிலச் இல்லாமல்)"
+
+#~ msgid "NL – Voordeelurenabo (with RAILPLUS)"
+#~ msgstr "என்.எல் - வூயோர்ட்வெரெனாபோ (ரெயிலுடன்)"
+
+#~ msgid "NL – Voordeelurenabo (without RAILPLUS)"
+#~ msgstr "என்.எல் - வொய்ட்வெரெனாபோ (ரெயில்கள் இல்லாமல்)"
+
+#~ msgid "SH-Card"
+#~ msgstr "Sh- கார்ட்"
+
+#~ msgid "CH – General-Abonnement"
+#~ msgstr "சி - பொது சந்தா"
+
+#~ msgid "Unknown"
+#~ msgstr "தெரியவில்லை"
+
+#~ msgid "1st class"
+#~ msgstr "1 ஆம் வகுப்பு"
+
+#~ msgid "2nd class"
+#~ msgstr "2 ஆம் வகுப்பு"
+
+#~ msgid "Regional Only"
+#~ msgstr "பிராந்திய மட்டும்"
+
+#~ msgid "Selected Modes of Transport"
+#~ msgstr "தேர்ந்தெடுக்கப்பட்ட போக்குவரத்து முறைகள்"
+
+#~ msgid "Direct Connection"
+#~ msgstr "நேரடி இணைப்பு"
+
+#~ msgid "%a %b %d"
+#~ msgstr "%a %b %d"
+
+#~ msgid "{} change"
+#~ msgid_plural "{} changes"
+#~ msgstr[0] "}} மாற்றம்"
+#~ msgstr[1] "}} மாற்றங்கள்"
+
+#~ msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
+#~ msgstr "{departure} முதல் {arrival} வரை {travel_time}"
+
+#~ msgid "{train} in the direction of {destination}"
+#~ msgstr "{இலக்கு of இன் திசையில் {train}"
+
+#~ msgid "Depart {start} from platform {platform} at {departure}."
+#~ msgstr "{start} இல் தளத்திலிருந்து {platform} புறப்படுங்கள்."
+
+#~ msgid "Depart {start} at {departure}."
+#~ msgstr "{புறப்பாடு {start}."
+
+#~ msgid "Arrive at {destination} on platform {platform} at {arrival}."
+#~ msgstr "{destination} இல் இயங்குதளத்தில் {platform} க்கு வந்து சேருங்கள்."
+
+#~ msgid "Arrive at {destination} at {arrival}."
+#~ msgstr "{destination} இல் {arrival} க்கு வந்து சேருங்கள்."
+
+#~ msgid "{} Stop"
+#~ msgid_plural "{} Stops"
+#~ msgstr[0] "{} நிறுத்து"
+#~ msgstr[1] "{} நிறுத்தப்படும்"
+
+#~ msgid "{stop} at {arrival} on platform {platform}"
+#~ msgstr "{stop} இல் {arrival} மேடையில் {platform}"
+
+#~ msgid "{stop} at {arrival}"
+#~ msgstr "{stop} இல் நிறுத்துங்கள்}"
+
+#~ msgid "Suggestion {} selected"
+#~ msgstr "பரிந்துரை {} தேர்ந்தெடுக்கப்பட்டது"
+
+#~ msgid "No suggestion selected"
+#~ msgstr "எந்த ஆலோசனையும் தேர்ந்தெடுக்கப்படவில்லை"
+
+#~ msgid "every ~{}"
+#~ msgstr "ஒவ்வொரு ~ {}"
+
+#~ msgid "€{amount}"
+#~ msgstr "€ {amount}"
+
+#~ msgid "${amount}"
+#~ msgstr "$ {amount}"
+
+#~ msgid "{currency} {amount}"
+#~ msgstr "{currency} {amount}"
+
+#~ msgid "Walk"
+#~ msgstr "நடை"

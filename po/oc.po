@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-26 12:03+0200\n"
+"POT-Creation-Date: 2025-09-28 01:28+0200\n"
 "PO-Revision-Date: 2024-09-15 12:09+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
-"Language-Team: Occitan <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/oc/>\n"
+"Language-Team: Occitan <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/oc/>\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,24 +20,25 @@ msgstr ""
 "X-Generator: Weblate 5.8-dev\n"
 
 #. Translators: The name of the application.
-#: data/de.schmidhuberj.DieBahn.desktop.in.in:5
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:4
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
-#: data/resources/ui/window.blp:6
+#: data/resources/ui/window.blp:6 data/resources/ui/window.blp:50
 msgid "Railway"
 msgstr "Camin de fèr"
 
-#. Translators: The keywords from the desktop file.
-#: data/de.schmidhuberj.DieBahn.desktop.in.in:10
-msgid "train;railway;journey;planner;timetables;"
-msgstr "tren;ferroviari;viatge;planificador;oraris;"
-
 #. Translators: The summary of the application in the metainfo.
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:5
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:10
 msgid "Find all your travel information"
 msgstr "Trapatz totas las informacions de viatge"
 
+#. Translators: The keywords from the desktop file.
+#: data/de.schmidhuberj.DieBahn.desktop.in.in:12
+msgid "train;railway;journey;planner;timetables;"
+msgstr "tren;ferroviari;viatge;planificador;oraris;"
+
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:34
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:35
 msgid ""
 "Railway lets you look up travel information across networks and borders "
 "without having to navigate through different websites. Due to the adaptive "
@@ -49,94 +50,94 @@ msgstr ""
 "avança o utilizar lo mobil en viatjant :"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:42
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:43
 msgid "View your tripsʼ details including platforms and delays"
 msgstr "Veire los detalhs del viatge, coma lo cai e los retards"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:46
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:47
 msgid "Bookmark current and future trips as well as frequent search"
 msgstr "Marcar los viatges actuals e futurs e atanben las recèrcas frequentas"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:50
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:51
 msgid "Make use of advance search options like filtering by mode of transport"
 msgstr ""
 "Utilizar d’opcions de recèrcas avançadas coma lo filtratge per mòde de "
 "transpòrt"
 
 #. Translators: Part of the description of the application in the metainfo.
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:55
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:56
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
 msgstr "E tot çò pels rets de tot lo monde mas, principalament d’Euròpa."
 
 #. Translators: Subtitle of the screenshot in the metainfo
-#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:277
+#: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:346
 msgid "Application Overview"
 msgstr "Apercebut de l’aplicacion"
 
-#: data/resources/ui/date_time_picker.blp:20
+#: data/resources/ui/date_time_picker.blp:11
 msgid "Departure"
 msgstr "Partença"
 
-#: data/resources/ui/date_time_picker.blp:33
+#: data/resources/ui/date_time_picker.blp:16
 msgid "Arrival"
 msgstr "Arribada"
 
-#: data/resources/ui/date_time_picker.blp:53
+#: data/resources/ui/date_time_picker.blp:34
 msgid "Input date"
 msgstr "Data picada"
 
-#: data/resources/ui/date_time_picker.blp:60
+#: data/resources/ui/date_time_picker.blp:42
 msgid "Date"
 msgstr "Data"
 
-#: data/resources/ui/date_time_picker.blp:96
+#: data/resources/ui/date_time_picker.blp:78
 msgid "Input time"
 msgstr "Ora picada"
 
-#: data/resources/ui/date_time_picker.blp:104
+#: data/resources/ui/date_time_picker.blp:87
 msgid "Time"
 msgstr "Ora"
 
-#: data/resources/ui/date_time_picker.blp:159 src/gui/date_time_picker.rs:122
+#: data/resources/ui/date_time_picker.blp:142
 msgid "Now"
 msgstr "Ara"
 
-#: data/resources/ui/journey_detail_page.blp:51
+#: data/resources/ui/journey_detail_page.blp:56
 msgid "Total Travel Time"
 msgstr "Durada tota del viatge"
 
-#: data/resources/ui/journey_detail_page.blp:64
+#: data/resources/ui/journey_detail_page.blp:70
 msgid "Trip Segments"
 msgstr "Segments del viatge"
 
-#: data/resources/ui/journey_detail_page.blp:78
+#: data/resources/ui/journey_detail_page.blp:84
 msgid "Choose a Trip"
 msgstr "Seleccionar un viatge"
 
-#: data/resources/ui/journeys_page.blp:98
+#: data/resources/ui/journeys_page.blp:95
 msgid "Search for Trips"
 msgstr "Cercar viatges"
 
-#: data/resources/ui/leg_item.blp:124
+#: data/resources/ui/leg_item.blp:128
 msgid "Show Stops"
 msgstr "Mostrar los arrèstes"
 
-#: data/resources/ui/leg_item.blp:127
+#: data/resources/ui/leg_item.blp:131
 msgid "Show Intermediate Stops"
 msgstr "Mostrar los arrèstes intermediaris"
 
-#: data/resources/ui/leg_item.blp:172 data/resources/ui/leg_item.blp:176
+#: data/resources/ui/leg_item.blp:180 data/resources/ui/leg_item.blp:188
 msgid "Show Announcements"
 msgstr "Mostrar los anoncis"
 
-#: data/resources/ui/leg_item.blp:195
+#: data/resources/ui/leg_item.blp:203
 msgid "Announcements"
 msgstr "Anoncis"
 
-#: data/resources/ui/leg_item.blp:222
+#: data/resources/ui/leg_item.blp:230
 msgid "Stops"
 msgstr "Arrèstes"
 
@@ -190,64 +191,67 @@ msgstr "Carta de reduccion"
 msgid "Class"
 msgstr "Classa"
 
-#: data/resources/ui/search_options_dialog.blp:25
+#: data/resources/ui/search_options_dialog.blp:22
 msgid "First Class"
 msgstr "Primièra classa"
 
-#: data/resources/ui/search_options_dialog.blp:30
+#: data/resources/ui/search_options_dialog.blp:27
 msgid "Second Class"
 msgstr "Segonda classa"
 
-#: data/resources/ui/search_options_dialog.blp:37
-#: src/gui/search_options_button.rs:190
+#: data/resources/ui/search_options_dialog.blp:33
 msgid "Bike Accessible"
 msgstr "Accès per bicicletas"
 
-#: data/resources/ui/search_options_dialog.blp:42
+#: data/resources/ui/search_options_dialog.blp:38
 msgid "Minimum Transfer Time"
 msgstr "Temps de correspondéncia minimal"
 
-#: data/resources/ui/search_options_dialog.blp:47
+#: data/resources/ui/search_options_dialog.blp:43
 msgid "Direct Connections Only"
 msgstr "Sonque las ligasons dirèctas"
 
-#: data/resources/ui/search_options_dialog.blp:52
+#: data/resources/ui/search_options_dialog.blp:48
 msgid "Modes of Transport"
 msgstr "Mòdes de transpòrt"
 
-#: data/resources/ui/search_options_dialog.blp:55
-msgid "High Speed Train"
-msgstr "Tren de nauta velocitat"
+#: data/resources/ui/search_options_dialog.blp:60
+#, fuzzy
+#| msgid "Regional Train"
+msgid "Mainline Train"
+msgstr "Tren regional"
 
-#: data/resources/ui/search_options_dialog.blp:59
+#: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "Tren regional"
 
-#: data/resources/ui/search_options_dialog.blp:63
-msgid "Suburban Trains"
+#: data/resources/ui/search_options_dialog.blp:70
+#, fuzzy
+#| msgid "Suburban Trains"
+msgid "S-Bahn Train"
 msgstr "Tren de forécia"
 
-#: data/resources/ui/search_options_dialog.blp:67
+#: data/resources/ui/search_options_dialog.blp:75
 msgid "Bus"
 msgstr "Bus"
 
-#: data/resources/ui/search_options_dialog.blp:71
+#: data/resources/ui/search_options_dialog.blp:80
 msgid "Ferry"
 msgstr "Fèrri"
 
-#: data/resources/ui/search_options_dialog.blp:75
+#: data/resources/ui/search_options_dialog.blp:85
 msgid "Subway"
 msgstr "Mètro"
 
-#: data/resources/ui/search_options_dialog.blp:79
+#: data/resources/ui/search_options_dialog.blp:90
 msgid "Tram"
 msgstr "Tram"
 
-#: data/resources/ui/search_options_dialog.blp:83
+#: data/resources/ui/search_options_dialog.blp:95
 msgid "Cablecar"
 msgstr "Teleferic"
 
-#: data/resources/ui/search_options_dialog.blp:87
+#: data/resources/ui/search_options_dialog.blp:100
 msgid "Taxi"
 msgstr "Taxi"
 
@@ -260,15 +264,15 @@ msgid "To"
 msgstr "A"
 
 #: data/resources/ui/search_page.blp:51 data/resources/ui/search_page.blp:72
-#: data/resources/ui/window.blp:31
+#: data/resources/ui/window.blp:44
 msgid "Search"
 msgstr "Recercar"
 
-#: data/resources/ui/search_page.blp:90
+#: data/resources/ui/search_page.blp:89
 msgid "Bookmarked Trips"
 msgstr "Viatges favorits"
 
-#: data/resources/ui/search_page.blp:105
+#: data/resources/ui/search_page.blp:104
 msgid "Bookmarked Searches"
 msgstr "Recèrcas en favorit"
 
@@ -308,281 +312,51 @@ msgstr "Dobrir lo menú"
 msgid "Swap Start and Destination"
 msgstr "Intervertir la partença e la destinacion"
 
-#: data/resources/ui/window.blp:42 data/resources/ui/window.blp:49
+#: data/resources/ui/window.blp:55 data/resources/ui/window.blp:62
 msgid "Select Network"
 msgstr "Seleccionatz un ret"
 
-#: data/resources/ui/window.blp:72
+#: data/resources/ui/window.blp:85
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: data/resources/ui/window.blp:91
+#: data/resources/ui/window.blp:104
 msgid "Connections"
 msgstr "Correspondéncias"
 
-#: data/resources/ui/window.blp:104
+#: data/resources/ui/window.blp:117
 msgid "Bookmark This Search"
 msgstr "Marcar aquesta recèrca"
 
-#: data/resources/ui/window.blp:116
+#: data/resources/ui/window.blp:131
 msgid "Trip Details"
 msgstr "Detalhs del viatge"
 
-#: data/resources/ui/window.blp:125
+#: data/resources/ui/window.blp:140
 msgid "Refresh This Trip"
 msgstr "Actualizar aqueste viatge"
 
-#: data/resources/ui/window.blp:136
+#: data/resources/ui/window.blp:153
 msgid "Bookmark This Trip"
 msgstr "Marcar aqueste viatge"
 
-#: data/resources/ui/window.blp:164
+#: data/resources/ui/window.blp:166
+#, fuzzy
+#| msgid "Refresh This Trip"
+msgid "Watch this Trip"
+msgstr "Actualizar aqueste viatge"
+
+#: data/resources/ui/window.blp:199
 msgid "Preferences"
 msgstr "Preferéncias"
 
-#: data/resources/ui/window.blp:169
+#: data/resources/ui/window.blp:204
 msgid "Keyboard Shortcuts"
 msgstr "Acorchis de clavièr"
 
-#: data/resources/ui/window.blp:174
+#: data/resources/ui/window.blp:209
 msgid "_About Railway"
 msgstr "_A prepaus de Camin de fèr"
-
-#: src/gui/indicator_icons.rs:135
-msgid "High Load"
-msgstr "Carga nauta"
-
-#: src/gui/indicator_icons.rs:142
-msgid "Very High Load"
-msgstr "Carga plan nauta"
-
-#: src/gui/indicator_icons.rs:149
-msgid "Exceptionally High Load"
-msgstr "Carga excepcionalament nauta"
-
-#: src/gui/indicator_icons.rs:165
-msgid "On Time"
-msgstr "A l’ora"
-
-#: src/gui/indicator_icons.rs:172
-msgid "Minor Delays"
-msgstr "Retards pichons"
-
-#: src/gui/indicator_icons.rs:179
-msgid "Delayed"
-msgstr "En retard"
-
-#: src/gui/indicator_icons.rs:186
-msgid "Very Delayed"
-msgstr "Plan en retard"
-
-#: src/gui/indicator_icons.rs:193
-msgid "Extremely Delayed"
-msgstr "Bravament en retard"
-
-#: src/gui/indicator_icons.rs:209
-msgid "Platform Changes"
-msgstr "Cambiament de platafòrma"
-
-#: src/gui/indicator_icons.rs:228
-msgid "Connection Not Possible"
-msgstr "Connexion impossibla"
-
-#: src/gui/indicator_icons.rs:246
-msgid "Cancelled"
-msgstr "Anullat"
-
-#: src/gui/stores/journey_store.rs:122
-msgid "A bookmarked trip ended recently."
-msgstr "Un viatge marcat coma favorit s’acabèt fa pas res."
-
-#: src/gui/stores/journey_store.rs:134
-msgid "Always _Delete"
-msgstr "Totjorn _suprimir"
-
-#: src/gui/search_page.rs:117
-msgid "Start and destination are missing"
-msgstr "Debuta e destinacion absentas"
-
-#: src/gui/search_page.rs:118
-msgid "Start is missing"
-msgstr "Debuta absenta"
-
-#: src/gui/search_page.rs:119
-msgid "Destination is missing"
-msgstr "Destinacion absenta"
-
-#: src/gui/search_page.rs:120
-msgid "Search ongoing"
-msgstr "Recèrca en cors"
-
-#: src/gui/journey_detail_page.rs:108
-msgid "Last refreshed {}"
-msgstr "Darrièra actualizacion {}"
-
-#. Translators: Do not translate the strings in {}.
-#: src/gui/transition.rs:90
-msgid "Arrive at {destination}."
-msgstr "Arribada a {destination}."
-
-#: src/gui/transition.rs:212
-msgid "Walk {walk} Wait {wait}"
-msgstr "Caminar {walk} Esperar {wait}"
-
-#: src/gui/transition.rs:217
-msgid "Transfer Time {}"
-msgstr "Durada de transferiment {}"
-
-#: src/gui/transition.rs:221
-msgid "Walk {}"
-msgstr "Caminar {}"
-
-#: src/gui/transition.rs:224
-msgid "Transfer"
-msgstr "Correspondéncia"
-
-#. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:76 src/gui/search_options_dialog.rs:228
-msgid "{} min"
-msgstr "{} min."
-
-#. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:84
-msgid "%_H h %_M min"
-msgstr "%_H h %_M min"
-
-#: src/gui/utility.rs:95
-msgid " %_d day %_H h %_M min"
-msgid_plural "%_d days %_H h %_M min"
-msgstr[0] "%_d jorn %_H h %_M min"
-msgstr[1] "%_d jorns %_H h %_M min"
-
-#. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:106
-msgid "{} min."
-msgstr "{} min."
-
-#. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
-#: src/gui/utility.rs:110
-msgid "{} hrs."
-msgstr "{} h."
-
-#. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
-#: src/gui/utility.rs:119
-msgid "%-H hrs. %-M min."
-msgstr "%-H h. %-M min."
-
-#: src/gui/utility.rs:131
-msgid "%-d day %-H hrs. %-M min."
-msgid_plural "%-d days %-H hrs. %-M min."
-msgstr[0] "%-d jorn %-H hrs. %-M min."
-msgstr[1] "%-d jorns %-H hrs. %-M min."
-
-#. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:141
-msgid "%H:%M"
-msgstr "%H : %M"
-
-#: src/gui/utility.rs:147 src/gui/date_time_picker.rs:110
-msgid "Today"
-msgstr "Uèi"
-
-#: src/gui/utility.rs:149
-msgid "Tomorrow"
-msgstr "Deman"
-
-#: src/gui/utility.rs:151
-msgid "Yesterday"
-msgstr "Ièr"
-
-#. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:154
-msgid "%a, %d. %B"
-msgstr "%a %d %B"
-
-#. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
-#: src/gui/utility.rs:157
-msgid "%Y-%m-%d"
-msgstr "%d-%m-%Y"
-
-#: src/gui/preferences_dialog.rs:60
-msgid "{} h"
-msgid_plural "{} h"
-msgstr[0] "{} h"
-msgstr[1] "{} h"
-
-#: src/gui/search_options_button.rs:75
-msgid "None"
-msgstr "Cap"
-
-#: src/gui/search_options_button.rs:76
-msgid "BahnCard 25, 1st class"
-msgstr "BahnCard 25, 1èra classa"
-
-#: src/gui/search_options_button.rs:77
-msgid "BahnCard 25, 2nd class"
-msgstr "BahnCard 25, 2nda classa"
-
-#: src/gui/search_options_button.rs:78
-msgid "BahnCard 50, 1st class"
-msgstr "BahnCard 50, 1èra classa"
-
-#: src/gui/search_options_button.rs:79
-msgid "BahnCard 50, 2nd class"
-msgstr "BahnCard 50, 2nda classa"
-
-#: src/gui/search_options_button.rs:80
-msgid "A – VORTEILScard (with RAILPLUS)"
-msgstr "A – VORTEILScard (amb RAILPLUS)"
-
-#: src/gui/search_options_button.rs:81
-msgid "CH – HalbtaxAbo (with RAILPLUS)"
-msgstr "CH – HalbtaxAbo (amb RAILPLUS)"
-
-#: src/gui/search_options_button.rs:82
-msgid "CH – HalbtaxAbo (without RAILPLUS)"
-msgstr "CH – HalbtaxAbo (sens RAILPLUS)"
-
-#: src/gui/search_options_button.rs:85
-msgid "NL – Voordeelurenabo (with RAILPLUS)"
-msgstr "NL - Voordeelurenabo (amb RAILPLUS)"
-
-#: src/gui/search_options_button.rs:89
-msgid "NL – Voordeelurenabo (without RAILPLUS)"
-msgstr "NL - Voordeelurenabo (sens RAILPLUS)"
-
-#: src/gui/search_options_button.rs:91
-msgid "SH-Card"
-msgstr "SH-Card"
-
-#: src/gui/search_options_button.rs:92
-msgid "CH – General-Abonnement"
-msgstr "CH – Abonament general"
-
-#: src/gui/search_options_button.rs:99
-msgid "Unknown"
-msgstr "Desconegut"
-
-#: src/gui/search_options_button.rs:137
-msgid "1st class"
-msgstr "1èra classa"
-
-#: src/gui/search_options_button.rs:139
-msgid "2nd class"
-msgstr "2nda classa"
-
-#: src/gui/search_options_button.rs:182
-msgid "Regional Only"
-msgstr "Regional sonque"
-
-#: src/gui/search_options_button.rs:185
-msgid "Selected Modes of Transport"
-msgstr "Mòde de transpòrt seleccionat"
-
-#: src/gui/search_options_button.rs:197
-msgid "Direct Connection"
-msgstr "Ligason dirècta"
 
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
@@ -601,186 +375,307 @@ msgstr "Mai d'informacions"
 msgid "An unknown issue occured. Please share feedback."
 msgstr "Una error desconeguda se's producha. Mercés de la senhalar."
 
-#: src/gui/error.rs:39
+#: src/gui/error.rs:42
 msgid "Error"
 msgstr "Error"
 
-#: src/gui/error.rs:43
+#: src/gui/error.rs:46
 msgid "_Close"
 msgstr "_Tampar"
 
-#. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
-#. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
-#: src/gui/date_time_picker.rs:114
-msgid "%a %b %d"
-msgstr "%a %d %b"
-
-#: src/gui/journey_list_item.rs:45
-msgid "{} change"
-msgid_plural "{} changes"
-msgstr[0] "{} correspondéncia"
-msgstr[1] "{} correspondéncias"
-
-#. Translators: changes_text is the plural-aware string "{} change" already
-#: src/gui/journey_list_item.rs:49
-msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr "De {departure} a {arrival} en {travel_time} amb {changes_text}"
-
-#. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
-#: src/gui/leg_item.rs:73
-msgid "{train} in the direction of {destination}"
-msgstr "{train} en direccion de {destination}"
-
-#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:90
-msgid "Depart {start} from platform {platform} at {departure}."
-msgstr "Partença de {start} de la via {platform} a {departure}."
-
-#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:94
-msgid "Depart {start} at {departure}."
-msgstr "Partença {start} a {departure}."
-
-#: src/gui/leg_item.rs:101
-msgid "Arrive at {destination} on platform {platform} at {arrival}."
-msgstr "Arribada a {destination} a la via {platform} a {arrival}."
-
-#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
-#: src/gui/leg_item.rs:106
-msgid "Arrive at {destination} at {arrival}."
-msgstr "Arriba a {destination} a {arrival}."
-
-#: src/gui/leg_item.rs:153
-msgid "{} Stop"
-msgid_plural "{} Stops"
-msgstr[0] "{} arrèst"
-msgstr[1] "{} arrèstes"
-
-#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
-#: src/gui/intermediate_location_item.rs:67
-msgid "{stop} at {arrival} on platform {platform}"
-msgstr "{stop} a {arrival} a la via {platform}"
-
-#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
-#: src/gui/intermediate_location_item.rs:70
-msgid "{stop} at {arrival}"
-msgstr "{stop} a {arrival}"
-
-#. Translators: Text that will be announced by the screen reader when a suggestion was selected.
-#: src/gui/station_entry.rs:189
-msgid "Suggestion {} selected"
-msgstr "Suggestion {} seleccionada"
-
-#. Translators: Text that will be announced by the screen reader when no selection was selected.
-#: src/gui/station_entry.rs:194
-msgid "No suggestion selected"
-msgstr "Cap de suggestion pas seleccionada"
-
-#. Translators: Text that will be announced by the screen reader when suggestions changed in the station entry.
-#: src/gui/station_entry.rs:385
+#: src/gui/station_entry.rs:420
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
 msgstr[0] "una suggestion, pas seleccionada"
 msgstr[1] "{n} suggestions, cap pas seleccionada"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-#: src/gui/window.rs:179
+#: src/gui/window.rs:192
 msgid "translator-credits"
 msgstr "Quentin PAGÈS"
 
-#: src/gui/window.rs:181
+#: src/gui/window.rs:195
 msgid "Source Translation Supported by"
 msgstr "Traduccion de font sostenguda per"
 
-#. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
-#: src/gui/frequency_label.rs:91
-msgid "every ~{}"
-msgstr "cada ~{}"
-
-#. Translators: How to format the currency "Euro". Do not translate in {}.
-#: src/backend/price.rs:68
-msgid "€{amount}"
-msgstr "{amount} €"
-
-#. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
-#: src/backend/price.rs:74
-msgid "${amount}"
-msgstr "{amount} $"
-
-#. Translators: How to format unknown currency "currency". Do not translate in {}.
-#: src/backend/price.rs:81
-msgid "{currency} {amount}"
-msgstr "{currency} {amount}"
-
-#. Hafas
-#. TODO: BVG, SNCB, SNCF, TPG
-#. Always shows "no provider"
-#. Provider::new(
-#. "DB-Busradar-Nrw",
-#. "DB Busradar NRW",
-#. // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-#. Some(&gettextrs::gettext("North Rhine-Westphalia")),
-#. &gettextrs::gettext("Germany"),
-#. true,
-#. ),
-#. Migrated endpoint to EFA
-#. Provider::new(
-#. "mobil-nrw",
-#. "mobil.nrw",
-#. // Translators: The state in germany, see https://en.wikipedia.org/wiki/North_Rhine-Westphalia.
-#. Some(&gettextrs::gettext("North Rhine-Westphalia")),
-#. &gettextrs::gettext("Germany"),
-#. true,
-#. ),
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
-#: src/backend/client.rs:25 src/backend/client.rs:27 src/backend/client.rs:32
-#: src/backend/client.rs:46 src/backend/client.rs:51 src/backend/client.rs:55
-#: src/backend/client.rs:56 src/backend/client.rs:67 src/backend/client.rs:73
-#: src/backend/client.rs:85 src/backend/client.rs:86 src/backend/client.rs:92
-#: src/backend/client.rs:93 src/backend/client.rs:104 src/backend/client.rs:117
-#: src/backend/client.rs:124 src/backend/client.rs:134
-#: src/backend/client.rs:135 src/backend/client.rs:136
-#: src/backend/client.rs:137 src/backend/client.rs:142
+#: src/backend/client.rs:29 src/backend/client.rs:80 src/backend/client.rs:87
+#: src/backend/client.rs:108 src/backend/client.rs:131
+#: src/backend/client.rs:139 src/backend/client.rs:167
+#: src/backend/client.rs:174 src/backend/client.rs:195
+#: src/backend/client.rs:196 src/backend/client.rs:217
+#: src/backend/client.rs:232 src/backend/client.rs:239
+#: src/backend/client.rs:253 src/backend/client.rs:267
+#: src/backend/client.rs:274 src/backend/client.rs:281
 msgid "Germany"
 msgstr "Alemanha"
 
-#: src/backend/client.rs:26 src/backend/client.rs:35 src/backend/client.rs:36
+#: src/backend/client.rs:36 src/backend/client.rs:57 src/backend/client.rs:64
 msgid "North America"
 msgstr "America del nòrd"
 
-#. Provider::new("ZVV", "ZVV", Some("Zürich public transport"), &gettextrs::gettext("Europe"), true),
-#. Search.ch
-#: src/backend/client.rs:54 src/backend/client.rs:57 src/backend/client.rs:80
-#: src/backend/client.rs:83 src/backend/client.rs:84 src/backend/client.rs:87
-#: src/backend/client.rs:100 src/backend/client.rs:103
-#: src/backend/client.rs:110 src/backend/client.rs:131
-#: src/backend/client.rs:145 src/backend/client.rs:146
-#: src/backend/client.rs:150
+#: src/backend/client.rs:43 src/backend/client.rs:50 src/backend/client.rs:94
+#: src/backend/client.rs:115 src/backend/client.rs:160
+#: src/backend/client.rs:181 src/backend/client.rs:188
+#: src/backend/client.rs:305
 msgid "Europe"
 msgstr "Euròpa"
 
-#. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
-#: src/backend/client.rs:72
-msgid "Schleswig-Holstein"
-msgstr "Schleswig-Holstein"
-
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
-#: src/backend/client.rs:109
+#: src/backend/client.rs:101 src/backend/client.rs:146
+#: src/backend/client.rs:153 src/backend/client.rs:203
+#: src/backend/client.rs:210 src/backend/client.rs:224
+#: src/backend/client.rs:225 src/backend/client.rs:246
+#: src/backend/client.rs:260 src/backend/client.rs:288
+#: src/backend/client.rs:295
 msgid "Austria"
 msgstr "Àustria"
 
-#: src/backend/client.rs:154
+#. Translators: The state in germany, see https://en.wikipedia.org/wiki/Schleswig-Holstein.
+#: src/backend/client.rs:138
+msgid "Schleswig-Holstein"
+msgstr "Schleswig-Holstein"
+
+#: src/backend/client.rs:311
 msgid "Worldwide (beta)"
 msgstr "Mondial (beta)"
 
 #. Translators: Transitous is a service (transitous.org) which should not be translated.
-#: src/backend/client.rs:156
+#: src/backend/client.rs:313
 msgid "Using Transitous"
 msgstr "Utilizar Transitous"
 
-#: src/backend/leg.rs:130
-msgid "Walk"
-msgstr "Caminar"
+#~ msgid "High Speed Train"
+#~ msgstr "Tren de nauta velocitat"
+
+#~ msgid "High Load"
+#~ msgstr "Carga nauta"
+
+#~ msgid "Very High Load"
+#~ msgstr "Carga plan nauta"
+
+#~ msgid "Exceptionally High Load"
+#~ msgstr "Carga excepcionalament nauta"
+
+#~ msgid "On Time"
+#~ msgstr "A l’ora"
+
+#~ msgid "Minor Delays"
+#~ msgstr "Retards pichons"
+
+#~ msgid "Delayed"
+#~ msgstr "En retard"
+
+#~ msgid "Very Delayed"
+#~ msgstr "Plan en retard"
+
+#~ msgid "Extremely Delayed"
+#~ msgstr "Bravament en retard"
+
+#~ msgid "Platform Changes"
+#~ msgstr "Cambiament de platafòrma"
+
+#~ msgid "Connection Not Possible"
+#~ msgstr "Connexion impossibla"
+
+#~ msgid "Cancelled"
+#~ msgstr "Anullat"
+
+#~ msgid "A bookmarked trip ended recently."
+#~ msgstr "Un viatge marcat coma favorit s’acabèt fa pas res."
+
+#~ msgid "Always _Delete"
+#~ msgstr "Totjorn _suprimir"
+
+#~ msgid "Start and destination are missing"
+#~ msgstr "Debuta e destinacion absentas"
+
+#~ msgid "Start is missing"
+#~ msgstr "Debuta absenta"
+
+#~ msgid "Destination is missing"
+#~ msgstr "Destinacion absenta"
+
+#~ msgid "Search ongoing"
+#~ msgstr "Recèrca en cors"
+
+#~ msgid "Last refreshed {}"
+#~ msgstr "Darrièra actualizacion {}"
+
+#~ msgid "Arrive at {destination}."
+#~ msgstr "Arribada a {destination}."
+
+#~ msgid "Walk {walk} Wait {wait}"
+#~ msgstr "Caminar {walk} Esperar {wait}"
+
+#~ msgid "Transfer Time {}"
+#~ msgstr "Durada de transferiment {}"
+
+#~ msgid "Walk {}"
+#~ msgstr "Caminar {}"
+
+#~ msgid "Transfer"
+#~ msgstr "Correspondéncia"
+
+#~ msgid "{} min"
+#~ msgstr "{} min."
+
+#~ msgid "%_H h %_M min"
+#~ msgstr "%_H h %_M min"
+
+#~ msgid " %_d day %_H h %_M min"
+#~ msgid_plural "%_d days %_H h %_M min"
+#~ msgstr[0] "%_d jorn %_H h %_M min"
+#~ msgstr[1] "%_d jorns %_H h %_M min"
+
+#~ msgid "{} min."
+#~ msgstr "{} min."
+
+#~ msgid "{} hrs."
+#~ msgstr "{} h."
+
+#~ msgid "%-H hrs. %-M min."
+#~ msgstr "%-H h. %-M min."
+
+#~ msgid "%-d day %-H hrs. %-M min."
+#~ msgid_plural "%-d days %-H hrs. %-M min."
+#~ msgstr[0] "%-d jorn %-H hrs. %-M min."
+#~ msgstr[1] "%-d jorns %-H hrs. %-M min."
+
+#~ msgid "%H:%M"
+#~ msgstr "%H : %M"
+
+#~ msgid "Today"
+#~ msgstr "Uèi"
+
+#~ msgid "Tomorrow"
+#~ msgstr "Deman"
+
+#~ msgid "Yesterday"
+#~ msgstr "Ièr"
+
+#~ msgid "%a, %d. %B"
+#~ msgstr "%a %d %B"
+
+#~ msgid "%Y-%m-%d"
+#~ msgstr "%d-%m-%Y"
+
+#~ msgid "{} h"
+#~ msgid_plural "{} h"
+#~ msgstr[0] "{} h"
+#~ msgstr[1] "{} h"
+
+#~ msgid "None"
+#~ msgstr "Cap"
+
+#~ msgid "BahnCard 25, 1st class"
+#~ msgstr "BahnCard 25, 1èra classa"
+
+#~ msgid "BahnCard 25, 2nd class"
+#~ msgstr "BahnCard 25, 2nda classa"
+
+#~ msgid "BahnCard 50, 1st class"
+#~ msgstr "BahnCard 50, 1èra classa"
+
+#~ msgid "BahnCard 50, 2nd class"
+#~ msgstr "BahnCard 50, 2nda classa"
+
+#~ msgid "A – VORTEILScard (with RAILPLUS)"
+#~ msgstr "A – VORTEILScard (amb RAILPLUS)"
+
+#~ msgid "CH – HalbtaxAbo (with RAILPLUS)"
+#~ msgstr "CH – HalbtaxAbo (amb RAILPLUS)"
+
+#~ msgid "CH – HalbtaxAbo (without RAILPLUS)"
+#~ msgstr "CH – HalbtaxAbo (sens RAILPLUS)"
+
+#~ msgid "NL – Voordeelurenabo (with RAILPLUS)"
+#~ msgstr "NL - Voordeelurenabo (amb RAILPLUS)"
+
+#~ msgid "NL – Voordeelurenabo (without RAILPLUS)"
+#~ msgstr "NL - Voordeelurenabo (sens RAILPLUS)"
+
+#~ msgid "SH-Card"
+#~ msgstr "SH-Card"
+
+#~ msgid "CH – General-Abonnement"
+#~ msgstr "CH – Abonament general"
+
+#~ msgid "Unknown"
+#~ msgstr "Desconegut"
+
+#~ msgid "1st class"
+#~ msgstr "1èra classa"
+
+#~ msgid "2nd class"
+#~ msgstr "2nda classa"
+
+#~ msgid "Regional Only"
+#~ msgstr "Regional sonque"
+
+#~ msgid "Selected Modes of Transport"
+#~ msgstr "Mòde de transpòrt seleccionat"
+
+#~ msgid "Direct Connection"
+#~ msgstr "Ligason dirècta"
+
+#~ msgid "%a %b %d"
+#~ msgstr "%a %d %b"
+
+#~ msgid "{} change"
+#~ msgid_plural "{} changes"
+#~ msgstr[0] "{} correspondéncia"
+#~ msgstr[1] "{} correspondéncias"
+
+#~ msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
+#~ msgstr "De {departure} a {arrival} en {travel_time} amb {changes_text}"
+
+#~ msgid "{train} in the direction of {destination}"
+#~ msgstr "{train} en direccion de {destination}"
+
+#~ msgid "Depart {start} from platform {platform} at {departure}."
+#~ msgstr "Partença de {start} de la via {platform} a {departure}."
+
+#~ msgid "Depart {start} at {departure}."
+#~ msgstr "Partença {start} a {departure}."
+
+#~ msgid "Arrive at {destination} on platform {platform} at {arrival}."
+#~ msgstr "Arribada a {destination} a la via {platform} a {arrival}."
+
+#~ msgid "Arrive at {destination} at {arrival}."
+#~ msgstr "Arriba a {destination} a {arrival}."
+
+#~ msgid "{} Stop"
+#~ msgid_plural "{} Stops"
+#~ msgstr[0] "{} arrèst"
+#~ msgstr[1] "{} arrèstes"
+
+#~ msgid "{stop} at {arrival} on platform {platform}"
+#~ msgstr "{stop} a {arrival} a la via {platform}"
+
+#~ msgid "{stop} at {arrival}"
+#~ msgstr "{stop} a {arrival}"
+
+#~ msgid "Suggestion {} selected"
+#~ msgstr "Suggestion {} seleccionada"
+
+#~ msgid "No suggestion selected"
+#~ msgstr "Cap de suggestion pas seleccionada"
+
+#~ msgid "every ~{}"
+#~ msgstr "cada ~{}"
+
+#~ msgid "€{amount}"
+#~ msgstr "{amount} €"
+
+#~ msgid "${amount}"
+#~ msgstr "{amount} $"
+
+#~ msgid "{currency} {amount}"
+#~ msgstr "{currency} {amount}"
+
+#~ msgid "Walk"
+#~ msgstr "Caminar"
 
 #~ msgid "Julian Schmidhuber"
 #~ msgstr "Julian Schmidhuber"
