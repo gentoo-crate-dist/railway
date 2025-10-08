@@ -21,7 +21,7 @@ data/resources/ui/search_options_button.blp
 data/resources/ui/search_options_dialog.blp
 data/resources/ui/search_page.blp
 data/resources/ui/search_store_item.blp
-data/resources/ui/shortcuts.blp
+data/resources/ui/shortcuts_dialog.blp
 data/resources/ui/station_entry.blp
 data/resources/ui/time_divider.blp
 data/resources/ui/transition.blp

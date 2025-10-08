@@ -3,7 +3,7 @@
   description = "Find all your travel information";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-  inputs.nixpkgs-gnome.url = "github:NixOS/nixpkgs/gnome";
+  inputs.nixpkgs-gnome.url = "github:NixOS/nixpkgs/wip-gnome";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = { self, nixpkgs, nixpkgs-gnome, flake-utils, ... }@inputs:
