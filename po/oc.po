@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-28 01:28+0200\n"
-"PO-Revision-Date: 2024-09-15 12:09+0000\n"
+"PO-Revision-Date: 2025-10-09 17:07+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
-"Language-Team: Occitan <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/oc/>\n"
+"Language-Team: Occitan <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/oc/>\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -216,20 +216,16 @@ msgid "Modes of Transport"
 msgstr "Mòdes de transpòrt"
 
 #: data/resources/ui/search_options_dialog.blp:60
-#, fuzzy
-#| msgid "Regional Train"
 msgid "Mainline Train"
-msgstr "Tren regional"
+msgstr "Tren granda linha"
 
 #: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "Tren regional"
 
 #: data/resources/ui/search_options_dialog.blp:70
-#, fuzzy
-#| msgid "Suburban Trains"
 msgid "S-Bahn Train"
-msgstr "Tren de forécia"
+msgstr "Tren S-Bahn"
 
 #: data/resources/ui/search_options_dialog.blp:75
 msgid "Bus"
@@ -341,10 +337,8 @@ msgid "Bookmark This Trip"
 msgstr "Marcar aqueste viatge"
 
 #: data/resources/ui/window.blp:166
-#, fuzzy
-#| msgid "Refresh This Trip"
 msgid "Watch this Trip"
-msgstr "Actualizar aqueste viatge"
+msgstr "Veire aqueste viatge"
 
 #: data/resources/ui/window.blp:199
 msgid "Preferences"
