@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-28 01:28+0200\n"
-"PO-Revision-Date: 2024-07-21 12:09+0000\n"
+"PO-Revision-Date: 2025-10-10 21:07+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -219,20 +219,16 @@ msgid "Modes of Transport"
 msgstr "Vervoers­methoden"
 
 #: data/resources/ui/search_options_dialog.blp:60
-#, fuzzy
-#| msgid "Regional Train"
 msgid "Mainline Train"
-msgstr "Regionale trein"
+msgstr "Hoofdlĳn­trein"
 
 #: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "Regionale trein"
 
 #: data/resources/ui/search_options_dialog.blp:70
-#, fuzzy
-#| msgid "Suburban Trains"
 msgid "S-Bahn Train"
-msgstr "Voor­stedelĳke treinen"
+msgstr "S-Bahn-trein"
 
 #: data/resources/ui/search_options_dialog.blp:75
 msgid "Bus"
@@ -344,10 +340,8 @@ msgid "Bookmark This Trip"
 msgstr "Rit opslaan"
 
 #: data/resources/ui/window.blp:166
-#, fuzzy
-#| msgid "Refresh This Trip"
 msgid "Watch this Trip"
-msgstr "Rit verversen"
+msgstr "Rit volgen"
 
 #: data/resources/ui/window.blp:199
 msgid "Preferences"
