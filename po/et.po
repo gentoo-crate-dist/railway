@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-28 01:28+0200\n"
-"PO-Revision-Date: 2025-03-16 15:20+0000\n"
-"Last-Translator: Henri Aunin <contact@hen.ee>\n"
-"Language-Team: Estonian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/et/>\n"
+"PO-Revision-Date: 2025-10-14 10:07+0000\n"
+"Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Estonian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -221,20 +221,16 @@ msgid "Modes of Transport"
 msgstr "Transpordiliigid"
 
 #: data/resources/ui/search_options_dialog.blp:60
-#, fuzzy
-#| msgid "Regional Train"
 msgid "Mainline Train"
-msgstr "Piirkondlik rong"
+msgstr "Magistraalliinide rong"
 
 #: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "Piirkondlik rong"
 
 #: data/resources/ui/search_options_dialog.blp:70
-#, fuzzy
-#| msgid "Suburban Trains"
 msgid "S-Bahn Train"
-msgstr "Linnalähirong"
+msgstr "Saksa S-Bahn linnalähirong"
 
 #: data/resources/ui/search_options_dialog.blp:75
 msgid "Bus"
@@ -346,10 +342,8 @@ msgid "Bookmark This Trip"
 msgstr "Lisa sellele reisile järjehoidja"
 
 #: data/resources/ui/window.blp:166
-#, fuzzy
-#| msgid "Refresh This Trip"
 msgid "Watch this Trip"
-msgstr "Uuenda selle reisi andmeid"
+msgstr "Järlgi selle reisi andmeid"
 
 #: data/resources/ui/window.blp:199
 msgid "Preferences"
