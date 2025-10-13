@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-28 01:28+0200\n"
-"PO-Revision-Date: 2025-06-19 00:01+0000\n"
-"Last-Translator: WENEMOUS TURNIP <novus.lordo.seclorum@gmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/ru/>\n"
+"PO-Revision-Date: 2025-10-14 10:07+0000\n"
+"Last-Translator: Richard Balzac <q00f71dx1@mozmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.12.1\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -217,20 +218,16 @@ msgid "Modes of Transport"
 msgstr "Виды транспорта"
 
 #: data/resources/ui/search_options_dialog.blp:60
-#, fuzzy
-#| msgid "Regional Train"
 msgid "Mainline Train"
-msgstr "Местный поезд"
+msgstr "Магистральный поезд"
 
 #: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "Местный поезд"
 
 #: data/resources/ui/search_options_dialog.blp:70
-#, fuzzy
-#| msgid "Suburban Trains"
 msgid "S-Bahn Train"
-msgstr "Пригородные поезда"
+msgstr "S-Bahn Поезд"
 
 #: data/resources/ui/search_options_dialog.blp:75
 msgid "Bus"
@@ -342,10 +339,8 @@ msgid "Bookmark This Trip"
 msgstr "Запомнить этот маршрут"
 
 #: data/resources/ui/window.blp:166
-#, fuzzy
-#| msgid "Refresh This Trip"
 msgid "Watch this Trip"
-msgstr "Обновить маршрут"
+msgstr "Просмотреть этот маршрут"
 
 #: data/resources/ui/window.blp:199
 msgid "Preferences"
