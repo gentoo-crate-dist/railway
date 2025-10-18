@@ -43,14 +43,6 @@ impl Journey {
         }
     }
 
-    pub fn is_unreachable(&self) -> bool {
-        self.property("is-unreachable")
-    }
-
-    pub fn is_cancelled(&self) -> bool {
-        self.property("is-cancelled")
-    }
-
     pub fn day_timestamp(&self) -> u32 {
         self.property::<super::Leg>("first-leg")
             .leg()
@@ -95,16 +87,12 @@ impl Journey {
         result.map(|_| ())
     }
 
-    fn set_refresh_in_progress(&self, b: bool) {
-        self.set_property("refresh-in-progress", b)
-    }
-
     fn update_last_refreshed(&self) {
         *self.imp().last_refreshed.borrow_mut() = Local::now();
         self.notify("last-refreshed");
     }
 
-    pub fn last_refreshed(&self) -> DateTime<Local> {
+    fn last_refreshed_time(&self) -> DateTime<Local> {
         *self.imp().last_refreshed.borrow()
     }
 
@@ -120,7 +108,8 @@ impl Journey {
             return false;
         };
 
-        let time_since_last_refreshed = Local::now().signed_duration_since(self.last_refreshed());
+        let time_since_last_refreshed =
+            Local::now().signed_duration_since(self.last_refreshed_time());
 
         (duration_next_event < Duration::days(1) && time_since_last_refreshed > Duration::hours(1))
             || (duration_next_event < Duration::hours(1)
@@ -169,7 +158,7 @@ impl Journey {
                 }
                 let now = Local::now();
                 *s.imp().current_event.borrow_mut() = Some(s.event_at_time(&now));
-                *s.imp().alerts.borrow_mut() = s.alerts(&now);
+                *s.imp().alerts.borrow_mut() = s.compute_alerts(&now);
                 s.notify("current-event");
                 s.notify("alerts");
                 s.potentially_notify();
@@ -202,7 +191,7 @@ impl Journey {
         Event::AfterJourney
     }
 
-    pub fn alerts(&self, time: &DateTime<Local>) -> Vec<Alert> {
+    fn compute_alerts(&self, time: &DateTime<Local>) -> Vec<Alert> {
         let mut alerts = vec![];
 
         let journey = self.imp().journey.borrow();
@@ -349,7 +338,7 @@ impl Journey {
             );
         }
 
-        let alerts = self.property::<BoxedAnyObject>("alerts");
+        let alerts = self.alerts();
         let alerts: Ref<Vec<Alert>> = alerts.borrow();
 
         for alert in &*alerts {
@@ -612,28 +601,45 @@ mod imp {
     use crate::{backend::Client, gui::utility::Utility};
 
     use gdk::{
-        glib::{
-            subclass::Signal, BoxedAnyObject, ParamSpec, ParamSpecBoolean, ParamSpecEnum,
-            ParamSpecObject, ParamSpecString, Value,
+        glib::{subclass::Signal, BoxedAnyObject, Properties},
+        prelude::ObjectExt,
+        subclass::prelude::{
+            DerivedObjectProperties, ObjectImpl, ObjectSubclass, ObjectSubclassExt,
         },
-        prelude::{ParamSpecBuilderExt, ToValue},
-        subclass::prelude::{ObjectImpl, ObjectSubclass, ObjectSubclassExt},
     };
 
     use crate::backend::{LateFactor, Leg, LoadFactor, Price};
 
     use super::{Alert, Event, NotifyStatus};
 
+    #[derive(Properties)]
+    #[properties(wrapper_type = super::Journey)]
     pub struct Journey {
+        #[property(name = "price", type = Option<Price>, get = Self::price)]
+        #[property(name = "first-leg", type = Option<Leg>, get = Self::first_leg)]
+        #[property(name = "last-leg", type = Option<Leg>, get = Self::last_leg)]
+        #[property(name = "total-time", type = String, get = Self::total_time)]
+        #[property(name = "transitions", type = u32, get = Self::transitions)]
+        #[property(name = "types", type = String, get = Self::types)]
+        #[property(name = "load-factor", type = LoadFactor, get = Self::load_factor, builder(LoadFactor::default()))]
+        #[property(name = "late-factor", type = LateFactor, get = Self::late_factor, builder(LateFactor::default()))]
+        #[property(name = "change-platform", type = bool, get = Self::change_platform)]
+        #[property(name = "is-unreachable", type = bool, get = Self::is_unreachable)]
+        #[property(name = "is-cancelled", type = bool, get = Self::is_cancelled)]
         pub(super) journey: RefCell<Option<rcore::Journey>>,
 
+        #[property(name = "current-event", type = BoxedAnyObject, get = Self::current_event)]
         pub(super) current_event: RefCell<Option<Event>>,
+        #[property(name = "alerts", type = BoxedAnyObject, get = Self::alerts)]
         pub(super) alerts: RefCell<Vec<Alert>>,
         pub(super) notify_status: RefCell<NotifyStatus>,
 
+        #[property(type = String, get = |s: &Self| Utility::format_time_human(&s.last_refreshed.borrow().time()))]
         pub(super) last_refreshed: RefCell<DateTime<Local>>,
+        #[property(get, set)]
         refresh_in_progress: Cell<bool>,
 
+        #[property(get, set)]
         pub(super) client: RefCell<Option<Client>>,
     }
 
@@ -655,230 +661,164 @@ mod imp {
         }
     }
 
+    impl Journey {
+        fn price(&self) -> Option<Price> {
+            self.journey
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.price.as_ref())
+                .map(|p| Price::new(p.clone()))
+        }
+
+        fn first_leg(&self) -> Option<Leg> {
+            self.journey
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.legs.first())
+                .map(|o| Leg::new(o.clone()))
+        }
+        fn last_leg(&self) -> Option<Leg> {
+            self.journey
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.legs.last())
+                .map(|o| Leg::new(o.clone()))
+        }
+
+        fn total_time(&self) -> String {
+            let journey_borrow = self.journey.borrow();
+            let journey = journey_borrow.as_ref();
+            let leg_first = journey.and_then(|o| o.legs.first());
+            let leg_last = journey.and_then(|o| o.legs.last());
+
+            let departure = leg_first.and_then(|o| o.departure);
+            let arrival = leg_last.and_then(|o| o.arrival);
+
+            if let (Some(arrival), Some(departure)) = (arrival, departure) {
+                Utility::format_duration_tabular(arrival - departure)
+            } else {
+                "".to_string()
+            }
+        }
+
+        fn transitions(&self) -> u32 {
+            self.journey
+                .borrow()
+                .as_ref()
+                .map(|o| {
+                    o.legs
+                        .iter()
+                        .filter(|leg| !leg.walking)
+                        .collect::<Vec<_>>()
+                        .len()
+                        .saturating_sub(1) as u32
+                })
+                .unwrap_or_default()
+        }
+
+        fn types(&self) -> String {
+            self.journey
+                .borrow()
+                .as_ref()
+                .map(|o| {
+                    o.legs
+                        .iter()
+                        .filter_map(|l| {
+                            l.line.as_ref().map(|l| {
+                                l.product_name
+                                    .clone()
+                                    .unwrap_or_else(|| l.product.name.to_string())
+                            })
+                        })
+                        .collect::<Vec<String>>()
+                        .join(" • ")
+                })
+                .unwrap_or_default()
+        }
+
+        fn load_factor(&self) -> LoadFactor {
+            self.journey
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.legs.iter().map(|l| LoadFactor::from(l.load_factor)).max())
+                .unwrap_or_default()
+        }
+
+        fn late_factor(&self) -> LateFactor {
+            self.journey
+                .borrow()
+                .as_ref()
+                .and_then(|o| {
+                    o.legs
+                        .iter()
+                        .map(|l| {
+                            std::cmp::max(
+                                match (l.arrival, l.planned_arrival) {
+                                    (Some(real), Some(planned)) => LateFactor::from(real - planned),
+                                    _ => LateFactor::default(),
+                                },
+                                match (l.departure, l.planned_departure) {
+                                    (Some(real), Some(planned)) => LateFactor::from(real - planned),
+                                    _ => LateFactor::default(),
+                                },
+                            )
+                        })
+                        .max()
+                })
+                .unwrap_or_default()
+        }
+
+        fn change_platform(&self) -> bool {
+            self.journey
+                .borrow()
+                .as_ref()
+                .map(|o| {
+                    o.legs.iter().any(|l| {
+                        l.departure_platform != l.planned_departure_platform
+                            || l.arrival_platform != l.planned_arrival_platform
+                    })
+                })
+                .unwrap_or_default()
+        }
+
+        fn is_unreachable(&self) -> bool {
+            self.journey
+                .borrow()
+                .as_ref()
+                .map(|o| o.legs.iter().any(|l| !l.reachable))
+                .unwrap_or_default()
+        }
+
+        fn is_cancelled(&self) -> bool {
+            self.journey
+                .borrow()
+                .as_ref()
+                .map(|o| o.legs.iter().any(|l| l.cancelled))
+                .unwrap_or_default()
+        }
+
+        fn current_event(&self) -> BoxedAnyObject {
+            let mut event = self.current_event.borrow_mut();
+            if event.is_none() {
+                *event = Some(self.obj().event_at_time(&Local::now()));
+            }
+            let event = event.clone().unwrap();
+
+            BoxedAnyObject::new(event)
+        }
+
+        fn alerts(&self) -> BoxedAnyObject {
+            let alerts = self.alerts.borrow();
+            BoxedAnyObject::new(alerts.clone())
+        }
+    }
+
+    #[glib::derived_properties]
     impl ObjectImpl for Journey {
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> =
                 Lazy::new(|| vec![Signal::builder("updated").build()]);
             SIGNALS.as_ref()
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecObject::builder::<Price>("price")
-                        .read_only()
-                        .build(),
-                    ParamSpecObject::builder::<Leg>("first-leg")
-                        .read_only()
-                        .build(),
-                    ParamSpecObject::builder::<Leg>("last-leg")
-                        .read_only()
-                        .build(),
-                    ParamSpecString::builder("total-time").read_only().build(),
-                    ParamSpecString::builder("transitions").read_only().build(),
-                    ParamSpecString::builder("types").read_only().build(),
-                    ParamSpecEnum::builder::<LoadFactor>("load-factor")
-                        .read_only()
-                        .build(),
-                    ParamSpecEnum::builder::<LateFactor>("late-factor")
-                        .read_only()
-                        .build(),
-                    ParamSpecBoolean::builder("change-platform")
-                        .read_only()
-                        .build(),
-                    ParamSpecBoolean::builder("is-unreachable")
-                        .read_only()
-                        .build(),
-                    ParamSpecBoolean::builder("is-cancelled")
-                        .read_only()
-                        .build(),
-                    ParamSpecObject::builder::<BoxedAnyObject>("current-event")
-                        .read_only()
-                        .build(),
-                    ParamSpecObject::builder::<BoxedAnyObject>("alerts")
-                        .read_only()
-                        .build(),
-                    ParamSpecString::builder("last-refreshed")
-                        .read_only()
-                        .build(),
-                    ParamSpecBoolean::builder("refresh-in-progress").build(),
-                    ParamSpecObject::builder::<Client>("client").build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "refresh-in-progress" => {
-                    let obj = value.get::<bool>().expect(
-                        "Property `refresh-in-progress` of `JourneyDetailPage` has to be of type `bool`",
-                    );
-
-                    self.refresh_in_progress.replace(obj);
-                }
-                "client" => {
-                    let obj = value
-                        .get::<Option<Client>>()
-                        .expect("Property `client` of `JourneysPage` has to be of type `Client`");
-
-                    self.client.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "price" => self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.price.as_ref())
-                    .map(|p| Price::new(p.clone()))
-                    .to_value(),
-                "first-leg" => self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.legs.first())
-                    .map(|o| Leg::new(o.clone()))
-                    .to_value(),
-                "last-leg" => self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.legs.last())
-                    .map(|o| Leg::new(o.clone()))
-                    .to_value(),
-                "total-time" => {
-                    let journey_borrow = self.journey.borrow();
-                    let journey = journey_borrow.as_ref();
-                    let leg_first = journey.and_then(|o| o.legs.first());
-                    let leg_last = journey.and_then(|o| o.legs.last());
-
-                    let departure = leg_first.and_then(|o| o.departure);
-                    let arrival = leg_last.and_then(|o| o.arrival);
-
-                    if let (Some(arrival), Some(departure)) = (arrival, departure) {
-                        Utility::format_duration_tabular(arrival - departure).to_value()
-                    } else {
-                        "".to_string().to_value()
-                    }
-                }
-                "transitions" => self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .map(|o| {
-                        o.legs
-                            .iter()
-                            .filter(|leg| !leg.walking)
-                            .collect::<Vec<_>>()
-                            .len()
-                            .saturating_sub(1) as u32
-                    })
-                    .unwrap_or_default()
-                    .to_value(),
-                "types" => self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .map(|o| {
-                        o.legs
-                            .iter()
-                            .filter_map(|l| {
-                                l.line.as_ref().map(|l| {
-                                    l.product_name
-                                        .clone()
-                                        .unwrap_or_else(|| l.product.name.to_string())
-                                })
-                            })
-                            .collect::<Vec<String>>()
-                            .join(" • ")
-                    })
-                    .unwrap_or_default()
-                    .to_value(),
-                "load-factor" => self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.legs.iter().map(|l| LoadFactor::from(l.load_factor)).max())
-                    .unwrap_or_default()
-                    .to_value(),
-                "late-factor" => self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| {
-                        o.legs
-                            .iter()
-                            .map(|l| {
-                                std::cmp::max(
-                                    match (l.arrival, l.planned_arrival) {
-                                        (Some(real), Some(planned)) => {
-                                            LateFactor::from(real - planned)
-                                        }
-                                        _ => LateFactor::default(),
-                                    },
-                                    match (l.departure, l.planned_departure) {
-                                        (Some(real), Some(planned)) => {
-                                            LateFactor::from(real - planned)
-                                        }
-                                        _ => LateFactor::default(),
-                                    },
-                                )
-                            })
-                            .max()
-                    })
-                    .unwrap_or_default()
-                    .to_value(),
-                "change-platform" => self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .map(|o| {
-                        o.legs.iter().any(|l| {
-                            l.departure_platform != l.planned_departure_platform
-                                || l.arrival_platform != l.planned_arrival_platform
-                        })
-                    })
-                    .unwrap_or_default()
-                    .to_value(),
-                "is-unreachable" => self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .map(|o| o.legs.iter().any(|l| !l.reachable))
-                    .unwrap_or_default()
-                    .to_value(),
-                "is-cancelled" => self
-                    .journey
-                    .borrow()
-                    .as_ref()
-                    .map(|o| o.legs.iter().any(|l| l.cancelled))
-                    .unwrap_or_default()
-                    .to_value(),
-                "current-event" => {
-                    let mut event = self.current_event.borrow_mut();
-                    if event.is_none() {
-                        *event = Some(self.obj().event_at_time(&Local::now()));
-                    }
-                    let event = event.clone().unwrap();
-
-                    BoxedAnyObject::new(event).into()
-                }
-                "alerts" => {
-                    let alerts = self.alerts.borrow();
-                    BoxedAnyObject::new(alerts.clone()).into()
-                }
-                "refresh-in-progress" => self.refresh_in_progress.get().to_value(),
-                "last-refreshed" => {
-                    Utility::format_time_human(&self.last_refreshed.borrow().time()).to_value()
-                }
-                "client" => self.client.borrow().as_ref().to_value(),
-                _ => unimplemented!(),
-            }
         }
     }
 }

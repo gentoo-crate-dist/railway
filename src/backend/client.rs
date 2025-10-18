@@ -1,7 +1,6 @@
 use std::str::FromStr;
 use std::time::Duration;
 
-use gdk::gio;
 use gdk::glib::clone;
 use gdk::prelude::{ObjectExt, SettingsExt};
 use gdk::subclass::prelude::ObjectSubclassIsExt;
@@ -368,10 +367,6 @@ impl Client {
         self.imp().internal()
     }
 
-    pub fn providers(&self) -> gio::ListModel {
-        self.property("providers")
-    }
-
     pub fn current_provider(&self) -> Option<Provider> {
         let value = self.imp().settings.string("search-provider");
         providers().into_iter().find(|p| p.id() == value)
@@ -473,23 +468,29 @@ impl Client {
 mod imp {
     use gdk::gio::{ListModel, ListStore};
     use gdk::glib::subclass::Signal;
-    use gdk::glib::{ParamSpec, ParamSpecObject, Value, WeakRef};
-    use gdk::prelude::{ParamSpecBuilderExt, ToValue};
+    use gdk::glib::{Properties, WeakRef};
+    use gdk::prelude::ObjectExt;
+    use gdk::subclass::prelude::DerivedObjectProperties;
     use gdk::subclass::prelude::{ObjectImpl, ObjectSubclass};
     use gtk::gio::Settings;
     use gtk::glib;
     use once_cell::sync::Lazy;
     use std::cell::RefCell;
     use std::collections::HashMap;
+    use std::marker::PhantomData;
     use std::sync::RwLock;
 
     use crate::backend::Journey;
     use crate::config;
 
+    #[derive(Properties)]
+    #[properties(wrapper_type = super::Client)]
     pub struct Client {
         pub(super) internal: RwLock<Option<super::ApiProvider>>,
 
         pub(super) journey_cache: RefCell<HashMap<String, WeakRef<Journey>>>,
+        #[property(get = Self::providers)]
+        providers: PhantomData<ListModel>,
 
         pub(super) settings: Settings,
     }
@@ -499,6 +500,7 @@ mod imp {
             Self {
                 internal: Default::default(),
                 journey_cache: Default::default(),
+                providers: Default::default(),
                 settings: Settings::new(config::BASE_ID),
             }
         }
@@ -513,6 +515,12 @@ mod imp {
                 .expect("Client internal not yet set")
                 .clone()
         }
+
+        fn providers(&self) -> ListModel {
+            let list = ListStore::new::<super::Provider>();
+            list.extend_from_slice(&super::providers());
+            list.into()
+        }
     }
 
     #[glib::object_subclass]
@@ -521,28 +529,8 @@ mod imp {
         type Type = super::Client;
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for Client {
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::builder::<ListModel>("providers")
-                    .read_only()
-                    .build()]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "providers" => {
-                    let list = ListStore::new::<super::Provider>();
-                    list.extend_from_slice(&super::providers());
-                    list.to_value()
-                }
-                _ => unimplemented!(),
-            }
-        }
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> =
                 Lazy::new(|| -> Vec<Signal> { vec![Signal::builder("provider-changed").build()] });

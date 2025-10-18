@@ -20,14 +20,15 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{ParamSpec, ParamSpecString, Value},
-        prelude::{ParamSpecBuilderExt, ToValue},
-        subclass::prelude::{ObjectImpl, ObjectSubclass},
+        glib::Properties,
+        prelude::ObjectExt,
+        subclass::prelude::{DerivedObjectProperties, ObjectImpl, ObjectSubclass},
     };
-    use once_cell::sync::Lazy;
 
-    #[derive(Default)]
+    #[derive(Default, Properties)]
+    #[properties(wrapper_type = super::Station)]
     pub struct Stop {
+        #[property(name = "name", type = Option<String>, get = |s: &Self| s.station.borrow().as_ref().and_then(|o| o.name.clone()))]
         pub(super) station: RefCell<Option<rcore::Station>>,
     }
 
@@ -37,25 +38,6 @@ mod imp {
         type Type = super::Station;
     }
 
-    impl ObjectImpl for Stop {
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| vec![ParamSpecString::builder("name").read_only().build()]);
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "name" => self
-                    .station
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.name.clone())
-                    .to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for Stop {}
 }
