@@ -75,8 +75,7 @@ pub mod imp {
     use gdk::gio::SimpleAction;
     use gdk::gio::SimpleActionGroup;
     use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use glib::signal::Propagation;
     use glib::subclass::InitializingObject;
     use gtk::glib;
@@ -88,7 +87,6 @@ pub mod imp {
     use libadwaita::prelude::AdwDialogExt;
     use libadwaita::subclass::prelude::AdwApplicationWindowImpl;
     use libadwaita::subclass::prelude::AdwWindowImpl;
-    use once_cell::sync::Lazy;
 
     use crate::backend::Client;
     use crate::backend::DiscountCard;
@@ -113,7 +111,8 @@ pub mod imp {
     use crate::gui::stores::search_store::SearchesStore;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::Window)]
     #[template(resource = "/ui/window.ui")]
     pub struct Window {
         #[template_child]
@@ -143,7 +142,9 @@ pub mod imp {
         #[template_child]
         pub toast_overlay: TemplateChild<libadwaita::ToastOverlay>,
 
+        #[property(get)]
         client: RefCell<Client>,
+        #[property(get)]
         timer: RefCell<Timer>,
     }
 
@@ -426,35 +427,12 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for Window {
         fn constructed(&self) {
             self.parent_constructed();
             self.setup_actions();
             self.setup();
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecObject::builder::<Client>("client")
-                        .read_only()
-                        .build(),
-                    ParamSpecObject::builder::<Timer>("timer")
-                        .read_only()
-                        .build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "client" => self.client.borrow().to_value(),
-                "timer" => self.timer.borrow().to_value(),
-                _ => unimplemented!(),
-            }
         }
     }
 

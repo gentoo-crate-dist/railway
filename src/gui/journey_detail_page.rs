@@ -1,6 +1,4 @@
-use gdk::{prelude::ObjectExt, subclass::prelude::ObjectSubclassIsExt};
-
-use crate::backend::Journey;
+use gdk::subclass::prelude::ObjectSubclassIsExt;
 
 gtk::glib::wrapper! {
     pub struct JourneyDetailPage(ObjectSubclass<imp::JourneyDetailPage>)
@@ -12,10 +10,6 @@ gtk::glib::wrapper! {
 impl JourneyDetailPage {
     pub fn reload(&self) {
         self.imp().reload(self);
-    }
-
-    fn journey(&self) -> Option<Journey> {
-        self.property("journey")
     }
 }
 
@@ -29,17 +23,13 @@ pub mod imp {
     use gdk::glib::BoxedAnyObject;
     use gdk::glib::JoinHandle;
     use gdk::glib::MainContext;
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecBoolean;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::template_callbacks;
     use gtk::CompositeTemplate;
-    use once_cell::sync::Lazy;
 
     use chrono::Duration;
 
@@ -54,7 +44,8 @@ pub mod imp {
     use crate::gui::utility::Utility;
     use crate::gui::window::Window;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::JourneyDetailPage)]
     #[template(resource = "/ui/journey_detail_page.ui")]
     pub struct JourneyDetailPage {
         #[template_child]
@@ -62,19 +53,74 @@ pub mod imp {
         #[template_child]
         label_last_refreshed: TemplateChild<gtk::Label>,
 
+        #[property(get, set = Self::set_show_live_box)]
         show_live_box: Cell<bool>,
 
+        #[property(get, set = Self::set_journey, nullable)]
         journey: RefCell<Option<Journey>>,
 
         journey_update_signal_id: Cell<Option<SignalHandlerId>>,
 
         load_handle: RefCell<Option<JoinHandle<()>>>,
 
+        #[property(get, set)]
         pub(super) timer: RefCell<Timer>,
+        #[property(get, set)]
         client: RefCell<Option<Client>>,
     }
 
     impl JourneyDetailPage {
+        fn set_show_live_box(&self, obj: bool) {
+            if let Some(journey) = self.obj().property("journey") {
+                if obj {
+                    self.timer.borrow().register_minutely(journey)
+                } else {
+                    self.timer.borrow().unregister_minutely(journey)
+                }
+            }
+
+            self.show_live_box.replace(obj);
+        }
+
+        fn set_journey(&self, obj: Option<Journey>) {
+            if let Some(old) = self.journey.borrow().as_ref() {
+                self.timer.borrow().unregister_minutely(old.clone());
+
+                if let Some(id) = self.journey_update_signal_id.take() {
+                    old.disconnect(id);
+                }
+            }
+
+            // Different journeys can be identified by different refresh tokens.
+            let redo =
+                obj.as_ref().map(|j| j.id()) != self.journey.borrow().as_ref().map(|j| j.id());
+
+            self.journey.replace(obj.clone());
+
+            self.schedule_setup(redo);
+
+            if let Some(obj) = obj {
+                self.journey_update_signal_id
+                    .replace(Some(obj.connect_local(
+                        "updated",
+                        true,
+                        clone!(
+                            #[weak(rename_to = s)]
+                            self,
+                            #[upgrade_or_default]
+                            move |_| {
+                                s.schedule_setup(false);
+                                None
+                            }
+                        ),
+                    )));
+
+                if self.obj().property("show-live-box") {
+                    self.timer.borrow().register_minutely(obj);
+                }
+            }
+        }
+
         pub(super) fn reload(&self, obj: &super::JourneyDetailPage) {
             let main_context = MainContext::default();
             let window = self.obj().root().and_downcast::<Window>().expect(
@@ -241,7 +287,7 @@ pub mod imp {
                     if let Some(child) = &current_child {
                         if let Some(leg_item) = child.dynamic_cast_ref::<LegItem>() {
                             // There is already a leg item in the correct place.
-                            leg_item.set_leg(&Leg::new(legs[i].clone()));
+                            leg_item.set_leg(Leg::new(legs[i].clone()));
                         } else {
                             // There is something there, but it is no leg item. Clear the box from here to the end and insert a new transition.
                             while let Some(c) = current_child {
@@ -317,110 +363,8 @@ pub mod imp {
         }
     }
 
-    impl ObjectImpl for JourneyDetailPage {
-        fn constructed(&self) {
-            self.parent_constructed();
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecObject::builder::<Journey>("journey").build(),
-                    ParamSpecBoolean::builder("show-live-box").build(),
-                    ParamSpecObject::builder::<Client>("client").build(),
-                    ParamSpecObject::builder::<Timer>("timer").build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "journey" => {
-                    if let Some(old) = self.journey.borrow().as_ref() {
-                        self.timer.borrow().unregister_minutely(old.clone());
-
-                        if let Some(id) = self.journey_update_signal_id.take() {
-                            old.disconnect(id);
-                        }
-                    }
-
-                    let obj = value.get::<Option<Journey>>().expect(
-                        "Property `journey` of `JourneyDetailPage` has to be of type `Journey`",
-                    );
-
-                    // Different journeys can be identified by different refresh tokens.
-                    let redo = obj.as_ref().map(|j| j.id())
-                        != self.journey.borrow().as_ref().map(|j| j.id());
-
-                    self.journey.replace(obj.clone());
-
-                    self.schedule_setup(redo);
-
-                    if let Some(obj) = obj {
-                        self.journey_update_signal_id
-                            .replace(Some(obj.connect_local(
-                                "updated",
-                                true,
-                                clone!(
-                                    #[weak(rename_to = s)]
-                                    self,
-                                    #[upgrade_or_default]
-                                    move |_| {
-                                        s.schedule_setup(false);
-                                        None
-                                    }
-                                ),
-                            )));
-
-                        if self.obj().property("show-live-box") {
-                            self.timer.borrow().register_minutely(obj);
-                        }
-                    }
-                }
-                "show-live-box" => {
-                    let obj = value.get::<bool>().expect(
-                        "Property `show-live-box` of `JourneyDetailPage` has to be of type `bool`",
-                    );
-
-                    if let Some(journey) = self.obj().property("journey") {
-                        if obj {
-                            self.timer.borrow().register_minutely(journey)
-                        } else {
-                            self.timer.borrow().unregister_minutely(journey)
-                        }
-                    }
-
-                    self.show_live_box.replace(obj);
-                }
-                "client" => {
-                    let obj = value.get::<Option<Client>>().expect(
-                        "Property `client` of `JourneyDetailPage` has to be of type `Client`",
-                    );
-
-                    self.client.replace(obj);
-                }
-                "timer" => {
-                    let obj = value.get::<Timer>().expect(
-                        "Property `timer` of `JourneyDetailPage` has to be of type `timer`",
-                    );
-
-                    self.timer.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "journey" => self.journey.borrow().to_value(),
-                "show-live-box" => self.show_live_box.get().to_value(),
-                "client" => self.client.borrow().to_value(),
-                "timer" => self.timer.borrow().to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for JourneyDetailPage {}
 
     impl WidgetImpl for JourneyDetailPage {}
     impl BoxImpl for JourneyDetailPage {}

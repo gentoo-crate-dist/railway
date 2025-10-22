@@ -9,9 +9,7 @@ pub mod imp {
 
     use gdk::gio::Settings;
     use gdk::glib::clone;
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::prelude::*;
@@ -24,7 +22,6 @@ pub mod imp {
     use gtk::PropertyExpression;
     use gtk::SignalListItemFactory;
     use gtk::Widget;
-    use once_cell::sync::Lazy;
 
     use crate::backend::Client;
     use crate::backend::Provider;
@@ -32,7 +29,8 @@ pub mod imp {
     use crate::gui::provider_list_item::ProviderListItem;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate)]
+    #[derive(CompositeTemplate, Properties)]
+    #[properties(wrapper_type = super::ProviderPopover)]
     #[template(resource = "/ui/provider_popover.ui")]
     pub struct ProviderPopover {
         #[template_child]
@@ -40,9 +38,11 @@ pub mod imp {
         #[template_child]
         entry_search: TemplateChild<gtk::SearchEntry>,
 
+        #[property(get, set = Self::set_current_selection, nullable)]
         current_selection: RefCell<Option<Provider>>,
 
         settings: Settings,
+        #[property(get, set = Self::set_client, nullable)]
         client: RefCell<Option<Client>>,
     }
 
@@ -60,6 +60,53 @@ pub mod imp {
 
     #[gtk::template_callbacks]
     impl ProviderPopover {
+        fn set_current_selection(&self, obj: Option<Provider>) {
+            if let Some(selection_model) = self.list_providers.model() {
+                let selection_model = selection_model
+                    .downcast_ref::<gtk::SingleSelection>()
+                    .expect(
+                        "selection model of the provider selection has to be a single selection",
+                    );
+
+                let position = selection_model
+                    .iter::<glib::Object>()
+                    .position(|entry| {
+                        let entry_provider = entry
+                            .ok()
+                            .and_then(|object| object.downcast::<Provider>().ok());
+                        match (entry_provider, obj.clone()) {
+                            (Some(a), Some(b)) => a.id() == b.id(),
+                            (_, _) => false,
+                        }
+                    })
+                    .map(|position| position as u32)
+                    .unwrap_or(gtk::INVALID_LIST_POSITION);
+                selection_model.set_selected(position);
+
+                if let Some(item) = selection_model.selected_item() {
+                    let provider = item
+                        .downcast_ref::<Provider>()
+                        .expect("selection has to be for a provider");
+                    self.settings
+                        .set_string("search-provider", &provider.id())
+                        .expect("Failed to set setting `search-provider`");
+                }
+            }
+
+            self.current_selection.replace(obj);
+        }
+
+        fn set_client(&self, obj: Option<Client>) {
+            self.client.replace(obj.clone());
+
+            if let Some(obj) = &obj {
+                self.setup_model(&self.obj());
+
+                self.obj()
+                    .set_property("current-selection", obj.current_provider());
+            }
+        }
+
         fn setup_model(&self, obj: &super::ProviderPopover) {
             let model = self
                 .client
@@ -183,6 +230,7 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for ProviderPopover {
         fn constructed(&self) {
             let obj = self.obj();
@@ -215,80 +263,6 @@ pub mod imp {
                     entry_search.set_text("");
                 }
             ));
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecObject::builder::<Client>("client").build(),
-                    ParamSpecObject::builder::<Provider>("current-selection").build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "current-selection" => {
-                    let obj = value.get::<Option<Provider>>().expect(
-                        "Property `current-selection` of `ProviderPopover` has to be of type `Provider`",
-                    );
-
-                    if let Some(selection_model) = self.list_providers.model() {
-                        let selection_model = selection_model.downcast_ref::<gtk::SingleSelection>()
-                            .expect("selection model of the provider selection has to be a single selection");
-
-                        let position = selection_model
-                            .iter::<glib::Object>()
-                            .position(|entry| {
-                                let entry_provider = entry
-                                    .ok()
-                                    .and_then(|object| object.downcast::<Provider>().ok());
-                                match (entry_provider, obj.clone()) {
-                                    (Some(a), Some(b)) => a.id() == b.id(),
-                                    (_, _) => false,
-                                }
-                            })
-                            .map(|position| position as u32)
-                            .unwrap_or(gtk::INVALID_LIST_POSITION);
-                        selection_model.set_selected(position);
-
-                        if let Some(item) = selection_model.selected_item() {
-                            let provider = item
-                                .downcast_ref::<Provider>()
-                                .expect("selection has to be for a provider");
-                            self.settings
-                                .set_string("search-provider", &provider.id())
-                                .expect("Failed to set setting `search-provider`");
-                        }
-                    }
-
-                    self.current_selection.replace(obj);
-                }
-                "client" => {
-                    let obj = value.get::<Option<Client>>().expect(
-                        "Property `client` of `ProviderPopover` has to be of type `Client`",
-                    );
-
-                    self.client.replace(obj.clone());
-
-                    if let Some(obj) = &obj {
-                        self.setup_model(&self.obj());
-
-                        self.obj()
-                            .set_property("current-selection", obj.current_provider());
-                    }
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "client" => self.client.borrow().to_value(),
-                "current-selection" => self.current_selection.borrow().to_value(),
-                _ => unimplemented!(),
-            }
         }
     }
 

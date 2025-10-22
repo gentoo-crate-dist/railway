@@ -73,9 +73,11 @@ pub mod imp {
 
     use gdk::{
         gio::Settings,
-        glib::{subclass::Signal, ParamSpec, ParamSpecObject, Value},
-        prelude::{ObjectExt, SettingsExt, StaticType, ToValue},
-        subclass::prelude::{ObjectImpl, ObjectImplExt, ObjectSubclass, ObjectSubclassExt},
+        glib::{subclass::Signal, Properties},
+        prelude::{ObjectExt, SettingsExt, StaticType},
+        subclass::prelude::{
+            DerivedObjectProperties, ObjectImpl, ObjectImplExt, ObjectSubclass, ObjectSubclassExt,
+        },
     };
     use once_cell::sync::Lazy;
 
@@ -88,6 +90,8 @@ pub mod imp {
 
     use super::StorageData;
 
+    #[derive(Properties)]
+    #[properties(wrapper_type = super::JourneysStore)]
     pub struct JourneysStore {
         path: PathBuf,
         pub(super) watched: RefCell<HashSet<String>>,
@@ -95,6 +99,7 @@ pub mod imp {
         pub(super) window: RefCell<Option<Window>>,
         pub(super) client: RefCell<Option<Client>>,
 
+        #[property(get, set)]
         pub(super) timer: RefCell<Timer>,
         settings: Settings,
     }
@@ -318,6 +323,7 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for JourneysStore {
         fn constructed(&self) {
             self.parent_constructed();
@@ -347,32 +353,6 @@ pub mod imp {
                 ]
             });
             SIGNALS.as_ref()
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| vec![ParamSpecObject::builder::<Timer>("timer").build()]);
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "timer" => {
-                    let obj = value
-                        .get::<Timer>()
-                        .expect("Property `timer` of `JourneyStore` has to be of type `timer`");
-
-                    self.timer.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "timer" => self.timer.borrow().to_value(),
-                _ => unimplemented!(),
-            }
         }
     }
 }

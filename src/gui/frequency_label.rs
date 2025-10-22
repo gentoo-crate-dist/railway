@@ -8,24 +8,47 @@ gtk::glib::wrapper! {
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::ParamSpecString;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::CompositeTemplate;
     use libadwaita::prelude::*;
     use libadwaita::subclass::prelude::*;
-    use once_cell::sync::Lazy;
 
     use crate::backend::Frequency;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::FrequencyLabel)]
     #[template(resource = "/ui/frequency_label.ui")]
     pub struct FrequencyLabel {
+        #[property(get, set = Self::set_frequency)]
+        #[property(name = "label", type = Option<String>, get = Self::label)]
         frequency: RefCell<Option<Frequency>>,
+    }
+
+    impl FrequencyLabel {
+        fn set_frequency(&self, frequency: Option<Frequency>) {
+            let obj = self.obj();
+            obj.set_visible(frequency.is_some());
+            self.frequency.replace(frequency);
+            obj.notify("label");
+        }
+
+        fn label(&self) -> Option<String> {
+            self.frequency
+                .borrow()
+                .as_ref()
+                .and_then(Frequency::frequency)
+                .and_then(|f| match (f.minimum, f.maximum) {
+                    (Some(min), Some(max)) => Some((min + max) / 2),
+                    (Some(d), _) | (_, Some(d)) => Some(d),
+                    _ => None,
+                })
+                .map(Utility::format_duration_inline)
+                // Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
+                .map(|x| gettextrs::gettext("every ~{}").replace("{}", &x))
+        }
     }
 
     #[glib::object_subclass]
@@ -43,57 +66,8 @@ pub mod imp {
         }
     }
 
-    impl ObjectImpl for FrequencyLabel {
-        fn constructed(&self) {
-            self.parent_constructed();
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecObject::builder::<Frequency>("frequency").build(),
-                    ParamSpecString::builder("label").read_only().build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "frequency" => {
-                    let obj = value.get::<Option<Frequency>>().expect(
-                        "Property `frequency` of `FrequencyLabel` has to be of type `Frequency`",
-                    );
-
-                    self.obj().set_visible(obj.is_some());
-                    self.frequency.replace(obj);
-                    self.obj().notify("label");
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "frequency" => self.frequency.borrow().to_value(),
-                "label" => self
-                    .frequency
-                    .borrow()
-                    .as_ref()
-                    .and_then(Frequency::frequency)
-                    .and_then(|f| match (f.minimum, f.maximum) {
-                        (Some(min), Some(max)) => Some((min + max) / 2),
-                        (Some(d), _) | (_, Some(d)) => Some(d),
-                        _ => None,
-                    })
-                    .map(Utility::format_duration_inline)
-                    // Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
-                    .map(|x| gettextrs::gettext("every ~{}").replace("{}", &x))
-                    .to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for FrequencyLabel {}
 
     impl WidgetImpl for FrequencyLabel {}
     impl BinImpl for FrequencyLabel {}

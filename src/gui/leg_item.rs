@@ -1,4 +1,4 @@
-use gdk::{glib::Object, prelude::ObjectExt};
+use gdk::glib::Object;
 
 use crate::backend::Leg;
 
@@ -13,26 +13,19 @@ impl LegItem {
     pub fn new(leg: &Leg) -> Self {
         Object::builder().property("leg", leg).build()
     }
-
-    pub fn set_leg(&self, leg: &Leg) {
-        self.set_property("leg", leg);
-    }
 }
 
 pub mod imp {
     use std::cell::RefCell;
 
     use gdk::glib::JoinHandle;
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use gtk::DirectionType;
-    use once_cell::sync::Lazy;
 
     use crate::backend::IntermediateLocation;
     use crate::backend::Leg;
@@ -42,7 +35,8 @@ pub mod imp {
     use crate::gui::remark_item::RemarkItem;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::LegItem)]
     #[template(resource = "/ui/leg_item.ui")]
     pub struct LegItem {
         #[template_child]
@@ -60,6 +54,7 @@ pub mod imp {
         #[template_child]
         size_group: TemplateChild<gtk::SizeGroup>,
 
+        #[property(get, set = Self::set_leg)]
         leg: RefCell<Option<Leg>>,
 
         load_handle: RefCell<Option<JoinHandle<()>>>,
@@ -217,6 +212,25 @@ pub mod imp {
                 self.box_intermediate_locations.remove(&c);
             }
         }
+
+        fn set_leg(&self, obj: Leg) {
+            self.leg.replace(Some(obj));
+            // Ensure the load is not called twice at the same time by aborting the old one if needed.
+            if let Some(handle) = self.load_handle.replace(None) {
+                handle.abort();
+            }
+
+            let o = self.obj().clone();
+            // First, setup sync UI which can change the layout.
+            o.imp().setup_sync();
+            // Afterwards, asynchronously add information which will not change the layout.
+            let handle = gspawn!(
+                async move { o.imp().setup_async().await },
+                glib::Priority::LOW
+            );
+
+            self.load_handle.replace(Some(handle));
+        }
     }
 
     #[glib::object_subclass]
@@ -236,6 +250,7 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for LegItem {
         fn constructed(&self) {
             self.parent_constructed();
@@ -262,47 +277,6 @@ pub mod imp {
                     ),
                 )]);
             });
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| vec![ParamSpecObject::builder::<Leg>("leg").build()]);
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "leg" => {
-                    let obj = value
-                        .get::<Option<Leg>>()
-                        .expect("Property `leg` of `LegItem` has to be of type `Leg`");
-
-                    self.leg.replace(obj);
-                    // Ensure the load is not called twice at the same time by aborting the old one if needed.
-                    if let Some(handle) = self.load_handle.replace(None) {
-                        handle.abort();
-                    }
-
-                    let o = self.obj().clone();
-                    // First, setup sync UI which can change the layout.
-                    o.imp().setup_sync();
-                    // Afterwards, asynchronously add information which will not change the layout.
-                    let handle = gspawn!(
-                        async move { o.imp().setup_async().await },
-                        glib::Priority::LOW
-                    );
-
-                    self.load_handle.replace(Some(handle));
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "leg" => self.leg.borrow().to_value(),
-                _ => unimplemented!(),
-            }
         }
     }
 

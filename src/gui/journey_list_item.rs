@@ -70,23 +70,21 @@ impl Default for JourneyListItem {
 
 pub mod imp {
     use std::cell::RefCell;
+    use std::marker::PhantomData;
 
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecBoolean;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
-    use once_cell::sync::Lazy;
 
     use crate::backend::Journey;
     use crate::gui::indicator_icons::IndicatorIcons;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::JourneyListItem)]
     #[template(resource = "/ui/journey_list_item.ui")]
     pub struct JourneyListItem {
         #[template_child]
@@ -99,7 +97,11 @@ pub mod imp {
         #[template_child]
         pub(super) indicators: TemplateChild<IndicatorIcons>,
 
+        #[property(get, set =  Self::set_journey, nullable)]
         pub(super) journey: RefCell<Option<Journey>>,
+
+        #[property(set =  Self::set_compact)]
+        compact: PhantomData<bool>,
     }
 
     impl JourneyListItem {
@@ -113,6 +115,19 @@ pub mod imp {
             self.from_time.set_spacing(spacing);
             self.to_time.set_orientation(orientation);
             self.to_time.set_spacing(spacing);
+        }
+
+        fn set_journey(&self, obj: Option<Journey>) {
+            if obj
+                .as_ref()
+                .is_some_and(|j| j.is_unreachable() || j.is_cancelled())
+            {
+                self.obj().add_css_class("dim-label");
+            } else {
+                self.obj().remove_css_class("dim-label");
+            }
+
+            self.journey.replace(obj);
         }
     }
 
@@ -132,57 +147,8 @@ pub mod imp {
         }
     }
 
-    impl ObjectImpl for JourneyListItem {
-        fn constructed(&self) {
-            self.parent_constructed();
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecObject::builder::<Journey>("journey").build(),
-                    ParamSpecBoolean::builder("compact").write_only().build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "journey" => {
-                    let obj = value.get::<Option<Journey>>().expect(
-                        "Property `journey` of `JourneyListItem` has to be of type `Journey`",
-                    );
-
-                    if obj
-                        .as_ref()
-                        .is_some_and(|j| j.is_unreachable() || j.is_cancelled())
-                    {
-                        self.obj().add_css_class("dim-label");
-                    } else {
-                        self.obj().remove_css_class("dim-label");
-                    }
-
-                    self.journey.replace(obj);
-                }
-                "compact" => {
-                    let obj = value
-                        .get::<bool>()
-                        .expect("Property `compact` of `JourneyListItem` has to be of type `bool`");
-
-                    self.set_compact(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "journey" => self.journey.borrow().to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for JourneyListItem {}
 
     impl WidgetImpl for JourneyListItem {}
     impl BoxImpl for JourneyListItem {}

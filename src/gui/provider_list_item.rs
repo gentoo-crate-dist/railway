@@ -22,22 +22,21 @@ impl Default for ProviderListItem {
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
-    use gdk::prelude::ToValue;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
     use gtk::glib;
+    use gtk::prelude::ObjectExt;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
-    use once_cell::sync::Lazy;
 
     use crate::backend::Provider;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::ProviderListItem)]
     #[template(resource = "/ui/provider_list_item.ui")]
     pub struct ProviderListItem {
+        #[property(get, set)]
         provider: RefCell<Option<Provider>>,
     }
 
@@ -57,37 +56,8 @@ pub mod imp {
         }
     }
 
-    impl ObjectImpl for ProviderListItem {
-        fn constructed(&self) {
-            self.parent_constructed();
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| vec![ParamSpecObject::builder::<Provider>("provider").build()]);
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "provider" => {
-                    let obj = value.get::<Option<Provider>>().expect(
-                        "Property `provider` of `DBProviderListItem` has to be of type `Provider`",
-                    );
-
-                    self.provider.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "provider" => self.provider.borrow().to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for ProviderListItem {}
 
     impl WidgetImpl for ProviderListItem {}
     impl BoxImpl for ProviderListItem {}

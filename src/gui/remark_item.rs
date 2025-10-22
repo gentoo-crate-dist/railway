@@ -18,23 +18,22 @@ impl RemarkItem {
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use gtk::DirectionType;
-    use once_cell::sync::Lazy;
 
     use crate::backend::Remark;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::RemarkItem)]
     #[template(resource = "/ui/remark_item.ui")]
     pub struct RemarkItem {
+        #[property(get, set)]
         remark: RefCell<Option<Remark>>,
     }
 
@@ -54,37 +53,8 @@ pub mod imp {
         }
     }
 
-    impl ObjectImpl for RemarkItem {
-        fn constructed(&self) {
-            self.parent_constructed();
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| vec![ParamSpecObject::builder::<Remark>("remark").build()]);
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "remark" => {
-                    let obj = value
-                        .get::<Option<Remark>>()
-                        .expect("Property `remark` of `RemarkItem` has to be of type `Remark`");
-
-                    self.remark.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "remark" => self.remark.borrow().to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for RemarkItem {}
 
     impl WidgetImpl for RemarkItem {
         fn focus(&self, direction: DirectionType) -> bool {

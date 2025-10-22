@@ -32,28 +32,27 @@ impl IntermediateLocationItem {
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use gtk::DirectionType;
-    use once_cell::sync::Lazy;
 
     use crate::backend::IntermediateLocation;
     use crate::backend::Place;
     use crate::gui::alt_label::AltLabel;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::IntermediateLocationItem)]
     #[template(resource = "/ui/intermediate_location_item.ui")]
     pub struct IntermediateLocationItem {
         #[template_child]
         pub(super) alt_label_arrival: TemplateChild<AltLabel>,
 
+        #[property(get, set)]
         intermediate_location: RefCell<Option<IntermediateLocation>>,
     }
 
@@ -98,6 +97,7 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for IntermediateLocationItem {
         fn constructed(&self) {
             self.parent_constructed();
@@ -126,36 +126,6 @@ pub mod imp {
                     ]);
                 },
             );
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecObject::builder::<IntermediateLocation>("intermediate-location")
-                        .build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "intermediate-location" => {
-                    let obj = value.get::<Option<IntermediateLocation>>().expect(
-                        "Property `intermediate-location` of `IntermediateLocationItem` has to be of type `IntermediateLocation`",
-                    );
-
-                    self.intermediate_location.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "intermediate-location" => self.intermediate_location.borrow().to_value(),
-                _ => unimplemented!(),
-            }
         }
     }
 
