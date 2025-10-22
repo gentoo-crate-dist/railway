@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-28 01:28+0200\n"
+"POT-Creation-Date: 2025-10-22 19:18+0200\n"
 "PO-Revision-Date: 2024-07-22 16:09+0000\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
@@ -98,19 +98,19 @@ msgstr "आगत समय"
 msgid "Time"
 msgstr "समय"
 
-#: data/resources/ui/date_time_picker.blp:142
+#: data/resources/ui/date_time_picker.blp:142 src/gui/date_time_picker.rs:119
 msgid "Now"
 msgstr "अभी"
 
-#: data/resources/ui/journey_detail_page.blp:56
+#: data/resources/ui/journey_detail_page.blp:57
 msgid "Total Travel Time"
 msgstr "कुल यात्रा समय"
 
-#: data/resources/ui/journey_detail_page.blp:70
+#: data/resources/ui/journey_detail_page.blp:71
 msgid "Trip Segments"
 msgstr "यात्रा खंड"
 
-#: data/resources/ui/journey_detail_page.blp:84
+#: data/resources/ui/journey_detail_page.blp:85
 msgid "Choose a Trip"
 msgstr "एक यात्रा चुनें"
 
@@ -118,28 +118,28 @@ msgstr "एक यात्रा चुनें"
 msgid "Search for Trips"
 msgstr "यात्राएं खोजें"
 
-#: data/resources/ui/leg_item.blp:128
+#: data/resources/ui/leg_item.blp:129
 msgid "Show Stops"
 msgstr "ठहराव दिखाएं"
 
-#: data/resources/ui/leg_item.blp:131
+#: data/resources/ui/leg_item.blp:132
 msgid "Show Intermediate Stops"
 msgstr "मध्यवर्ती ठहराव दिखाएं"
 
-#: data/resources/ui/leg_item.blp:180 data/resources/ui/leg_item.blp:188
+#: data/resources/ui/leg_item.blp:181 data/resources/ui/leg_item.blp:189
 msgid "Show Announcements"
 msgstr "घोषणाएं दिखाएं"
 
-#: data/resources/ui/leg_item.blp:203
+#: data/resources/ui/leg_item.blp:204
 msgid "Announcements"
 msgstr "घोषणाएं"
 
-#: data/resources/ui/leg_item.blp:230
+#: data/resources/ui/leg_item.blp:231
 msgid "Stops"
 msgstr "ठहराव"
 
 #: data/resources/ui/preferences_dialog.blp:8
-#: data/resources/ui/shortcuts.blp:27
+#: data/resources/ui/shortcuts_dialog.blp:25
 msgid "General"
 msgstr "सामान्य"
 
@@ -196,6 +196,7 @@ msgid "Second Class"
 msgstr "द्रितीय श्रेणी"
 
 #: data/resources/ui/search_options_dialog.blp:33
+#: src/gui/search_options_button.rs:194
 msgid "Bike Accessible"
 msgstr "साइकिल सुलभ"
 
@@ -213,7 +214,6 @@ msgstr "परिवहन के तरीके"
 
 #: data/resources/ui/search_options_dialog.blp:60
 #, fuzzy
-#| msgid "Regional Train"
 msgid "Mainline Train"
 msgstr "क्षेत्रीय रेल"
 
@@ -223,7 +223,6 @@ msgstr "क्षेत्रीय रेल"
 
 #: data/resources/ui/search_options_dialog.blp:70
 #, fuzzy
-#| msgid "Suburban Trains"
 msgid "S-Bahn Train"
 msgstr "उपनगरीय रेल"
 
@@ -272,35 +271,35 @@ msgstr "बुकमार्क की गई यात्राएं"
 msgid "Bookmarked Searches"
 msgstr "बुकमार्क की गई खोजें"
 
-#: data/resources/ui/shortcuts.blp:8
+#: data/resources/ui/shortcuts_dialog.blp:6
 msgid "Application"
 msgstr "अनुप्रयोग"
 
-#: data/resources/ui/shortcuts.blp:12
+#: data/resources/ui/shortcuts_dialog.blp:10
 msgid "Bookmark Search"
 msgstr "बुकमार्क खोजें"
 
-#: data/resources/ui/shortcuts.blp:17
+#: data/resources/ui/shortcuts_dialog.blp:15
 msgid "Bookmark Trip"
 msgstr "यात्रा को बुकमार्क करें"
 
-#: data/resources/ui/shortcuts.blp:22
+#: data/resources/ui/shortcuts_dialog.blp:20
 msgid "Reload Trip"
 msgstr "यात्रा पुनः लोड करें"
 
-#: data/resources/ui/shortcuts.blp:31
+#: data/resources/ui/shortcuts_dialog.blp:29
 msgid "Quit"
 msgstr "छोड़ें"
 
-#: data/resources/ui/shortcuts.blp:36
+#: data/resources/ui/shortcuts_dialog.blp:34
 msgid "Show Shortcuts"
 msgstr "शॉर्टकट दिखाएं"
 
-#: data/resources/ui/shortcuts.blp:41
+#: data/resources/ui/shortcuts_dialog.blp:39
 msgid "Show Preferences"
 msgstr "प्राथमिकताएं दिखाएं"
 
-#: data/resources/ui/shortcuts.blp:46
+#: data/resources/ui/shortcuts_dialog.blp:44
 msgid "Open Menu"
 msgstr "मेनू खोलें"
 
@@ -338,7 +337,6 @@ msgstr "इस यात्रा को बुकमार्क करें"
 
 #: data/resources/ui/window.blp:166
 #, fuzzy
-#| msgid "Refresh This Trip"
 msgid "Watch this Trip"
 msgstr "इस यात्रा को ताजा करें"
 
@@ -353,6 +351,238 @@ msgstr "कीबोर्ड शॉर्टकट"
 #: data/resources/ui/window.blp:209
 msgid "_About Railway"
 msgstr "रेलवे के बारे में (_A)"
+
+#: src/gui/indicator_icons.rs:135
+msgid "High Load"
+msgstr "उच्च भार"
+
+#: src/gui/indicator_icons.rs:142
+msgid "Very High Load"
+msgstr "बहुत उच्च भार"
+
+#: src/gui/indicator_icons.rs:149
+msgid "Exceptionally High Load"
+msgstr "असाधारण उच्च भार"
+
+#: src/gui/indicator_icons.rs:165
+msgid "On Time"
+msgstr "समय पर"
+
+#: src/gui/indicator_icons.rs:172
+msgid "Minor Delays"
+msgstr "मामूली देरी"
+
+#: src/gui/indicator_icons.rs:179
+msgid "Delayed"
+msgstr "विलंबित"
+
+#: src/gui/indicator_icons.rs:186
+msgid "Very Delayed"
+msgstr "बहुत विलंबित"
+
+#: src/gui/indicator_icons.rs:193
+msgid "Extremely Delayed"
+msgstr "अत्यंत विलंबित"
+
+#: src/gui/indicator_icons.rs:209
+msgid "Platform Changes"
+msgstr "प्लेटफार्म परिवर्तन"
+
+#: src/gui/indicator_icons.rs:228
+msgid "Connection Not Possible"
+msgstr "कनेक्शन संभव नहीं"
+
+#: src/gui/indicator_icons.rs:246
+msgid "Cancelled"
+msgstr "रद्द"
+
+#: src/gui/stores/journey_store.rs:173
+msgid "A bookmarked trip ended recently."
+msgstr "एक बुकमार्क की गई यात्रा हाल ही में समाप्त हुई।"
+
+#: src/gui/stores/journey_store.rs:185
+msgid "Always _Delete"
+msgstr "हमेशा मिटाएं (_D)"
+
+#: src/gui/search_page.rs:124
+msgid "Start and destination are missing"
+msgstr "प्रस्थान और गंतव्य गायब हैं"
+
+#: src/gui/search_page.rs:125
+msgid "Start is missing"
+msgstr "प्रस्थान गायब है"
+
+#: src/gui/search_page.rs:126
+msgid "Destination is missing"
+msgstr "गंतव्य गायब है"
+
+#: src/gui/search_page.rs:127
+msgid "Search ongoing"
+msgstr "खोज जारी है"
+
+#. Translators: Do not translate the strings in {}.
+#: src/gui/transition.rs:93
+msgid "Arrive at {destination}."
+msgstr "{destination} पर आगमन।"
+
+#: src/gui/transition.rs:225
+msgid "Walk {walk} Wait {wait}"
+msgstr "{walk} चलें, {wait} रुकें"
+
+#: src/gui/transition.rs:229
+msgid "Transfer Time {}"
+msgstr "स्थनांतरण समय {}"
+
+#: src/gui/transition.rs:231
+msgid "Walk {}"
+msgstr "{} चलें"
+
+#: src/gui/transition.rs:232
+msgid "Transfer"
+msgstr "स्थानांतरण"
+
+#. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
+#. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
+#: src/gui/utility.rs:74 src/gui/search_options_dialog.rs:245
+msgid "{} min"
+msgstr "{} मिन"
+
+#. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
+#: src/gui/utility.rs:82
+msgid "%_H h %_M min"
+msgstr "%_H घं %_M मिन"
+
+#: src/gui/utility.rs:93
+msgid " %_d day %_H h %_M min"
+msgid_plural "%_d days %_H h %_M min"
+msgstr[0] "%_d दिन %_H घं %_M मिन"
+msgstr[1] "%_d दिन %_H घं %_M मिन"
+
+#. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
+#: src/gui/utility.rs:104
+msgid "{} min."
+msgstr "{} मिन।"
+
+#. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
+#: src/gui/utility.rs:108
+msgid "{} hrs."
+msgstr "{} घं।"
+
+#. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
+#: src/gui/utility.rs:117
+msgid "%-H hrs. %-M min."
+msgstr "%-H घं. %-M मिन।"
+
+#: src/gui/utility.rs:129
+msgid "%-d day %-H hrs. %-M min."
+msgid_plural "%-d days %-H hrs. %-M min."
+msgstr[0] "%-d दिन %-H घं. %-M मिन।"
+msgstr[1] "%-d दिन %-H घं. %-M मिन।"
+
+#. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:139
+msgid "%H:%M"
+msgstr "%H:%M"
+
+#: src/gui/utility.rs:145 src/gui/date_time_picker.rs:107
+msgid "Today"
+msgstr "आज"
+
+#: src/gui/utility.rs:147
+msgid "Tomorrow"
+msgstr "कल"
+
+#: src/gui/utility.rs:149
+msgid "Yesterday"
+msgstr "बिता कल"
+
+#. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:152
+msgid "%a, %d. %B"
+msgstr "%a, %d. %B"
+
+#. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:155
+msgid "%Y-%m-%d"
+msgstr "%Y-%m-%d"
+
+#: src/gui/preferences_dialog.rs:66
+msgid "{} h"
+msgid_plural "{} h"
+msgstr[0] "{} घं"
+msgstr[1] "{} घं"
+
+#: src/gui/search_options_button.rs:75
+msgid "None"
+msgstr "कोई नहीं"
+
+#: src/gui/search_options_button.rs:76
+msgid "BahnCard 25, 1st class"
+msgstr "BahnCard 25, प्रथम श्रेणी"
+
+#: src/gui/search_options_button.rs:77
+msgid "BahnCard 25, 2nd class"
+msgstr "BahnCard 25, द्वितीय श्रेणी"
+
+#: src/gui/search_options_button.rs:78
+msgid "BahnCard 50, 1st class"
+msgstr "BahnCard 50, प्रथम श्रेणी"
+
+#: src/gui/search_options_button.rs:79
+msgid "BahnCard 50, 2nd class"
+msgstr "BahnCard 50, द्वितीय श्रेणी"
+
+#: src/gui/search_options_button.rs:80
+msgid "A – VORTEILScard (with RAILPLUS)"
+msgstr "A – VORTEILScard (RAILPLUS के साथ)"
+
+#: src/gui/search_options_button.rs:81
+msgid "CH – HalbtaxAbo (with RAILPLUS)"
+msgstr "CH – HalbtaxAbo (RAILPLUS के साथ)"
+
+#: src/gui/search_options_button.rs:82
+msgid "CH – HalbtaxAbo (without RAILPLUS)"
+msgstr "CH – HalbtaxAbo (बिना RAILPLUS)"
+
+#: src/gui/search_options_button.rs:85
+msgid "NL – Voordeelurenabo (with RAILPLUS)"
+msgstr "NL – Voordeelurenabo (बिना RAILPLUS)"
+
+#: src/gui/search_options_button.rs:89
+msgid "NL – Voordeelurenabo (without RAILPLUS)"
+msgstr "NL – Voordeelurenabo (बिना RAILPLUS)"
+
+#: src/gui/search_options_button.rs:91
+msgid "SH-Card"
+msgstr "SH-Card"
+
+#: src/gui/search_options_button.rs:92
+msgid "CH – General-Abonnement"
+msgstr "CH – General-Abonnement"
+
+#: src/gui/search_options_button.rs:99
+msgid "Unknown"
+msgstr "अज्ञात"
+
+#: src/gui/search_options_button.rs:141
+msgid "1st class"
+msgstr "प्रथम श्रेणी"
+
+#: src/gui/search_options_button.rs:143
+msgid "2nd class"
+msgstr "द्वितीय श्रेणी"
+
+#: src/gui/search_options_button.rs:186
+msgid "Regional Only"
+msgstr "केवल क्षेत्रीय"
+
+#: src/gui/search_options_button.rs:189
+msgid "Selected Modes of Transport"
+msgstr "परिवहन के चयनित साधन"
+
+#: src/gui/search_options_button.rs:201
+msgid "Direct Connection"
+msgstr "सीधे कनेक्शन"
 
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
@@ -378,6 +608,74 @@ msgstr "त्रुटि"
 msgid "_Close"
 msgstr "बंद करें (_C)"
 
+#. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
+#. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
+#: src/gui/date_time_picker.rs:111
+#, c-format
+msgid "%a %b %d"
+msgstr "%a %b %d"
+
+#: src/gui/journey_list_item.rs:52
+msgid "{} change"
+msgid_plural "{} changes"
+msgstr[0] "{} परिवर्तन"
+msgstr[1] "{} परिवर्तन"
+
+#. Translators: changes_text is the plural-aware string "{} change" already
+#: src/gui/journey_list_item.rs:56
+msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
+msgstr "{changes_text} के साथ {travel_time} में {departure} से {arrival} तक"
+
+#. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
+#: src/gui/leg_item.rs:73
+msgid "{train} in the direction of {destination}"
+msgstr "{destination} की दिशा में {train}"
+
+#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+#: src/gui/leg_item.rs:90
+msgid "Depart {start} from platform {platform} at {departure}."
+msgstr "{departure} {start} से प्लेटफार्म {platform} से प्रस्थान।"
+
+#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+#: src/gui/leg_item.rs:94
+msgid "Depart {start} at {departure}."
+msgstr "{departure} {start} से प्रस्थान।"
+
+#: src/gui/leg_item.rs:101
+msgid "Arrive at {destination} on platform {platform} at {arrival}."
+msgstr "{destination} प्लेटफार्म {platform} पर {arrival} आगमन।"
+
+#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+#: src/gui/leg_item.rs:106
+msgid "Arrive at {destination} at {arrival}."
+msgstr "{destination} पर {arrival} आगमन।"
+
+#: src/gui/leg_item.rs:153
+msgid "{} Stop"
+msgid_plural "{} Stops"
+msgstr[0] "{} ठहराव"
+msgstr[1] "{} ठहराव"
+
+#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
+#: src/gui/intermediate_location_item.rs:67
+msgid "{stop} at {arrival} on platform {platform}"
+msgstr "प्लेटफार्म {platform} पर {arrival} पर {stop}"
+
+#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
+#: src/gui/intermediate_location_item.rs:70
+msgid "{stop} at {arrival}"
+msgstr "{arrival} पर {stop}"
+
+#. Translators: Text that will be announced by the screen reader when a suggestion was selected.
+#: src/gui/station_entry.rs:189
+msgid "Suggestion {} selected"
+msgstr "सुझाव {} चयनित"
+
+#. Translators: Text that will be announced by the screen reader when no selection was selected.
+#: src/gui/station_entry.rs:194
+msgid "No suggestion selected"
+msgstr "कोई सुझाव चयनित नहीं"
+
 #: src/gui/station_entry.rs:420
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
@@ -385,13 +683,33 @@ msgstr[0] "एक सुझाव, चयनित नहीं"
 msgstr[1] "{n} सुझाव, कोई भी चयनित नहीं"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-#: src/gui/window.rs:192
+#: src/gui/window.rs:193
 msgid "translator-credits"
 msgstr "Scrambled777 <weblate.scrambled777@simplelogin.com>"
 
-#: src/gui/window.rs:195
+#: src/gui/window.rs:196
 msgid "Source Translation Supported by"
 msgstr "स्रोत अनुवाद समर्थित"
+
+#. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
+#: src/gui/frequency_label.rs:91
+msgid "every ~{}"
+msgstr "हर ~{}"
+
+#. Translators: How to format the currency "Euro". Do not translate in {}.
+#: src/backend/price.rs:68
+msgid "€{amount}"
+msgstr "€{amount}"
+
+#. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
+#: src/backend/price.rs:74
+msgid "${amount}"
+msgstr "${amount}"
+
+#. Translators: How to format unknown currency "currency". Do not translate in {}.
+#: src/backend/price.rs:81
+msgid "{currency} {amount}"
+msgstr "{currency} {amount}"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
 #: src/backend/client.rs:29 src/backend/client.rs:80 src/backend/client.rs:87
@@ -440,237 +758,103 @@ msgstr "विश्वव्यापी (बीटा)"
 msgid "Using Transitous"
 msgstr "Transitous पर आधारित"
 
+#: src/backend/journey.rs:271
+#, fuzzy
+msgid "Start at {station} on platform {platform} at {time}"
+msgstr "{destination} प्लेटफार्म {platform} पर {arrival} आगमन।"
+
+#: src/backend/journey.rs:274
+#, fuzzy
+msgid "Start at {station} at {time}"
+msgstr "{destination} पर {arrival} आगमन।"
+
+#: src/backend/journey.rs:280
+msgid "Trip to {destination} will begin shortly"
+msgstr ""
+
+#: src/backend/journey.rs:309
+#, fuzzy
+msgid "{time} transfer time to get to platform {platform}"
+msgstr "प्लेटफार्म {platform} पर {arrival} पर {stop}"
+
+#: src/backend/journey.rs:315
+#, fuzzy
+msgid "{time} transfer time"
+msgstr "न्यूनतम स्थानांतरण समय"
+
+#: src/backend/journey.rs:318
+#, fuzzy
+msgid "Upcoming departure on platform {platform}"
+msgstr "प्लेटफार्म {platform} पर {arrival} पर {stop}"
+
+#: src/backend/journey.rs:325
+msgid "Upcoming transfer at {station} soon"
+msgstr ""
+
+#: src/backend/journey.rs:335
+#, fuzzy
+msgid "Arriving at {destination} soon"
+msgstr "{destination} पर आगमन।"
+
+#: src/backend/journey.rs:377
+msgid "{train} departure is delayed by {time}"
+msgstr ""
+
+#: src/backend/journey.rs:404
+msgid "{train} arrival is delayed by {time}"
+msgstr ""
+
+#: src/backend/journey.rs:427
+#, fuzzy
+msgid "{train} departing on platform {platform} today instead"
+msgstr "{destination} प्लेटफार्म {platform} पर {arrival} आगमन।"
+
+#: src/backend/journey.rs:448
+msgid ""
+"Warning: No longer possible to reach connecting {train} from {origin} to "
+"{destination}."
+msgstr ""
+
+#: src/backend/journey.rs:470
+msgid "Warning: {train} from {origin} to {destination} was cancelled."
+msgstr ""
+
+#: src/backend/journey.rs:562
+#, fuzzy
+msgid "Start at {next-origin} in {duration} on platform {next-platform}"
+msgstr "{destination} प्लेटफार्म {platform} पर {arrival} आगमन।"
+
+#: src/backend/journey.rs:565
+msgid "Start at {next-origin} in {duration}"
+msgstr ""
+
+#: src/backend/journey.rs:568
+#, fuzzy
+msgid "Arriving at {current-destination} in {duration}"
+msgstr "{destination} पर {arrival} आगमन।"
+
+#: src/backend/journey.rs:571
+msgid ""
+"Change to {next-leg-name} on platform {next-platform}, remaining: {duration}"
+msgstr ""
+
+#: src/backend/journey.rs:574
+msgid "Change to {next-leg-name}, remaining: {duration}"
+msgstr ""
+
+#: src/backend/journey.rs:577
+msgid "The trip’s destination has been reached"
+msgstr ""
+
+#: src/backend/leg.rs:130
+msgid "Walk"
+msgstr "चलें"
+
 #~ msgid "High Speed Train"
 #~ msgstr "उच्च गति रेल"
 
-#~ msgid "High Load"
-#~ msgstr "उच्च भार"
-
-#~ msgid "Very High Load"
-#~ msgstr "बहुत उच्च भार"
-
-#~ msgid "Exceptionally High Load"
-#~ msgstr "असाधारण उच्च भार"
-
-#~ msgid "On Time"
-#~ msgstr "समय पर"
-
-#~ msgid "Minor Delays"
-#~ msgstr "मामूली देरी"
-
-#~ msgid "Delayed"
-#~ msgstr "विलंबित"
-
-#~ msgid "Very Delayed"
-#~ msgstr "बहुत विलंबित"
-
-#~ msgid "Extremely Delayed"
-#~ msgstr "अत्यंत विलंबित"
-
-#~ msgid "Platform Changes"
-#~ msgstr "प्लेटफार्म परिवर्तन"
-
-#~ msgid "Connection Not Possible"
-#~ msgstr "कनेक्शन संभव नहीं"
-
-#~ msgid "Cancelled"
-#~ msgstr "रद्द"
-
-#~ msgid "A bookmarked trip ended recently."
-#~ msgstr "एक बुकमार्क की गई यात्रा हाल ही में समाप्त हुई।"
-
-#~ msgid "Always _Delete"
-#~ msgstr "हमेशा मिटाएं (_D)"
-
-#~ msgid "Start and destination are missing"
-#~ msgstr "प्रस्थान और गंतव्य गायब हैं"
-
-#~ msgid "Start is missing"
-#~ msgstr "प्रस्थान गायब है"
-
-#~ msgid "Destination is missing"
-#~ msgstr "गंतव्य गायब है"
-
-#~ msgid "Search ongoing"
-#~ msgstr "खोज जारी है"
-
 #~ msgid "Last refreshed {}"
 #~ msgstr "अंतिम बार ताजा {}"
-
-#~ msgid "Arrive at {destination}."
-#~ msgstr "{destination} पर आगमन।"
-
-#~ msgid "Walk {walk} Wait {wait}"
-#~ msgstr "{walk} चलें, {wait} रुकें"
-
-#~ msgid "Transfer Time {}"
-#~ msgstr "स्थनांतरण समय {}"
-
-#~ msgid "Walk {}"
-#~ msgstr "{} चलें"
-
-#~ msgid "Transfer"
-#~ msgstr "स्थानांतरण"
-
-#~ msgid "{} min"
-#~ msgstr "{} मिन"
-
-#~ msgid "%_H h %_M min"
-#~ msgstr "%_H घं %_M मिन"
-
-#~ msgid " %_d day %_H h %_M min"
-#~ msgid_plural "%_d days %_H h %_M min"
-#~ msgstr[0] "%_d दिन %_H घं %_M मिन"
-#~ msgstr[1] "%_d दिन %_H घं %_M मिन"
-
-#~ msgid "{} min."
-#~ msgstr "{} मिन।"
-
-#~ msgid "{} hrs."
-#~ msgstr "{} घं।"
-
-#~ msgid "%-H hrs. %-M min."
-#~ msgstr "%-H घं. %-M मिन।"
-
-#~ msgid "%-d day %-H hrs. %-M min."
-#~ msgid_plural "%-d days %-H hrs. %-M min."
-#~ msgstr[0] "%-d दिन %-H घं. %-M मिन।"
-#~ msgstr[1] "%-d दिन %-H घं. %-M मिन।"
-
-#~ msgid "%H:%M"
-#~ msgstr "%H:%M"
-
-#~ msgid "Today"
-#~ msgstr "आज"
-
-#~ msgid "Tomorrow"
-#~ msgstr "कल"
-
-#~ msgid "Yesterday"
-#~ msgstr "बिता कल"
-
-#~ msgid "%a, %d. %B"
-#~ msgstr "%a, %d. %B"
-
-#~ msgid "%Y-%m-%d"
-#~ msgstr "%Y-%m-%d"
-
-#~ msgid "{} h"
-#~ msgid_plural "{} h"
-#~ msgstr[0] "{} घं"
-#~ msgstr[1] "{} घं"
-
-#~ msgid "None"
-#~ msgstr "कोई नहीं"
-
-#~ msgid "BahnCard 25, 1st class"
-#~ msgstr "BahnCard 25, प्रथम श्रेणी"
-
-#~ msgid "BahnCard 25, 2nd class"
-#~ msgstr "BahnCard 25, द्वितीय श्रेणी"
-
-#~ msgid "BahnCard 50, 1st class"
-#~ msgstr "BahnCard 50, प्रथम श्रेणी"
-
-#~ msgid "BahnCard 50, 2nd class"
-#~ msgstr "BahnCard 50, द्वितीय श्रेणी"
-
-#~ msgid "A – VORTEILScard (with RAILPLUS)"
-#~ msgstr "A – VORTEILScard (RAILPLUS के साथ)"
-
-#~ msgid "CH – HalbtaxAbo (with RAILPLUS)"
-#~ msgstr "CH – HalbtaxAbo (RAILPLUS के साथ)"
-
-#~ msgid "CH – HalbtaxAbo (without RAILPLUS)"
-#~ msgstr "CH – HalbtaxAbo (बिना RAILPLUS)"
-
-#~ msgid "NL – Voordeelurenabo (with RAILPLUS)"
-#~ msgstr "NL – Voordeelurenabo (बिना RAILPLUS)"
-
-#~ msgid "NL – Voordeelurenabo (without RAILPLUS)"
-#~ msgstr "NL – Voordeelurenabo (बिना RAILPLUS)"
-
-#~ msgid "SH-Card"
-#~ msgstr "SH-Card"
-
-#~ msgid "CH – General-Abonnement"
-#~ msgstr "CH – General-Abonnement"
-
-#~ msgid "Unknown"
-#~ msgstr "अज्ञात"
-
-#~ msgid "1st class"
-#~ msgstr "प्रथम श्रेणी"
-
-#~ msgid "2nd class"
-#~ msgstr "द्वितीय श्रेणी"
-
-#~ msgid "Regional Only"
-#~ msgstr "केवल क्षेत्रीय"
-
-#~ msgid "Selected Modes of Transport"
-#~ msgstr "परिवहन के चयनित साधन"
-
-#~ msgid "Direct Connection"
-#~ msgstr "सीधे कनेक्शन"
-
-#~ msgid "%a %b %d"
-#~ msgstr "%a %b %d"
-
-#~ msgid "{} change"
-#~ msgid_plural "{} changes"
-#~ msgstr[0] "{} परिवर्तन"
-#~ msgstr[1] "{} परिवर्तन"
-
-#~ msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-#~ msgstr "{changes_text} के साथ {travel_time} में {departure} से {arrival} तक"
-
-#~ msgid "{train} in the direction of {destination}"
-#~ msgstr "{destination} की दिशा में {train}"
-
-#~ msgid "Depart {start} from platform {platform} at {departure}."
-#~ msgstr "{departure} {start} से प्लेटफार्म {platform} से प्रस्थान।"
-
-#~ msgid "Depart {start} at {departure}."
-#~ msgstr "{departure} {start} से प्रस्थान।"
-
-#~ msgid "Arrive at {destination} on platform {platform} at {arrival}."
-#~ msgstr "{destination} प्लेटफार्म {platform} पर {arrival} आगमन।"
-
-#~ msgid "Arrive at {destination} at {arrival}."
-#~ msgstr "{destination} पर {arrival} आगमन।"
-
-#~ msgid "{} Stop"
-#~ msgid_plural "{} Stops"
-#~ msgstr[0] "{} ठहराव"
-#~ msgstr[1] "{} ठहराव"
-
-#~ msgid "{stop} at {arrival} on platform {platform}"
-#~ msgstr "प्लेटफार्म {platform} पर {arrival} पर {stop}"
-
-#~ msgid "{stop} at {arrival}"
-#~ msgstr "{arrival} पर {stop}"
-
-#~ msgid "Suggestion {} selected"
-#~ msgstr "सुझाव {} चयनित"
-
-#~ msgid "No suggestion selected"
-#~ msgstr "कोई सुझाव चयनित नहीं"
-
-#~ msgid "every ~{}"
-#~ msgstr "हर ~{}"
-
-#~ msgid "€{amount}"
-#~ msgstr "€{amount}"
-
-#~ msgid "${amount}"
-#~ msgstr "${amount}"
-
-#~ msgid "{currency} {amount}"
-#~ msgstr "{currency} {amount}"
-
-#~ msgid "Walk"
-#~ msgstr "चलें"
 
 #~ msgid "Julian Schmidhuber"
 #~ msgstr "जूलियन श्मिधुबर"
