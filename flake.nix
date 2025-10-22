@@ -16,6 +16,13 @@
           pkgs-gnome = import nixpkgs-gnome {
             inherit system;
           };
+          gettext-patched = pkgs.gettext.overrideAttrs (prev: self: rec {
+            version = "0.23";
+            src = pkgs.fetchurl {
+              url = "mirror://gnu/gettext/${self.pname}-${version}.tar.gz";
+              hash = "sha256-lF3XACoC3XEIrQUQYC4TQWtB0yeJjPhSIgG8avEJB6Y=";
+            };
+          });
           name = "diebahn";
         in
         { 
@@ -38,7 +45,7 @@
                     ]);
               };
               buildInputs = [ pkgs-gnome.libadwaita pkgs-gnome.gtk4 ];
-              nativeBuildInputs = [ pkgs-gnome.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson pkgs.gettext pkgs-gnome.glib pkgs-gnome.gtk4 pkgs-gnome.libadwaita pkgs-gnome.pkg-config pkgs-gnome.desktop-file-utils pkgs-gnome.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs-gnome.blueprint-compiler ];
+              nativeBuildInputs = [ pkgs-gnome.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson gettext-patched pkgs-gnome.glib pkgs-gnome.gtk4 pkgs-gnome.libadwaita pkgs-gnome.pkg-config pkgs-gnome.desktop-file-utils pkgs-gnome.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs-gnome.blueprint-compiler ];
 
               inherit name;
             };
@@ -59,9 +66,12 @@
             pkgs.mkShell {
               src = ./.;
               buildInputs = [];
-              nativeBuildInputs = [ pkgs-gnome.wrapGAppsHook4 pkgs.meson pkgs.gettext pkgs-gnome.glib pkgs-gnome.gtk4 pkgs-gnome.libadwaita pkgs-gnome.pkg-config pkgs-gnome.desktop-file-utils pkgs-gnome.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.clippy pkgs.cargo-deny pkgs.sysprof pkgs-gnome.blueprint-compiler pkgs.md4c pkgs.libfaketime run check prof ];
+              nativeBuildInputs = [ pkgs-gnome.wrapGAppsHook4 pkgs.meson gettext-patched pkgs-gnome.glib pkgs-gnome.gtk4 pkgs-gnome.libadwaita pkgs-gnome.pkg-config pkgs-gnome.desktop-file-utils pkgs-gnome.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.clippy pkgs.cargo-deny pkgs.sysprof pkgs-gnome.blueprint-compiler pkgs.md4c pkgs.libfaketime run check prof ];
               shellHook = ''
                 export GSETTINGS_SCHEMA_DIR=${pkgs-gnome.gtk4}/share/gsettings-schemas/${pkgs-gnome.gtk4.name}/glib-2.0/schemas/:${pkgs-gnome.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs-gnome.gsettings-desktop-schemas.name}/glib-2.0/schemas/:./build/data/
+                # For some reason, the latest version of gettext is still available on the path and is perferred.
+                # Manually prefer the patched version.
+                export PATH=${gettext-patched}/bin:$PATH
                 meson setup -Dprofile=development build
               '';
             };

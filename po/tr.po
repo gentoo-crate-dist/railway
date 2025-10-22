@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-28 01:28+0200\n"
+"POT-Creation-Date: 2025-10-22 19:18+0200\n"
 "PO-Revision-Date: 2025-09-18 23:01+0000\n"
 "Last-Translator: Yasin Tanış <ysn.tnss@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/schmiddi-on-"
@@ -36,8 +36,8 @@ msgstr "Tüm seyahat bilgilerinizi bulun"
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:12
 msgid "train;railway;journey;planner;timetables;"
 msgstr ""
-"train;railway;journey;planner;timetables;tren;demiryolu;demir yolu;yolculuk;"
-"planlama;plan;zaman çizelgesi;kalkış saatleri;hareket saatleri;"
+"train;railway;journey;planner;timetables;tren;demiryolu;demir "
+"yolu;yolculuk;planlama;plan;zaman çizelgesi;kalkış saatleri;hareket saatleri;"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:35
@@ -106,19 +106,19 @@ msgstr "Girdi süresi"
 msgid "Time"
 msgstr "Süre"
 
-#: data/resources/ui/date_time_picker.blp:142
+#: data/resources/ui/date_time_picker.blp:142 src/gui/date_time_picker.rs:119
 msgid "Now"
 msgstr "Şimdi"
 
-#: data/resources/ui/journey_detail_page.blp:56
+#: data/resources/ui/journey_detail_page.blp:57
 msgid "Total Travel Time"
 msgstr "Toplam Seyahat Süresi"
 
-#: data/resources/ui/journey_detail_page.blp:70
+#: data/resources/ui/journey_detail_page.blp:71
 msgid "Trip Segments"
 msgstr "Yolculuk Bölümleri"
 
-#: data/resources/ui/journey_detail_page.blp:84
+#: data/resources/ui/journey_detail_page.blp:85
 msgid "Choose a Trip"
 msgstr "Gezi Seç"
 
@@ -126,29 +126,29 @@ msgstr "Gezi Seç"
 msgid "Search for Trips"
 msgstr "Gezi Ara"
 
-#: data/resources/ui/leg_item.blp:128
+#: data/resources/ui/leg_item.blp:129
 msgid "Show Stops"
 msgstr "Durakları Göster"
 
-#: data/resources/ui/leg_item.blp:131
+#: data/resources/ui/leg_item.blp:132
 msgid "Show Intermediate Stops"
 msgstr "Ara Durakları Göster"
 
-#: data/resources/ui/leg_item.blp:180 data/resources/ui/leg_item.blp:188
+#: data/resources/ui/leg_item.blp:181 data/resources/ui/leg_item.blp:189
 msgid "Show Announcements"
 msgstr "Duyuruları Göster"
 
-#: data/resources/ui/leg_item.blp:203
+#: data/resources/ui/leg_item.blp:204
 msgid "Announcements"
 msgstr "Duyurular"
 
-#: data/resources/ui/leg_item.blp:230
+#: data/resources/ui/leg_item.blp:231
 #, fuzzy
 msgid "Stops"
 msgstr "Mola Yerleri"
 
 #: data/resources/ui/preferences_dialog.blp:8
-#: data/resources/ui/shortcuts.blp:27
+#: data/resources/ui/shortcuts_dialog.blp:25
 msgid "General"
 msgstr "Genel"
 
@@ -205,6 +205,7 @@ msgid "Second Class"
 msgstr "İkinci Sınıf"
 
 #: data/resources/ui/search_options_dialog.blp:33
+#: src/gui/search_options_button.rs:194
 msgid "Bike Accessible"
 msgstr "Bisiklet Erişilebilir"
 
@@ -232,7 +233,6 @@ msgstr "Sadece Bölgesel"
 
 #: data/resources/ui/search_options_dialog.blp:70
 #, fuzzy
-#| msgid "S-Bahn"
 msgid "S-Bahn Train"
 msgstr "S-Bahn"
 
@@ -281,35 +281,35 @@ msgstr "Yer İmli Geziler"
 msgid "Bookmarked Searches"
 msgstr "Yer İmli Aramalar"
 
-#: data/resources/ui/shortcuts.blp:8
+#: data/resources/ui/shortcuts_dialog.blp:6
 msgid "Application"
 msgstr "Uygulama"
 
-#: data/resources/ui/shortcuts.blp:12
+#: data/resources/ui/shortcuts_dialog.blp:10
 msgid "Bookmark Search"
 msgstr "Yer İmi Ara"
 
-#: data/resources/ui/shortcuts.blp:17
+#: data/resources/ui/shortcuts_dialog.blp:15
 msgid "Bookmark Trip"
 msgstr "Geziyi İmle"
 
-#: data/resources/ui/shortcuts.blp:22
+#: data/resources/ui/shortcuts_dialog.blp:20
 msgid "Reload Trip"
 msgstr "Geziyi Yeniden Yükle"
 
-#: data/resources/ui/shortcuts.blp:31
+#: data/resources/ui/shortcuts_dialog.blp:29
 msgid "Quit"
 msgstr "Çık"
 
-#: data/resources/ui/shortcuts.blp:36
+#: data/resources/ui/shortcuts_dialog.blp:34
 msgid "Show Shortcuts"
 msgstr "Kısayolları Göster"
 
-#: data/resources/ui/shortcuts.blp:41
+#: data/resources/ui/shortcuts_dialog.blp:39
 msgid "Show Preferences"
 msgstr "Tercihleri Göster"
 
-#: data/resources/ui/shortcuts.blp:46
+#: data/resources/ui/shortcuts_dialog.blp:44
 msgid "Open Menu"
 msgstr "Menüyü Aç"
 
@@ -347,7 +347,6 @@ msgstr "Bu Geziyi İmle"
 
 #: data/resources/ui/window.blp:166
 #, fuzzy
-#| msgid "Refresh This Trip"
 msgid "Watch this Trip"
 msgstr "Bu Geziyi Yenile"
 
@@ -362,6 +361,238 @@ msgstr "Klavye Kısayolları"
 #: data/resources/ui/window.blp:209
 msgid "_About Railway"
 msgstr "Demiryolu _Hakkında"
+
+#: src/gui/indicator_icons.rs:135
+msgid "High Load"
+msgstr "Yüksek Yük"
+
+#: src/gui/indicator_icons.rs:142
+msgid "Very High Load"
+msgstr "Çok Yüksek Yük"
+
+#: src/gui/indicator_icons.rs:149
+msgid "Exceptionally High Load"
+msgstr "Aşırı Yüksek Yük"
+
+#: src/gui/indicator_icons.rs:165
+msgid "On Time"
+msgstr "Zamanında"
+
+#: src/gui/indicator_icons.rs:172
+msgid "Minor Delays"
+msgstr "Küçük Gecikmeler"
+
+#: src/gui/indicator_icons.rs:179
+msgid "Delayed"
+msgstr "Gecikmeli"
+
+#: src/gui/indicator_icons.rs:186
+msgid "Very Delayed"
+msgstr "Çok Gecikmeli"
+
+#: src/gui/indicator_icons.rs:193
+msgid "Extremely Delayed"
+msgstr "Aşırı Gecikmeli"
+
+#: src/gui/indicator_icons.rs:209
+msgid "Platform Changes"
+msgstr "Platform Değişiklikleri"
+
+#: src/gui/indicator_icons.rs:228
+msgid "Connection Not Possible"
+msgstr "Bağlantı Mümkün Değil"
+
+#: src/gui/indicator_icons.rs:246
+msgid "Cancelled"
+msgstr "İptal Edildi"
+
+#: src/gui/stores/journey_store.rs:173
+msgid "A bookmarked trip ended recently."
+msgstr "Yakın zamanda imlenmiş bir sefer tamamlandı."
+
+#: src/gui/stores/journey_store.rs:185
+msgid "Always _Delete"
+msgstr "Her zaman _Sil"
+
+#: src/gui/search_page.rs:124
+msgid "Start and destination are missing"
+msgstr "Başlangıç ve varış noktası eksik"
+
+#: src/gui/search_page.rs:125
+msgid "Start is missing"
+msgstr "Başlangıç eksik"
+
+#: src/gui/search_page.rs:126
+msgid "Destination is missing"
+msgstr "Hedef eksik"
+
+#: src/gui/search_page.rs:127
+msgid "Search ongoing"
+msgstr "Arama devam ediyor"
+
+#. Translators: Do not translate the strings in {}.
+#: src/gui/transition.rs:93
+msgid "Arrive at {destination}."
+msgstr "Varış {destination}."
+
+#: src/gui/transition.rs:225
+msgid "Walk {walk} Wait {wait}"
+msgstr "Yürü {walk} Bekle {wait}"
+
+#: src/gui/transition.rs:229
+msgid "Transfer Time {}"
+msgstr "Aktarma Süresi {}"
+
+#: src/gui/transition.rs:231
+msgid "Walk {}"
+msgstr "Yürü {}"
+
+#: src/gui/transition.rs:232
+msgid "Transfer"
+msgstr "Aktar"
+
+#. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
+#. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
+#: src/gui/utility.rs:74 src/gui/search_options_dialog.rs:245
+msgid "{} min"
+msgstr "{} dk"
+
+#. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
+#: src/gui/utility.rs:82
+msgid "%_H h %_M min"
+msgstr "%_H sa %_M dk"
+
+#: src/gui/utility.rs:93
+msgid " %_d day %_H h %_M min"
+msgid_plural "%_d days %_H h %_M min"
+msgstr[0] " %_d gün %_H sa %_M dk"
+msgstr[1] "%_d gün %_H sa %_M dk"
+
+#. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
+#: src/gui/utility.rs:104
+msgid "{} min."
+msgstr "{} dk."
+
+#. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
+#: src/gui/utility.rs:108
+msgid "{} hrs."
+msgstr "{} sa."
+
+#. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
+#: src/gui/utility.rs:117
+msgid "%-H hrs. %-M min."
+msgstr "%-H sa. %-M dk."
+
+#: src/gui/utility.rs:129
+msgid "%-d day %-H hrs. %-M min."
+msgid_plural "%-d days %-H hrs. %-M min."
+msgstr[0] "%-d gün %-H sa. %-M dk."
+msgstr[1] "%-d gün %-H sa. %-M dk."
+
+#. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:139
+msgid "%H:%M"
+msgstr "%H:%M"
+
+#: src/gui/utility.rs:145 src/gui/date_time_picker.rs:107
+msgid "Today"
+msgstr "Bugün"
+
+#: src/gui/utility.rs:147
+msgid "Tomorrow"
+msgstr "Yarın"
+
+#: src/gui/utility.rs:149
+msgid "Yesterday"
+msgstr "Dün"
+
+#. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:152
+msgid "%a, %d. %B"
+msgstr "%d %b %a"
+
+#. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:155
+msgid "%Y-%m-%d"
+msgstr "%d/%m/%Y"
+
+#: src/gui/preferences_dialog.rs:66
+msgid "{} h"
+msgid_plural "{} h"
+msgstr[0] "{} sa"
+msgstr[1] "{} sa"
+
+#: src/gui/search_options_button.rs:75
+msgid "None"
+msgstr "Hiçbiri"
+
+#: src/gui/search_options_button.rs:76
+msgid "BahnCard 25, 1st class"
+msgstr "BahnCard 25, 1. sınıf"
+
+#: src/gui/search_options_button.rs:77
+msgid "BahnCard 25, 2nd class"
+msgstr "BahnCard 25, 2. sınıf"
+
+#: src/gui/search_options_button.rs:78
+msgid "BahnCard 50, 1st class"
+msgstr "BahnCard 50, 1. sınıf"
+
+#: src/gui/search_options_button.rs:79
+msgid "BahnCard 50, 2nd class"
+msgstr "BahnCard 50, 2. sınıf"
+
+#: src/gui/search_options_button.rs:80
+msgid "A – VORTEILScard (with RAILPLUS)"
+msgstr "A - VORTEILScard (RAILPLUS ile)"
+
+#: src/gui/search_options_button.rs:81
+msgid "CH – HalbtaxAbo (with RAILPLUS)"
+msgstr "CH - HalbtaxAbo (RAILPLUS ile)"
+
+#: src/gui/search_options_button.rs:82
+msgid "CH – HalbtaxAbo (without RAILPLUS)"
+msgstr "CH - HalbtaxAbo (RAILPLUS olmadan)"
+
+#: src/gui/search_options_button.rs:85
+msgid "NL – Voordeelurenabo (with RAILPLUS)"
+msgstr "NL - Voordeelurenabo (RAILPLUS ile)"
+
+#: src/gui/search_options_button.rs:89
+msgid "NL – Voordeelurenabo (without RAILPLUS)"
+msgstr "NL - Voordeelurenabo (RAILPLUS olmadan)"
+
+#: src/gui/search_options_button.rs:91
+msgid "SH-Card"
+msgstr "SH-Kartı"
+
+#: src/gui/search_options_button.rs:92
+msgid "CH – General-Abonnement"
+msgstr "CH - General-Abonnement"
+
+#: src/gui/search_options_button.rs:99
+msgid "Unknown"
+msgstr "Bilinmeyen"
+
+#: src/gui/search_options_button.rs:141
+msgid "1st class"
+msgstr "1. sınıf"
+
+#: src/gui/search_options_button.rs:143
+msgid "2nd class"
+msgstr "2. sınıf"
+
+#: src/gui/search_options_button.rs:186
+msgid "Regional Only"
+msgstr "Sadece Bölgesel"
+
+#: src/gui/search_options_button.rs:189
+msgid "Selected Modes of Transport"
+msgstr "Seçilmiş Aktarım Kipleri"
+
+#: src/gui/search_options_button.rs:201
+msgid "Direct Connection"
+msgstr "Doğrudan Bağlantı"
 
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
@@ -387,6 +618,82 @@ msgstr "Hata"
 msgid "_Close"
 msgstr "_Kapat"
 
+#. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
+#. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
+#: src/gui/date_time_picker.rs:111
+#, fuzzy, c-format
+msgid "%a %b %d"
+msgstr "%b %d %a"
+
+#: src/gui/journey_list_item.rs:52
+msgid "{} change"
+msgid_plural "{} changes"
+msgstr[0] "{} değişimi"
+msgstr[1] "{} değişimleri"
+
+#. Translators: changes_text is the plural-aware string "{} change" already
+#: src/gui/journey_list_item.rs:56
+msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
+msgstr ""
+"{changes_text} ile {travel_time} içinde {departure} noktasından {arrival} "
+"noktasına"
+
+#. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
+#: src/gui/leg_item.rs:73
+msgid "{train} in the direction of {destination}"
+msgstr "{train}, {destination} yönünde"
+
+#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+#: src/gui/leg_item.rs:90
+#, fuzzy
+msgid "Depart {start} from platform {platform} at {departure}."
+msgstr ""
+"{platform} platformunda {arrival} saatinde {destination noktasına ulaşın."
+
+#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+#: src/gui/leg_item.rs:94
+msgid "Depart {start} at {departure}."
+msgstr ""
+
+#: src/gui/leg_item.rs:101
+msgid "Arrive at {destination} on platform {platform} at {arrival}."
+msgstr ""
+"{platform} platformunda {arrival} saatinde {destination noktasına ulaşın."
+
+#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+#: src/gui/leg_item.rs:106
+msgid "Arrive at {destination} at {arrival}."
+msgstr "{destination} noktasına {arrival} saatinde ulaşın."
+
+#: src/gui/leg_item.rs:153
+msgid "{} Stop"
+msgid_plural "{} Stops"
+msgstr[0] "{} Durak"
+msgstr[1] "{} Duraklar"
+
+#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
+#: src/gui/intermediate_location_item.rs:67
+#, fuzzy
+msgid "{stop} at {arrival} on platform {platform}"
+msgstr ""
+"{platform} platformunda {arrival} saatinde {destination noktasına ulaşın."
+
+#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
+#: src/gui/intermediate_location_item.rs:70
+#, fuzzy
+msgid "{stop} at {arrival}"
+msgstr "{destination} noktasına {arrival} saatinde ulaşın."
+
+#. Translators: Text that will be announced by the screen reader when a suggestion was selected.
+#: src/gui/station_entry.rs:189
+msgid "Suggestion {} selected"
+msgstr "{} önerisi seçildi"
+
+#. Translators: Text that will be announced by the screen reader when no selection was selected.
+#: src/gui/station_entry.rs:194
+msgid "No suggestion selected"
+msgstr "Öneri seçilmedi"
+
 #: src/gui/station_entry.rs:420
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
@@ -394,15 +701,35 @@ msgstr[0] "bir öneri, seçilmedi"
 msgstr[1] "{n} öneri, hiçbiri seçilmedi"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-#: src/gui/window.rs:192
+#: src/gui/window.rs:193
 msgid "translator-credits"
 msgstr ""
 "Sabri Ünal <yakushabb@gmail.com>\n"
 "Yasin Karaaslan <yasin@yasinkaraaslan.com>"
 
-#: src/gui/window.rs:195
+#: src/gui/window.rs:196
 msgid "Source Translation Supported by"
 msgstr "Kaynak Çeviriyi Destekleyen"
+
+#. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
+#: src/gui/frequency_label.rs:91
+msgid "every ~{}"
+msgstr "her ~{}"
+
+#. Translators: How to format the currency "Euro". Do not translate in {}.
+#: src/backend/price.rs:68
+msgid "€{amount}"
+msgstr "€{amount}"
+
+#. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
+#: src/backend/price.rs:74
+msgid "${amount}"
+msgstr "${amount}"
+
+#. Translators: How to format unknown currency "currency". Do not translate in {}.
+#: src/backend/price.rs:81
+msgid "{currency} {amount}"
+msgstr "{currency} {amount}"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
 #: src/backend/client.rs:29 src/backend/client.rs:80 src/backend/client.rs:87
@@ -451,229 +778,104 @@ msgstr "Dünya Çapında (beta)"
 msgid "Using Transitous"
 msgstr "Transitous ile"
 
+#: src/backend/journey.rs:271
+#, fuzzy
+msgid "Start at {station} on platform {platform} at {time}"
+msgstr ""
+"{platform} platformunda {arrival} saatinde {destination noktasına ulaşın."
+
+#: src/backend/journey.rs:274
+#, fuzzy
+msgid "Start at {station} at {time}"
+msgstr "{destination} noktasına {arrival} saatinde ulaşın."
+
+#: src/backend/journey.rs:280
+msgid "Trip to {destination} will begin shortly"
+msgstr ""
+
+#: src/backend/journey.rs:309
+msgid "{time} transfer time to get to platform {platform}"
+msgstr ""
+
+#: src/backend/journey.rs:315
+#, fuzzy
+msgid "{time} transfer time"
+msgstr "Asgari Aktarma Süresi"
+
+#: src/backend/journey.rs:318
+msgid "Upcoming departure on platform {platform}"
+msgstr ""
+
+#: src/backend/journey.rs:325
+msgid "Upcoming transfer at {station} soon"
+msgstr ""
+
+#: src/backend/journey.rs:335
+#, fuzzy
+msgid "Arriving at {destination} soon"
+msgstr "Varış {destination}."
+
+#: src/backend/journey.rs:377
+msgid "{train} departure is delayed by {time}"
+msgstr ""
+
+#: src/backend/journey.rs:404
+msgid "{train} arrival is delayed by {time}"
+msgstr ""
+
+#: src/backend/journey.rs:427
+#, fuzzy
+msgid "{train} departing on platform {platform} today instead"
+msgstr ""
+"{platform} platformunda {arrival} saatinde {destination noktasına ulaşın."
+
+#: src/backend/journey.rs:448
+msgid ""
+"Warning: No longer possible to reach connecting {train} from {origin} to "
+"{destination}."
+msgstr ""
+
+#: src/backend/journey.rs:470
+msgid "Warning: {train} from {origin} to {destination} was cancelled."
+msgstr ""
+
+#: src/backend/journey.rs:562
+#, fuzzy
+msgid "Start at {next-origin} in {duration} on platform {next-platform}"
+msgstr ""
+"{platform} platformunda {arrival} saatinde {destination noktasına ulaşın."
+
+#: src/backend/journey.rs:565
+msgid "Start at {next-origin} in {duration}"
+msgstr ""
+
+#: src/backend/journey.rs:568
+#, fuzzy
+msgid "Arriving at {current-destination} in {duration}"
+msgstr "{destination} noktasına {arrival} saatinde ulaşın."
+
+#: src/backend/journey.rs:571
+msgid ""
+"Change to {next-leg-name} on platform {next-platform}, remaining: {duration}"
+msgstr ""
+
+#: src/backend/journey.rs:574
+msgid "Change to {next-leg-name}, remaining: {duration}"
+msgstr ""
+
+#: src/backend/journey.rs:577
+msgid "The trip’s destination has been reached"
+msgstr ""
+
+#: src/backend/leg.rs:130
+msgid "Walk"
+msgstr "Yürü"
+
 #~ msgid "High Speed Train"
 #~ msgstr "Yüksek Hızlı Tren"
 
-#~ msgid "High Load"
-#~ msgstr "Yüksek Yük"
-
-#~ msgid "Very High Load"
-#~ msgstr "Çok Yüksek Yük"
-
-#~ msgid "Exceptionally High Load"
-#~ msgstr "Aşırı Yüksek Yük"
-
-#~ msgid "On Time"
-#~ msgstr "Zamanında"
-
-#~ msgid "Minor Delays"
-#~ msgstr "Küçük Gecikmeler"
-
-#~ msgid "Delayed"
-#~ msgstr "Gecikmeli"
-
-#~ msgid "Very Delayed"
-#~ msgstr "Çok Gecikmeli"
-
-#~ msgid "Extremely Delayed"
-#~ msgstr "Aşırı Gecikmeli"
-
-#~ msgid "Platform Changes"
-#~ msgstr "Platform Değişiklikleri"
-
-#~ msgid "Connection Not Possible"
-#~ msgstr "Bağlantı Mümkün Değil"
-
-#~ msgid "Cancelled"
-#~ msgstr "İptal Edildi"
-
-#~ msgid "A bookmarked trip ended recently."
-#~ msgstr "Yakın zamanda imlenmiş bir sefer tamamlandı."
-
-#~ msgid "Always _Delete"
-#~ msgstr "Her zaman _Sil"
-
-#~ msgid "Start and destination are missing"
-#~ msgstr "Başlangıç ve varış noktası eksik"
-
-#~ msgid "Start is missing"
-#~ msgstr "Başlangıç eksik"
-
-#~ msgid "Destination is missing"
-#~ msgstr "Hedef eksik"
-
-#~ msgid "Search ongoing"
-#~ msgstr "Arama devam ediyor"
-
 #~ msgid "Last refreshed {}"
 #~ msgstr "Son yenileme {}"
-
-#~ msgid "Arrive at {destination}."
-#~ msgstr "Varış {destination}."
-
-#~ msgid "Walk {walk} Wait {wait}"
-#~ msgstr "Yürü {walk} Bekle {wait}"
-
-#~ msgid "Transfer Time {}"
-#~ msgstr "Aktarma Süresi {}"
-
-#~ msgid "Walk {}"
-#~ msgstr "Yürü {}"
-
-#~ msgid "Transfer"
-#~ msgstr "Aktar"
-
-#~ msgid "{} min"
-#~ msgstr "{} dk"
-
-#~ msgid "%_H h %_M min"
-#~ msgstr "%_H sa %_M dk"
-
-#~ msgid " %_d day %_H h %_M min"
-#~ msgid_plural "%_d days %_H h %_M min"
-#~ msgstr[0] " %_d gün %_H sa %_M dk"
-#~ msgstr[1] "%_d gün %_H sa %_M dk"
-
-#~ msgid "{} min."
-#~ msgstr "{} dk."
-
-#~ msgid "{} hrs."
-#~ msgstr "{} sa."
-
-#~ msgid "%-H hrs. %-M min."
-#~ msgstr "%-H sa. %-M dk."
-
-#~ msgid "%-d day %-H hrs. %-M min."
-#~ msgid_plural "%-d days %-H hrs. %-M min."
-#~ msgstr[0] "%-d gün %-H sa. %-M dk."
-#~ msgstr[1] "%-d gün %-H sa. %-M dk."
-
-#~ msgid "%H:%M"
-#~ msgstr "%H:%M"
-
-#~ msgid "Today"
-#~ msgstr "Bugün"
-
-#~ msgid "Tomorrow"
-#~ msgstr "Yarın"
-
-#~ msgid "Yesterday"
-#~ msgstr "Dün"
-
-#~ msgid "%a, %d. %B"
-#~ msgstr "%d %b %a"
-
-#~ msgid "%Y-%m-%d"
-#~ msgstr "%d/%m/%Y"
-
-#~ msgid "{} h"
-#~ msgid_plural "{} h"
-#~ msgstr[0] "{} sa"
-#~ msgstr[1] "{} sa"
-
-#~ msgid "None"
-#~ msgstr "Hiçbiri"
-
-#~ msgid "BahnCard 25, 1st class"
-#~ msgstr "BahnCard 25, 1. sınıf"
-
-#~ msgid "BahnCard 25, 2nd class"
-#~ msgstr "BahnCard 25, 2. sınıf"
-
-#~ msgid "BahnCard 50, 1st class"
-#~ msgstr "BahnCard 50, 1. sınıf"
-
-#~ msgid "BahnCard 50, 2nd class"
-#~ msgstr "BahnCard 50, 2. sınıf"
-
-#~ msgid "A – VORTEILScard (with RAILPLUS)"
-#~ msgstr "A - VORTEILScard (RAILPLUS ile)"
-
-#~ msgid "CH – HalbtaxAbo (with RAILPLUS)"
-#~ msgstr "CH - HalbtaxAbo (RAILPLUS ile)"
-
-#~ msgid "CH – HalbtaxAbo (without RAILPLUS)"
-#~ msgstr "CH - HalbtaxAbo (RAILPLUS olmadan)"
-
-#~ msgid "NL – Voordeelurenabo (with RAILPLUS)"
-#~ msgstr "NL - Voordeelurenabo (RAILPLUS ile)"
-
-#~ msgid "NL – Voordeelurenabo (without RAILPLUS)"
-#~ msgstr "NL - Voordeelurenabo (RAILPLUS olmadan)"
-
-#~ msgid "SH-Card"
-#~ msgstr "SH-Kartı"
-
-#~ msgid "CH – General-Abonnement"
-#~ msgstr "CH - General-Abonnement"
-
-#~ msgid "Unknown"
-#~ msgstr "Bilinmeyen"
-
-#~ msgid "1st class"
-#~ msgstr "1. sınıf"
-
-#~ msgid "2nd class"
-#~ msgstr "2. sınıf"
-
-#~ msgid "Regional Only"
-#~ msgstr "Sadece Bölgesel"
-
-#~ msgid "Selected Modes of Transport"
-#~ msgstr "Seçilmiş Aktarım Kipleri"
-
-#~ msgid "Direct Connection"
-#~ msgstr "Doğrudan Bağlantı"
-
-#, fuzzy
-#~ msgid "%a %b %d"
-#~ msgstr "%b %d %a"
-
-#~ msgid "{} change"
-#~ msgid_plural "{} changes"
-#~ msgstr[0] "{} değişimi"
-#~ msgstr[1] "{} değişimleri"
-
-#~ msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-#~ msgstr ""
-#~ "{changes_text} ile {travel_time} içinde {departure} noktasından {arrival} "
-#~ "noktasına"
-
-#~ msgid "{train} in the direction of {destination}"
-#~ msgstr "{train}, {destination} yönünde"
-
-#~ msgid "Arrive at {destination} on platform {platform} at {arrival}."
-#~ msgstr ""
-#~ "{platform} platformunda {arrival} saatinde {destination noktasına ulaşın."
-
-#~ msgid "Arrive at {destination} at {arrival}."
-#~ msgstr "{destination} noktasına {arrival} saatinde ulaşın."
-
-#~ msgid "{} Stop"
-#~ msgid_plural "{} Stops"
-#~ msgstr[0] "{} Durak"
-#~ msgstr[1] "{} Duraklar"
-
-#~ msgid "Suggestion {} selected"
-#~ msgstr "{} önerisi seçildi"
-
-#~ msgid "No suggestion selected"
-#~ msgstr "Öneri seçilmedi"
-
-#~ msgid "every ~{}"
-#~ msgstr "her ~{}"
-
-#~ msgid "€{amount}"
-#~ msgstr "€{amount}"
-
-#~ msgid "${amount}"
-#~ msgstr "${amount}"
-
-#~ msgid "{currency} {amount}"
-#~ msgstr "{currency} {amount}"
-
-#~ msgid "Walk"
-#~ msgstr "Yürü"
 
 #~ msgid "Julian Schmidhuber"
 #~ msgstr "Julian Schmidhuber"

@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-28 01:28+0200\n"
+"POT-Creation-Date: 2025-10-22 19:18+0200\n"
 "PO-Revision-Date: 2025-10-14 10:07+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Estonian <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/et/>\n"
+"Language-Team: Estonian <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,9 +35,7 @@ msgstr "Sulle vajalikud sõiduplaanid"
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:12
 msgid "train;railway;journey;planner;timetables;"
-msgstr ""
-"ühistransport;rong;raudtee;bussiliinid;rongid;rongiplaan;sõiduplaan;"
-"reisiplaneerija;"
+msgstr "ühistransport;rong;raudtee;bussiliinid;rongid;rongiplaan;sõiduplaan;reisiplaneerija;"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:35
@@ -107,19 +105,19 @@ msgstr "Sisesta kellaaeg"
 msgid "Time"
 msgstr "Kellaaeg"
 
-#: data/resources/ui/date_time_picker.blp:142
+#: data/resources/ui/date_time_picker.blp:142 src/gui/date_time_picker.rs:119
 msgid "Now"
 msgstr "Praegu"
 
-#: data/resources/ui/journey_detail_page.blp:56
+#: data/resources/ui/journey_detail_page.blp:57
 msgid "Total Travel Time"
 msgstr "Reisiaeg kokku"
 
-#: data/resources/ui/journey_detail_page.blp:70
+#: data/resources/ui/journey_detail_page.blp:71
 msgid "Trip Segments"
 msgstr "Reisi segmendid"
 
-#: data/resources/ui/journey_detail_page.blp:84
+#: data/resources/ui/journey_detail_page.blp:85
 msgid "Choose a Trip"
 msgstr "Vali reis"
 
@@ -127,28 +125,28 @@ msgstr "Vali reis"
 msgid "Search for Trips"
 msgstr "Otsi reise"
 
-#: data/resources/ui/leg_item.blp:128
+#: data/resources/ui/leg_item.blp:129
 msgid "Show Stops"
 msgstr "Näita peatusi"
 
-#: data/resources/ui/leg_item.blp:131
+#: data/resources/ui/leg_item.blp:132
 msgid "Show Intermediate Stops"
 msgstr "Näita vahepeatusi"
 
-#: data/resources/ui/leg_item.blp:180 data/resources/ui/leg_item.blp:188
+#: data/resources/ui/leg_item.blp:181 data/resources/ui/leg_item.blp:189
 msgid "Show Announcements"
 msgstr "Näita teadaandeid"
 
-#: data/resources/ui/leg_item.blp:203
+#: data/resources/ui/leg_item.blp:204
 msgid "Announcements"
 msgstr "Teadaanded"
 
-#: data/resources/ui/leg_item.blp:230
+#: data/resources/ui/leg_item.blp:231
 msgid "Stops"
 msgstr "peatust"
 
 #: data/resources/ui/preferences_dialog.blp:8
-#: data/resources/ui/shortcuts.blp:27
+#: data/resources/ui/shortcuts_dialog.blp:25
 msgid "General"
 msgstr "Üldised"
 
@@ -205,6 +203,7 @@ msgid "Second Class"
 msgstr "Teine klass"
 
 #: data/resources/ui/search_options_dialog.blp:33
+#: src/gui/search_options_button.rs:194
 msgid "Bike Accessible"
 msgstr "Jalgratast saab kaasa võtta"
 
@@ -277,35 +276,35 @@ msgstr "Reiside järjehoidjad"
 msgid "Bookmarked Searches"
 msgstr "Otsingute järjehoidjad"
 
-#: data/resources/ui/shortcuts.blp:8
+#: data/resources/ui/shortcuts_dialog.blp:6
 msgid "Application"
 msgstr "Rakendus"
 
-#: data/resources/ui/shortcuts.blp:12
+#: data/resources/ui/shortcuts_dialog.blp:10
 msgid "Bookmark Search"
 msgstr "Lisa otsing järjehoidjana"
 
-#: data/resources/ui/shortcuts.blp:17
+#: data/resources/ui/shortcuts_dialog.blp:15
 msgid "Bookmark Trip"
 msgstr "Lisa reis järjehoidjana"
 
-#: data/resources/ui/shortcuts.blp:22
+#: data/resources/ui/shortcuts_dialog.blp:20
 msgid "Reload Trip"
 msgstr "Laadi reis uuesti"
 
-#: data/resources/ui/shortcuts.blp:31
+#: data/resources/ui/shortcuts_dialog.blp:29
 msgid "Quit"
 msgstr "Välju"
 
-#: data/resources/ui/shortcuts.blp:36
+#: data/resources/ui/shortcuts_dialog.blp:34
 msgid "Show Shortcuts"
 msgstr "Näita kiirklahve"
 
-#: data/resources/ui/shortcuts.blp:41
+#: data/resources/ui/shortcuts_dialog.blp:39
 msgid "Show Preferences"
 msgstr "Näita eelistusi"
 
-#: data/resources/ui/shortcuts.blp:46
+#: data/resources/ui/shortcuts_dialog.blp:44
 msgid "Open Menu"
 msgstr "Ava menüü"
 
@@ -357,6 +356,238 @@ msgstr "Kiirklahvid"
 msgid "_About Railway"
 msgstr "R_akenduse teave"
 
+#: src/gui/indicator_icons.rs:135
+msgid "High Load"
+msgstr "Suur täituvus"
+
+#: src/gui/indicator_icons.rs:142
+msgid "Very High Load"
+msgstr "Väga suur täituvus"
+
+#: src/gui/indicator_icons.rs:149
+msgid "Exceptionally High Load"
+msgstr "Ülisuur täituvus"
+
+#: src/gui/indicator_icons.rs:165
+msgid "On Time"
+msgstr "Vastavalt sõiduplaanile"
+
+#: src/gui/indicator_icons.rs:172
+msgid "Minor Delays"
+msgstr "Väike hilinemine"
+
+#: src/gui/indicator_icons.rs:179
+msgid "Delayed"
+msgstr "Hilineb"
+
+#: src/gui/indicator_icons.rs:186
+msgid "Very Delayed"
+msgstr "Hilineb palju"
+
+#: src/gui/indicator_icons.rs:193
+msgid "Extremely Delayed"
+msgstr "Hilineb ülipalju"
+
+#: src/gui/indicator_icons.rs:209
+msgid "Platform Changes"
+msgstr "Perroon on muutunud"
+
+#: src/gui/indicator_icons.rs:228
+msgid "Connection Not Possible"
+msgstr "Ühendus pole võimalik"
+
+#: src/gui/indicator_icons.rs:246
+msgid "Cancelled"
+msgstr "Tühistatud"
+
+#: src/gui/stores/journey_store.rs:173
+msgid "A bookmarked trip ended recently."
+msgstr "Järjehoidjana märgitud reis lõppes hiljuti."
+
+#: src/gui/stores/journey_store.rs:185
+msgid "Always _Delete"
+msgstr "_Kustuta alati"
+
+#: src/gui/search_page.rs:124
+msgid "Start and destination are missing"
+msgstr "Algpunkt ja sihtpunkt on puudu"
+
+#: src/gui/search_page.rs:125
+msgid "Start is missing"
+msgstr "Algpunkt on puudu"
+
+#: src/gui/search_page.rs:126
+msgid "Destination is missing"
+msgstr "Sihtpunkt on puudu"
+
+#: src/gui/search_page.rs:127
+msgid "Search ongoing"
+msgstr "Otsing on pooleli"
+
+#. Translators: Do not translate the strings in {}.
+#: src/gui/transition.rs:93
+msgid "Arrive at {destination}."
+msgstr "Saabud sihtpunkti {destination}."
+
+#: src/gui/transition.rs:225
+msgid "Walk {walk} Wait {wait}"
+msgstr "Kõnni {walk}, oota {wait}"
+
+#: src/gui/transition.rs:229
+msgid "Transfer Time {}"
+msgstr "Ümberistumine {}"
+
+#: src/gui/transition.rs:231
+msgid "Walk {}"
+msgstr "Kõnni {}"
+
+#: src/gui/transition.rs:232
+msgid "Transfer"
+msgstr "Ümberistumine"
+
+#. Translators: duration in minutes, standalone or tabular setting, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
+#. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
+#: src/gui/utility.rs:74 src/gui/search_options_dialog.rs:245
+msgid "{} min"
+msgstr "{} min"
+
+#. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
+#: src/gui/utility.rs:82
+msgid "%_H h %_M min"
+msgstr "%_H t %_M min"
+
+#: src/gui/utility.rs:93
+msgid " %_d day %_H h %_M min"
+msgid_plural "%_d days %_H h %_M min"
+msgstr[0] " %_d päev %_H t %_M min"
+msgstr[1] "%_d päeva %_H t %_M min"
+
+#. Translators: duration in minutes, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
+#: src/gui/utility.rs:104
+msgid "{} min."
+msgstr "{} min."
+
+#. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
+#: src/gui/utility.rs:108
+msgid "{} hrs."
+msgstr "{} t."
+
+#. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
+#: src/gui/utility.rs:117
+msgid "%-H hrs. %-M min."
+msgstr "%-H t %-M min."
+
+#: src/gui/utility.rs:129
+msgid "%-d day %-H hrs. %-M min."
+msgid_plural "%-d days %-H hrs. %-M min."
+msgstr[0] "%-d päev %-H t %-M min."
+msgstr[1] "%-d päeva %-H t %-M min."
+
+#. Translators: formatting of time in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:139
+msgid "%H:%M"
+msgstr "%H:%M"
+
+#: src/gui/utility.rs:145 src/gui/date_time_picker.rs:107
+msgid "Today"
+msgstr "Täna"
+
+#: src/gui/utility.rs:147
+msgid "Tomorrow"
+msgstr "Homme"
+
+#: src/gui/utility.rs:149
+msgid "Yesterday"
+msgstr "Eile"
+
+#. Translators: formatting of dates without year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:152
+msgid "%a, %d. %B"
+msgstr "%a, %d. %B"
+
+#. Translators: formatting of dates with year in a human-readable fashion, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+#: src/gui/utility.rs:155
+msgid "%Y-%m-%d"
+msgstr "%d.%m.%Y"
+
+#: src/gui/preferences_dialog.rs:66
+msgid "{} h"
+msgid_plural "{} h"
+msgstr[0] "{} t"
+msgstr[1] "{} t"
+
+#: src/gui/search_options_button.rs:75
+msgid "None"
+msgstr "Puudub"
+
+#: src/gui/search_options_button.rs:76
+msgid "BahnCard 25, 1st class"
+msgstr "BahnCard 25, 1. klass"
+
+#: src/gui/search_options_button.rs:77
+msgid "BahnCard 25, 2nd class"
+msgstr "BahnCard 25, 2. klass"
+
+#: src/gui/search_options_button.rs:78
+msgid "BahnCard 50, 1st class"
+msgstr "BahnCard 50, 1. klass"
+
+#: src/gui/search_options_button.rs:79
+msgid "BahnCard 50, 2nd class"
+msgstr "BahnCard 50, 2. klass"
+
+#: src/gui/search_options_button.rs:80
+msgid "A – VORTEILScard (with RAILPLUS)"
+msgstr "A – VORTEILScard (RAILPLUS kaardiga)"
+
+#: src/gui/search_options_button.rs:81
+msgid "CH – HalbtaxAbo (with RAILPLUS)"
+msgstr "CH – HalbtaxAbo (RAILPLUS kaardiga)"
+
+#: src/gui/search_options_button.rs:82
+msgid "CH – HalbtaxAbo (without RAILPLUS)"
+msgstr "CH – HalbtaxAbo (RAILPLUS kaardita)"
+
+#: src/gui/search_options_button.rs:85
+msgid "NL – Voordeelurenabo (with RAILPLUS)"
+msgstr "NL – Voordeelurenabo (RAILPLUS kaardiga)"
+
+#: src/gui/search_options_button.rs:89
+msgid "NL – Voordeelurenabo (without RAILPLUS)"
+msgstr "NL – Voordeelurenabo (RAILPLUS kaardita)"
+
+#: src/gui/search_options_button.rs:91
+msgid "SH-Card"
+msgstr "SH-Card"
+
+#: src/gui/search_options_button.rs:92
+msgid "CH – General-Abonnement"
+msgstr "CH – General-Abonnement"
+
+#: src/gui/search_options_button.rs:99
+msgid "Unknown"
+msgstr "Teadmata"
+
+#: src/gui/search_options_button.rs:141
+msgid "1st class"
+msgstr "1. klass"
+
+#: src/gui/search_options_button.rs:143
+msgid "2nd class"
+msgstr "2. klass"
+
+#: src/gui/search_options_button.rs:186
+msgid "Regional Only"
+msgstr "Ainult regionaalliiklus"
+
+#: src/gui/search_options_button.rs:189
+msgid "Selected Modes of Transport"
+msgstr "Vali transpordiliik"
+
+#: src/gui/search_options_button.rs:201
+msgid "Direct Connection"
+msgstr "Otseliin"
+
 #: src/gui/error.rs:17
 msgid "Failed to fetch data. Are you connected to the internet?"
 msgstr ""
@@ -383,6 +614,77 @@ msgstr "Viga"
 msgid "_Close"
 msgstr "_Sulge"
 
+#. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
+#. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
+#: src/gui/date_time_picker.rs:111
+#, c-format
+msgid "%a %b %d"
+msgstr "%a %b %d"
+
+#: src/gui/journey_list_item.rs:52
+msgid "{} change"
+msgid_plural "{} changes"
+msgstr[0] "{} ümberistumine"
+msgstr[1] "{} ümberistumist"
+
+#. Translators: changes_text is the plural-aware string "{} change" already
+#: src/gui/journey_list_item.rs:56
+msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
+msgstr ""
+"Algpunktist {departure} sihtpunkti {arrival} reisiajaga {travel_time}, "
+"ümberistumisi {changes_text}"
+
+#. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
+#: src/gui/leg_item.rs:73
+msgid "{train} in the direction of {destination}"
+msgstr "{train} sihtpunkti {destination} suunas"
+
+#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+#: src/gui/leg_item.rs:90
+msgid "Depart {start} from platform {platform} at {departure}."
+msgstr "Väljumine algpunktist {start} kell {departure} perroonilt {platform}."
+
+#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+#: src/gui/leg_item.rs:94
+msgid "Depart {start} at {departure}."
+msgstr "Väljumine algpunktist {start} kell {departure}."
+
+#: src/gui/leg_item.rs:101
+msgid "Arrive at {destination} on platform {platform} at {arrival}."
+msgstr ""
+"Saabumine sihtpunkti {destination} kell {arrival} perroonile {platform}."
+
+#. Translators: Formatting for the segment's comprehensive description for screen readers. Do not translate the strings in {}.
+#: src/gui/leg_item.rs:106
+msgid "Arrive at {destination} at {arrival}."
+msgstr "Saabumine sihtpunkti {destination} kell {arrival}."
+
+#: src/gui/leg_item.rs:153
+msgid "{} Stop"
+msgid_plural "{} Stops"
+msgstr[0] "{} peatus"
+msgstr[1] "{} peatust"
+
+#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
+#: src/gui/intermediate_location_item.rs:67
+msgid "{stop} at {arrival} on platform {platform}"
+msgstr "vahepeatus {stop} kell {arrival} perroonil {platform}"
+
+#. Translators: The formatting of the intermediate_locations's description for screen readers. Do not translate the strings in {}.
+#: src/gui/intermediate_location_item.rs:70
+msgid "{stop} at {arrival}"
+msgstr "vahepeatus {stop} kell {arrival}"
+
+#. Translators: Text that will be announced by the screen reader when a suggestion was selected.
+#: src/gui/station_entry.rs:189
+msgid "Suggestion {} selected"
+msgstr "{} - soovitus on valitud"
+
+#. Translators: Text that will be announced by the screen reader when no selection was selected.
+#: src/gui/station_entry.rs:194
+msgid "No suggestion selected"
+msgstr "Ühtegi soovitust pole valitud"
+
 #: src/gui/station_entry.rs:420
 msgid "one suggestion, not selected"
 msgid_plural "{n} suggestions, none selected"
@@ -390,13 +692,33 @@ msgstr[0] "üks soovitus, pole valitud"
 msgstr[1] "{n} soovitust, ühtegi pole valitud"
 
 #. translators: One per line: How you want to be credited as a, e.g. by the name you use, and optionally an email address ("Edgar Allan Poe <edgar@poe.com>")
-#: src/gui/window.rs:192
+#: src/gui/window.rs:193
 msgid "translator-credits"
 msgstr "Priit Jõerüüt"
 
-#: src/gui/window.rs:195
+#: src/gui/window.rs:196
 msgid "Source Translation Supported by"
 msgstr "Tõlge"
+
+#. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
+#: src/gui/frequency_label.rs:91
+msgid "every ~{}"
+msgstr "iga ~{}"
+
+#. Translators: How to format the currency "Euro". Do not translate in {}.
+#: src/backend/price.rs:68
+msgid "€{amount}"
+msgstr "{amount} €"
+
+#. Translators: How to format the currency "Dollar (US)". Do not translate in {}.
+#: src/backend/price.rs:74
+msgid "${amount}"
+msgstr "{amount} $"
+
+#. Translators: How to format unknown currency "currency". Do not translate in {}.
+#: src/backend/price.rs:81
+msgid "{currency} {amount}"
+msgstr "{currency} {amount}"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Germany
 #: src/backend/client.rs:29 src/backend/client.rs:80 src/backend/client.rs:87
@@ -445,238 +767,103 @@ msgstr "Üle maailma (beetaversioon)"
 msgid "Using Transitous"
 msgstr "Kasutades Transitouse teenust"
 
+#: src/backend/journey.rs:271
+#, fuzzy
+msgid "Start at {station} on platform {platform} at {time}"
+msgstr ""
+"Saabumine sihtpunkti {destination} kell {arrival} perroonile {platform}."
+
+#: src/backend/journey.rs:274
+#, fuzzy
+msgid "Start at {station} at {time}"
+msgstr "Saabumine sihtpunkti {destination} kell {arrival}."
+
+#: src/backend/journey.rs:280
+msgid "Trip to {destination} will begin shortly"
+msgstr ""
+
+#: src/backend/journey.rs:309
+#, fuzzy
+msgid "{time} transfer time to get to platform {platform}"
+msgstr "vahepeatus {stop} kell {arrival} perroonil {platform}"
+
+#: src/backend/journey.rs:315
+#, fuzzy
+msgid "{time} transfer time"
+msgstr "Minimaalne ümberistumise aeg"
+
+#: src/backend/journey.rs:318
+#, fuzzy
+msgid "Upcoming departure on platform {platform}"
+msgstr "vahepeatus {stop} kell {arrival} perroonil {platform}"
+
+#: src/backend/journey.rs:325
+msgid "Upcoming transfer at {station} soon"
+msgstr ""
+
+#: src/backend/journey.rs:335
+#, fuzzy
+msgid "Arriving at {destination} soon"
+msgstr "Saabud sihtpunkti {destination}."
+
+#: src/backend/journey.rs:377
+msgid "{train} departure is delayed by {time}"
+msgstr ""
+
+#: src/backend/journey.rs:404
+msgid "{train} arrival is delayed by {time}"
+msgstr ""
+
+#: src/backend/journey.rs:427
+#, fuzzy
+msgid "{train} departing on platform {platform} today instead"
+msgstr ""
+"Saabumine sihtpunkti {destination} kell {arrival} perroonile {platform}."
+
+#: src/backend/journey.rs:448
+msgid ""
+"Warning: No longer possible to reach connecting {train} from {origin} to "
+"{destination}."
+msgstr ""
+
+#: src/backend/journey.rs:470
+msgid "Warning: {train} from {origin} to {destination} was cancelled."
+msgstr ""
+
+#: src/backend/journey.rs:562
+#, fuzzy
+msgid "Start at {next-origin} in {duration} on platform {next-platform}"
+msgstr ""
+"Saabumine sihtpunkti {destination} kell {arrival} perroonile {platform}."
+
+#: src/backend/journey.rs:565
+msgid "Start at {next-origin} in {duration}"
+msgstr ""
+
+#: src/backend/journey.rs:568
+#, fuzzy
+msgid "Arriving at {current-destination} in {duration}"
+msgstr "Saabumine sihtpunkti {destination} kell {arrival}."
+
+#: src/backend/journey.rs:571
+msgid ""
+"Change to {next-leg-name} on platform {next-platform}, remaining: {duration}"
+msgstr ""
+
+#: src/backend/journey.rs:574
+msgid "Change to {next-leg-name}, remaining: {duration}"
+msgstr ""
+
+#: src/backend/journey.rs:577
+msgid "The trip’s destination has been reached"
+msgstr ""
+
+#: src/backend/leg.rs:130
+msgid "Walk"
+msgstr "Kõnni"
+
 #~ msgid "High Speed Train"
 #~ msgstr "Kiirrong"
 
-#~ msgid "High Load"
-#~ msgstr "Suur täituvus"
-
-#~ msgid "Very High Load"
-#~ msgstr "Väga suur täituvus"
-
-#~ msgid "Exceptionally High Load"
-#~ msgstr "Ülisuur täituvus"
-
-#~ msgid "On Time"
-#~ msgstr "Vastavalt sõiduplaanile"
-
-#~ msgid "Minor Delays"
-#~ msgstr "Väike hilinemine"
-
-#~ msgid "Delayed"
-#~ msgstr "Hilineb"
-
-#~ msgid "Very Delayed"
-#~ msgstr "Hilineb palju"
-
-#~ msgid "Extremely Delayed"
-#~ msgstr "Hilineb ülipalju"
-
-#~ msgid "Platform Changes"
-#~ msgstr "Perroon on muutunud"
-
-#~ msgid "Connection Not Possible"
-#~ msgstr "Ühendus pole võimalik"
-
-#~ msgid "Cancelled"
-#~ msgstr "Tühistatud"
-
-#~ msgid "A bookmarked trip ended recently."
-#~ msgstr "Järjehoidjana märgitud reis lõppes hiljuti."
-
-#~ msgid "Always _Delete"
-#~ msgstr "_Kustuta alati"
-
-#~ msgid "Start and destination are missing"
-#~ msgstr "Algpunkt ja sihtpunkt on puudu"
-
-#~ msgid "Start is missing"
-#~ msgstr "Algpunkt on puudu"
-
-#~ msgid "Destination is missing"
-#~ msgstr "Sihtpunkt on puudu"
-
-#~ msgid "Search ongoing"
-#~ msgstr "Otsing on pooleli"
-
 #~ msgid "Last refreshed {}"
 #~ msgstr "Viimati uuendatud {}"
-
-#~ msgid "Arrive at {destination}."
-#~ msgstr "Saabud sihtpunkti {destination}."
-
-#~ msgid "Walk {walk} Wait {wait}"
-#~ msgstr "Kõnni {walk}, oota {wait}"
-
-#~ msgid "Transfer Time {}"
-#~ msgstr "Ümberistumine {}"
-
-#~ msgid "Walk {}"
-#~ msgstr "Kõnni {}"
-
-#~ msgid "Transfer"
-#~ msgstr "Ümberistumine"
-
-#~ msgid "{} min"
-#~ msgstr "{} min"
-
-#~ msgid "%_H h %_M min"
-#~ msgstr "%_H t %_M min"
-
-#~ msgid " %_d day %_H h %_M min"
-#~ msgid_plural "%_d days %_H h %_M min"
-#~ msgstr[0] " %_d päev %_H t %_M min"
-#~ msgstr[1] "%_d päeva %_H t %_M min"
-
-#~ msgid "{} min."
-#~ msgstr "{} min."
-
-#~ msgid "{} hrs."
-#~ msgstr "{} t."
-
-#~ msgid "%-H hrs. %-M min."
-#~ msgstr "%-H t %-M min."
-
-#~ msgid "%-d day %-H hrs. %-M min."
-#~ msgid_plural "%-d days %-H hrs. %-M min."
-#~ msgstr[0] "%-d päev %-H t %-M min."
-#~ msgstr[1] "%-d päeva %-H t %-M min."
-
-#~ msgid "%H:%M"
-#~ msgstr "%H:%M"
-
-#~ msgid "Today"
-#~ msgstr "Täna"
-
-#~ msgid "Tomorrow"
-#~ msgstr "Homme"
-
-#~ msgid "Yesterday"
-#~ msgstr "Eile"
-
-#~ msgid "%a, %d. %B"
-#~ msgstr "%a, %d. %B"
-
-#~ msgid "%Y-%m-%d"
-#~ msgstr "%d.%m.%Y"
-
-#~ msgid "{} h"
-#~ msgid_plural "{} h"
-#~ msgstr[0] "{} t"
-#~ msgstr[1] "{} t"
-
-#~ msgid "None"
-#~ msgstr "Puudub"
-
-#~ msgid "BahnCard 25, 1st class"
-#~ msgstr "BahnCard 25, 1. klass"
-
-#~ msgid "BahnCard 25, 2nd class"
-#~ msgstr "BahnCard 25, 2. klass"
-
-#~ msgid "BahnCard 50, 1st class"
-#~ msgstr "BahnCard 50, 1. klass"
-
-#~ msgid "BahnCard 50, 2nd class"
-#~ msgstr "BahnCard 50, 2. klass"
-
-#~ msgid "A – VORTEILScard (with RAILPLUS)"
-#~ msgstr "A – VORTEILScard (RAILPLUS kaardiga)"
-
-#~ msgid "CH – HalbtaxAbo (with RAILPLUS)"
-#~ msgstr "CH – HalbtaxAbo (RAILPLUS kaardiga)"
-
-#~ msgid "CH – HalbtaxAbo (without RAILPLUS)"
-#~ msgstr "CH – HalbtaxAbo (RAILPLUS kaardita)"
-
-#~ msgid "NL – Voordeelurenabo (with RAILPLUS)"
-#~ msgstr "NL – Voordeelurenabo (RAILPLUS kaardiga)"
-
-#~ msgid "NL – Voordeelurenabo (without RAILPLUS)"
-#~ msgstr "NL – Voordeelurenabo (RAILPLUS kaardita)"
-
-#~ msgid "SH-Card"
-#~ msgstr "SH-Card"
-
-#~ msgid "CH – General-Abonnement"
-#~ msgstr "CH – General-Abonnement"
-
-#~ msgid "Unknown"
-#~ msgstr "Teadmata"
-
-#~ msgid "1st class"
-#~ msgstr "1. klass"
-
-#~ msgid "2nd class"
-#~ msgstr "2. klass"
-
-#~ msgid "Regional Only"
-#~ msgstr "Ainult regionaalliiklus"
-
-#~ msgid "Selected Modes of Transport"
-#~ msgstr "Vali transpordiliik"
-
-#~ msgid "Direct Connection"
-#~ msgstr "Otseliin"
-
-#~ msgid "%a %b %d"
-#~ msgstr "%a %b %d"
-
-#~ msgid "{} change"
-#~ msgid_plural "{} changes"
-#~ msgstr[0] "{} ümberistumine"
-#~ msgstr[1] "{} ümberistumist"
-
-#~ msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-#~ msgstr ""
-#~ "Algpunktist {departure} sihtpunkti {arrival} reisiajaga {travel_time}, "
-#~ "ümberistumisi {changes_text}"
-
-#~ msgid "{train} in the direction of {destination}"
-#~ msgstr "{train} sihtpunkti {destination} suunas"
-
-#~ msgid "Depart {start} from platform {platform} at {departure}."
-#~ msgstr ""
-#~ "Väljumine algpunktist {start} kell {departure} perroonilt {platform}."
-
-#~ msgid "Depart {start} at {departure}."
-#~ msgstr "Väljumine algpunktist {start} kell {departure}."
-
-#~ msgid "Arrive at {destination} on platform {platform} at {arrival}."
-#~ msgstr ""
-#~ "Saabumine sihtpunkti {destination} kell {arrival} perroonile {platform}."
-
-#~ msgid "Arrive at {destination} at {arrival}."
-#~ msgstr "Saabumine sihtpunkti {destination} kell {arrival}."
-
-#~ msgid "{} Stop"
-#~ msgid_plural "{} Stops"
-#~ msgstr[0] "{} peatus"
-#~ msgstr[1] "{} peatust"
-
-#~ msgid "{stop} at {arrival} on platform {platform}"
-#~ msgstr "vahepeatus {stop} kell {arrival} perroonil {platform}"
-
-#~ msgid "{stop} at {arrival}"
-#~ msgstr "vahepeatus {stop} kell {arrival}"
-
-#~ msgid "Suggestion {} selected"
-#~ msgstr "{} - soovitus on valitud"
-
-#~ msgid "No suggestion selected"
-#~ msgstr "Ühtegi soovitust pole valitud"
-
-#~ msgid "every ~{}"
-#~ msgstr "iga ~{}"
-
-#~ msgid "€{amount}"
-#~ msgstr "{amount} €"
-
-#~ msgid "${amount}"
-#~ msgstr "{amount} $"
-
-#~ msgid "{currency} {amount}"
-#~ msgstr "{currency} {amount}"
-
-#~ msgid "Walk"
-#~ msgstr "Kõnni"
