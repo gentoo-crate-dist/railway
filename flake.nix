@@ -152,7 +152,11 @@
                         (sleep 5)
                         (l.replicate 12 (key "tab"))
                         (key "ret")
-                        (l.replicate 4 (key "tab"))
+                        (l.replicate 2 (key "tab"))
+                        (key "ret")
+                        (key "tab")
+                        (key "ret")
+                        (l.replicate 2 (key "tab"))
                         (key "ret")
                       ];
 
