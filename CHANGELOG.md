@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### New Features
+
+- Railway now has the ability to watch trips for notifications ahead of them and
+  in-journey, e.g. when platform changes or delays might interrupt travel.
+
+### Fixes
+
+- Deutsche Bahn stopped working recently with versions prior to 2.9, but are
+  working from here on.
+
+### Chores
+
+- The shortcuts dialog is now adaptive due to switching to GNOME's new
+  libadwaita widgets for them.
+- This app now builds with gtk-rs 0.10.
+
 ## [2.8.2] - 2025-06-19
 
 ### Fixed
