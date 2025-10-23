@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2025-10-14 10:07+0000\n"
+"PO-Revision-Date: 2025-10-24 12:03+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Estonian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/et/>\n"
+"Language-Team: Estonian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -770,95 +770,89 @@ msgid "Using Transitous"
 msgstr "Kasutades Transitouse teenust"
 
 #: src/backend/journey.rs:271
-#, fuzzy
 msgid "Start at {station} on platform {platform} at {time}"
-msgstr ""
-"Saabumine sihtpunkti {destination} kell {arrival} perroonile {platform}."
+msgstr "Väljumine kell {time} jaamast {station} perroonilt {platform}"
 
 #: src/backend/journey.rs:274
-#, fuzzy
 msgid "Start at {station} at {time}"
-msgstr "Saabumine sihtpunkti {destination} kell {arrival}."
+msgstr "Väljumine kell {time} jaamast {station}"
 
 #: src/backend/journey.rs:280
 msgid "Trip to {destination} will begin shortly"
-msgstr ""
+msgstr "Reis sihtkohta {destination} algab peagi"
 
 #: src/backend/journey.rs:309
-#, fuzzy
 msgid "{time} transfer time to get to platform {platform}"
-msgstr "vahepeatus {stop} kell {arrival} perroonil {platform}"
+msgstr "ümberistumise aeg {time} jõudmaks perroonile {platform}"
 
 #: src/backend/journey.rs:315
-#, fuzzy
 msgid "{time} transfer time"
-msgstr "Minimaalne ümberistumise aeg"
+msgstr "ümberistumise aeg {time}"
 
 #: src/backend/journey.rs:318
-#, fuzzy
 msgid "Upcoming departure on platform {platform}"
-msgstr "vahepeatus {stop} kell {arrival} perroonil {platform}"
+msgstr "Väljumine õige pea perroonilt {platform}"
 
 #: src/backend/journey.rs:325
 msgid "Upcoming transfer at {station} soon"
-msgstr ""
+msgstr "Õige pea on ümberistumine jaamas: {station}"
 
 #: src/backend/journey.rs:335
-#, fuzzy
 msgid "Arriving at {destination} soon"
-msgstr "Saabud sihtpunkti {destination}."
+msgstr "Saabud õige pea sihtkohta {destination}"
 
 #: src/backend/journey.rs:377
 msgid "{train} departure is delayed by {time}"
-msgstr ""
+msgstr "{train} rongi väljumine hilineb {time} võrra"
 
 #: src/backend/journey.rs:404
 msgid "{train} arrival is delayed by {time}"
-msgstr ""
+msgstr "{train} rongi saabumine hilineb {time} võrra"
 
 #: src/backend/journey.rs:427
-#, fuzzy
 msgid "{train} departing on platform {platform} today instead"
-msgstr ""
-"Saabumine sihtpunkti {destination} kell {arrival} perroonile {platform}."
+msgstr "{train} rong väljub täna perroonilt {platform}"
 
 #: src/backend/journey.rs:448
 msgid ""
 "Warning: No longer possible to reach connecting {train} from {origin} to "
 "{destination}."
 msgstr ""
+"Hoiatus: Enam ei jõua ümber istuda {train} rongile liinil {origin} - "
+"{destination}."
 
 #: src/backend/journey.rs:470
 msgid "Warning: {train} from {origin} to {destination} was cancelled."
-msgstr ""
+msgstr "Hoiatus: Rong {train} liinil {origin} - {destination} on tühistatud."
 
 #: src/backend/journey.rs:562
-#, fuzzy
 msgid "Start at {next-origin} in {duration} on platform {next-platform}"
 msgstr ""
-"Saabumine sihtpunkti {destination} kell {arrival} perroonile {platform}."
+"Väljumiseni järgmisesse sihtkohta {destination} perroonilt {platform} jäänud "
+"aega {duration}"
 
 #: src/backend/journey.rs:565
 msgid "Start at {next-origin} in {duration}"
-msgstr ""
+msgstr "Alguseni järgmisest lähtekohast {next-origin} jäänud {duration}"
 
 #: src/backend/journey.rs:568
-#, fuzzy
 msgid "Arriving at {current-destination} in {duration}"
-msgstr "Saabumine sihtpunkti {destination} kell {arrival}."
+msgstr "Saabumiseni sihtpunkti {current-destination} jäänud aega {duration}"
 
 #: src/backend/journey.rs:571
 msgid ""
 "Change to {next-leg-name} on platform {next-platform}, remaining: {duration}"
 msgstr ""
+"Ümberistumine sihtkoha {next-leg-name} suunas perroonilt {next-platform}, "
+"väljumiseni jäänud: {duration}"
 
 #: src/backend/journey.rs:574
 msgid "Change to {next-leg-name}, remaining: {duration}"
-msgstr ""
+msgstr "Ümberistumine sihtkoha {next-leg-name}, väljumiseni jäänud: {duration}"
 
 #: src/backend/journey.rs:577
 msgid "The trip’s destination has been reached"
-msgstr ""
+msgstr "Oled jõudnud reisi sihtkohta"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
