@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2025-10-22 19:28+0000\n"
+"PO-Revision-Date: 2025-10-24 12:02+0000\n"
 "Last-Translator: Markus Göllnitz <camelcasenick@bewares.it>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -616,7 +616,7 @@ msgstr "_Schliessen"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:111
-#, fuzzy, c-format
+#, c-format
 msgid "%a %b %d"
 msgstr "%a %d. %b"
 
@@ -766,92 +766,87 @@ msgid "Using Transitous"
 msgstr "basiert auf Transitous"
 
 #: src/backend/journey.rs:271
-#, fuzzy
 msgid "Start at {station} on platform {platform} at {time}"
-msgstr "Ziel {destination}, Ankunft an Plattform {platform} um {arrival}."
+msgstr "Abfahrt von {station} von Plattform {platform} um {time}"
 
 #: src/backend/journey.rs:274
-#, fuzzy
 msgid "Start at {station} at {time}"
-msgstr "Ziel {destination}, Ankunft um {arrival}."
+msgstr "Abfahrt von {station} um {time}"
 
 #: src/backend/journey.rs:280
 msgid "Trip to {destination} will begin shortly"
-msgstr ""
+msgstr "Fahrt nach {destination} beginnt demnächst"
 
 #: src/backend/journey.rs:309
-#, fuzzy
 msgid "{time} transfer time to get to platform {platform}"
-msgstr "{stop} an Plattform {platform} um {arrival}"
+msgstr "{time} Umstiegszeit, nächste Abfahrt von Plattform {platform}"
 
 #: src/backend/journey.rs:315
-#, fuzzy
 msgid "{time} transfer time"
-msgstr "Minimale Umstiegszeit"
+msgstr "{time} Umstiegszeit"
 
 #: src/backend/journey.rs:318
-#, fuzzy
 msgid "Upcoming departure on platform {platform}"
-msgstr "{stop} an Plattform {platform} um {arrival}"
+msgstr "Bevorstehende Abfahrt von Plattform {platform}"
 
 #: src/backend/journey.rs:325
 msgid "Upcoming transfer at {station} soon"
-msgstr ""
+msgstr "Bevorstehender Umstieg an {station}"
 
 #: src/backend/journey.rs:335
-#, fuzzy
 msgid "Arriving at {destination} soon"
-msgstr "Erreiche das Ziel {}."
+msgstr "{destination} demnächst erreicht"
 
 #: src/backend/journey.rs:377
 msgid "{train} departure is delayed by {time}"
-msgstr ""
+msgstr "{train} Abfahrt verspätet sich um {time}"
 
 #: src/backend/journey.rs:404
 msgid "{train} arrival is delayed by {time}"
-msgstr ""
+msgstr "{train} Ankunft verspätet sich um {time}"
 
 #: src/backend/journey.rs:427
-#, fuzzy
 msgid "{train} departing on platform {platform} today instead"
-msgstr "Ziel {destination}, Ankunft an Plattform {platform} um {arrival}."
+msgstr "{train} abweichende Abfahrt von Plattform {platform}"
 
 #: src/backend/journey.rs:448
 msgid ""
 "Warning: No longer possible to reach connecting {train} from {origin} to "
 "{destination}."
 msgstr ""
+"Achtung: Anschluss zu {train} von {origin} nach {destination} nicht mehr "
+"möglich"
 
 #: src/backend/journey.rs:470
 msgid "Warning: {train} from {origin} to {destination} was cancelled."
-msgstr ""
+msgstr "Achtung: {train} von {origin} nach {destination} fällt aus"
 
 #: src/backend/journey.rs:562
-#, fuzzy
 msgid "Start at {next-origin} in {duration} on platform {next-platform}"
-msgstr "Ziel {destination}, Ankunft an Plattform {platform} um {arrival}."
+msgstr "Abfahrt von {next-origin} in {duration} von Plattform {next-platform}"
 
 #: src/backend/journey.rs:565
 msgid "Start at {next-origin} in {duration}"
-msgstr ""
+msgstr "Abfahrt von {next-origin} in {duration}"
 
 #: src/backend/journey.rs:568
-#, fuzzy
 msgid "Arriving at {current-destination} in {duration}"
-msgstr "Ziel {destination}, Ankunft um {arrival}."
+msgstr "{current-destination} in {duration} erreicht"
 
 #: src/backend/journey.rs:571
 msgid ""
 "Change to {next-leg-name} on platform {next-platform}, remaining: {duration}"
 msgstr ""
+"Umstieg zu {next-leg-name} von Plattform {next-platform}, verbleibend: "
+"{duration}"
 
 #: src/backend/journey.rs:574
 msgid "Change to {next-leg-name}, remaining: {duration}"
-msgstr ""
+msgstr "Umstieg zu {next-leg-name}, verbleibend: {duration}"
 
 #: src/backend/journey.rs:577
 msgid "The trip’s destination has been reached"
-msgstr ""
+msgstr "Das Fahrtziel wurde erreicht"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
