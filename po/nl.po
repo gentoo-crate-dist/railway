@@ -35,7 +35,9 @@ msgstr "Vind al uw reis­informatie"
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:12
 msgid "train;railway;journey;planner;timetables;"
-msgstr "train;railway;journey;planner;timetables;trein;spoorweg;reis;planner;dienstregelingen;ov;openbaar;vervoer;"
+msgstr ""
+"train;railway;journey;planner;timetables;trein;spoorweg;reis;planner;"
+"dienstregelingen;ov;openbaar;vervoer;"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:35

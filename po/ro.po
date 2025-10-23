@@ -36,7 +36,9 @@ msgstr "Găsește toate informațiile despre călătorie"
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:12
 msgid "train;railway;journey;planner;timetables;"
-msgstr "train;railway;journey;planner;timetables;tren;caleferată;călătorie;planificator;orar;"
+msgstr ""
+"train;railway;journey;planner;timetables;tren;caleferată;călătorie;"
+"planificator;orar;"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:35
