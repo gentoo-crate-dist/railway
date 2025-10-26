@@ -59,6 +59,11 @@
   </description>
 
   <releases>
+    <release version="2.9.1" date="2025-10-26">
+      <description translate="no">
+        <p>Fixed</p> <ul> <li>Reloading of journeys with the DB provider being broken.</li> </ul>
+      </description>
+    </release>
     <release version="2.9.0" date="2025-10-23">
       <description translate="no">
         <p>New Features</p> <ul> <li>Railway now has the ability to watch trips for notifications ahead of them and in-journey, e.g. when platform changes or delays might interrupt travel.</li> </ul> <p>Fixes</p> <ul> <li>Deutsche Bahn stopped working recently with versions prior to 2.9, but are working from here on.</li> </ul> <p>Chores</p> <ul> <li>The shortcuts dialog is now adaptive due to switching to GNOME's new libadwaita widgets for them.</li> <li>This app now builds with gtk-rs 0.10.</li> </ul>
