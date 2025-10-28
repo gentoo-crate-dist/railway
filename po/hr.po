@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2025-07-04 23:01+0000\n"
+"PO-Revision-Date: 2025-10-29 12:49+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
-"Language-Team: Croatian <https://hosted.weblate.org/projects/schmiddi-on-"
-"mobile/railway/hr/>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/"
+"schmiddi-on-mobile/railway/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -89,7 +90,7 @@ msgstr "Dolazak"
 
 #: data/resources/ui/date_time_picker.blp:34
 msgid "Input date"
-msgstr "Unos datuma"
+msgstr "Unesi datum"
 
 #: data/resources/ui/date_time_picker.blp:42
 msgid "Date"
@@ -97,7 +98,7 @@ msgstr "Datum"
 
 #: data/resources/ui/date_time_picker.blp:78
 msgid "Input time"
-msgstr "Unos vremena"
+msgstr "Unesi vrijeme"
 
 #: data/resources/ui/date_time_picker.blp:87
 msgid "Time"
@@ -117,7 +118,7 @@ msgstr "Dionice putovanja"
 
 #: data/resources/ui/journey_detail_page.blp:85
 msgid "Choose a Trip"
-msgstr "Izaberi putovanje"
+msgstr "Odaberi putovanje"
 
 #: data/resources/ui/journeys_page.blp:95
 msgid "Search for Trips"
@@ -218,16 +219,14 @@ msgid "Modes of Transport"
 msgstr "Vrste transporta"
 
 #: data/resources/ui/search_options_dialog.blp:60
-#, fuzzy
 msgid "Mainline Train"
-msgstr "Regionalni vlak"
+msgstr "Međugradski vlak"
 
 #: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "Regionalni vlak"
 
 #: data/resources/ui/search_options_dialog.blp:70
-#, fuzzy
 msgid "S-Bahn Train"
 msgstr "Prigradski vlak"
 
@@ -341,9 +340,8 @@ msgid "Bookmark This Trip"
 msgstr "Zabilježi ovo putovanje"
 
 #: data/resources/ui/window.blp:166
-#, fuzzy
 msgid "Watch this Trip"
-msgstr "Aktualiziraj ovo putovanje"
+msgstr "Prati ovo putovanje"
 
 #: data/resources/ui/window.blp:199
 msgid "Preferences"
@@ -411,7 +409,7 @@ msgstr "Uvijek _izbriši"
 
 #: src/gui/search_page.rs:124
 msgid "Start and destination are missing"
-msgstr "Polazište i odredište nedostaju"
+msgstr "Nedostaju polazište i odredište"
 
 #: src/gui/search_page.rs:125
 msgid "Start is missing"
@@ -455,7 +453,7 @@ msgstr "{} min"
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:82
 msgid "%_H h %_M min"
-msgstr "%_H h %_M min"
+msgstr "%_H h %_M min"
 
 #: src/gui/utility.rs:93
 msgid " %_d day %_H h %_M min"
@@ -619,9 +617,9 @@ msgstr "_Zatvori"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:111
-#, fuzzy, c-format
+#, c-format
 msgid "%a %b %d"
-msgstr "%a, %d. %b"
+msgstr "%a, %d. %m."
 
 #: src/gui/journey_list_item.rs:52
 msgid "{} change"
@@ -633,7 +631,7 @@ msgstr[2] "{} promjena"
 #. Translators: changes_text is the plural-aware string "{} change" already
 #: src/gui/journey_list_item.rs:56
 msgid "From {departure} to {arrival} in {travel_time} with {changes_text}"
-msgstr "{departure}–{arrival}, {travel_time} s {changes_text}"
+msgstr "Od {departure} do {arrival} u {travel_time} sa {changes_text}"
 
 #. Translators: The formatting of the train going into what direction, i.e. "ICE 123 to Musterberg". Do not translate the strings in {}.
 #: src/gui/leg_item.rs:73
@@ -770,92 +768,86 @@ msgid "Using Transitous"
 msgstr "Koristi uslugu Transitous"
 
 #: src/backend/journey.rs:271
-#, fuzzy
 msgid "Start at {station} on platform {platform} at {time}"
-msgstr "Dolazak u {destination} na peronu {platform} u {arrival}."
+msgstr "Polazište: {station} na peronu {platform} u {time}"
 
 #: src/backend/journey.rs:274
-#, fuzzy
 msgid "Start at {station} at {time}"
-msgstr "Dolazak u {destination} u {arrival}."
+msgstr "Polazište: {station} u {time}"
 
 #: src/backend/journey.rs:280
 msgid "Trip to {destination} will begin shortly"
-msgstr ""
+msgstr "Putovanje za {destination} će uskoro početi"
 
 #: src/backend/journey.rs:309
-#, fuzzy
 msgid "{time} transfer time to get to platform {platform}"
-msgstr "{stop} u {arrival} na peronu {platform}"
+msgstr "{time} vrijeme presjedanja do perona {platform}"
 
 #: src/backend/journey.rs:315
-#, fuzzy
 msgid "{time} transfer time"
-msgstr "Minimum vremena za presjedanje"
+msgstr "{time} vrijeme presjedanja"
 
 #: src/backend/journey.rs:318
-#, fuzzy
 msgid "Upcoming departure on platform {platform}"
-msgstr "{stop} u {arrival} na peronu {platform}"
+msgstr "Nadolazeći polazak na peronu {platform}"
 
 #: src/backend/journey.rs:325
 msgid "Upcoming transfer at {station} soon"
-msgstr ""
+msgstr "Uskoro nadolazi stanica {station} za presjedanje"
 
 #: src/backend/journey.rs:335
-#, fuzzy
 msgid "Arriving at {destination} soon"
-msgstr "Dolazak u {destination}."
+msgstr "Dolazak u {destination} uskoro"
 
 #: src/backend/journey.rs:377
 msgid "{train} departure is delayed by {time}"
-msgstr ""
+msgstr "{train} odlazak kasni {time}"
 
 #: src/backend/journey.rs:404
 msgid "{train} arrival is delayed by {time}"
-msgstr ""
+msgstr "{train} dolazak kasni {time}"
 
 #: src/backend/journey.rs:427
-#, fuzzy
 msgid "{train} departing on platform {platform} today instead"
-msgstr "Dolazak u {destination} na peronu {platform} u {arrival}."
+msgstr "{train} danas odlazi na peronu {platform}"
 
 #: src/backend/journey.rs:448
 msgid ""
 "Warning: No longer possible to reach connecting {train} from {origin} to "
 "{destination}."
 msgstr ""
+"Upozorenje: Više nije moguće stići {train} iz {origin} za {destination}."
 
 #: src/backend/journey.rs:470
 msgid "Warning: {train} from {origin} to {destination} was cancelled."
-msgstr ""
+msgstr "Upozorenje: {train} iz {origin} za {destination} je otkazan."
 
 #: src/backend/journey.rs:562
-#, fuzzy
 msgid "Start at {next-origin} in {duration} on platform {next-platform}"
-msgstr "Dolazak u {destination} na peronu {platform} u {arrival}."
+msgstr "Polazište: {next-origin} za {duration} na peronu {next-platform}"
 
 #: src/backend/journey.rs:565
 msgid "Start at {next-origin} in {duration}"
-msgstr ""
+msgstr "Polazište: {next-origin} za {duration}"
 
 #: src/backend/journey.rs:568
-#, fuzzy
 msgid "Arriving at {current-destination} in {duration}"
-msgstr "Dolazak u {destination} u {arrival}."
+msgstr "Dolazak u {current-destination} za {duration}"
 
 #: src/backend/journey.rs:571
 msgid ""
 "Change to {next-leg-name} on platform {next-platform}, remaining: {duration}"
 msgstr ""
+"Promjena u {next-leg-name} na platformi {next-platform}, preostalo: "
+"{duration}"
 
 #: src/backend/journey.rs:574
 msgid "Change to {next-leg-name}, remaining: {duration}"
-msgstr ""
+msgstr "Promijenite u {next-leg-name}, preostalo: {duration}"
 
 #: src/backend/journey.rs:577
 msgid "The trip’s destination has been reached"
-msgstr ""
+msgstr "Cilj putovanja je dostignut"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
