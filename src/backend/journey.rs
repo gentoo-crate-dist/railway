@@ -114,6 +114,7 @@ impl Journey {
         let Some(duration_next_event) = current_event
             .time_of_next_action()
             .map(|t| t.with_timezone(&Local) - Local::now())
+            .filter(|duration_next_event| duration_next_event >= &Duration::zero())
         else {
             return false;
         };
@@ -129,30 +130,29 @@ impl Journey {
                 && time_since_last_refreshed > Duration::minutes(1))
     }
 
-    pub fn next_background_tasks_in(&self) -> Duration {
+    pub fn next_background_tasks_in(&self) -> Option<Duration> {
         let current_event = self.property::<BoxedAnyObject>("current-event");
         let current_event: Ref<Event> = current_event.borrow();
 
-        let Some(duration_next_event) = current_event
+        current_event
             .time_of_next_action()
             .map(|t| t.with_timezone(&Local) - Local::now())
-        else {
-            return Duration::zero();
-        };
-
-        if duration_next_event < Duration::minutes(10) {
-            Duration::minutes(1)
-        } else if duration_next_event < Duration::minutes(30) {
-            Duration::minutes(5)
-        } else if duration_next_event < Duration::hours(2)
-            || matches!(*current_event, Event::InLeg(_, _))
-        {
-            Duration::minutes(15)
-        } else if duration_next_event < Duration::days(2) {
-            Duration::hours(1)
-        } else {
-            Duration::days(1)
-        }
+            .filter(|duration_next_event| duration_next_event >= &Duration::zero())
+            .map(|duration_next_event| {
+                if duration_next_event < Duration::minutes(10) {
+                    Duration::minutes(1)
+                } else if duration_next_event < Duration::minutes(30) {
+                    Duration::minutes(5)
+                } else if duration_next_event < Duration::hours(2)
+                    || matches!(*current_event, Event::InLeg(_, _))
+                {
+                    Duration::minutes(15)
+                } else if duration_next_event < Duration::days(2) {
+                    Duration::hours(1)
+                } else {
+                    Duration::days(1)
+                }
+            })
     }
 
     pub fn background_tasks(&self) {
@@ -249,7 +249,8 @@ impl Journey {
 
         let duration_next_event = current_event
             .time_of_next_action()
-            .map(|t| t.with_timezone(&Local) - Local::now());
+            .map(|t| t.with_timezone(&Local) - Local::now())
+            .filter(|duration_next_event| duration_next_event >= &Duration::zero());
 
         let notification = match &*current_event {
             // TODO: Settings for durations

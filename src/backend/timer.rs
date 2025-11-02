@@ -25,13 +25,17 @@ impl Timer {
             self,
             async move {
                 loop {
-                    glib::timeout_future(
-                        journey
-                            .next_background_tasks_in()
-                            .to_std()
-                            .unwrap_or_default(),
-                    )
-                    .await;
+                    let Some(sleep) = journey
+                        .next_background_tasks_in()
+                        .and_then(|sleep| sleep.to_std().ok())
+                    else {
+                        s.imp()
+                            .background_handles
+                            .borrow_mut()
+                            .remove(&journey.id());
+                        break;
+                    };
+                    glib::timeout_future(sleep).await;
                     // Don't do background tasks if already in minutely batch.
                     if !s.has_in_minutely(journey.id()) {
                         journey.background_tasks();

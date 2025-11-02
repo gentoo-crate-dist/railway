@@ -51,7 +51,7 @@
     </key>
 
     <key name="delete-old" type="b">
-      <default>true</default>
+      <default>false</default>
       <summary>Remove past trips from bookmarks</summary>
     </key>
     <key name="deletion-time" type="i">
