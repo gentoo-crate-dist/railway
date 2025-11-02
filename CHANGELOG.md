@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.9.2] - 2025-11-02
+
 ### HOTFIX
 
 - Fixed finished journeys being watched keeping the application from starting.
@@ -242,7 +244,8 @@ Those are packaged on <crates.io>.
 
 - Complete UI overhaul
 
-[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.1...master
+[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.2...master
+[2.9.2]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.1...2.9.2
 [2.9.1]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.0...2.9.1
 [2.9.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.8.2...2.9.0
 [2.8.2]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.8.1...2.8.2

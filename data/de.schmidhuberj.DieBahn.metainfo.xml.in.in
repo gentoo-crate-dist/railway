@@ -59,6 +59,11 @@
   </description>
 
   <releases>
+    <release version="2.9.2" date="2025-11-02">
+      <description translate="no">
+        <p>HOTFIX</p> <ul> <li>Fixed finished journeys being watched keeping the application from starting.</li> </ul> <p>Changed</p> <ul> <li>Don't delete old journeys by default.</li> </ul>
+      </description>
+    </release>
     <release version="2.9.1" date="2025-10-26">
       <description translate="no">
         <p>Fixed</p> <ul> <li>Reloading of journeys with the DB provider being broken.</li> </ul>
