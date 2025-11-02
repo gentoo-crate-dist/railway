@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### HOTFIX
+
+- Fixed finished journeys being watched keeping the application from starting.
+
+### Changed
+
+- Don't delete old journeys by default.
+
 ## [2.9.1] - 2025-10-26
 
 ### Fixed
