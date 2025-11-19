@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Reloading trips worked in the background, but the interface was only updated
+  after closing and re-opening the same trip. This is no longer needed.
+  Immediately after reloading, the trip details are updated.
+
 ## [2.9.2] - 2025-11-02
 
 ### HOTFIX

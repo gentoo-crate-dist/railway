@@ -32,6 +32,7 @@ pub mod imp {
     use gdk::glib::ParamSpecBoolean;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
+    use gdk::glib::signal::SignalHandlerId;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::prelude::*;
@@ -64,6 +65,8 @@ pub mod imp {
         show_live_box: Cell<bool>,
 
         journey: RefCell<Option<Journey>>,
+
+        journey_update_signal_id: Cell<Option<SignalHandlerId>>,
 
         load_handle: RefCell<Option<JoinHandle<()>>>,
 
@@ -279,6 +282,21 @@ pub mod imp {
                 }
             }
         }
+
+        fn schedule_setup(&self, redo: bool) {
+            // Ensure the load is not called twice at the same time by aborting the old one if needed.
+            if let Some(handle) = self.load_handle.take() {
+                handle.abort();
+            }
+
+            let o = self.obj().clone();
+            let handle = gspawn!(
+                async move { o.imp().setup(redo).await },
+                glib::Priority::LOW
+            );
+
+            self.load_handle.replace(Some(handle));
+        }
     }
 
     #[glib::object_subclass]
@@ -321,6 +339,10 @@ pub mod imp {
                 "journey" => {
                     if let Some(old) = self.journey.borrow().as_ref() {
                         self.timer.borrow().unregister_minutely(old.clone());
+
+                        if let Some(id) = self.journey_update_signal_id.take() {
+                            old.disconnect(id);
+                        }
                     }
 
                     let obj = value.get::<Option<Journey>>().expect(
@@ -333,24 +355,25 @@ pub mod imp {
 
                     self.journey.replace(obj.clone());
 
-                    // Ensure the load is not called twice at the same time by aborting the old one if needed.
-                    if let Some(handle) = self.load_handle.replace(None) {
-                        handle.abort();
-                    }
-
-                    let o = self.obj().clone();
-                    let handle = gspawn!(
-                        async move { o.imp().setup(redo).await },
-                        glib::Priority::LOW
-                    );
+                    self.schedule_setup(redo);
 
                     if let Some(obj) = obj {
+                        self.journey_update_signal_id.replace(
+                            Some(obj.connect_local("updated", true, clone!(
+                                #[weak(rename_to = s)]
+                                self,
+                                #[upgrade_or_default]
+                                move |_| {
+                                    s.schedule_setup(false);
+                                    None
+                                }
+                            )))
+                        );
+
                         if self.obj().property("show-live-box") {
                             self.timer.borrow().register_minutely(obj);
                         }
                     }
-
-                    self.load_handle.replace(Some(handle));
                 }
                 "show-live-box" => {
                     let obj = value.get::<bool>().expect(

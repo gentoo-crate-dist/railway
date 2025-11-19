@@ -89,6 +89,7 @@ impl Journey {
 
         if result.is_ok() {
             self.update_last_refreshed();
+            self.emit_by_name::<()>("updated", &[]);
         }
 
         result.map(|_| ())
@@ -614,6 +615,7 @@ mod imp {
         glib::{
             BoxedAnyObject, ParamSpec, ParamSpecBoolean, ParamSpecEnum, ParamSpecObject,
             ParamSpecString, Value,
+            subclass::Signal,
         },
         prelude::{ParamSpecBuilderExt, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass, ObjectSubclassExt},
@@ -655,6 +657,13 @@ mod imp {
     }
 
     impl ObjectImpl for Journey {
+        fn signals() -> &'static [Signal] {
+            static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
+                vec![Signal::builder("updated").build()]
+            });
+            SIGNALS.as_ref()
+        }
+
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
