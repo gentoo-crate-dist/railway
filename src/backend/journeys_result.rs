@@ -10,17 +10,12 @@ use gtk::glib;
 
 use super::{Client, Journey, Place};
 
-#[derive(Debug, Copy, Clone, PartialEq, Eq, glib::Enum)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, glib::Enum, Default)]
 #[enum_type(name = "DBTimeType")]
 pub enum TimeType {
     Arrival,
+    #[default]
     Departure,
-}
-
-impl Default for TimeType {
-    fn default() -> Self {
-        Self::Departure
-    }
 }
 
 gtk::glib::wrapper! {
