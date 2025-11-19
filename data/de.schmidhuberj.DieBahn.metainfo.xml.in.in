@@ -59,6 +59,11 @@
   </description>
 
   <releases>
+    <release version="2.9.3" date="2025-11-19">
+      <description translate="no">
+        <p>Fixed</p> <ul> <li>Reloading trips worked in the background, but the interface was only updated after closing and re-opening the same trip. This is no longer needed. Immediately after reloading, the trip details are updated.</li> </ul>
+      </description>
+    </release>
     <release version="2.9.2" date="2025-11-02">
       <description translate="no">
         <p>HOTFIX</p> <ul> <li>Fixed finished journeys being watched keeping the application from starting.</li> </ul> <p>Changed</p> <ul> <li>Don't delete old journeys by default.</li> </ul>
