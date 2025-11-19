@@ -3,17 +3,13 @@
   description = "Find all your travel information";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-  inputs.nixpkgs-gnome.url = "github:NixOS/nixpkgs/wip-gnome";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  outputs = { self, nixpkgs, nixpkgs-gnome, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, flake-utils, ... }@inputs:
     (flake-utils.lib.eachDefaultSystem
       (system:
         let
           pkgs = import nixpkgs {
-            inherit system;
-          };
-          pkgs-gnome = import nixpkgs-gnome {
             inherit system;
           };
           gettext-patched = pkgs.gettext.overrideAttrs (prev: self: rec {
@@ -44,8 +40,8 @@
                       ./flake.lock
                     ]);
               };
-              buildInputs = [ pkgs-gnome.libadwaita pkgs-gnome.gtk4 ];
-              nativeBuildInputs = [ pkgs-gnome.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson gettext-patched pkgs-gnome.glib pkgs-gnome.gtk4 pkgs-gnome.libadwaita pkgs-gnome.pkg-config pkgs-gnome.desktop-file-utils pkgs-gnome.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs-gnome.blueprint-compiler ];
+              buildInputs = [ pkgs.libadwaita pkgs.gtk4 ];
+              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson gettext-patched pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.blueprint-compiler ];
 
               inherit name;
             };
@@ -66,9 +62,9 @@
             pkgs.mkShell {
               src = ./.;
               buildInputs = [];
-              nativeBuildInputs = [ pkgs-gnome.wrapGAppsHook4 pkgs.meson gettext-patched pkgs-gnome.glib pkgs-gnome.gtk4 pkgs-gnome.libadwaita pkgs-gnome.pkg-config pkgs-gnome.desktop-file-utils pkgs-gnome.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.clippy pkgs.cargo-deny pkgs.sysprof pkgs-gnome.blueprint-compiler pkgs.md4c pkgs.libfaketime run check prof ];
+              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.meson gettext-patched pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.clippy pkgs.cargo-deny pkgs.sysprof pkgs.blueprint-compiler pkgs.md4c pkgs.libfaketime run check prof ];
               shellHook = ''
-                export GSETTINGS_SCHEMA_DIR=${pkgs-gnome.gtk4}/share/gsettings-schemas/${pkgs-gnome.gtk4.name}/glib-2.0/schemas/:${pkgs-gnome.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs-gnome.gsettings-desktop-schemas.name}/glib-2.0/schemas/:./build/data/
+                export GSETTINGS_SCHEMA_DIR=${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}/glib-2.0/schemas/:${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas/:./build/data/
                 # For some reason, the latest version of gettext is still available on the path and is perferred.
                 # Manually prefer the patched version.
                 export PATH=${gettext-patched}/bin:$PATH
