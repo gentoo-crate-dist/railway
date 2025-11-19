@@ -25,6 +25,7 @@ pub mod imp {
 
     use chrono::Local;
     use gdk::glib::clone;
+    use gdk::glib::signal::SignalHandlerId;
     use gdk::glib::BoxedAnyObject;
     use gdk::glib::JoinHandle;
     use gdk::glib::MainContext;
@@ -32,7 +33,6 @@ pub mod imp {
     use gdk::glib::ParamSpecBoolean;
     use gdk::glib::ParamSpecObject;
     use gdk::glib::Value;
-    use gdk::glib::signal::SignalHandlerId;
     use glib::subclass::InitializingObject;
     use gtk::glib;
     use gtk::prelude::*;
@@ -358,17 +358,20 @@ pub mod imp {
                     self.schedule_setup(redo);
 
                     if let Some(obj) = obj {
-                        self.journey_update_signal_id.replace(
-                            Some(obj.connect_local("updated", true, clone!(
-                                #[weak(rename_to = s)]
-                                self,
-                                #[upgrade_or_default]
-                                move |_| {
-                                    s.schedule_setup(false);
-                                    None
-                                }
-                            )))
-                        );
+                        self.journey_update_signal_id
+                            .replace(Some(obj.connect_local(
+                                "updated",
+                                true,
+                                clone!(
+                                    #[weak(rename_to = s)]
+                                    self,
+                                    #[upgrade_or_default]
+                                    move |_| {
+                                        s.schedule_setup(false);
+                                        None
+                                    }
+                                ),
+                            )));
 
                         if self.obj().property("show-live-box") {
                             self.timer.borrow().register_minutely(obj);

@@ -613,9 +613,8 @@ mod imp {
 
     use gdk::{
         glib::{
-            BoxedAnyObject, ParamSpec, ParamSpecBoolean, ParamSpecEnum, ParamSpecObject,
-            ParamSpecString, Value,
-            subclass::Signal,
+            subclass::Signal, BoxedAnyObject, ParamSpec, ParamSpecBoolean, ParamSpecEnum,
+            ParamSpecObject, ParamSpecString, Value,
         },
         prelude::{ParamSpecBuilderExt, ToValue},
         subclass::prelude::{ObjectImpl, ObjectSubclass, ObjectSubclassExt},
@@ -658,9 +657,8 @@ mod imp {
 
     impl ObjectImpl for Journey {
         fn signals() -> &'static [Signal] {
-            static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-                vec![Signal::builder("updated").build()]
-            });
+            static SIGNALS: Lazy<Vec<Signal>> =
+                Lazy::new(|| vec![Signal::builder("updated").build()]);
             SIGNALS.as_ref()
         }
 
