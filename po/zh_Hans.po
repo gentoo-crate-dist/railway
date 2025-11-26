@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2025-01-09 16:00+0000\n"
-"Last-Translator: benhaotang <benhaotang@outlook.com>\n"
+"PO-Revision-Date: 2025-11-27 08:00+0000\n"
+"Last-Translator: MM 喵了个 <mimiaominecraft@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/schmiddi-on-mobile/railway/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -214,16 +214,15 @@ msgstr "车辆种类"
 #: data/resources/ui/search_options_dialog.blp:60
 #, fuzzy
 msgid "Mainline Train"
-msgstr "区域铁路"
+msgstr "主线列车"
 
 #: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "区域铁路"
 
 #: data/resources/ui/search_options_dialog.blp:70
-#, fuzzy
 msgid "S-Bahn Train"
-msgstr "城际"
+msgstr "市郊铁路"
 
 #: data/resources/ui/search_options_dialog.blp:75
 msgid "Bus"
@@ -335,9 +334,8 @@ msgid "Bookmark This Trip"
 msgstr "保存这个旅程"
 
 #: data/resources/ui/window.blp:166
-#, fuzzy
 msgid "Watch this Trip"
-msgstr "刷新这个旅程"
+msgstr "监视这个旅程"
 
 #: data/resources/ui/window.blp:199
 msgid "Preferences"
@@ -752,28 +750,25 @@ msgid "Using Transitous"
 msgstr "使用Transitous服务"
 
 #: src/backend/journey.rs:271
-#, fuzzy
 msgid "Start at {station} on platform {platform} at {time}"
-msgstr "到达 {destination} 于 {platform} 站台在 {arrival}."
+msgstr "{time} 从 {station} {platform} 站台出发"
 
 #: src/backend/journey.rs:274
-#, fuzzy
 msgid "Start at {station} at {time}"
-msgstr "到达 {destination} 在 {arrival}."
+msgstr "{time} 从 {station} 出发"
 
 #: src/backend/journey.rs:280
 msgid "Trip to {destination} will begin shortly"
-msgstr ""
+msgstr "{destination} 之旅即将开始"
 
 #: src/backend/journey.rs:309
 #, fuzzy
 msgid "{time} transfer time to get to platform {platform}"
-msgstr "{stop} 在 {arrival} 于 {platform} 站台"
+msgstr "到达站台 {platform} 的换乘时间 {time}"
 
 #: src/backend/journey.rs:315
-#, fuzzy
 msgid "{time} transfer time"
-msgstr "最少的换乘时间"
+msgstr "换乘时间 {time}"
 
 #: src/backend/journey.rs:318
 #, fuzzy
