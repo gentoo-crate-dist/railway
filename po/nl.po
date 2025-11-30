@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2025-10-27 10:02+0000\n"
+"PO-Revision-Date: 2025-12-01 21:00+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -785,9 +785,8 @@ msgid "{time} transfer time to get to platform {platform}"
 msgstr "{stop} om {arrival} op platform {platform}"
 
 #: src/backend/journey.rs:315
-#, fuzzy
 msgid "{time} transfer time"
-msgstr "Minimale overstap­tĳd"
+msgstr "{time} overstap­tĳd"
 
 #: src/backend/journey.rs:318
 #, fuzzy
