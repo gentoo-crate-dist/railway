@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2024-07-27 21:09+0000\n"
+"PO-Revision-Date: 2025-12-01 21:00+0000\n"
 "Last-Translator: boblaspugna4f1ee5d391024b4c <boblaspugna@null.net>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/schmiddi-on-"
 "mobile/railway/it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -220,16 +220,14 @@ msgid "Modes of Transport"
 msgstr "Modalità di trasporto"
 
 #: data/resources/ui/search_options_dialog.blp:60
-#, fuzzy
 msgid "Mainline Train"
-msgstr "Treno Regionale"
+msgstr "Treno Di Linea"
 
 #: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "Treno Regionale"
 
 #: data/resources/ui/search_options_dialog.blp:70
-#, fuzzy
 msgid "S-Bahn Train"
 msgstr "Treni Suburbani"
 
@@ -343,9 +341,8 @@ msgid "Bookmark This Trip"
 msgstr "Aggiungi questo percorso ai preferiti"
 
 #: data/resources/ui/window.blp:166
-#, fuzzy
 msgid "Watch this Trip"
-msgstr "Aggiorna questo percorso"
+msgstr "Controlla questo percorso"
 
 #: data/resources/ui/window.blp:199
 msgid "Preferences"
@@ -768,92 +765,87 @@ msgid "Using Transitous"
 msgstr "Utilizzare Transitous"
 
 #: src/backend/journey.rs:271
-#, fuzzy
 msgid "Start at {station} on platform {platform} at {time}"
-msgstr "Arrivo a {destination} sulla piattaforma {platform} alle {arrival}."
+msgstr "Partenza a {station} sul binario {platform} alle {time}."
 
 #: src/backend/journey.rs:274
-#, fuzzy
 msgid "Start at {station} at {time}"
-msgstr "Arrivo a {destination} alle {arrival}."
+msgstr "Partenza a {station} alle {time}."
 
 #: src/backend/journey.rs:280
 msgid "Trip to {destination} will begin shortly"
-msgstr ""
+msgstr "Il Viaggio verso {destination} inizierà a breve"
 
 #: src/backend/journey.rs:309
-#, fuzzy
 msgid "{time} transfer time to get to platform {platform}"
-msgstr "{stop} alle {arrival} al binario {platform}"
+msgstr "{time} Tempo di cambio per giungere al binario {platform}"
 
 #: src/backend/journey.rs:315
-#, fuzzy
 msgid "{time} transfer time"
-msgstr "Tempo minimo per il cambio"
+msgstr "{time} Tempo per il cambio"
 
 #: src/backend/journey.rs:318
-#, fuzzy
 msgid "Upcoming departure on platform {platform}"
-msgstr "{stop} alle {arrival} al binario {platform}"
+msgstr "Prossima partenza al binario {platform}"
 
 #: src/backend/journey.rs:325
 msgid "Upcoming transfer at {station} soon"
-msgstr ""
+msgstr "Prossimo cambio a {station}"
 
 #: src/backend/journey.rs:335
-#, fuzzy
 msgid "Arriving at {destination} soon"
-msgstr "Arrivo a {destination}."
+msgstr "Arrivo a {destination}"
 
 #: src/backend/journey.rs:377
 msgid "{train} departure is delayed by {time}"
-msgstr ""
+msgstr "La partenza di {train} è in ritardo di {time}"
 
 #: src/backend/journey.rs:404
 msgid "{train} arrival is delayed by {time}"
-msgstr ""
+msgstr "L'arrivo di {train} è in ritardo di {time}"
 
 #: src/backend/journey.rs:427
-#, fuzzy
 msgid "{train} departing on platform {platform} today instead"
-msgstr "Arrivo a {destination} sulla piattaforma {platform} alle {arrival}."
+msgstr "Il {train} è in partenza oggi dal binario {platform}"
 
 #: src/backend/journey.rs:448
 msgid ""
 "Warning: No longer possible to reach connecting {train} from {origin} to "
 "{destination}."
 msgstr ""
+"Attenzione: il collegamento {train} da {origin} a {destination} non è più "
+"possibile."
 
 #: src/backend/journey.rs:470
 msgid "Warning: {train} from {origin} to {destination} was cancelled."
-msgstr ""
+msgstr "Attenzione: {train} da {origin} a {destination} è stato cancellato."
 
 #: src/backend/journey.rs:562
-#, fuzzy
 msgid "Start at {next-origin} in {duration} on platform {next-platform}"
-msgstr "Arrivo a {destination} sulla piattaforma {platform} alle {arrival}."
+msgstr "Partenza {next-origin} tra {duration} sul binario {next-platform}"
 
 #: src/backend/journey.rs:565
 msgid "Start at {next-origin} in {duration}"
-msgstr ""
+msgstr "Partenza {next-origin} tra {duration}"
 
 #: src/backend/journey.rs:568
-#, fuzzy
 msgid "Arriving at {current-destination} in {duration}"
-msgstr "Arrivo a {destination} alle {arrival}."
+msgstr "Arrivo a {current-destination} tra {duration}"
 
 #: src/backend/journey.rs:571
 msgid ""
 "Change to {next-leg-name} on platform {next-platform}, remaining: {duration}"
 msgstr ""
+"Cambio per {next-leg-name} sul binario {next-platform}, tempo rimanente: "
+"{duration}"
 
 #: src/backend/journey.rs:574
 msgid "Change to {next-leg-name}, remaining: {duration}"
-msgstr ""
+msgstr "Cambio per {next-leg-name}, tempo rimanente: {duration}"
 
 #: src/backend/journey.rs:577
 msgid "The trip’s destination has been reached"
-msgstr ""
+msgstr "La destinazione è stata raggiunta"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
