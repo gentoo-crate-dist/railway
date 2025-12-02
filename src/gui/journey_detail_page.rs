@@ -18,18 +18,18 @@ pub mod imp {
     use std::cell::RefCell;
 
     use chrono::Local;
-    use gdk::glib::clone;
-    use gdk::glib::signal::SignalHandlerId;
     use gdk::glib::BoxedAnyObject;
     use gdk::glib::JoinHandle;
     use gdk::glib::MainContext;
     use gdk::glib::Properties;
+    use gdk::glib::clone;
+    use gdk::glib::signal::SignalHandlerId;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::template_callbacks;
-    use gtk::CompositeTemplate;
 
     use chrono::Duration;
 
@@ -134,10 +134,10 @@ pub mod imp {
                 async move {
                     let journey = obj.journey();
 
-                    if let Some(journey) = journey {
-                        if let Err(e) = journey.refresh().await {
-                            window.display_error_toast(e);
-                        }
+                    if let Some(journey) = journey
+                        && let Err(e) = journey.refresh().await
+                    {
+                        window.display_error_toast(e);
                     }
                 }
             ));

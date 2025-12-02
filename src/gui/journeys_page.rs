@@ -57,19 +57,19 @@ pub mod imp {
 
     use chrono::Duration;
     use gdk::gio::Settings;
-    use gdk::glib::clone;
-    use gdk::glib::subclass::Signal;
     use gdk::glib::MainContext;
     use gdk::glib::Properties;
+    use gdk::glib::clone;
+    use gdk::glib::subclass::Signal;
     use glib::subclass::InitializingObject;
-    use gtk::glib;
-    use gtk::prelude::*;
-    use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use gtk::ListItem;
     use gtk::PositionType;
     use gtk::SignalListItemFactory;
     use gtk::Widget;
+    use gtk::glib;
+    use gtk::prelude::*;
+    use gtk::subclass::prelude::*;
     use once_cell::sync::Lazy;
     use rcore::JourneysOptions;
     use rcore::LoyaltyCard;
@@ -201,7 +201,9 @@ pub mod imp {
                 #[strong]
                 window,
                 async move {
-                    let journeys_result = obj.property::<JourneysResult>("journeys-result");
+                    let Some(journeys_result) = obj.journeys_result() else {
+                        return;
+                    };
 
                     let result_journeys_result = obj
                         .property::<Client>("client")
@@ -446,9 +448,11 @@ pub mod imp {
 
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-                vec![Signal::builder("select")
-                    .param_types([Journey::static_type()])
-                    .build()]
+                vec![
+                    Signal::builder("select")
+                        .param_types([Journey::static_type()])
+                        .build(),
+                ]
             });
             SIGNALS.as_ref()
         }

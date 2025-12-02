@@ -1,7 +1,7 @@
 use std::time::Duration;
 
 use gdk::{
-    glib::{self, clone, Object},
+    glib::{self, Object, clone},
     subclass::prelude::ObjectSubclassIsExt,
 };
 

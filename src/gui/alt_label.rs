@@ -9,13 +9,13 @@ pub mod imp {
     use std::cell::RefCell;
     use std::marker::PhantomData;
 
-    use gdk::glib::clone;
     use gdk::glib::Properties;
+    use gdk::glib::clone;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
 
     use crate::gui::utility::Utility;
 

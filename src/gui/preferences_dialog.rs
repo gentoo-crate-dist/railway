@@ -24,10 +24,10 @@ pub mod imp {
     use gdk::gio::Settings;
     use gdk::gio::SettingsBindFlags;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
     use libadwaita::subclass::prelude::AdwDialogImpl;
     use libadwaita::subclass::prelude::PreferencesDialogImpl;
 

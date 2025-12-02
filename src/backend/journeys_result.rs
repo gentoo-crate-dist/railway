@@ -235,10 +235,11 @@ mod imp {
                 .position(|j| Some(j.id()) == selection.as_ref().map(|j| j.id()))
                 .and_then(|v| v.try_into().ok());
 
-            if let Some(index) = index {
-                if position <= index && index < position + n_items {
-                    result.add(position);
-                }
+            if let Some(index) = index
+                && position <= index
+                && index < position + n_items
+            {
+                result.add(position);
             }
             result
         }

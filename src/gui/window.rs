@@ -5,9 +5,9 @@ use gdk::subclass::prelude::ObjectSubclassIsExt;
 use gtk::glib::Object;
 use gtk::prelude::{GtkApplicationExt, GtkWindowExt};
 
+use crate::Error;
 use crate::config::BASE_ID;
 use crate::gui::error::error_to_toast;
-use crate::Error;
 
 gtk::glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -78,12 +78,12 @@ pub mod imp {
     use gdk::glib::Properties;
     use glib::signal::Propagation;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
+    use gtk::ToggleButton;
     use gtk::glib;
     use gtk::glib::clone;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
-    use gtk::ToggleButton;
     use libadwaita::prelude::AdwDialogExt;
     use libadwaita::subclass::prelude::AdwApplicationWindowImpl;
     use libadwaita::subclass::prelude::AdwWindowImpl;
@@ -291,10 +291,7 @@ pub mod imp {
 
         #[template_callback]
         fn handle_journey_store(&self) {
-            if let Some(journey) = self
-                .journey_detail_page
-                .property::<Option<Journey>>("journey")
-            {
+            if let Some(journey) = self.journey_detail_page.journey() {
                 self.store_journeys.store(journey.clone());
                 self.btn_bookmark_journey
                     .set_active(self.store_journeys.contains(&journey));

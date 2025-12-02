@@ -4,14 +4,14 @@ use std::collections::{HashMap, HashSet};
 use chrono::{DateTime, Datelike, Duration, Local};
 use chrono_tz::Tz;
 use gdk::gio::{Application, Notification};
-use gdk::glib::{clone, BoxedAnyObject, Object};
+use gdk::glib::{BoxedAnyObject, Object, clone};
 use gdk::prelude::{ApplicationExt, ObjectExt};
 use gdk::subclass::prelude::{ObjectImpl, ObjectSubclassIsExt};
 use rcore::RefreshJourneyOptions;
 use serde::{Deserialize, Serialize};
 
-use crate::gui::utility::Utility;
 use crate::Error;
+use crate::gui::utility::Utility;
 
 use super::{Client, Leg, Place};
 
@@ -402,9 +402,11 @@ impl Journey {
                 Alert::DeparturePlatformChange(leg_obj) => {
                     let leg = leg_obj.leg();
                     let notified_platform = notify_status.departure_platform_changes.get(&leg.id());
-                    let platform: String = leg_obj.property("departure-platform");
+                    let platform = leg_obj.departure_platform();
 
-                    if notified_platform.is_none_or(|p| *p != platform) {
+                    if let Some(platform) = platform
+                        && notified_platform.is_none_or(|p| *p != platform)
+                    {
                         notify_status
                             .departure_platform_changes
                             .insert(leg.id(), platform.clone());
@@ -601,7 +603,7 @@ mod imp {
     use crate::{backend::Client, gui::utility::Utility};
 
     use gdk::{
-        glib::{subclass::Signal, BoxedAnyObject, Properties},
+        glib::{BoxedAnyObject, Properties, subclass::Signal},
         prelude::ObjectExt,
         subclass::prelude::{
             DerivedObjectProperties, ObjectImpl, ObjectSubclass, ObjectSubclassExt,

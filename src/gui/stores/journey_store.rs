@@ -73,7 +73,7 @@ pub mod imp {
 
     use gdk::{
         gio::Settings,
-        glib::{subclass::Signal, Properties},
+        glib::{Properties, subclass::Signal},
         prelude::{ObjectExt, SettingsExt, StaticType},
         subclass::prelude::{
             DerivedObjectProperties, ObjectImpl, ObjectImplExt, ObjectSubclass, ObjectSubclassExt,

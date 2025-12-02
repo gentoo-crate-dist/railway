@@ -21,11 +21,11 @@ pub mod imp {
     use gdk::glib::JoinHandle;
     use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
+    use gtk::DirectionType;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
-    use gtk::DirectionType;
 
     use crate::backend::IntermediateLocation;
     use crate::backend::Leg;

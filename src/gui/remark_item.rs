@@ -20,11 +20,11 @@ pub mod imp {
 
     use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
+    use gtk::DirectionType;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
-    use gtk::DirectionType;
 
     use crate::backend::Remark;
     use crate::gui::utility::Utility;

@@ -4,12 +4,12 @@ use chrono::{Datelike, Days, Local};
 use gdk::gio::Settings;
 use gdk::glib::{Object, Value};
 use gdk::prelude::SettingsExt;
+use gtk::DirectionType;
+use gtk::Widget;
 use gtk::prelude::IsA;
 use gtk::prelude::WidgetExt;
 use gtk::subclass::prelude::ObjectSubclassExt;
 use gtk::subclass::prelude::WidgetImpl;
-use gtk::DirectionType;
-use gtk::Widget;
 use rcore::Mode;
 use rcore::ProductsSelection;
 
@@ -161,10 +161,10 @@ impl Utility {
         direction: DirectionType,
     ) -> bool {
         /* if has child with focus and it keeps focus within, keep within this widget as well */
-        if let Some(focus_child) = widget.obj().focus_child() {
-            if focus_child.child_focus(direction) {
-                return true;
-            }
+        if let Some(focus_child) = widget.obj().focus_child()
+            && focus_child.child_focus(direction)
+        {
+            return true;
         }
 
         let move_direction = match direction {

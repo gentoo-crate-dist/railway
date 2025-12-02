@@ -25,17 +25,17 @@ pub mod imp {
     use std::time::Duration;
 
     use gdk::glib::subclass::{InitializingObject, Signal};
-    use gdk::glib::{clone, Propagation};
     use gdk::glib::{MainContext, Properties};
+    use gdk::glib::{Propagation, clone};
     use gdk::prelude::ObjectExt;
-    use gdk::{gio, Key, ModifierType};
+    use gdk::{Key, ModifierType, gio};
     use gtk::subclass::prelude::*;
-    use gtk::{gio::ListStore, glib};
-    use gtk::{
-        prelude::*, ListItem, ListScrollFlags, SignalListItemFactory, SingleSelection, Widget,
-        INVALID_LIST_POSITION,
-    };
     use gtk::{CompositeTemplate, Popover};
+    use gtk::{
+        INVALID_LIST_POSITION, ListItem, ListScrollFlags, SignalListItemFactory, SingleSelection,
+        Widget, prelude::*,
+    };
+    use gtk::{gio::ListStore, glib};
     use libadwaita::subclass::prelude::{EntryRowImpl, PreferencesRowImpl};
     use once_cell::sync::Lazy;
     use rcore::LocationsOptions;
@@ -203,7 +203,9 @@ pub mod imp {
                 (Some(s), gdk::Key::Down) | (Some(s), gdk::Key::KP_Down) => Some(s + 1),
                 _ => {
                     // All other cases should be impossible.
-                    log::error!("Station entry keyboard selection match incomplete. This should be impossible.");
+                    log::error!(
+                        "Station entry keyboard selection match incomplete. This should be impossible."
+                    );
                     None
                 }
             };
@@ -276,8 +278,8 @@ pub mod imp {
                     let request = request_limiter.request(text).await;
 
                     if let Some(request) = request {
-                        let places = obj
-                            .property::<Client>("client")
+                        let client = obj.property::<Client>("client");
+                        let places = client
                             .locations(LocationsOptions {
                                 query: request.clone(),
                                 ..Default::default()

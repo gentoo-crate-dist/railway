@@ -24,10 +24,10 @@ pub mod imp {
 
     use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::ObjectExt;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
 
     use crate::backend::Provider;
     use crate::gui::utility::Utility;

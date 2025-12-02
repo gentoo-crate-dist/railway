@@ -1,5 +1,5 @@
 use gdk::glib::Object;
-use gtk::{gdk, glib, prelude::*, CompositeTemplate};
+use gtk::{CompositeTemplate, gdk, glib, prelude::*};
 use libadwaita::subclass::prelude::*;
 
 glib::wrapper! {

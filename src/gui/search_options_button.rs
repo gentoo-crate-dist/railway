@@ -10,13 +10,13 @@ pub mod imp {
     use std::marker::PhantomData;
 
     use gdk::gio::Settings;
-    use gdk::glib::clone;
     use gdk::glib::Properties;
+    use gdk::glib::clone;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
     use libadwaita::prelude::AdwDialogExt;
 
     use crate::config;

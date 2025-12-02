@@ -8,12 +8,9 @@ pub mod imp {
     use std::cell::RefCell;
 
     use gdk::gio::Settings;
-    use gdk::glib::clone;
     use gdk::glib::Properties;
+    use gdk::glib::clone;
     use glib::subclass::InitializingObject;
-    use gtk::glib;
-    use gtk::prelude::*;
-    use gtk::subclass::prelude::*;
     use gtk::AnyFilter;
     use gtk::CompositeTemplate;
     use gtk::Expression;
@@ -22,6 +19,9 @@ pub mod imp {
     use gtk::PropertyExpression;
     use gtk::SignalListItemFactory;
     use gtk::Widget;
+    use gtk::glib;
+    use gtk::prelude::*;
+    use gtk::subclass::prelude::*;
 
     use crate::backend::Client;
     use crate::backend::Provider;

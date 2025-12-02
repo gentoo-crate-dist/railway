@@ -10,8 +10,8 @@ pub mod imp {
 
     use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
-    use gtk::glib;
     use gtk::CompositeTemplate;
+    use gtk::glib;
     use libadwaita::prelude::*;
     use libadwaita::subclass::prelude::*;
 

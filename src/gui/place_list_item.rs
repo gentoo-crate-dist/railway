@@ -22,13 +22,13 @@ impl Default for PlaceListItem {
 pub mod imp {
     use std::cell::RefCell;
 
+    use gdk::glib::Properties;
     use gdk::glib::prelude::ObjectExt;
     use gdk::glib::subclass::Signal;
-    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
 
     use crate::backend::Place;

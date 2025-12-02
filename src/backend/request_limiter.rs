@@ -1,7 +1,7 @@
 use std::{
     sync::{
-        atomic::{AtomicBool, Ordering},
         Arc, Mutex,
+        atomic::{AtomicBool, Ordering},
     },
     time::{Duration, Instant},
 };
@@ -50,7 +50,10 @@ impl<T> RequestLimiter<T> {
             if direct && *locked < now {
                 // No previous request. Can directly pass.
                 *locked = now + self.timeout;
-                log::trace!("Previous request already finished and no data left. Locking for {} milliseconds.", self.timeout.as_millis());
+                log::trace!(
+                    "Previous request already finished and no data left. Locking for {} milliseconds.",
+                    self.timeout.as_millis()
+                );
                 Some(Duration::ZERO)
             } else if self.pending_request.load(Ordering::SeqCst) {
                 // Already pending. Return.
@@ -58,7 +61,10 @@ impl<T> RequestLimiter<T> {
                 None
             } else {
                 // Still locked, but no pending requests. Timeout.
-                log::trace!("It is still locked, but no pending request. Becoming pending thread. Sleeping for {} milliseconds.", (*locked - now).as_millis());
+                log::trace!(
+                    "It is still locked, but no pending request. Becoming pending thread. Sleeping for {} milliseconds.",
+                    (*locked - now).as_millis()
+                );
                 Some(*locked - now)
             }
             // Drop all the locks.

@@ -9,14 +9,14 @@ gtk::glib::wrapper! {
 pub mod imp {
     use std::marker::PhantomData;
 
+    use gdk::glib::Properties;
     use gdk::glib::subclass::InitializingObject;
     use gdk::glib::subclass::Signal;
-    use gdk::glib::Properties;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::template_callbacks;
-    use gtk::CompositeTemplate;
     use libadwaita::subclass::prelude::BinImpl;
     use once_cell::sync::Lazy;
 

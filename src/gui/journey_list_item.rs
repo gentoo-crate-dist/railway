@@ -1,8 +1,8 @@
 use crate::backend::Journey;
 use crate::backend::Leg;
 use crate::gui::indicator_icons::IndicatorIcons;
-use gdk::glib::subclass::prelude::ObjectSubclassIsExt;
 use gdk::glib::Object;
+use gdk::glib::subclass::prelude::ObjectSubclassIsExt;
 use gtk::prelude::ObjectExt;
 use std::borrow::Borrow;
 
@@ -74,10 +74,10 @@ pub mod imp {
 
     use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
 
     use crate::backend::Journey;
     use crate::gui::indicator_icons::IndicatorIcons;

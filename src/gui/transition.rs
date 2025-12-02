@@ -56,15 +56,15 @@ pub mod imp {
     use std::marker::PhantomData;
 
     use crate::gui::utility::Utility;
-    use gdk::glib::object::ObjectExt;
     use gdk::glib::Properties;
+    use gdk::glib::object::ObjectExt;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
+    use gtk::DirectionType;
     use gtk::glib;
     use gtk::glib::clone;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
-    use gtk::DirectionType;
 
     #[derive(CompositeTemplate, Default, Properties)]
     #[properties(wrapper_type = super::Transition)]

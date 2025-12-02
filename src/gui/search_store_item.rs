@@ -21,10 +21,10 @@ pub mod imp {
 
     use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
 
     #[derive(CompositeTemplate, Default, Properties)]
     #[properties(wrapper_type = super::SearchStoreItem)]

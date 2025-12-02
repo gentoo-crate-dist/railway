@@ -8,12 +8,12 @@ gtk::glib::wrapper! {
 pub mod imp {
     use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::accessible::Property;
     use gtk::glib;
     use gtk::prelude::AccessibleExtManual;
     use gtk::prelude::ObjectExt;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
     use libadwaita::prelude::WidgetExt;
 
     use crate::backend::LateFactor;
