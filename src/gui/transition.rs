@@ -1,5 +1,4 @@
 use gdk::glib::Object;
-use gdk::prelude::ObjectExt;
 
 use crate::gui::utility::Utility;
 
@@ -40,13 +39,13 @@ impl Transition {
         final_destination: &Option<Place>,
     ) {
         let walking_time_label = walking_time.map(Utility::format_duration_inline);
-        let final_destination_label = final_destination.as_ref().and_then(Place::name);
+        let final_destination_label = final_destination.as_ref().map(Place::name);
         let waiting_time_label = waiting_time.map(Utility::format_duration_inline);
-        self.set_property("walking-time", walking_time_label);
-        self.set_property("waiting-time", waiting_time_label);
-        self.set_property("is-last-mile", is_last_mile);
-        self.set_property("has-walk", has_walk);
-        self.set_property("final-destination", final_destination_label);
+        self.set_walking_time(walking_time_label);
+        self.set_waiting_time(waiting_time_label);
+        self.set_is_last_mile(is_last_mile);
+        self.set_has_walk(has_walk);
+        self.set_final_destination(final_destination_label);
     }
 }
 

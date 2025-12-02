@@ -36,7 +36,7 @@ mod imp {
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Place)]
     pub struct Place {
-        #[property(name = "name", type = Option<String>, get = Self::name)]
+        #[property(name = "name", type = String, get = Self::name)]
         #[property(name = "id", type = Option<String>, get = Self::id)]
         pub(super) place: RefCell<Option<rcore::Place>>,
     }
@@ -48,18 +48,15 @@ mod imp {
     }
 
     impl Place {
-        fn name(&self) -> Option<String> {
+        fn name(&self) -> String {
             match self.place.borrow().as_ref() {
-                Some(rcore::Place::Station(s)) => Some(s.name.as_ref().unwrap_or(&s.id).to_owned()),
+                Some(rcore::Place::Station(s)) => s.name.as_ref().unwrap_or(&s.id).to_owned(),
                 Some(rcore::Place::Location(l)) => match l {
-                    rcore::Location::Address { address, .. } => Some(address.to_owned()),
-                    rcore::Location::Point { name, id, .. } => Some(
-                        name.as_ref()
-                            .unwrap_or_else(|| {
-                                id.as_ref().expect("Either name of id for point set")
-                            })
-                            .to_owned(),
-                    ),
+                    rcore::Location::Address { address, .. } => address.to_owned(),
+                    rcore::Location::Point { name, id, .. } => name
+                        .as_ref()
+                        .unwrap_or_else(|| id.as_ref().expect("Either name of id for point set"))
+                        .to_owned(),
                 },
                 _ => unimplemented!(),
             }

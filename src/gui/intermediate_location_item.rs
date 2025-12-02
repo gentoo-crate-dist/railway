@@ -112,15 +112,13 @@ pub mod imp {
                     intermediate_location_item.update_property(&[
                         gtk::accessible::Property::Label(
                             &IntermediateLocationItem::format_intermediate_location_description(
-                                &stop.name().unwrap_or_default(),
+                                &stop.name(),
                                 &intermediate_location
-                                    .property::<Option<String>>("arrival")
-                                    .or(intermediate_location
-                                        .property::<Option<String>>("planned-arrival")),
+                                    .arrival()
+                                    .or(intermediate_location.planned_arrival()),
                                 &intermediate_location
-                                    .property::<Option<String>>("arrival-platform")
-                                    .or(intermediate_location
-                                        .property::<Option<String>>("planned-arrival-platform")),
+                                    .arrival_platform()
+                                    .or(intermediate_location.planned_arrival_platform()),
                             ),
                         ),
                     ]);

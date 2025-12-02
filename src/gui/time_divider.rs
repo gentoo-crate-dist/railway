@@ -41,9 +41,9 @@ mod imp {
         is_start: Cell<bool>,
         #[property(name = "initial", set = Self::set_initial)]
         is_initial: Cell<bool>,
-        #[property(name = "journeys-result", set = Self::set_journeys_result)]
+        #[property(name = "journeys-result", type = JourneysResult, set = Self::set_journeys_result)]
         journeys_result: RefCell<Option<JourneysResult>>,
-        #[property(name = "item", set = Self::set_item)]
+        #[property(name = "item", set = Self::set_item, nullable)]
         _item: PhantomData<Option<Journey>>,
     }
 
@@ -58,15 +58,14 @@ mod imp {
             self.update_visibility();
         }
 
-        fn set_journeys_result(&self, v: Option<JourneysResult>) {
-            self.journeys_result.replace(v);
+        fn set_journeys_result(&self, v: JourneysResult) {
+            self.journeys_result.replace(Some(v));
             self.update_visibility();
         }
 
         fn set_item(&self, v: Option<Journey>) {
-            let formatted = v.map(|v| v.departure_day());
-            self.label_date
-                .set_text(&formatted.clone().unwrap_or_default());
+            let formatted = v.map(|v| v.departure_day()).unwrap_or_default();
+            self.label_date.set_text(&formatted);
             self.update_visibility();
         }
 

@@ -71,7 +71,7 @@ mod imp {
                 .unwrap_or(
                     self.obj()
                         .destination()
-                        .and_then(|d| d.name())
+                        .map(|d| d.name())
                         .unwrap_or_default(),
                 )
         }

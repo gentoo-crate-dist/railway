@@ -123,7 +123,7 @@ pub mod imp {
             if let Some(place) = &place {
                 let obj = self.obj();
                 // When something is selected, set the text of the input and clear all completion suggestions.
-                let name = place.name().unwrap_or_default();
+                let name = place.name();
                 if obj.text() != name {
                     obj.set_text(&name);
                     obj.set_position(-1);
@@ -213,7 +213,7 @@ pub mod imp {
             if let Some(new_selected_item_name) = new_selected
                 .and_then(|i| model.item(i))
                 .and_downcast_ref::<Place>()
-                .and_then(|p| p.name())
+                .map(|p| p.name())
             {
                 // Translators: Text that will be announced by the screen reader when a suggestion was selected.
                 let format = gettextrs::gettext("Suggestion {} selected")
@@ -242,7 +242,7 @@ pub mod imp {
                 .into_iter()
                 .flatten()
                 .flat_map(|p| p.dynamic_cast::<Place>().ok())
-                .find(|p| p.name() == Some(search.to_owned()));
+                .find(|p| p.name() == search);
             self.obj().set_place(exact.as_ref());
             exact.is_some()
         }
@@ -278,7 +278,7 @@ pub mod imp {
                     let request = request_limiter.request(text).await;
 
                     if let Some(request) = request {
-                        let client = obj.property::<Client>("client");
+                        let client = obj.client().expect("Client to be set up in StationEntry");
                         let places = client
                             .locations(LocationsOptions {
                                 query: request.clone(),
@@ -293,7 +293,7 @@ pub mod imp {
                                 .filter(|p| p.id().is_some())
                                 .collect::<Vec<_>>();
                             log::trace!("Got results back. Filling up completions.");
-                            let exact = places.iter().find(|p| p.name().as_ref() == Some(&request));
+                            let exact = places.iter().find(|p| p.name() == request);
 
                             let completions = completions.borrow();
 

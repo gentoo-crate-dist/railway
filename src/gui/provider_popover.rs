@@ -102,17 +102,15 @@ pub mod imp {
             if let Some(obj) = &obj {
                 self.setup_model(&self.obj());
 
-                self.obj()
-                    .set_property("current-selection", obj.current_provider());
+                self.obj().set_current_selection(obj.current_provider());
             }
         }
 
         fn setup_model(&self, obj: &super::ProviderPopover) {
             let model = self
-                .client
-                .borrow()
-                .as_ref()
-                .expect("The client to be set up")
+                .obj()
+                .client()
+                .expect("Client to be set up in ProviderPopover")
                 .providers();
 
             let filter_short = gtk::StringFilter::new(Some(PropertyExpression::new(

@@ -22,7 +22,7 @@ template $DBJourneysPage: Box {
       halign: center;
       valign: start;
       transition-type: slide_down;
-      reveal-child: bind template.is-loading-earlier;
+      reveal-child: bind template.loading-earlier;
 
       child: Adw.Bin {
         styles [
@@ -75,7 +75,7 @@ template $DBJourneysPage: Box {
       halign: center;
       valign: end;
       transition-type: slide_up;
-      reveal-child: bind template.is-loading-later;
+      reveal-child: bind template.loading-later;
 
       child: Adw.Bin {
         styles [

@@ -33,7 +33,7 @@ mod imp {
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::IntermediateLocation)]
     pub struct IntermediateLocation {
-        #[property(name = "place", type = Option<Place>, get = Self::place)]
+        #[property(name = "place", type = Place, get = Self::place)]
         #[property(name = "departure", type = Option<String>, get = Self::departure)]
         #[property(name = "arrival", type = Option<String>, get = Self::arrival)]
         #[property(name = "planned-departure", type = Option<String>, get = Self::planned_departure)]
@@ -53,13 +53,17 @@ mod imp {
     }
 
     impl IntermediateLocation {
-        fn place(&self) -> Option<Place> {
-            self.intermediate_location.borrow().as_ref().map(|o| {
-                Place::new(match o {
-                    rcore::IntermediateLocation::Stop(s) => s.place.clone(),
-                    rcore::IntermediateLocation::Railway(r) => r.clone(),
+        fn place(&self) -> Place {
+            self.intermediate_location
+                .borrow()
+                .as_ref()
+                .map(|o| {
+                    Place::new(match o {
+                        rcore::IntermediateLocation::Stop(s) => s.place.clone(),
+                        rcore::IntermediateLocation::Railway(r) => r.clone(),
+                    })
                 })
-            })
+                .expect("IntermediateLocation to be set to query the place")
         }
 
         fn departure(&self) -> Option<String> {

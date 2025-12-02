@@ -36,7 +36,7 @@ mod imp {
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Price)]
     pub struct Price {
-        #[property(name="formatted", type=Option<String>, get=Self::formatted)]
+        #[property(name="formatted", type=String, get=Self::formatted)]
         pub(super) price: RefCell<Option<rcore::Price>>,
     }
 
@@ -47,11 +47,13 @@ mod imp {
     }
 
     impl Price {
-        fn formatted(&self) -> Option<String> {
+        fn formatted(&self) -> String {
             let price = self.price.borrow();
-            let price = price.as_ref()?;
+            let price = price
+                .as_ref()
+                .expect("Price to have a value to be formatted");
 
-            Some(match price.currency.as_str() {
+            match price.currency.as_str() {
                 "EUR" => {
                     // Translators: How to format the currency "Euro". Do not translate in {}.
                     gettextrs::gettext("€{amount}")
@@ -69,7 +71,7 @@ mod imp {
                         .replace("{amount}", &format!("{:.2}", price.amount))
                         .replace("{currency}", s)
                 }
-            })
+            }
         }
     }
 

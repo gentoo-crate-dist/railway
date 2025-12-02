@@ -44,9 +44,9 @@ mod imp {
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Remark)]
     pub struct Remark {
-        #[property(name = "text", type = Option<String>, get = |s: &Self| s.remark.borrow().as_ref().map(|r| r.text.clone()))]
-        #[property(name = "code", type = Option<String>, get = |s: &Self| s.remark.borrow().as_ref().map(|r| r.code.clone()))]
-        #[property(name = "icon-name", type = Option<String>, get = |s: &Self| s.remark.borrow().as_ref().map(|r| super::association_to_icon(&r.association).to_owned()))]
+        #[property(name = "text", type = String, get = |s: &Self| s.remark.borrow().as_ref().expect("Remark to be set to query text property").text.clone())]
+        #[property(name = "code", type = String, get = |s: &Self| s.remark.borrow().as_ref().expect("Remark to be set to query code property").code.clone())]
+        #[property(name = "icon-name", type = String, get = |s: &Self| s.remark.borrow().as_ref().map(|r| super::association_to_icon(&r.association).to_owned()).expect("Remark to be set to query icon-name property"))]
         pub(super) remark: RefCell<Option<rcore::Remark>>,
     }
 

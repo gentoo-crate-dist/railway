@@ -28,7 +28,7 @@ mod imp {
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Station)]
     pub struct Stop {
-        #[property(name = "name", type = Option<String>, get = |s: &Self| s.station.borrow().as_ref().and_then(|o| o.name.clone()))]
+        #[property(name = "name", type = String, get = |s: &Self| s.station.borrow().as_ref().and_then(|o| o.name.clone()).expect("Station to be set to query the name property"))]
         pub(super) station: RefCell<Option<rcore::Station>>,
     }
 

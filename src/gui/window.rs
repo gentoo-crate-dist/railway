@@ -245,27 +245,19 @@ pub mod imp {
 
         #[template_callback]
         fn handle_details(&self, journey: Journey) {
-            self.journey_detail_page
-                .set_property("journey", journey.clone());
+            self.journey_detail_page.set_journey(Some(&journey));
             self.search_view.set_show_content(true);
             self.result_view.set_show_content(true);
             self.journey_detail_page.reload();
-            if let Some(journeys_result) = self
-                .journeys_page
-                .property::<Option<JourneysResult>>("journeys-result")
-            {
+            if let Some(journeys_result) = self.journeys_page.journeys_result() {
                 journeys_result.set_selected(Some(journey));
             }
         }
 
         #[template_callback]
         fn handle_search_page(&self, journeys_result: JourneysResult) {
-            journeys_result.set_selected(
-                self.journey_detail_page
-                    .property::<Option<Journey>>("journey"),
-            );
-            self.journeys_page
-                .set_property("journeys-result", journeys_result);
+            journeys_result.set_selected(self.journey_detail_page.journey());
+            self.journeys_page.set_journeys_result(journeys_result);
             self.search_view.set_show_content(true);
             self.result_view.set_show_content(false);
         }
@@ -277,14 +269,10 @@ pub mod imp {
 
         #[template_callback]
         fn handle_journeys_page(&self, journey: Journey) {
-            self.journey_detail_page
-                .set_property("journey", journey.clone());
+            self.journey_detail_page.set_journey(Some(&journey));
             self.search_view.set_show_content(true);
             self.result_view.set_show_content(true);
-            if let Some(journeys_result) = self
-                .journeys_page
-                .property::<Option<JourneysResult>>("journeys-result")
-            {
+            if let Some(journeys_result) = self.journeys_page.journeys_result() {
                 journeys_result.set_selected(Some(journey));
             }
         }
@@ -336,10 +324,9 @@ pub mod imp {
 
         #[template_callback]
         fn has_search_stored(&self, source: Option<Place>, destination: Option<Place>) -> bool {
-            if let (Some(source), Some(destination)) = (
-                source.and_then(|p| p.name()),
-                destination.and_then(|p| p.name()),
-            ) {
+            if let (Some(source), Some(destination)) =
+                (source.map(|p| p.name()), destination.map(|p| p.name()))
+            {
                 self.store_searches.contains(&source, &destination)
             } else {
                 false
@@ -354,11 +341,11 @@ pub mod imp {
             {
                 let origin = journeys_result
                     .source()
-                    .and_then(|p| p.name())
+                    .map(|p| p.name())
                     .unwrap_or_default();
                 let destination = journeys_result
                     .destination()
-                    .and_then(|p| p.name())
+                    .map(|p| p.name())
                     .unwrap_or_default();
                 self.store_searches
                     .store(origin.clone(), destination.clone());

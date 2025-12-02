@@ -198,7 +198,7 @@ pub mod imp {
                 let stopover = IntermediateLocation::new(stopovers[i].clone());
                 // Check if current child can be reused.
                 if let Some(child) = current_child.and_downcast_ref::<IntermediateLocationItem>() {
-                    child.set_property("intermediate-location", stopover);
+                    child.set_intermediate_location(&stopover);
                 } else {
                     let widget = IntermediateLocationItem::new(&stopover);
                     self.box_intermediate_locations.append(&widget);
@@ -262,18 +262,17 @@ pub mod imp {
 
                 leg_item.update_property(&[gtk::accessible::Property::Description(
                     &LegItem::format_trip_segment_description(
-                        &origin.name().expect("origin of leg must be set"),
-                        &leg.property::<Option<String>>("departure")
-                            .or(leg.property::<Option<String>>("planned-departure"))
+                        &origin.name(),
+                        &leg.departure()
+                            .or(leg.planned_departure())
                             .unwrap_or("".to_string()),
-                        &leg.property::<Option<String>>("departure-platform")
-                            .or(leg.property::<Option<String>>("planned-departure-platform")),
-                        &destination.name().expect("destination of leg must be set"),
-                        &leg.property::<Option<String>>("arrival")
-                            .or(leg.property::<Option<String>>("planned-arrival"))
+                        &leg.departure_platform()
+                            .or(leg.planned_departure_platform()),
+                        &destination.name(),
+                        &leg.arrival()
+                            .or(leg.planned_arrival())
                             .unwrap_or("".to_string()),
-                        &leg.property::<Option<String>>("arrival-platform")
-                            .or(leg.property::<Option<String>>("planned-arrival-platform")),
+                        &leg.arrival_platform().or(leg.planned_departure_platform()),
                     ),
                 )]);
             });

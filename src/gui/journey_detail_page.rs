@@ -71,7 +71,7 @@ pub mod imp {
 
     impl JourneyDetailPage {
         fn set_show_live_box(&self, obj: bool) {
-            if let Some(journey) = self.obj().property("journey") {
+            if let Some(journey) = self.obj().journey() {
                 if obj {
                     self.timer.borrow().register_minutely(journey)
                 } else {
@@ -115,7 +115,7 @@ pub mod imp {
                         ),
                     )));
 
-                if self.obj().property("show-live-box") {
+                if self.obj().show_live_box() {
                     self.timer.borrow().register_minutely(obj);
                 }
             }

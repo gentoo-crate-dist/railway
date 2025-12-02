@@ -105,9 +105,9 @@ pub mod imp {
         #[property(get, set)]
         client: RefCell<Option<Client>>,
 
-        #[property(name = "is-loading-earlier", get, set)]
+        #[property(name = "loading-earlier", get, set)]
         loading_earlier: Cell<bool>,
-        #[property(name = "is-loading-later", get, set)]
+        #[property(name = "loading-later", get, set)]
         loading_later: Cell<bool>,
         #[property(get, set)]
         auto_scroll: Cell<bool>,
@@ -180,13 +180,13 @@ pub mod imp {
             let obj = self.obj();
 
             // Skip if already loading.
-            if obj.is_loading_earlier() {
+            if obj.loading_earlier() {
                 return;
             }
-            obj.set_is_loading_earlier(true);
+            obj.set_loading_earlier(true);
 
             if self.auto_scroll.get() && !self.scrolled_up.get() {
-                obj.set_property("scrolled-up", true.to_value());
+                obj.set_scrolled_up(true);
             }
 
             let main_context = MainContext::default();
@@ -205,8 +205,8 @@ pub mod imp {
                         return;
                     };
 
-                    let result_journeys_result = obj
-                        .property::<Client>("client")
+                    let client = obj.client().expect("Client of JourneysPage to be set up");
+                    let result_journeys_result = client
                         .journeys(
                             journeys_result.source().expect("Journey to have a source"),
                             journeys_result
@@ -251,7 +251,7 @@ pub mod imp {
                             result_journeys_result.expect_err("Error to be present"),
                         );
                     }
-                    obj.set_is_loading_earlier(false);
+                    obj.set_loading_earlier(false);
                     obj.scroll_up();
                 }
             ));
@@ -262,10 +262,10 @@ pub mod imp {
             let obj = self.obj();
 
             // Skip if already loading.
-            if obj.is_loading_later() {
+            if obj.loading_later() {
                 return;
             }
-            obj.set_is_loading_later(true);
+            obj.set_loading_later(true);
 
             let main_context = MainContext::default();
             let window = self.obj().root().and_downcast::<Window>().expect(
@@ -327,7 +327,7 @@ pub mod imp {
                             result_journeys_result.expect_err("Error to be present"),
                         );
                     }
-                    obj.set_is_loading_later(false);
+                    obj.set_loading_later(false);
                     obj.scroll_down();
                 }
             ));
