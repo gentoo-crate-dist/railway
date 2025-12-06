@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2025-12-01 21:00+0000\n"
+"PO-Revision-Date: 2025-12-07 15:00+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -766,18 +766,16 @@ msgid "Using Transitous"
 msgstr "Transitous wordt gebruikt"
 
 #: src/backend/journey.rs:271
-#, fuzzy
 msgid "Start at {station} on platform {platform} at {time}"
-msgstr "Aankomst op {destination} op platform {platform} om {arrival}."
+msgstr "Start bĳ {station} op perron {platform} om {time}"
 
 #: src/backend/journey.rs:274
-#, fuzzy
 msgid "Start at {station} at {time}"
-msgstr "Aankomst op {destination} om {arrival}."
+msgstr "Start bĳ {station} om {time}"
 
 #: src/backend/journey.rs:280
 msgid "Trip to {destination} will begin shortly"
-msgstr ""
+msgstr "De rit naar {bestemming} begint binnenkort"
 
 #: src/backend/journey.rs:309
 #, fuzzy
