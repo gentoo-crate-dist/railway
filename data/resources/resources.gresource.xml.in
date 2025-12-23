@@ -65,8 +65,8 @@
     <file alias="bart.svg">../icons/providers/bart.svg</file>
     <file alias="bls.svg">../icons/providers/bls.svg</file>
     <file alias="cfl.svg">../icons/providers/cfl.svg</file>
-    <file alias="cmta.svg">../icons/providers/cmta.svg</file>
-    <file alias="dart.svg">../icons/providers/dart.svg</file>
+    <!-- <file alias="cmta.svg">../icons/providers/cmta.svg</file>
+    <!-- <file alias="dart.svg">../icons/providers/dart.svg</file> -->
     <file alias="db.svg">../icons/providers/db.svg</file>
     <!-- <file alias="db-busradar-nrw.svg">../icons/providers/db-busradar-nrw.svg</file> -->
     <!-- <file alias="hvv.svg">../icons/providers/hvv.svg</file> -->
@@ -81,7 +81,7 @@
     <file alias="oebb.svg">../icons/providers/oebb.svg</file>
     <file alias="ooevv.svg">../icons/providers/ooevv.svg</file>
     <file alias="rejseplanen.svg">../icons/providers/rejseplanen.svg</file>
-    <file alias="pkp.svg">../icons/providers/pkp.svg</file>
+    <!-- <file alias="pkp.svg">../icons/providers/pkp.svg</file> -->
     <file alias="resrobot.svg">../icons/providers/resrobot.svg</file>
     <file alias="rmv.svg">../icons/providers/rmv.svg</file>
     <file alias="rsag.svg">../icons/providers/rsag.svg</file>
@@ -98,7 +98,7 @@
     <file alias="vmt.svg">../icons/providers/vmt.svg</file>
     <file alias="vor.svg">../icons/providers/vor.svg</file>
     <file alias="vos.svg">../icons/providers/vos.svg</file>
-    <file alias="vrn.svg">../icons/providers/vrn.svg</file>
+    <!-- <file alias="vrn.svg">../icons/providers/vrn.svg</file> -->
     <file alias="vsn.svg">../icons/providers/vsn.svg</file>
     <file alias="vvt.svg">../icons/providers/vvt.svg</file>
     <file alias="vvv.svg">../icons/providers/vvv.svg</file>

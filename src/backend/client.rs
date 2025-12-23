@@ -50,20 +50,20 @@ fn providers() -> Vec<Provider> {
             &gettextrs::gettext("Europe"),
             true,
         ),
-        Provider::new(
-            "CMTA",
-            "CapMetro",
-            Some("Austin, Texas"),
-            &gettextrs::gettext("North America"),
-            true,
-        ),
-        Provider::new(
-            "DART",
-            "DART",
-            Some("Des Moines Area Rapid Transit"),
-            &gettextrs::gettext("North America"),
-            true,
-        ),
+        // Provider::new(
+        //     "CMTA",
+        //     "CapMetro",
+        //     Some("Austin, Texas"),
+        //     &gettextrs::gettext("North America"),
+        //     true,
+        // ),
+        // Provider::new(
+        //     "DART",
+        //     "DART",
+        //     Some("Des Moines Area Rapid Transit"),
+        //     &gettextrs::gettext("North America"),
+        //     true,
+        // ),
         // Always shows "no provider"
         // Provider::new(
         //     "DB-Busradar-Nrw",
@@ -153,13 +153,13 @@ fn providers() -> Vec<Provider> {
             &gettextrs::gettext("Austria"),
             true,
         ),
-        Provider::new(
-            "PKP",
-            "PKP",
-            Some("Polskie Koleje Państwowe"),
-            &gettextrs::gettext("Europe"),
-            true,
-        ),
+        // Provider::new(
+        //     "PKP",
+        //     "PKP",
+        //     Some("Polskie Koleje Państwowe"),
+        //     &gettextrs::gettext("Europe"),
+        //     true,
+        // ),
         Provider::new(
             "RMV",
             "RMV",
@@ -267,13 +267,13 @@ fn providers() -> Vec<Provider> {
             &gettextrs::gettext("Germany"),
             true,
         ),
-        Provider::new(
-            "VRN",
-            "VRN",
-            Some("Verkehrsverbund Rhein-Neckar"),
-            &gettextrs::gettext("Germany"),
-            true,
-        ),
+        // Provider::new(
+        //     "VRN",
+        //     "VRN",
+        //     Some("Verkehrsverbund Rhein-Neckar"),
+        //     &gettextrs::gettext("Germany"),
+        //     true,
+        // ),
         Provider::new(
             "VSN",
             "VSN",

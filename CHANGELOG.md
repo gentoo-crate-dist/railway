@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed 
+
+- Removed the DART provider, as it was not working anymore.
+- Removed the PKP provider, as it was not working anymore.
+- Removed the VRN provider, as it was not working anymore.
+
+### Fixed
+
+- Long walking times and no waiting for the DB provider.
+- The Transitious provider was not working anymore.
+- Removed the CMTA provider, as it was not working anymore.
+
 ## [2.9.3] - 2025-11-19
 
 ### Fixed
