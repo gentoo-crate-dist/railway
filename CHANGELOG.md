@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Long walking times and no waiting for the DB provider.
 - The Transitious provider was not working anymore.
 - Removed the CMTA provider, as it was not working anymore.
+- Error with the DB provider if no trains are available earlier or later.
 
 ## [2.9.3] - 2025-11-19
 
