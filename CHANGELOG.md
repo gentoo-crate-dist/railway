@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.9.4] - 2025-12-26
+
 ### Removed 
 
 - Removed the DART provider, as it was not working anymore.
@@ -265,7 +267,8 @@ Those are packaged on <crates.io>.
 
 - Complete UI overhaul
 
-[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.3...master
+[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.4...master
+[2.9.4]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.3...2.9.4
 [2.9.3]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.2...2.9.3
 [2.9.2]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.1...2.9.2
 [2.9.1]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.0...2.9.1

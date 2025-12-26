@@ -59,6 +59,11 @@
   </description>
 
   <releases>
+    <release version="2.9.4" date="2025-12-26">
+      <description translate="no">
+        <p>Removed</p> <ul> <li>Removed the DART provider, as it was not working anymore.</li> <li>Removed the PKP provider, as it was not working anymore.</li> <li>Removed the VRN provider, as it was not working anymore.</li> </ul> <p>Fixed</p> <ul> <li>Long walking times and no waiting for the DB provider.</li> <li>The Transitious provider was not working anymore.</li> <li>Removed the CMTA provider, as it was not working anymore.</li> <li>Error with the DB provider if no trains are available earlier or later.</li> </ul>
+      </description>
+    </release>
     <release version="2.9.3" date="2025-11-19">
       <description translate="no">
         <p>Fixed</p> <ul> <li>Reloading trips worked in the background, but the interface was only updated after closing and re-opening the same trip. This is no longer needed. Immediately after reloading, the trip details are updated.</li> </ul>
