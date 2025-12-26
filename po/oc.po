@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2025-10-25 21:02+0000\n"
+"PO-Revision-Date: 2025-12-27 09:00+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
-"Language-Team: Occitan <https://hosted.weblate.org/projects/"
-"schmiddi-on-mobile/railway/oc/>\n"
+"Language-Team: Occitan <https://hosted.weblate.org/projects/schmiddi-on-"
+"mobile/railway/oc/>\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -446,7 +446,7 @@ msgstr "Correspondéncia"
 #. Translators: you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:74 src/gui/search_options_dialog.rs:245
 msgid "{} min"
-msgstr "{} min."
+msgstr "{} min"
 
 #. Translators: duration format with hours and minutes, standalone or tabular setting, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:82
@@ -781,13 +781,12 @@ msgid "{time} transfer time"
 msgstr "Correspondéncia de {time}"
 
 #: src/backend/journey.rs:318
-#, fuzzy
 msgid "Upcoming departure on platform {platform}"
-msgstr "{stop} a {arrival} a la via {platform}"
+msgstr "Partença lèu via {platform}"
 
 #: src/backend/journey.rs:325
 msgid "Upcoming transfer at {station} soon"
-msgstr ""
+msgstr "Correspondéncia lèu a {station}"
 
 #: src/backend/journey.rs:335
 msgid "Arriving at {destination} soon"
@@ -795,53 +794,53 @@ msgstr "Arribada a {destination} lèu"
 
 #: src/backend/journey.rs:377
 msgid "{train} departure is delayed by {time}"
-msgstr ""
+msgstr "Partença de {train} retardada de {time}"
 
 #: src/backend/journey.rs:404
 msgid "{train} arrival is delayed by {time}"
-msgstr ""
+msgstr "Arribada de {train} retardada de {time}"
 
 #: src/backend/journey.rs:427
-#, fuzzy
 msgid "{train} departing on platform {platform} today instead"
-msgstr "Arribada a {destination} a la via {platform} a {arrival}."
+msgstr "{train} a la partença de la via {platform} uèi a la plaça"
 
 #: src/backend/journey.rs:448
 msgid ""
 "Warning: No longer possible to reach connecting {train} from {origin} to "
 "{destination}."
 msgstr ""
+"Atencion : es pas mai possible de prendre la correspondéncia del {train} de "
+"{origin} cap a {destination}."
 
 #: src/backend/journey.rs:470
 msgid "Warning: {train} from {origin} to {destination} was cancelled."
 msgstr ""
+"Avertiment : lo {train} de {origin} cap a {destination} es estat anullat."
 
 #: src/backend/journey.rs:562
-#, fuzzy
 msgid "Start at {next-origin} in {duration} on platform {next-platform}"
-msgstr "Arribada a {destination} a la via {platform} a {arrival}."
+msgstr "Partença a {next-origin} d’aquí {duration} a la via {next-platform}"
 
 #: src/backend/journey.rs:565
 msgid "Start at {next-origin} in {duration}"
-msgstr ""
+msgstr "Partença a {next-origin} d’aquí {duration}"
 
 #: src/backend/journey.rs:568
-#, fuzzy
 msgid "Arriving at {current-destination} in {duration}"
-msgstr "Arriba a {destination} a {arrival}."
+msgstr "Arriba a {current-destination} d’aquí {duration}"
 
 #: src/backend/journey.rs:571
 msgid ""
 "Change to {next-leg-name} on platform {next-platform}, remaining: {duration}"
-msgstr ""
+msgstr "Cambiament a {next-leg-name} via [next-platform}, demòran : {duration}"
 
 #: src/backend/journey.rs:574
 msgid "Change to {next-leg-name}, remaining: {duration}"
-msgstr ""
+msgstr "Cambiament a {next-leg-name}, demòran : {duration}"
 
 #: src/backend/journey.rs:577
 msgid "The trip’s destination has been reached"
-msgstr ""
+msgstr "La destinacion del viatge es estada atenguda"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
