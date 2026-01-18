@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2026-01-18 10:37+0000\n"
+"PO-Revision-Date: 2026-01-18 11:49+0000\n"
 "Last-Translator: pacavarn <nahadster@gmail.com>\n"
 "Language-Team: Bosnian <https://hosted.weblate.org/projects/schmiddi-on-"
 "mobile/railway/bs/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:8
 #: data/resources/ui/window.blp:6 data/resources/ui/window.blp:50
 msgid "Railway"
-msgstr "Željeznica"
+msgstr "Railway"
 
 #. Translators: The summary of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:5
