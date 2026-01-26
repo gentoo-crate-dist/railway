@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2026-01-26 00:42+0000\n"
+"PO-Revision-Date: 2026-01-26 00:47+0000\n"
 "Last-Translator: MiloBeenhakker <milo@beenhakker.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -802,11 +802,11 @@ msgstr "Aankomst op {destination}"
 
 #: src/backend/journey.rs:377
 msgid "{train} departure is delayed by {time}"
-msgstr ""
+msgstr "Het vertrek van {train} is vertraagd met {time}"
 
 #: src/backend/journey.rs:404
 msgid "{train} arrival is delayed by {time}"
-msgstr ""
+msgstr "Aankomsttijd van {train} is vertraagd met {time}"
 
 #: src/backend/journey.rs:427
 #, fuzzy
@@ -818,10 +818,12 @@ msgid ""
 "Warning: No longer possible to reach connecting {train} from {origin} to "
 "{destination}."
 msgstr ""
+"Waarschuwing: Het is niet langer mogelijk om aansluitende {train} van "
+"{origin} naar {destination} te bereiken."
 
 #: src/backend/journey.rs:470
 msgid "Warning: {train} from {origin} to {destination} was cancelled."
-msgstr ""
+msgstr "Waarschuwing: {train} van {origin} naar {destination} is geannuleerd."
 
 #: src/backend/journey.rs:562
 #, fuzzy
@@ -830,7 +832,7 @@ msgstr "Aankomst op {destination} op platform {platform} om {arrival}."
 
 #: src/backend/journey.rs:565
 msgid "Start at {next-origin} in {duration}"
-msgstr ""
+msgstr "Begin bij {next-origin} over {duration}"
 
 #: src/backend/journey.rs:568
 #, fuzzy
@@ -841,6 +843,8 @@ msgstr "Aankomst op {destination} om {arrival}."
 msgid ""
 "Change to {next-leg-name} on platform {next-platform}, remaining: {duration}"
 msgstr ""
+"Wijziging naar {next-leg-name} op platform {next-platform}, resterende duur: "
+"{duration}"
 
 #: src/backend/journey.rs:574
 msgid "Change to {next-leg-name}, remaining: {duration}"
