@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DieBahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2026-01-26 00:47+0000\n"
+"PO-Revision-Date: 2026-01-26 02:21+0000\n"
 "Last-Translator: MiloBeenhakker <milo@beenhakker.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/nl/>\n"
@@ -427,7 +427,7 @@ msgstr "Bezig met zoeken"
 #. Translators: Do not translate the strings in {}.
 #: src/gui/transition.rs:93
 msgid "Arrive at {destination}."
-msgstr "Aankomst op {destination}"
+msgstr "Aankomst op {destination}."
 
 #: src/gui/transition.rs:225
 msgid "Walk {walk} Wait {wait}"
@@ -470,7 +470,7 @@ msgstr "{} min."
 #. Translators: duration in hours, embedded in text, you might want to use a narrow no-breaking space (U+202F) in front of units, {} must not be translated as it will be replaced with an actual number
 #: src/gui/utility.rs:108
 msgid "{} hrs."
-msgstr "{} uur"
+msgstr "{} uur"
 
 #. Translators: duration format with hours and minutes, embedded in text, see https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers, you might want to use a narrow no-breaking space (U+202F) in front of units
 #: src/gui/utility.rs:117
@@ -514,7 +514,7 @@ msgstr "%d %m %Y"
 msgid "{} h"
 msgid_plural "{} h"
 msgstr[0] "{} u"
-msgstr[1] "{} u"
+msgstr[1] "{} u"
 
 #: src/gui/search_options_button.rs:75
 msgid "None"
@@ -558,11 +558,11 @@ msgstr "NL – Voordeel­uren­abonnement (zonder RAILPLUS)"
 
 #: src/gui/search_options_button.rs:91
 msgid "SH-Card"
-msgstr "SH-Card"
+msgstr "SH-kortingskaart"
 
 #: src/gui/search_options_button.rs:92
 msgid "CH – General-Abonnement"
-msgstr "CH – General-Abonnement"
+msgstr "Zwitsers \"alles-in-één\" abonnement"
 
 #: src/gui/search_options_button.rs:99
 msgid "Unknown"
@@ -618,7 +618,7 @@ msgstr "_Sluiten"
 #: src/gui/date_time_picker.rs:111
 #, c-format
 msgid "%a %b %d"
-msgstr "%a %-d %b"
+msgstr "%a %d %b"
 
 #: src/gui/journey_list_item.rs:52
 msgid "{} change"
@@ -778,27 +778,24 @@ msgid "Trip to {destination} will begin shortly"
 msgstr "De rit naar {bestemming} begint binnenkort"
 
 #: src/backend/journey.rs:309
-#, fuzzy
 msgid "{time} transfer time to get to platform {platform}"
-msgstr "{stop} om {arrival} op platform {platform}"
+msgstr "{time} overstaptijd om naar perron {platform} te komen"
 
 #: src/backend/journey.rs:315
 msgid "{time} transfer time"
 msgstr "{time} overstap­tĳd"
 
 #: src/backend/journey.rs:318
-#, fuzzy
 msgid "Upcoming departure on platform {platform}"
-msgstr "{stop} om {arrival} op platform {platform}"
+msgstr "Aanstaande vertrektijd op perron {platform}"
 
 #: src/backend/journey.rs:325
 msgid "Upcoming transfer at {station} soon"
 msgstr "Binnenkort een overstap op {station}"
 
 #: src/backend/journey.rs:335
-#, fuzzy
 msgid "Arriving at {destination} soon"
-msgstr "Aankomst op {destination}"
+msgstr "Binnenkort aankomst op {bestemming}"
 
 #: src/backend/journey.rs:377
 msgid "{train} departure is delayed by {time}"
@@ -809,9 +806,8 @@ msgid "{train} arrival is delayed by {time}"
 msgstr "Aankomsttijd van {train} is vertraagd met {time}"
 
 #: src/backend/journey.rs:427
-#, fuzzy
 msgid "{train} departing on platform {platform} today instead"
-msgstr "Aankomst op {destination} op platform {platform} om {arrival}."
+msgstr "{train} vertrekt vandaag vanaf perron {platform}"
 
 #: src/backend/journey.rs:448
 msgid ""
@@ -826,18 +822,16 @@ msgid "Warning: {train} from {origin} to {destination} was cancelled."
 msgstr "Waarschuwing: {train} van {origin} naar {destination} is geannuleerd."
 
 #: src/backend/journey.rs:562
-#, fuzzy
 msgid "Start at {next-origin} in {duration} on platform {next-platform}"
-msgstr "Aankomst op {destination} op platform {platform} om {arrival}."
+msgstr "Vertrek naar {next-origin} in {duration} op perron {next-platform}"
 
 #: src/backend/journey.rs:565
 msgid "Start at {next-origin} in {duration}"
 msgstr "Begin bij {next-origin} over {duration}"
 
 #: src/backend/journey.rs:568
-#, fuzzy
 msgid "Arriving at {current-destination} in {duration}"
-msgstr "Aankomst op {destination} om {arrival}."
+msgstr "Aankomst op {current-destination} over {duration}"
 
 #: src/backend/journey.rs:571
 msgid ""
@@ -848,11 +842,11 @@ msgstr ""
 
 #: src/backend/journey.rs:574
 msgid "Change to {next-leg-name}, remaining: {duration}"
-msgstr ""
+msgstr "Wijziging naar {next-leg-name}, resterend: {duration}"
 
 #: src/backend/journey.rs:577
 msgid "The trip’s destination has been reached"
-msgstr ""
+msgstr "De reisbestemming is bereikt"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
