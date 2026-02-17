@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2025-10-10 21:07+0000\n"
+"PO-Revision-Date: 2026-02-19 00:09+0000\n"
 "Last-Translator: Ibai Oihanguren Sala <ibaios@disroot.org>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/schmiddi-on-"
 "mobile/railway/eu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -227,7 +227,6 @@ msgid "Regional Train"
 msgstr "Eskualdeko trena"
 
 #: data/resources/ui/search_options_dialog.blp:70
-#, fuzzy
 msgid "S-Bahn Train"
 msgstr "Aldiriko trena"
 
@@ -341,9 +340,8 @@ msgid "Bookmark This Trip"
 msgstr "Gorde bidaia hau"
 
 #: data/resources/ui/window.blp:166
-#, fuzzy
 msgid "Watch this Trip"
-msgstr "Eguneratu bidaia hau"
+msgstr "Zaindu bidaia hau"
 
 #: data/resources/ui/window.blp:199
 msgid "Preferences"
@@ -616,7 +614,7 @@ msgstr "_Itxi"
 #. How to format a date with time. Should probably be similar to %a %b %d (meaning print day of the week (short), month of the year (short), day from 01-31).
 #. For a full list of supported identifiers, see <https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers>
 #: src/gui/date_time_picker.rs:111
-#, fuzzy, c-format
+#, c-format
 msgid "%a %b %d"
 msgstr "%a %b %e"
 
