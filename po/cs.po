@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2026-03-24 09:01+0000\n"
+"PO-Revision-Date: 2026-03-25 09:09+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/schmiddi-on-mobile/"
 "railway/cs/>\n"
@@ -119,7 +119,7 @@ msgstr "Zvolte cestu"
 
 #: data/resources/ui/journeys_page.blp:95
 msgid "Search for Trips"
-msgstr "Hledat cesty"
+msgstr "Vyhledejte cesty"
 
 #: data/resources/ui/leg_item.blp:129
 msgid "Show Stops"
@@ -213,7 +213,7 @@ msgstr "Pouze přímá spojení"
 
 #: data/resources/ui/search_options_dialog.blp:48
 msgid "Modes of Transport"
-msgstr "Režimy dopravy"
+msgstr "Druhy dopravy"
 
 #: data/resources/ui/search_options_dialog.blp:60
 msgid "Mainline Train"
@@ -517,7 +517,7 @@ msgstr[2] "{} h"
 
 #: src/gui/search_options_button.rs:75
 msgid "None"
-msgstr "Žádné"
+msgstr "Žádná"
 
 #: src/gui/search_options_button.rs:76
 msgid "BahnCard 25, 1st class"
@@ -581,7 +581,7 @@ msgstr "Pouze regionální"
 
 #: src/gui/search_options_button.rs:189
 msgid "Selected Modes of Transport"
-msgstr "Vybrané režimy dopravy"
+msgstr "Vybrané druhy dopravy"
 
 #: src/gui/search_options_button.rs:201
 msgid "Direct Connection"
@@ -695,7 +695,7 @@ msgstr ""
 
 #: src/gui/window.rs:196
 msgid "Source Translation Supported by"
-msgstr ""
+msgstr "Překlady ze zdrojů dat podporují"
 
 #. Translators: Formatting of frequency of trains. The {} will already contain the duration format (most likely min). E.g. `every ~10 min`.
 #: src/gui/frequency_label.rs:91
