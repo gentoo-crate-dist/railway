@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2025-12-27 09:00+0000\n"
-"Last-Translator: Ivan “t3ry4” Terentiev <t3ry4post@gmail.com>\n"
+"PO-Revision-Date: 2026-04-16 15:09+0000\n"
+"Last-Translator: Roma <roma.shulha@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/schmiddi-on-"
 "mobile/railway/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -218,16 +218,14 @@ msgid "Modes of Transport"
 msgstr "Види транспорту"
 
 #: data/resources/ui/search_options_dialog.blp:60
-#, fuzzy
 msgid "Mainline Train"
-msgstr "Регіональний потяг"
+msgstr "Магістральний потяг"
 
 #: data/resources/ui/search_options_dialog.blp:65
 msgid "Regional Train"
 msgstr "Регіональний потяг"
 
 #: data/resources/ui/search_options_dialog.blp:70
-#, fuzzy
 msgid "S-Bahn Train"
 msgstr "Приміські поїзди"
 
@@ -341,9 +339,8 @@ msgid "Bookmark This Trip"
 msgstr "Додати поїздку в закладки"
 
 #: data/resources/ui/window.blp:166
-#, fuzzy
 msgid "Watch this Trip"
-msgstr "Оновити поїздку"
+msgstr "Слідкувати за цим маршрутом"
 
 #: data/resources/ui/window.blp:199
 msgid "Preferences"
@@ -443,7 +440,6 @@ msgid "Walk {}"
 msgstr "Пішки {}"
 
 #: src/gui/transition.rs:232
-#, fuzzy
 msgid "Transfer"
 msgstr "Трансфер"
 
@@ -737,14 +733,14 @@ msgstr "Німеччина"
 
 #: src/backend/client.rs:36 src/backend/client.rs:57 src/backend/client.rs:64
 msgid "North America"
-msgstr ""
+msgstr "Північна Америка"
 
 #: src/backend/client.rs:43 src/backend/client.rs:50 src/backend/client.rs:94
 #: src/backend/client.rs:115 src/backend/client.rs:160
 #: src/backend/client.rs:181 src/backend/client.rs:188
 #: src/backend/client.rs:305
 msgid "Europe"
-msgstr ""
+msgstr "Європа"
 
 #. Translators: The country, see https://en.wikipedia.org/wiki/Austria
 #: src/backend/client.rs:101 src/backend/client.rs:146
@@ -771,92 +767,87 @@ msgid "Using Transitous"
 msgstr "Використовуючи Transitous"
 
 #: src/backend/journey.rs:271
-#, fuzzy
 msgid "Start at {station} on platform {platform} at {time}"
-msgstr "Прибуття в {destination} на платформу {platform} в {arrival}."
+msgstr "Відправлення з {destination} з платформи {platform} в {arrival}"
 
 #: src/backend/journey.rs:274
-#, fuzzy
 msgid "Start at {station} at {time}"
-msgstr "Прибуття в {destination} в {arrival}."
+msgstr "Початок на {station} о {time}"
 
 #: src/backend/journey.rs:280
 msgid "Trip to {destination} will begin shortly"
-msgstr ""
+msgstr "Подорож до {destination} розпочнеться незабаром"
 
 #: src/backend/journey.rs:309
-#, fuzzy
 msgid "{time} transfer time to get to platform {platform}"
-msgstr "{stop} в {arrival} на платформі {platform}"
+msgstr "{time} до переходу на платформу {platform}"
 
 #: src/backend/journey.rs:315
-#, fuzzy
 msgid "{time} transfer time"
-msgstr "Мінімальний час у дорозі"
+msgstr "{time} час пересадки"
 
 #: src/backend/journey.rs:318
-#, fuzzy
 msgid "Upcoming departure on platform {platform}"
-msgstr "{stop} в {arrival} на платформі {platform}"
+msgstr "Наступне відправлення на платформі {platform}"
 
 #: src/backend/journey.rs:325
 msgid "Upcoming transfer at {station} soon"
-msgstr ""
+msgstr "Незабаром відбудеться пересадка на {station}"
 
 #: src/backend/journey.rs:335
-#, fuzzy
 msgid "Arriving at {destination} soon"
-msgstr "Прибуття в {destination}."
+msgstr "Незабаром прибуття до {destination}"
 
 #: src/backend/journey.rs:377
 msgid "{train} departure is delayed by {time}"
-msgstr ""
+msgstr "{train} відправляється із затримкою на {time}"
 
 #: src/backend/journey.rs:404
 msgid "{train} arrival is delayed by {time}"
-msgstr ""
+msgstr "Прибуття {train} затримується на {time}"
 
 #: src/backend/journey.rs:427
-#, fuzzy
 msgid "{train} departing on platform {platform} today instead"
-msgstr "Прибуття в {destination} на платформу {platform} в {arrival}."
+msgstr "{train} відправляється сьогодні з платформи {platform}"
 
 #: src/backend/journey.rs:448
 msgid ""
 "Warning: No longer possible to reach connecting {train} from {origin} to "
 "{destination}."
 msgstr ""
+"Попередження: вже неможливо встигнути на наступний {train} з {origin} до "
+"{destination}."
 
 #: src/backend/journey.rs:470
 msgid "Warning: {train} from {origin} to {destination} was cancelled."
-msgstr ""
+msgstr "Попередження: Поїзд {train} з {origin} до {destination} скасовано."
 
 #: src/backend/journey.rs:562
-#, fuzzy
 msgid "Start at {next-origin} in {duration} on platform {next-platform}"
-msgstr "Прибуття в {destination} на платформу {platform} в {arrival}."
+msgstr "Відправлення з {next-origin} о {duration} на платформі {next-platform}"
 
 #: src/backend/journey.rs:565
 msgid "Start at {next-origin} in {duration}"
-msgstr ""
+msgstr "Початок у {next-origin} через {duration}"
 
 #: src/backend/journey.rs:568
-#, fuzzy
 msgid "Arriving at {current-destination} in {duration}"
-msgstr "Прибуття в {destination} в {arrival}."
+msgstr "За {duration} ви дістанетеся до {current-destination}"
 
 #: src/backend/journey.rs:571
 msgid ""
 "Change to {next-leg-name} on platform {next-platform}, remaining: {duration}"
 msgstr ""
+"Пересадка на {next-leg-name} на платформі {next-platform} – час до "
+"відправлення: {duration}"
 
 #: src/backend/journey.rs:574
 msgid "Change to {next-leg-name}, remaining: {duration}"
-msgstr ""
+msgstr "Пересадка на {next-leg-name} – час до відправлення: {duration}"
 
 #: src/backend/journey.rs:577
 msgid "The trip’s destination has been reached"
-msgstr ""
+msgstr "Ви досягли пункту призначення"
 
 #: src/backend/leg.rs:130
 msgid "Walk"
