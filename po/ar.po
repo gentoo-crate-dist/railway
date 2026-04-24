@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2024-12-09 05:00+0000\n"
-"Last-Translator: shetozz <a.teama3317@gmail.com>\n"
+"PO-Revision-Date: 2026-04-25 10:09+0000\n"
+"Last-Translator: Abdullah Albaroty <albaroty@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/schmiddi-on-"
 "mobile/railway/ar/>\n"
 "Language: ar\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -36,7 +36,7 @@ msgstr "استكشف كل ما تريد معرفته عن رحلتك"
 #. Translators: The keywords from the desktop file.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:12
 msgid "train;railway;journey;planner;timetables;"
-msgstr "قطار؛سكة حديد؛رحلة؛مخطط؛جدول مواعيد؛"
+msgstr "قطار;سكة-حديد;رحلة;مخطط;جدول-مواعيد;"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:35
