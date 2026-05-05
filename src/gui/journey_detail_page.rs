@@ -217,8 +217,10 @@ pub mod imp {
 
                 let waiting_time: Option<Duration> = if !is_start && !is_end {
                     let from = &legs[i - 1];
-                    if to.departure.is_some() && from.arrival.is_some() {
-                        Some(to.departure.unwrap() - from.arrival.unwrap())
+                    if let Some(departure) = to.departure
+                        && let Some(arrival) = from.arrival
+                    {
+                        Some(departure - arrival)
                     } else {
                         None
                     }
