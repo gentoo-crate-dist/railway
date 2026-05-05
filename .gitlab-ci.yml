@@ -74,7 +74,7 @@ test:cargo-fmt:
   stage: lint
   image: archlinux:base-devel
   script:
-    - pacman -Syu rustup meson gtk4 git cmake libadwaita libgirepository python-gobject --noconfirm
+    - pacman -Syu rustup meson gtk4 git cmake libadwaita libgirepository python-gobject blueprint-compiler --noconfirm
     - rustup default stable
     - rustup component add rustfmt
     - meson setup build
@@ -94,7 +94,7 @@ test:cargo-clippy:
   stage: lint
   image: archlinux:base-devel
   script:
-    - pacman -Syu rustup meson gtk4 git cmake libadwaita libgirepository python-gobject --noconfirm
+    - pacman -Syu rustup meson gtk4 git cmake libadwaita libgirepository python-gobject blueprint-compiler --noconfirm
     - rustup default stable
     - rustup component add clippy
     - meson setup build
@@ -108,7 +108,7 @@ build_release:
   rules:
     - if: $CI_COMMIT_TAG
   script:
-    - pacman -Syu rustup meson gtk4 git cmake libadwaita libgirepository python-gobject --noconfirm
+    - pacman -Syu rustup meson gtk4 git cmake libadwaita libgirepository python-gobject blueprint-compiler --noconfirm
     - rustup default stable
     - meson setup $BUILD_RELEASE
     # Don't test, as Flatpak already builds it.
