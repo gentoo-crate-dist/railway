@@ -12,13 +12,6 @@
           pkgs = import nixpkgs {
             inherit system;
           };
-          gettext-patched = pkgs.gettext.overrideAttrs (prev: self: rec {
-            version = "0.23";
-            src = pkgs.fetchurl {
-              url = "mirror://gnu/gettext/${self.pname}-${version}.tar.gz";
-              hash = "sha256-lF3XACoC3XEIrQUQYC4TQWtB0yeJjPhSIgG8avEJB6Y=";
-            };
-          });
           name = "diebahn";
         in
         { 
@@ -41,7 +34,7 @@
                     ]);
               };
               buildInputs = [ pkgs.libadwaita pkgs.gtk4 ];
-              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson gettext-patched pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.blueprint-compiler ];
+              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.rustPlatform.cargoSetupHook pkgs.meson pkgs.gettext pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.blueprint-compiler ];
 
               inherit name;
             };
@@ -62,12 +55,9 @@
             pkgs.mkShell {
               src = ./.;
               buildInputs = [];
-              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.meson gettext-patched pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.clippy pkgs.cargo-deny pkgs.sysprof pkgs.blueprint-compiler pkgs.md4c pkgs.libfaketime run check prof ];
+              nativeBuildInputs = [ pkgs.wrapGAppsHook4 pkgs.meson pkgs.gettext pkgs.glib pkgs.gtk4 pkgs.libadwaita pkgs.pkg-config pkgs.desktop-file-utils pkgs.appstream pkgs.ninja pkgs.rustc pkgs.cargo pkgs.openssl pkgs.clippy pkgs.cargo-deny pkgs.sysprof pkgs.blueprint-compiler pkgs.md4c pkgs.libfaketime run check prof ];
               shellHook = ''
                 export GSETTINGS_SCHEMA_DIR=${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}/glib-2.0/schemas/:${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas/:./build/data/
-                # For some reason, the latest version of gettext is still available on the path and is perferred.
-                # Manually prefer the patched version.
-                export PATH=${gettext-patched}/bin:$PATH
                 meson setup -Dprofile=development build
               '';
             };
