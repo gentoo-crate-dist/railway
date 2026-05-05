@@ -44,7 +44,10 @@ template $DBJourneyDetailPage: Box {
             wrap: true;
             wrap-mode: word_char;
             xalign: 0;
-            label: bind $format_source_destination(template.journey as <$DBJourney>.first-leg as <$DBLeg>.origin as <$DBPlace>.name, template.journey as <$DBJourney>.last-leg as <$DBLeg>.destination as <$DBPlace>.name) as <string>;
+            label: bind $format_source_destination(
+              template.journey as <$DBJourney>.first-leg as <$DBLeg>.origin as <$DBPlace>.name,
+              template.journey as <$DBJourney>.last-leg as <$DBLeg>.destination as <$DBPlace>.name
+              ) as <string>;
           }
 
           Box {

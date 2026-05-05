@@ -115,7 +115,10 @@ template $DBWindow: Adw.ApplicationWindow {
                   notify::active => $handle_bookmark_button_icon() swapped;
                   icon-name: 'bookmark-untoggled-symbolic';
                   tooltip-text: _("Bookmark This Search");
-                  active: bind $has_search_stored(journeys_page.journeys-result as <$DBJourneysResult>.source, journeys_page.journeys-result as <$DBJourneysResult>.destination) as <bool>;
+                  active: bind $has_search_stored(
+                    journeys_page.journeys-result as <$DBJourneysResult>.source,
+                    journeys_page.journeys-result as <$DBJourneysResult>.destination
+                    ) as <bool>;
                   visible: bind $is_some(journeys_page.journeys-result) as <bool>;
                 }
               }
@@ -164,8 +167,14 @@ template $DBWindow: Adw.ApplicationWindow {
                   icon-name: 'bell-outline-none-symbolic';
                   notify::active => $handle_watch_button_icon() swapped;
                   tooltip-text: _("Watch this Trip");
-                  active: bind $and(btn_watch_journey.visible, $has_journey_watched(journey_detail_page.journey) as <bool>) as <bool>;
-                  visible: bind $and($is_some(journey_detail_page.journey) as <bool>, btn_bookmark_journey.active) as <bool>;
+                  active: bind $and(
+                    btn_watch_journey.visible,
+                    $has_journey_watched(journey_detail_page.journey) as <bool>
+                  ) as <bool>;
+                  visible: bind $and(
+                    $is_some(journey_detail_page.journey) as <bool>,
+                    btn_bookmark_journey.active
+                    ) as <bool>;
                 }
               }
 
