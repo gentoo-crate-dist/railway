@@ -7,22 +7,20 @@ gtk::glib::wrapper! {
 
 pub mod imp {
     use std::cell::RefCell;
+    use std::marker::PhantomData;
 
+    use gdk::glib::Properties;
     use gdk::glib::clone;
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecBoolean;
-    use gdk::glib::ParamSpecString;
-    use gdk::glib::Value;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
-    use once_cell::sync::Lazy;
 
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::AltLabel)]
     #[template(resource = "/ui/alt_label.ui")]
     pub struct AltLabel {
         #[template_child]
@@ -30,11 +28,22 @@ pub mod imp {
         #[template_child]
         label_alt: TemplateChild<gtk::Label>,
 
+        #[property(get, set)]
         main: RefCell<Option<String>>,
+        #[property(get, set)]
         alt: RefCell<Option<String>>,
+
+        #[property(name = "is-different", get = Self::is_different)]
+        _is_different: PhantomData<bool>,
     }
 
     impl AltLabel {
+        fn is_different(&self) -> bool {
+            let main = self.main.borrow();
+            let alt = self.alt.borrow();
+            main.is_some() && alt.is_some() && main.as_ref() != alt.as_ref()
+        }
+
         fn connect_equal(&self, obj: &super::AltLabel) {
             obj.connect_notify_local(
                 Some("main"),
@@ -105,56 +114,11 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for AltLabel {
         fn constructed(&self) {
             self.parent_constructed();
             self.connect_equal(&self.obj());
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecString::builder("main").build(),
-                    ParamSpecString::builder("alt").build(),
-                    ParamSpecBoolean::builder("is-different")
-                        .read_only()
-                        .build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "main" => {
-                    let obj = value
-                        .get::<Option<String>>()
-                        .expect("Property `main` of `AltLabel` has to be of type `String`");
-
-                    self.main.replace(obj);
-                }
-                "alt" => {
-                    let obj = value
-                        .get::<Option<String>>()
-                        .expect("Property `alt` of `AltLabel` has to be of type `String`");
-
-                    self.alt.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "main" => self.main.borrow().to_value(),
-                "alt" => self.alt.borrow().to_value(),
-                "is-different" => {
-                    let main = self.main.borrow();
-                    let alt = self.alt.borrow();
-                    (main.is_some() && alt.is_some() && main.as_ref() != alt.as_ref()).to_value()
-                }
-                _ => unimplemented!(),
-            }
         }
     }
 

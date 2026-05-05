@@ -26,12 +26,12 @@ pub mod imp {
     use gdk::gio::SettingsBindFlags;
     use gdk::glib::clone;
     use glib::subclass::InitializingObject;
-    use gtk::glib;
-    use gtk::prelude::*;
-    use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use gtk::Expression;
     use gtk::PropertyExpression;
+    use gtk::glib;
+    use gtk::prelude::*;
+    use gtk::subclass::prelude::*;
     use libadwaita::prelude::ComboRowExt;
     use libadwaita::subclass::prelude::AdwDialogImpl;
     use libadwaita::subclass::prelude::PreferencesDialogImpl;

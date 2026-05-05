@@ -1,4 +1,3 @@
-use gdk::{prelude::ObjectExt, subclass::prelude::ObjectSubclassIsExt};
 use libadwaita::prelude::EditableExt;
 
 use crate::backend::Place;
@@ -13,24 +12,11 @@ gtk::glib::wrapper! {
 impl StationEntry {
     pub fn set_input(&self, input: String) {
         self.set_text(&input);
-        self.set_place(None);
+        self.set_place(None::<Place>);
     }
 
     pub fn input(&self) -> String {
         self.text().to_string()
-    }
-
-    pub fn set_place(&self, place: Option<&Place>) {
-        self.set_property("place", place);
-        if let Some(place) = place {
-            // When something is selected, set the text of the input and clear all completion suggestions.
-            let name = place.name().unwrap_or_default();
-            if self.text() != name {
-                self.set_text(&name);
-                self.set_position(-1);
-            }
-            self.imp().completions.borrow().remove_all();
-        }
     }
 }
 
@@ -39,19 +25,17 @@ pub mod imp {
     use std::time::Duration;
 
     use gdk::glib::subclass::{InitializingObject, Signal};
-    use gdk::glib::{
-        clone, ParamSpec, ParamSpecBoolean, ParamSpecObject, ParamSpecString, Propagation, Value,
-    };
     use gdk::glib::{MainContext, Properties};
+    use gdk::glib::{Propagation, clone};
     use gdk::prelude::ObjectExt;
-    use gdk::{gio, Key, ModifierType};
+    use gdk::{Key, ModifierType, gio};
     use gtk::subclass::prelude::*;
-    use gtk::{gio::ListStore, glib};
-    use gtk::{
-        prelude::*, ListItem, ListScrollFlags, SignalListItemFactory, SingleSelection, Widget,
-        INVALID_LIST_POSITION,
-    };
     use gtk::{CompositeTemplate, Popover};
+    use gtk::{
+        INVALID_LIST_POSITION, ListItem, ListScrollFlags, SignalListItemFactory, SingleSelection,
+        Widget, prelude::*,
+    };
+    use gtk::{gio::ListStore, glib};
     use libadwaita::subclass::prelude::{EntryRowImpl, PreferencesRowImpl};
     use once_cell::sync::Lazy;
     use rcore::LocationsOptions;
@@ -71,13 +55,18 @@ pub mod imp {
         #[template_child]
         list_completions: TemplateChild<gtk::ListView>,
 
+        #[property(get)]
         pub(super) completions: RefCell<ListStore>,
         selection: RefCell<SingleSelection>,
 
+        #[property(get, set = Self::set_client, nullable)]
         client: RefCell<Option<Client>>,
 
+        #[property(get, set = Self::set_place, nullable)]
+        #[property(name = "set", type = bool, get = |s: &Self| s.place.borrow().is_some())]
         place: RefCell<Option<Place>>,
 
+        #[property(get, set)]
         title: RefCell<String>,
 
         request_limiter: RequestLimiter<String>,
@@ -104,6 +93,45 @@ pub mod imp {
 
     #[gtk::template_callbacks]
     impl StationEntry {
+        fn set_client(&self, client: Option<Client>) {
+            let obj = self.obj();
+            if let Some(client) = &client {
+                client.connect_local(
+                    "provider-changed",
+                    true,
+                    clone!(
+                        #[weak]
+                        obj,
+                        #[upgrade_or_default]
+                        move |_| {
+                            log::trace!(
+                                "Station-entry got provider change from hafas_client. Resetting"
+                            );
+                            obj.set_place(None::<Place>);
+                            obj.imp().on_changed();
+                            None
+                        }
+                    ),
+                );
+            }
+
+            self.client.replace(client);
+        }
+
+        fn set_place(&self, place: Option<Place>) {
+            self.place.replace(place.clone());
+            if let Some(place) = &place {
+                let obj = self.obj();
+                // When something is selected, set the text of the input and clear all completion suggestions.
+                let name = place.name();
+                if obj.text() != name {
+                    obj.set_text(&name);
+                    obj.set_position(-1);
+                }
+                self.completions.borrow().remove_all();
+            }
+        }
+
         #[template_callback]
         fn handle_swapped_clicked(&self) {
             self.obj().emit_by_name::<()>("swap", &[]);
@@ -175,7 +203,9 @@ pub mod imp {
                 (Some(s), gdk::Key::Down) | (Some(s), gdk::Key::KP_Down) => Some(s + 1),
                 _ => {
                     // All other cases should be impossible.
-                    log::error!("Station entry keyboard selection match incomplete. This should be impossible.");
+                    log::error!(
+                        "Station entry keyboard selection match incomplete. This should be impossible."
+                    );
                     None
                 }
             };
@@ -183,7 +213,7 @@ pub mod imp {
             if let Some(new_selected_item_name) = new_selected
                 .and_then(|i| model.item(i))
                 .and_downcast_ref::<Place>()
-                .and_then(|p| p.name())
+                .map(|p| p.name())
             {
                 // Translators: Text that will be announced by the screen reader when a suggestion was selected.
                 let format = gettextrs::gettext("Suggestion {} selected")
@@ -212,7 +242,7 @@ pub mod imp {
                 .into_iter()
                 .flatten()
                 .flat_map(|p| p.dynamic_cast::<Place>().ok())
-                .find(|p| p.name() == Some(search.to_owned()));
+                .find(|p| p.name() == search);
             self.obj().set_place(exact.as_ref());
             exact.is_some()
         }
@@ -236,7 +266,7 @@ pub mod imp {
                     let text = entry.text().to_string();
 
                     if text.len() < MIN_REQUEST_LEN {
-                        obj.set_place(None);
+                        obj.set_place(None::<Place>);
                         return;
                     }
 
@@ -248,8 +278,8 @@ pub mod imp {
                     let request = request_limiter.request(text).await;
 
                     if let Some(request) = request {
-                        let places = obj
-                            .property::<Client>("client")
+                        let client = obj.client().expect("Client to be set up in StationEntry");
+                        let places = client
                             .locations(LocationsOptions {
                                 query: request.clone(),
                                 ..Default::default()
@@ -263,7 +293,7 @@ pub mod imp {
                                 .filter(|p| p.id().is_some())
                                 .collect::<Vec<_>>();
                             log::trace!("Got results back. Filling up completions.");
-                            let exact = places.iter().find(|p| p.name().as_ref() == Some(&request));
+                            let exact = places.iter().find(|p| p.name() == request);
 
                             let completions = completions.borrow();
 
@@ -394,6 +424,7 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for StationEntry {
         fn constructed(&self) {
             let obj = self.obj();
@@ -441,71 +472,6 @@ pub mod imp {
                 obj.notify("set");
                 obj.imp().update_popover_visible();
             });
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                let mut v = StationEntry::derived_properties().to_owned();
-                v.extend(vec![
-                    ParamSpecObject::builder::<Place>("place").build(),
-                    ParamSpecBoolean::builder("set").read_only().build(),
-                    ParamSpecObject::builder::<Client>("client").build(),
-                    ParamSpecObject::builder::<ListStore>("completions")
-                        .read_only()
-                        .build(),
-                    ParamSpecString::builder("title").build(),
-                ]);
-                v
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "place" => {
-                    self.place.replace(
-                        value
-                            .get()
-                            .expect("Property place of StationEntry must be Place"),
-                    );
-                }
-                "client" => {
-                    let obj = value
-                        .get::<Option<Client>>()
-                        .expect("Property `client` of `StationEntry` has to be of type `Client`");
-
-                    if let Some(obj) = &obj {
-                        let s = self.obj();
-                        obj.connect_local("provider-changed", true, clone!(#[weak] s, #[upgrade_or_default] move |_| {
-                            log::trace!("Station-entry got provider change from hafas_client. Resetting");
-                            s.set_place(None);
-                            s.imp().on_changed();
-                            None
-                        }));
-                    }
-
-                    self.client.replace(obj);
-                }
-                "title" => {
-                    self.title.replace(
-                        value
-                            .get()
-                            .expect("Property title of StationEntry must be String"),
-                    );
-                }
-                _ => self.derived_set_property(_id, value, pspec),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "place" => self.place.borrow().to_value(),
-                "set" => self.place.borrow().is_some().to_value(),
-                "client" => self.client.borrow().to_value(),
-                "completions" => self.completions.borrow().to_value(),
-                "title" => self.title.borrow().to_value(),
-                _ => self.derived_property(_id, pspec),
-            }
         }
 
         fn signals() -> &'static [Signal] {

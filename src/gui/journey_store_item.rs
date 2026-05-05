@@ -18,21 +18,20 @@ impl JourneyStoreItem {
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
-    use once_cell::sync::Lazy;
 
     use crate::backend::Journey;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::JourneyStoreItem)]
     #[template(resource = "/ui/journey_store_item.ui")]
     pub struct JourneyStoreItem {
+        #[property(get, set)]
         journey: RefCell<Option<Journey>>,
     }
 
@@ -51,37 +50,8 @@ pub mod imp {
         }
     }
 
-    impl ObjectImpl for JourneyStoreItem {
-        fn constructed(&self) {
-            self.parent_constructed();
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| vec![ParamSpecObject::builder::<Journey>("journey").build()]);
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "journey" => {
-                    let obj = value.get::<Option<Journey>>().expect(
-                        "Property `journey` of `JourneyStoreItem` has to be of type `Journey`",
-                    );
-
-                    self.journey.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "journey" => self.journey.borrow().to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for JourneyStoreItem {}
 
     impl WidgetImpl for JourneyStoreItem {}
     impl BoxImpl for JourneyStoreItem {}

@@ -1,7 +1,6 @@
 use std::cell::RefCell;
 
 use gdk::glib::Object;
-use gdk::prelude::ObjectExt;
 use gdk::subclass::prelude::ObjectSubclassIsExt;
 
 gtk::glib::wrapper! {
@@ -22,14 +21,6 @@ impl Place {
             .clone()
             .expect("Station not yet set up")
     }
-
-    pub fn name(&self) -> Option<String> {
-        self.property("name")
-    }
-
-    pub fn id(&self) -> Option<String> {
-        self.property("id")
-    }
 }
 
 mod imp {
@@ -37,14 +28,16 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{ParamSpec, ParamSpecString, Value},
-        prelude::{ParamSpecBuilderExt, ToValue},
-        subclass::prelude::{ObjectImpl, ObjectSubclass},
+        glib::Properties,
+        prelude::ObjectExt,
+        subclass::prelude::{DerivedObjectProperties, ObjectImpl, ObjectSubclass},
     };
-    use once_cell::sync::Lazy;
 
-    #[derive(Default)]
+    #[derive(Default, Properties)]
+    #[properties(wrapper_type = super::Place)]
     pub struct Place {
+        #[property(name = "name", type = String, get = Self::name)]
+        #[property(name = "id", type = Option<String>, get = Self::id)]
         pub(super) place: RefCell<Option<rcore::Place>>,
     }
 
@@ -54,44 +47,33 @@ mod imp {
         type Type = super::Place;
     }
 
-    impl ObjectImpl for Place {
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecString::builder("name").read_only().build(),
-                    ParamSpecString::builder("id").read_only().build(),
-                ]
-            });
-            PROPERTIES.as_ref()
+    impl Place {
+        fn name(&self) -> String {
+            match self.place.borrow().as_ref() {
+                Some(rcore::Place::Station(s)) => s.name.as_ref().unwrap_or(&s.id).to_owned(),
+                Some(rcore::Place::Location(l)) => match l {
+                    rcore::Location::Address { address, .. } => address.to_owned(),
+                    rcore::Location::Point { name, id, .. } => name
+                        .as_ref()
+                        .unwrap_or_else(|| id.as_ref().expect("Either name of id for point set"))
+                        .to_owned(),
+                },
+                _ => unimplemented!(),
+            }
         }
 
-        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "name" => match self.place.borrow().as_ref() {
-                    Some(rcore::Place::Station(s)) => s.name.as_ref().unwrap_or(&s.id).to_value(),
-                    Some(rcore::Place::Location(l)) => match l {
-                        rcore::Location::Address { address, .. } => address.to_value(),
-                        rcore::Location::Point { name, id, .. } => name
-                            .as_ref()
-                            .unwrap_or_else(|| {
-                                id.as_ref().expect("Either name of id for point set")
-                            })
-                            .to_value(),
-                    },
-                    _ => unimplemented!(),
-                },
-                "id" => match self.place.borrow().as_ref() {
-                    Some(rcore::Place::Station(s)) => s.id.to_value(),
-                    Some(rcore::Place::Location(l)) => match l {
-                        rcore::Location::Address { .. } => None::<String>.to_value(),
-                        rcore::Location::Point { id, .. } => id.as_ref().to_value(),
-                    },
-                    _ => unimplemented!(),
+        fn id(&self) -> Option<String> {
+            match self.place.borrow().as_ref() {
+                Some(rcore::Place::Station(s)) => Some(s.id.to_owned()),
+                Some(rcore::Place::Location(l)) => match l {
+                    rcore::Location::Address { .. } => None::<String>,
+                    rcore::Location::Point { id, .. } => id.to_owned(),
                 },
                 _ => unimplemented!(),
             }
         }
     }
+
+    #[glib::derived_properties]
+    impl ObjectImpl for Place {}
 }

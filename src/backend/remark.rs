@@ -36,14 +36,17 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{ParamSpec, ParamSpecString, Value},
-        prelude::{ParamSpecBuilderExt, ToValue},
-        subclass::prelude::{ObjectImpl, ObjectSubclass},
+        glib::Properties,
+        prelude::ObjectExt,
+        subclass::prelude::{DerivedObjectProperties, ObjectImpl, ObjectSubclass},
     };
-    use once_cell::sync::Lazy;
 
-    #[derive(Default)]
+    #[derive(Default, Properties)]
+    #[properties(wrapper_type = super::Remark)]
     pub struct Remark {
+        #[property(name = "text", type = String, get = |s: &Self| s.remark.borrow().as_ref().expect("Remark to be set to query text property").text.clone())]
+        #[property(name = "code", type = String, get = |s: &Self| s.remark.borrow().as_ref().expect("Remark to be set to query code property").code.clone())]
+        #[property(name = "icon-name", type = String, get = |s: &Self| s.remark.borrow().as_ref().map(|r| super::association_to_icon(&r.association).to_owned()).expect("Remark to be set to query icon-name property"))]
         pub(super) remark: RefCell<Option<rcore::Remark>>,
     }
 
@@ -53,32 +56,6 @@ mod imp {
         type Type = super::Remark;
     }
 
-    impl ObjectImpl for Remark {
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecString::builder("text").read_only().build(),
-                    ParamSpecString::builder("icon-name").read_only().build(),
-                    ParamSpecString::builder("code").read_only().build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "text" => self.remark.borrow().as_ref().map(|r| &r.text).to_value(),
-                "code" => self.remark.borrow().as_ref().map(|r| &r.code).to_value(),
-                "icon-name" => self
-                    .remark
-                    .borrow()
-                    .as_ref()
-                    .map(|r| super::association_to_icon(&r.association))
-                    .to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for Remark {}
 }

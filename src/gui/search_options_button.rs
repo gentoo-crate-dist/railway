@@ -7,34 +7,35 @@ gtk::glib::wrapper! {
 
 pub mod imp {
     use std::collections::HashMap;
+    use std::marker::PhantomData;
 
     use gdk::gio::Settings;
+    use gdk::glib::Properties;
     use gdk::glib::clone;
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
     use libadwaita::prelude::AdwDialogExt;
-    use once_cell::sync::Lazy;
 
-    use crate::backend::Remark;
     use crate::config;
     use crate::gui::search_options_dialog::SearchOptionsDialog;
 
-    #[derive(CompositeTemplate)]
+    #[derive(CompositeTemplate, Properties)]
+    #[properties(wrapper_type = super::SearchOptionsButton)]
     #[template(resource = "/ui/search_options_button.ui")]
     pub struct SearchOptionsButton {
         settings: Settings,
+        #[property(get = Self::extra_label)]
+        extra_label: PhantomData<String>,
     }
 
     impl Default for SearchOptionsButton {
         fn default() -> Self {
             Self {
                 settings: Settings::new(config::BASE_ID),
+                extra_label: Default::default(),
             }
         }
     }
@@ -54,8 +55,89 @@ pub mod imp {
             obj.init_template();
         }
     }
+
     #[gtk::template_callbacks]
     impl SearchOptionsButton {
+        fn extra_label(&self) -> String {
+            let first_class = self.settings.boolean("first-class");
+            let first_class_string = if first_class {
+                Some(gettextrs::gettext("1st class"))
+            } else {
+                Some(gettextrs::gettext("2nd class"))
+            };
+
+            let bahncard = self.settings.enum_("bahncard");
+            let bahncard_string = if bahncard == 0 {
+                None
+            } else {
+                Some(
+                    Self::bahncard(
+                        bahncard
+                            .try_into()
+                            .expect("bahncard enum to fit into usize"),
+                    )
+                    .to_string(),
+                )
+            };
+
+            let include_national_express = self.settings.boolean("include-national-express");
+            let include_regional = self.settings.boolean("include-regional");
+            let include_suburban = self.settings.boolean("include-suburban");
+            let include_bus = self.settings.boolean("include-bus");
+            let include_ferry = self.settings.boolean("include-ferry");
+            let include_subway = self.settings.boolean("include-subway");
+            let include_tram = self.settings.boolean("include-tram");
+            let include_cablecar = self.settings.boolean("include-cablecar");
+            let include_taxi = self.settings.boolean("include-taxi");
+
+            let regional = [
+                include_regional,
+                include_suburban,
+                include_bus,
+                include_ferry,
+                include_subway,
+                include_tram,
+                include_cablecar,
+                include_taxi,
+            ];
+            let ic = [include_national_express];
+
+            let types_string = if regional.iter().all(|b| *b) && ic.iter().all(|b| *b) {
+                None
+            } else if regional.iter().all(|b| *b) && ic.iter().all(|b| !*b) {
+                Some(gettextrs::gettext("Regional Only"))
+                // TODO: Germany specific, only display for networks there
+            } else {
+                Some(gettextrs::gettext("Selected Modes of Transport"))
+            };
+
+            let bike_accessible = self.settings.boolean("bike-accessible");
+            let bike_accessible_string = if bike_accessible {
+                Some(gettextrs::gettext("Bike Accessible"))
+            } else {
+                None
+            };
+
+            let direct_only = self.settings.boolean("direct-only");
+            let direct_only_string = if direct_only {
+                Some(gettextrs::gettext("Direct Connection"))
+            } else {
+                None
+            };
+
+            [
+                first_class_string,
+                bahncard_string,
+                types_string,
+                bike_accessible_string,
+                direct_only_string,
+            ]
+            .into_iter()
+            .flatten()
+            .reduce(|s1, s2| format!("{s1}\u{00A0}\u{00B7} {s2}")) // non-breaking space and centered dot.
+            .expect("Extra Label to have at least one setting set (first or second class)")
+        }
+
         fn window(&self) -> crate::gui::window::Window {
             self.obj()
                 .root()
@@ -101,6 +183,7 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for SearchOptionsButton {
         fn constructed(&self) {
             self.parent_constructed();
@@ -118,105 +201,6 @@ pub mod imp {
                     }
                 ),
             );
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpecObject::builder::<Remark>("extra-label")
-                    .read_only()
-                    .build()]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {
-            unimplemented!()
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "extra-label" => {
-                    let first_class = self.settings.boolean("first-class");
-                    let first_class_string = if first_class {
-                        Some(gettextrs::gettext("1st class"))
-                    } else {
-                        Some(gettextrs::gettext("2nd class"))
-                    };
-
-                    let bahncard = self.settings.enum_("bahncard");
-                    let bahncard_string = if bahncard == 0 {
-                        None
-                    } else {
-                        Some(
-                            Self::bahncard(
-                                bahncard
-                                    .try_into()
-                                    .expect("bahncard enum to fit into usize"),
-                            )
-                            .to_string(),
-                        )
-                    };
-
-                    let include_national_express =
-                        self.settings.boolean("include-national-express");
-                    let include_regional = self.settings.boolean("include-regional");
-                    let include_suburban = self.settings.boolean("include-suburban");
-                    let include_bus = self.settings.boolean("include-bus");
-                    let include_ferry = self.settings.boolean("include-ferry");
-                    let include_subway = self.settings.boolean("include-subway");
-                    let include_tram = self.settings.boolean("include-tram");
-                    let include_cablecar = self.settings.boolean("include-cablecar");
-                    let include_taxi = self.settings.boolean("include-taxi");
-
-                    let regional = [
-                        include_regional,
-                        include_suburban,
-                        include_bus,
-                        include_ferry,
-                        include_subway,
-                        include_tram,
-                        include_cablecar,
-                        include_taxi,
-                    ];
-                    let ic = [include_national_express];
-
-                    let types_string = if regional.iter().all(|b| *b) && ic.iter().all(|b| *b) {
-                        None
-                    } else if regional.iter().all(|b| *b) && ic.iter().all(|b| !*b) {
-                        Some(gettextrs::gettext("Regional Only"))
-                        // TODO: Germany specific, only display for networks there
-                    } else {
-                        Some(gettextrs::gettext("Selected Modes of Transport"))
-                    };
-
-                    let bike_accessible = self.settings.boolean("bike-accessible");
-                    let bike_accessible_string = if bike_accessible {
-                        Some(gettextrs::gettext("Bike Accessible"))
-                    } else {
-                        None
-                    };
-
-                    let direct_only = self.settings.boolean("direct-only");
-                    let direct_only_string = if direct_only {
-                        Some(gettextrs::gettext("Direct Connection"))
-                    } else {
-                        None
-                    };
-
-                    [
-                        first_class_string,
-                        bahncard_string,
-                        types_string,
-                        bike_accessible_string,
-                        direct_only_string,
-                    ]
-                    .into_iter()
-                    .flatten()
-                    .reduce(|s1, s2| format!("{s1}\u{00A0}\u{00B7} {s2}")) // non-breaking space and centered dot.
-                    .to_value()
-                }
-                _ => unimplemented!(),
-            }
         }
     }
 

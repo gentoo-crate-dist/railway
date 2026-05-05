@@ -28,14 +28,15 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{ParamSpec, ParamSpecString, Value},
-        prelude::{ParamSpecBuilderExt, ToValue},
-        subclass::prelude::{ObjectImpl, ObjectSubclass},
+        glib::Properties,
+        prelude::ObjectExt,
+        subclass::prelude::{DerivedObjectProperties, ObjectImpl, ObjectSubclass},
     };
-    use once_cell::sync::Lazy;
 
-    #[derive(Default)]
+    #[derive(Default, Properties)]
+    #[properties(wrapper_type = super::Price)]
     pub struct Price {
+        #[property(name="formatted", type=String, get=Self::formatted)]
         pub(super) price: RefCell<Option<rcore::Price>>,
     }
 
@@ -45,48 +46,35 @@ mod imp {
         type Type = super::Price;
     }
 
-    impl ObjectImpl for Price {
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| vec![ParamSpecString::builder("formatted").read_only().build()]);
-            PROPERTIES.as_ref()
-        }
+    impl Price {
+        fn formatted(&self) -> String {
+            let price = self.price.borrow();
+            let price = price
+                .as_ref()
+                .expect("Price to have a value to be formatted");
 
-        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "formatted" => {
-                    let price = self.price.borrow();
-                    let Some(price) = price.as_ref() else {
-                        return None::<String>.to_value();
-                    };
-
-                    match price.currency.as_str() {
-                        "EUR" => {
-                            // Translators: How to format the currency "Euro". Do not translate in {}.
-                            gettextrs::gettext("€{amount}")
-                                .replace("{amount}", &format!("{:.2}", price.amount))
-                                .to_value()
-                        }
-                        "USD" => {
-                            // Translators: How to format the currency "Dollar (US)". Do not translate in {}.
-                            gettextrs::gettext("${amount}")
-                                .replace("{amount}", &format!("{:.2}", price.amount))
-                                .to_value()
-                        }
-                        // XXX: Add other currencies here
-                        s => {
-                            // Translators: How to format unknown currency "currency". Do not translate in {}.
-                            gettextrs::gettext("{currency} {amount}")
-                                .replace("{amount}", &format!("{:.2}", price.amount))
-                                .replace("{currency}", s)
-                                .to_value()
-                        }
-                    }
+            match price.currency.as_str() {
+                "EUR" => {
+                    // Translators: How to format the currency "Euro". Do not translate in {}.
+                    gettextrs::gettext("€{amount}")
+                        .replace("{amount}", &format!("{:.2}", price.amount))
                 }
-                _ => unimplemented!(),
+                "USD" => {
+                    // Translators: How to format the currency "Dollar (US)". Do not translate in {}.
+                    gettextrs::gettext("${amount}")
+                        .replace("{amount}", &format!("{:.2}", price.amount))
+                }
+                // XXX: Add other currencies here
+                s => {
+                    // Translators: How to format unknown currency "currency". Do not translate in {}.
+                    gettextrs::gettext("{currency} {amount}")
+                        .replace("{amount}", &format!("{:.2}", price.amount))
+                        .replace("{currency}", s)
+                }
             }
         }
     }
+
+    #[glib::derived_properties]
+    impl ObjectImpl for Price {}
 }

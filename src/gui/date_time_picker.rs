@@ -34,15 +34,15 @@ pub mod imp {
     use chrono::NaiveDate;
     use chrono::TimeZone;
     use chrono::Timelike;
+    use gdk::glib::Properties;
     use gdk::glib::clone;
     use gdk::glib::subclass::InitializingObject;
-    use gdk::glib::Properties;
     use gdk::prelude::*;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::PopoverExt;
     use gtk::subclass::prelude::*;
     use gtk::template_callbacks;
-    use gtk::CompositeTemplate;
     use libadwaita::prelude::ActionRowExt;
     use libadwaita::prelude::EditableExt;
     use libadwaita::prelude::ToggleButtonExt;

@@ -5,9 +5,9 @@ use gdk::{
     prelude::{ActionMapExt, Cast},
 };
 use gettextrs::gettext;
-use gtk::{prelude::WidgetExt, Window};
+use gtk::{Window, prelude::WidgetExt};
 use libadwaita::{
-    prelude::AdwDialogExt, prelude::AlertDialogExt, AlertDialog, Toast, ToastOverlay,
+    AlertDialog, Toast, ToastOverlay, prelude::AdwDialogExt, prelude::AlertDialogExt,
 };
 
 pub fn error_to_toast(overlay: &ToastOverlay, err: Error) {

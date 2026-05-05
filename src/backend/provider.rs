@@ -1,4 +1,4 @@
-use gdk::{glib::Object, prelude::ObjectExt};
+use gdk::glib::Object;
 
 gtk::glib::wrapper! {
     pub struct Provider(ObjectSubclass<imp::Provider>);
@@ -25,10 +25,6 @@ impl Provider {
             .property("regional-group", regional_group)
             .build()
     }
-
-    pub fn id(&self) -> String {
-        self.property("id")
-    }
 }
 
 mod imp {
@@ -36,18 +32,23 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{ParamSpec, ParamSpecString, Value},
-        prelude::{ParamSpecBuilderExt, ToValue},
-        subclass::prelude::{ObjectImpl, ObjectSubclass},
+        glib::Properties,
+        prelude::ObjectExt,
+        subclass::prelude::{DerivedObjectProperties, ObjectImpl, ObjectSubclass},
     };
-    use once_cell::sync::Lazy;
 
-    #[derive(Default)]
+    #[derive(Default, Properties)]
+    #[properties(wrapper_type = super::Provider)]
     pub struct Provider {
+        #[property(get, set, construct_only)]
         id: RefCell<String>,
+        #[property(get, set, construct_only)]
         short_name: RefCell<String>,
+        #[property(get, set, construct_only)]
         name: RefCell<Option<String>>,
+        #[property(get, set, construct_only)]
         icon_name: RefCell<String>,
+        #[property(get, set, construct_only)]
         regional_group: RefCell<String>,
     }
 
@@ -57,71 +58,6 @@ mod imp {
         type Type = super::Provider;
     }
 
-    impl ObjectImpl for Provider {
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecString::builder("id").construct_only().build(),
-                    ParamSpecString::builder("name").construct_only().build(),
-                    ParamSpecString::builder("short-name")
-                        .construct_only()
-                        .build(),
-                    ParamSpecString::builder("icon-name")
-                        .construct_only()
-                        .build(),
-                    ParamSpecString::builder("regional-group")
-                        .construct_only()
-                        .build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "id" => {
-                    let obj = value
-                        .get::<String>()
-                        .expect("Property `id` of `Provider` has to be of type `String`");
-                    self.id.replace(obj);
-                }
-                "short-name" => {
-                    let obj = value
-                        .get::<String>()
-                        .expect("Property `short-name` of `Provider` has to be of type `String`");
-                    self.short_name.replace(obj);
-                }
-                "name" => {
-                    let obj = value
-                        .get::<Option<String>>()
-                        .expect("Property `name` of `Provider` has to be of type `String`");
-                    self.name.replace(obj);
-                }
-                "icon-name" => {
-                    let obj = value
-                        .get::<String>()
-                        .expect("Property `icon-name` of `Provider` has to be of type `String`");
-                    self.icon_name.replace(obj);
-                }
-                "regional-group" => {
-                    let obj = value
-                        .get::<String>()
-                        .expect("Property `regional-group` of `Provider` has to be of type `Option<String>`");
-                    self.regional_group.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "id" => self.id.borrow().to_value(),
-                "short-name" => self.short_name.borrow().to_value(),
-                "name" => self.name.borrow().to_value(),
-                "icon-name" => self.icon_name.borrow().to_value(),
-                "regional-group" => self.regional_group.borrow().to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for Provider {}
 }

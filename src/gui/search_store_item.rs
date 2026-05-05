@@ -19,20 +19,20 @@ impl SearchStoreItem {
 pub mod imp {
     use std::cell::RefCell;
 
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecString;
-    use gdk::glib::Value;
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
-    use once_cell::sync::Lazy;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::SearchStoreItem)]
     #[template(resource = "/ui/search_store_item.ui")]
     pub struct SearchStoreItem {
+        #[property(get, set)]
         origin: RefCell<Option<String>>,
+        #[property(get, set)]
         destination: RefCell<Option<String>>,
     }
 
@@ -51,49 +51,8 @@ pub mod imp {
         }
     }
 
-    impl ObjectImpl for SearchStoreItem {
-        fn constructed(&self) {
-            self.parent_constructed();
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecString::builder("origin").build(),
-                    ParamSpecString::builder("destination").build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "origin" => {
-                    let obj = value.get::<Option<String>>().expect(
-                        "Property `origin` of `SearchStoreItem` has to be of type `String`",
-                    );
-
-                    self.origin.replace(obj);
-                }
-                "destination" => {
-                    let obj = value.get::<Option<String>>().expect(
-                        "Property `destination` of `SearchStoreItem` has to be of type `String`",
-                    );
-
-                    self.destination.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "origin" => self.origin.borrow().to_value(),
-                "destination" => self.destination.borrow().to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for SearchStoreItem {}
 
     impl WidgetImpl for SearchStoreItem {}
     impl BoxImpl for SearchStoreItem {}

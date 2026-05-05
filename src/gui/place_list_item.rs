@@ -1,7 +1,4 @@
-use gdk::glib::prelude::ObjectExt;
 use gdk::glib::Object;
-
-use crate::backend::Place;
 
 gtk::glib::wrapper! {
     pub struct PlaceListItem(ObjectSubclass<imp::PlaceListItem>)
@@ -14,10 +11,6 @@ impl PlaceListItem {
     pub fn new() -> Self {
         Object::builder().build()
     }
-
-    pub fn place(&self) -> Option<Place> {
-        self.property("place")
-    }
 }
 
 impl Default for PlaceListItem {
@@ -29,24 +22,23 @@ impl Default for PlaceListItem {
 pub mod imp {
     use std::cell::RefCell;
 
+    use gdk::glib::Properties;
     use gdk::glib::prelude::ObjectExt;
     use gdk::glib::subclass::Signal;
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
-    use gdk::prelude::ToValue;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
 
     use crate::backend::Place;
     use crate::gui::utility::Utility;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
     #[template(resource = "/ui/place_list_item.ui")]
+    #[properties(wrapper_type = super::PlaceListItem)]
     pub struct PlaceListItem {
+        #[property(get, set)]
         place: RefCell<Option<Place>>,
     }
 
@@ -75,37 +67,8 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for PlaceListItem {
-        fn constructed(&self) {
-            self.parent_constructed();
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| vec![ParamSpecObject::builder::<Place>("place").build()]);
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "place" => {
-                    let obj = value
-                        .get::<Option<Place>>()
-                        .expect("Property `place` of `DBPlaceListItem` has to be of type `Place`");
-
-                    self.place.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "place" => self.place.borrow().to_value(),
-                _ => unimplemented!(),
-            }
-        }
-
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> =
                 Lazy::new(|| -> Vec<Signal> { vec![Signal::builder("pressed").build()] });

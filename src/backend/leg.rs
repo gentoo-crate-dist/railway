@@ -29,19 +29,197 @@ mod imp {
     use std::cell::RefCell;
 
     use gdk::{
-        glib::{
-            ParamSpec, ParamSpecBoolean, ParamSpecEnum, ParamSpecObject, ParamSpecString, Value,
+        glib::Properties,
+        prelude::ObjectExt,
+        subclass::prelude::{
+            DerivedObjectProperties, ObjectImpl, ObjectSubclass, ObjectSubclassExt,
         },
-        prelude::{ObjectExt, ParamSpecBuilderExt, ToValue},
-        subclass::prelude::{ObjectImpl, ObjectSubclass, ObjectSubclassExt},
     };
-    use once_cell::sync::Lazy;
 
     use crate::backend::{Frequency, LateFactor, LoadFactor, Place};
 
-    #[derive(Default)]
+    #[derive(Default, Properties)]
+    #[properties(wrapper_type = super::Leg)]
     pub struct Leg {
+        #[property(name = "direction", type = String, get = Self::direction)]
+        #[property(name = "name", type = String, get = Self::name)]
+        #[property(name = "departure", type = Option<String>, get = Self::departure)]
+        #[property(name = "arrival", type = Option<String>, get = Self::arrival)]
+        #[property(name = "planned-departure", type = Option<String>, get = Self::planned_departure)]
+        #[property(name = "planned-arrival", type = Option<String>, get = Self::planned_arrival)]
+        #[property(name = "departure-platform", type = Option<String>, get = Self::departure_platform)]
+        #[property(name = "arrival-platform", type = Option<String>, get = Self::arrival_platform)]
+        #[property(name = "planned-departure-platform", type = Option<String>, get = Self::planned_departure_platform)]
+        #[property(name = "planned-arrival-platform", type = Option<String>, get = Self::planned_arrival_platform)]
+        #[property(name = "origin", type = Option<Place>, get = Self::origin)]
+        #[property(name = "destination", type = Option<Place>, get = Self::destination)]
+        #[property(name = "load-factor", type = LoadFactor, get = Self::load_factor, builder(LoadFactor::default()))]
+        #[property(name = "late-factor", type = LateFactor, get = Self::late_factor, builder(LateFactor::default()))]
+        #[property(name = "frequency", type = Option<Frequency>, get = Self::frequency)]
+        #[property(name = "change-platform", type = bool, get = Self::change_platform)]
+        #[property(name = "is-unreachable", type = bool, get = Self::is_unreachable)]
+        #[property(name = "is-cancelled", type = bool, get = Self::is_cancelled)]
         pub(super) leg: RefCell<Option<rcore::Leg>>,
+    }
+
+    impl Leg {
+        fn direction(&self) -> String {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.direction.clone())
+                .unwrap_or(
+                    self.obj()
+                        .destination()
+                        .map(|d| d.name())
+                        .unwrap_or_default(),
+                )
+        }
+
+        fn name(&self) -> String {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.line.clone())
+                .and_then(|o| o.name.clone())
+                .unwrap_or(gettextrs::gettext("Walk"))
+        }
+
+        fn departure(&self) -> Option<String> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.departure)
+                .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
+        }
+
+        fn arrival(&self) -> Option<String> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.arrival)
+                .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
+        }
+
+        fn planned_departure(&self) -> Option<String> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.planned_departure)
+                .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
+        }
+
+        fn planned_arrival(&self) -> Option<String> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.planned_arrival)
+                .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
+        }
+
+        fn departure_platform(&self) -> Option<String> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.departure_platform.clone())
+        }
+
+        fn arrival_platform(&self) -> Option<String> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.arrival_platform.clone())
+        }
+
+        fn planned_departure_platform(&self) -> Option<String> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.planned_departure_platform.clone())
+        }
+
+        fn planned_arrival_platform(&self) -> Option<String> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.planned_arrival_platform.clone())
+        }
+
+        fn origin(&self) -> Option<Place> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .map(|o| Place::new(o.origin.clone()))
+        }
+
+        fn destination(&self) -> Option<Place> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .map(|o| Place::new(o.destination.clone()))
+        }
+
+        fn load_factor(&self) -> LoadFactor {
+            self.leg
+                .borrow()
+                .as_ref()
+                .map(|o| LoadFactor::from(o.load_factor))
+                .unwrap_or_default()
+        }
+
+        fn late_factor(&self) -> LateFactor {
+            self.leg
+                .borrow()
+                .as_ref()
+                .map(|o| {
+                    std::cmp::max(
+                        match (o.arrival, o.planned_arrival) {
+                            (Some(real), Some(planned)) => LateFactor::from(real - planned),
+                            _ => LateFactor::default(),
+                        },
+                        match (o.departure, o.planned_departure) {
+                            (Some(real), Some(planned)) => LateFactor::from(real - planned),
+                            _ => LateFactor::default(),
+                        },
+                    )
+                })
+                .unwrap_or_default()
+        }
+
+        fn frequency(&self) -> Option<Frequency> {
+            self.leg
+                .borrow()
+                .as_ref()
+                .and_then(|o| o.frequency.clone())
+                .map(Frequency::new)
+        }
+
+        fn change_platform(&self) -> bool {
+            self.leg
+                .borrow()
+                .as_ref()
+                .map(|o| {
+                    o.departure_platform != o.planned_departure_platform
+                        || o.arrival_platform != o.planned_arrival_platform
+                })
+                .unwrap_or_default()
+        }
+
+        fn is_unreachable(&self) -> bool {
+            self.leg
+                .borrow()
+                .as_ref()
+                .map(|o| !o.reachable)
+                .unwrap_or_default()
+        }
+
+        fn is_cancelled(&self) -> bool {
+            self.leg
+                .borrow()
+                .as_ref()
+                .map(|o| o.cancelled)
+                .unwrap_or_default()
+        }
     }
 
     #[glib::object_subclass]
@@ -50,207 +228,6 @@ mod imp {
         type Type = super::Leg;
     }
 
-    impl ObjectImpl for Leg {
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecString::builder("direction").read_only().build(),
-                    ParamSpecString::builder("name").read_only().build(),
-                    ParamSpecString::builder("departure").read_only().build(),
-                    ParamSpecString::builder("arrival").read_only().build(),
-                    ParamSpecString::builder("planned-departure")
-                        .read_only()
-                        .build(),
-                    ParamSpecString::builder("planned-arrival")
-                        .read_only()
-                        .build(),
-                    ParamSpecString::builder("departure-platform")
-                        .read_only()
-                        .build(),
-                    ParamSpecString::builder("arrival-platform")
-                        .read_only()
-                        .build(),
-                    ParamSpecString::builder("planned-departure-platform")
-                        .read_only()
-                        .build(),
-                    ParamSpecString::builder("planned-arrival-platform")
-                        .read_only()
-                        .build(),
-                    ParamSpecObject::builder::<Place>("origin")
-                        .read_only()
-                        .build(),
-                    ParamSpecObject::builder::<Place>("destination")
-                        .read_only()
-                        .build(),
-                    ParamSpecEnum::builder::<LoadFactor>("load-factor")
-                        .read_only()
-                        .build(),
-                    ParamSpecEnum::builder::<LateFactor>("late-factor")
-                        .read_only()
-                        .build(),
-                    ParamSpecObject::builder::<Frequency>("frequency")
-                        .read_only()
-                        .build(),
-                    ParamSpecBoolean::builder("change-platform")
-                        .read_only()
-                        .build(),
-                    ParamSpecBoolean::builder("is-unreachable")
-                        .read_only()
-                        .build(),
-                    ParamSpecBoolean::builder("is-cancelled")
-                        .read_only()
-                        .build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, _value: &Value, _pspec: &ParamSpec) {}
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            let obj = self.obj();
-            match pspec.name() {
-                "direction" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.direction.as_ref())
-                    .unwrap_or(
-                        &obj.property::<Place>("destination")
-                            .name()
-                            .unwrap_or_default(),
-                    )
-                    .to_value(),
-                "name" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.line.as_ref())
-                    .and_then(|o| o.name.as_ref())
-                    .unwrap_or(&gettextrs::gettext("Walk"))
-                    .to_value(),
-                "departure" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.departure)
-                    .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
-                    .to_value(),
-                "arrival" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.arrival)
-                    .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
-                    .to_value(),
-                "planned-departure" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.planned_departure)
-                    .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
-                    .to_value(),
-                "planned-arrival" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.planned_arrival)
-                    .map(|d| d.with_timezone(&Local).format("%H:%M").to_string())
-                    .to_value(),
-                "departure-platform" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.departure_platform.clone())
-                    .to_value(),
-                "arrival-platform" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.arrival_platform.clone())
-                    .to_value(),
-                "planned-departure-platform" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.planned_departure_platform.clone())
-                    .to_value(),
-                "planned-arrival-platform" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.planned_arrival_platform.clone())
-                    .to_value(),
-                "origin" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .map(|o| Place::new(o.origin.clone()))
-                    .to_value(),
-                "destination" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .map(|o| Place::new(o.destination.clone()))
-                    .to_value(),
-                "load-factor" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .map(|o| LoadFactor::from(o.load_factor))
-                    .unwrap_or_default()
-                    .to_value(),
-                "late-factor" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .map(|o| {
-                        std::cmp::max(
-                            match (o.arrival, o.planned_arrival) {
-                                (Some(real), Some(planned)) => LateFactor::from(real - planned),
-                                _ => LateFactor::default(),
-                            },
-                            match (o.departure, o.planned_departure) {
-                                (Some(real), Some(planned)) => LateFactor::from(real - planned),
-                                _ => LateFactor::default(),
-                            },
-                        )
-                    })
-                    .unwrap_or_default()
-                    .to_value(),
-                "frequency" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .and_then(|o| o.frequency.clone())
-                    .map(Frequency::new)
-                    .to_value(),
-                "change-platform" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .map(|o| {
-                        o.departure_platform != o.planned_departure_platform
-                            || o.arrival_platform != o.planned_arrival_platform
-                    })
-                    .unwrap_or_default()
-                    .to_value(),
-                "is-unreachable" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .map(|o| !o.reachable)
-                    .unwrap_or_default()
-                    .to_value(),
-                "is-cancelled" => self
-                    .leg
-                    .borrow()
-                    .as_ref()
-                    .map(|o| o.cancelled)
-                    .unwrap_or_default()
-                    .to_value(),
-                _ => unimplemented!(),
-            }
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for Leg {}
 }

@@ -30,16 +30,16 @@ impl SearchPage {
 pub mod imp {
     use chrono::Duration;
     use gdk::gio::Settings;
-    use gdk::glib::clone;
-    use gdk::glib::subclass::Signal;
     use gdk::glib::MainContext;
     use gdk::glib::Properties;
+    use gdk::glib::clone;
+    use gdk::glib::subclass::Signal;
     use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
+    use gtk::ListBoxRow;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
-    use gtk::ListBoxRow;
     use once_cell::sync::Lazy;
     use rcore::JourneysOptions;
     use rcore::LoyaltyCard;

@@ -2,12 +2,9 @@ use std::time::Duration;
 
 use gdk::{
     glib::{self, clone},
-    prelude::ObjectExt,
     subclass::prelude::ObjectSubclassIsExt,
 };
 use gtk::prelude::AdjustmentExt;
-
-use crate::backend::JourneysResult;
 
 gtk::glib::wrapper! {
     pub struct JourneysPage(ObjectSubclass<imp::JourneysPage>)
@@ -17,28 +14,8 @@ gtk::glib::wrapper! {
 }
 
 impl JourneysPage {
-    fn set_loading_earlier(&self, is: bool) {
-        self.set_property("is-loading-earlier", is)
-    }
-
-    fn set_loading_later(&self, is: bool) {
-        self.set_property("is-loading-later", is)
-    }
-
-    fn is_loading_earlier(&self) -> bool {
-        self.property("is-loading-earlier")
-    }
-
-    fn is_loading_later(&self) -> bool {
-        self.property("is-loading-later")
-    }
-
     fn is_auto_scroll(&self) -> bool {
-        self.property("auto-scroll")
-    }
-
-    fn set_auto_scroll(&self, val: bool) {
-        self.set_property("auto-scroll", val)
+        self.auto_scroll()
     }
 
     fn scroll_down(&self) {
@@ -72,10 +49,6 @@ impl JourneysPage {
             ));
         }
     }
-
-    fn journeys_result(&self) -> JourneysResult {
-        self.property("journeys-result")
-    }
 }
 
 pub mod imp {
@@ -84,22 +57,19 @@ pub mod imp {
 
     use chrono::Duration;
     use gdk::gio::Settings;
+    use gdk::glib::MainContext;
+    use gdk::glib::Properties;
     use gdk::glib::clone;
     use gdk::glib::subclass::Signal;
-    use gdk::glib::MainContext;
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecBoolean;
-    use gdk::glib::ParamSpecObject;
-    use gdk::glib::Value;
     use glib::subclass::InitializingObject;
-    use gtk::glib;
-    use gtk::prelude::*;
-    use gtk::subclass::prelude::*;
     use gtk::CompositeTemplate;
     use gtk::ListItem;
     use gtk::PositionType;
     use gtk::SignalListItemFactory;
     use gtk::Widget;
+    use gtk::glib;
+    use gtk::prelude::*;
+    use gtk::subclass::prelude::*;
     use once_cell::sync::Lazy;
     use rcore::JourneysOptions;
     use rcore::LoyaltyCard;
@@ -116,7 +86,8 @@ pub mod imp {
     use crate::gui::utility::Utility;
     use crate::gui::window::Window;
 
-    #[derive(CompositeTemplate)]
+    #[derive(CompositeTemplate, Properties)]
+    #[properties(wrapper_type = super::JourneysPage)]
     #[template(resource = "/ui/journeys_page.ui")]
     pub struct JourneysPage {
         #[template_child]
@@ -127,15 +98,22 @@ pub mod imp {
 
         destination_alignment_group: gtk::SizeGroup,
 
+        #[property(get, set)]
         journeys_result: RefCell<Option<JourneysResult>>,
 
         settings: Settings,
+        #[property(get, set)]
         client: RefCell<Option<Client>>,
 
+        #[property(name = "loading-earlier", get, set)]
         loading_earlier: Cell<bool>,
+        #[property(name = "loading-later", get, set)]
         loading_later: Cell<bool>,
+        #[property(get, set)]
         auto_scroll: Cell<bool>,
+        #[property(get, set)]
         compact: Cell<bool>,
+        #[property(get, set)]
         scrolled_up: Cell<bool>,
     }
 
@@ -170,7 +148,12 @@ pub mod imp {
                     if adj.upper() <= adj.page_size() {
                         // Do not scroll for the initial loading.
                         obj.set_auto_scroll(false);
-                        if obj.journeys_result().time_type() == TimeType::Departure {
+                        if obj
+                            .journeys_result()
+                            .expect("JourneysPage to have a JourneysResult when loading")
+                            .time_type()
+                            == TimeType::Departure
+                        {
                             obj.imp().handle_later()
                         } else {
                             obj.imp().handle_earlier()
@@ -197,13 +180,13 @@ pub mod imp {
             let obj = self.obj();
 
             // Skip if already loading.
-            if obj.is_loading_earlier() {
+            if obj.loading_earlier() {
                 return;
             }
             obj.set_loading_earlier(true);
 
             if self.auto_scroll.get() && !self.scrolled_up.get() {
-                obj.set_property("scrolled-up", true.to_value());
+                obj.set_scrolled_up(true);
             }
 
             let main_context = MainContext::default();
@@ -218,10 +201,12 @@ pub mod imp {
                 #[strong]
                 window,
                 async move {
-                    let journeys_result = obj.property::<JourneysResult>("journeys-result");
+                    let Some(journeys_result) = obj.journeys_result() else {
+                        return;
+                    };
 
-                    let result_journeys_result = obj
-                        .property::<Client>("client")
+                    let client = obj.client().expect("Client of JourneysPage to be set up");
+                    let result_journeys_result = client
                         .journeys(
                             journeys_result.source().expect("Journey to have a source"),
                             journeys_result
@@ -277,7 +262,7 @@ pub mod imp {
             let obj = self.obj();
 
             // Skip if already loading.
-            if obj.is_loading_later() {
+            if obj.loading_later() {
                 return;
             }
             obj.set_loading_later(true);
@@ -453,6 +438,7 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for JourneysPage {
         fn constructed(&self) {
             self.parent_constructed();
@@ -460,93 +446,13 @@ pub mod imp {
             self.connect_initial_loading();
         }
 
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecObject::builder::<JourneysResult>("journeys-result").build(),
-                    ParamSpecObject::builder::<Client>("client").build(),
-                    ParamSpecBoolean::builder("is-loading-earlier").build(),
-                    ParamSpecBoolean::builder("is-loading-later").build(),
-                    ParamSpecBoolean::builder("auto-scroll").build(),
-                    ParamSpecBoolean::builder("compact").build(),
-                    ParamSpecBoolean::builder("scrolled-up").build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "journeys-result" => {
-                    let obj = value.get::<Option<JourneysResult>>()
-                        .expect("Property `journeys-result` of `JourneysPage` has to be of type `JourneysResult`");
-
-                    self.journeys_result.replace(obj.clone());
-                }
-                "client" => {
-                    let obj = value
-                        .get::<Option<Client>>()
-                        .expect("Property `client` of `JourneysPage` has to be of type `Client`");
-
-                    self.client.replace(obj);
-                }
-                "is-loading-earlier" => {
-                    let obj = value.get::<bool>().expect(
-                        "Property `is-loading-earlier` of `JourneysPage` has to be of type `bool`",
-                    );
-
-                    self.loading_earlier.replace(obj);
-                }
-                "is-loading-later" => {
-                    let obj = value.get::<bool>().expect(
-                        "Property `is-loading-later` of `JourneysPage` has to be of type `bool`",
-                    );
-
-                    self.loading_later.replace(obj);
-                }
-                "auto-scroll" => {
-                    let obj = value.get::<bool>().expect(
-                        "Property `auto-scroll` of `JourneysPage` has to be of type `bool`",
-                    );
-
-                    self.auto_scroll.replace(obj);
-                }
-                "compact" => {
-                    let obj = value
-                        .get::<bool>()
-                        .expect("Property `compact` of `JourneysPage` has to be of type `bool`");
-
-                    self.compact.replace(obj);
-                }
-                "scrolled-up" => {
-                    let obj = value
-                        .get::<bool>()
-                        .expect("Property `compact` of `JourneysPage` has to be of type `bool`");
-
-                    self.scrolled_up.replace(obj);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "journeys-result" => self.journeys_result.borrow().to_value(),
-                "client" => self.client.borrow().to_value(),
-                "is-loading-earlier" => self.loading_earlier.get().to_value(),
-                "is-loading-later" => self.loading_later.get().to_value(),
-                "auto-scroll" => self.auto_scroll.get().to_value(),
-                "compact" => self.compact.get().to_value(),
-                "scrolled-up" => self.scrolled_up.get().to_value(),
-                _ => unimplemented!(),
-            }
-        }
-
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-                vec![Signal::builder("select")
-                    .param_types([Journey::static_type()])
-                    .build()]
+                vec![
+                    Signal::builder("select")
+                        .param_types([Journey::static_type()])
+                        .build(),
+                ]
             });
             SIGNALS.as_ref()
         }

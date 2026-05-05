@@ -1,5 +1,5 @@
 use gdk::glib::Object;
-use gtk::{gdk, glib, prelude::*, CompositeTemplate};
+use gtk::{CompositeTemplate, gdk, glib, prelude::*};
 use libadwaita::subclass::prelude::*;
 
 glib::wrapper! {
@@ -17,11 +17,12 @@ impl Default for TimeDivider {
 mod imp {
     use chrono::Local;
 
+    use gdk::glib::Properties;
     use glib::subclass::InitializingObject;
     use gtk::subclass::box_::BoxImpl;
-    use once_cell::sync::Lazy;
     use std::cell::Cell;
     use std::cell::RefCell;
+    use std::marker::PhantomData;
 
     use crate::backend::Journey;
     use crate::backend::JourneysResult;
@@ -29,18 +30,45 @@ mod imp {
 
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, CompositeTemplate, Properties)]
+    #[properties(wrapper_type = super::TimeDivider)]
     #[template(resource = "/ui/time_divider.ui")]
     pub struct TimeDivider {
         #[template_child]
         label_date: TemplateChild<gtk::Label>,
 
+        #[property(name = "start", type = u32, set = Self::set_start)]
         is_start: Cell<bool>,
+        #[property(name = "initial", set = Self::set_initial)]
         is_initial: Cell<bool>,
+        #[property(name = "journeys-result", type = JourneysResult, set = Self::set_journeys_result)]
         journeys_result: RefCell<Option<JourneysResult>>,
+        #[property(name = "item", set = Self::set_item, nullable)]
+        _item: PhantomData<Option<Journey>>,
     }
 
     impl TimeDivider {
+        fn set_start(&self, v: u32) {
+            self.is_start.replace(v == 0);
+            self.update_visibility();
+        }
+
+        fn set_initial(&self, v: bool) {
+            self.is_initial.replace(v);
+            self.update_visibility();
+        }
+
+        fn set_journeys_result(&self, v: JourneysResult) {
+            self.journeys_result.replace(Some(v));
+            self.update_visibility();
+        }
+
+        fn set_item(&self, v: Option<Journey>) {
+            let formatted = v.map(|v| v.departure_day()).unwrap_or_default();
+            self.label_date.set_text(&formatted);
+            self.update_visibility();
+        }
+
         fn update_visibility(&self) {
             let is_requested_day = self.label_date.text()
                 == self
@@ -71,67 +99,8 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for TimeDivider {
-        fn properties() -> &'static [glib::ParamSpec] {
-            static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-                vec![
-                    glib::ParamSpecObject::builder::<JourneysResult>("journeys-result")
-                        .write_only()
-                        .build(),
-                    glib::ParamSpecObject::builder::<Journey>("item")
-                        .write_only()
-                        .build(),
-                    glib::ParamSpecUInt::builder("start").write_only().build(),
-                    glib::ParamSpecBoolean::builder("initial")
-                        .write_only()
-                        .build(),
-                ]
-            });
-
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            match pspec.name() {
-                "journeys-result" => {
-                    let v = value
-                        .get::<Option<JourneysResult>>()
-                        .expect("TimeDivider to only get a DateTime with timezone");
-                    self.journeys_result.replace(v);
-                    self.update_visibility();
-                }
-                "item" => {
-                    let v = value
-                        .get::<Option<Journey>>()
-                        .expect("TimeDivider to only get Journey");
-
-                    let formatted = v.map(|v| v.departure_day());
-                    self.label_date
-                        .set_text(&formatted.clone().unwrap_or_default());
-                    self.update_visibility();
-                }
-                "start" => {
-                    let v = value
-                        .get::<u32>()
-                        .expect("TimeDivider to only get an unsigned integer");
-                    self.is_start.replace(v == 0);
-                    self.update_visibility();
-                }
-                "initial" => {
-                    let v = value
-                        .get::<bool>()
-                        .expect("TimeDivider to only get an unsigned integer");
-                    self.is_initial.replace(v);
-                    self.update_visibility();
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, _pspec: &glib::ParamSpec) -> glib::Value {
-            unimplemented!();
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for TimeDivider {}
 
     impl WidgetImpl for TimeDivider {}
     impl BoxImpl for TimeDivider {}

@@ -7,20 +7,21 @@ gtk::glib::wrapper! {
 }
 
 pub mod imp {
+    use std::marker::PhantomData;
+
+    use gdk::glib::Properties;
     use gdk::glib::subclass::InitializingObject;
     use gdk::glib::subclass::Signal;
-    use gdk::glib::ParamSpec;
-    use gdk::glib::ParamSpecBoolean;
-    use gdk::glib::Value;
+    use gtk::CompositeTemplate;
     use gtk::glib;
     use gtk::prelude::*;
     use gtk::subclass::prelude::*;
     use gtk::template_callbacks;
-    use gtk::CompositeTemplate;
     use libadwaita::subclass::prelude::BinImpl;
     use once_cell::sync::Lazy;
 
-    #[derive(CompositeTemplate, Default)]
+    #[derive(CompositeTemplate, Default, Properties)]
+    #[properties(wrapper_type = super::RefreshButton)]
     #[template(resource = "/ui/refresh_button.ui")]
     pub struct RefreshButton {
         #[template_child]
@@ -29,6 +30,9 @@ pub mod imp {
         page_button: TemplateChild<gtk::StackPage>,
         #[template_child]
         page_spinner: TemplateChild<gtk::StackPage>,
+
+        #[property(set = Self::set_refreshing)]
+        refreshing: PhantomData<bool>,
     }
 
     #[template_callbacks]
@@ -36,6 +40,14 @@ pub mod imp {
         #[template_callback]
         fn handle_refresh_clicked(&self) {
             self.obj().emit_by_name::<()>("clicked", &[]);
+        }
+
+        fn set_refreshing(&self, refreshing: bool) {
+            if refreshing {
+                self.stack.set_visible_child(&self.page_spinner.child());
+            } else {
+                self.stack.set_visible_child(&self.page_button.child());
+            }
         }
     }
 
@@ -55,37 +67,11 @@ pub mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for RefreshButton {
         fn constructed(&self) {
             self.parent_constructed();
             self.stack.set_visible_child(&self.page_button.child());
-        }
-
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> =
-                Lazy::new(|| vec![ParamSpecBoolean::builder("refreshing").write_only().build()]);
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-            match pspec.name() {
-                "refreshing" => {
-                    let refreshing = value.get::<bool>().expect(
-                        "Property `refreshing` of `RefreshButton` has to be of type `bool`",
-                    );
-
-                    if refreshing {
-                        self.stack.set_visible_child(&self.page_spinner.child());
-                    } else {
-                        self.stack.set_visible_child(&self.page_button.child());
-                    }
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _id: usize, _pspec: &ParamSpec) -> Value {
-            unimplemented!()
         }
 
         fn signals() -> &'static [Signal] {
