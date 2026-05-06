@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.10.0] - 2026-05-06
+
 ### Fixed
 
 - Fixed errors with the AVV and VBB providers.
@@ -271,7 +273,8 @@ Those are packaged on <crates.io>.
 
 - Complete UI overhaul
 
-[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.4...master
+[Unreleased]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.10.0...master
+[2.10.0]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.4...2.10.0
 [2.9.4]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.3...2.9.4
 [2.9.3]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.2...2.9.3
 [2.9.2]: https://gitlab.com/schmiddi-on-mobile/railway/-/compare/2.9.1...2.9.2

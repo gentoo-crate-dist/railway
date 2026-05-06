@@ -264,7 +264,7 @@ dependencies = [
 
 [[package]]
 name = "diebahn"
-version = "2.9.4"
+version = "2.10.0"
 dependencies = [
  "chrono",
  "chrono-tz",
