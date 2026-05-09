@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2024-07-21 12:09+0000\n"
+"PO-Revision-Date: 2026-05-09 22:43+0000\n"
 "Last-Translator: Owen Higgins <owen@higgins.id>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/schmiddi-on-"
 "mobile/railway/da/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 2026.5-dev\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -179,7 +179,7 @@ msgstr "Tilpas avanceret søgmuligheder"
 
 #: data/resources/ui/search_options_button.blp:30
 msgid "More Options"
-msgstr "Mere indstillinger"
+msgstr "Flere indstillinger"
 
 #: data/resources/ui/search_options_dialog.blp:10
 msgid "Discount Card"
@@ -596,7 +596,7 @@ msgstr "Der opstod en fejl. Venligst del feedback."
 
 #: src/gui/error.rs:21 src/gui/error.rs:25
 msgid "More Information"
-msgstr "Mere information"
+msgstr "Yderligere information"
 
 #: src/gui/error.rs:24
 msgid "An unknown issue occured. Please share feedback."
