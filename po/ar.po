@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: diebahn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-22 19:18+0200\n"
-"PO-Revision-Date: 2026-04-25 10:09+0000\n"
-"Last-Translator: Abdullah Albaroty <albaroty@gmail.com>\n"
+"PO-Revision-Date: 2026-05-15 23:10+0000\n"
+"Last-Translator: Mohammed <mohmes@yandex.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/schmiddi-on-"
 "mobile/railway/ar/>\n"
 "Language: ar\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.17.1-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 
 #. Translators: The name of the application.
 #: data/de.schmidhuberj.DieBahn.desktop.in.in:4
@@ -45,32 +45,37 @@ msgid ""
 "without having to navigate through different websites. Due to the adaptive "
 "design, it is suitable to plan your trip in advance or mobile on the go:"
 msgstr ""
+"يتيح لك Railway البحث عن معلومات السفر عبر الشبكات والحدود دون الحاجة إلى "
+"التنقل عبر مواقع الويب المختلفة. نظرًا للتصميم التكيفي، فهو مناسب لتخطيط "
+"رحلتك مسبقًا أو عبر الهاتف المحمول أثناء التنقل:"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:43
 msgid "View your tripsʼ details including platforms and delays"
-msgstr ""
+msgstr "عرض تفاصيل رحلاتك بما في ذلك المنصات والتأخيرات"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:47
 msgid "Bookmark current and future trips as well as frequent search"
 msgstr ""
+"ضع إشارة مرجعية على الرحلات الحالية والمستقبلية بالإضافة إلى عمليات البحث "
+"المتكررة"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:51
 msgid "Make use of advance search options like filtering by mode of transport"
-msgstr ""
+msgstr "استفد من خيارات البحث المتقدم مثل التصفية حسب وسيلة النقل"
 
 #. Translators: Part of the description of the application in the metainfo.
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:56
 msgid ""
 "And all that for networks from all around the world, but mostly from Europe."
-msgstr ""
+msgstr "وكل ذلك للشبكات من جميع أنحاء العالم، ولكن في الغالب من أوروبا."
 
 #. Translators: Subtitle of the screenshot in the metainfo
 #: data/de.schmidhuberj.DieBahn.metainfo.xml.in.in:346
 msgid "Application Overview"
-msgstr ""
+msgstr "نظرة عامة على التطبيق"
 
 #: data/resources/ui/date_time_picker.blp:11
 msgid "Departure"
