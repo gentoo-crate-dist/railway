@@ -59,6 +59,11 @@
   </description>
 
   <releases>
+    <release version="2.10.1" date="2026-05-19">
+      <description translate="no">
+        <p>Fixed</p> <ul> <li>Fixed errors with the DB provider.</li> </ul> <p>Removed</p> <ul> <li>Removed the BLS provider, as it was not working anymore.</li> </ul>
+      </description>
+    </release>
     <release version="2.10.0" date="2026-05-06">
       <description translate="no">
         <p>Fixed</p> <ul> <li>Fixed errors with the AVV and VBB providers.</li> </ul>
