@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed errors with the DB provider.
+
+### Removed
+
+- Removed the BLS provider, as it was not working anymore.
+
 ## [2.10.0] - 2026-05-06
 
 ### Fixed

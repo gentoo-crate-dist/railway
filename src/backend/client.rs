@@ -35,13 +35,13 @@ fn providers() -> Vec<Provider> {
             &gettextrs::gettext("North America"),
             true,
         ),
-        Provider::new(
-            "BLS",
-            "BLS",
-            Some("BLS AG"),
-            &gettextrs::gettext("Europe"),
-            true,
-        ),
+        // Provider::new(
+        //     "BLS",
+        //     "BLS",
+        //     Some("BLS AG"),
+        //     &gettextrs::gettext("Europe"),
+        //     true,
+        // ),
         Provider::new(
             "CFL",
             "CFL",
